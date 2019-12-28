@@ -1,0 +1,21 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin nav-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: $primary-text-color;
+  border-bottom: 3px solid transparent;
+
+  &:hover {
+    color: $aqua-gray-dark;
+  }
+  &:active {
+    color: $aqua-gray-dark;
+    font-weight: 900;
+  }
+  &:visited {
+  }
+}

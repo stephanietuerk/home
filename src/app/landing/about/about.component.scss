@@ -1,0 +1,11 @@
+@import 'mixins', 'vars';
+
+.about-text {
+  color: $primary-text-color;
+  opacity: 0.7;
+  font-family: Roboto Slab;
+  font-size: 18px;
+  line-height: 2rem;
+  text-align: justify;
+  letter-spacing: 0.18rem;
+}

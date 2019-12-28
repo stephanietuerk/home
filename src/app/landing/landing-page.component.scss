@@ -1,8 +1,8 @@
-@import "vars", "mixins";
+@import 'vars', 'mixins';
 
 .name {
   font-size: 96px;
-  font-family: "Roboto Mono";
+  font-family: 'Roboto Mono';
   color: transparent;
   text-shadow: 6px 6px $name-text-color;
   -webkit-text-stroke-width: 1px;
@@ -23,3 +23,16 @@
 //   top: 58px;
 //   transform: rotate(30deg) skewX(30deg) scaleY(0.86);
 // }
+.nav-item {
+  font-size: 36px;
+  font-family: 'Source Sans Pro';
+}
+.unselected {
+  @include nav-link;
+}
+.selected {
+  border-bottom: 4px solid $green-highlight;
+}
+
+.content-portal-outlet {
+}

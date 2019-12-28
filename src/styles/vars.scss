@@ -1,0 +1,13 @@
+$aqua-gradient: #e2e8ea;
+$aqua-light: #c3ced2;
+$aqua-gray: #6d7c81;
+$aqua-gray-dark: #4f5d62;
+$pink-gradient: #f9f3f4;
+$green-highlight: #0fc3af;
+
+$background-primary: linear-gradient(0deg, $aqua-gradient, $pink-gradient);
+$background-container: linear-gradient(0deg, $pink-gradient, white);
+$background-nav: $pink-gradient;
+
+$primary-text-color: $aqua-gray;
+$name-text-color: $aqua-light;

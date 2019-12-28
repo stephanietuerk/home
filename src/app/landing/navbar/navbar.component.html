@@ -1,0 +1,12 @@
+<ng-container *ngFor="let section of sections">
+  <a
+    class="nav-item"
+    [ngClass]="{
+      selected: selection === section,
+      unselected: selection !== section
+    }"
+    (click)="setSelection(section)"
+  >
+    {{ section }}
+  </a>
+</ng-container>
