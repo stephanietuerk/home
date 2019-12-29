@@ -1,11 +1,11 @@
-<ng-container *ngFor="let section of sections">
+<ng-container *ngFor="let section of landingService.sections">
   <a
     class="nav-item"
     [ngClass]="{
-      selected: selection === section,
-      unselected: selection !== section
+      selected: landingService.selection === section,
+      unselected: landingService.selection !== section
     }"
-    (click)="setSelection(section)"
+    (click)="landingService.updateSelection(section)"
   >
     {{ section }}
   </a>

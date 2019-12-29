@@ -1,8 +1,3 @@
 <h1 class="name">Stephanie Tuerk</h1>
-<app-navbar (selection)="onNavSelection($event)"> </app-navbar>
-<app-content [contentPortalTemplate]="contentPortalOutlet"></app-content>
-
-<ng-template
-  #contentPortalOutlet
-  [cdkPortalOutlet]="selectedPortal"
-></ng-template>
+<app-navbar></app-navbar>
+<app-content></app-content>

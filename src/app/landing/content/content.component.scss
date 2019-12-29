@@ -1,0 +1,21 @@
+@import 'mixins', 'vars';
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+    background: rgba($aqua-lightest, 0.5);
+
+    .close-panel-icon {
+        align-self: flex-end;
+        margin: 8px;
+
+        svg {
+            height: 32px;
+            width: 32px;
+            fill: $primary-text-color;
+            vertical-align: text-top;
+            align-self: flex-end;
+        }
+    }
+}

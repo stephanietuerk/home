@@ -1,1 +1,19 @@
-<p>project-list works!</p>
+<div class="project-list-container">project-list works!
+    <table>
+        <thead>
+            <tr>
+                <ng-container *ngFor="let metadata of projectsMetaData">
+                    <th>{{ metadata }}</th>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects">
+                <td>{{ project.title }}</td>
+                <td>{{ project.type }}</td>
+                <td>{{ project.year }}</td>
+                <td>{{ project.technologies }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

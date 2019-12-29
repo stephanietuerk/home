@@ -1,7 +1,16 @@
 @import 'vars', 'mixins';
 
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0% 10% 4% 10%;
+  max-width: $landing-page-max-width;
+}
+
 .name {
-  font-size: 96px;
+  font-size: 6rem;
   font-family: 'Roboto Mono';
   color: transparent;
   text-shadow: 6px 6px $name-text-color;
@@ -10,29 +19,5 @@
   -webkit-text-stroke-color: $green-highlight;
   -moz-text-stroke-color: $green-highlight;
   margin-top: 1rem;
-}
-
-// .first-name {
-//   position: relative;
-//   top: 58px;
-//   transform: rotate(-30deg) skewX(-30deg) scaleY(0.86);
-// }
-
-// .last-name {
-//   position: relative;
-//   top: 58px;
-//   transform: rotate(30deg) skewX(30deg) scaleY(0.86);
-// }
-.nav-item {
-  font-size: 36px;
-  font-family: 'Source Sans Pro';
-}
-.unselected {
-  @include nav-link;
-}
-.selected {
-  border-bottom: 4px solid $green-highlight;
-}
-
-.content-portal-outlet {
+  text-align: center;
 }

@@ -1,3 +1,4 @@
+import { LandingService } from './../landing.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
@@ -7,14 +8,7 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  @Output() selection = new EventEmitter();
-  public sections: string[] = ['about', 'projects'];
-  selected: string;
 
-  constructor() {}
+  constructor(public landingService: LandingService) {}
 
-  setSelection(selection: string) {
-    this.selected = selection;
-    this.selection.emit(selection);
-  }
 }
