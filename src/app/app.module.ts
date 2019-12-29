@@ -1,3 +1,5 @@
+import { SvgIconComponent } from './core/svg-icon/svg-icon.component';
+import { SvgDefinitionsComponent } from './core/svg-icon/svg-definitions.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { PortalModule } from '@angular/cdk/portal';
@@ -17,7 +19,9 @@ import { ContentComponent } from './landing/content/content.component';
     AboutComponent,
     LandingPageComponent,
     ProjectListComponent,
-    ContentComponent
+    ContentComponent,
+    SvgDefinitionsComponent,
+    SvgIconComponent
   ],
   imports: [
     BrowserModule,
