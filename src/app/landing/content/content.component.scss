@@ -1,10 +1,13 @@
 @import 'mixins', 'vars';
 
+//encapsulation: none
+
 .content-container {
     display: flex;
     flex-direction: column;
     margin-top: 48px;
-    background: rgba($aqua-lightest, 0.5);
+    background: $content-background-color;
+    overflow-y: hidden;
 
     .close-panel-icon {
         align-self: flex-end;

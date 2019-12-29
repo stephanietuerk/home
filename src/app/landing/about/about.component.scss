@@ -1,8 +1,9 @@
 @import 'mixins', 'vars';
 
 :host {
-  background: inherit;
+  // background: $content-background-color;
   padding: 0px 40px 16px 40px;
+  margin-right: 12px;
   overflow-y: auto;
 }
 
