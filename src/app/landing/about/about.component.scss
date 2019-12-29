@@ -20,8 +20,14 @@
     }
   }
 
+  .about-link {
+    $link-underline-style: 2px dotted $green-highlight;
+    @include text-link($primary-text-color, rgba($aqua-medium, 0.5), $link-underline-style);
+  }
+
   .icon {
     margin-right: 4px;
+    
     svg {
       height: 24px;
       width: 24px;
