@@ -40,7 +40,6 @@ app-content {
 
 app-about {
   padding: 0px 40px 16px 40px;
-  margin-right: 12px;
   overflow-y: auto;
 }
 
@@ -52,7 +51,7 @@ app-about {
 }
 
 ::-webkit-scrollbar-track {
-  background: $aqua-lightest;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
