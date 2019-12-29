@@ -11,8 +11,28 @@
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: rgba($primary-text-color, 0.8);
-    background: rgba($aqua-lightest, 0.5);
+    color: rgba($primary-text-color, 0.6);
+    background: rgba($aqua-medium, 0.0);
+  }
+
+  &:active {
+    color: $green-highlight;
+  }
+
+  &:visited {
+  }
+}
+
+@mixin text-link($text-color, $highlight-color, $underline-style) {
+  text-decoration: none;
+  cursor: pointer;
+  color: $text-color;
+  transition: all 0.2s ease-in-out;
+  border-bottom: $underline-style;
+
+  &:hover {
+    color: rgba($text-color, 0.8);
+    background: $highlight-color;
   }
 
   &:active {

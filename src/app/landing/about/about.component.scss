@@ -1,17 +1,37 @@
 @import 'mixins', 'vars';
 
-:host {
+.about-container {
   // background: $content-background-color;
-  padding: 0px 40px 16px 40px;
-  margin-right: 12px;
-  overflow-y: auto;
-}
+  // padding: 0px 40px 16px 40px;
+  // margin-right: 12px;
 
-.about-text {
-  color: $primary-text-color;
-  font-family: Roboto Mono;
-  font-size: 1rem;
-  line-height: 2.2rem;
-  letter-spacing: 0.1rem;
-  margin-bottom: 2rem;
+  .about-text {
+    color: $primary-text-color;
+    font-family: Roboto Mono;
+    font-size: 1rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.1rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 2rem;
+    }
+    &:last-of-type {
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  .about-link {
+    $link-underline-style: 2px dotted $green-highlight;
+    @include text-link($primary-text-color, rgba($aqua-medium, 0.5), $link-underline-style);
+  }
+
+  .icon {
+    margin-right: 4px;
+    
+    svg {
+      height: 24px;
+      width: 24px;
+      vertical-align: text-top;
+    }
+  }
 }

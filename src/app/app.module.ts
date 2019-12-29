@@ -11,6 +11,7 @@ import { LandingPageComponent } from './landing/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectListComponent } from './landing/project-list/project-list.component';
 import { ContentComponent } from './landing/content/content.component';
+import { ProjectsPageComponent } from './projects/projects-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ContentComponent } from './landing/content/content.component';
     ProjectListComponent,
     ContentComponent,
     SvgDefinitionsComponent,
-    SvgIconComponent
+    SvgIconComponent,
+    ProjectsPageComponent
   ],
   imports: [
     BrowserModule,

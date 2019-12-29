@@ -38,7 +38,12 @@ app-content {
   overflow-y: hidden;
 }
 
-::-webkit-scrollbar {   
+app-about {
+  padding: 0px 40px 16px 40px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
   width: $vertical-scrollbar-thickness;
   height: $horizontal-scrollbar-thickness;
   border-radius: 70px;
@@ -46,7 +51,7 @@ app-content {
 }
 
 ::-webkit-scrollbar-track {
-  background: $aqua-lightest;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
