@@ -18,6 +18,18 @@
     &:last-of-type {
       margin-bottom: 0.8rem;
     }
+
+    &.subtitle {
+      display: inline-block;
+      margin-bottom: 1rem;
+      border-bottom: 2px dotted $primary-text-color;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.2rem;
+    }
+
+    &.other-text {
+    }
   }
 
   .about-link {
