@@ -1,0 +1,44 @@
+@import 'vars';
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+  
+%nav-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: $primary-text-color;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+      color: rgba($primary-text-color, 0.6);
+      background: rgba($aqua-medium, 0.0);
+  }
+
+  &:active {
+      color: $green-highlight;
+  }
+
+  &:visited {
+  }
+}
+
+%ie-scrollbar-styles {
+  -ms-scrollbar-face-color: $color-scrollbar-ie;
+  scrollbar-face-color: $color-scrollbar-ie;
+  -ms-scrollbar-highlight-color: $color-scrollbar-ie;
+  scrollbar-highlight-color: $color-scrollbar-ie;
+  -ms-scrollbar-shadow-color: $color-scrollbar-ie;
+  scrollbar-shadow-color: $color-scrollbar-ie;
+  -ms-scrollbar-darkshadow-color: $color-scrollbar-ie;
+  scrollbar-darkshadow-color: $color-scrollbar-ie;
+  -ms-scrollbar-track-color: #edf1f4;
+  scrollbar-track-color: #edf1f4;
+  -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
+  scrollbar-3dlight-color: $color-scrollbar-ie;
+  -ms-scrollbar-arrow-color: $aqua-gray;
+  scrollbar-arrow-color: $aqua-gray;
+  scrollbar-color: $color-scrollbar-ie #fff;
+}
