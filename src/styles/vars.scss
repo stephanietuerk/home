@@ -18,9 +18,11 @@ $light-text-color: $aqua-medium;
 $name-text-color: $aqua-medium;
 
 $landing-page-max-width: 1000px;
-$content-background-color: rgba($aqua-lightest, .6);
+$content-background-color: rgba($aqua-lightest, 0.6);
 
 $vertical-scrollbar-thickness: 8px;
 $horizontal-scrollbar-thickness: 8px;
 $color-scrollbar: $aqua-medium;
 $color-scrollbar-ie: $aqua-medium;
+
+$content-component-padding: 0px 40px 16px 40px;

@@ -1,4 +1,7 @@
-import { PROJECTS_METADATA } from './../../core/constants/projects.constants';
+import {
+  PROJECTS_METADATA,
+  ProjectMetaData
+} from './../../core/constants/projects.constants';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
 import { PROJECTS } from 'src/app/core/constants/projects.constants';
@@ -10,13 +13,16 @@ import { PROJECTS } from 'src/app/core/constants/projects.constants';
 })
 export class ProjectListComponent implements OnInit {
   projects: Project[];
-  projectsMetaData: string[];
+  projectsMetaData: ProjectMetaData[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.projects = PROJECTS;
     this.projectsMetaData = PROJECTS_METADATA;
   }
 
+  getCellText(text) {
+    return Array.isArray(text) ? text.join(', ') : text;
+  }
 }

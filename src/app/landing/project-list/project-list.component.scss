@@ -1,5 +1,79 @@
-@import 'vars', 'mixins';
+@import 'vars', 'placeholders', 'mixins';
 
-.project-list-container {
-    height: 500px;
+%table-col-padding {
+  &:first-child {
+    padding-left: 6px;
+  }
+  &:last-child {
+    padding-right: 6px;
+  }
+}
+
+:host {
+  padding: $content-component-padding;
+  color: $dark-text-color;
+  overflow-y: auto;
+}
+
+.project-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-col {
+  &.title {
+    width: 35%;
+  }
+  &.type {
+    width: 30%;
+  }
+  &.year {
+    width: 10%;
+  }
+  &.technologies {
+    width: 20%;
+  }
+}
+
+.table-head {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+
+  .table-header {
+    text-align: left;
+    padding-bottom: 6px;
+    @extend %table-col-padding;
+  }
+
+  .table-row {
+    border-bottom: 1px solid $aqua-gray-dark;
+  }
+}
+
+.table-body {
+  .table-row {
+    border-bottom: 1px dotted $aqua-gray;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $green-highlight;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid rgba($aqua-gray, 0.7);
+    }
+  }
+
+  .table-cell {
+    font-family: 'Roboto Mono';
+    padding: 10px 0px;
+    font-size: 0.9rem;
+    @extend %table-col-padding;
+
+    &.title {
+      font-weight: 700;
+    }
+  }
 }

@@ -1,10 +1,8 @@
 @import 'mixins', 'vars';
 
-.about-container {
-  // background: $content-background-color;
-  // padding: 0px 40px 16px 40px;
-  // margin-right: 12px;
+//encapsulation: none
 
+.about-container {
   .about-text {
     color: $primary-text-color;
     font-family: Roboto Mono;
@@ -34,12 +32,16 @@
 
   .about-link {
     $link-underline-style: 2px dotted $green-highlight;
-    @include text-link($primary-text-color, rgba($aqua-medium, 0.5), $link-underline-style);
+    @include text-link(
+      $primary-text-color,
+      rgba($aqua-medium, 0.5),
+      $link-underline-style
+    );
   }
 
   .icon {
     margin-right: 4px;
-    
+
     svg {
       height: 24px;
       width: 24px;

@@ -3,7 +3,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Source Sans';
+  font-family: 'Source Sans Pro';
   -webkit-font-smoothing: antialiased;
 
   html,
@@ -39,7 +39,7 @@ app-content {
 }
 
 app-about {
-  padding: 0px 40px 16px 40px;
+  padding: $content-component-padding;
   overflow-y: auto;
 }
 
