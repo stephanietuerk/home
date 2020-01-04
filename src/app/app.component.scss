@@ -1,7 +1,7 @@
-@import 'mixins', 'vars';
+@import 'vars', 'placeholders';
 
 .app-container {
-  @include flex-column;
+  @extend %flex-column;
   align-items: center;
   height: 100vh;
   background: $background-primary;

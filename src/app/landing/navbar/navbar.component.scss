@@ -1,4 +1,4 @@
-@import 'mixins', 'vars';
+@import 'vars', 'placeholders';
 
 :host {
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .nav-item {
-  @include nav-link;
+  @extend %nav-link;
   font-size: 36px;
   font-family: 'Source Sans Pro';
 
