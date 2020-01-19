@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:200,300,400,500,700,900|Source+Sans+Pro&display=swap');
-@import 'vars';
+@import 'vars', 'placeholders';
 
 * {
   box-sizing: border-box;
@@ -24,10 +24,16 @@
   h6,
   p,
   ol,
-  ul {
+  ul,
+  a {
     margin: 0;
     padding: 0;
     font-weight: normal;
+  }
+
+  a {
+    @extend %nav-link;
+    text-decoration: none;
   }
 }
 

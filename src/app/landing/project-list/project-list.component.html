@@ -8,7 +8,7 @@
   <thead class="table-head">
     <tr class="table-row">
       <ng-container *ngFor="let metadata of projectsMetaData">
-        <th class="table-header table-cell {{ metadata.colName }}">
+        <th class="table-header table-cell able-cell-text {{ metadata.colName }}">
           {{ metadata.colTitle }}
         </th>
       </ng-container>
@@ -20,7 +20,12 @@
         *ngFor="let metadata of projectsMetaData"
         class="table-cell {{ metadata.colAlignment }} {{ metadata.colName }}"
       >
-        {{ getCellText(project[metadata.colName]) }}
+        <a 
+          class="table-cell-text {{ metadata.colName }}"
+          [routerLink]="['/projects']"
+        >
+          {{ getCellText(project[metadata.colName]) }}
+        </a>
       </td>
     </tr>
   </tbody>

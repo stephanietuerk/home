@@ -54,10 +54,10 @@
 .table-body {
   .table-row {
     border-bottom: 1px dotted $aqua-gray;
-    transition: all 0.2s ease-in-out;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 
-    &:hover {
+    &:hover .table-cell-text {
       color: $green-highlight;
     }
 
@@ -67,11 +67,14 @@
   }
 
   .table-cell {
-    font-family: 'Roboto Mono';
-    padding: 10px 0px;
-    font-size: 0.9rem;
+    padding: 10px 12px 10px 0px;
     @extend %table-col-padding;
+  }
 
+  .table-cell-text {
+    font-family: 'Roboto Mono';
+    font-size: 0.9rem;
+    
     &.title {
       font-weight: 700;
     }
