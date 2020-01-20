@@ -54,8 +54,15 @@
 .table-body {
   .table-row {
     border-bottom: 1px dotted $aqua-gray;
-    cursor: pointer;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    & .table-cell {
+      
+      & .table-cell-text {
+        display: block;
+      }
+    }
 
     &:hover .table-cell-text {
       color: $green-highlight;
