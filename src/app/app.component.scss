@@ -1,8 +1,5 @@
 @import 'vars', 'placeholders';
 
-.app-container {
-  @extend %flex-column;
-  align-items: center;
-  height: 100vh;
-  background: $background-primary;
+.main-container {
+    height: 100%;
 }

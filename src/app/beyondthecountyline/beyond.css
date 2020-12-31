@@ -1,0 +1,238 @@
+		h1 {
+	  		font-family: "Roboto Mono";
+  			font-size: 90px;
+  			text-align: justify-all;
+  			margin-left: auto;
+    		margin-right: auto;
+  		}
+		h2 {font-family: "Roboto Mono", sans-serif;
+  			font-size: 30px;
+  			font-weight:400;
+  			text-align: justify-all;
+  			margin-left: auto;
+    		margin-right: auto;
+  		}
+  		h3 {font-family: "Roboto Mono", sans-serif;
+  			font-size: 35px;
+  			text-align: center;
+  			margin-left: auto;
+    		margin-right: auto;
+  		}
+
+  		h4 {font-family: "Roboto", sans-serif;
+  			font-size: 20px;
+  			color: #872250;
+  			font-style: Semi-Bold Italic;
+  			text-align: center;  			
+  		}
+  		body {
+	  		font-family: "Roboto", Helvetica, sans-serif;
+	  		overflow-wrap: normal;
+	  		/*width: 1200px;*/
+	  		text-align: justify-all;
+	  		text-wrap: normal;
+	  		margin-left: auto;
+    		margin-right: auto;
+	  	}
+		.axis text {
+			font: 10px sans-serif;
+		}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		.y.axis path {
+			stroke-dasharray: 4, 4;
+		}
+		.zero.axis path {
+			stroke-dasharray: 4, 4;
+		}
+		.grid line {
+			stroke-dasharray: 4, 4;
+			stroke: #cccccc;
+			stroke-opacity: 0.7;
+			shape-rendering: crispEdges;
+		}
+		.grid .tick {
+		    stroke: #cccccc;
+		    stroke-dasharray: 4, 4;
+		    opacity: 0.85;
+		    shape-rendering: crispEdges;
+		}
+		.grid path {
+			stroke-width: 0;
+		}
+		.chart-label {
+			font: 11px Roboto Mono;
+			/*font: 12px sans-serif;*/
+			fill: #bbbbbb;
+			text-anchor: end;
+		}
+		.chart-yaxis-label {
+			font: 11px Roboto Mono;
+			/*font: 12px sans-serif;*/
+			fill:  #bbbbbb;
+			text-anchor: end;
+		}
+		.legend-labels text {
+			font: 10px sans-serif;
+			/*font: 12px sans-serif;*/
+			fill: #bbbbbb;
+			text-anchor: middle;
+		}
+		.colorBar-label {
+			font: 11px Roboto Mono;
+			text-anchor: middle;
+		}
+		.color-bar-brushed {
+			/*opacity: 0.6;*/
+		}
+		.dots {
+		  stroke: #cccccc;
+		  stroke-opacity: 0.5;
+		}
+		.dots-non-brushed{
+
+		}
+		.click-overlay{
+			fill: none;
+			pointer-events: all;
+		}
+		.click-overlay-variable{
+			fill: none;
+		}
+		.map-text{
+			font: 14px Roboto Mono;
+			font-weight: 400;
+			fill: #cccccc;
+			stroke: none;
+			text-anchor: end;
+		}
+		.map-text-sm{
+			font: 11px Roboto Mono;
+			font-weight: 400;
+			fill: #cccccc;
+			stroke: none;
+			text-anchor: end;
+		}
+		.map-sel-text{
+			font: 11px Roboto Mono;
+			font-weight: 400;
+			fill: #cccccc;
+			stroke: none;
+			text-anchor: end;
+		}
+		.reset-text{
+			font: 14px Roboto Mono;
+			font-weight: 400;
+			fill: #bbbbbb;
+			stroke: none;
+			text-anchor: end;
+		}
+		.city{
+			fill: none;
+			stroke: black;
+			vector-effect: non-scaling-stroke;
+		}
+		.town{
+			fill: none;
+			stroke: black;
+			vector-effect: non-scaling-stroke;
+		}
+		.city-label{
+			font: 9px Roboto Mono;
+			font-weight: 400;
+			fill: black;
+			stroke: none;
+		}
+		.demoBarsSelBtn-rect-noPress{
+			fill: #bbbbbb;
+			stroke: white;
+			stroke-width: 1px;
+		}
+		.demoBarsSelBtn-text-noPress{
+			font: 10px "Roboto Mono";
+			font-weight: 400;
+			fill: white;
+			stroke: none;
+			text-anchor: middle;
+			dominant-baseline: central;
+		}
+		.demoBarsSelBtn-rect-press {
+			fill: white;
+			stroke: #bbbbbb;
+			stroke-width: 1px;
+		}
+		.demoBarsSelBtn-text-press {
+			font: 10px "Roboto Mono";
+			font-weight: 400;
+			fill: #bbbbbb;
+			stroke: none;
+			text-anchor: middle;
+			dominant-baseline: central;
+		}
+		.voteMapSelBtn-rect-noPress{
+			fill: #bbbbbb;
+			stroke: white;
+			stroke-width: 1px;
+		}
+		.voteMapSelBtn-text-noPress{
+			font: 10px "Roboto Mono";
+			font-weight: 400;
+			fill: white;
+			stroke: none;
+			text-anchor: middle;
+			dominant-baseline: central;
+		}
+		.voteMapSelBtn-rect-press {
+			fill: white;
+			stroke: #bbbbbb;
+			stroke-width: 1px;
+		}
+		.voteMapSelBtn-text-press {
+			font: 10px "Roboto Mono";
+			font-weight: 400;
+			fill: #bbbbbb;
+			stroke: none;
+			text-anchor: middle;
+			dominant-baseline: central;
+		}
+		.selBtn-rect-hover{
+			fill: #cccccc;
+/*			stroke: white;
+			stroke-width: 1px;*/
+		}
+		.selBtn-text-hover{
+			fill: white;
+		}
+		.demoBars-title {
+			font: 18px "Roboto Mono";
+			font-weight: 300;
+			fill: #aaaaaa;
+			stroke: none;
+			text-anchor: middle;
+		}
+		.voteMap-title {
+			font: 18px "Roboto Mono";
+			font-weight: 300;
+			fill: #aaaaaa;
+			stroke: none;
+			text-anchor: middle;
+		}
+		.tracts-non-brushed {
+			stroke: none;
+			/*stroke: #bebebe;*/
+      		stroke-linejoin: round;
+		}
+		.tracts-brushed {
+			stroke: #bbbbbb;
+	  		stroke-width: 2px;
+	  		opacity: .5;
+	  		/*stroke-dasharray: 2, 2;*/
+	  		stroke-linecap: butt;
+		}
+		.hover {
+			stroke: "#ffffff";
+		}

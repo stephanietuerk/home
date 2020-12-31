@@ -1,19 +1,34 @@
 @import 'vars', 'placeholders';
 
 :host {
+  height: $navbar-height;
+  background: rgba(white, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 24px 8px 24px;
+  // border-bottom: 1px solid $highlight-primary;
+}
+
+.my-name {
+  @extend %slab-bold;
+  font-size: 2rem;
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.nav-item-container {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
-  color: $primary-text-color;
+  align-items: flex-end;
 }
 
 .nav-item {
   @extend %nav-link;
-  font-size: 36px;
-  font-family: 'Source Sans Pro';
+  font-size: 1rem;
 
-  &.selected {
-    border-bottom: 3px solid $green-highlight;
+  &:not(:last-of-type) {
+    margin-right: 16px;
   }
 }
 

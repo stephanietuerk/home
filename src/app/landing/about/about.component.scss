@@ -1,51 +1,34 @@
-@import 'mixins', 'vars';
+@import 'mixins', 'vars', 'placeholders';
 
-//encapsulation: none
+:host {
+    @extend %flex-column;
+    align-items: center;
+}
 
-.about-container {
-  .about-text {
-    color: $primary-text-color;
-    font-family: Roboto Mono;
-    font-size: 1rem;
-    line-height: 2.2rem;
-    letter-spacing: 0.1rem;
+.about-title {
+    @extend %slab-medium;
+    color: $highlight-primary;
+    font-size: 2.3rem;
+}
 
-    &:not(:last-of-type) {
-      margin-bottom: 2rem;
+.about-text {
+    @extend %sans-regular;
+    text-align: center;
+    max-width: 800px;
+    margin: 6px auto 12px auto;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+}
+
+.read-more {
+    @extend %slab-regular;
+    @extend %small-caps;
+    letter-spacing: 0.13em;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    &:hover {
+        @extend %slab-medium;
+        color: $highlight-primary;
     }
-    &:last-of-type {
-      margin-bottom: 0.8rem;
-    }
-
-    &.subtitle {
-      display: inline-block;
-      margin-bottom: 1rem;
-      border-bottom: 2px dotted $primary-text-color;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.2rem;
-    }
-
-    &.other-text {
-    }
-  }
-
-  .about-link {
-    $link-underline-style: 2px dotted $green-highlight;
-    @include text-link(
-      $primary-text-color,
-      rgba($aqua-medium, 0.5),
-      $link-underline-style
-    );
-  }
-
-  .icon {
-    margin-right: 4px;
-
-    svg {
-      height: 24px;
-      width: 24px;
-      vertical-align: text-top;
-    }
-  }
 }

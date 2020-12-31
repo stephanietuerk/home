@@ -1,0 +1,69 @@
+@import 'vars', 'placeholders', 'mixins';
+
+:host {
+    text-align: center;
+}
+
+.projects-title {
+    @extend %slab-medium;
+    color: $highlight-primary;
+    font-size: 2.3rem;
+}
+
+.toc {
+    @extend %sans-regular;
+    @extend %small-caps;
+    letter-spacing: 0.13em;
+    font-size: 1.1rem;
+    margin: 6px 0;
+}
+
+.table-instructions {
+    @extend %sans-regular;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.projects-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.table-cell.header {
+    @extend %sans-medium;
+    @extend %small-caps;
+    font-size: 1.1rem;
+    letter-spacing: 0.13em;
+    text-align: left;
+}
+
+.table-row {
+    border-bottom: 1px solid rgba($highlight-primary, 0.2);
+
+    &.body {
+        height: 2.3rem;
+    }
+}
+
+.table-cell.body {
+    @extend %slab-regular;
+    font-size: 0.9rem;
+    text-align: left;
+    padding-top: 8px;
+
+    &.view {
+        @extend %small-caps;
+    }
+}
+
+.table-cell {
+    &:not(:last-of-type) {
+        padding-right: 20px;
+    }
+
+    &.year {
+        text-align: right;
+    }
+}
+

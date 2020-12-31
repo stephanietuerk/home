@@ -1,4 +1,5 @@
-export const SECTIONS: string[] = [
-    'about',
-    'projects'
-];
+export const SECTIONS = {
+    about: 'about',
+    projects: 'projects',
+    contact: 'contact'
+};

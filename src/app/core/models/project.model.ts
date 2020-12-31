@@ -1,26 +1,33 @@
 export class Project {
-  title: string;
-  type: string[];
-  year: string | number;
-  technologies: string[];
-  description?: string;
+    id: number;
+    title: string;
+    type: string[];
+    year: string | number;
+    technologies: string[];
+    description?: string[];
+    show?: boolean;
+    images?: string[];
+    url?: string;
+    routerLink?: string;
+    linkName?: string;
 }
 
 export enum ProjectType {
-  'Interactive visualization',
-  'FAQ',
-  'Text',
-  'Reference List',
-  'Web application',
-  'Prototype'
+    dataViz = 'Interactive data visualization',
+    text = 'Text',
+    list = 'Reference List',
+    webApp = 'Web application',
+    website = 'Website',
+    prototype = 'Prototype',
+    notebook = 'Notebook',
 }
 
 export enum TechTool {
-  'D3',
-  'React',
-  'Angular',
-  'JavaScript',
-  'TypeScript',
-  'Markdown',
-  'Deck.gl'
+    D3 = 'D3',
+    REACT = 'React',
+    ANGULAR = 'Angular',
+    JAVASCRIPT = 'JavaScript',
+    TYPESCRIPT = 'TypeScript',
+    MARKDOWN = 'Markdown',
+    DECKGL = 'Deck.gl',
 }

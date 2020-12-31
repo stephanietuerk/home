@@ -1,8 +1,0 @@
-<div class="content-container">
-    <app-svg-icon *ngIf="landingService.selection" class="close-panel-icon" name="clear" (click)="closePanel()"></app-svg-icon>
-    <ng-container *ngTemplateOutlet="contentPortalOutlet"></ng-container>
-    <ng-template #contentPortalOutlet [cdkPortalOutlet]="getPortal()"></ng-template>
-</div>
-
-
-

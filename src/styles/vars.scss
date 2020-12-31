@@ -8,6 +8,13 @@ $pink-light: #fff1fe;
 $pink-medium: #ffdcef;
 $green-highlight: #0fc3af;
 
+$highlight-primary: #0088ff;
+$dark-primary: #25274d;
+
+// $sans: 'Source Sans Pro';
+// $mono: 'Roboto Mono';
+// $slab: 'Roboto Slab';
+
 $background-primary: linear-gradient(0deg, $aqua-lightest, $pink-lightest);
 $background-container: linear-gradient(0deg, $pink-lightest, white);
 $background-nav: $pink-lightest;
@@ -26,3 +33,6 @@ $color-scrollbar: $aqua-medium;
 $color-scrollbar-ie: $aqua-medium;
 
 $content-component-padding: 0px 40px 16px 40px;
+
+$navbar-height: 64px;
+$project-navbar-height: 48px;

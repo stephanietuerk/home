@@ -1,12 +1,6 @@
-<ng-container *ngFor="let section of landingService.sections">
-  <a
-    class="nav-item"
-    [ngClass]="{
-      selected: landingService.selection === section,
-      unselected: landingService.selection !== section
-    }"
-    (click)="landingService.updateSelection(section)"
-  >
-    {{ section }}
-  </a>
-</ng-container>
+<h1 class="my-name" (click)="scrollToTop($event)">Stephanie Tuerk</h1>
+<div class="nav-item-container">
+    <a *ngFor="let section of sections" class="nav-item" (click)="elementService.scroll(section + '-id', 'smooth')">
+        {{ section }}
+    </a>
+</div>

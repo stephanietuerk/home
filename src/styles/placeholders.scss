@@ -1,44 +1,125 @@
 @import 'vars';
 
-%flex-column {
-  display: flex;
-  flex-direction: column;
+%ligatures {
+    font-variant-ligatures: common-ligatures;
+    -moz-font-feature-settings: 'liga', 'clig';
+    -webkit-font-feature-settings: 'liga', 'clig';
+    font-feature-settings: 'liga', 'clig';
 }
-  
+
+%small-caps {
+    font-variant-caps: small-caps;
+    -moz-font-feature-settings: 'smcp';
+    -webkit-font-feature-settings: 'smcp';
+    font-feature-settings: 'smcp';
+}
+
+%slab-regular {
+    @extend %ligatures;
+    font-family: ff-nuvo-mono-web-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+%slab-regular-italic {
+    @extend %slab-regular;
+    font-style: italic;
+}
+
+%slab-medium {
+    @extend %slab-regular;
+    font-weight: 500;
+}
+
+%slab-bold {
+    @extend %slab-regular;
+    font-weight: 700;
+}
+
+%slab-extrabold {
+    @extend %slab-regular;
+    font-weight: 800;
+}
+
+%slab-black {
+    @extend %slab-regular;
+    font-weight: 900;
+}
+
+%sans-regular {
+    @extend %ligatures;
+    font-family: ff-tisa-sans-web-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+%sans-light {
+    @extend %sans-regular;
+    font-weight: 300;
+}
+
+%sans-regular-italic {
+    @extend %sans-regular;
+    font-style: italic;
+}
+
+%sans-medium {
+    @extend %sans-regular;
+    font-weight: 500;
+}
+
+%sans-bold {
+    @extend %sans-regular;
+    font-weight: 700;
+}
+
+%sans-extrabold {
+    @extend %sans-regular;
+    font-weight: 800;
+}
+
+%sans-black {
+    @extend %sans-regular;
+    font-weight: 900;
+}
+
+%flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 %nav-link {
-  text-decoration: none;
-  cursor: pointer;
-  color: $primary-text-color;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease-in-out;
+    @extend %slab-medium;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 
-  &:hover {
-      color: rgba($primary-text-color, 0.6);
-      background: rgba($aqua-medium, 0.0);
-  }
+    &:hover {
+        color: $highlight-primary;
+    }
 
-  &:active {
-      color: $green-highlight;
-  }
+    &:active {
+        color: $highlight-primary;
+    }
 
-  &:visited {
-  }
+    &:visited {
+    }
 }
 
 %ie-scrollbar-styles {
-  -ms-scrollbar-face-color: $color-scrollbar-ie;
-  scrollbar-face-color: $color-scrollbar-ie;
-  -ms-scrollbar-highlight-color: $color-scrollbar-ie;
-  scrollbar-highlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-shadow-color: $color-scrollbar-ie;
-  scrollbar-shadow-color: $color-scrollbar-ie;
-  -ms-scrollbar-darkshadow-color: $color-scrollbar-ie;
-  scrollbar-darkshadow-color: $color-scrollbar-ie;
-  -ms-scrollbar-track-color: #edf1f4;
-  scrollbar-track-color: #edf1f4;
-  -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
-  scrollbar-3dlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-arrow-color: $aqua-gray;
-  scrollbar-arrow-color: $aqua-gray;
-  scrollbar-color: $color-scrollbar-ie #fff;
+    -ms-scrollbar-face-color: $color-scrollbar-ie;
+    scrollbar-face-color: $color-scrollbar-ie;
+    -ms-scrollbar-highlight-color: $color-scrollbar-ie;
+    scrollbar-highlight-color: $color-scrollbar-ie;
+    -ms-scrollbar-shadow-color: $color-scrollbar-ie;
+    scrollbar-shadow-color: $color-scrollbar-ie;
+    -ms-scrollbar-darkshadow-color: $color-scrollbar-ie;
+    scrollbar-darkshadow-color: $color-scrollbar-ie;
+    -ms-scrollbar-track-color: #edf1f4;
+    scrollbar-track-color: #edf1f4;
+    -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
+    scrollbar-3dlight-color: $color-scrollbar-ie;
+    -ms-scrollbar-arrow-color: $aqua-gray;
+    scrollbar-arrow-color: $aqua-gray;
+    scrollbar-color: $color-scrollbar-ie #fff;
 }

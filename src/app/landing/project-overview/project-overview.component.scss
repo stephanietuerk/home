@@ -1,0 +1,87 @@
+@import 'vars', 'placeholders', 'mixins';
+
+:host {
+    @extend %flex-column;
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-bottom: 48px;
+}
+
+.project-overview-container {
+    .project-overview-inner-container {
+        border-top: 1px solid $highlight-primary;
+        margin-top: $navbar-height + 24px;
+        margin-bottom: 72px;
+    }
+
+    .project-title {
+        @extend %slab-bold;
+        font-size: 1.1rem;
+        text-align: left;
+        padding: 24px 0;
+    }
+
+    .project-content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30% 70%;
+
+        .left-col {
+            text-align: left;
+            padding-right: 18px;
+
+            .details {
+                margin-bottom: 24px;
+            }
+
+            .project-link {
+                @extend %slab-bold;
+                @extend %small-caps;
+                text-align: left;
+                color: $highlight-primary;
+                font-size: 1.4rem;
+                letter-spacing: 0.13em;
+                padding-bottom: 18px;
+
+                &:hover {
+                    font-style: italic;
+                }
+            }
+        }
+
+        .right-col {
+            padding-left: 18px;
+
+            .screenshots-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                padding-top: 16px;
+            }
+
+            .project-image {
+                align-self: center;
+                width: 400px;
+                height: 240px;
+                padding: 6px 0;
+            }
+        }
+
+        .details {
+            .info-label {
+                @extend %sans-medium;
+                @extend %small-caps;
+                color: $highlight-primary;
+                font-size: 1.2rem;
+                letter-spacing: 0.13em;
+                line-height: 0.8rem;
+                padding-bottom: 6px;
+            }
+
+            .info-text {
+                padding-bottom: 12px;
+            }
+        }
+    }
+}

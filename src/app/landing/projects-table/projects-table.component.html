@@ -1,0 +1,23 @@
+<h2 class="projects-title">projects</h2>
+<p class="toc">click any row to scroll to a project</p>
+
+<table class="projects-table">
+    <thead>
+        <tr class="table-row header">
+            <th class="table-cell header title">title</th>
+            <th class="table-cell header type">type</th>
+            <th class="table-cell header year">year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="let project of projects"
+            class="table-row body"
+            (click)="elementService.scroll('project-overview-' + project.id, 'smooth')"
+        >
+            <td appRowHover class="table-cell body title">{{ getCellText(project.title) }}</td>
+            <td appRowHover class="table-cell body type">{{ getCellText(project.type) }}</td>
+            <td appRowHover class="table-cell body year">{{ getCellText(project.year) }}</td>
+        </tr>
+    </tbody>
+</table>
