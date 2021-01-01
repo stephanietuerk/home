@@ -1,1 +1,87 @@
-<p>beyond works!</p>
+<div id="beyond-intro" class="beyond-intro">
+    <p class="project-description">"Demography is destiny." Or is it?</p>
+    <p class="project-description">
+        The 2016 Presidential election called into question long-held narratives about how demographic change in the
+        United States would effect election outcomes. Almost immediately after the election, the idea that America's
+        ethnic diversification would ensure Democratic dominance was supplanted by claims that a previously overlooked
+        "silent majority" had delivered a Republican victory.
+    </p>
+    <p class="project-description">
+        That the national conversation about American demography could change so much more quickly than the facts of who
+        lives in the United States suggests that the question of how demographic characteristics do or not map onto
+        particular political positions could benefit from methodical examination of actual data. Using returns from
+        federal elections in Pennsylvania in 2012 and 2016, as well as data from the U.S. Census Bureau's American
+        Community Survey, this visualization allows users to literally see for themselves how five different demographic
+        characteristics did or did not correlate to voting outcomes. It does this at a far greater resolution than what
+        typical election analysis shows, by displaying both election and demographic data at the census tract rather
+        than the usual county level. Disaggregating the data from 67 counties to 3,217 census tracts of approximately
+        4,000 people each offers a much more granular view that preserves the small, demographically and/or politically
+        homogenous areas that tend to disappear when data is presented as county-wide averages, and that were the
+        subject of much debate in the fall of 2016.
+    </p>
+    <p class="project-description">
+        Users can interact with the visualization in a number of ways to understand both geographic and demographic
+        trends in 2016 and 2012 elections, as well as change between those years. Census tract-level election results
+        displayed in the top map can be sorted by demographic characteristic in the lower (very long) chart, allowing
+        users to examine the data behind suppositions about voting patterns among particular demographic groups.
+        Anomalous census tracts — for example, a tract with a high percentage of non-white residents that, unlike those
+        who share that demographic characteristic, cast a majority of votes for the Republican candidate — can be easily
+        visually identified, and then located in the map once selected on the right-hand side of the chart.
+    </p>
+    <p class="project-description">
+        Although the data used in this visualization is readily available, the discrepancy between boundaries of voting
+        districts — established and administered by state and local authorities — and those of census tracts —
+        determined by the U.S. Census Bureau — makes the direct comparison of these two datasets challenging, and is one
+        explanation for why few maps with this level of detail exist. I created the data shown here by aggregating vote
+        totals from 9,256 local voting precincts to the census tracts in which they are located, splitting votes in
+        proportion to land area in cases of boundary overlap. Because shapefiles are not available for voting precints,
+        this operation was performed with correspondence files from the Missouri Census Data Center's MABLE/Geocorr14
+        project. Demographic data comes from the U.S. Census Bureau's American Community Survey. Pennsylvania
+        precint-level election results are available from Open Elections.
+    </p>
+    <p class="project-description">[Spring 2017]</p>
+</div>
+<div id="beyond-the-county-line" class="beyond-div">
+    <div id="beyond-map"></div>
+    <div id="beyond-selectors">
+        <div class="election-selectors">
+            <div *ngFor="let button of electionYearLabels" class="election-year-sel">
+                <input
+                    type="radio"
+                    [id]="'election-year-sel-' + button.value"
+                    [value]="button.value"
+                    name="electionYear"
+                    [checked]="isSelectedElectionYear(button.value)"
+                />
+                <label [for]="'election-year-sel-' + button.value">{{ button.name }}</label>
+            </div>
+            <div *ngFor="let button of electionTypeLabels" class="election-type-sel">
+                <input
+                    type="radio"
+                    [id]="'election-type-sel-' + button.value"
+                    [value]="button.value"
+                    name="electionType"
+                    [checked]="isSelectedElectionType(button.value)"
+                />
+                <label [for]="'election-type-sel-' + button.value">{{ button.name }}</label>
+            </div>
+        </div>
+        <div class="demo-selectors">
+            <div *ngFor="let button of demoTypeLabels" class="demo-type-sel">
+                <input
+                    type="radio"
+                    [id]="'demo-type-sel-' + button.value"
+                    [value]="button.value"
+                    name="demoType"
+                    [checked]="isSelectedDemoType(button.value)"
+                />
+                <label [for]="'demo-type-sel-' + button.value">{{ button.name }}</label>
+            </div>
+            <div *ngFor="let button of demoYearLabels" class="election-year-sel">
+                <input type="checkbox" [id]="'demo-year-sel' - button.value" name="demoYear" />
+                <label [for]="'demo-year-sel' - button.value">{{ button.name }}</label>
+            </div>
+        </div>
+    </div>
+    <div id="beyond-bar"></div>
+</div>

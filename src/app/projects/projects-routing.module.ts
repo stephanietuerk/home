@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlipComponent } from './flip/flip.component';
 import { ProjectComponent } from './project.component';
+import { BeyondComponent } from './beyond/beyond.component';
 
 const routes: Routes = [
     {
@@ -11,19 +12,23 @@ const routes: Routes = [
         children: [
             {
                 path: 'flipthedistrict',
-                component: FlipComponent
+                component: FlipComponent,
+            },
+            {
+                path: 'beyondthecountyline',
+                component: BeyondComponent,
             },
             {
                 path: '**',
                 redirectTo: '/landing',
-                pathMatch: 'full'
-            }
-        ]
-    }
+                pathMatch: 'full',
+            },
+        ],
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes), CommonModule],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class ProjectsRoutingModule {}

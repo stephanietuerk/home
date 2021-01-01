@@ -5,12 +5,8 @@ import { Injectable } from '@angular/core';
 export class BeyondResource {
     constructor(private http: HttpClient) {}
 
-    getDistrictsData() {
-        return this.http.get('assets/beyondthecountyline/districts_data.csv', { responseType: 'text' });
-    }
-
     getTractData() {
-        return this.http.get('assets/beyondthecountyline/censusTracts_data.csv', { responseType: 'text' });
+        return this.http.get('assets/beyondthecountyline/censusTractData.csv', { responseType: 'text' });
     }
 
     getTractMap() {

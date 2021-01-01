@@ -44,7 +44,6 @@ export class FlipService {
                     return rowObj;
                 });
                 this.flipData = dataArr;
-                console.log(dataArr);
                 this.makeDistrictData();
                 this.updateStateData(Object.values(this.flipData));
             },

@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     //   show: true
     // },
     {
-        id: 5,
+        id: 'art-history-jobs',
         title: 'Art History Jobs, 2011 - 2020',
         type: [ProjectType.dataViz],
         year: 2020,
@@ -30,7 +30,7 @@ export const PROJECTS: Project[] = [
         linkName: ProjectType.notebook,
     },
     {
-        id: 4,
+        id: 'scsar',
         title: 'Severn Community Standing Against Racism',
         type: [ProjectType.website],
         year: 2020,
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
         linkName: ProjectType.website,
     },
     {
-        id: 3,
+        id: 'dq-atlas',
         title: 'DQ Atlas',
         type: [ProjectType.webApp],
         year: '2019 — 2020',
@@ -62,17 +62,19 @@ export const PROJECTS: Project[] = [
         url: 'www.medicaid.gov/dq-atlas/welcome',
         linkName: ProjectType.website,
     },
-    // {
-    //   id: 2,
-    //   title: 'Beyond the County Line',
-    //   type: ['Interactive data visualization'],
-    //   year: 2017,
-    //   technologies: ['D3', 'vanilla JavaScript'],
-    //   description: ['This project came out of auditing MIT DUSP 11.S941 in spring 2017.'],
-    //   show: true
-    // },
     {
-        id: 1,
+        id: 'beyond-the-county-line',
+        title: 'Beyond the County Line',
+        type: [ProjectType.dataViz],
+        year: 2017,
+        technologies: ['JavaScript', 'D3'],
+        description: ['This project came out of auditing MIT DUSP 11.S941 in spring 2017.'],
+        show: true,
+        routerLink: '/projects/beyondthecountyline',
+        linkName: 'visualization',
+    },
+    {
+        id: 'flip-the-district',
         title: 'Flip the District',
         type: [ProjectType.dataViz],
         year: 2017,
