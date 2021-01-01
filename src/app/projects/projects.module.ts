@@ -6,20 +6,14 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { FlipComponent } from './flip/flip.component';
 import { FlipResource } from './flip/resources/flip.resource';
 import { FlipService } from './flip/services/flip.service';
-import { FlipBar } from './flip/flip-bar.class';
+import { BeyondComponent } from './beyond/beyond.component';
+import { BeyondService } from './beyond/services/beyond.service';
+import { BeyondResource } from './beyond/resources/beyond.resource';
+import { LeavingComponent } from './leaving/leaving.component';
 
 @NgModule({
-  declarations: [
-    ProjectNavbarComponent,
-    ProjectComponent,
-    FlipComponent
-  ],
-  providers: [
-    FlipResource,
-    FlipService
-  ],
-  imports: [
-    CommonModule, ProjectsRoutingModule
-  ]
+    declarations: [ProjectNavbarComponent, ProjectComponent, FlipComponent, BeyondComponent, LeavingComponent],
+    providers: [FlipResource, FlipService, BeyondResource, BeyondService],
+    imports: [CommonModule, ProjectsRoutingModule],
 })
-export class ProjectsModule { }
+export class ProjectsModule {}
