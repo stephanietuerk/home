@@ -51,6 +51,7 @@
                     [id]="'election-year-sel-' + button.value"
                     [value]="button.value"
                     name="electionYear"
+                    (click)="updateElectionYear($event)"
                     [checked]="isSelectedElectionYear(button.value)"
                 />
                 <label [for]="'election-year-sel-' + button.value">{{ button.name }}</label>
@@ -61,6 +62,7 @@
                     [id]="'election-type-sel-' + button.value"
                     [value]="button.value"
                     name="electionType"
+                    (click)="updateElectionType($event)"
                     [checked]="isSelectedElectionType(button.value)"
                 />
                 <label [for]="'election-type-sel-' + button.value">{{ button.name }}</label>
@@ -73,12 +75,19 @@
                     [id]="'demo-type-sel-' + button.value"
                     [value]="button.value"
                     name="demoType"
+                    (click)="updateDemoType($event)"
                     [checked]="isSelectedDemoType(button.value)"
                 />
                 <label [for]="'demo-type-sel-' + button.value">{{ button.name }}</label>
             </div>
             <div *ngFor="let button of demoYearLabels" class="election-year-sel">
-                <input type="checkbox" [id]="'demo-year-sel' - button.value" name="demoYear" />
+                <input
+                    type="checkbox"
+                    [id]="'demo-year-sel' - button.value"
+                    name="demoYear"
+                    [checked]="demoIsChange"
+                    (click)="toggleDemoYear()"
+                />
                 <label [for]="'demo-year-sel' - button.value">{{ button.name }}</label>
             </div>
         </div>

@@ -14,6 +14,10 @@ export class BeyondComponent implements OnInit {
     demoYearLabels: any[];
     electionTypeLabels: any[];
     electionYearLabels: any[];
+    demoIsChange: boolean = false;
+    electionYear: string = '2016';
+    electionType: string = 'usp';
+    demoType: string = 'popDensity';
 
     constructor(private beyondService: BeyondService) {}
 
@@ -26,17 +30,37 @@ export class BeyondComponent implements OnInit {
         this.makeVis();
     }
 
+    updateElectionYear(evt): void {
+        this.electionYear = evt.target.value;
+    }
+
+    updateElectionType(evt): void {
+        this.electionType = evt.target.value;
+    }
+
+    updateDemoType(evt): void {
+        this.demoType = evt.target.value;
+    }
+
+    toggleDemoYear(): void {
+        this.demoIsChange = !this.demoIsChange;
+    }
+
     isSelectedElectionYear(year: string): boolean {
-        return year === '2016';
+        return year === this.electionYear;
     }
 
     isSelectedElectionType(type: string): boolean {
-        return type === 'usp';
+        return type === this.electionType;
     }
 
     isSelectedDemoType(type: string): boolean {
-        return type === 'popDensity';
+        return type === this.demoType;
     }
 
-    makeVis() {}
+    makeVis() {
+        this.makeBarChart();
+    }
+
+    makeBarChart() {}
 }

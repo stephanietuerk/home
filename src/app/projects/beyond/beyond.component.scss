@@ -1,0 +1,34 @@
+@import 'vars', 'placeholders';
+
+$rColor: #f4003d;
+$dColor: #2437ff;
+$dMapColor: #394bff;
+$initialColor: #cccccc;
+$beyondMono: 'Roboto Mono';
+$button-fill: #bbbbbb;
+$button-hover: #aaaaaa;
+$button-active: #999999;
+
+.beyond-intro {
+    @extend %flex-column;
+    max-width: 740px;
+    margin: 0 auto;
+
+    p {
+        @extend %sans-regular;
+        padding-top: 1rem;
+        text-align: justify;
+
+        &:last-of-type {
+            padding-bottom: 1rem;
+        }
+    }
+}
+
+.beyond-div {
+    @extend %flex-column;
+    background: white;
+    font-family: 'Roboto';
+    align-items: center;
+    padding-bottom: 64px;
+}
