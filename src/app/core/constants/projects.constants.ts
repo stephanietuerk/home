@@ -20,12 +20,10 @@ export const PROJECTS: Project[] = [
         year: 2020,
         technologies: ['Observable Notebook'],
         description: [
-            `In 2017, I finished a humanities post-doc and decided to leave both my field of history of architecture and academia.
-            I am both profoundly thankful for all of the experiences I gained through my PhD and postdoc and very happy and intellectually
-            fulfilled with my new work. I have spoken with a number of people about this transition -- who I hope have found it helpful --
-            and thought that I would share my thoughts with a wider audience by putting them here.`,
+            'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki.',
         ],
         show: true,
+        images: ['assets/artHistoryJobsSelects.png', 'assets/artHistoryJobsMain.png'],
         url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
         linkName: ProjectType.notebook,
     },
