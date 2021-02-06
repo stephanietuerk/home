@@ -32,8 +32,8 @@ export class FlipComponent implements OnInit {
     }
 
     initVis() {
-        this.elementService.scroll(this.divId.replace('#', ''), 'smooth', 'start');
         this.makeVis();
+        this.elementService.scroll(this.divId.replace('#', ''), 'smooth', 'start');
     }
 
     makeVis() {
