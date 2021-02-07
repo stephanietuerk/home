@@ -83,12 +83,12 @@
             <div *ngFor="let button of demoYearLabels" class="election-year-sel">
                 <input
                     type="checkbox"
-                    [id]="'demo-year-sel' - button.value"
+                    [id]="'demo-year-sel-' + button.value"
                     name="demoYear"
                     [checked]="demoIsChange"
                     (click)="toggleDemoYear()"
                 />
-                <label [for]="'demo-year-sel' - button.value">{{ button.name }}</label>
+                <label [for]="'demo-year-sel-' + button.value">{{ button.name }}</label>
             </div>
         </div>
     </div>
