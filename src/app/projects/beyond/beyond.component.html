@@ -42,7 +42,7 @@
     <p class="project-description">[Spring 2017]</p>
 </div>
 <div id="beyond-the-county-line" class="beyond-div">
-    <div id="beyond-map"></div>
+    <app-beyond-map></app-beyond-map>
     <div id="beyond-selectors">
         <div class="election-selectors">
             <div *ngFor="let button of electionYearLabels" class="election-year-sel">
@@ -51,7 +51,7 @@
                     [id]="'election-year-sel-' + button.value"
                     [value]="button.value"
                     name="electionYear"
-                    (click)="updateElectionYear($event)"
+                    (click)="updateState($event)"
                     [checked]="isSelectedElectionYear(button.value)"
                 />
                 <label [for]="'election-year-sel-' + button.value">{{ button.name }}</label>
@@ -62,7 +62,7 @@
                     [id]="'election-type-sel-' + button.value"
                     [value]="button.value"
                     name="electionType"
-                    (click)="updateElectionType($event)"
+                    (click)="updateState($event)"
                     [checked]="isSelectedElectionType(button.value)"
                 />
                 <label [for]="'election-type-sel-' + button.value">{{ button.name }}</label>
@@ -75,7 +75,7 @@
                     [id]="'demo-type-sel-' + button.value"
                     [value]="button.value"
                     name="demoType"
-                    (click)="updateDemoType($event)"
+                    (click)="updateState($event)"
                     [checked]="isSelectedDemoType(button.value)"
                 />
                 <label [for]="'demo-type-sel-' + button.value">{{ button.name }}</label>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FlipComponent } from './flip/flip.component';
 import { ProjectComponent } from './project.component';
 import { BeyondComponent } from './beyond/beyond.component';
+import { BeyondResolver } from './beyond/beyond-resolver';
 
 const routes: Routes = [
     {
@@ -17,6 +18,9 @@ const routes: Routes = [
             {
                 path: 'beyondthecountyline',
                 component: BeyondComponent,
+                resolve: {
+                    data: BeyondResolver,
+                },
             },
             {
                 path: '**',

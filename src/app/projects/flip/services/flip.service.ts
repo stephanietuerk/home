@@ -6,9 +6,7 @@ import { select, selectAll, format } from 'd3';
 import { FLIPCOLORS, FLIPGRIDLAYOUT } from '../flip.constants';
 import { ConstantPool } from '@angular/compiler';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class FlipService {
     elId: string = '#flip-the-district';
     flipTopojson: any;
@@ -21,7 +19,7 @@ export class FlipService {
     setFlipData() {
         this.flipResource.getFlipData().subscribe(
             (data) => {
-                let csvToRowArray = data.split('\n');
+                const csvToRowArray = data.split('\n');
                 const header = csvToRowArray[0].split(',');
                 const rows = csvToRowArray.slice(1);
                 const dataArr = rows.map((row, i) => {
