@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { transition } from 'd3';
 import { easeQuadOut } from 'd3-ease';
 import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import * as topojson from 'topojson';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
 import { BeyondState } from '../models/beyond-state.model';
@@ -14,7 +16,7 @@ import { BeyondService } from '../services/beyond.service';
     templateUrl: './beyond-map.component.html',
     styleUrls: ['./beyond-map.component.scss'],
 })
-export class BeyondMapComponent implements OnInit {
+export class BeyondMapComponent implements OnInit, OnDestroy {
     state: BeyondState;
     mapCreated: boolean = false;
     divId: string = '#beyond-map';
@@ -26,11 +28,12 @@ export class BeyondMapComponent implements OnInit {
     viewPlaceNames: boolean = true;
     mapZoom: any = zoom().scaleExtent([1, 10]);
     mapPath: any;
+    private destroy$ = new Subject();
 
     constructor(private beyondService: BeyondService) {}
 
     ngOnInit(): void {
-        this.beyondService.state.subscribe((state) => {
+        this.beyondService.state.pipe(takeUntil(this.destroy$)).subscribe((state) => {
             this.state = state;
             if (this.state && this.mapCreated) {
                 this.updateMap();
@@ -443,5 +446,10 @@ export class BeyondMapComponent implements OnInit {
             this.map.selectAll('.city').attr('visibility', 'hidden');
             this.map.selectAll('.city-label').attr('visibility', 'hidden');
         }
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
