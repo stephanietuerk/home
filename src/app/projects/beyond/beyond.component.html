@@ -42,55 +42,92 @@
     <p class="project-description">[Spring 2017]</p>
 </div>
 <div id="beyond-the-county-line" class="beyond-div">
-    <app-beyond-map></app-beyond-map>
-    <div id="beyond-selectors">
+    <app-beyond-map [electionYear]="electionYear" [electionType]="electionType"></app-beyond-map>
+    <p class="map-title">
+        <span class="map-title race">{{ getTitleElement('election', 'type') }}: </span>
+        <span class="map-title year">{{ getTitleElement('election', 'year') }}</span>
+    </p>
+    <div class="beyond-selectors">
         <div class="election-selectors">
-            <div *ngFor="let button of electionYearLabels" class="election-year-sel">
-                <input
-                    type="radio"
-                    [id]="'election-year-sel-' + button.value"
-                    [value]="button.value"
-                    name="electionYear"
-                    (click)="updateState($event)"
-                    [checked]="isSelectedElectionYear(button.value)"
-                />
-                <label [for]="'election-year-sel-' + button.value">{{ button.name }}</label>
+            <div class="election-type-selectors">
+                <div *ngFor="let button of electionTypeLabels" class="election-type-sel">
+                    <input
+                        type="radio"
+                        [id]="'election-type-sel-' + button.value"
+                        [value]="button.value"
+                        name="electionType"
+                        [checked]="isSelectedElectionType(button.value)"
+                    />
+                    <label
+                        [for]="'election-type-sel-' + button.value"
+                        [ngClass]="{ selected: isSelectedElectionType(button.value) }"
+                        (click)="updateElectionType(button.value)"
+                        >{{ button.name }}</label
+                    >
+                </div>
             </div>
-            <div *ngFor="let button of electionTypeLabels" class="election-type-sel">
-                <input
-                    type="radio"
-                    [id]="'election-type-sel-' + button.value"
-                    [value]="button.value"
-                    name="electionType"
-                    (click)="updateState($event)"
-                    [checked]="isSelectedElectionType(button.value)"
-                />
-                <label [for]="'election-type-sel-' + button.value">{{ button.name }}</label>
+            <div class="election-year-selectors">
+                <div *ngFor="let button of electionYearLabels" class="election-year-sel">
+                    <input
+                        type="radio"
+                        [id]="'election-year-sel-' + button.value"
+                        [value]="button.value"
+                        name="electionYear"
+                        [checked]="isSelectedElectionYear(button.value)"
+                    />
+                    <label
+                        [for]="'election-year-sel-' + button.value"
+                        [ngClass]="{ selected: isSelectedElectionYear(button.value) }"
+                        (click)="updateElectionYear(button.value)"
+                        >{{ button.name }}
+                    </label>
+                </div>
             </div>
         </div>
+        <div class="election-legend"></div>
         <div class="demo-selectors">
-            <div *ngFor="let button of demoTypeLabels" class="demo-type-sel">
-                <input
-                    type="radio"
-                    [id]="'demo-type-sel-' + button.value"
-                    [value]="button.value"
-                    name="demoType"
-                    (click)="updateState($event)"
-                    [checked]="isSelectedDemoType(button.value)"
-                />
-                <label [for]="'demo-type-sel-' + button.value">{{ button.name }}</label>
+            <div class="demo-type-selectors">
+                <div *ngFor="let button of demoTypeLabels" class="demo-type-sel">
+                    <input
+                        type="radio"
+                        [id]="'demo-type-sel-' + button.value"
+                        [value]="button.value"
+                        name="demoType"
+                        [checked]="isSelectedDemoType(button.value)"
+                    />
+                    <label
+                        [for]="'demo-type-sel-' + button.value"
+                        [ngClass]="{ selected: isSelectedDemoType(button.value) }"
+                        (click)="updateDemoType(button.value)"
+                        >{{ button.name }}</label
+                    >
+                </div>
             </div>
-            <div *ngFor="let button of demoYearLabels" class="election-year-sel">
+            <div *ngFor="let button of [demoYearLabels[1]]" class="election-year-sel" [ngClass]="">
                 <input
                     type="checkbox"
                     [id]="'demo-year-sel-' + button.value"
                     name="demoYear"
-                    [checked]="state.demoIsChange"
-                    (click)="toggleDemoYear()"
+                    [checked]="demoYear === 'change'"
                 />
-                <label [for]="'demo-year-sel-' + button.value">{{ button.name }}</label>
+                <label
+                    [for]="'demo-year-sel-' + button.value"
+                    [ngClass]="{ selected: demoYear === 'change' }"
+                    (click)="updateDemoYear()"
+                    >{{ button.name }}</label
+                >
             </div>
         </div>
     </div>
-    <div id="beyond-bar"></div>
+    <p class="bars-title">
+        <span class="bars-title demo">{{ getTitleElement('demo', 'type') }}: </span>
+        <span class="bars-title year">{{ getTitleElement('demo', 'year') }}</span>
+    </p>
+    <p class="bars-title subtitle">colored by selected election results</p>
+    <app-beyond-bar
+        [electionYear]="electionYear"
+        [electionType]="electionType"
+        [demoYear]="demoYear"
+        [demoType]="demoType"
+    ></app-beyond-bar>
 </div>

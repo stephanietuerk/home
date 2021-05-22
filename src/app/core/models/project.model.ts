@@ -3,7 +3,7 @@ export class Project {
     title: string;
     type: string[];
     year: string | number;
-    technologies: string[];
+    technologies?: string[];
     description?: string[];
     show?: boolean;
     images?: string[];
@@ -14,7 +14,7 @@ export class Project {
 
 export enum ProjectType {
     dataViz = 'Interactive data visualization',
-    text = 'Text',
+    writing = 'Writing',
     list = 'Reference List',
     webApp = 'Web application',
     website = 'Website',

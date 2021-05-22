@@ -1,6 +1,6 @@
 export type ElectionTypeOption = keyof typeof ElectionType;
 export type ElectionYearOption = keyof typeof ElectionYear;
-export type CensusVariableOption = keyof typeof CensusVariable;
+export type CensusVariableOption = keyof typeof DemoVariable;
 
 export const enum ElectionType {
     president = 'president',
@@ -14,12 +14,12 @@ export const enum ElectionYear {
     change = 'change',
 }
 
-export const enum CensusTime {
+export const enum DemoTime {
     current = 'current',
     change = 'change',
 }
 
-export const enum CensusVariable {
+export const enum DemoVariable {
     populationDensity = 'populationDensity',
     nonWhite = 'nonWhite',
     unemployment = 'unemployment',

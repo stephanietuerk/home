@@ -1,10 +1,11 @@
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlipComponent } from './flip/flip.component';
-import { ProjectComponent } from './project.component';
-import { BeyondComponent } from './beyond/beyond.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { BeyondResolver } from './beyond/beyond-resolver';
+import { BeyondComponent } from './beyond/beyond.component';
+import { FlipComponent } from './flip/flip.component';
+import { LeavingComponent } from './leaving/leaving.component';
+import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
                 resolve: {
                     data: BeyondResolver,
                 },
+            },
+            {
+                path: 'leavingacademia',
+                component: LeavingComponent,
             },
             {
                 path: '**',

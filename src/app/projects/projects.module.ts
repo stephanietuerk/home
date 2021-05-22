@@ -11,9 +11,10 @@ import { BeyondService } from './beyond/services/beyond.service';
 import { BeyondResource } from './beyond/resources/beyond.resource';
 import { LeavingComponent } from './leaving/leaving.component';
 import { BeyondMapComponent } from './beyond/beyond-map/beyond-map.component';
+import { BeyondBarComponent } from './beyond/beyond-bar/beyond-bar.component';
 
 @NgModule({
-    declarations: [ProjectNavbarComponent, ProjectComponent, FlipComponent, BeyondComponent, LeavingComponent, BeyondMapComponent],
+    declarations: [ProjectNavbarComponent, ProjectComponent, FlipComponent, BeyondComponent, LeavingComponent, BeyondMapComponent, BeyondBarComponent],
     providers: [],
     imports: [CommonModule, ProjectsRoutingModule],
 })

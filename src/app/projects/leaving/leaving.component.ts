@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { LEAVING_QUESTIONS } from './leaving.constants';
 
 @Component({
-  selector: 'app-leaving',
-  templateUrl: './leaving.component.html',
-  styleUrls: ['./leaving.component.scss']
+    selector: 'app-leaving',
+    templateUrl: './leaving.component.html',
+    styleUrls: ['./leaving.component.scss'],
 })
 export class LeavingComponent implements OnInit {
+    questions: any;
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+        this.questions = LEAVING_QUESTIONS;
+    }
 }

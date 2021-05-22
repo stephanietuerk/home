@@ -1,26 +1,49 @@
 import { scaleLinear } from 'd3';
-import { CensusVariable, ElectionType, ElectionYear } from './models/beyond-enums.model';
+import { DemoTime, DemoVariable, ElectionType, ElectionYear } from './models/beyond-enums.model';
 
 export const BEYOND_ELECTIONYEARS = [
-    { value: ElectionYear._2012, name: '2012' },
-    { value: ElectionYear._2016, name: '2016' },
-    { value: ElectionYear.change, name: 'Change' },
+    { value: ElectionYear._2012, name: '2012', title: '2012' },
+    { value: ElectionYear._2016, name: '2016', title: '2016' },
+    { value: ElectionYear.change, name: 'Change', title: 'Change in Margin, 2012 - 2016' },
 ];
 
 export const BEYOND_ELECTIONTYPES = [
-    { value: ElectionType.president, name: 'President' },
-    { value: ElectionType.senate, name: 'US Senate' },
-    { value: ElectionType.house, name: 'US House' },
+    { value: ElectionType.president, name: 'President', title: 'US Presidential Election Results by Census Tract' },
+    { value: ElectionType.senate, name: 'US Senate', title: 'US Senate Election Results by Census Tract' },
+    {
+        value: ElectionType.house,
+        name: 'US House',
+        title: 'US House of Representatives Election Results by Census Tract',
+    },
 ];
 
-export const BEYOND_DEMOYEARS = [{ value: 'change', name: 'Change 2010-2015' }];
+export const BEYOND_DEMOYEARS = [
+    { value: DemoTime.current, name: '2015', title: '2015' },
+    { value: DemoTime.change, name: 'Change 2010-2015', title: 'Change, 2010 - 2015' },
+];
 
 export const BEYOND_DEMOTYPES = [
-    { value: CensusVariable.populationDensity, name: 'Population Density' },
-    { value: CensusVariable.nonWhite, name: 'Percent Non-White' },
-    { value: CensusVariable.unemployment, name: 'Percent Unemployed' },
-    { value: CensusVariable.college, name: 'Education' },
-    { value: CensusVariable.income, name: 'Income' },
+    {
+        value: DemoVariable.populationDensity,
+        name: 'Population Density',
+        title: 'Population Density of Each Census Tract',
+    },
+    {
+        value: DemoVariable.nonWhite,
+        name: 'Percent Non-White',
+        title: 'Percent Non-White Population for Each Census Tract',
+    },
+    {
+        value: DemoVariable.unemployment,
+        name: 'Percent Unemployed',
+        title: 'Percent of Population Unemployed for Each Census Tract',
+    },
+    {
+        value: DemoVariable.college,
+        name: 'Education',
+        title: 'Percent of Population with College Degree for Each Census Tract',
+    },
+    { value: DemoVariable.income, name: 'Income', title: 'Income' },
 ];
 
 export const BEYOND_COLORS = {

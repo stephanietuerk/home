@@ -123,3 +123,28 @@
     scrollbar-arrow-color: $aqua-gray;
     scrollbar-color: $color-scrollbar-ie #fff;
 }
+
+/* ---- ACCESSIBILITY ---- */
+%visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 1px;
+}
+
+%focus-ring-style {
+    outline: 3px solid $color-focus-ring;
+    outline-offset: 1px;
+}
+
+%hidden-input-element {
+    @extend %visuallyhidden;
+
+    &.focus-visible + label {
+        @extend %focus-ring-style;
+    }
+}

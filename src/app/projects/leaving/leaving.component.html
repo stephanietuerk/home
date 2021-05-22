@@ -1,1 +1,6 @@
-<p>leaving works!</p>
+<div class="faq-container">
+    <ng-container *ngFor="let question of questions">
+        <h4 class="question">{{ question.q }}</h4>
+        <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
+    </ng-container>
+</div>

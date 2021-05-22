@@ -4,17 +4,17 @@ import { Project } from 'src/app/core/models/project.model';
 @Component({
     selector: 'app-project-overview',
     templateUrl: './project-overview.component.html',
-    styleUrls: ['./project-overview.component.scss']
+    styleUrls: ['./project-overview.component.scss'],
 })
 export class ProjectOverviewComponent implements OnInit {
     @Input() project: Project;
     leftColLabels: string[];
     rightColLabels: string[];
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit() {
-        this.leftColLabels = ['type', 'year', 'technologies'];
+        this.leftColLabels = ['type', 'year'];
         this.rightColLabels = ['description'];
     }
 
@@ -23,8 +23,6 @@ export class ProjectOverviewComponent implements OnInit {
     }
 
     getTextFromLabel(label: string): string[] {
-        return Array.isArray(this.project[label]) 
-            ? this.project[label] 
-            : [this.project[label]];
+        return Array.isArray(this.project[label]) ? this.project[label] : [this.project[label]];
     }
 }

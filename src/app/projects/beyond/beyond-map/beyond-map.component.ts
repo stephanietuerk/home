@@ -1,23 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { transition } from 'd3';
 import { easeQuadOut } from 'd3-ease';
 import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import * as topojson from 'topojson';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
-import { BeyondState } from '../models/beyond-state.model';
 import { BeyondService } from '../services/beyond.service';
 
 @Component({
     selector: 'app-beyond-map',
     templateUrl: './beyond-map.component.html',
     styleUrls: ['./beyond-map.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
-export class BeyondMapComponent implements OnInit, OnDestroy {
-    state: BeyondState;
+export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
+    @Input() electionYear: string;
+    @Input() electionType: string;
     mapCreated: boolean = false;
     divId: string = '#beyond-map';
     svg: any;
@@ -33,14 +33,13 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
     constructor(private beyondService: BeyondService) {}
 
     ngOnInit(): void {
-        this.beyondService.state.pipe(takeUntil(this.destroy$)).subscribe((state) => {
-            this.state = state;
-            if (this.state && this.mapCreated) {
-                this.updateMap();
-            } else if (this.state) {
-                this.makeMap();
-            }
-        });
+        this.makeMap();
+    }
+
+    ngOnChanges(): void {
+        if (this.mapCreated) {
+            this.updateMap();
+        }
     }
 
     makeMap() {
@@ -48,6 +47,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
         this.makeMapGroup();
         this.makeZoomRect();
         this.makeBaseMap();
+        this.makeCities();
         this.updateMap();
         this.makeMapInterface();
         this.mapCreated = true;
@@ -91,16 +91,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
 
         this.mapPath = geoPath()
             .projection(this.projection)
-            .pointRadius((d) => {
-                if (+d.properties.Population > 1000000) {
-                    return 5;
-                }
-                if (+d.properties.Population > 100000) {
-                    return 3;
-                } else {
-                    return 2;
-                }
-            });
+            .pointRadius((d) => this.getMarkerRadiusFromPopulation(d));
 
         const allTracts = topojson.feature(
             this.beyondService.tractsTopojson,
@@ -140,7 +131,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             .transition(t)
             .style('fill', (d) => {
                 const tract = d.properties.GEO_ID;
-                const tractData = this.beyondService.tractData[tract][this.state.electionType][this.state.electionYear];
+                const tractData = this.beyondService.tractData[tract][this.electionType][this.electionYear];
                 if (!tractData || isNaN(tractData)) {
                     return BEYOND_COLORS.initialColor;
                 } else {
@@ -150,7 +141,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             })
             .style('stroke', (d) => {
                 const tract = d.properties.GEO_ID;
-                const tractData = this.beyondService.tractData[tract][this.state.electionType][this.state.electionYear];
+                const tractData = this.beyondService.tractData[tract][this.electionType][this.electionYear];
                 if (!tractData || isNaN(tractData)) {
                     return BEYOND_COLORS.initialColor;
                 } else {
@@ -173,13 +164,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             .append('path')
             .attr('d', this.mapPath)
             .attr('class', 'city')
-            .attr('visibility', (d) => {
-                if (this.viewPlaceNames) {
-                    return +d.properties.Population >= 28500 ? 'visible' : 'hidden';
-                } else {
-                    return 'hidden';
-                }
-            });
+            .attr('visibility', (d) => this.getVisibilityFromPopulation(d));
 
         this.map
             .selectAll('.city-label')
@@ -190,13 +175,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             .attr('transform', (d) => {
                 return 'translate(' + this.projection(d.geometry.coordinates) + ')';
             })
-            .attr('visibility', (d) => {
-                if (this.viewPlaceNames) {
-                    return +d.properties.Population >= 28500 ? 'visible' : 'hidden';
-                } else {
-                    return 'hidden';
-                }
-            })
+            .attr('visibility', (d) => this.getVisibilityFromPopulation(d))
             .attr('dy', (d) => {
                 if (
                     d.properties.City == 'Bethlehem' ||
@@ -261,7 +240,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             .attr('x', this.width - 125)
             .attr('y', 10)
             .attr('fill', 'none')
-            .on('click', (event) => this.togglePlaceNames(placeNamesText))
+            .on('click', () => this.togglePlaceNames(placeNamesText))
             .on('mouseover', (event) => {
                 select(event.currentTarget).style('cursor', 'pointer');
             })
@@ -311,30 +290,21 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
         this.map.attr('transform', transform);
         const zoomScale = transform.k;
 
-        console.log('scale', zoomScale);
+        const getVisibilityFromZoomScaleOrPopulation = (d) => {
+            if (this.viewPlaceNames) {
+                return zoomScale >= 1.7 || +d.properties.Population >= 28500 ? 'visible' : 'hidden';
+            } else {
+                return 'hidden';
+            }
+        };
 
         this.map
             .selectAll('.city')
             .attr(
                 'd',
-                this.mapPath.pointRadius((d) => {
-                    if (+d.properties.Population > 1000000) {
-                        return 5 / zoomScale;
-                    }
-                    if (+d.properties.Population > 100000) {
-                        return 3 / zoomScale;
-                    } else {
-                        return 2 / zoomScale;
-                    }
-                })
+                this.mapPath.pointRadius((d) => this.getMarkerRadiusFromPopulation(d))
             )
-            .attr('visibility', (d) => {
-                if (this.viewPlaceNames) {
-                    return zoomScale >= 1.7 || +d.properties.Population >= 28500 ? 'visible' : 'hidden';
-                } else {
-                    return 'hidden';
-                }
-            });
+            .attr('visibility', (d) => getVisibilityFromZoomScaleOrPopulation(d));
 
         //controls scale and visibility of city labels
         this.map
@@ -342,13 +312,7 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
             .style('font-size', () => {
                 return `${0.7 / zoomScale}rem`;
             })
-            .attr('visibility', (d) => {
-                if (this.viewPlaceNames) {
-                    return zoomScale >= 1.7 || +d.properties.Population >= 28500 ? 'visible' : 'hidden';
-                } else {
-                    return 'hidden';
-                }
-            })
+            .attr('visibility', (d) => getVisibilityFromZoomScaleOrPopulation(d))
             .attr('dy', (d) => {
                 if (
                     d.properties.City == 'Bethlehem' ||
@@ -427,24 +391,31 @@ export class BeyondMapComponent implements OnInit, OnDestroy {
 
         if (this.viewPlaceNames) {
             placeNamesText.text('placenames: on');
-            this.map.selectAll('.city').attr('visibility', (d) => {
-                if (+d.properties.Population >= 28500) {
-                    return 'visible';
-                } else {
-                    return 'hidden';
-                }
-            });
-            this.map.selectAll('.city-label').attr('visibility', (d) => {
-                if (+d.properties.Population >= 28500) {
-                    return 'visible';
-                } else {
-                    return 'hidden';
-                }
-            });
+            this.map.selectAll('.city').attr('visibility', (d) => this.getVisibilityFromPopulation(d));
+            this.map.selectAll('.city-label').attr('visibility', (d) => this.getVisibilityFromPopulation(d));
         } else {
             placeNamesText.text('placenames: off');
             this.map.selectAll('.city').attr('visibility', 'hidden');
             this.map.selectAll('.city-label').attr('visibility', 'hidden');
+        }
+    }
+
+    getVisibilityFromPopulation(d): string {
+        if (+d.properties.Population >= 28500) {
+            return 'visible';
+        } else {
+            return 'hidden';
+        }
+    }
+
+    getMarkerRadiusFromPopulation(d): number {
+        if (+d.properties.Population > 1000000) {
+            return 5;
+        }
+        if (+d.properties.Population > 100000) {
+            return 3;
+        } else {
+            return 2;
         }
     }
 

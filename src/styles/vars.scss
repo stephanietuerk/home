@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $aqua-lightest: #e2e8ea;
 $aqua-light: #e5e9eb;
 $aqua-medium: #c3ced2;
@@ -36,3 +38,4 @@ $content-component-padding: 0px 40px 16px 40px;
 
 $navbar-height: 64px;
 $project-navbar-height: 48px;
+$color-focus-ring: color.adjust($aqua-medium, $lightness: 20%);

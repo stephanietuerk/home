@@ -6,7 +6,9 @@
                 <div class="details">
                     <ng-container *ngFor="let label of leftColLabels; index as i">
                         <p class="info-label">{{ label }}</p>
-                        <p *ngFor="let item of getTextFromLabel(label)" class="info-text">{{ item }}</p>
+                        <p *ngFor="let item of getTextFromLabel(label)" class="info-text" [ngClass]="label">
+                            {{ item }}
+                        </p>
                     </ng-container>
                 </div>
                 <a
@@ -15,13 +17,13 @@
                     [href]="'http://' + project.url"
                     target="_blank"
                     rel="noopener"
-                    >view {{ project.linkName.toLowerCase() }} &rarr;</a
+                    >View {{ project.linkName.toLowerCase() }} &rarr;</a
                 >
                 <a
                     *ngIf="project.routerLink && project.linkName"
                     class="project-link"
                     [routerLink]="[project.routerLink]"
-                    >view {{ project.linkName.toLowerCase() }} &rarr;</a
+                    >View {{ project.linkName.toLowerCase() }} &rarr;</a
                 >
             </div>
             <div class="right-col">

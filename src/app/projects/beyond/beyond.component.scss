@@ -9,6 +9,7 @@ $button-fill: #bbbbbb;
 $button-hover: #aaaaaa;
 $button-active: #999999;
 $zoombox-text-color: #bbb;
+$dark-gray: #666666;
 
 .beyond-intro {
     @extend %flex-column;
@@ -29,65 +30,76 @@ $zoombox-text-color: #bbb;
 
 .beyond-div {
     @extend %flex-column;
-    background: white;
     font-family: 'Roboto';
     align-items: center;
     padding-bottom: 64px;
 
-    .click-overlay {
-        fill: none;
-        pointer-events: all;
+    .beyond-selectors {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 0;
+
+        input[type='radio'],
+        input[type='checkbox'] {
+            @extend %visuallyhidden;
+        }
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: $beyond-mono;
+            font-size: 14px;
+            padding: 6px 10px;
+            border: 1px solid $button-active;
+            color: $button-active;
+            width: 120px;
+
+            &.selected {
+                background: #cccccc;
+                color: white;
+            }
+        }
     }
 
-    .click-overlay-variable {
-        fill: none;
+    .election-selectors,
+    .demo-selectors {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+
+        & > div:first-of-type {
+            margin-right: 18px;
+        }
     }
 
-    .map-text {
-        font: 14px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
+    .election-selectors {
+        padding-bottom: 1rem;
     }
 
-    .map-text-sm {
-        font: 11px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
+    .demo-selectors {
+        label {
+            height: 48px;
+            line-height: 0.9rem;
+        }
     }
 
-    .map-sel-text {
-        font: 11px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
+    .election-year-selectors,
+    .election-type-selectors,
+    .demo-type-selectors {
+        display: flex;
     }
 
-    .reset-text {
-        font: 14px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
-    }
+    .bars-title,
+    .map-title {
+        font-family: $beyond-mono;
+        font-size: 14px;
+        font-weight: 700;
+        color: $dark-gray;
 
-    .city {
-        fill: none;
-        stroke: black;
-        vector-effect: non-scaling-stroke;
-    }
-    .town {
-        fill: none;
-        stroke: black;
-        vector-effect: non-scaling-stroke;
-    }
-    .city-label {
-        font: 400 0.7rem $beyond-mono;
-        fill: black;
-        stroke: none;
+        &.subtitle {
+            font-size: 12px;
+        }
     }
 }
