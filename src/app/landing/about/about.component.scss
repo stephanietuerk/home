@@ -13,11 +13,15 @@
 
 .about-text {
     @extend %sans-regular;
-    text-align: center;
+    text-align: justify;
     max-width: 800px;
     margin: 6px auto 12px auto;
     font-size: 1.1rem;
-    line-height: 1.4rem;
+    line-height: 1.6rem;
+
+    &:first-of-type {
+        text-align: center;
+    }
 }
 
 .read-more {
@@ -26,6 +30,7 @@
     letter-spacing: 0.13em;
     font-size: 1.3rem;
     cursor: pointer;
+    padding-bottom: 6px;
 
     &:hover {
         @extend %slab-medium;

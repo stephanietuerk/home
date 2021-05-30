@@ -7,9 +7,10 @@ import { LandingComponent } from './landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { ProjectsTableComponent } from './projects-table/projects-table.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
     imports: [CommonModule, LandingRoutingModule, SharedModule],
-    declarations: [LandingComponent, NavbarComponent, AboutComponent, ProjectsTableComponent, ProjectOverviewComponent],
+    declarations: [LandingComponent, NavbarComponent, AboutComponent, ProjectsTableComponent, ProjectOverviewComponent, ContactComponent],
 })
 export class LandingModule {}
