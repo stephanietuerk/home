@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { range } from 'd3';
 import { BEYOND_DEMOTYPES, BEYOND_DEMOYEARS, BEYOND_ELECTIONTYPES, BEYOND_ELECTIONYEARS } from './beyond.constants';
 import { DemoTime, DemoVariable, ElectionType, ElectionYear } from './models/beyond-enums.model';
 @Component({
@@ -16,6 +17,7 @@ export class BeyondComponent implements OnInit {
     demoYearLabels: any[];
     electionTypeLabels: any[];
     electionYearLabels: any[];
+    legendValues: string[];
 
     constructor() {}
 
@@ -25,6 +27,7 @@ export class BeyondComponent implements OnInit {
         this.demoYearLabels = BEYOND_DEMOYEARS;
         this.electionTypeLabels = BEYOND_ELECTIONTYPES;
         this.electionYearLabels = BEYOND_ELECTIONYEARS;
+        this.updateLegendValues();
     }
 
     initSelections(): void {
@@ -40,6 +43,7 @@ export class BeyondComponent implements OnInit {
 
     updateElectionYear(value: string): void {
         this.electionYear = value;
+        this.updateLegendValues();
     }
 
     updateElectionType(value: string): void {
@@ -56,6 +60,13 @@ export class BeyondComponent implements OnInit {
         } else {
             this.demoYear = DemoTime.change;
         }
+    }
+
+    updateLegendValues(): void {
+        const yearValues = range(-100, 120, 20);
+        const changeValues = range(-50, 60, 10);
+        const values = this.isSelectedElectionYear('change') ? changeValues : yearValues;
+        this.legendValues = values.map((n) => `${n}%`);
     }
 
     isSelectedElectionYear(year: string): boolean {

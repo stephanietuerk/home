@@ -47,6 +47,21 @@
         <span class="map-title race">{{ getTitleElement('election', 'type') }}: </span>
         <span class="map-title year">{{ getTitleElement('election', 'year') }}</span>
     </p>
+    <div class="legend-container">
+        <p class="legend-text party dem">Democrat</p>
+        <div class="inner-legend-container">
+            <div class="legend-bar-container">
+                <div class="legend-bar dem"></div>
+                <div class="legend-bar rep"></div>
+            </div>
+            <div class="legend-scale-container">
+                <div class="value-container" *ngFor="let value of legendValues">
+                    <p class="legend-text value">{{ value }}</p>
+                </div>
+            </div>
+        </div>
+        <p class="legend-text party rep">Republican</p>
+    </div>
     <div class="beyond-selectors">
         <div class="election-selectors">
             <div class="election-type-selectors">
@@ -84,7 +99,6 @@
                 </div>
             </div>
         </div>
-        <div class="election-legend"></div>
         <div class="demo-selectors">
             <div class="demo-type-selectors">
                 <div *ngFor="let button of demoTypeLabels" class="demo-type-sel">

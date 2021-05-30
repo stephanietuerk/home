@@ -27,23 +27,31 @@ export const BEYOND_DEMOTYPES = [
         value: DemoVariable.populationDensity,
         name: 'Population Density',
         title: 'Population Density of Each Census Tract',
+        yAxis: 'population density',
+        xAxis: 'population/sq mi',
     },
     {
         value: DemoVariable.nonWhite,
         name: 'Percent Non-White',
         title: 'Percent Non-White Population for Each Census Tract',
+        yAxis: 'percent non-white',
+        xAxis: '% of total population',
     },
     {
         value: DemoVariable.unemployment,
         name: 'Percent Unemployed',
         title: 'Percent of Population Unemployed for Each Census Tract',
+        yAxis: 'percent unemployed',
+        xAxis: '% of total population',
     },
     {
         value: DemoVariable.college,
         name: 'Education',
         title: 'Percent of Population with College Degree for Each Census Tract',
+        yAxis: 'college degree',
+        xAxis: '% of total population',
     },
-    { value: DemoVariable.income, name: 'Income', title: 'Income' },
+    { value: DemoVariable.income, name: 'Income', title: 'Income', yAxis: 'median income', xAxis: 'household income' },
 ];
 
 export const BEYOND_COLORS = {

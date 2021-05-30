@@ -1,0 +1,27 @@
+$beyond-mono: 'Roboto Mono';
+$button-fill: #bbbbbb;
+$button-hover: #aaaaaa;
+$button-active: #999999;
+$zoombox-text-color: #bbb;
+
+.beyond-bar {
+    display: flex;
+
+    .y-axis-label tspan {
+        font-family: $beyond-mono;
+        font-size: 10px;
+        fill: $button-active;
+    }
+
+    .x-axis-label {
+        font-family: $beyond-mono;
+        font-size: 11px;
+        fill: $button-active;
+    }
+
+    .drag-instructions tspan {
+        font-family: $beyond-mono;
+        font-size: 11px;
+        text-anchor: center;
+    }
+}

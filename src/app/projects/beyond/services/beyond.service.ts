@@ -16,9 +16,7 @@ export class BeyondService {
     state$: BehaviorSubject<BeyondState> = new BehaviorSubject(null);
     state = this.state$.asObservable();
 
-    constructor(private beyondResource: BeyondResource) {
-        // this.initState();
-    }
+    constructor(private beyondResource: BeyondResource) {}
 
     initState(): void {
         this._state.electionType = ElectionType.president;

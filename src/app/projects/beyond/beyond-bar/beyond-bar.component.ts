@@ -1,8 +1,9 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     axisBottom,
     axisLeft,
     axisTop,
+    brushY,
     descending,
     extent,
     format,
@@ -14,7 +15,8 @@ import {
 import { quantileSorted, range } from 'd3-array';
 import { easeQuadOut } from 'd3-ease';
 import { select, selectAll } from 'd3-selection';
-import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
+import { wrap } from 'src/app/core/utilities/svg-text.utils';
+import { BEYOND_COLORS, BEYOND_DEMOTYPES, BEYOND_SCALES } from '../beyond.constants';
 import { TractDatum } from '../models/beyond-data.model';
 import { DemoTime, DemoVariable, ElectionYear } from '../models/beyond-enums.model';
 import { BeyondService } from '../services/beyond.service';
@@ -23,6 +25,7 @@ import { BeyondService } from '../services/beyond.service';
     selector: 'app-beyond-bar',
     templateUrl: './beyond-bar.component.html',
     styleUrls: ['./beyond-bar.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class BeyondBarComponent implements OnInit, OnChanges {
     @Input() electionYear: string;
@@ -32,28 +35,33 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     data: { string: TractDatum }[];
     barCreated: boolean = false;
     divId: string = '#beyond-bar';
-    svg: any;
+    svgMain: any;
+    svgIndex: any;
     barMain: any;
     barIndex: any;
     visWidth = 920;
-    visHeight: number;
-    barMainWidth = 870;
-    barMainMargin = {
-        top: 40,
-        right: 10,
-        bottom: 20,
-        left: 66,
+    height: number;
+    width = {
+        main: 790,
+        index: 30,
     };
-    barIndexWidth = 30;
-    barIndexMargin = {
-        top: 40,
-        right: 10,
-        bottom: 20,
-        left: 10,
+    margin = {
+        top: 60,
+        bottom: 40,
+        main: {
+            right: 20,
+            left: 74,
+        },
+        index: {
+            right: 10,
+            left: 10,
+        },
     };
+    axisOffset = 10;
     numQuantiles = 10;
     y: any;
     x: any;
+    gridY: any;
 
     constructor(private beyondService: BeyondService) {}
 
@@ -70,19 +78,17 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     makeVis(): void {
         this.setData();
         this.sortData();
-        this.setVisHeight();
+        this.setHeight();
         this.makeYScale();
         this.makeXScale();
-        this.makeSvg();
         this.makeBarMain();
         this.makeBarIndex();
-        this.setAxes();
         this.barCreated = true;
     }
 
     updateVis(): void {
         this.sortData();
-        this.setVisHeight();
+        this.setHeight();
         this.makeYScale();
         this.makeXScale();
         this.updateAxes();
@@ -95,14 +101,18 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     }
 
     updateAxes(): void {
-        select('#demoXAxisTop').remove();
-        select('#demoXAxisBottom').remove();
-        select('#demoYAxis').remove();
-        select('#demoZeroAxis').remove();
+        select('#gridVertical').remove();
+        select('#gridHorizontal').remove();
+        select('#xAxisTop').remove();
+        select('#xAxisBottom').remove();
+        select('#yAxis').remove();
+        select('#zeroAxis').remove();
         selectAll('.chart-label').remove();
         selectAll('.chart-yaxis-label').remove();
 
         this.setAxes();
+        select('#gridVertical').lower();
+        select('#gridHorizontal').lower();
     }
 
     updateBarMain(t) {
@@ -113,14 +123,14 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     }
 
     updateBarIndex(t) {
-        const barWidth = (d) => this.barIndexWidth;
+        const barWidth = (d) => this.width.index;
         const barX = (d) => 0;
         const selector = '.bar.index';
         this.updateBar(barWidth, barX, selector, t);
     }
 
     updateBar(barWidth, barX, selector, t) {
-        this.svg
+        this.svgMain
             .selectAll(selector)
             .transition(t)
             .attr('y', (d) => this.y(Object.keys(d)[0]))
@@ -158,69 +168,168 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         });
     }
 
-    setVisHeight(): void {
-        this.visHeight = this.data.length;
+    setHeight(): void {
+        this.height = this.data.length;
     }
 
     makeYScale(): void {
         const sortedTracts = this.data.map((x) => Object.keys(x)[0]);
-        this.y = scaleBand().domain(sortedTracts).rangeRound([0, this.visHeight]);
+        this.y = scaleBand().domain(sortedTracts).rangeRound([0, this.height]);
+        this.gridY = scaleLinear().domain([0, this.height]).range([0, this.height]);
     }
 
     makeXScale(): void {
         const domainValues = extent(this.data.map((x) => this.getDemoValue(x)));
-        this.x = scaleLinear()
-            .domain(domainValues)
-            .nice()
-            .range([0, this.barMainWidth - this.barMainMargin.left - this.barMainMargin.right]);
-    }
-
-    makeSvg(): void {
-        this.svg = select(this.divId)
-            .append('svg')
-            .attr('width', this.visWidth)
-            .attr('height', this.visHeight)
-            .append('g')
-            .attr('class', 'beyond-g')
-            .attr('transform', `translate(0, ${this.barMainMargin.top})`);
+        this.x = scaleLinear().domain(domainValues).nice().range([0, this.width.main]);
     }
 
     makeBarMain(): void {
-        this.barMain = this.svg
+        this.svgMain = select(this.divId)
+            .append('svg')
+            .attr('width', this.width.main + this.margin.main.left + this.margin.main.right)
+            .attr('height', this.height + this.margin.top + this.margin.bottom)
+            .attr('class', 'beyond-bar-svg-main')
             .append('g')
-            .attr('transform', `translate(${this.barMainMargin.left}, 0)`)
+            .attr('class', 'beyond-bar-main-g')
+            .attr('transform', `translate(0, ${this.margin.top})`);
+
+        this.barMain = this.svgMain
+            .append('g')
+            .attr('transform', `translate(${this.margin.main.left}, 0)`)
             .attr('id', 'beyond-bar-main-g');
 
         const barWidth = this.getBarWidthFunc();
         const barX = this.getBarXFunc();
+        this.setAxes();
         this.makeBar(this.barMain, barWidth, barX, 'bar main');
-        this.getQuantileValues();
     }
 
-    getBarXFunc() {
+    makeAxisLabels(): void {
+        const labels = BEYOND_DEMOTYPES.find((x) => x.value === this.demoType);
+        const yLabel = `${labels.yAxis} decile values`;
+        const xLabel = labels.xAxis;
+        this.barMain
+            .append('text')
+            .attr('class', 'bar-main y-axis-label chart-label')
+            .text(yLabel)
+            .attr('x', -10)
+            .attr('y', -10)
+            .style('text-anchor', 'end')
+            .call(wrap, { width: this.margin.main.left - this.axisOffset, wrapUp: true });
+
+        this.barMain
+            .append('text')
+            .attr('class', 'bar-main x-axis-label chart-label')
+            .text(xLabel)
+            .attr('x', this.width.main)
+            .attr('y', -36)
+            .style('text-anchor', 'end');
+    }
+
+    getBarXFunc(): any {
         return (d) => this.x(Math.min(0, this.getDemoValue(d)));
     }
 
-    getBarWidthFunc() {
+    getBarWidthFunc(): any {
         return (d) => Math.abs(this.x(this.getDemoValue(d)) - this.x(0));
     }
 
     makeBarIndex(): void {
-        this.barIndex = this.svg
+        this.svgIndex = select(this.divId)
+            .append('svg')
+            .attr('width', this.width.index + this.margin.index.left + this.margin.index.right)
+            .attr('height', this.height + this.margin.top + this.margin.bottom)
+            .attr('class', 'beyond-bar-svg-index')
             .append('g')
-            .attr('transform', `translate(${this.barMainWidth + this.barIndexMargin.left}, 0)`)
+            .attr('class', 'beyond-bar-index-g')
+            .attr('transform', `translate(0, ${this.margin.top})`);
+
+        this.barIndex = this.svgIndex
+            .append('g')
+            .attr('transform', `translate(${this.margin.index.left}, 0)`)
             .attr('id', 'beyond-bar-index-g');
 
-        const barWidth = (d) => this.barIndexWidth;
+        this.barIndex
+            .append('text')
+            .attr('class', 'bar-index drag-instructions')
+            .text('drag to select tracts in map')
+            .attr('x', this.width.index / 2)
+            .attr('y', -10)
+            .style('text-anchor', 'middle')
+            .call(wrap, { width: this.width.index + this.margin.index.left + this.margin.index.right, wrapUp: true });
+
+        const barWidth = (d) => this.width.index;
         const barX = (d) => 0;
         this.makeBar(this.barIndex, barWidth, barX, 'bar index');
+        this.makeBrush();
+    }
+
+    makeBrush(): void {
+        const brush = brushY()
+            .extent([
+                [0, 0],
+                [this.width.index + this.margin.index.left + this.margin.index.right, this.height],
+            ])
+            .on('brush', (event) => {
+                this.brushTracts(event);
+            });
+
+        this.svgIndex.append('g').attr('class', 'brush').call(brush);
+        this.svgIndex.selectAll('.overlay').on('mousedown touchstart', this.handleIndexBarClick.bind(this));
+    }
+
+    brushTracts(event) {
+        if (event.selection) {
+            const coords = event.selection;
+            const brushed = this.barIndex
+                .selectAll('rect')
+                .filter((d, i, nodes) => {
+                    const y = select(nodes[i]).attr('y');
+                    return this.isBrushed(coords, y);
+                })
+                .classed('brushed', true);
+
+            const tracts = selectAll('.vote-tracts');
+
+            brushed.each((d, i, nodes) => {
+                const barTract = nodes[i].getAttribute('tract');
+                tracts
+                    .filter((tractD) => tractD.properties.GEO_ID === barTract)
+                    .raise()
+                    .classed('brushed', true)
+                    .style('stroke', 'black')
+                    .style('stroke-width', '1.5px');
+            });
+        }
+    }
+
+    handleIndexBarClick(): void {
+        const tracts = selectAll('.vote-tracts.brushed');
+
+        tracts
+            .classed('brushed', false)
+            .style('stroke', (d) => this.getVoteColorFromTractGeo(d))
+            .style('stroke-width', '0.8px');
+    }
+
+    getVoteColorFromTractGeo(x): string {
+        const tractNum = x.properties.GEO_ID;
+        const tractDataObj = this.data.find((x) => Object.keys(x)[0] === tractNum);
+        return this.getVoteColor(tractDataObj);
+    }
+
+    isBrushed(coords, y) {
+        return coords[0] <= y && y <= coords[1];
     }
 
     makeBar(g: any, barWidth: any, barX: any, className: string): void {
-        g.selectAll('rect')
+        g.append('g')
+            .attr('class', 'bar-rect-g')
+            .selectAll('rect')
             .data(this.data)
             .join('rect')
             .attr('class', className)
+            .attr('tract', (d) => Object.keys(d)[0])
             .attr('y', (d) => this.y(Object.keys(d)[0]))
             .attr('x', (d) => barX(d))
             .attr('height', (d) => {
@@ -253,17 +362,20 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         }
     }
 
-    getQuantileValues(): void {
-        const quantiles = range(this.numQuantiles).map((x) => x / this.numQuantiles);
+    getQuantileValues(multiplier: number): void {
+        const quantiles = range(this.numQuantiles * multiplier).map((x) => x / (this.numQuantiles * multiplier));
         const values = this.data.map((x) => this.getDemoValue(x)).filter((x) => x !== null && !isNaN(x));
         return quantiles.map((q) => quantileSorted(values, q));
     }
 
     setAxes(): void {
-        const quantileValues = this.getQuantileValues();
+        const quantileValues = this.getQuantileValues(1);
+        const horizontalGridValues = this.getQuantileValues(5.5);
+
         const tickFormat = this.getAxisTickFormat();
 
-        const barsYQuantiles = scalePoint().domain(quantileValues).range([0, this.visHeight]);
+        const barsYQuantiles = scalePoint().domain(quantileValues).range([0, this.height]);
+        const barsYQuantilesTicks = scalePoint().domain(horizontalGridValues).range([0, this.height]);
 
         const barsXAxisTop = axisTop().scale(this.x).tickFormat(tickFormat);
         const barsXAxisBottom = axisBottom().scale(this.x).tickFormat(tickFormat);
@@ -272,39 +384,76 @@ export class BeyondBarComponent implements OnInit, OnChanges {
 
         const barsYAxis = axisLeft().scale(barsYQuantiles).tickFormat(tickFormat);
 
+        const gridVerticalLines = axisTop().scale(this.x).tickSize(this.height, 0, 0).tickFormat('');
+
+        const gridHorizontalLines = axisLeft()
+            .scale(barsYQuantilesTicks)
+            .tickSize(-this.x.range()[1], 0, 0)
+            .tickFormat('');
+
+        this.barMain
+            .append('g')
+            .attr('class', 'grid vertical')
+            .attr('id', 'gridVertical')
+            .attr('transform', 'translate(0,' + (this.height + 0) + ')')
+            .call(gridVerticalLines)
+            .call((g) => g.select('.domain').remove())
+            .call((g) =>
+                g
+                    .selectAll('.tick line')
+                    .attr('stroke', 'black')
+                    .attr('stroke-opacity', 0.4)
+                    .attr('stroke-dasharray', '2 4')
+            );
+
+        this.barMain
+            .append('g')
+            .attr('class', 'grid horizontal')
+            .attr('id', 'gridHorizontal')
+            .call(gridHorizontalLines)
+            .call((g) => g.select('.domain').remove())
+            .call((g) =>
+                g
+                    .selectAll('.tick line')
+                    .attr('stroke', 'black')
+                    .attr('stroke-opacity', 0.5)
+                    .attr('stroke-dasharray', '2,2')
+            );
+
         this.barMain
             .append('g')
             .attr('class', 'x axis')
-            .attr('id', 'demoXAxisTop')
-            .attr('transform', 'translate(0,' + -10 + ')')
+            .attr('id', 'xAxisTop')
+            .attr('transform', `translate(0, -${this.axisOffset})`)
             .call(barsXAxisTop);
 
         //bottom X Axis (duplicates top X Axis)
         this.barMain
             .append('g')
             .attr('class', 'x axis')
-            .attr('id', 'demoXAxisBottom')
-            .attr('transform', 'translate(0,' + (this.visHeight + 10) + ')')
+            .attr('id', 'xAxisBottom')
+            .attr('transform', 'translate(0,' + (this.height + this.axisOffset) + ')')
             .call(barsXAxisBottom);
 
         //static left-aligned Y axis to show quantiles
         this.barMain
             .append('g')
             .attr('class', 'y axis')
-            .attr('id', 'demoYAxis')
-            .attr('transform', 'translate(' + -10 + ',0)')
+            .attr('id', 'yAxis')
+            .attr('transform', `translate(-${this.axisOffset}, 0)`)
             .call(barsYAxis);
 
         //dynamic Y axis that shifts with data
         this.barMain
             .append('g')
             .attr('class', 'zero axis')
-            .attr('id', 'demoZeroAxis')
+            .attr('id', 'zeroAxis')
             .attr('transform', 'translate(' + this.x(0) + ',0)')
             .call(barsZeroAxis);
 
         this.barMain.selectAll('.domain').attr('stroke', 'black').attr('stroke-width', '1');
         this.barMain.selectAll('.y.axis text').style('font-size', '0.8rem');
+        this.makeAxisLabels();
     }
 
     getAxisTickFormat() {

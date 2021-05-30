@@ -116,7 +116,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
             .data(allTracts.features)
             .enter()
             .append('path')
-            .attr('class', 'tracts vote-tracts tracts-non-brushed')
+            .attr('class', 'tracts vote-tracts')
             .attr('tractno', (d) => d.properties.GEO_ID)
             .attr('d', this.mapPath)
             .style('stroke-width', '0.8px');
