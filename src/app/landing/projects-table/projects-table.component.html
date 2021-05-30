@@ -1,23 +1,43 @@
-<h2 class="projects-title">projects</h2>
-<p class="toc">click any row to scroll to a project</p>
+<div class="table-component-container">
+    <h2 class="projects-title">projects</h2>
+    <p class="toc">click any row to see details and view project</p>
 
-<table class="projects-table">
-    <thead>
-        <tr class="table-row header">
-            <th class="table-cell header title">title</th>
-            <th class="table-cell header type">type</th>
-            <th class="table-cell header year">year</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr
-            *ngFor="let project of projects"
-            class="table-row body"
-            (click)="elementService.scroll('project-overview-' + project.id, 'smooth')"
-        >
-            <td appRowHover class="table-cell body title">{{ getCellText(project.title) }}</td>
-            <td appRowHover class="table-cell body type">{{ getCellText(project.type) }}</td>
-            <td appRowHover class="table-cell body year">{{ getCellText(project.year) }}</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="projects-table">
+        <thead>
+            <tr class="table-row header">
+                <th class="table-cell header title">title</th>
+                <th class="table-cell header type">type</th>
+                <th class="table-cell header year">year</th>
+                <th class="table-cell header more"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let project of projects">
+                <tr
+                    class="table-row body index"
+                    [ngClass]="{ open: state[project.id] }"
+                    (click)="toggleDescription(project.id)"
+                >
+                    <td appRowHover class="table-cell body title">{{ getCellText(project.title) }}</td>
+                    <td appRowHover class="table-cell body type">{{ getCellText(project.type) }}</td>
+                    <td appRowHover class="table-cell body year">{{ getCellText(project.year) }}</td>
+                    <td appRowHover class="table-cell body more">
+                        <app-svg-icon
+                            class="arrow-icon"
+                            [ngClass]="{ up: state[project.id], down: !state[project.id] }"
+                            [name]="getIcon(project.id)"
+                        ></app-svg-icon>
+                    </td>
+                </tr>
+                <tr class="table-row body description" @slide *ngIf="state[project.id]">
+                    <td colspan="4" class="table-cell body description">
+                        <app-project-overview
+                            class="project-overview-component"
+                            [project]="project"
+                        ></app-project-overview>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

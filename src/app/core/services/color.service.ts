@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ColorService {
-
-  constructor() { }
+    constructor() {}
 
     hexToRGBA(hex: string, alpha: number): string {
         var r = parseInt(hex.slice(1, 3), 16),
@@ -13,9 +12,9 @@ export class ColorService {
             b = parseInt(hex.slice(5, 7), 16);
 
         if (alpha) {
-            return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+            return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
         } else {
-            return "rgb(" + r + ", " + g + ", " + b + ")";
+            return 'rgb(' + r + ', ' + g + ', ' + b + ')';
         }
     }
 }

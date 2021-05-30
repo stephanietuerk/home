@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
 
 @Component({
@@ -6,17 +6,10 @@ import { Project } from 'src/app/core/models/project.model';
     templateUrl: './project-overview.component.html',
     styleUrls: ['./project-overview.component.scss'],
 })
-export class ProjectOverviewComponent implements OnInit {
+export class ProjectOverviewComponent {
     @Input() project: Project;
-    leftColLabels: string[];
-    rightColLabels: string[];
 
     constructor() {}
-
-    ngOnInit() {
-        this.leftColLabels = ['type', 'year'];
-        this.rightColLabels = ['description'];
-    }
 
     isProject(title: string): boolean {
         return this.project.title === title;

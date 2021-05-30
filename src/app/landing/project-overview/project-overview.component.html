@@ -1,50 +1,27 @@
-<article [id]="'project-overview-' + project.id" class="project-overview-container">
-    <div class="project-overview-inner-container">
-        <h3 class="project-title">{{ project.title }}</h3>
-        <div class="project-content">
-            <div class="left-col">
-                <div class="details">
-                    <ng-container *ngFor="let label of leftColLabels; index as i">
-                        <p class="info-label">{{ label }}</p>
-                        <p *ngFor="let item of getTextFromLabel(label)" class="info-text" [ngClass]="label">
-                            {{ item }}
-                        </p>
-                    </ng-container>
-                </div>
-                <a
-                    *ngIf="project.url && project.linkName"
-                    class="project-link"
-                    [href]="'http://' + project.url"
-                    target="_blank"
-                    rel="noopener"
-                    >View {{ project.linkName.toLowerCase() }} &rarr;</a
-                >
-                <a
-                    *ngIf="project.routerLink && project.linkName"
-                    class="project-link"
-                    [routerLink]="[project.routerLink]"
-                    >View {{ project.linkName.toLowerCase() }} &rarr;</a
-                >
-            </div>
-            <div class="right-col">
-                <div class="details">
-                    <ng-container *ngFor="let label of rightColLabels; index as i">
-                        <p class="info-label">{{ label }}</p>
-                        <p *ngFor="let item of getTextFromLabel(label)" class="info-text">{{ item }}</p>
-                    </ng-container>
-                </div>
-                <div class="screenshots-container" *ngIf="project.images">
-                    <a
-                        *ngFor="let image of project.images; index as i"
-                        class="project-link"
-                        [href]="'http://' + project.url"
-                        target="_blank"
-                        rel="noopener"
-                    >
-                        <img [src]="image" [alt]="'screenshot ' + i + ' of ' + project.title" class="project-image" />
-                    </a>
-                </div>
-            </div>
-        </div>
+<div class="project-overview-container">
+    <div class="description">
+        <p *ngFor="let text of project.description" class="info-text">{{ text }}</p>
     </div>
-</article>
+    <a
+        *ngIf="project.url && project.linkName"
+        class="project-link"
+        [href]="'http://' + project.url"
+        target="_blank"
+        rel="noopener"
+        >View {{ project.linkName.toLowerCase() }} &rarr;</a
+    >
+    <a *ngIf="project.routerLink && project.linkName" class="project-link" [routerLink]="[project.routerLink]"
+        >View {{ project.linkName.toLowerCase() }} &rarr;</a
+    >
+    <div class="screenshots-container" *ngIf="project.images">
+        <a
+            *ngFor="let image of project.images; index as i"
+            class="project-link"
+            [href]="'http://' + project.url"
+            target="_blank"
+            rel="noopener"
+        >
+            <img [src]="image" [alt]="'screenshot ' + i + ' of ' + project.title" class="project-image" />
+        </a>
+    </div>
+</div>

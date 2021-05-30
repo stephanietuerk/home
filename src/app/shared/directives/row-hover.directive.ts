@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
-import { darkPrimary } from '../../core/constants/colors.contants';
-import { select, transition, easeLinear } from 'd3';
+import { easeLinear, select, transition } from 'd3';
+import { darkPrimary, highlightPrimary } from '../../core/constants/colors.contants';
 import { ColorService } from '../../core/services/color.service';
 
 @Directive({
@@ -10,7 +10,7 @@ export class RowHoverDirective {
     constructor(private el: ElementRef, private colorService: ColorService) {}
 
     @HostListener('mouseenter') onMouseEnter() {
-        this.highlight(this.colorService.hexToRGBA(darkPrimary, 0.04), '#0088FF', 'pointer', '700');
+        this.highlight(this.colorService.hexToRGBA(darkPrimary, 0.04), highlightPrimary, 'pointer', '700');
         this.el.nativeElement;
     }
 
@@ -28,5 +28,7 @@ export class RowHoverDirective {
             .style('color', color)
             .style('cursor', cursor)
             .style('font-weight', fontWeight);
+
+        select(row).selectAll('svg').transition(t).style('fill', color).style('stroke', color);
     }
 }

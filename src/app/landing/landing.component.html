@@ -4,7 +4,4 @@
         <app-about [id]="sections.about + '-id'" class="about-component"></app-about>
         <app-projects-table [id]="sections.projects + '-id'" class="projects-table-component"></app-projects-table>
     </div>
-    <ng-container *ngFor="let project of projects">
-        <app-project-overview [project]=project></app-project-overview>
-    </ng-container>
 </div>
