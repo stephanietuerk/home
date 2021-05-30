@@ -1,0 +1,62 @@
+@import 'mixins', 'vars', 'placeholders';
+
+.component-container {
+    @extend %flex-column;
+    align-items: center;
+    padding: 48px 0;
+
+    .contact-title {
+        @extend %slab-medium;
+        color: $highlight-primary;
+        font-size: 2.3rem;
+    }
+
+    .contact-container {
+        display: flex;
+        align-items: baseline;
+        padding-top: 6px;
+
+        &:last-of-type {
+            align-items: center;
+        }
+    }
+
+    .contact-type-text {
+        @extend %sans-regular;
+        @extend %small-caps;
+        letter-spacing: 0.13em;
+        font-size: 1.1rem;
+        // position: relative;
+        // top: 2px;
+        padding-right: 4px;
+    }
+
+    .contact-text {
+        @extend %sans-regular;
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+        padding-top: 4px;
+
+        &:first-of-type {
+            text-align: center;
+        }
+    }
+
+    .social-media-container {
+        display: flex;
+        padding-top: 4px;
+
+        .social-media-link {
+            padding-top: 4px;
+        }
+    }
+
+    .social-media-icon {
+        padding: 0 6px;
+
+        svg {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
