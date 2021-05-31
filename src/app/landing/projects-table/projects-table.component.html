@@ -17,6 +17,8 @@
                     class="table-row body index"
                     [ngClass]="{ open: state[project.id] }"
                     (click)="toggleDescription(project.id)"
+                    (keydown.enter)="toggleDescription(project.id)"
+                    tabindex="0"
                 >
                     <td appRowHover class="table-cell body title">{{ getCellText(project.title) }}</td>
                     <td appRowHover class="table-cell body type">{{ getCellText(project.type) }}</td>

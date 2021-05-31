@@ -1,0 +1,72 @@
+@import 'vars', 'placeholders';
+
+$leaving-highlight: $highlight-primary;
+
+.card {
+    @extend %flex-column;
+    background: #fdfaf7;
+    margin-bottom: 18px;
+    padding: 18px 24px 18px 24px;
+
+    .question-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 1px solid $dark-primary;
+        border-bottom: 1px solid $dark-primary;
+        margin: 8px 0 12px 0;
+
+        &.collapse:hover {
+            cursor: pointer;
+            background: $highlight-light;
+            border-left: 1px solid $leaving-highlight;
+            border-bottom: 1px solid $leaving-highlight;
+
+            .question {
+                color: $leaving-highlight;
+                font-weight: 800;
+            }
+
+            .arrow-icon svg {
+                fill: $leaving-highlight;
+                stroke: $leaving-highlight;
+            }
+        }
+    }
+
+    .question {
+        @extend %slab-bold;
+        font-size: 1.2rem;
+        padding: 12px 8px 8px 8px;
+        line-height: 1.5rem;
+        text-align: left;
+    }
+
+    .answer-text {
+        @extend %sans-regular;
+        font-size: 1.1rem;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 1.2rem;
+    }
+
+    .arrow-icon {
+        padding-right: 4px;
+
+        &.down {
+            position: relative;
+            top: 4px;
+        }
+        &.up {
+            position: relative;
+            top: -4px;
+        }
+
+        svg {
+            height: 14px;
+            width: 21px;
+            fill: $dark-primary;
+            stroke: $dark-primary;
+        }
+    }
+}

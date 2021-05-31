@@ -22,13 +22,7 @@
     }
 
     .contact-type-text {
-        @extend %sans-regular;
-        @extend %small-caps;
-        letter-spacing: 0.13em;
-        font-size: 1.1rem;
-        // position: relative;
-        // top: 2px;
-        padding-right: 4px;
+        @extend %small-caps-instructions;
     }
 
     .contact-text {

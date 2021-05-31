@@ -39,6 +39,11 @@
         @extend %nav-link;
         text-decoration: none;
     }
+
+    button {
+        border: 0;
+        background: none;
+    }
 }
 
 app-content {
