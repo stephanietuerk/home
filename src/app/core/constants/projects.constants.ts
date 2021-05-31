@@ -1,18 +1,7 @@
 import { Project, ProjectType } from './../models/project.model';
+import { beyondPath, blogPath, flipPath, leavingPath, projectsPath } from './routing.constants';
 
 export const PROJECTS: Project[] = [
-    // {
-    //   id: 6,
-    //   title: 'Leaving Academia FAQ',
-    //   type: ['Writing'],
-    //   year: 2020,
-    //   technologies: ['Angular'],
-    //   description: [`In 2017, I finished a humanities post-doc and decided to leave both my field of history of architecture and academia.
-    //       I am both profoundly thankful for all of the experiences I gained through my PhD and postdoc and very happy and intellectually
-    //       fulfilled with my new work. I have spoken with a number of people about this transition -- who I hope have found it helpful --
-    //       and thought that I would share my thoughts with a wider audience by putting them here.`],
-    //   show: true
-    // },
     {
         id: 'leaving-academia-faq',
         title: 'Leaving Academia FAQ',
@@ -22,7 +11,7 @@ export const PROJECTS: Project[] = [
         description: [
             "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
         ],
-        routerLink: '/projects/leavingacademia',
+        routerLink: `${blogPath}/${leavingPath}`,
         linkName: 'Post',
     },
     {
@@ -76,7 +65,7 @@ export const PROJECTS: Project[] = [
         technologies: ['JavaScript', 'D3'],
         description: ['This project came out of auditing MIT DUSP 11.S941 in spring 2017.'],
         show: true,
-        routerLink: '/projects/beyondthecountyline',
+        routerLink: `${projectsPath}/${beyondPath}`,
         linkName: 'visualization',
     },
     {
@@ -91,7 +80,7 @@ export const PROJECTS: Project[] = [
             "The original code was like 1500 lines inside a single d3.csv() call, haha, but I had such a blast figuring out how to do all of this and am still proud of having made it with zero background in D3 or JS. I think it's telling that what is most novel here is the interactivity, which is still one of my favorite things to design and build.",
         ],
         show: true,
-        routerLink: '/projects/flipthedistrict',
+        routerLink: `${projectsPath}/${flipPath}`,
         linkName: 'visualization',
     },
 ];

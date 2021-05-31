@@ -1,7 +1,6 @@
 import { animate, query, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Project } from 'src/app/core/models/project.model';
-import { ElementService } from 'src/app/core/services/element.service';
 import { PROJECTS } from '../../core/constants/projects.constants';
 
 @Component({
@@ -43,7 +42,7 @@ export class ProjectsTableComponent implements OnInit {
     projects: Project[];
     state: { [index: string]: boolean };
 
-    constructor(public elementService: ElementService) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.projects = PROJECTS;

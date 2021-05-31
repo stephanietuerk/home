@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { beyondPath, flipPath } from '../core/constants/routing.constants';
 import { BeyondResolver } from './beyond/beyond-resolver';
 import { BeyondComponent } from './beyond/beyond.component';
 import { FlipComponent } from './flip/flip.component';
-import { LeavingComponent } from './leaving/leaving.component';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
@@ -13,19 +13,15 @@ const routes: Routes = [
         component: ProjectComponent,
         children: [
             {
-                path: 'flipthedistrict',
+                path: flipPath,
                 component: FlipComponent,
             },
             {
-                path: 'beyondthecountyline',
+                path: beyondPath,
                 component: BeyondComponent,
                 resolve: {
                     data: BeyondResolver,
                 },
-            },
-            {
-                path: 'leavingacademia',
-                component: LeavingComponent,
             },
             {
                 path: '**',

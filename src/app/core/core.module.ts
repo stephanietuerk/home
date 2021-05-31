@@ -1,27 +1,15 @@
-import { NgModule, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ColorService } from './services/color.service';
-import { ElementService } from './services/element.service';
-import { UtilitiesService } from './services/utilities.service';
-import { BeyondService } from '../projects/beyond/services/beyond.service';
-import { FlipService } from '../projects/flip/services/flip.service';
-import { Optional } from '@angular/core';
-import { throwIfAlreadyLoaded } from './module-import-guard';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { BeyondResource } from '../projects/beyond/resources/beyond.resource';
+import { BeyondService } from '../projects/beyond/services/beyond.service';
 import { FlipResource } from '../projects/flip/resources/flip.resource';
+import { FlipService } from '../projects/flip/services/flip.service';
+import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
     imports: [CommonModule, HttpClientModule],
-    providers: [
-        ColorService,
-        ElementService,
-        UtilitiesService,
-        FlipService,
-        FlipResource,
-        BeyondService,
-        BeyondResource,
-    ],
+    providers: [FlipService, FlipResource, BeyondService, BeyondResource],
 })
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

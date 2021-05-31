@@ -11,6 +11,7 @@ $pink-medium: #ffdcef;
 $green-highlight: #0fc3af;
 
 $highlight-primary: #0088ff;
+$highlight-light: #f6f7f8;
 $dark-primary: #25274d;
 
 // $sans: 'Source Sans Pro';
@@ -39,3 +40,4 @@ $content-component-padding: 0px 40px 16px 40px;
 $navbar-height: 64px;
 $project-navbar-height: 48px;
 $color-focus-ring: color.adjust($aqua-medium, $lightness: 20%);
+$body-height-min: 300px;

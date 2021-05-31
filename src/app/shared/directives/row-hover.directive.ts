@@ -1,16 +1,16 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 import { easeLinear, select, transition } from 'd3';
+import { hexToRGBA } from 'src/app/core/utilities/color.utils';
 import { darkPrimary, highlightPrimary } from '../../core/constants/colors.contants';
-import { ColorService } from '../../core/services/color.service';
 
 @Directive({
     selector: '[appRowHover]',
 })
 export class RowHoverDirective {
-    constructor(private el: ElementRef, private colorService: ColorService) {}
+    constructor(private el: ElementRef) {}
 
     @HostListener('mouseenter') onMouseEnter() {
-        this.highlight(this.colorService.hexToRGBA(darkPrimary, 0.04), highlightPrimary, 'pointer', '700');
+        this.highlight(hexToRGBA(darkPrimary, 0.04), highlightPrimary, 'pointer', '700');
         this.el.nativeElement;
     }
 

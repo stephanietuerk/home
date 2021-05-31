@@ -1,0 +1,36 @@
+<div class="faq-container">
+    <div *ngFor="let question of overviewQuestions" class="card">
+        <div class="question-container">
+            <h4 class="question">{{ question.q }}</h4>
+        </div>
+        <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
+    </div>
+    <p class="category-label">questions about my experience</p>
+    <div *ngFor="let question of meQuestions" class="card">
+        <div class="question-container collapse" (click)="toggleQuestion(question.id)">
+            <h4 class="question">{{ question.q }}</h4>
+            <app-svg-icon
+                class="arrow-icon"
+                [ngClass]="{ up: state[question.id], down: !state[question.id] }"
+                [name]="getIcon(question.id)"
+            ></app-svg-icon>
+        </div>
+        <ng-container *ngIf="state[question.id]">
+            <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
+        </ng-container>
+    </div>
+    <p class="category-label">questions about your experience</p>
+    <div *ngFor="let question of youQuestions" class="card">
+        <div class="question-container collapse" (click)="toggleQuestion(question.id)">
+            <h4 class="question">{{ question.q }}</h4>
+            <app-svg-icon
+                class="arrow-icon"
+                [ngClass]="{ up: state[question.id], down: !state[question.id] }"
+                [name]="getIcon(question.id)"
+            ></app-svg-icon>
+        </div>
+        <ng-container *ngIf="state[question.id]">
+            <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
+        </ng-container>
+    </div>
+</div>

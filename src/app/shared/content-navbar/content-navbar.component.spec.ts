@@ -1,20 +1,22 @@
 simport { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectNavbarComponent } from './project-navbar.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, from } from 'rxjs';
+import { ContentNavbarComponent } from './content-navbar.component';
 
 describe('ProjectNavbarComponent', () => {
-  let component: ProjectNavbarComponent;
-  let fixture: ComponentFixture<ProjectNavbarComponent>;
+  let component: ContentNavbarComponent;
+  let fixture: ComponentFixture<ContentNavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectNavbarComponent ]
+      declarations: [ ContentNavbarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectNavbarComponent);
+    fixture = TestBed.createComponent(ContentNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

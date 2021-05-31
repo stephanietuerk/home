@@ -1,6 +1,6 @@
 <h1 class="my-name" (click)="scrollToTop($event)">Stephanie Tuerk</h1>
 <div class="nav-item-container">
-    <a *ngFor="let section of sections" class="nav-item" (click)="elementService.scroll(section + '-id', 'smooth')">
+    <a *ngFor="let section of sections" class="nav-item" (click)="scrollToId(section + '-id', 'smooth')">
         {{ section }}
     </a>
 </div>

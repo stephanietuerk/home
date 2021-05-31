@@ -2,12 +2,16 @@
 
 :host {
     @extend %content-component-host;
+    // background: #fdfaf7;
 }
 
-.project-navbar {
+.blog-navbar {
     @extend %content-component-navbar;
 }
 
-.project-container {
+.blog-container {
     @extend %content-component-container;
+    @extend %flex-column;
+    align-self: center;
+    max-width: 700px;
 }

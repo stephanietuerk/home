@@ -12,11 +12,11 @@
     }
 
     .contact-container {
-        display: flex;
-        align-items: baseline;
-        padding-top: 6px;
+        @extend %flex-column;
+        align-items: center;
 
         &:last-of-type {
+            padding-top: 10px;
             align-items: center;
         }
     }

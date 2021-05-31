@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { select } from 'd3-selection';
+import { easeQuadOut, format } from 'd3';
 import { range } from 'd3-array';
 import { geoAlbers, geoPath } from 'd3-geo';
-import { easeQuadOut, format } from 'd3';
+import { select } from 'd3-selection';
+import { scrollToId } from 'src/app/core/utilities/dom.utils';
+import { interpolateNumber } from 'src/app/core/utilities/number.utils';
+import { FlipService } from 'src/app/projects/flip/services/flip.service';
 import * as topojson from 'topojson';
 import { FlipBar } from './flip-bar.class';
+import { FLIPBARLAYOUT, FLIPCOLORS } from './flip.constants';
 import { Party } from './flip.model';
-import { FLIPCOLORS, FLIPBARLAYOUT } from './flip.constants';
-import { FlipService } from 'src/app/projects/flip/services/flip.service';
-import { UtilitiesService } from 'src/app/core/services/utilities.service';
-import { ElementService } from 'src/app/core/services/element.service';
 
 @Component({
     selector: 'app-flip',
@@ -21,11 +21,7 @@ export class FlipComponent implements OnInit {
     divId: string = '#flip-the-district';
     introId: string = '#flip-intro';
 
-    constructor(
-        private flipService: FlipService,
-        private utilitiesService: UtilitiesService,
-        private elementService: ElementService
-    ) {}
+    constructor(private flipService: FlipService) {}
 
     ngOnInit() {
         this.flipService.setFlipData();
@@ -33,7 +29,7 @@ export class FlipComponent implements OnInit {
 
     initVis() {
         this.makeVis();
-        this.elementService.scroll(this.divId.replace('#', ''), 'smooth', 'start');
+        scrollToId(this.divId.replace('#', ''), 'smooth', 'start');
     }
 
     makeVis() {
@@ -114,10 +110,7 @@ export class FlipComponent implements OnInit {
             .duration(2500)
             .tween('text', (d, i, nodes) => {
                 const sel = select(nodes[i]);
-                const interpolator = this.utilitiesService.interpolateNumber(
-                    sel.text(),
-                    this.flipService.stateData.dVotes
-                );
+                const interpolator = interpolateNumber(sel.text(), this.flipService.stateData.dVotes);
                 return (t) => sel.text(formatter(interpolator(t)));
             });
 
@@ -142,10 +135,7 @@ export class FlipComponent implements OnInit {
             .duration(2500)
             .tween('text', (d, i, nodes) => {
                 const sel = select(nodes[i]);
-                const interpolator = this.utilitiesService.interpolateNumber(
-                    sel.text(),
-                    this.flipService.stateData.rVotes
-                );
+                const interpolator = interpolateNumber(sel.text(), this.flipService.stateData.rVotes);
                 return (t) => sel.text(formatter(interpolator(t)));
             });
 
@@ -168,10 +158,7 @@ export class FlipComponent implements OnInit {
             .duration(2500)
             .tween('text', (d, i, nodes) => {
                 const sel = select(nodes[i]);
-                const interpolator = this.utilitiesService.interpolateNumber(
-                    sel.text(),
-                    this.flipService.stateData.dDistricts
-                );
+                const interpolator = interpolateNumber(sel.text(), this.flipService.stateData.dDistricts);
                 return (t) => sel.text(formatter(interpolator(t)));
             });
 
@@ -194,10 +181,7 @@ export class FlipComponent implements OnInit {
             .duration(2500)
             .tween('text', (d, i, nodes) => {
                 const sel = select(nodes[i]);
-                const interpolator = this.utilitiesService.interpolateNumber(
-                    sel.text(),
-                    this.flipService.stateData.rDistricts
-                );
+                const interpolator = interpolateNumber(sel.text(), this.flipService.stateData.rDistricts);
                 return (t) => sel.text(formatter(interpolator(t)));
             });
     }
@@ -355,8 +339,10 @@ export class FlipComponent implements OnInit {
 
         const path = geoPath().projection(projection);
 
-        const geoData = topojson.feature(this.flipService.flipTopojson, this.flipService.flipTopojson.objects.districts)
-            .features;
+        const geoData = topojson.feature(
+            this.flipService.flipTopojson,
+            this.flipService.flipTopojson.objects.districts
+        ).features;
 
         mapContainer
             .append('g')

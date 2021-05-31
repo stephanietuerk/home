@@ -4,11 +4,11 @@ import { PROJECTS } from '../core/constants/projects.constants';
 import { Project } from '../core/models/project.model';
 
 @Component({
-    selector: 'app-project',
-    templateUrl: './project.component.html',
-    styleUrls: ['./project.component.scss'],
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
 })
-export class ProjectComponent implements OnInit {
+export class BlogComponent implements OnInit {
     project: Project;
 
     constructor(private router: Router) {}
