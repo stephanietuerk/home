@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
         year: '2019—2020',
         description: [
             'DQ Atlas is a public-facing website hosted on Medicaid.gov that I designed/developed as part of my job at Mathematica. The site provides researchers and policy makers who use synthesized Medicaid use/claims data (TAF, or T-MSIS Analytic Files) with information about data quality for various topics.',
-            'I designed the website via interactive prototype and was the design lead for frontend development. However, the project at large, which included the creation of data quality measures, was executed by a wonderful team at Mathematica, which included health policy researchers who created measures for assessing data quality, statistical programmers, project managers, and full-stack developers.',
+            'I designed the website via interactive prototype and was the design lead for frontend development. However, the project at large was executed by a wonderful team of health policy researchers, who created measures for assessing data quality, statistical programmers, project and product managers, and front- and back-end developers.',
             'This was the first public-facing true web application at Mathematica, and we all learned a ton in the process of making it. The content will seem extremely wonky to non-specialist users, but has been very well received by policy researchers. We are proud of the extent to which we were able to make a ton of information available in an organized and easily-navigable fashion.',
             'The site is fully 508 compliant and supports IE11, in addition to modern browsers.',
         ],
