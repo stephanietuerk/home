@@ -28,7 +28,7 @@
     .projects-table {
         table-layout: auto;
         border-collapse: collapse;
-        width: 1000px;
+        width: 900px;
 
         @media screen and (max-width: 1000px) {
             max-width: 1000px;
@@ -58,7 +58,7 @@
 
         .table-cell.body {
             @extend %slab-regular;
-            font-size: 1.05rem;
+            font-size: 1rem;
             text-align: left;
             padding-top: 8px;
 
