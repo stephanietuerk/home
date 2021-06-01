@@ -1,0 +1,39 @@
+@import 'mixins', 'vars', 'placeholders';
+
+:host {
+    @extend %flex-column;
+    align-items: center;
+}
+
+.about-title {
+    @extend %slab-medium;
+    color: $highlight-primary;
+    font-size: 2.3rem;
+}
+
+.about-text {
+    @extend %sans-regular;
+    text-align: justify;
+    max-width: 800px;
+    margin: 6px auto 12px auto;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+
+    &:first-of-type {
+        text-align: center;
+    }
+}
+
+.read-more {
+    @extend %slab-regular;
+    @extend %small-caps;
+    letter-spacing: 0.13em;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding-bottom: 6px;
+
+    &:hover {
+        @extend %slab-medium;
+        color: $highlight-primary;
+    }
+}

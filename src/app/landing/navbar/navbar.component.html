@@ -1,0 +1,12 @@
+<h1 class="my-name" (click)="scrollToTop($event)">Stephanie Tuerk</h1>
+<nav class="nav-item-container">
+    <a
+        *ngFor="let section of sections"
+        class="nav-item"
+        (click)="scrollToId(section + '-id', 'smooth')"
+        (keydown.enter)="scrollToId(section + '-id', 'smooth')"
+        tabindex="0"
+    >
+        {{ section }}
+    </a>
+</nav>

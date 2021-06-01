@@ -1,0 +1,35 @@
+<h2 class="about-title">about</h2>
+<p class="about-text">
+    I design and develop applications that transform data into information. This work is informed by my education and
+    experience as an architect, engineer, and historian.
+</p>
+<button class="read-more" (click)="toggleMore()">{{ toggleText }}</button>
+<ng-container *ngIf="expanded">
+    <p class="about-text">
+        Currently, I am a data visualization/front-end engineer and designer at Mathematica (formerly known as
+        Mathematica Policy Research, no relation to Wolfram), where I work primarily on web applications that create
+        interactive, explorable interfaces for public health/health policy-related data.
+    </p>
+    <p class="about-text">
+        Before entering the world of data visualization in mid-2017, I spent many years in the field of architecture
+        (M.Arch and PhD in History, Theory, and Critcism of Architecture), and before that, majored in both Civil
+        Engineering and Urban Studies as an undergrad. Although data visualization may seem like a departure from that
+        path, in my mind it is much more a synthesis of it. Data visualization, to me, involves drawing together
+        evidence to make an argument in the same way that a historian makes an argument from primary sources, and it
+        allows me to combine my design and analytic sensibilities in a single endeavor. It also allows me to be adjacent
+        to practices that seek to build quantitative understandings of the world, a subject that I have enjoyed thinking
+        critically about since taking two very influential courses on the history of measurement, statistics, and
+        probability in society as a PhD student.
+    </p>
+    <p class="about-text">
+        I also really enjoy the coding aspects of making data-driven web applications/data visualizations, including the
+        never-ending learning process. Right now I'm interested in ways to build design efficiencies for small teams in
+        which a full-on design system would be overkill. This will likely change, at least slightly, in three months as
+        some new challenge comes my way.
+    </p>
+    <p class="about-text">
+        In my spare time, I do a fair number of sporty things (running, rock climbing, cycling), try to watch a lot of
+        decently high-quality films (mostly contemporary and non-American), and lament the lack of amazing street food
+        in Cambridge/Somerville, MA, where I live. My last name is pronounced "Turk".
+    </p>
+</ng-container>

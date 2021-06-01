@@ -1,0 +1,26 @@
+@import 'vars', 'placeholders';
+
+$leaving-highlight: $highlight-primary;
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 0;
+    margin: auto;
+
+    .category-label {
+        @extend %slab-extrabold;
+        @extend %small-caps;
+        align-self: center;
+
+        &:last-of-type {
+            padding-bottom: 8px;
+        }
+    }
+
+    .instruction {
+        @extend %small-caps-instructions;
+        align-self: center;
+        padding-bottom: 8px;
+    }
+}
