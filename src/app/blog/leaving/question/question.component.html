@@ -1,18 +1,18 @@
 <div class="card" [id]="'leaving-academia-' + question.id">
-    <ng-container *ngIf="toggle">
-        <button class="question-container collapse" (click)="toggleQuestion()">
-            <h4 class="question">{{ question.q }}</h4>
-        </button>
-    </ng-container>
     <ng-container *ngIf="!toggle">
         <div class="question-container">
+            <h4 class="question">{{ question.q }}</h4>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="toggle">
+        <button class="question-container collapse" (click)="toggleQuestion()">
             <h4 class="question">{{ question.q }}</h4>
             <app-svg-icon
                 class="arrow-icon"
                 [ngClass]="{ up: expanded, down: !expanded }"
                 [name]="getIcon()"
             ></app-svg-icon>
-        </div>
+        </button>
     </ng-container>
     <ng-container *ngIf="((toggle && expanded) || !toggle) && !textIsHtml()">
         <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
