@@ -23,13 +23,13 @@
         <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
     </ng-container>
     <ng-container *ngIf="((toggle && expanded) || !toggle) && textIsHtml()" [ngSwitch]="question.id">
-        <ng-container *ngSwitchCase="'q6'">
-            <ng-container *ngTemplateOutlet="q6Template"></ng-container>
+        <ng-container *ngSwitchCase="'q7'">
+            <ng-container *ngTemplateOutlet="q7Template"></ng-container>
         </ng-container>
     </ng-container>
 </div>
 
-<ng-template #q6Template>
+<ng-template #q7Template>
     <p class="answer-text">
         There are some things I would never tell people to do—for example, "you absolutely should (or shouldn't) leave
         academia"—but there is one thing that I tell everyone to do without hesitation and with a lot of conviction:
