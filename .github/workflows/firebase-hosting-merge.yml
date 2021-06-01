@@ -9,13 +9,19 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+    
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@main
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-      - run: npm install
-      - run: npm run build:prod
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
