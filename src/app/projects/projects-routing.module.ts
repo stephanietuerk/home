@@ -25,7 +25,7 @@ const routes: Routes = [
             },
             {
                 path: '**',
-                redirectTo: '/landing',
+                redirectTo: '/main',
                 pathMatch: 'full',
             },
         ],
