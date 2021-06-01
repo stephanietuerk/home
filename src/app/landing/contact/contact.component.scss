@@ -14,6 +14,7 @@
     .contact-container {
         @extend %flex-column;
         align-items: center;
+        padding-top: 4px;
 
         &:last-of-type {
             padding-top: 10px;
