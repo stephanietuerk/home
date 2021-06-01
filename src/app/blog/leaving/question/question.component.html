@@ -2,11 +2,6 @@
     <ng-container *ngIf="toggle">
         <button class="question-container collapse" (click)="toggleQuestion()">
             <h4 class="question">{{ question.q }}</h4>
-            <app-svg-icon
-                class="arrow-icon"
-                [ngClass]="{ up: expanded, down: !expanded }"
-                [name]="getIcon()"
-            ></app-svg-icon>
         </button>
     </ng-container>
     <ng-container *ngIf="!toggle">
