@@ -4,13 +4,25 @@
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
 jobs:
-  build_and_preview:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERSONAL_SITE_C3C69 }}'
-          projectId: personal-site-c3c69
+    build_and_preview:
+        if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [10.x, 12.x, 14.x, 15.x]
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm ci
+            - run: npm run build --prod
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERSONAL_SITE_C3C69 }}'
+                  projectId: personal-site-c3c69
