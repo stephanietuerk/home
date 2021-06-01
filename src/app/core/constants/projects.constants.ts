@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
         year: 2020,
         description: [
             'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture. The campaign took off but was dispersed across various media -- letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
-            'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. Additional content was added throughout the summer.',
+            'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. (Angular app without component libraries.) Additional content was added throughout the summer.',
         ],
         show: true,
         images: ['assets/severnAgainstRacism_embed2.png', 'assets/severnAgainstRacism_embed.png'],
