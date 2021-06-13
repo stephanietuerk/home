@@ -172,5 +172,24 @@
 }
 
 %content-component-container {
-    height: calc(100% - #{$navbar-height});
+    height: 100%;
+}
+
+%comment-button {
+    @extend %slab-bold;
+    border: 2px solid $highlight-primary;
+    color: $highlight-primary;
+
+    &:hover {
+        cursor: pointer;
+        @extend %slab-extrabold;
+        background: $highlight-light;
+        transition: all 0.2s;
+    }
+
+    &:disabled {
+        background: $highlight-light;
+        color: rgba($highlight-primary, 0.5);
+        border: 2px solid $highlight-light;
+    }
 }

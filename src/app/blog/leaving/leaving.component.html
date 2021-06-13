@@ -5,4 +5,9 @@
     <app-question *ngFor="let question of meQuestions" [question]="question" [toggle]="true"></app-question>
     <p class="category-label">questions about your experience</p>
     <app-question *ngFor="let question of youQuestions" [question]="question" [toggle]="true"></app-question>
+    <p class="comment-instructions">
+        If there are additional questions you'd like to see answered here, if you have suggestions for how I could make
+        this more helpful, or simply to leave feedback, feel free to comment below.
+    </p>
+    <app-comments></app-comments>
 </div>

@@ -13,6 +13,7 @@ export const PROJECTS: Project[] = [
         ],
         routerLink: `${blogPath}/${leavingPath}`,
         linkName: 'Post',
+        allowComments: true,
     },
     {
         id: 'art-history-jobs',

@@ -1,5 +1,5 @@
-import { animate, query, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { animations } from 'src/app/core/constants/animations.constants';
 import { Project } from 'src/app/core/models/project.model';
 import { PROJECTS } from '../../core/constants/projects.constants';
 
@@ -8,34 +8,7 @@ import { PROJECTS } from '../../core/constants/projects.constants';
     templateUrl: './projects-table.component.html',
     styleUrls: ['./projects-table.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations: [
-        trigger('slide', [
-            transition(':enter', [
-                query('.project-overview-component', [
-                    style({ opacity: 0, height: 0 }),
-                    animate(
-                        '0.2s ease-out',
-                        style({
-                            opacity: 1,
-                            height: '*',
-                        })
-                    ),
-                ]),
-            ]),
-            transition(':leave', [
-                query('.project-overview-component', [
-                    style({ opacity: 1, height: '*' }),
-                    animate(
-                        '0.2s ease-in',
-                        style({
-                            opacity: 0,
-                            height: 0,
-                        })
-                    ),
-                ]),
-            ]),
-        ]),
-    ],
+    animations: [animations.slide('project-overview-component')],
 })
 export class ProjectsTableComponent implements OnInit {
     sections: any;

@@ -1,0 +1,16 @@
+<button class="leave-comment-button" (click)="onLeaveCommentClick()" #leaveButton>Leave a comment</button>
+<div *ngIf="showCreateComment" @slide>
+    <app-create-comment
+        class="create-comment-component"
+        [postId]="postId"
+        (close)="onCloseComment()"
+    ></app-create-comment>
+</div>
+<h3 class="title">Comments</h3>
+<app-comment
+    *ngFor="let comment of commentsService.comments | async"
+    [postId]="postId"
+    [comment]="comment"
+    class="comment-component"
+></app-comment>
+<p *ngIf="!commentsService.comments">No comments</p>

@@ -1,0 +1,28 @@
+<input
+    type="text"
+    class="comment-input name"
+    placeholder="Your name"
+    required
+    minlength="4"
+    maxlength="50"
+    size="30"
+    name="userName"
+    #userName="ngModel"
+    [(ngModel)]="comment.userName"
+/>
+<div class="comment-container">
+    <textarea
+        class="comment-input text"
+        name="leave"
+        required
+        rows="8"
+        cols="70"
+        name="content"
+        #content="ngModel"
+        [(ngModel)]="comment.content"
+    ></textarea>
+    <div class="button-row">
+        <button class="cancel-button" (click)="onCancel()">Cancel</button>
+        <button class="submit-button" (click)="onSubmit()">Submit</button>
+    </div>
+</div>

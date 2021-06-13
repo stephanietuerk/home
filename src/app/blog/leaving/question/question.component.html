@@ -14,14 +14,14 @@
             ></app-svg-icon>
         </button>
     </ng-container>
-    <ng-container *ngIf="((toggle && expanded) || !toggle) && !textIsHtml()">
+    <div *ngIf="((toggle && expanded) || !toggle) && !textIsHtml()" class="answer-container">
         <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
-    </ng-container>
-    <ng-container *ngIf="((toggle && expanded) || !toggle) && textIsHtml()" [ngSwitch]="question.id">
+    </div>
+    <div *ngIf="((toggle && expanded) || !toggle) && textIsHtml()" class="answer-container" [ngSwitch]="question.id">
         <ng-container *ngSwitchCase="'q7'">
             <ng-container *ngTemplateOutlet="q7Template"></ng-container>
         </ng-container>
-    </ng-container>
+    </div>
 </div>
 
 <ng-template #q7Template>
@@ -50,39 +50,38 @@
         have a successful interview, and so forth.
     </p>
     <p class="answer-text">
-        If you don't know what you would ask in these kinds of conversations, here are some ideas:
+        If you don't know what you would ask in these kinds of conversations, here are some ideas.
     </p>
-    <p>For people who left a similar situation as yours:</p>
-    <ul>
-        <li>How did you get interested in your current field?</li>
-        <li>How did you get your first job in your current field?</li>
-        <li>What was the most important thing you did in terms of finding new opporunities?</li>
-        <li>What was the biggest surprise for you in leaving academia to do something else?</li>
+    <p class="list-label">For people who left a similar situation as yours:</p>
+    <ul class="list-container">
+        <li class="list-item">How did you get interested in your current field?</li>
+        <li class="list-item">How did you get your first job in your current field?</li>
+        <li class="list-item">What was the most important thing you did in terms of finding new opporunities?</li>
+        <li class="list-item">What was the biggest surprise for you in leaving academia to do something else?</li>
     </ul>
-    <p>For everyone:</p>
-    <ul>
-        <li>
+    <p class="list-label">For everyone:</p>
+    <ul class="list-container">
+        <li class="list-item">
             Can you give me a high-level overview of the landscape of your field/industry? (i.e. a specific non-profit
             sector, a sector of tech, tech at large, consulting, federal government, think-tanks, etc.) What is the job
             market like in it?
         </li>
-        <li>
-            Generally, what roles are in your organization? Particularly, which would be open to someone like me
-            [describe what you think you are good at, any special skills that may be relevant, and what you think you
-            may be good at with training/experience] Are there roles that would be a good fit (i.e. they would hire me,
-            I would find it engaging) for someone like me if I had a bit of additional training and experience that I
-            could realistically get in the next year or two?
+        <li class="list-item">
+            Generally, what roles are in your organization? Are there roles that would be a good fit (i.e. they would
+            hire me, I would find it engaging) for someone like me if I had a bit of additional training and experience
+            that I could realistically get in the next year or two? [Describe what you think you are good at, any
+            special skills that may be relevant, and what you think you may be good at with training/experience.]
         </li>
-        <li>Which of these roles are roles that exist across your field/industry?</li>
-        <li>
+        <li class="list-item">Which of these roles are roles that exist across your field/industry?</li>
+        <li class="list-item">
             Are there any growth/new areas in your industry where there is a lot of demand for employees but no formal
             educational path to hire from?
         </li>
-        <li>What do you like about your industry? What do you like about your particular job?</li>
-        <li>What is the worst part of your industry? What is the worst part of your job?</li>
-        <li>
+        <li class="list-item">What do you like about your industry? What do you like about your particular job?</li>
+        <li class="list-item">What is the worst part of your industry? What is the worst part of your job?</li>
+        <li class="list-item">
             Do you know anyone who you think it would be helpful for me to talk with further? (i.e. someone with similar
-            experiences or background to mine)
+            experiences, interests, or background to mine)
         </li>
     </ul>
 </ng-template>
