@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { animations } from 'src/app/core/constants/animations.constants';
-import { CommentsService } from 'src/app/core/services/comments.service';
+import { Comment } from 'src/app/core/models/blog/comment.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-comments',
@@ -11,15 +13,40 @@ import { CommentsService } from 'src/app/core/services/comments.service';
 })
 export class CommentsComponent implements OnInit {
     @ViewChild('leaveButton') leaveButton: ElementRef;
+    private commentsCollection: AngularFirestoreCollection<Comment>;
+    nestedComments: Comment[];
     postId: string;
     showCreateComment: boolean = false;
 
-    constructor(private route: ActivatedRoute, public commentsService: CommentsService) {}
+    constructor(private route: ActivatedRoute, private afs: AngularFirestore) {}
 
     ngOnInit(): void {
         this.route.url.subscribe((url) => {
             this.postId = url[0].path;
         });
+        this.commentsCollection = this.afs.collection<Comment>(environment.commentsCollection, (ref) =>
+            ref.where('postId', '==', this.postId)
+        );
+        this.commentsCollection.valueChanges({ idField: 'fsId' }).subscribe((comments) => {
+            this.createdNestedComments(comments);
+        });
+    }
+
+    createdNestedComments(comments: Comment[]) {
+        const parents = comments.filter((comment) => comment.parentId === null);
+        this.nestedComments = this.nestComments(comments, parents);
+    }
+
+    nestComments(all: Comment[], parents: Comment[]) {
+        for (let i = 0; i < parents.length; i++) {
+            const parent = parents[i];
+            const children = all.filter((comment) => comment.parentId === parent.fsId);
+            parent.replies = children;
+            if (children.length > 0) {
+                this.nestComments(all, children);
+            }
+        }
+        return parents;
     }
 
     onLeaveCommentClick(): void {

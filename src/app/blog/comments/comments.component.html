@@ -8,9 +8,10 @@
 </div>
 <h3 class="title">Comments</h3>
 <app-comment
-    *ngFor="let comment of commentsService.comments | async"
+    *ngFor="let comment of nestedComments"
     [postId]="postId"
     [comment]="comment"
+    [parentId]="null"
     class="comment-component"
 ></app-comment>
-<p *ngIf="!commentsService.comments">No comments</p>
+<p *ngIf="nestedComments.length === 0">There are no comments to display yet.</p>
