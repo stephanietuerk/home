@@ -10,6 +10,7 @@ export class Project {
     url?: string;
     routerLink?: string;
     linkName?: string;
+    allowComments?: boolean;
 }
 
 export enum ProjectType {

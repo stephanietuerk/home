@@ -1,0 +1,17 @@
+<div class="header">
+    <p class="from">from</p>
+    <p class="name">{{ comment.userName }}</p>
+    <p class="date">{{ comment.date.toDate() | date: 'mediumDate' }}</p>
+</div>
+<div class="content">
+    <p class="content-text">{{ comment.content }}</p>
+    <button class="reply-button" (click)="onReply()" #replyButton>Reply</button>
+    <div *ngIf="showCreateComment" @slide>
+        <app-create-comment
+            [parentId]="comment.fsId"
+            [postId]="postId"
+            class="create-comment-component"
+            (close)="onCloseComment()"
+        ></app-create-comment>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+@import 'vars', 'placeholders';
+
+.header {
+    background: $highlight-light;
+    padding: 0 1rem;
+}
+
+.from {
+    @extend %small-caps;
+    @extend %sans-regular;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.name {
+    @extend %slab-bold;
+    font-size: 1.15rem;
+    padding-bottom: 0.125rem;
+}
+
+.date {
+    @extend %sans-regular-italic;
+    padding-bottom: 0.25rem;
+}
+
+.content {
+    border: 2px solid $highlight-light;
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.content-text {
+    padding-bottom: 1rem;
+}
+
+.reply-button {
+    @extend %comment-button;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.65rem 0.4rem 0.65rem;
+}
+
+.create-comment-component {
+    display: block;
+}

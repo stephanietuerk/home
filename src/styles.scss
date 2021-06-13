@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400');
 @import 'vars', 'placeholders';
 
 * {
     box-sizing: border-box;
-    font-family: 'Source Sans Pro';
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
     -webkit-font-smoothing: antialiased;
 
     html,
