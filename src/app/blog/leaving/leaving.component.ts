@@ -38,4 +38,9 @@ export class LeavingComponent implements OnInit {
     getIcon(questionId): string {
         return this.state[questionId] ? 'row-arrow-up' : 'row-arrow-down';
     }
+
+    onTldrClick(): void {
+        const el = document.getElementById(this.youQuestions[this.youQuestions.length - 2].id);
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
 }

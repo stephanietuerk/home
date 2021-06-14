@@ -20,7 +20,20 @@ $leaving-highlight: $highlight-primary;
     .instruction {
         @extend %small-caps-instructions;
         align-self: center;
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .tldr-button {
+        @extend .instruction;
+        cursor: pointer;
+        margin-bottom: 0.75rem;
+        color: $highlight-primary;
+        border-bottom: 1px solid $highlight-primary;
+
+        &:hover {
+            background: $highlight-light;
+            font-weight: 500;
+        }
     }
 
     .comment-instructions {

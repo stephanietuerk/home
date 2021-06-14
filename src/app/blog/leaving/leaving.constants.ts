@@ -2,7 +2,7 @@ import { LeavingQuestion } from './leaving,model';
 
 export const LEAVING_OVERVIEW: LeavingQuestion[] = [
     {
-        id: 'q1',
+        id: 'what-is-this',
         type: 'string',
         q: 'What is this?',
         a: [
@@ -10,7 +10,7 @@ export const LEAVING_OVERVIEW: LeavingQuestion[] = [
         ],
     },
     {
-        id: 'q2',
+        id: 'who-is-this-for',
         type: 'string',
         q: 'Who is this for?',
         a: [
@@ -22,7 +22,7 @@ export const LEAVING_OVERVIEW: LeavingQuestion[] = [
 
 export const LEAVING_ME: LeavingQuestion[] = [
     {
-        id: 'q3',
+        id: 'how-did-you-know',
         type: 'string',
         q: 'How did you know you wanted to leave academia?',
         a: [
@@ -36,7 +36,7 @@ export const LEAVING_ME: LeavingQuestion[] = [
         ],
     },
     {
-        id: 'q4',
+        id: 'any-regrets',
         type: 'string',
         q: 'Do you have any regrets?',
         a: [
@@ -47,7 +47,7 @@ export const LEAVING_ME: LeavingQuestion[] = [
     },
     {
         id: 'q5',
-        type: 'string',
+        type: 'do-you-wish',
         q: "Do you wish you just hadn't done the PhD, or do you wish you had dropped out?",
         a: [
             "I'll handle the easier of these two questions first. I am very very glad I finished my PhD. I hate that this is the case, but having that degree on my resume has definitely opened doors and afforded me opportunities. I also am proud to have worked through things to finish it and I learned a lot about myself through the process.",
@@ -59,7 +59,7 @@ export const LEAVING_ME: LeavingQuestion[] = [
 
 export const LEAVING_YOU: LeavingQuestion[] = [
     {
-        id: 'q6',
+        id: 'but-i-love-scholarship',
         type: 'string',
         q: "The academic job market is decimated and/or it seems unlikley that I'll get a job that would work for me, but I want to continue with my scholarship. Any thoughts?",
         a: [
@@ -69,25 +69,25 @@ export const LEAVING_YOU: LeavingQuestion[] = [
         ],
     },
     {
-        id: 'q7',
+        id: 'where-to-start',
         type: 'html',
         q: "I'm definitely contemplating trying to find work outside of academia, but I have no idea how or where to start. Any suggestions?",
         a: [],
     },
     {
-        id: 'q8',
+        id: 'what-else-besides-talking',
         type: 'html',
         q: 'Okay, I am talking to people. But...how do I know what to pursue? What else can I do?',
         a: [],
     },
     {
-        id: 'q9',
+        id: 'getting-a-job-no-experience',
         type: 'html',
         q: 'I feel like I have an idea about what I want to do but I have no idea how to actually get a job / getting a job with no experience feels impossible. Help!',
         a: [],
     },
     {
-        id: 'q10',
+        id: 'tldr',
         type: 'html',
         q: 'Can you just give me your big takeaways in bullet point form? :)',
         a: [],
