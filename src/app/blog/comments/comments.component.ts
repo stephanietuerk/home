@@ -63,4 +63,8 @@ export class CommentsComponent implements OnInit {
         this.leaveButton.nativeElement.disabled = false;
         this.showCreateComment = false;
     }
+
+    hasComments(): boolean {
+        return this.nestedComments && this.nestedComments.length > 0;
+    }
 }
