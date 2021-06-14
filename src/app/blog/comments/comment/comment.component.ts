@@ -1,4 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Comment } from 'src/app/core/models/blog/comment.model';
 
@@ -9,16 +12,28 @@ import { Comment } from 'src/app/core/models/blog/comment.model';
     animations: [animations.slide('create-comment-component')],
 })
 export class CommentComponent implements OnInit {
-    @Input() parentComment: Comment;
+    @Input() parentId: string;
     @Input() postId: string;
     @Input() comment: Comment;
     @ViewChild('replyButton') replyButton: ElementRef;
+    private commentsCollection: AngularFirestoreCollection<Comment>;
+    childComments: Observable<Comment[]>;
     showCreateComment: boolean = false;
 
-    constructor() {}
+    constructor(private afs: AngularFirestore) {}
 
     ngOnInit(): void {
         console.log(this.comment);
+        this.commentsCollection = this.afs.collection<Comment>('comments-dev', (ref) =>
+            ref.where('postId', '==', this.postId)
+        );
+        this.childComments = this.commentsCollection
+            .valueChanges({ idField: 'fsId' })
+            .pipe(
+                map((comments) =>
+                    comments.filter((comment) => comment.parentId === this.parentId && comment.parentId !== null)
+                )
+            );
     }
 
     onReply(): void {

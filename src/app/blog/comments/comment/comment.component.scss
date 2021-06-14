@@ -42,3 +42,8 @@
 .create-comment-component {
     display: block;
 }
+
+.comment-component.nested {
+    display: block;
+    margin-top: 1rem;
+}
