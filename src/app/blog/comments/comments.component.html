@@ -14,4 +14,4 @@
     [parentId]="null"
     class="comment-component"
 ></app-comment>
-<p *ngIf="nestedComments.length === 0">There are no comments to display yet.</p>
+<p *ngIf="!hasComments()">There are no comments to display yet.</p>

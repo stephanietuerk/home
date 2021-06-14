@@ -23,7 +23,6 @@ export class CommentComponent implements OnInit {
     constructor(private afs: AngularFirestore) {}
 
     ngOnInit(): void {
-        console.log(this.comment);
         this.commentsCollection = this.afs.collection<Comment>('comments-dev', (ref) =>
             ref.where('postId', '==', this.postId)
         );
