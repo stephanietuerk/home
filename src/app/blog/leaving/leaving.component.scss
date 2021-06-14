@@ -23,6 +23,12 @@ $leaving-highlight: $highlight-primary;
         padding-bottom: 0.5rem;
     }
 
+    .date {
+        align-self: center;
+        padding-bottom: 0.25rem;
+        font-weight: 300;
+    }
+
     .tldr-button {
         @extend .instruction;
         cursor: pointer;
