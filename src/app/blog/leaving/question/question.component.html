@@ -1,4 +1,4 @@
-<div class="card" [id]="'leaving-academia-' + question.id">
+<div class="card" [id]="question.id">
     <ng-container *ngIf="!toggle">
         <div class="question-container">
             <h4 class="question">{{ question.q }}</h4>
@@ -18,10 +18,10 @@
         <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
     </div>
     <div *ngIf="((toggle && expanded) || !toggle) && textIsHtml()" class="answer-container" [ngSwitch]="question.id">
-        <ng-container *ngSwitchCase="'q7'">
+        <ng-container *ngSwitchCase="'where-to-start'">
             <ng-container *ngTemplateOutlet="q7Template"></ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="'q10'">
+        <ng-container *ngSwitchCase="'tldr'">
             <ng-container *ngTemplateOutlet="q10Template"></ng-container>
         </ng-container>
     </div>
