@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { ActivatedRoute } from '@angular/router';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Comment } from 'src/app/core/models/blog/comment.model';
-import { environment } from 'src/environments/environment';
+import { EnvironmentService } from 'src/app/core/services/environment.service';
 
 @Component({
     selector: 'app-comments',
@@ -18,14 +18,19 @@ export class CommentsComponent implements OnInit {
     postId: string;
     showCreateComment: boolean = false;
 
-    constructor(private route: ActivatedRoute, private afs: AngularFirestore) {}
+    constructor(
+        private route: ActivatedRoute,
+        private afs: AngularFirestore,
+        private environmentService: EnvironmentService
+    ) {}
 
     ngOnInit(): void {
         this.route.url.subscribe((url) => {
             this.postId = url[0].path;
         });
-        this.commentsCollection = this.afs.collection<Comment>(environment.commentsCollection, (ref) =>
-            ref.where('postId', '==', this.postId)
+        this.commentsCollection = this.afs.collection<Comment>(
+            this.environmentService.environmentSettings.comments,
+            (ref) => ref.where('postId', '==', this.postId)
         );
         this.commentsCollection.valueChanges({ idField: 'fsId' }).subscribe((comments) => {
             this.createdNestedComments(comments);

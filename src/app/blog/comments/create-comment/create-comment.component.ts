@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { Comment } from 'src/app/core/models/blog/comment.model';
-import { environment } from 'src/environments/environment';
+import { EnvironmentService } from 'src/app/core/services/environment.service';
 import Timestamp = firebase.firestore.Timestamp;
 
 export interface comment {
@@ -25,8 +25,8 @@ export class CreateCommentComponent implements OnInit {
         userName: '',
     };
 
-    constructor(private afs: AngularFirestore) {
-        this.commentsCollection = this.afs.collection<Comment>(environment.commentsCollection);
+    constructor(private afs: AngularFirestore, private environmentService: EnvironmentService) {
+        this.commentsCollection = this.afs.collection<Comment>(this.environmentService.environmentSettings.comments);
     }
 
     ngOnInit(): void {}
