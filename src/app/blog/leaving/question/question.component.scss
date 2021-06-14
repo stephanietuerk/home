@@ -56,6 +56,10 @@ $leaving-highlight: $highlight-primary;
     .list-label {
         @extend %sans-regular-italic;
         padding-bottom: 6px;
+
+        &.q10 {
+            padding-top: 1rem;
+        }
     }
 
     .list-container {
