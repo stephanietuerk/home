@@ -21,6 +21,9 @@
         <ng-container *ngSwitchCase="'q7'">
             <ng-container *ngTemplateOutlet="q7Template"></ng-container>
         </ng-container>
+        <ng-container *ngSwitchCase="'q10'">
+            <ng-container *ngTemplateOutlet="q10Template"></ng-container>
+        </ng-container>
     </div>
 </div>
 
@@ -76,6 +79,11 @@
         <li class="list-item">
             Are there any growth/new areas in your industry where there is a lot of demand for employees but no formal
             educational path to hire from?
+            <span class="italics"
+                >(Note: I would never advocate going into a job strictly based on demand, but I think this is useful
+                information to know, as these are areas where people may be more likely to hire someone who is
+                "generally smart.")</span
+            >
         </li>
         <li class="list-item">What do you like about your industry? What do you like about your particular job?</li>
         <li class="list-item">What is the worst part of your industry? What is the worst part of your job?</li>
@@ -86,4 +94,55 @@
     </ul>
 </ng-template>
 
-<ng-template #q7> </ng-template>
+<ng-template #q10Template>
+    <p class="list-label">Things to do:</p>
+    <ul class="list-container">
+        <li class="list-item">
+            Prioritize your own happiness and well-being, and get real about what will really make you happy in the
+            future.
+        </li>
+        <li class="list-item">
+            To the greatest extent possible, free yourself from any professional expectations you have for yourself or
+            that you imagine others may have of you. This is not the time to care about what your academic peers and
+            mentors may think of you.
+        </li>
+        <li class="list-item">
+            Be extremely open minded about what the future may hold for you. Keep as many options open as possible.
+        </li>
+        <li class="list-item">
+            Make a list of things that would make you happy in a job and let that guide your search.
+        </li>
+        <li class="list-item">
+            Talk to everyone you can, and take advantage of every resource you can. Learning that something is wrong for
+            you is just as valuable as learning that something is appealing.
+        </li>
+        <li class="list-item">
+            Don't let fear of failure hold you back from applying to things or interviewing. You will learn a lot from
+            going through the process, even if it doesn't result in a job.
+        </li>
+    </ul>
+    <p class="list-label">Things to keep in mind:</p>
+    <ul class="list-container">
+        <li class="list-item">
+            Getting your first job in a non-scholarly role is by far the biggest challenge. After you have some
+            experience, you can much more easily find a new position, and even shift into different fields. What you do
+            next may be great, or it may be a stepping stone to something else a year later.
+        </li>
+        <li class="list-item">
+            Statistically your odds of getting a job outside of academia are much, much, much higher than getting one
+            inside. You will eventually find something.
+        </li>
+        <li class="list-item">
+            Most people outside of academia are happy to talk honestly about their jobs with a curious
+            friend-of-a-friend.
+        </li>
+        <li class="list-item">
+            Most work environments outside of academia are far more supportive, nuturing, and reasonable than academic
+            environments.
+        </li>
+        <li class="list-item">
+            You are a capable, curious person, and will bring value to the world no matter what you do next. I know that
+            sounds cheesy, but it is true, and easy to forget.
+        </li>
+    </ul>
+</ng-template>

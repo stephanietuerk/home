@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
     {
         id: 'leaving-academia-faq',
         title: 'Leaving Academia FAQ',
-        type: [ProjectType.writing],
+        type: ProjectType.blogPost,
         year: 2021,
         show: true,
         description: [
@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
     {
         id: 'art-history-jobs',
         title: 'Art History Jobs, 2011—2020',
-        type: [ProjectType.dataViz],
+        type: ProjectType.dataViz,
         year: 2020,
         description: [
             'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python, visualizations were built in an Observable notebook.',
@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
     {
         id: 'scsar',
         title: 'Severn Community Standing Against Racism',
-        type: [ProjectType.website],
+        type: ProjectType.website,
         year: 2020,
         description: [
             'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture. The campaign took off but was dispersed across various media -- letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     {
         id: 'dq-atlas',
         title: 'DQ Atlas',
-        type: [ProjectType.webApp],
+        type: ProjectType.webApp,
         year: '2019—2020',
         description: [
             'DQ Atlas is a public-facing website hosted on Medicaid.gov that I designed/developed as part of my job at Mathematica. The site provides researchers and policy makers who use synthesized Medicaid use/claims data (TAF, or T-MSIS Analytic Files) with information about data quality for various topics.',
@@ -57,11 +57,12 @@ export const PROJECTS: Project[] = [
         images: ['assets/atlasWelcome.png', 'assets/atlasTopics.png'],
         url: 'www.medicaid.gov/dq-atlas/welcome',
         linkName: ProjectType.website,
+        professional: true,
     },
     {
         id: 'beyond-the-county-line',
         title: 'Beyond the County Line',
-        type: [ProjectType.dataViz],
+        type: ProjectType.dataViz,
         year: 2017,
         technologies: ['JavaScript', 'D3'],
         description: ['This project came out of auditing MIT DUSP 11.S941 in spring 2017.'],
@@ -72,7 +73,7 @@ export const PROJECTS: Project[] = [
     {
         id: 'flip-the-district',
         title: 'Flip the District',
-        type: [ProjectType.dataViz],
+        type: ProjectType.dataViz,
         year: 2017,
         technologies: ['JavaScript', 'D3'],
         description: [

@@ -339,7 +339,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
                     return 1;
                 }
             })
-            .attr('width', (d) => barWidth(d))
+            .attr('width', (d) => (barWidth(d) ? barWidth(d) : 0))
             .attr('fill', (d) => this.getVoteColor(d));
     }
 

@@ -67,6 +67,10 @@ $leaving-highlight: $highlight-primary;
         font-size: 1.1rem;
     }
 
+    .italics {
+        @extend %sans-regular-italic;
+    }
+
     .arrow-icon {
         padding-right: 4px;
 

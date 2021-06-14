@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { BeyondResource } from '../projects/beyond/resources/beyond.resource';
 import { BeyondService } from '../projects/beyond/services/beyond.service';
 import { FlipResource } from '../projects/flip/resources/flip.resource';
 import { FlipService } from '../projects/flip/services/flip.service';
@@ -9,7 +10,7 @@ import { EnvironmentService } from './services/environment.service';
 
 @NgModule({
     imports: [CommonModule, HttpClientModule],
-    providers: [FlipService, FlipResource, BeyondService, EnvironmentService],
+    providers: [FlipService, FlipResource, BeyondService, EnvironmentService, BeyondResource],
 })
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

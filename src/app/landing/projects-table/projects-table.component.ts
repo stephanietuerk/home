@@ -29,8 +29,9 @@ export class ProjectsTableComponent implements OnInit {
         }, {});
     }
 
-    getCellText(text): string {
-        return Array.isArray(text) ? text.join(', ') : text;
+    getTitle(project: Project): string {
+        const asterisk = project.professional ? '*' : '';
+        return project.title + asterisk;
     }
 
     toggleDescription(projectId): void {

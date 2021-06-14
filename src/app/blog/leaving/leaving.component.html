@@ -1,7 +1,8 @@
 <div class="faq-container">
-    <app-question *ngFor="let question of overviewQuestions" [question]="question" [toggle]="false"></app-question>
+    <p class="instruction">click collapsed questions to expand</p>
+    <app-question [question]="whatQuestion" [toggle]="false"></app-question>
+    <app-question [question]="whoQuestion" [toggle]="true"></app-question>
     <p class="category-label">questions about my experience</p>
-    <p class="instruction">click any question to expand</p>
     <app-question *ngFor="let question of meQuestions" [question]="question" [toggle]="true"></app-question>
     <p class="category-label">questions about your experience</p>
     <app-question *ngFor="let question of youQuestions" [question]="question" [toggle]="true"></app-question>
