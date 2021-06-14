@@ -65,7 +65,10 @@ export const PROJECTS: Project[] = [
         type: ProjectType.dataViz,
         year: 2017,
         technologies: ['JavaScript', 'D3'],
-        description: ['This project came out of auditing MIT DUSP 11.S941 in spring 2017.'],
+        description: [
+            "This project also came out of MIT DUSP 11.S941 in spring 2017. I started it during the course and then took a few weeks after the course to finish it. (We only needed to do one final project, this was my second :).)  Like Flip the District, the code on this was a mess, it definitely is not scaled for mobile, and even on desktop, there are certainly some issues, but I'm still proud to have done this with only a month or two of d3/JS experience.",
+            'This project mapped Pennsylvania precinct level election results for 2012 and 2016 national elections onto census tracts, allowing for a granular analysis of the much hypothesized relationship between demographic characteristics (using census tract-level ACS data) and election results. The project page gives additional details about how correspondences were made between these two different administrative systems.',
+        ],
         show: true,
         routerLink: `${projectsPath}/${beyondPath}`,
         linkName: 'visualization',
@@ -79,7 +82,7 @@ export const PROJECTS: Project[] = [
         description: [
             'This was my first data visualization project!',
             "I did this when I audited MIT DUSP's 11.S947, Big Data, Visualization, and Society. Everything here is svg and made with D3 because...I learned D3 before learning almost anything about JavaScript, HTML, CSS, code splitting...the list goes on.",
-            "The original code was like 1500 lines inside a single d3.csv() call, haha, but I had such a blast figuring out how to do all of this and am still proud of having made it with zero background in D3 or JS. I think it's telling that what is most novel here is the interactivity, which is still one of my favorite things to design and build.",
+            "The original code was like 1500 lines inside a single d3.csv() call, haha, but I had such a blast figuring out how to do all of this and am still proud of having made it with zero background in D3 or JS. I think it's telling that what is most novel here is the interactivity, which is still one of my favorite things to design and build. This is not scaled for mobile and it would be a waste of time to go back and retrofit, so, consider yourself warned.",
         ],
         show: true,
         routerLink: `${projectsPath}/${flipPath}`,

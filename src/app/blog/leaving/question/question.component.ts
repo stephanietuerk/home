@@ -10,11 +10,13 @@ import { LeavingQuestion } from '../leaving,model';
 export class QuestionComponent implements OnInit {
     @Input() question: LeavingQuestion;
     @Input() toggle: boolean;
-    expanded: boolean = false;
+    expanded: boolean;
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.expanded = this.question.id === 'tldr' ? true : false;
+    }
 
     toggleQuestion(): void {
         this.expanded = !this.expanded;
