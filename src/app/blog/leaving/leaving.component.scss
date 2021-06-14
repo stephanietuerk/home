@@ -20,7 +20,7 @@ $leaving-highlight: $highlight-primary;
     .instruction {
         @extend %small-caps-instructions;
         align-self: center;
-        padding-bottom: 8px;
+        padding-bottom: 1rem;
     }
 
     .comment-instructions {

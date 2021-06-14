@@ -8,7 +8,8 @@ import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
     encapsulation: ViewEncapsulation.None,
 })
 export class LeavingComponent implements OnInit {
-    overviewQuestions: any;
+    whatQuestion: any;
+    whoQuestion: any;
     meQuestions: any;
     youQuestions: any;
     state: { [index: string]: boolean };
@@ -16,7 +17,8 @@ export class LeavingComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
-        this.overviewQuestions = LEAVING_OVERVIEW;
+        this.whatQuestion = LEAVING_OVERVIEW[0];
+        this.whoQuestion = LEAVING_OVERVIEW[1];
         this.meQuestions = LEAVING_ME;
         this.youQuestions = LEAVING_YOU;
         this.initializeState();

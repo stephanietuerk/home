@@ -1,7 +1,7 @@
 export class Project {
     id: string;
     title: string;
-    type: string[];
+    type: string;
     year: string | number;
     technologies?: string[];
     description?: string[];
@@ -11,6 +11,7 @@ export class Project {
     routerLink?: string;
     linkName?: string;
     allowComments?: boolean;
+    professional?: boolean;
 }
 
 export enum ProjectType {
@@ -21,6 +22,7 @@ export enum ProjectType {
     website = 'Website',
     prototype = 'Prototype',
     notebook = 'Notebook',
+    blogPost = 'Blog post',
 }
 
 export enum TechTool {

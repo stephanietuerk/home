@@ -1,5 +1,7 @@
 @import 'vars', 'placeholders', 'mixins';
 
+$table-width: 900px;
+
 .table-component-container {
     display: flex;
     flex-direction: column;
@@ -23,6 +25,15 @@
         @extend %sans-regular;
         text-align: center;
         font-size: 1.1rem;
+    }
+
+    .table-container {
+        width: 900px;
+
+        @media screen and (max-width: 1000px) {
+            max-width: 1000px;
+            width: initial;
+        }
     }
 
     .projects-table {
@@ -104,5 +115,12 @@
             padding-top: 8px;
             padding-bottom: 16px;
         }
+    }
+
+    .asterisk {
+        align-self: flex-start;
+        margin-top: 0.5rem;
+        font-weight: 300;
+        font-size: 0.9rem;
     }
 }
