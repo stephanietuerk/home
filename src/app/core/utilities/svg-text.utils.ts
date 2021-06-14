@@ -16,7 +16,7 @@ export function wrap(text, config) {
             .append('tspan')
             .attr('x', x)
             .attr('y', y)
-            .attr('dy', dy + 'em');
+            .attr('dy', dy ? dy + 'em' : '0em');
         while ((word = words.pop())) {
             line.push(word);
             tspan.text(line.join(' '));

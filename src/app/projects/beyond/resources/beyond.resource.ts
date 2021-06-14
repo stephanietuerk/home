@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,7 +7,6 @@ export class BeyondResource {
     constructor(private http: HttpClient) {}
 
     getTractData(): Observable<any> {
-        console.log('getTraceData resource');
         return this.http.get('assets/beyondthecountyline/censusTractData.csv', { responseType: 'text' });
     }
 
