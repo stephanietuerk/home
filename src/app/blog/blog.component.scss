@@ -2,7 +2,6 @@
 
 :host {
     @extend %content-component-host;
-    // background: #fdfaf7;
 }
 
 .blog-navbar {
@@ -14,4 +13,5 @@
     @extend %flex-column;
     align-self: center;
     max-width: 700px;
+    padding: 0 24px;
 }

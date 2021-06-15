@@ -6,12 +6,17 @@ export class Project {
     technologies?: string[];
     description?: string[];
     show?: boolean;
-    images?: string[];
+    images?: Image[];
     url?: string;
     routerLink?: string;
     linkName?: string;
     allowComments?: boolean;
     professional?: boolean;
+}
+
+export class Image {
+    path: string;
+    altText: string;
 }
 
 export enum ProjectType {

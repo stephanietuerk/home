@@ -118,20 +118,19 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     updateBarMain(t) {
         const barWidth = this.getBarWidthFunc();
         const barX = this.getBarXFunc();
-        const selector = '.bar.main';
-        this.updateBar(barWidth, barX, selector, t);
+        const selection = this.svgMain.selectAll('.bar.main');
+        this.updateBar(barWidth, barX, selection, t);
     }
 
     updateBarIndex(t) {
         const barWidth = (d) => this.width.index;
         const barX = (d) => 0;
-        const selector = '.bar.index';
-        this.updateBar(barWidth, barX, selector, t);
+        const selection = this.svgIndex.selectAll('.bar.index');
+        this.updateBar(barWidth, barX, selection, t);
     }
 
-    updateBar(barWidth, barX, selector, t) {
-        this.svgMain
-            .selectAll(selector)
+    updateBar(barWidth, barX, selection, t) {
+        selection
             .transition(t)
             .attr('y', (d) => this.y(Object.keys(d)[0]))
             .attr('x', (d) => barX(d))
@@ -231,7 +230,13 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     }
 
     getBarWidthFunc(): any {
-        return (d) => Math.abs(this.x(this.getDemoValue(d)) - this.x(0));
+        return (d) => {
+            if (this.getDemoValue(d)) {
+                return Math.abs(this.x(this.getDemoValue(d)) - this.x(0));
+            } else {
+                return 0;
+            }
+        };
     }
 
     makeBarIndex(): void {

@@ -1,33 +1,37 @@
-@import 'vars', 'placeholders';
+@import 'vars', 'placeholders', 'mixins';
 
 :host {
     height: $project-navbar-height;
     background: rgba(white, 0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     padding: 0 24px 8px 24px;
-    // border-bottom: 1px solid $highlight-primary;
 }
 
 .nav-container {
-    position: relative;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    grid-column-gap: 0.25rem;
     width: 100%;
 
     .return-button {
         @extend %slab-bold;
         font-size: 1rem;
-        line-height: 2rem;
+        line-height: 1rem;
         cursor: pointer;
-        position: absolute;
-        left: 0;
+        padding-top: 0.5rem;
+
+        @include breakpoint-max(600px) {
+            font-size: 0.8rem;
+        }
     }
 
     .project-name {
         @extend %slab-bold;
         font-size: 1.2rem;
-        line-height: 2rem;
-        padding-top: 0.25rem;
+        line-height: 1.4rem;
+        padding-top: 0.5rem;
+        text-align: center;
+        @include breakpoint-max(600px) {
+            font-size: 1rem;
+        }
     }
 }
