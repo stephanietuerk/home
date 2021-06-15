@@ -16,6 +16,27 @@ export const PROJECTS: Project[] = [
         allowComments: true,
     },
     {
+        id: 'covid-school-testing',
+        title: 'COVID School Testing Tool',
+        type: ProjectType.dataViz,
+        year: 2021,
+        show: true,
+        description: [
+            'How can we display data to help people choose among options, each with a unique set of benefits and trade-offs?',
+            "This is what three of us from Mathematica's web development group asked when people from our data science team asked us to build an interface for the results of their agent-based model that simulated the effects of various COVID testing strategies in K-12 schools. (Project undertaken in conjunction with the Rockefeller Foundation.) For each testing strategy, comprise of a combination of a test population (students only, adults only, students and adults), a test frequency, and a test type, the model predicted various metrics such as infections detected and transmissions reduced, but also days of school missed by students (whether due to infections or needing to quarantine from exposure or false positives) and number of tests administered (which has a cost implication).",
+            'We came up with a solution that allowed users to select a metric of highest priority to them, and then to see all other outcomes that corresponded to the best outcome for the prioritized metric, the second best, and so forth. This was a very quick project for us, taking about a month (with all of us on other projects at the same time) for both design and development.',
+        ],
+        images: [
+            {
+                path: 'assets/covid_testing.png',
+                altText: 'a screen capture of bar charts from this project',
+            },
+        ],
+        url: 'covid-school-testing.mathematica.org/start',
+        linkName: ProjectType.website,
+        professional: true,
+    },
+    {
         id: 'art-history-jobs',
         title: 'Art History Jobs, 2011—2020',
         type: ProjectType.dataViz,
