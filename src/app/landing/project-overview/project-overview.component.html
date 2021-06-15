@@ -21,7 +21,11 @@
             target="_blank"
             rel="noopener"
         >
-            <img [src]="image" [alt]="'screenshot ' + i + ' of ' + project.title" class="project-image" />
+            <img
+                [src]="image.path"
+                [alt]="'screenshot ' + i + ' of ' + project.title + ': ' + image.altText"
+                class="project-image"
+            />
         </a>
     </div>
 </div>
