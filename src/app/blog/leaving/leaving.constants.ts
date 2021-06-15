@@ -62,7 +62,7 @@ export const LEAVING_YOU: LeavingQuestion[] = [
     {
         id: 'but-i-love-scholarship',
         type: 'string',
-        q: "The academic job market is decimated and/or it seems unlikley that I'll get a job that would work for me, but I want to continue with my scholarship. Any thoughts?",
+        q: "The academic job market is decimated and/or it seems unlikely that I'll get a job that would work for me, but I want to continue with my scholarship. Any thoughts?",
         a: [
             "If you read about my experience above, you'll see that this is very much not the situation that I was in, but, I definitely know people who have been. I have one friend who published her dissertation with an academic press without being in an academic position. Anything is possible. That said, I'm not going to give advice on whether to pursue the academic job market for another year or two. I really only have two pieces of advice here.",
             "The first is to try to be as flexible in your thinking as you can. What if you had a day job that you not only performed but that you only *thought about* from 9-5, and then you slowly continued your scholarship in the evenings? Would that work? I would encourage people not to restrain their imaginations because they think that a situation isn't possible. My experience is that there are *so* many opportunities outside of academia, and the scarcity mindset that academia instills really does you a disservice once you start looking beyond its walls.",
