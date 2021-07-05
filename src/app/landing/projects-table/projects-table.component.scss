@@ -70,7 +70,7 @@ $table-width: 900px;
         }
 
         .table-cell.body {
-            @extend %slab-regular;
+            @extend %slab-medium;
             font-size: 1rem;
             text-align: left;
             padding-top: 8px;
