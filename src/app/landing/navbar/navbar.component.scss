@@ -1,18 +1,14 @@
 @import 'vars', 'placeholders', 'mixins';
 
 :host {
-    min-height: $navbar-height;
-    background: rgba(white, 0.9);
+    @extend %navbar;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 24px 8px 24px;
 }
 
 .my-name {
-    @extend %slab-bold;
-    font-size: 2rem;
-    line-height: 2rem;
+    @extend %h1;
     cursor: pointer;
     padding-top: 6px;
     position: relative;

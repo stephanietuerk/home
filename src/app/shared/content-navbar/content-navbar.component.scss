@@ -1,9 +1,9 @@
 @import 'vars', 'placeholders', 'mixins';
 
 :host {
-    height: $project-navbar-height;
-    background: rgba(white, 0.9);
-    padding: 0 24px 8px 24px;
+    @extend %navbar;
+    display: flex;
+    align-items: center;
 }
 
 .nav-container {
@@ -25,9 +25,7 @@
     }
 
     .project-name {
-        @extend %slab-bold;
-        font-size: 1.2rem;
-        line-height: 1.4rem;
+        @extend %h4;
         padding-top: 0.5rem;
         text-align: center;
         @include breakpoint-max(600px) {

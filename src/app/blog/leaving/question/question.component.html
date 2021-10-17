@@ -1,12 +1,12 @@
 <div class="card" [id]="question.id">
     <ng-container *ngIf="!toggle">
         <div class="question-container">
-            <h4 class="question">{{ question.q }}</h4>
+            <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
         </div>
     </ng-container>
     <ng-container *ngIf="toggle">
         <button class="question-container collapse" (click)="toggleQuestion()">
-            <h4 class="question">{{ question.q }}</h4>
+            <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
             <app-svg-icon
                 class="arrow-icon"
                 [ngClass]="{ up: expanded, down: !expanded }"
@@ -26,6 +26,10 @@
         </ng-container>
     </div>
 </div>
+
+<ng-template #questionDisplay>
+    <h4 class="question">{{ question.q }}</h4>
+</ng-template>
 
 <ng-template #q7Template>
     <p class="answer-text">

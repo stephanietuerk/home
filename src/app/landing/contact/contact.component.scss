@@ -3,46 +3,35 @@
 .component-container {
     @extend %flex-column;
     align-items: center;
-    padding: 48px 0;
 
     .contact-title {
-        @extend %slab-medium;
-        color: $highlight-primary;
-        font-size: 2.3rem;
+        @extend %section-header;
     }
 
     .contact-container {
         @extend %flex-column;
         align-items: center;
-        padding-top: 4px;
+        padding-bottom: 0.75rem;
 
         &:last-of-type {
-            padding-top: 10px;
-            align-items: center;
+            padding-bottom: 0;
         }
     }
 
     .contact-type-text {
-        @extend %small-caps-instructions;
+        @extend %small-caps-overline;
     }
 
     .contact-text {
-        @extend %sans-regular;
-        font-size: 1.1rem;
-        line-height: 1.6rem;
-        padding-top: 4px;
-
-        &:first-of-type {
-            text-align: center;
-        }
+        @extend %body1;
     }
 
     .social-media-container {
         display: flex;
-        padding-top: 4px;
+        padding-top: 0.25rem;
 
         .social-media-link {
-            padding-top: 4px;
+            padding-top: 0.25rem;
         }
     }
 

@@ -1,4 +1,4 @@
-@import 'vars', 'placeholders';
+@import 'vars', 'placeholders', 'mixins';
 
 $min-height: 300px;
 
@@ -18,19 +18,19 @@ $min-height: 300px;
 }
 
 .landing-container {
-    height: calc(100% - #{$navbar-height});
-    padding: 0 24px;
-}
-
-.intro-container {
     @extend %flex-column;
-    min-height: 100%;
-}
+    align-items: center;
+    padding: 5rem 1.5rem 3rem 1.5rem;
 
-.about-component {
-    padding: 72px 0;
-}
+    @include breakpoint(mobile-device) {
+        padding: 3rem 1rem 1rem 1rem;
+    }
 
-.projects-table-component {
-    padding-bottom: 72px;
+    * {
+        max-width: 1000px;
+    }
+
+    *:not(:last-child) {
+        padding-bottom: 7rem;
+    }
 }

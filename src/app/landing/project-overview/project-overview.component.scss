@@ -1,8 +1,6 @@
 @import 'vars', 'placeholders', 'mixins';
 
 .project-overview-container {
-    @extend %flex-column;
-
     .description {
         padding-bottom: 0.5rem;
 
@@ -12,17 +10,14 @@
         }
     }
 
-    .project-link {
-        @extend %slab-bold;
-        text-align: left;
-        color: $highlight-primary;
+    .project-link:not(.image) {
+        @extend %button-styles;
+        @extend %slab-medium;
+        display: inline-flex;
         font-size: 1rem;
-        padding-bottom: 18px;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-            font-style: italic;
-        }
+        line-height: 1.3rem;
+        letter-spacing: 0.2px;
+        padding: 2px 0 1px 0;
     }
 
     .screenshots-container {

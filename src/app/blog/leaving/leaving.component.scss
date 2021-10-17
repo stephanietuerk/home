@@ -5,41 +5,31 @@ $leaving-highlight: $highlight-primary;
 .faq-container {
     display: flex;
     flex-direction: column;
-    padding: 18px 0 100px 0;
+    padding: 0px 0 100px 0;
 
-    .category-label {
-        @extend %slab-extrabold;
-        @extend %small-caps;
+    .header-item {
         align-self: center;
-
-        &:last-of-type {
-            padding-bottom: 8px;
-        }
-    }
-
-    .instruction {
-        @extend %small-caps-instructions;
-        align-self: center;
-        padding-bottom: 0.5rem;
     }
 
     .date {
-        align-self: center;
+        @extend %subtitle2;
+        padding-bottom: 1rem;
+    }
+
+    .instruction {
+        @extend %instructions;
         padding-bottom: 0.25rem;
-        font-weight: 300;
     }
 
     .tldr-button {
-        @extend .instruction;
-        cursor: pointer;
+        @extend %button;
         margin-bottom: 0.75rem;
-        color: $highlight-primary;
-        border-bottom: 1px solid $highlight-primary;
+    }
 
-        &:hover {
-            background: $highlight-light;
-            font-weight: 500;
-        }
+    .category-label {
+        @extend %h5;
+        align-self: center;
+        padding-bottom: 0.5rem;
     }
 
     .comment-instructions {
