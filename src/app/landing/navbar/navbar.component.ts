@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { scrollToId } from 'src/app/core/utilities/dom.utils';
 import { SECTIONS } from '../../core/constants/sections.constants';
 
 @Component({
@@ -15,11 +14,20 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
         this.sections = Object.values(SECTIONS);
-        this.scrollToId = scrollToId;
     }
 
     scrollToTop(event: any): void {
         const element = event.target.parentNode.parentNode;
+        console.log(element);
         element.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    scrollToSection(event: any, section: any): void {
+        const element = document.getElementById(`${section}-id`) as HTMLElement;
+        const ySection = element.getBoundingClientRect().top;
+        const container = element.parentNode as HTMLElement;
+        const yContainer = container.getBoundingClientRect().top;
+        const appLanding = event.target.parentNode.parentNode.parentNode;
+        appLanding.scrollTo({ top: ySection - yContainer, behavior: 'smooth' });
     }
 }

@@ -6,34 +6,23 @@
 }
 
 .about-title {
-    @extend %slab-medium;
-    color: $highlight-primary;
-    font-size: 2.3rem;
+    @extend %section-header;
 }
 
 .about-text {
-    @extend %sans-regular;
+    @extend %body1;
     text-align: justify;
     max-width: 800px;
-    margin: 6px auto 12px auto;
-    font-size: 1.1rem;
-    line-height: 1.6rem;
+    padding-bottom: 0.75rem;
 
     &:first-of-type {
         text-align: center;
+        @include breakpoint(mobile-device) {
+            text-align: justify;
+        }
     }
 }
 
 .read-more {
-    @extend %slab-regular;
-    @extend %small-caps;
-    letter-spacing: 0.13em;
-    font-size: 1.3rem;
-    cursor: pointer;
-    padding-bottom: 6px;
-
-    &:hover {
-        @extend %slab-medium;
-        color: $highlight-primary;
-    }
+    @extend %button;
 }

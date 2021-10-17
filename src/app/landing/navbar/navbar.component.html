@@ -3,8 +3,8 @@
     <a
         *ngFor="let section of sections"
         class="nav-item"
-        (click)="scrollToId(section + '-id', 'smooth')"
-        (keydown.enter)="scrollToId(section + '-id', 'smooth')"
+        (click)="scrollToSection($event, section)"
+        (keydown.enter)="scrollToSection($event, section)"
         tabindex="0"
     >
         {{ section }}

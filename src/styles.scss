@@ -34,11 +34,13 @@
     a {
         @extend %nav-link;
         text-decoration: none;
+        cursor: pointer;
     }
 
     button {
         border: 0;
         background: none;
+        cursor: pointer;
     }
 }
 

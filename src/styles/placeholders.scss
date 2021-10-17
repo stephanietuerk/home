@@ -1,5 +1,7 @@
 @import 'vars';
 
+/* ---- TYPOGRAPHY ---- */
+/* ---- Primatives ---- */
 %ligatures {
     font-variant-ligatures: common-ligatures;
     -moz-font-feature-settings: 'liga', 'clig';
@@ -50,7 +52,6 @@
     @extend %ligatures;
     font-family: ff-tisa-sans-web-pro, sans-serif;
     font-weight: 400;
-    font-style: normal;
 }
 
 %sans-light {
@@ -83,12 +84,104 @@
     font-weight: 900;
 }
 
-%small-caps-instructions {
+%h1 {
+    @extend %slab-bold;
+    font-size: 2rem;
+}
+
+%h2 {
+    @extend %slab-medium;
+    font-size: 2.375rem;
+}
+
+%h3 {
+    @extend %slab-regular;
+    font-size: 1.5rem;
+}
+
+%h4 {
+    @extend %slab-bold;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+}
+
+%h5 {
+    @extend %slab-extrabold;
+    @extend %small-caps;
+}
+
+%subtitle1 {
+    @extend %sans-regular;
+    font-size: 1.2rem;
+    letter-spacing: 0.15px;
+}
+
+%subtitle2 {
+    @extend %sans-medium;
+    font-size: 1rem;
+    letter-spacing: 0.1px;
+}
+
+%body1 {
+    @extend %sans-regular;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+%body2 {
+    @extend %sans-regular;
+    font-size: 0.95rem;
+    letter-spacing: 0.25px;
+}
+
+%button {
+    @extend %sans-medium;
+    @extend %button-styles;
+    font-size: 0.875rem;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+}
+
+%caption {
+    @extend %sans-regular;
+    font-size: 0.75rem;
+    letter-spacing: 0.4px;
+}
+
+%overline {
+    @extend %sans-medium;
+    @extend %small-caps;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    letter-spacing: 2px;
+}
+
+%small-caps-overline {
     @extend %sans-regular;
     @extend %small-caps;
     letter-spacing: 0.13em;
     font-size: 1.1rem;
-    line-height: 1rem;
+    line-height: 1.1rem;
+}
+
+%instructions {
+    @extend %sans-light;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+%button-styles {
+    color: $highlight-primary;
+    border-bottom: 1px solid $highlight-primary;
+}
+
+%section-header {
+    @extend %h2;
+    color: $highlight-primary;
+    padding-bottom: 0.25rem;
 }
 
 %flex-column {
@@ -158,6 +251,13 @@
 }
 
 /* ---- COMPONENTS ---- */
+%navbar {
+    min-height: $project-navbar-height;
+    flex-shrink: 0;
+    background: rgba(white, 0.9);
+    padding: 0 1.5rem 0.5rem 1.5rem;
+}
+
 %content-component-host {
     @extend %flex-column;
     height: 100%;

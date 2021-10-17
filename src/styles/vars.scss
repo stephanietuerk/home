@@ -14,10 +14,6 @@ $highlight-primary: #0088ff;
 $highlight-light: #f6f7f8;
 $dark-primary: #25274d;
 
-// $sans: 'Source Sans Pro';
-// $mono: 'Roboto Mono';
-// $slab: 'Roboto Slab';
-
 $background-primary: linear-gradient(0deg, $aqua-lightest, $pink-lightest);
 $background-container: linear-gradient(0deg, $pink-lightest, white);
 $background-nav: $pink-lightest;
@@ -38,7 +34,7 @@ $color-scrollbar-ie: $aqua-medium;
 $content-component-padding: 0px 40px 16px 40px;
 
 $navbar-height: 64px;
-$project-navbar-height: 48px;
+$project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($aqua-medium, $lightness: 20%);
 $body-height-min: 300px;
 
