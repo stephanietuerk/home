@@ -69,6 +69,7 @@ $leaving-highlight: $highlight-primary;
     .list-item {
         @extend %sans-regular;
         font-size: 1.1rem;
+        padding-bottom: 0.5rem;
     }
 
     .italics {
