@@ -14,6 +14,8 @@ $highlight-primary: #0088ff;
 $highlight-light: #f6f7f8;
 $dark-primary: #25274d;
 
+$subtle-drop-shadow: 0 1px 3px rgba($dark-primary, 0.12), 0 1px 2px rgba($dark-primary, 0.24);
+
 $background-primary: linear-gradient(0deg, $aqua-lightest, $pink-lightest);
 $background-container: linear-gradient(0deg, $pink-lightest, white);
 $background-nav: $pink-lightest;
