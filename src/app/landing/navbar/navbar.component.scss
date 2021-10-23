@@ -30,10 +30,11 @@
     font-size: 1rem;
 
     &:not(:last-of-type) {
-        margin-right: 16px;
+        margin-right: 1.5rem;
     }
 
     @include breakpoint-max(600px) {
         font-size: 0.8rem;
+        margin-right: 1rem;
     }
 }
