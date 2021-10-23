@@ -35,4 +35,13 @@ $leaving-highlight: $highlight-primary;
     .comment-instructions {
         padding: 1rem 0;
     }
+
+    app-question {
+        display: block;
+        padding-bottom: 1rem;
+
+        &:first-of-type {
+            padding-top: 0.75rem;
+        }
+    }
 }
