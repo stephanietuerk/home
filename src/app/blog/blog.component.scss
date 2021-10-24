@@ -2,6 +2,7 @@
 
 :host {
     @extend %content-component-host;
+    background: $highlight-dull;
 }
 
 .blog-navbar {
