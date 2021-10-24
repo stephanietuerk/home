@@ -1,7 +1,13 @@
 @import 'vars', 'placeholders';
 
+$frame-color: $gray-2;
+
+:host {
+    box-shadow: $subtler-drop-shadow;
+}
+
 .header {
-    background: $highlight-light;
+    background: $frame-color;
     padding: 0 1rem;
 }
 
@@ -24,9 +30,10 @@
 }
 
 .content {
-    border: 2px solid $highlight-light;
+    border: 2px solid $frame-color;
     padding: 1.5rem;
     padding-bottom: 1rem;
+    background: white;
 }
 
 .content-text {

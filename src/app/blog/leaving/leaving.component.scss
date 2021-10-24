@@ -5,7 +5,7 @@ $leaving-highlight: $highlight-primary;
 .faq-container {
     display: flex;
     flex-direction: column;
-    padding: 0px 0 100px 0;
+    padding: 0.5rem 0 6rem 0;
 
     .header-item {
         align-self: center;
@@ -23,7 +23,13 @@ $leaving-highlight: $highlight-primary;
 
     .tldr-button {
         @extend %button;
+        @extend %button-styles;
         margin-bottom: 0.75rem;
+
+        &:hover {
+            background: transparent;
+            font-weight: 700;
+        }
     }
 
     .category-label {
@@ -34,5 +40,14 @@ $leaving-highlight: $highlight-primary;
 
     .comment-instructions {
         padding: 1rem 0;
+    }
+
+    app-question {
+        display: block;
+        padding-bottom: 1rem;
+
+        &:first-of-type {
+            padding-top: 0.75rem;
+        }
     }
 }

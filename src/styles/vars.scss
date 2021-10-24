@@ -1,30 +1,35 @@
 @use 'sass:color';
 
+$blue: #0088ff;
+$blue-dark-1: #2271cb;
+$blue-dark-2: #285b9a;
+$blue-dark-3: #26456b;
+$blue-dark-4: #1f3140;
+$blue-light-1: #b6d4f0;
+$blue-light-2: #80bef5;
+$blue-light-3: #46a5f9;
+$gray-1: #e9eaec;
+$gray-2: #dee3e7;
+$gray-3: #d2d6d9;
+$gray-4: #bdc2c7;
+$gray-5: #a7aeb5;
+
 $aqua-lightest: #e2e8ea;
 $aqua-light: #e5e9eb;
 $aqua-medium: #c3ced2;
 $aqua-gray: #6d7c81;
 $aqua-gray-dark: #4f5d62;
-$pink-lightest: #f9f3f4;
-$pink-light: #fff1fe;
-$pink-medium: #ffdcef;
-$green-highlight: #0fc3af;
 
 $highlight-primary: #0088ff;
 $highlight-light: #f6f7f8;
-$dark-primary: #25274d;
+$highlight-dull: #eef0f1;
+// $dark-primary: #25274d;
+$dark-primary: #1f3140;
 
-$background-primary: linear-gradient(0deg, $aqua-lightest, $pink-lightest);
-$background-container: linear-gradient(0deg, $pink-lightest, white);
-$background-nav: $pink-lightest;
-
-$primary-text-color: $aqua-gray;
-$dark-text-color: $aqua-gray-dark;
-$light-text-color: $aqua-medium;
-$name-text-color: $aqua-medium;
+$subtle-drop-shadow: 0 1px 3px rgba($dark-primary, 0.12), 0 1px 2px rgba($dark-primary, 0.24);
+$subtler-drop-shadow: 0 1px 3px rgba($dark-primary, 0.06), 0 1px 2px rgba($dark-primary, 0.212);
 
 $landing-page-max-width: 1000px;
-$content-background-color: rgba($aqua-lightest, 0.6);
 
 $vertical-scrollbar-thickness: 10px;
 $horizontal-scrollbar-thickness: 8px;
