@@ -27,6 +27,7 @@
 
 .nav-item {
     @extend %nav-link;
+    @extend %button-behavior;
     font-size: 1rem;
 
     &:not(:last-of-type) {

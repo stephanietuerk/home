@@ -3,7 +3,6 @@
         <p *ngFor="let text of project.description" class="info-text">{{ text }}</p>
     </div>
     <a
-        appButtonHover
         *ngIf="project.url && project.linkName"
         class="project-link"
         [href]="'http://' + project.url"
@@ -11,11 +10,7 @@
         rel="noopener"
         >View {{ project.linkName.toLowerCase() }} &rarr;</a
     >
-    <a
-        appButtonHover
-        *ngIf="project.routerLink && project.linkName"
-        class="project-link"
-        [routerLink]="[project.routerLink]"
+    <a *ngIf="project.routerLink && project.linkName" class="project-link" [routerLink]="[project.routerLink]"
         >View {{ project.linkName.toLowerCase() }} &rarr;</a
     >
     <div class="screenshots-container" *ngIf="project.images">
