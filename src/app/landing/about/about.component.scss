@@ -13,7 +13,7 @@
     @extend %body1;
     text-align: justify;
     max-width: 800px;
-    padding-bottom: 0.75rem;
+    padding-bottom: $grid-3;
 
     &:first-of-type {
         text-align: center;

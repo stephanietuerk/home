@@ -13,12 +13,12 @@ $table-width: 900px;
 
     .instruction-text {
         @extend %instructions;
-        padding-bottom: 1rem;
+        padding-bottom: $grid-1;
     }
 
     .table-container {
         max-width: 900px;
-        padding: 0 1.5rem;
+        padding: 0 $grid-6;
 
         @include breakpoint(mobile-device) {
             padding: 0;
@@ -52,7 +52,7 @@ $table-width: 900px;
             }
 
             &.body {
-                height: 4rem;
+                height: $grid-16;
             }
         }
 
@@ -60,7 +60,7 @@ $table-width: 900px;
             @extend %slab-medium;
             font-size: 1rem;
             text-align: left;
-            padding-top: 8px;
+            padding-top: $grid-2;
 
             &.view {
                 @extend %small-caps;
@@ -73,7 +73,7 @@ $table-width: 900px;
 
         .table-cell {
             &:not(:last-of-type) {
-                padding-right: 20px;
+                padding-right: $grid-5;
             }
 
             &.year {
@@ -84,16 +84,16 @@ $table-width: 900px;
         .arrow-icon {
             &.down {
                 position: relative;
-                top: 4px;
+                top: $grid-1;
             }
             &.up {
                 position: relative;
-                top: -4px;
+                top: -#{$grid-1};
             }
 
             svg {
-                height: 14px;
-                width: 21px;
+                height: $grid-4;
+                width: $grid-5;
                 fill: $dark-primary;
                 stroke: $dark-primary;
             }
@@ -101,14 +101,14 @@ $table-width: 900px;
 
         .project-overview-component {
             display: block;
-            padding-top: 8px;
-            padding-bottom: 16px;
+            padding-top: $grid-2;
+            padding-bottom: $grid-4;
         }
     }
 
     .asterisk {
         align-self: flex-start;
-        margin-top: 0.5rem;
+        margin-top: $grid-2;
         font-weight: 300;
         font-size: 0.9rem;
     }
