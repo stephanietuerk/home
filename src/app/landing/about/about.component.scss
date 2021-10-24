@@ -25,4 +25,6 @@
 
 .read-more {
     @extend %button;
+    @extend %button-styles;
+    @extend %button-behavior;
 }

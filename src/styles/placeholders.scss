@@ -167,7 +167,6 @@
 
 %instructions {
     @extend %sans-light;
-    font-style: italic;
     letter-spacing: 0.5px;
     font-size: 1rem;
     line-height: 1.3rem;
@@ -175,6 +174,15 @@
 
 %button-styles {
     color: $highlight-primary;
+    border-bottom: 1px solid $highlight-primary;
+}
+
+%button-behavior {
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: $highlight-primary;
+        font-weight: 700;
+    }
 }
 
 %section-header {
@@ -278,12 +286,13 @@
     @extend %slab-bold;
     border: 2px solid $highlight-primary;
     color: $highlight-primary;
+    background: $highlight-light;
+    transition: all 0.2s;
 
     &:hover {
         cursor: pointer;
         @extend %slab-extrabold;
-        background: $highlight-light;
-        transition: all 0.2s;
+        background: white;
     }
 
     &:disabled {
