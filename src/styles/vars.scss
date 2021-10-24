@@ -1,4 +1,5 @@
 @use 'sass:color';
+@import 'system';
 
 $blue: #0088ff;
 $blue-dark-1: #2271cb;
@@ -31,14 +32,14 @@ $subtler-drop-shadow: 0 1px 3px rgba($dark-primary, 0.06), 0 1px 2px rgba($dark-
 
 $landing-page-max-width: 1000px;
 
-$vertical-scrollbar-thickness: 10px;
-$horizontal-scrollbar-thickness: 8px;
+$vertical-scrollbar-thickness: $grid-3;
+$horizontal-scrollbar-thickness: $grid-3;
 $color-scrollbar: $aqua-medium;
 $color-scrollbar-ie: $aqua-medium;
 
-$content-component-padding: 0px 40px 16px 40px;
+$content-component-padding: 0px $grid-10 $grid-4 $grid-10;
 
-$navbar-height: 64px;
+$navbar-height: $grid-16;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($aqua-medium, $lightness: 20%);
 $body-height-min: 300px;
@@ -48,3 +49,24 @@ $viewport-width-sm: 768px;
 $viewport-width-md: 992px;
 $viewport-width-lg: 1200px;
 $viewport-width-xl: 1400px;
+
+$grid-1: 0.25rem;
+$grid-2: 0.5rem;
+$grid-3: 0.75rem;
+$grid-4: 1rem;
+$grid-5: 1.25rem;
+$grid-6: 1.5rem;
+$grid-7: 1.75rem;
+$grid-8: 2rem;
+$grid-9: 2.25rem;
+$grid-10: 2.5rem;
+$grid-11: 2.75rem;
+$grid-12: 3rem;
+$grid-13: 3.25rem;
+$grid-14: 3.5rem;
+$grid-15: 3.75rem;
+$grid-16: 4rem;
+$grid-17: 4.25rem;
+$grid-18: 4.5rem;
+$grid-19: 4.75rem;
+$grid-20: 5rem;
