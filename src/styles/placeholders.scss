@@ -16,9 +16,13 @@
     font-feature-settings: 'smcp';
 }
 
+%slab {
+    font-family: ff-nuvo-mono-web-pro, sans-serif;
+}
+
 %slab-regular {
     @extend %ligatures;
-    font-family: ff-nuvo-mono-web-pro, sans-serif;
+    @extend %slab;
     font-weight: 400;
     font-style: normal;
 }
@@ -136,7 +140,7 @@
 }
 
 %button {
-    @extend %sans-medium;
+    @extend %slab-medium;
     @extend %button-styles;
     font-size: 0.875rem;
     letter-spacing: 1.25px;
