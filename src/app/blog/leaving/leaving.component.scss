@@ -5,7 +5,7 @@ $leaving-highlight: $highlight-primary;
 .faq-container {
     display: flex;
     flex-direction: column;
-    padding: $grid-2 0 6rem 0;
+    padding: $grid-1 0 6rem 0;
 
     .header-item {
         align-self: center;
@@ -24,7 +24,7 @@ $leaving-highlight: $highlight-primary;
     .tldr-button {
         @extend %button;
         @extend %button-styles;
-        margin-bottom: $grid-3;
+        margin: $grid-1 0 $grid-3 0;
 
         &:hover {
             background: transparent;

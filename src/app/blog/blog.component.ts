@@ -20,4 +20,9 @@ export class BlogComponent implements OnInit {
     setProject() {
         this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
     }
+
+    getDate(date: Date) {
+        const options = { dateStyle: 'long' } as any;
+        return new Intl.DateTimeFormat('en-US', options).format(date);
+    }
 }
