@@ -1,5 +1,3 @@
-import { Post } from './blog/post.model';
-
 export class Project {
     id: string;
     title: string;
@@ -7,7 +5,7 @@ export class Project {
     year: string | number;
     technologies?: string[];
     description?: string[];
-    show?: boolean;
+    show?: Visibility;
     images?: Image[];
     url?: string;
     routerLink?: string;
@@ -17,9 +15,27 @@ export class Project {
     postConfig?: Post;
 }
 
+export enum Environment {
+    local = 'local',
+    production = 'production',
+}
+
+export type EnvironmentOption = keyof typeof Environment;
+
+export class Visibility {
+    [Environment.local]: boolean;
+    [Environment.production]: boolean;
+}
+
 export class Image {
     path: string;
     altText: string;
+}
+
+export class Post {
+    postedDate: Date;
+    updatedDate?: Date;
+    title?: string;
 }
 
 export enum ProjectType {
@@ -31,14 +47,4 @@ export enum ProjectType {
     prototype = 'Prototype',
     notebook = 'Notebook',
     blogPost = 'Blog post',
-}
-
-export enum TechTool {
-    D3 = 'D3',
-    REACT = 'React',
-    ANGULAR = 'Angular',
-    JAVASCRIPT = 'JavaScript',
-    TYPESCRIPT = 'TypeScript',
-    MARKDOWN = 'Markdown',
-    DECKGL = 'Deck.gl',
 }
