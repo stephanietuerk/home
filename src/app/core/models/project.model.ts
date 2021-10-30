@@ -1,3 +1,5 @@
+import { Post } from './blog/post.model';
+
 export class Project {
     id: string;
     title: string;
@@ -12,6 +14,7 @@ export class Project {
     linkName?: string;
     allowComments?: boolean;
     professional?: boolean;
+    postConfig?: Post;
 }
 
 export class Image {

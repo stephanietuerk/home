@@ -2,7 +2,7 @@
 
 :host {
     @extend %content-component-host;
-    background: $aqua-lightest;
+    background: $aqua-light-1;
 }
 
 .blog-navbar {
@@ -14,5 +14,15 @@
     @extend %flex-column;
     align-self: center;
     max-width: 840px;
+    padding-top: $grid-2;
     padding-bottom: $grid-8;
+}
+
+.header-item {
+    align-self: center;
+}
+
+.date {
+    @extend %subtitle2;
+    padding-bottom: $grid-2;
 }

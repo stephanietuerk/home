@@ -14,6 +14,9 @@ export const PROJECTS: Project[] = [
         routerLink: `${blogPath}/${leavingPath}`,
         linkName: 'Post',
         allowComments: true,
+        postConfig: {
+            postedDate: new Date(2021, 5, 15),
+        },
     },
     {
         id: 'covid-school-testing',
