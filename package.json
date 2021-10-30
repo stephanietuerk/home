@@ -22,7 +22,6 @@
     "@angular/platform-browser": "~12.2.11",
     "@angular/platform-browser-dynamic": "~12.2.11",
     "@angular/router": "~12.2.11",
-    "@types/d3": "^7.1.0",
     "d3": "^6.7.0",
     "firebase": "^8.6.7",
     "rxjs": "~6.6.3",
