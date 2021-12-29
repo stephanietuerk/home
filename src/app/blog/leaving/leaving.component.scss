@@ -5,7 +5,7 @@ $leaving-highlight: $highlight-primary;
 .faq-container {
     display: flex;
     flex-direction: column;
-    padding: $grid-1 0 6rem 0;
+    padding: $space-1 0 6rem 0;
 
     .header-item {
         align-self: center;
@@ -13,18 +13,18 @@ $leaving-highlight: $highlight-primary;
 
     .date {
         @extend %subtitle2;
-        padding-bottom: $grid-4;
+        padding-bottom: $space-4;
     }
 
     .instruction {
         @extend %instructions;
-        padding-bottom: $grid-1;
+        padding-bottom: $space-1;
     }
 
     .tldr-button {
         @extend %button;
         @extend %button-styles;
-        margin: $grid-1 0 $grid-3 0;
+        margin: $space-1 0 $space-3 0;
 
         &:hover {
             background: transparent;
@@ -35,20 +35,20 @@ $leaving-highlight: $highlight-primary;
     .category-label {
         @extend %h5;
         align-self: center;
-        padding-bottom: $grid-2;
+        padding-bottom: $space-2;
     }
 
     .comment-instructions {
         font-size: 1.1rem;
-        padding: 0 0 $grid-1 0;
+        padding: 0 0 $space-1 0;
     }
 
     app-question {
         display: block;
-        padding-bottom: $grid-4;
+        padding-bottom: $space-4;
 
         &:first-of-type {
-            padding-top: $grid-3;
+            padding-top: $space-3;
         }
     }
 }

@@ -5,8 +5,8 @@ $leaving-highlight: $highlight-primary;
 .card {
     @extend %flex-column;
     background: white;
-    margin-bottom: 18px;
-    padding: 18px 24px 18px 24px;
+    margin-bottom: $space-4;
+    padding: $space-4 $space-6;
     box-shadow: $subtler-drop-shadow;
 
     .question-container {
@@ -15,7 +15,8 @@ $leaving-highlight: $highlight-primary;
         align-items: center;
         border-left: 1px solid $dark-primary;
         border-bottom: 1px solid $dark-primary;
-        margin: 8px 0 12px 0;
+        margin: $space-2 0 $space-3 0;
+        padding-left: $space-1;
 
         &.collapse:hover {
             cursor: pointer;
@@ -38,14 +39,14 @@ $leaving-highlight: $highlight-primary;
     .question {
         @extend %slab-bold;
         font-size: 1.2rem;
-        padding: 12px 8px 8px 8px;
+        padding: $space-3 $space-2 $space-2 $space-2;
         line-height: 1.5rem;
         text-align: left;
     }
 
     .answer-container {
-        padding-right: 8px;
-        padding-left: 8px;
+        padding-right: $space-2;
+        padding-left: $space-2;
     }
 
     .answer-text {
@@ -56,21 +57,21 @@ $leaving-highlight: $highlight-primary;
 
     .list-label {
         @extend %sans-regular-italic;
-        padding-bottom: 6px;
+        padding-bottom: $space-2;
 
         &.q10 {
-            padding-top: 1rem;
+            padding-top: $space-4;
         }
     }
 
     .list-container {
-        padding: 0 1.5rem 0.5rem 1.5rem;
+        padding: 0 $space-6 $space-2 $space-6;
     }
 
     .list-item {
         @extend %sans-regular;
         font-size: 1.1rem;
-        padding-bottom: 0.5rem;
+        padding-bottom: $space-2;
     }
 
     .italics {
@@ -78,15 +79,15 @@ $leaving-highlight: $highlight-primary;
     }
 
     .arrow-icon {
-        padding-right: 4px;
+        padding-right: $space-1;
 
         &.down {
             position: relative;
-            top: 4px;
+            top: $space-1;
         }
         &.up {
             position: relative;
-            top: -4px;
+            top: -$space-1;
         }
 
         svg {

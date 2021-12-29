@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { leavingPath, responsiveVizPath } from '../core/constants/routing.constants';
+import { leavingPath } from '../core/constants/routing.constants';
 import { BlogComponent } from './blog.component';
 import { LeavingComponent } from './leaving/leaving.component';
-import { ResponsiveVizComponent } from './responsive-viz/responsive-viz.component';
 
 const routes: Routes = [
     {
@@ -16,8 +15,9 @@ const routes: Routes = [
                 component: LeavingComponent,
             },
             {
-                path: responsiveVizPath,
-                component: ResponsiveVizComponent,
+                path: 'leavingacademia', // old path name
+                redirectTo: leavingPath,
+                pathMatch: 'full',
             },
             {
                 path: '**',
