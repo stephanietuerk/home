@@ -45,7 +45,7 @@ $table-width: 900px;
 
         .table-row {
             &:not(.open) {
-                border-bottom: 1px solid rgba($highlight-primary, 0.3);
+                border-bottom: 1px solid rgba($color-highlight, 0.3);
             }
             &.open {
                 border-bottom: 1px solid white;

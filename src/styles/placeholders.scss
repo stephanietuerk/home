@@ -1,4 +1,4 @@
-@import 'vars';
+@import 'vars', 'functions';
 
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
@@ -177,21 +177,21 @@
 }
 
 %button-styles {
-    color: $highlight-primary;
-    border-bottom: 1px solid $highlight-primary;
+    color: $color-highlight;
+    border-bottom: 1px solid $color-highlight;
 }
 
 %button-behavior {
     transition: all 0.2s ease-in-out;
     &:hover {
-        color: $highlight-primary;
+        color: $color-highlight;
         font-weight: 700;
     }
 }
 
 %section-header {
     @extend %h2;
-    color: $highlight-primary;
+    color: $color-highlight;
     padding-bottom: 0.25rem;
 }
 
@@ -207,11 +207,11 @@
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        color: $highlight-primary;
+        color: $color-highlight;
     }
 
     &:active {
-        color: $highlight-primary;
+        color: $color-highlight;
     }
 
     &:visited {
@@ -231,8 +231,8 @@
     scrollbar-track-color: #edf1f4;
     -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
     scrollbar-3dlight-color: $color-scrollbar-ie;
-    -ms-scrollbar-arrow-color: $aqua-gray;
-    scrollbar-arrow-color: $aqua-gray;
+    -ms-scrollbar-arrow-color: get($colors, 'gray-shades.light-1');
+    scrollbar-arrow-color: get($colors, 'gray-shades.light-1');
     scrollbar-color: $color-scrollbar-ie #fff;
 }
 
@@ -289,8 +289,8 @@
 
 %comment-button {
     @extend %slab-bold;
-    border: 2px solid $highlight-primary;
-    color: $highlight-primary;
+    border: 2px solid $color-highlight;
+    color: $color-highlight;
     background: $highlight-light;
     transition: all 0.2s;
 
@@ -302,7 +302,7 @@
 
     &:disabled {
         background: $highlight-light;
-        color: rgba($highlight-primary, 0.5);
+        color: rgba($color-highlight, 0.5);
         border: 2px solid $highlight-light;
     }
 }
