@@ -1,24 +1,7 @@
 import { Project, ProjectType } from './../models/project.model';
-import { beyondPath, blogPath, flipPath, leavingPath, projectsPath, responsiveVizPath } from './routing.constants';
+import { beyondPath, blogPath, flipPath, leavingPath, projectsPath } from './routing.constants';
 
 export const PROJECTS: Project[] = [
-    {
-        id: 'responsive-viz',
-        title: 'How To: Responsive D3 Visualizations',
-        type: ProjectType.blogPost,
-        year: 2021,
-        show: {
-            local: true,
-            production: false,
-        },
-        description: [],
-        routerLink: `${blogPath}/${responsiveVizPath}`,
-        linkName: 'Post',
-        allowComments: false,
-        postConfig: {
-            postedDate: new Date(2021, 10, 1),
-        },
-    },
     {
         id: 'leaving-academia-faq',
         title: 'Leaving Academia FAQ',

@@ -11,7 +11,6 @@ import { CommentsComponent } from './comments/comments.component';
 import { CreateCommentComponent } from './comments/create-comment/create-comment.component';
 import { LeavingComponent } from './leaving/leaving.component';
 import { QuestionComponent } from './leaving/question/question.component';
-import { ResponsiveVizComponent } from './responsive-viz/responsive-viz.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +20,6 @@ import { ResponsiveVizComponent } from './responsive-viz/responsive-viz.componen
         CommentComponent,
         CommentsComponent,
         CreateCommentComponent,
-        ResponsiveVizComponent,
     ],
     providers: [CommentsService],
     imports: [CommonModule, BlogRoutingModule, SharedModule, PipesModule, FormsModule],
