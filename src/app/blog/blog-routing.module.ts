@@ -15,6 +15,11 @@ const routes: Routes = [
                 component: LeavingComponent,
             },
             {
+                path: 'leavingacademia', // old path name
+                redirectTo: leavingPath,
+                pathMatch: 'full',
+            },
+            {
                 path: '**',
                 redirectTo: '/main',
                 pathMatch: 'full',
