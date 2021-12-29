@@ -13,12 +13,12 @@ $table-width: 900px;
 
     .instruction-text {
         @extend %instructions;
-        padding-bottom: $grid-1;
+        padding-bottom: $space-1;
     }
 
     .table-container {
         max-width: 900px;
-        padding: 0 $grid-6;
+        padding: 0 $space-6;
 
         @include breakpoint(mobile-device) {
             padding: 0;
@@ -52,7 +52,7 @@ $table-width: 900px;
             }
 
             &.body {
-                height: $grid-16;
+                height: $space-16;
             }
         }
 
@@ -60,7 +60,7 @@ $table-width: 900px;
             @extend %slab-medium;
             font-size: 1rem;
             text-align: left;
-            padding-top: $grid-2;
+            padding-top: $space-2;
 
             &.view {
                 @extend %small-caps;
@@ -73,7 +73,7 @@ $table-width: 900px;
 
         .table-cell {
             &:not(:last-of-type) {
-                padding-right: $grid-5;
+                padding-right: $space-5;
             }
 
             &.year {
@@ -84,16 +84,16 @@ $table-width: 900px;
         .arrow-icon {
             &.down {
                 position: relative;
-                top: $grid-1;
+                top: $space-1;
             }
             &.up {
                 position: relative;
-                top: -#{$grid-1};
+                top: -#{$space-1};
             }
 
             svg {
-                height: $grid-4;
-                width: $grid-5;
+                height: $space-4;
+                width: $space-5;
                 fill: $dark-primary;
                 stroke: $dark-primary;
             }
@@ -101,14 +101,14 @@ $table-width: 900px;
 
         .project-overview-component {
             display: block;
-            padding-top: $grid-2;
-            padding-bottom: $grid-4;
+            padding-top: $space-2;
+            padding-bottom: $space-4;
         }
     }
 
     .asterisk {
         align-self: flex-start;
-        margin-top: $grid-2;
+        margin-top: $space-2;
         font-weight: 300;
         font-size: 0.9rem;
     }

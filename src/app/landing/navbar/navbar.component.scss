@@ -31,7 +31,7 @@
     font-size: 1rem;
 
     &:not(:last-of-type) {
-        margin-right: $grid-6;
+        margin-right: $space-6;
     }
 
     @include breakpoint-max(600px) {
