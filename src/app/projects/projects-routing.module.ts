@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { beyondPath, flipPath } from '../core/constants/routing.constants';
+import { artHistoryJobsPath, beyondPath, flipPath } from '../core/constants/routing.constants';
+import { ArtHistoryJobsComponent } from './art-history-jobs/art-history-jobs.component';
 import { BeyondResolver } from './beyond/beyond-resolver';
 import { BeyondComponent } from './beyond/beyond.component';
 import { FlipComponent } from './flip/flip.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
                 resolve: {
                     data: BeyondResolver,
                 },
+            },
+            {
+                path: artHistoryJobsPath,
+                component: ArtHistoryJobsComponent,
             },
             {
                 path: '**',

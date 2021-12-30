@@ -1,5 +1,5 @@
 import { Project, ProjectType } from './../models/project.model';
-import { beyondPath, blogPath, flipPath, leavingPath, projectsPath } from './routing.constants';
+import { artHistoryJobsPath, beyondPath, blogPath, flipPath, leavingPath, projectsPath } from './routing.constants';
 
 export const PROJECTS: Project[] = [
     {
@@ -14,8 +14,12 @@ export const PROJECTS: Project[] = [
         description: [
             "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
         ],
-        routerLink: `${blogPath}/${leavingPath}`,
-        linkName: 'Post',
+        links: [
+            {
+                name: 'Post',
+                routerLink: `${blogPath}/${leavingPath}`,
+            },
+        ],
         allowComments: false,
         postConfig: {
             postedDate: new Date(2021, 5, 15),
@@ -41,15 +45,19 @@ export const PROJECTS: Project[] = [
                 altText: 'a screen capture of bar charts from this project',
             },
         ],
-        url: 'covid-school-testing.mathematica.org/start',
-        linkName: ProjectType.website,
+        links: [
+            {
+                name: ProjectType.website,
+                url: 'covid-school-testing.mathematica.org/start',
+            },
+        ],
         professional: true,
     },
     {
         id: 'art-history-jobs',
-        title: 'Art History Jobs, 2011—2020',
+        title: 'Art History Jobs, 2011—2021',
         type: ProjectType.dataViz,
-        year: 2020,
+        year: '2019—2020',
         description: [
             'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python, visualizations were built in an Observable notebook.',
         ],
@@ -67,8 +75,16 @@ export const PROJECTS: Project[] = [
                 altText: 'a screen capture of a stacked line chart data visualization from this project',
             },
         ],
-        url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
-        linkName: ProjectType.notebook,
+        links: [
+            {
+                name: 'visualization (2021)',
+                routerLink: `${projectsPath}/${artHistoryJobsPath}`,
+            },
+            {
+                name: 'notebook (2020)',
+                url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
+            },
+        ],
     },
     {
         id: 'scsar',
@@ -93,8 +109,12 @@ export const PROJECTS: Project[] = [
                 altText: 'a screen capture of the correspondence feature of this project',
             },
         ],
-        url: 'www.severncommunityagainstracism.com',
-        linkName: ProjectType.website,
+        links: [
+            {
+                name: ProjectType.website,
+                url: 'www.severncommunityagainstracism.com',
+            },
+        ],
     },
     {
         id: 'dq-atlas',
@@ -118,8 +138,12 @@ export const PROJECTS: Project[] = [
                 altText: 'a screen capture of the explore by topic pathway for this project',
             },
         ],
-        url: 'www.medicaid.gov/dq-atlas/welcome',
-        linkName: ProjectType.website,
+        links: [
+            {
+                name: ProjectType.website,
+                url: 'www.medicaid.gov/dq-atlas/welcome',
+            },
+        ],
         professional: true,
     },
     {
@@ -140,8 +164,12 @@ export const PROJECTS: Project[] = [
             { path: 'assets/beyond_map.png', altText: 'a screen capture of the map feature in this project' },
             { path: 'assets/beyond_bar.png', altText: 'a screen capture of the bar chart feature of this project' },
         ],
-        routerLink: `${projectsPath}/${beyondPath}`,
-        linkName: 'visualization',
+        links: [
+            {
+                name: 'visualization',
+                routerLink: `${projectsPath}/${beyondPath}`,
+            },
+        ],
     },
     {
         id: 'flip-the-district',
@@ -164,8 +192,12 @@ export const PROJECTS: Project[] = [
                 altText: 'an animated gif showing a user manipulating the interface of this project',
             },
         ],
-        routerLink: `${projectsPath}/${flipPath}`,
-        linkName: 'visualization',
+        links: [
+            {
+                name: 'visualization',
+                routerLink: `${projectsPath}/${flipPath}`,
+            },
+        ],
     },
 ];
 
