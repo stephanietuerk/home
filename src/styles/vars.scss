@@ -1,47 +1,46 @@
 @use 'sass:color';
-@import 'system';
+@import 'system', 'functions';
 
-$blue: #0088ff;
-$blue-dark-1: #2271cb;
-$blue-dark-2: #285b9a;
-$blue-dark-3: #26456b;
-$blue-dark-4: #1f3140;
-$blue-light-1: #b6d4f0;
-$blue-light-2: #80bef5;
-$blue-light-3: #46a5f9;
-$gray-1: #e9eaec;
-$gray-2: #dee3e7;
-$gray-3: #d2d6d9;
-$gray-4: #bdc2c7;
-$gray-5: #a7aeb5;
+$colors: (
+    'highlights': (
+        // 208 deg
+        'blue': #0088ff,
+    ),
+    'darks': (
+        // 232 deg
+        'blue': #2a3058,
+    ),
+    'grays': (
+        // 190 deg
+        'light-1': #c3d0d2,
+        'light-2': #d3ddde,
+        'light-3': #e4eaeb,
+        'light-4': #f5f7f7,
+        'dark-1': #6d7c81,
+    ),
+);
 
-$aqua-light-1: #eef1f2;
-$aqua-light-2: #e2e8ea;
-$aqua-light-3: #e5e9eb;
-$aqua-medium: #c3ced2;
-$aqua-gray: #6d7c81;
-$aqua-gray-dark: #4f5d62;
+$color-highlight: get($colors, 'highlights.blue');
+$color-dark-primary: get($colors, 'darks.blue');
+$highlight-light: get($colors, 'grays.light-4');
+$highlight-dull: get($colors, 'grays.light-4');
 
-$highlight-primary: #0088ff;
-$highlight-light: #f6f7f8;
-$highlight-dull: #eef0f1;
-$dark-primary: #25274d;
+$color-scrollbar: get($colors, 'grays.light-1');
+$color-scrollbar-ie: $color-scrollbar;
 
-$subtle-drop-shadow: 0 1px 3px rgba($dark-primary, 0.12), 0 1px 2px rgba($dark-primary, 0.24);
-$subtler-drop-shadow: 0 1px 3px rgba($dark-primary, 0.06), 0 1px 2px rgba($dark-primary, 0.212);
+$subtle-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.12), 0 1px 2px rgba($color-dark-primary, 0.24);
+$subtler-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.06), 0 1px 2px rgba($color-dark-primary, 0.212);
 
 $landing-page-max-width: 1000px;
 
 $vertical-scrollbar-thickness: $space-3;
 $horizontal-scrollbar-thickness: $space-3;
-$color-scrollbar: $aqua-medium;
-$color-scrollbar-ie: $aqua-medium;
 
 $content-component-padding: 0px $space-10 $space-4 $space-10;
 
 $navbar-height: $space-16;
 $project-navbar-height: $navbar-height;
-$color-focus-ring: color.adjust($aqua-medium, $lightness: 20%);
+$color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;
 
 $viewport-width-xs: 576px;

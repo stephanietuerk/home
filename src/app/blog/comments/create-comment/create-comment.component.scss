@@ -6,7 +6,7 @@
     background: $highlight-light;
     padding: 0.375rem 0.75rem;
     border: none;
-    border-bottom: 1px solid $dark-primary;
+    border-bottom: 1px solid $color-dark-primary;
     margin-top: 1rem;
 
     &.text {
@@ -38,12 +38,12 @@
 }
 
 .submit-button {
-    background: $highlight-primary;
+    background: $color-highlight;
     color: white;
 
     &:hover {
-        background: $dark-primary;
-        border: 2px solid $dark-primary;
+        background: $color-dark-primary;
+        border: 2px solid $color-dark-primary;
         color: white;
         transition: all 0.2s;
     }

@@ -45,7 +45,7 @@ $table-width: 900px;
 
         .table-row {
             &:not(.open) {
-                border-bottom: 1px solid rgba($highlight-primary, 0.3);
+                border-bottom: 1px solid rgba($color-highlight, 0.3);
             }
             &.open {
                 border-bottom: 1px solid white;
@@ -94,8 +94,8 @@ $table-width: 900px;
             svg {
                 height: $space-4;
                 width: $space-5;
-                fill: $dark-primary;
-                stroke: $dark-primary;
+                fill: $color-dark-primary;
+                stroke: $color-dark-primary;
             }
         }
 

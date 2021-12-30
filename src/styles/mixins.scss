@@ -1,4 +1,4 @@
-@import 'vars';
+@import 'vars', 'functions';
 
 @mixin text-link($text-color, $highlight-color, $underline-style) {
     text-decoration: none;
@@ -36,12 +36,12 @@
 
 @mixin padded-scrollbar($padding) {
     &::-webkit-scrollbar-track {
-        background-color: $aqua-lightest;
+        background-color: get($colors, 'grays.light-4');
     }
 
     &::-webkit-scrollbar-thumb {
         background-color: $color-scrollbar;
-        border: $padding solid $aqua-medium;
+        border: $padding solid get($colors, 'grays.light-1');
     }
 }
 

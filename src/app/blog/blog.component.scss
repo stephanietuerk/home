@@ -1,8 +1,8 @@
-@import 'vars', 'placeholders';
+@import 'vars', 'placeholders', 'functions';
 
 :host {
     @extend %content-component-host;
-    background: $aqua-light-1;
+    background: get($colors, 'grays.light-4');
 }
 
 .blog-navbar {

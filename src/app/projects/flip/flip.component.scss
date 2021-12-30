@@ -19,7 +19,7 @@ $button-active: #999999;
         @extend %sans-regular;
         padding-top: 1rem;
         text-align: justify;
-        color: rgba($dark-primary, 0.85);
+        color: rgba($color-dark-primary, 0.85);
 
         &:last-of-type {
             padding-bottom: 1rem;
