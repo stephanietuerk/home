@@ -231,8 +231,8 @@
     scrollbar-track-color: #edf1f4;
     -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
     scrollbar-3dlight-color: $color-scrollbar-ie;
-    -ms-scrollbar-arrow-color: get($colors, 'gray-shades.light-1');
-    scrollbar-arrow-color: get($colors, 'gray-shades.light-1');
+    -ms-scrollbar-arrow-color: get($colors, 'grays.light-1');
+    scrollbar-arrow-color: get($colors, 'grays.light-1');
     scrollbar-color: $color-scrollbar-ie #fff;
 }
 

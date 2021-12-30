@@ -2,38 +2,34 @@
 @import 'system', 'functions';
 
 $colors: (
-    'blue-shades': (
-        'blue-0': #0088ff,
-        'dark-1': #1f3140,
-        'dark-2': #25274d,
-        'dark-3': #26456b,
-        'dark-4': #285b9a,
-        'dark-5': #2271cb,
-        'light-1': #b6d4f0,
-        'light-2': #80bef5,
-        'light-3': #46a5f9,
+    'highlights': (
+        // 208 deg
+        'blue': #0088ff,
     ),
-    'gray-shades': (
-        'light-1': #c3ced2,
-        'light-2': #dee3e7,
-        'light-3': #e5e9eb,
-        'light-4': #e2e8ea,
-        'light-5': #eef0f1,
-        'light-6': #f6f7f8,
+    'darks': (
+        // 232 deg
+        'blue': #2a3058,
+    ),
+    'grays': (
+        // 190 deg
+        'light-1': #c3d0d2,
+        'light-2': #d3ddde,
+        'light-3': #e4eaeb,
+        'light-4': #f5f7f7,
         'dark-1': #6d7c81,
     ),
 );
 
-$color-highlight: get($colors, 'blue-shades.blue-0');
-$highlight-light: get($colors, 'gray-shades.light-6');
-$highlight-dull: get($colors, 'gray-shades.light-5');
-$dark-primary: get($colors, 'blue-shades.dark-2');
+$color-highlight: get($colors, 'highlights.blue');
+$color-dark-primary: get($colors, 'darks.blue');
+$highlight-light: get($colors, 'grays.light-4');
+$highlight-dull: get($colors, 'grays.light-4');
 
-$color-scrollbar: get($colors, 'gray-shades.light-1');
+$color-scrollbar: get($colors, 'grays.light-1');
 $color-scrollbar-ie: $color-scrollbar;
 
-$subtle-drop-shadow: 0 1px 3px rgba($dark-primary, 0.12), 0 1px 2px rgba($dark-primary, 0.24);
-$subtler-drop-shadow: 0 1px 3px rgba($dark-primary, 0.06), 0 1px 2px rgba($dark-primary, 0.212);
+$subtle-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.12), 0 1px 2px rgba($color-dark-primary, 0.24);
+$subtler-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.06), 0 1px 2px rgba($color-dark-primary, 0.212);
 
 $landing-page-max-width: 1000px;
 

@@ -1,6 +1,6 @@
 @import 'vars', 'placeholders', 'functions';
 
-$frame-color: get($colors, 'gray-shades.light-2');
+$frame-color: get($colors, 'grays.light-2');
 
 :host {
     box-shadow: $subtler-drop-shadow;

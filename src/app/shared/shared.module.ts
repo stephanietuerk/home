@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContentNavbarComponent } from './content-navbar/content-navbar.component';
-import { RowHoverDirective } from './directives/row-hover.directive';
+import { HighlightRowOnHoverDirective } from './directives/highlight-row-on-hover.directive';
+import { HoverClassOnSiblingsDirective } from './directives/hover-class-on-siblings.directive';
 import { StylesDisplayComponent } from './styles-display/styles-display.component';
 import { SvgDefinitionsComponent } from './svg-icon/svg-definitions.component';
 import { SvgIconComponent } from './svg-icon/svg-icon.component';
@@ -11,7 +12,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
     declarations: [
         SvgDefinitionsComponent,
         SvgIconComponent,
-        RowHoverDirective,
+        HighlightRowOnHoverDirective,
+        HoverClassOnSiblingsDirective,
         ContentNavbarComponent,
         StylesDisplayComponent,
     ],
@@ -19,7 +21,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
     exports: [
         SvgDefinitionsComponent,
         SvgIconComponent,
-        RowHoverDirective,
+        HighlightRowOnHoverDirective,
+        HoverClassOnSiblingsDirective,
         ContentNavbarComponent,
         StylesDisplayComponent,
     ],

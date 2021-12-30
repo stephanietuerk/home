@@ -4,20 +4,20 @@ import { hexToRGBA } from 'src/app/core/utilities/color.utils';
 import { darkPrimary, highlightPrimary } from '../../core/constants/colors.constants';
 
 @Directive({
-    selector: '[appRowHover]',
+    selector: '[highlightRowOnHover]',
 })
-export class RowHoverDirective {
+export class HighlightRowOnHoverDirective {
     constructor(private el: ElementRef) {}
 
     @HostListener('mouseenter') onMouseEnter() {
-        this.highlight(hexToRGBA(darkPrimary, 0.04), highlightPrimary, 'pointer', '700');
+        this.highlightTds(hexToRGBA(darkPrimary, 0.04), highlightPrimary, 'pointer', '700');
     }
 
     @HostListener('mouseleave') onMouseLeave() {
-        this.highlight(null, null, null, null);
+        this.highlightTds(null, null, null, null);
     }
 
-    private highlight(background: string, color: string, cursor: string, fontWeight: string) {
+    private highlightTds(background: string, color: string, cursor: string, fontWeight: string) {
         const row = this.el.nativeElement.parentNode;
         const t = transition().duration(100).ease(easeLinear);
         select(row)

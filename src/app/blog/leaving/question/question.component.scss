@@ -13,8 +13,8 @@ $leaving-highlight: $color-highlight;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-left: 1px solid $dark-primary;
-        border-bottom: 1px solid $dark-primary;
+        border-left: 1px solid $color-dark-primary;
+        border-bottom: 1px solid $color-dark-primary;
         margin: $space-2 0 $space-3 0;
         padding-left: $space-1;
 
@@ -93,8 +93,8 @@ $leaving-highlight: $color-highlight;
         svg {
             height: 14px;
             width: 21px;
-            fill: $dark-primary;
-            stroke: $dark-primary;
+            fill: $color-dark-primary;
+            stroke: $color-dark-primary;
         }
     }
 }

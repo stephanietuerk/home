@@ -21,10 +21,10 @@
                         (keydown.enter)="toggleDescription(project.id)"
                         tabindex="0"
                     >
-                        <td appRowHover class="table-cell body title">{{ getTitle(project) }}</td>
-                        <td appRowHover class="table-cell body type">{{ project.type }}</td>
-                        <td appRowHover class="table-cell body year">{{ project.year }}</td>
-                        <td appRowHover class="table-cell body more">
+                        <td highlightRowOnHover class="table-cell body title">{{ getTitle(project) }}</td>
+                        <td highlightRowOnHover class="table-cell body type">{{ project.type }}</td>
+                        <td highlightRowOnHover class="table-cell body year">{{ project.year }}</td>
+                        <td highlightRowOnHover class="table-cell body more">
                             <app-svg-icon
                                 class="arrow-icon"
                                 [ngClass]="{ up: state[project.id], down: !state[project.id] }"

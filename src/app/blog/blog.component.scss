@@ -2,7 +2,7 @@
 
 :host {
     @extend %content-component-host;
-    background: get($colors, 'gray-shades.light-5');
+    background: get($colors, 'grays.light-4');
 }
 
 .blog-navbar {
