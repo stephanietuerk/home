@@ -5,7 +5,7 @@ import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { scrollToId } from 'src/app/core/utilities/dom.utils';
 import { interpolateNumber } from 'src/app/core/utilities/number.utils';
-import { FlipService } from 'src/app/projects/flip/services/flip.service';
+import { FlipService } from 'src/app/projects/flip/flip.service';
 import * as topojson from 'topojson';
 import { FlipBar } from './flip-bar.class';
 import { FLIPBARLAYOUT, FLIPCOLORS } from './flip.constants';

@@ -10,16 +10,16 @@ import {
     scaleBand,
     scaleLinear,
     scalePoint,
-    transition,
+    transition
 } from 'd3';
 import { quantileSorted, range } from 'd3-array';
 import { easeQuadOut } from 'd3-ease';
 import { select, selectAll } from 'd3-selection';
 import { wrap } from 'src/app/core/utilities/svg-text.utils';
 import { BEYOND_COLORS, BEYOND_DEMOTYPES, BEYOND_SCALES } from '../beyond.constants';
+import { BeyondService } from '../beyond.service';
 import { TractDatum } from '../models/beyond-data.model';
 import { DemoTime, DemoVariable, ElectionYear } from '../models/beyond-enums.model';
-import { BeyondService } from '../services/beyond.service';
 
 @Component({
     selector: 'app-beyond-bar',

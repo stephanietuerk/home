@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { FlipResource } from '../resources/flip.resource';
+import { format, select, selectAll } from 'd3';
 import { DistrictVotes, Party, StateVotes } from 'src/app/projects/flip/flip.model';
-import { FlipBar } from '../flip-bar.class';
-import { select, selectAll, format } from 'd3';
-import { FLIPCOLORS, FLIPGRIDLAYOUT } from '../flip.constants';
-import { ConstantPool } from '@angular/compiler';
+import { FlipBar } from './flip-bar.class';
+import { FLIPCOLORS, FLIPGRIDLAYOUT } from './flip.constants';
+import { FlipResource } from './flip.resource';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class FlipService {
     elId: string = '#flip-the-district';
     flipTopojson: any;

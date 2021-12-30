@@ -7,7 +7,7 @@ import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
 import { Subject } from 'rxjs';
 import * as topojson from 'topojson';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
-import { BeyondService } from '../services/beyond.service';
+import { BeyondService } from '../beyond.service';
 
 @Component({
     selector: 'app-beyond-map',

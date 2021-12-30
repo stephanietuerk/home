@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
 import { BehaviorSubject, forkJoin } from 'rxjs';
-import { DemoData, MarginsData, TractDatum, TractObject } from '../models/beyond-data.model';
-import { DemoVariable, ElectionType, ElectionYear } from '../models/beyond-enums.model';
-import { BeyondState } from '../models/beyond-state.model';
-import { BeyondResource } from '../resources/beyond.resource';
+import { BeyondResource } from './beyond.resource';
+import { DemoData, MarginsData, TractDatum, TractObject } from './models/beyond-data.model';
+import { DemoVariable, ElectionType, ElectionYear } from './models/beyond-enums.model';
+import { BeyondState } from './models/beyond-state.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class BeyondService {
     elId: string = '#beyond-vis';
     tractsTopojson: any;
