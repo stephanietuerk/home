@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular
 import {
     axisBottom,
     axisLeft,
+    AxisScale,
     axisTop,
     brushY,
     descending,
@@ -10,7 +11,7 @@ import {
     scaleBand,
     scaleLinear,
     scalePoint,
-    transition
+    transition,
 } from 'd3';
 import { quantileSorted, range } from 'd3-array';
 import { easeQuadOut } from 'd3-ease';
@@ -59,9 +60,9 @@ export class BeyondBarComponent implements OnInit, OnChanges {
     };
     axisOffset = 10;
     numQuantiles = 10;
-    y: any;
-    x: any;
-    gridY: any;
+    y: AxisScale<any>;
+    x: AxisScale<any>;
+    gridY: AxisScale<any>;
 
     constructor(private beyondService: BeyondService) {}
 
@@ -296,10 +297,10 @@ export class BeyondBarComponent implements OnInit, OnChanges {
 
             const tracts = selectAll('.vote-tracts');
 
-            brushed.each((d, i, nodes) => {
+            brushed.each((d, i, nodes: Element[]) => {
                 const barTract = nodes[i].getAttribute('tract');
                 tracts
-                    .filter((tractD) => tractD.properties.GEO_ID === barTract)
+                    .filter((tractD: any) => tractD.properties.GEO_ID === barTract)
                     .raise()
                     .classed('brushed', true)
                     .style('stroke', 'black')
@@ -363,11 +364,11 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         } else {
             const scaleType = this.electionYear === ElectionYear.change ? 'change' : 'vote';
             const partyType = value < 0 ? 'd' : 'r';
-            return BEYOND_SCALES[scaleType][partyType](value);
+            return BEYOND_SCALES[scaleType][partyType](value) as unknown as string;
         }
     }
 
-    getQuantileValues(multiplier: number): void {
+    getQuantileValues(multiplier: number): number[] {
         const quantiles = range(this.numQuantiles * multiplier).map((x) => x / (this.numQuantiles * multiplier));
         const values = this.data.map((x) => this.getDemoValue(x)).filter((x) => x !== null && !isNaN(x));
         return quantiles.map((q) => quantileSorted(values, q));
@@ -379,22 +380,29 @@ export class BeyondBarComponent implements OnInit, OnChanges {
 
         const tickFormat = this.getAxisTickFormat();
 
-        const barsYQuantiles = scalePoint().domain(quantileValues).range([0, this.height]);
-        const barsYQuantilesTicks = scalePoint().domain(horizontalGridValues).range([0, this.height]);
+        const barsYQuantiles = scalePoint()
+            .domain(quantileValues as any)
+            .range([0, this.height]);
+        const barsYQuantilesTicks = scalePoint()
+            .domain(horizontalGridValues as any)
+            .range([0, this.height]);
 
-        const barsXAxisTop = axisTop().scale(this.x).tickFormat(tickFormat);
-        const barsXAxisBottom = axisBottom().scale(this.x).tickFormat(tickFormat);
+        const barsXAxisTop = axisTop(this.x).tickFormat(tickFormat);
+        const barsXAxisBottom = axisBottom(this.x).tickFormat(tickFormat);
 
-        const barsZeroAxis = axisLeft().scale(this.y).tickSize(0).tickFormat('');
+        const barsZeroAxis = axisLeft(this.y)
+            .tickSize(0)
+            .tickFormat((d, n) => '');
 
-        const barsYAxis = axisLeft().scale(barsYQuantiles).tickFormat(tickFormat);
+        const barsYAxis = axisLeft(barsYQuantiles).tickFormat(tickFormat);
 
-        const gridVerticalLines = axisTop().scale(this.x).tickSize(this.height, 0, 0).tickFormat('');
+        const gridVerticalLines = axisTop(this.x)
+            .tickSize(this.height)
+            .tickFormat((d, n) => '');
 
-        const gridHorizontalLines = axisLeft()
-            .scale(barsYQuantilesTicks)
-            .tickSize(-this.x.range()[1], 0, 0)
-            .tickFormat('');
+        const gridHorizontalLines = axisLeft(barsYQuantilesTicks)
+            .tickSize(-this.x.range()[1])
+            .tickFormat((d, n) => '');
 
         this.barMain
             .append('g')
@@ -407,8 +415,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
                 g
                     .selectAll('.tick line')
                     .attr('stroke', 'black')
-                    .attr('stroke-opacity', 0.4)
-                    .attr('stroke-dasharray', '2 4')
+                    .attr('stroke-opacity', 0.3)
+                    .attr('stroke-dasharray', '1 2')
             );
 
         this.barMain
@@ -421,8 +429,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
                 g
                     .selectAll('.tick line')
                     .attr('stroke', 'black')
-                    .attr('stroke-opacity', 0.5)
-                    .attr('stroke-dasharray', '2,2')
+                    .attr('stroke-opacity', 0.3)
+                    .attr('stroke-dasharray', '1 2')
             );
 
         this.barMain
@@ -461,7 +469,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         this.makeAxisLabels();
     }
 
-    getAxisTickFormat() {
+    getAxisTickFormat(): (x) => string {
         if (this.demoYear == DemoTime.change) {
             return format('.0%');
         } else {

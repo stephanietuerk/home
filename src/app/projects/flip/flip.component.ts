@@ -383,7 +383,7 @@ export class FlipComponent implements OnInit {
         this.flipService.showDistrictInfo(this.flipService.districtsData[district], container);
         select(container)
             .selectAll('g.bar')
-            .filter((d, i, nodes) => +nodes[i].getAttribute('district') !== district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') !== district)
             .selectAll('rect')
             .style('opacity', 0.3);
     }

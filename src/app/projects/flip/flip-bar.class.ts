@@ -135,12 +135,12 @@ export class FlipBar {
 
     dragEnd() {
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == this.data.district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') == this.data.district)
             .classed('active-drag', false)
             .classed('active-mouseover', false);
 
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') != this.data.district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') != this.data.district)
             .classed('active-drag-others', false);
     }
 
@@ -240,10 +240,13 @@ export class FlipBar {
 
         this.svg
             .selectAll('.bar-square')
-            .attr('squareColor', (d, i, nodes) => {
-                if (nodes[i].getAttribute('cellnum') <= cutDBar) {
+            .attr('squareColor', (d, i, nodes: Element[]) => {
+                if (+nodes[i].getAttribute('cellnum') <= cutDBar) {
                     return FLIPCOLORS.dColor;
-                } else if (nodes[i].getAttribute('cellnum') > cutDBar && nodes[i].getAttribute('cellnum') <= cutRBar) {
+                } else if (
+                    +nodes[i].getAttribute('cellnum') > cutDBar &&
+                    +nodes[i].getAttribute('cellnum') <= cutRBar
+                ) {
                     return FLIPCOLORS.oColor;
                 } else {
                     return FLIPCOLORS.rColor;
@@ -251,6 +254,6 @@ export class FlipBar {
             })
             .transition()
             .duration(60)
-            .style('fill', (d, i, nodes) => nodes[i].getAttribute('squareColor'));
+            .style('fill', (d, i, nodes: Element[]) => nodes[i].getAttribute('squareColor'));
     }
 }

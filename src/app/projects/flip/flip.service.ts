@@ -127,12 +127,12 @@ export class FlipService {
 
         select(this.elId)
             .selectAll('.grid-square')
-            .attr('squareColor', (d, i, nodes) => {
-                if (nodes[i].getAttribute('cellnum') <= cutDGrid) {
+            .attr('squareColor', (d, i, nodes: Element[]) => {
+                if (+nodes[i].getAttribute('cellnum') <= cutDGrid) {
                     return FLIPCOLORS.dColor;
                 } else if (
-                    nodes[i].getAttribute('cellnum') > cutDGrid &&
-                    nodes[i].getAttribute('cellnum') <= cutOtherGrid
+                    +nodes[i].getAttribute('cellnum') > cutDGrid &&
+                    +nodes[i].getAttribute('cellnum') <= cutOtherGrid
                 ) {
                     return FLIPCOLORS.oColor;
                 } else {
@@ -141,20 +141,20 @@ export class FlipService {
             })
             .transition()
             .duration(100)
-            .style('fill', (d, i, nodes) => nodes[i].getAttribute('squareColor'));
+            .style('fill', (d, i, nodes: Element[]) => nodes[i].getAttribute('squareColor'));
     }
 
     updateMap(bar: FlipBar) {
         select(this.elId)
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == bar.data.district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') == bar.data.district)
             .raise()
             .classed('active-drag', true)
             .classed('active-mouseover', false)
             .attr('winner', () => this.getDistrictWinner(bar.draggedData))
             .transition()
             .duration(120)
-            .style('fill', (d, i, nodes) => {
+            .style('fill', (d, i, nodes: Element[]) => {
                 if (nodes[i].getAttribute('winner') == Party.D) {
                     return FLIPCOLORS.dMapColor;
                 } else if (nodes[i].getAttribute('winner') == Party.R) {
@@ -165,14 +165,12 @@ export class FlipService {
             });
 
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') != bar.data.district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') != bar.data.district)
             .classed('active-drag-others', true);
     }
 
     updateDisplay(visContainer: HTMLElement) {
         const formatter = format(',.0f');
-
-        console.log('ud', this);
 
         select(visContainer)
             .selectAll('.display-data-dem')
@@ -230,7 +228,7 @@ export class FlipService {
 
         visContainer
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == +data.district)
+            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') == data.district)
             .classed('active-mouseover', true)
             .raise();
 
@@ -346,7 +344,7 @@ export class FlipService {
         const visContainer = select(visDiv);
         visContainer
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == data.district)
+            .filter((d, i, nodes) => +(nodes[i] as Element).getAttribute('district') == data.district)
             .classed('active-mouseover', false);
 
         visContainer.selectAll('.district-info-container').style('opacity', 0);

@@ -1,7 +1,7 @@
 import { DemoVariable, ElectionType, ElectionYear } from './beyond-enums.model';
 
 export class TractObject {
-    [number: number]: TractDatum;
+    [number: string]: TractDatum;
 }
 
 export class TractDatum {
