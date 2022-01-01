@@ -2,7 +2,7 @@
 
 :host {
     @extend %content-component-host;
-    background: get($colors, 'grays.light-4');
+    background: linear-gradient(180deg, get($colors, 'grays.light-4'), get($colors, 'grays.light-3'));
 }
 
 .blog-navbar {
