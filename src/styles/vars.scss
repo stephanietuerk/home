@@ -5,6 +5,7 @@ $colors: (
     'highlights': (
         // 208 deg
         'blue': #0088ff,
+        'blue-light': #b2dbff,
     ),
     'darks': (
         // 232 deg
@@ -21,6 +22,7 @@ $colors: (
 );
 
 $color-highlight: get($colors, 'highlights.blue');
+$color-highlight-light: get($colors, 'highlights.blue-light');
 $color-dark-primary: get($colors, 'darks.blue');
 $highlight-light: get($colors, 'grays.light-4');
 $highlight-dull: get($colors, 'grays.light-4');
