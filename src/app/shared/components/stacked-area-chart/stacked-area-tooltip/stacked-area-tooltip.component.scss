@@ -1,0 +1,47 @@
+@import 'vars', 'placeholders';
+
+.stacked-area-tooltip-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: $space-1;
+    box-shadow: $subtle-drop-shadow;
+    padding: $space-2;
+
+    .x-axis-value {
+        padding-bottom: $space-1;
+        border-bottom: 1px solid $color-light-gray-light;
+        margin-bottom: $space-1;
+    }
+
+    .tooltip-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .area-name-container {
+        display: flex;
+        padding-right: $space-2;
+        align-items: center;
+    }
+
+    .area-value {
+        @extend %sans-regular;
+        font-size: 0.95rem;
+        line-height: 1;
+        transform: translate(0, -2px);
+    }
+
+    .area-color-square {
+        $size: $space-4;
+        height: $size;
+        width: $size;
+        background: var(--color);
+        margin-right: $space-1;
+        border-radius: $space-1;
+    }
+}
+
+.line-container {
+    position: relative;
+}

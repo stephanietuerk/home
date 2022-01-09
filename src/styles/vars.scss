@@ -24,8 +24,10 @@ $colors: (
 $color-highlight: get($colors, 'highlights.blue');
 $color-highlight-light: get($colors, 'highlights.blue-light');
 $color-dark-primary: get($colors, 'darks.blue');
-$highlight-light: get($colors, 'grays.light-4');
-$highlight-dull: get($colors, 'grays.light-4');
+$color-light-gray-lightest: get($colors, 'grays.light-4');
+$color-light-gray-light: get($colors, 'grays.light-3');
+$color-light-gray-medium: get($colors, 'grays.light-2');
+$color-light-gray-dark: get($colors, 'grays.light-1');
 
 $color-scrollbar: get($colors, 'grays.light-1');
 $color-scrollbar-ie: $color-scrollbar;

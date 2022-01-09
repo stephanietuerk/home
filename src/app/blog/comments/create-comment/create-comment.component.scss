@@ -3,7 +3,7 @@
 .comment-input {
     @extend %sans-regular;
     display: block;
-    background: $highlight-light;
+    background: $color-light-gray-lightest;
     padding: 0.375rem 0.75rem;
     border: none;
     border-bottom: 1px solid $color-dark-primary;

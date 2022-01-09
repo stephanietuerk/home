@@ -2,7 +2,6 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'ff-tisa-sans-web-pro', sans-serif;
     -webkit-font-smoothing: antialiased;
 
     html,
@@ -12,6 +11,7 @@
         font-size: 100%;
         overflow-y: hidden;
         overflow-x: hidden;
+        font-family: 'ff-tisa-sans-web-pro', sans-serif;
     }
 
     body,
@@ -42,6 +42,27 @@
         border: 0;
         background: none;
         cursor: pointer;
+    }
+
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+        padding-inline-start: 0;
+        padding-inline-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-block-start: 0;
+        padding-block-end: 0;
+        min-inline-size: 0px;
+    }
+
+    legend {
+        padding: 0;
+        margin: 0;
+        padding-inline-start: 0;
+        padding-inline-end: 0;
+        border: none;
     }
 }
 

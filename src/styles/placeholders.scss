@@ -164,9 +164,9 @@
 %small-caps-overline {
     @extend %sans-regular;
     @extend %small-caps;
-    letter-spacing: 0.13em;
     font-size: 1.1rem;
     line-height: 1.1rem;
+    letter-spacing: 0.13em;
 }
 
 %instructions {
@@ -291,7 +291,7 @@
     @extend %slab-bold;
     border: 2px solid $color-highlight;
     color: $color-highlight;
-    background: $highlight-light;
+    background: $color-light-gray-lightest;
     transition: all 0.2s;
 
     &:hover {
@@ -301,8 +301,8 @@
     }
 
     &:disabled {
-        background: $highlight-light;
+        background: $color-light-gray-lightest;
         color: rgba($color-highlight, 0.5);
-        border: 2px solid $highlight-light;
+        border: 2px solid $color-light-gray-lightest;
     }
 }

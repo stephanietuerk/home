@@ -5,18 +5,10 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class PerformanceOverviewResource {
+export class ArtHistoryJobsResource {
     constructor(private http: HttpClient) {}
 
-    getClientGroupTableConfig(): Observable<OverviewTableHeader[]> {
-        return this.http.get<OverviewTableHeader[]>(
-            `./assets/configs/performance-overview/client-group-overview-table.config.json`
-        );
-    }
-
-    getMeasureTableConfig(): Observable<OverviewTableHeader[]> {
-        return this.http.get<OverviewTableHeader[]>(
-            `./assets/configs/performance-overview/measure-overview-table.config.json`
-        );
+    getData(): Observable<any> {
+        return this.http.get('assets/artHistoryJobs/aggregated_data.csv', { responseType: 'text' });
     }
 }

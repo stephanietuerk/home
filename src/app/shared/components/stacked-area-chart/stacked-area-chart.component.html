@@ -1,0 +1,41 @@
+<div #el class="stacked-area-chart-container">
+    <svg
+        [attr.width]="width"
+        [attr.height]="height"
+        [attr.viewBox]="'0, 0, ' + width + ', ' + height"
+        attr.style="'max-width: 100%; height: auto; height: intrinsic;'"
+        (touchstart)="onTouchStart($event)"
+        (pointerenter)="onPointerMove($event)"
+        (pointerleave)="onPointerLeave($event)"
+        (pointermove)="onPointerMove($event)"
+    >
+        <g class="chart-g"></g>
+        <g class="tooltip-line" *ngIf="showTooltip" [attr.display]="tooltipDisplay">
+            <line
+                [attr.x1]="snappedCursorX"
+                [attr.x2]="snappedCursorX"
+                [attr.y1]="height - margin.bottom"
+                [attr.y2]="margin.top"
+                stroke="darkgray"
+                stroke-dasharray="2,2"
+                mix-blend-mode="screen"
+            />
+        </g>
+    </svg>
+    <app-stacked-area-tooltip
+        #tooltip
+        *ngIf="showTooltip"
+        class="tooltip"
+        [ngStyle]="{
+            top: getTTAbsolutePosition().top,
+            left: getTTAbsolutePosition().left,
+            display: tooltipDisplay
+        }"
+        [top]="tooltipOffsetFromTop"
+        [left]="tooltipOffsetFromLeft"
+        [xValue]="tooltipXValue"
+        [areas]="tooltipData"
+        [format]="tooltipFormat"
+        [width]="tooltipWidth"
+    ></app-stacked-area-tooltip>
+</div>

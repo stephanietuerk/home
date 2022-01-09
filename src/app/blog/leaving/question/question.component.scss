@@ -20,7 +20,7 @@ $leaving-highlight: $color-highlight;
 
         &.collapse:hover {
             cursor: pointer;
-            background: $highlight-light;
+            background: $color-light-gray-lightest;
             border-left: 1px solid $leaving-highlight;
             border-bottom: 1px solid $leaving-highlight;
 

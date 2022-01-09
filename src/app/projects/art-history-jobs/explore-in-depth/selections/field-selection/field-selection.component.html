@@ -1,0 +1,18 @@
+<p class="selection-section-label">Select fields</p>
+<p class="selection-instructions">Select fields to view in the chart below.</p>
+<p class="selection-instructions">
+    If you disaggregate by either tenure status or job rank, you will only be able to select one field at a time. If all
+    fields are deselected, "All" will be automatically selected.
+</p>
+<div class="checkbox-container">
+    <div class="field-checkbox" *ngFor="let field of fields">
+        <input class="field-checkbox-input" type="checkbox" />
+        <label
+            class="field-checkbox-label"
+            [ngClass]="{ selected: field.selected }"
+            (click)="handleFieldSelection(field.name.full)"
+            [style.--color]="field.color"
+            >{{ field.name.full }}
+        </label>
+    </div>
+</div>

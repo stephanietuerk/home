@@ -1,0 +1,32 @@
+<table class="table-component">
+    <thead>
+        <tr class="header row">
+            <th class="header cell" scope="col" *ngFor="let header of headers">
+                <button
+                    class="header-contents"
+                    [attr.aria-label]="'Click to sort table by ' + header.display"
+                    [ngClass]="getHeaderClasses(header)"
+                    (click)="handleHeaderClick(header)"
+                >
+                    {{ header.display }}
+                    <app-sort-arrows
+                        *ngIf="header.sort.canSort"
+                        [sortDirection]="header.sort.direction"
+                        class="sort-arrows"
+                    ></app-sort-arrows>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        <tr *ngFor="let row of rows; let rowIndex = index" class="data row">
+            <th scope="row" class="data cell" [ngClass]="headers[0].align">{{ row[headers[0].id] }}</th>
+            <ng-container *ngFor="let header of headers.slice(1)">
+                <td *ngIf="!header.formatter" class="data cell" [ngClass]="header.align">{{ row[header.id] }}</td>
+                <td *ngIf="header.formatter" class="data cell" [ngClass]="header.align">
+                    {{ header.formatter(row[header.id]) }}
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

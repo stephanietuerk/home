@@ -1,0 +1,73 @@
+@import 'vars', 'placeholders';
+
+.table-component {
+    $cell-side-padding: $space-3;
+    $cell-vertical-padding: $space-1;
+
+    border-collapse: collapse;
+
+    .header-contents {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        @extend %small-caps-overline;
+        text-transform: uppercase;
+
+        &.left {
+            justify-content: flex-start;
+            white-space: nowrap;
+        }
+
+        &.decimal {
+            justify-content: flex-end;
+        }
+
+        &:not(.sorted) {
+            @extend %sans-medium;
+        }
+
+        &.sorted {
+            @extend %sans-bold;
+        }
+
+        &.sortable {
+            cursor: pointer;
+        }
+    }
+
+    .sort-arrows {
+        padding-left: $space-1;
+
+        .arrow {
+            font-size: 0.9rem;
+        }
+    }
+
+    .cell {
+        padding: $cell-vertical-padding $cell-side-padding;
+
+        &.header {
+            border-bottom: 1px solid $color-light-gray-dark;
+        }
+
+        &.data {
+            @extend %sans-medium;
+        }
+    }
+
+    .tbody .row .cell {
+        border-bottom: 1px solid $color-light-gray-medium;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .decimal {
+        text-align: right;
+    }
+}

@@ -1,5 +1,5 @@
 year,field,is_tt,rank,count
-2011,all,all,all,146.0
+2011,All,all,all,146.0
 2011,African / African Diaspora Art,all,all,3.0
 2011,African / African Diaspora Art,unknown,all,1.0
 2011,African / African Diaspora Art,unknown,unknown,1.0
@@ -578,7 +578,50 @@ year,field,is_tt,rank,count
 2011,Gender Studies,FALSE,postdoc,0.0
 2011,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2011,Gender Studies,FALSE,associate_prof,0.0
-2012,all,all,all,160.0
+2011,All,unknown,all,19.0
+2011,All,unknown,unknown,18.0
+2011,All,unknown,assistant_prof,0.0
+2011,All,unknown,"assistant_prof, associate_prof",1.0
+2011,All,unknown,open_rank,0.0
+2011,All,unknown,lecturer,0.0
+2011,All,unknown,vap,0.0
+2011,All,unknown,full_prof,0.0
+2011,All,unknown,postdoc,0.0
+2011,All,unknown,"associate_prof, full_prof",0.0
+2011,All,unknown,associate_prof,0.0
+2011,All,TRUE,all,105.0
+2011,All,TRUE,unknown,5.0
+2011,All,TRUE,assistant_prof,82.0
+2011,All,TRUE,"assistant_prof, associate_prof",11.0
+2011,All,TRUE,open_rank,6.0
+2011,All,TRUE,lecturer,0.0
+2011,All,TRUE,vap,0.0
+2011,All,TRUE,full_prof,1.0
+2011,All,TRUE,postdoc,0.0
+2011,All,TRUE,"associate_prof, full_prof",0.0
+2011,All,TRUE,associate_prof,0.0
+2011,All,FALSE,all,22.0
+2011,All,FALSE,unknown,1.0
+2011,All,FALSE,assistant_prof,0.0
+2011,All,FALSE,"assistant_prof, associate_prof",1.0
+2011,All,FALSE,open_rank,0.0
+2011,All,FALSE,lecturer,7.0
+2011,All,FALSE,vap,8.0
+2011,All,FALSE,full_prof,0.0
+2011,All,FALSE,postdoc,5.0
+2011,All,FALSE,"associate_prof, full_prof",0.0
+2011,All,FALSE,associate_prof,0.0
+2011,All,all,unknown,24.0
+2011,All,all,assistant_prof,82.0
+2011,All,all,"assistant_prof, associate_prof",13.0
+2011,All,all,open_rank,6.0
+2011,All,all,lecturer,7.0
+2011,All,all,vap,8.0
+2011,All,all,full_prof,1.0
+2011,All,all,postdoc,5.0
+2011,All,all,"associate_prof, full_prof",0.0
+2011,All,all,associate_prof,0.0
+2012,All,all,all,160.0
 2012,African / African Diaspora Art,all,all,4.0
 2012,African / African Diaspora Art,unknown,all,0.5
 2012,African / African Diaspora Art,unknown,unknown,0.5
@@ -1157,7 +1200,50 @@ year,field,is_tt,rank,count
 2012,Gender Studies,FALSE,postdoc,0.0
 2012,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2012,Gender Studies,FALSE,associate_prof,0.0
-2013,all,all,all,145.0
+2012,All,unknown,all,14.0
+2012,All,unknown,unknown,8.0
+2012,All,unknown,assistant_prof,0.0
+2012,All,unknown,"assistant_prof, associate_prof",1.0
+2012,All,unknown,open_rank,5.0
+2012,All,unknown,lecturer,0.0
+2012,All,unknown,vap,0.0
+2012,All,unknown,full_prof,0.0
+2012,All,unknown,postdoc,0.0
+2012,All,unknown,"associate_prof, full_prof",0.0
+2012,All,unknown,associate_prof,0.0
+2012,All,TRUE,all,108.0
+2012,All,TRUE,unknown,0.0
+2012,All,TRUE,assistant_prof,84.0
+2012,All,TRUE,"assistant_prof, associate_prof",12.0
+2012,All,TRUE,open_rank,10.0
+2012,All,TRUE,lecturer,0.0
+2012,All,TRUE,vap,0.0
+2012,All,TRUE,full_prof,1.0
+2012,All,TRUE,postdoc,0.0
+2012,All,TRUE,"associate_prof, full_prof",1.0
+2012,All,TRUE,associate_prof,0.0
+2012,All,FALSE,all,38.0
+2012,All,FALSE,unknown,2.0
+2012,All,FALSE,assistant_prof,0.0
+2012,All,FALSE,"assistant_prof, associate_prof",0.0
+2012,All,FALSE,open_rank,2.0
+2012,All,FALSE,lecturer,13.0
+2012,All,FALSE,vap,11.0
+2012,All,FALSE,full_prof,0.0
+2012,All,FALSE,postdoc,10.0
+2012,All,FALSE,"associate_prof, full_prof",0.0
+2012,All,FALSE,associate_prof,0.0
+2012,All,all,unknown,10.0
+2012,All,all,assistant_prof,84.0
+2012,All,all,"assistant_prof, associate_prof",13.0
+2012,All,all,open_rank,17.0
+2012,All,all,lecturer,13.0
+2012,All,all,vap,11.0
+2012,All,all,full_prof,1.0
+2012,All,all,postdoc,10.0
+2012,All,all,"associate_prof, full_prof",1.0
+2012,All,all,associate_prof,0.0
+2013,All,all,all,145.0
 2013,African / African Diaspora Art,all,all,5.0
 2013,African / African Diaspora Art,unknown,all,0.0
 2013,African / African Diaspora Art,unknown,unknown,0.0
@@ -1736,7 +1822,50 @@ year,field,is_tt,rank,count
 2013,Gender Studies,FALSE,postdoc,0.0
 2013,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2013,Gender Studies,FALSE,associate_prof,0.0
-2014,all,all,all,146.0
+2013,All,unknown,all,2.0
+2013,All,unknown,unknown,1.0
+2013,All,unknown,assistant_prof,0.0
+2013,All,unknown,"assistant_prof, associate_prof",0.0
+2013,All,unknown,open_rank,1.0
+2013,All,unknown,lecturer,0.0
+2013,All,unknown,vap,0.0
+2013,All,unknown,full_prof,0.0
+2013,All,unknown,postdoc,0.0
+2013,All,unknown,"associate_prof, full_prof",0.0
+2013,All,unknown,associate_prof,0.0
+2013,All,TRUE,all,119.0
+2013,All,TRUE,unknown,0.0
+2013,All,TRUE,assistant_prof,96.5
+2013,All,TRUE,"assistant_prof, associate_prof",11.5
+2013,All,TRUE,open_rank,6.0
+2013,All,TRUE,lecturer,0.0
+2013,All,TRUE,vap,0.0
+2013,All,TRUE,full_prof,0.0
+2013,All,TRUE,postdoc,0.0
+2013,All,TRUE,"associate_prof, full_prof",3.0
+2013,All,TRUE,associate_prof,2.0
+2013,All,FALSE,all,24.0
+2013,All,FALSE,unknown,0.0
+2013,All,FALSE,assistant_prof,1.0
+2013,All,FALSE,"assistant_prof, associate_prof",2.0
+2013,All,FALSE,open_rank,1.0
+2013,All,FALSE,lecturer,5.0
+2013,All,FALSE,vap,6.0
+2013,All,FALSE,full_prof,0.0
+2013,All,FALSE,postdoc,9.0
+2013,All,FALSE,"associate_prof, full_prof",0.0
+2013,All,FALSE,associate_prof,0.0
+2013,All,all,unknown,1.0
+2013,All,all,assistant_prof,97.5
+2013,All,all,"assistant_prof, associate_prof",13.5
+2013,All,all,open_rank,8.0
+2013,All,all,lecturer,5.0
+2013,All,all,vap,6.0
+2013,All,all,full_prof,0.0
+2013,All,all,postdoc,9.0
+2013,All,all,"associate_prof, full_prof",3.0
+2013,All,all,associate_prof,2.0
+2014,All,all,all,146.0
 2014,African / African Diaspora Art,all,all,9.0
 2014,African / African Diaspora Art,unknown,all,1.0
 2014,African / African Diaspora Art,unknown,unknown,1.0
@@ -2315,7 +2444,50 @@ year,field,is_tt,rank,count
 2014,Gender Studies,FALSE,postdoc,0.0
 2014,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2014,Gender Studies,FALSE,associate_prof,0.0
-2015,all,all,all,139.0
+2014,All,unknown,all,8.0
+2014,All,unknown,unknown,8.0
+2014,All,unknown,assistant_prof,0.0
+2014,All,unknown,"assistant_prof, associate_prof",0.0
+2014,All,unknown,open_rank,0.0
+2014,All,unknown,lecturer,0.0
+2014,All,unknown,vap,0.0
+2014,All,unknown,full_prof,0.0
+2014,All,unknown,postdoc,0.0
+2014,All,unknown,"associate_prof, full_prof",0.0
+2014,All,unknown,associate_prof,0.0
+2014,All,TRUE,all,97.0
+2014,All,TRUE,unknown,1.0
+2014,All,TRUE,assistant_prof,83.0
+2014,All,TRUE,"assistant_prof, associate_prof",7.0
+2014,All,TRUE,open_rank,4.0
+2014,All,TRUE,lecturer,0.0
+2014,All,TRUE,vap,0.0
+2014,All,TRUE,full_prof,0.0
+2014,All,TRUE,postdoc,0.0
+2014,All,TRUE,"associate_prof, full_prof",2.0
+2014,All,TRUE,associate_prof,0.0
+2014,All,FALSE,all,41.0
+2014,All,FALSE,unknown,1.0
+2014,All,FALSE,assistant_prof,0.0
+2014,All,FALSE,"assistant_prof, associate_prof",0.0
+2014,All,FALSE,open_rank,2.0
+2014,All,FALSE,lecturer,9.0
+2014,All,FALSE,vap,20.0
+2014,All,FALSE,full_prof,0.0
+2014,All,FALSE,postdoc,9.0
+2014,All,FALSE,"associate_prof, full_prof",0.0
+2014,All,FALSE,associate_prof,0.0
+2014,All,all,unknown,10.0
+2014,All,all,assistant_prof,83.0
+2014,All,all,"assistant_prof, associate_prof",7.0
+2014,All,all,open_rank,6.0
+2014,All,all,lecturer,9.0
+2014,All,all,vap,20.0
+2014,All,all,full_prof,0.0
+2014,All,all,postdoc,9.0
+2014,All,all,"associate_prof, full_prof",2.0
+2014,All,all,associate_prof,0.0
+2015,All,all,all,139.0
 2015,African / African Diaspora Art,all,all,2.33
 2015,African / African Diaspora Art,unknown,all,0.0
 2015,African / African Diaspora Art,unknown,unknown,0.0
@@ -2894,7 +3066,50 @@ year,field,is_tt,rank,count
 2015,Gender Studies,FALSE,postdoc,0.0
 2015,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2015,Gender Studies,FALSE,associate_prof,0.0
-2016,all,all,all,127.0
+2015,All,unknown,all,9.0
+2015,All,unknown,unknown,5.0
+2015,All,unknown,assistant_prof,1.0
+2015,All,unknown,"assistant_prof, associate_prof",0.0
+2015,All,unknown,open_rank,0.0
+2015,All,unknown,lecturer,0.0
+2015,All,unknown,vap,0.0
+2015,All,unknown,full_prof,0.0
+2015,All,unknown,postdoc,0.0
+2015,All,unknown,"associate_prof, full_prof",0.0
+2015,All,unknown,associate_prof,3.0
+2015,All,TRUE,all,96.0
+2015,All,TRUE,unknown,1.0
+2015,All,TRUE,assistant_prof,71.0
+2015,All,TRUE,"assistant_prof, associate_prof",9.0
+2015,All,TRUE,open_rank,4.0
+2015,All,TRUE,lecturer,0.0
+2015,All,TRUE,vap,0.0
+2015,All,TRUE,full_prof,4.0
+2015,All,TRUE,postdoc,0.0
+2015,All,TRUE,"associate_prof, full_prof",3.0
+2015,All,TRUE,associate_prof,4.0
+2015,All,FALSE,all,34.0
+2015,All,FALSE,unknown,0.0
+2015,All,FALSE,assistant_prof,1.0
+2015,All,FALSE,"assistant_prof, associate_prof",0.0
+2015,All,FALSE,open_rank,2.0
+2015,All,FALSE,lecturer,10.0
+2015,All,FALSE,vap,11.0
+2015,All,FALSE,full_prof,0.0
+2015,All,FALSE,postdoc,10.0
+2015,All,FALSE,"associate_prof, full_prof",0.0
+2015,All,FALSE,associate_prof,0.0
+2015,All,all,unknown,6.0
+2015,All,all,assistant_prof,73.0
+2015,All,all,"assistant_prof, associate_prof",9.0
+2015,All,all,open_rank,6.0
+2015,All,all,lecturer,10.0
+2015,All,all,vap,11.0
+2015,All,all,full_prof,4.0
+2015,All,all,postdoc,10.0
+2015,All,all,"associate_prof, full_prof",3.0
+2015,All,all,associate_prof,7.0
+2016,All,all,all,127.0
 2016,African / African Diaspora Art,all,all,7.0
 2016,African / African Diaspora Art,unknown,all,0.0
 2016,African / African Diaspora Art,unknown,unknown,0.0
@@ -3473,7 +3688,50 @@ year,field,is_tt,rank,count
 2016,Gender Studies,FALSE,postdoc,0.0
 2016,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2016,Gender Studies,FALSE,associate_prof,0.0
-2017,all,all,all,116.0
+2016,All,unknown,all,4.0
+2016,All,unknown,unknown,2.0
+2016,All,unknown,assistant_prof,0.0
+2016,All,unknown,"assistant_prof, associate_prof",2.0
+2016,All,unknown,open_rank,0.0
+2016,All,unknown,lecturer,0.0
+2016,All,unknown,vap,0.0
+2016,All,unknown,full_prof,0.0
+2016,All,unknown,postdoc,0.0
+2016,All,unknown,"associate_prof, full_prof",0.0
+2016,All,unknown,associate_prof,0.0
+2016,All,TRUE,all,99.0
+2016,All,TRUE,unknown,1.0
+2016,All,TRUE,assistant_prof,79.0
+2016,All,TRUE,"assistant_prof, associate_prof",10.0
+2016,All,TRUE,open_rank,5.0
+2016,All,TRUE,lecturer,0.0
+2016,All,TRUE,vap,0.0
+2016,All,TRUE,full_prof,2.0
+2016,All,TRUE,postdoc,0.0
+2016,All,TRUE,"associate_prof, full_prof",1.0
+2016,All,TRUE,associate_prof,1.0
+2016,All,FALSE,all,24.0
+2016,All,FALSE,unknown,0.0
+2016,All,FALSE,assistant_prof,0.0
+2016,All,FALSE,"assistant_prof, associate_prof",0.0
+2016,All,FALSE,open_rank,0.0
+2016,All,FALSE,lecturer,8.0
+2016,All,FALSE,vap,11.0
+2016,All,FALSE,full_prof,0.0
+2016,All,FALSE,postdoc,5.0
+2016,All,FALSE,"associate_prof, full_prof",0.0
+2016,All,FALSE,associate_prof,0.0
+2016,All,all,unknown,3.0
+2016,All,all,assistant_prof,79.0
+2016,All,all,"assistant_prof, associate_prof",12.0
+2016,All,all,open_rank,5.0
+2016,All,all,lecturer,8.0
+2016,All,all,vap,11.0
+2016,All,all,full_prof,2.0
+2016,All,all,postdoc,5.0
+2016,All,all,"associate_prof, full_prof",1.0
+2016,All,all,associate_prof,1.0
+2017,All,all,all,116.0
 2017,African / African Diaspora Art,all,all,9.33
 2017,African / African Diaspora Art,unknown,all,0.0
 2017,African / African Diaspora Art,unknown,unknown,0.0
@@ -4052,7 +4310,50 @@ year,field,is_tt,rank,count
 2017,Gender Studies,FALSE,postdoc,0.0
 2017,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2017,Gender Studies,FALSE,associate_prof,0.0
-2018,all,all,all,136.0
+2017,All,unknown,all,5.0
+2017,All,unknown,unknown,0.0
+2017,All,unknown,assistant_prof,0.0
+2017,All,unknown,"assistant_prof, associate_prof",0.0
+2017,All,unknown,open_rank,3.0
+2017,All,unknown,lecturer,0.0
+2017,All,unknown,vap,0.0
+2017,All,unknown,full_prof,0.0
+2017,All,unknown,postdoc,0.0
+2017,All,unknown,"associate_prof, full_prof",0.0
+2017,All,unknown,associate_prof,2.0
+2017,All,TRUE,all,93.0
+2017,All,TRUE,unknown,0.0
+2017,All,TRUE,assistant_prof,62.0
+2017,All,TRUE,"assistant_prof, associate_prof",16.0
+2017,All,TRUE,open_rank,9.0
+2017,All,TRUE,lecturer,0.0
+2017,All,TRUE,vap,0.0
+2017,All,TRUE,full_prof,4.0
+2017,All,TRUE,postdoc,0.0
+2017,All,TRUE,"associate_prof, full_prof",1.0
+2017,All,TRUE,associate_prof,1.0
+2017,All,FALSE,all,18.0
+2017,All,FALSE,unknown,0.0
+2017,All,FALSE,assistant_prof,0.0
+2017,All,FALSE,"assistant_prof, associate_prof",0.0
+2017,All,FALSE,open_rank,1.0
+2017,All,FALSE,lecturer,6.0
+2017,All,FALSE,vap,5.0
+2017,All,FALSE,full_prof,0.0
+2017,All,FALSE,postdoc,6.0
+2017,All,FALSE,"associate_prof, full_prof",0.0
+2017,All,FALSE,associate_prof,0.0
+2017,All,all,unknown,0.0
+2017,All,all,assistant_prof,62.0
+2017,All,all,"assistant_prof, associate_prof",16.0
+2017,All,all,open_rank,13.0
+2017,All,all,lecturer,6.0
+2017,All,all,vap,5.0
+2017,All,all,full_prof,4.0
+2017,All,all,postdoc,6.0
+2017,All,all,"associate_prof, full_prof",1.0
+2017,All,all,associate_prof,3.0
+2018,All,all,all,136.0
 2018,African / African Diaspora Art,all,all,3.0
 2018,African / African Diaspora Art,unknown,all,0.0
 2018,African / African Diaspora Art,unknown,unknown,0.0
@@ -4631,7 +4932,50 @@ year,field,is_tt,rank,count
 2018,Gender Studies,FALSE,postdoc,0.0
 2018,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2018,Gender Studies,FALSE,associate_prof,0.0
-2019,all,all,all,109.0
+2018,All,unknown,all,1.0
+2018,All,unknown,unknown,1.0
+2018,All,unknown,assistant_prof,0.0
+2018,All,unknown,"assistant_prof, associate_prof",0.0
+2018,All,unknown,open_rank,0.0
+2018,All,unknown,lecturer,0.0
+2018,All,unknown,vap,0.0
+2018,All,unknown,full_prof,0.0
+2018,All,unknown,postdoc,0.0
+2018,All,unknown,"associate_prof, full_prof",0.0
+2018,All,unknown,associate_prof,0.0
+2018,All,TRUE,all,97.0
+2018,All,TRUE,unknown,2.0
+2018,All,TRUE,assistant_prof,76.0
+2018,All,TRUE,"assistant_prof, associate_prof",6.0
+2018,All,TRUE,open_rank,5.0
+2018,All,TRUE,lecturer,0.0
+2018,All,TRUE,vap,0.0
+2018,All,TRUE,full_prof,3.0
+2018,All,TRUE,postdoc,0.0
+2018,All,TRUE,"associate_prof, full_prof",5.0
+2018,All,TRUE,associate_prof,0.0
+2018,All,FALSE,all,38.0
+2018,All,FALSE,unknown,1.0
+2018,All,FALSE,assistant_prof,1.0
+2018,All,FALSE,"assistant_prof, associate_prof",0.0
+2018,All,FALSE,open_rank,0.0
+2018,All,FALSE,lecturer,9.0
+2018,All,FALSE,vap,17.0
+2018,All,FALSE,full_prof,0.0
+2018,All,FALSE,postdoc,10.0
+2018,All,FALSE,"associate_prof, full_prof",0.0
+2018,All,FALSE,associate_prof,0.0
+2018,All,all,unknown,4.0
+2018,All,all,assistant_prof,77.0
+2018,All,all,"assistant_prof, associate_prof",6.0
+2018,All,all,open_rank,5.0
+2018,All,all,lecturer,9.0
+2018,All,all,vap,17.0
+2018,All,all,full_prof,3.0
+2018,All,all,postdoc,10.0
+2018,All,all,"associate_prof, full_prof",5.0
+2018,All,all,associate_prof,0.0
+2019,All,all,all,109.0
 2019,African / African Diaspora Art,all,all,6.0
 2019,African / African Diaspora Art,unknown,all,0.0
 2019,African / African Diaspora Art,unknown,unknown,0.0
@@ -5210,7 +5554,50 @@ year,field,is_tt,rank,count
 2019,Gender Studies,FALSE,postdoc,0.0
 2019,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2019,Gender Studies,FALSE,associate_prof,0.0
-2020,all,all,all,70.0
+2019,All,unknown,all,2.0
+2019,All,unknown,unknown,1.0
+2019,All,unknown,assistant_prof,1.0
+2019,All,unknown,"assistant_prof, associate_prof",0.0
+2019,All,unknown,open_rank,0.0
+2019,All,unknown,lecturer,0.0
+2019,All,unknown,vap,0.0
+2019,All,unknown,full_prof,0.0
+2019,All,unknown,postdoc,0.0
+2019,All,unknown,"associate_prof, full_prof",0.0
+2019,All,unknown,associate_prof,0.0
+2019,All,TRUE,all,88.0
+2019,All,TRUE,unknown,0.0
+2019,All,TRUE,assistant_prof,68.0
+2019,All,TRUE,"assistant_prof, associate_prof",9.0
+2019,All,TRUE,open_rank,4.0
+2019,All,TRUE,lecturer,1.0
+2019,All,TRUE,vap,0.0
+2019,All,TRUE,full_prof,2.0
+2019,All,TRUE,postdoc,0.0
+2019,All,TRUE,"associate_prof, full_prof",1.0
+2019,All,TRUE,associate_prof,3.0
+2019,All,FALSE,all,19.0
+2019,All,FALSE,unknown,1.0
+2019,All,FALSE,assistant_prof,0.0
+2019,All,FALSE,"assistant_prof, associate_prof",0.0
+2019,All,FALSE,open_rank,0.0
+2019,All,FALSE,lecturer,6.0
+2019,All,FALSE,vap,12.0
+2019,All,FALSE,full_prof,0.0
+2019,All,FALSE,postdoc,0.0
+2019,All,FALSE,"associate_prof, full_prof",0.0
+2019,All,FALSE,associate_prof,0.0
+2019,All,all,unknown,2.0
+2019,All,all,assistant_prof,69.0
+2019,All,all,"assistant_prof, associate_prof",9.0
+2019,All,all,open_rank,4.0
+2019,All,all,lecturer,7.0
+2019,All,all,vap,12.0
+2019,All,all,full_prof,2.0
+2019,All,all,postdoc,0.0
+2019,All,all,"associate_prof, full_prof",1.0
+2019,All,all,associate_prof,3.0
+2020,All,all,all,70.0
 2020,African / African Diaspora Art,all,all,5.0
 2020,African / African Diaspora Art,unknown,all,0.0
 2020,African / African Diaspora Art,unknown,unknown,0.0
@@ -5789,7 +6176,50 @@ year,field,is_tt,rank,count
 2020,Gender Studies,FALSE,postdoc,0.0
 2020,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2020,Gender Studies,FALSE,associate_prof,0.0
-2021,all,all,all,78.0
+2020,All,unknown,all,4.0
+2020,All,unknown,unknown,1.0
+2020,All,unknown,assistant_prof,2.0
+2020,All,unknown,"assistant_prof, associate_prof",1.0
+2020,All,unknown,open_rank,0.0
+2020,All,unknown,lecturer,0.0
+2020,All,unknown,vap,0.0
+2020,All,unknown,full_prof,0.0
+2020,All,unknown,postdoc,0.0
+2020,All,unknown,"associate_prof, full_prof",0.0
+2020,All,unknown,associate_prof,0.0
+2020,All,TRUE,all,47.0
+2020,All,TRUE,unknown,1.0
+2020,All,TRUE,assistant_prof,36.0
+2020,All,TRUE,"assistant_prof, associate_prof",4.0
+2020,All,TRUE,open_rank,4.0
+2020,All,TRUE,lecturer,0.0
+2020,All,TRUE,vap,0.0
+2020,All,TRUE,full_prof,1.0
+2020,All,TRUE,postdoc,0.0
+2020,All,TRUE,"associate_prof, full_prof",1.0
+2020,All,TRUE,associate_prof,0.0
+2020,All,FALSE,all,19.0
+2020,All,FALSE,unknown,0.0
+2020,All,FALSE,assistant_prof,1.0
+2020,All,FALSE,"assistant_prof, associate_prof",0.0
+2020,All,FALSE,open_rank,0.0
+2020,All,FALSE,lecturer,0.0
+2020,All,FALSE,vap,7.0
+2020,All,FALSE,full_prof,0.0
+2020,All,FALSE,postdoc,11.0
+2020,All,FALSE,"associate_prof, full_prof",0.0
+2020,All,FALSE,associate_prof,0.0
+2020,All,all,unknown,2.0
+2020,All,all,assistant_prof,39.0
+2020,All,all,"assistant_prof, associate_prof",5.0
+2020,All,all,open_rank,4.0
+2020,All,all,lecturer,0.0
+2020,All,all,vap,7.0
+2020,All,all,full_prof,1.0
+2020,All,all,postdoc,11.0
+2020,All,all,"associate_prof, full_prof",1.0
+2020,All,all,associate_prof,0.0
+2021,All,all,all,78.0
 2021,African / African Diaspora Art,all,all,15.17
 2021,African / African Diaspora Art,unknown,all,0.0
 2021,African / African Diaspora Art,unknown,unknown,0.0
@@ -6368,3 +6798,46 @@ year,field,is_tt,rank,count
 2021,Gender Studies,FALSE,postdoc,0.0
 2021,Gender Studies,FALSE,"associate_prof, full_prof",0.0
 2021,Gender Studies,FALSE,associate_prof,0.0
+2021,All,unknown,all,0.0
+2021,All,unknown,unknown,0.0
+2021,All,unknown,assistant_prof,0.0
+2021,All,unknown,"assistant_prof, associate_prof",0.0
+2021,All,unknown,open_rank,0.0
+2021,All,unknown,lecturer,0.0
+2021,All,unknown,vap,0.0
+2021,All,unknown,full_prof,0.0
+2021,All,unknown,postdoc,0.0
+2021,All,unknown,"associate_prof, full_prof",0.0
+2021,All,unknown,associate_prof,0.0
+2021,All,TRUE,all,67.0
+2021,All,TRUE,unknown,0.0
+2021,All,TRUE,assistant_prof,51.0
+2021,All,TRUE,"assistant_prof, associate_prof",6.0
+2021,All,TRUE,open_rank,6.0
+2021,All,TRUE,lecturer,0.0
+2021,All,TRUE,vap,0.0
+2021,All,TRUE,full_prof,1.0
+2021,All,TRUE,postdoc,0.0
+2021,All,TRUE,"associate_prof, full_prof",1.0
+2021,All,TRUE,associate_prof,2.0
+2021,All,FALSE,all,11.0
+2021,All,FALSE,unknown,1.0
+2021,All,FALSE,assistant_prof,0.0
+2021,All,FALSE,"assistant_prof, associate_prof",0.0
+2021,All,FALSE,open_rank,0.0
+2021,All,FALSE,lecturer,2.0
+2021,All,FALSE,vap,5.0
+2021,All,FALSE,full_prof,0.0
+2021,All,FALSE,postdoc,3.0
+2021,All,FALSE,"associate_prof, full_prof",0.0
+2021,All,FALSE,associate_prof,0.0
+2021,All,all,unknown,1.0
+2021,All,all,assistant_prof,51.0
+2021,All,all,"assistant_prof, associate_prof",6.0
+2021,All,all,open_rank,6.0
+2021,All,all,lecturer,2.0
+2021,All,all,vap,5.0
+2021,All,all,full_prof,1.0
+2021,All,all,postdoc,3.0
+2021,All,all,"associate_prof, full_prof",1.0
+2021,All,all,associate_prof,2.0

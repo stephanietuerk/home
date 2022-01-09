@@ -1,0 +1,18 @@
+@import 'vars', 'placeholders';
+
+.stacked-area-chart-container .tooltip {
+    .x-axis-value {
+        @extend %sans-medium;
+    }
+    .area-color-square {
+        margin-bottom: $space-1;
+        flex-shrink: 0;
+    }
+
+    .area-name,
+    .area-value {
+        @extend %slab-regular;
+        font-size: 0.85rem;
+        padding: $space-1 0;
+    }
+}

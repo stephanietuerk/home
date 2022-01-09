@@ -1,0 +1,14 @@
+<div
+    class="stacked-area-tooltip-container"
+    [ngStyle]="{ top: top + 'px', left: left + 'px' }"
+    [style.width]="width + 'px'"
+>
+    <p class="x-axis-value">{{ xValue }}</p>
+    <div class="tooltip-row" *ngFor="let area of areas">
+        <div class="area-name-container">
+            <div class="area-color-square" [style.--color]="area.color"></div>
+            <p class="area-name">{{ area.name }}</p>
+        </div>
+        <p class="area-value">{{ formatValue(area.value) }}</p>
+    </div>
+</div>

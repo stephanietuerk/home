@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { artHistoryJobsPath, beyondPath, flipPath } from '../core/constants/routing.constants';
+import { ArtHistoryJobsResolver } from './art-history-jobs/art-history-jobs-resolver';
 import { ArtHistoryJobsComponent } from './art-history-jobs/art-history-jobs.component';
 import { BeyondResolver } from './beyond/beyond-resolver';
 import { BeyondComponent } from './beyond/beyond.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
             {
                 path: artHistoryJobsPath,
                 component: ArtHistoryJobsComponent,
+                resolve: {
+                    data: ArtHistoryJobsResolver,
+                },
             },
             {
                 path: '**',
