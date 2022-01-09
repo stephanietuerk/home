@@ -65,7 +65,7 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
             y: (d) => d.count,
             z: (d) => d.field,
             width: 800,
-            height: 600,
+            height: 614,
             order: this.getStackSortFunction(),
             colorScale: (d) => this.artHistoryJobsService.getColorForField(d),
             yLabel: 'number of jobs posted',

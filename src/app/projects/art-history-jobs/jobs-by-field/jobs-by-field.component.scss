@@ -1,6 +1,10 @@
 @import 'vars', 'placeholders';
 
 .jobs-by-field-container {
+    .charts-container {
+        display: flex;
+    }
+
     .stacked-area-y-axis-label {
         @extend %small-caps-overline;
         line-height: 1.2;
@@ -8,6 +12,7 @@
 
     app-art-history-table .table-component {
         width: 400px;
+        margin-top: 9px;
 
         .header .header-contents {
             font-size: 0.8rem;
