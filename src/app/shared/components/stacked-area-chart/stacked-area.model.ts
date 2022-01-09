@@ -24,12 +24,14 @@ export interface StackedAreaOptions {
     offset?: (series: Series<any, any>, order: Iterable<number>) => void;
     order?: (x: any) => any;
     curve?: (x: any) => any;
+    keyOrder?: string[];
     xFormat?: string;
     yFormat?: string;
-    tooltipFormat?: string;
     yLabel?: string;
     colors?: string[];
     colorScale?: (d: any) => any;
+    showTooltip?: boolean;
+    tooltipFormat?: string;
 }
 
 export class StackedAreaChartOptions {

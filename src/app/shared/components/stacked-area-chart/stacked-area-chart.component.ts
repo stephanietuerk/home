@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
     area,
-    ascending,
     axisBottom,
     axisLeft,
     bisectLeft,
@@ -56,6 +55,7 @@ export class StackedAreaChartComponent implements OnInit {
     @Input() offset?: (series: Series<any, any>, order: Iterable<number>) => void = stackOffsetNone;
     @Input() order?: (x: any) => any = stackOrderNone;
     @Input() curve?: (x: any) => any = curveLinear;
+    @Input() keyOrder?: string[];
     @Input() xFormat?: string;
     @Input() yFormat?: string;
     @Input() yLabel?: string;
@@ -82,7 +82,6 @@ export class StackedAreaChartComponent implements OnInit {
     tooltipXValue: string;
     tooltipData: TooltipArea[];
     tooltipDisplay: string = 'none';
-    stackOrder: string[];
 
     constructor() {}
 
@@ -111,8 +110,10 @@ export class StackedAreaChartComponent implements OnInit {
             (i) => this.Z[i]
         );
 
+        const keys = this.keyOrder ? this.keyOrder.slice().reverse() : zDomainSet;
+
         this.series = stack()
-            .keys(zDomainSet)
+            .keys(keys)
             .value(([x, I]: any, z) => this.Y[I.get(z)])
             .order(this.order)
             .offset(this.offset)(rolledUpData as any)
@@ -228,20 +229,6 @@ export class StackedAreaChartComponent implements OnInit {
             .append('g')
             .attr('transform', `translate(0,${this.height - this.margin.bottom})`)
             .call(this.xAxis);
-
-        this.setStackOrder();
-    }
-
-    setStackOrder(): void {
-        const order = [];
-        this.chart.selectAll('path').each((d, i, nodes) => {
-            order.push({
-                y: nodes[i].getBBox().y,
-                Z: nodes[i].getAttribute('Z'),
-            });
-        });
-        order.sort((a, b) => ascending(a.y, b.y));
-        this.stackOrder = order.map((x) => x.Z).filter((x) => x);
     }
 
     removeChart(): void {
@@ -290,7 +277,7 @@ export class StackedAreaChartComponent implements OnInit {
 
     setTooltipData(): void {
         const dataForXVal = this.data.filter((d) => this.x(d) === this.tooltipXValue);
-        const sortedData = this.stackOrder.map((z) => dataForXVal.find((d) => this.z(d) === z));
+        const sortedData = this.keyOrder.map((z) => dataForXVal.find((d) => this.z(d) === z));
         this.tooltipData = sortedData.map((d) => {
             const obj: TooltipArea = {} as TooltipArea;
             obj.name = this.z(d);

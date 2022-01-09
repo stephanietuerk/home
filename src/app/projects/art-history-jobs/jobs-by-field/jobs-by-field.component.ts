@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { scaleLinear } from 'd3';
 import { cloneDeep } from 'lodash';
+import { Sort } from 'src/app/core/enums/sort.enum';
+import { SortService } from 'src/app/core/services/sort.service';
 import { StackedAreaOptions } from 'src/app/shared/components/stacked-area-chart/stacked-area.model';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
 import { artHistoryFields, tableHeaders } from '../art-history-jobs.constants';
@@ -24,7 +26,7 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
     dataForTable: JobTableDatum[];
     stackedAreaOptions: StackedAreaOptions;
 
-    constructor(private artHistoryJobsService: ArtHistoryJobsService) {}
+    constructor(private artHistoryJobsService: ArtHistoryJobsService, private sortService: SortService) {}
 
     ngOnInit(): void {
         this.setDataForChart();
@@ -47,7 +49,7 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
             (x) => x.isTt === 'all' && x.rank[0] === 'all'
         );
         const fields = artHistoryFields.map((x) => x.name.full);
-        this.dataForTable = fields.map((field) => {
+        const data = fields.map((field) => {
             const data = filteredData.filter((x) => x.field === field);
             const avg = data.reduce((acc, cur) => acc + cur.count, 0) / data.length;
             const currentValue = data.find((x) => x.year === this.currentYear).count;
@@ -57,6 +59,15 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
                 current: currentValue,
             };
         });
+        this.sortTableData(data);
+        this.dataForTable = data;
+    }
+
+    sortTableData(data: JobTableDatum[]): void {
+        const sortHeader = this.tableHeaders.find((h) => h.sort.direction !== null);
+        data.sort((a, b) =>
+            this.sortService.valueCompare(sortHeader.sort.direction === Sort.asc, a[sortHeader.id], b[sortHeader.id])
+        );
     }
 
     setAreaChartOptions(): void {
@@ -66,12 +77,14 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
             z: (d) => d.field,
             width: 800,
             height: 614,
-            order: this.getStackSortFunction(),
-            colorScale: (d) => this.artHistoryJobsService.getColorForField(d),
-            yLabel: 'number of jobs posted',
             xScaleType: scaleLinear,
-            tooltipFormat: '.1f',
+            order: this.getStackSortFunction(),
+            keyOrder: this.getKeyOrder(),
             xFormat: '.0f',
+            yLabel: 'number of jobs posted',
+            colorScale: (d) => this.artHistoryJobsService.getColorForField(d),
+            showTooltip: true,
+            tooltipFormat: '.1f',
         };
     }
 
@@ -98,6 +111,11 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
         };
     }
 
+    getKeyOrder(): string[] {
+        const rows = this.tableComponent ? this.tableComponent.rows : this.dataForTable;
+        return rows.map((x) => x.field).filter((x) => x !== 'All');
+    }
+
     getOrderedFields(rows: JobTableDatum[]): string[] {
         return rows
             .map((x) => x.field)
@@ -106,6 +124,6 @@ export class JobsByFieldComponent implements OnInit, AfterViewInit {
     }
 
     handleTableSort(): void {
-        this.stackedAreaOptions.order = this.getStackSortFunction();
+        this.stackedAreaOptions.keyOrder = this.getKeyOrder();
     }
 }

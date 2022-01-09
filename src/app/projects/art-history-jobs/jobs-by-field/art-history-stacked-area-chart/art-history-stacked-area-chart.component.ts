@@ -16,7 +16,7 @@ export class ArtHistoryStackedAreaChartComponent extends StackedAreaChartCompone
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.order && !changes.order.firstChange) {
+        if (changes.keyOrder && !changes.keyOrder.firstChange) {
             this.updateChartForOrder();
         }
     }

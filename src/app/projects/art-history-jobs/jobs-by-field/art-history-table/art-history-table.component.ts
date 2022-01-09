@@ -20,7 +20,6 @@ export class ArtHistoryTableComponent extends TableComponent implements OnInit {
     ngOnInit(): void {
         super.ngOnInit();
     }
-    s;
 
     sortRows(sort: TableSort, dataProperty: string): void {
         if (sort.direction) {

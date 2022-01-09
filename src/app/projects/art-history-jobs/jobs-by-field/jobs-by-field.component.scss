@@ -3,6 +3,7 @@
 .jobs-by-field-container {
     .charts-container {
         display: flex;
+        overflow-x: auto;
     }
 
     .stacked-area-y-axis-label {
@@ -12,7 +13,7 @@
 
     app-art-history-table .table-component {
         width: 400px;
-        margin-top: 9px;
+        margin-top: 10px;
 
         .header .header-contents {
             font-size: 0.8rem;
