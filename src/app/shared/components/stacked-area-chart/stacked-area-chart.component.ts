@@ -48,10 +48,10 @@ export class StackedAreaChartComponent implements OnInit {
     };
     @Input() xScaleType?: (d: any, r: any) => any = scaleUtc;
     @Input() xDomain?: [any, any];
-    @Input() xRange?: [number, number] = [this.margin.left, this.width - this.margin.right];
+    @Input() xRange?: [number, number];
     @Input() yScaleType?: (d: any, r: any) => any = scaleLinear;
     @Input() yDomain?: [any, any];
-    @Input() yRange?: [number, number] = [this.height - this.margin.bottom, this.margin.top];
+    @Input() yRange?: [number, number];
     @Input() zDomain?: any;
     @Input() offset?: (series: Series<any, any>, order: Iterable<number>) => void = stackOffsetNone;
     @Input() order?: (x: any) => any = stackOrderNone;
@@ -95,6 +95,8 @@ export class StackedAreaChartComponent implements OnInit {
 
     setChartMethods(): void {
         this.setDataArrays();
+        this.setXRange();
+        this.setYRange();
         this.setXDomain();
         this.setZDomain();
 
@@ -134,6 +136,18 @@ export class StackedAreaChartComponent implements OnInit {
         this.X = map(this.data, this.x);
         this.Y = map(this.data, this.y);
         this.Z = map(this.data, this.z);
+    }
+
+    setXRange(): void {
+        if (this.xRange === undefined) {
+            this.xRange = [this.margin.left, this.width - this.margin.right];
+        }
+    }
+
+    setYRange(): void {
+        if (this.yRange === undefined) {
+            this.yRange = [this.height - this.margin.bottom, this.margin.top];
+        }
     }
 
     setXDomain(): void {
@@ -208,9 +222,7 @@ export class StackedAreaChartComponent implements OnInit {
             .join('path')
             .attr('fill', ([{ i }]) => this.colorScale(this.Z[i]))
             .attr('d', this.area)
-            .attr('Z', ([{ i }]) => this.Z[i])
-            .append('title')
-            .text(([{ i }]) => this.Z[i]);
+            .attr('Z', ([{ i }]) => this.Z[i]);
 
         this.chart
             .append('g')
