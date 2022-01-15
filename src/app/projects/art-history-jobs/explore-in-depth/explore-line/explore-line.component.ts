@@ -27,7 +27,6 @@ export class ExploreLineComponent implements OnInit {
                 YearsSelection
             ]) => {
                 this.filterDataForChart(fields, dataType, tenureSelections, rankSelections, yearsSelection);
-                console.log({ fields, dataType, tenureSelections, rankSelections, yearsSelection });
             }
         );
     }

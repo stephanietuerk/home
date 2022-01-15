@@ -1,6 +1,6 @@
 import { formatNumber } from '@angular/common';
 import { cloneDeep } from 'lodash';
-import { ButtonOption } from 'src/app/shared/components/button-group/button-group.model';
+import { InputOption } from 'src/app/shared/components/input-option.model';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
 import { Field } from './models/art-history-config';
 
@@ -173,35 +173,35 @@ export const artHistoryFields: Field[] = [
     },
 ];
 
-const filterOption: ButtonOption = {
+const filterOption: InputOption = {
     label: 'Filter',
     selected: true,
     value: 'filter',
 };
 
-const disaggregateOption: ButtonOption = {
+const disaggregateOption: InputOption = {
     label: 'Disaggregate',
     selected: false,
     value: 'disaggregate',
 };
 
-const percentOption: ButtonOption = {
+const percentOption: InputOption = {
     label: 'Percent of all jobs',
     selected: true,
     value: 'percent',
 };
 
-const numberOption: ButtonOption = {
+const numberOption: InputOption = {
     label: 'Number of jobs',
     selected: false,
     value: 'count',
 };
 
-export const tenureFilterOptions: ButtonOption[] = [cloneDeep(filterOption), cloneDeep(disaggregateOption)];
-export const rankFilterOptions: ButtonOption[] = [cloneDeep(filterOption), cloneDeep(disaggregateOption)];
-export const dataTypeOptions: ButtonOption[] = [numberOption, percentOption];
+export const tenureFilterOptions: InputOption[] = [cloneDeep(filterOption), cloneDeep(disaggregateOption)];
+export const rankFilterOptions: InputOption[] = [cloneDeep(filterOption), cloneDeep(disaggregateOption)];
+export const dataTypeOptions: InputOption[] = [numberOption, percentOption];
 
-export const tenureOptions: ButtonOption[] = [
+export const tenureOptions: InputOption[] = [
     {
         label: 'All',
         selected: true,
@@ -224,7 +224,7 @@ export const tenureOptions: ButtonOption[] = [
     },
 ];
 
-export const rankOptions: ButtonOption[] = [
+export const rankOptions: InputOption[] = [
     {
         label: 'All',
         selected: true,

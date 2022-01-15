@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ButtonOption } from 'src/app/shared/components/button-group/button-group.model';
+import { InputOption } from 'src/app/shared/components/input-option.model';
 import { dataTypeOptions } from '../../../art-history-jobs.constants';
 import { ArtHistoryJobsService } from '../../../art-history-jobs.service';
 
@@ -10,7 +10,7 @@ import { ArtHistoryJobsService } from '../../../art-history-jobs.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class DataTypeSelectionComponent implements OnInit {
-    dataTypeOptions: ButtonOption[] = dataTypeOptions;
+    dataTypeOptions: InputOption[] = dataTypeOptions;
 
     constructor(private service: ArtHistoryJobsService) {}
 

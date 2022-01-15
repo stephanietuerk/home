@@ -4,10 +4,10 @@
         Select whether you would like to see the total number of jobs for each year or the number of jobs for a
         selection as a share of all jobs.
     </p>
-    <app-button-group
+    <app-radio-group
         [options]="dataTypeOptions"
         group="tenure"
         (newSelection)="updateDataTypeSelection($event)"
         class="button-toggle"
-    ></app-button-group>
+    ></app-radio-group>
 </div>

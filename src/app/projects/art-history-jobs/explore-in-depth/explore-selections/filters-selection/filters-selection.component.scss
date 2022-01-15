@@ -1,0 +1,18 @@
+@import 'vars', 'placeholders';
+
+.filters-selection-container {
+    .inputs-container {
+        display: flex;
+    }
+
+    .filters-radio-input {
+        padding-right: $space-4;
+    }
+
+    .radio-input-label.selected,
+    .checkbox-input-label.selected {
+        svg {
+            fill: $color-highlight;
+        }
+    }
+}

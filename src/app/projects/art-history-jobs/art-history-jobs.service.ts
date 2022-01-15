@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import {
     artHistoryFields,
     dataTypeOptions,
@@ -16,11 +16,11 @@ const initSelections: ArtHistorySelections = {
     dataType: dataTypeOptions.find((x) => x.selected).value as 'percent' | 'count',
     tenure: {
         type: tenureFilterOptions.find((x) => x.selected).value as 'filter' | 'disaggregate',
-        selection: [],
+        selection: ['all'],
     },
     rank: {
         type: rankFilterOptions.find((x) => x.selected).value as 'filter' | 'disaggregate',
-        selection: [],
+        selection: ['all'],
     },
     years: {
         start: 2011,
@@ -33,7 +33,7 @@ const initSelections: ArtHistorySelections = {
 })
 export class ArtHistoryJobsService {
     data: JobDatum[];
-    dataForFields: JobDatum[];
+    filteredData: JobDatum[];
     fields$: BehaviorSubject<string[]> = new BehaviorSubject(initSelections.fields);
     fields = this.fields$.asObservable();
     dataType$: BehaviorSubject<string> = new BehaviorSubject(initSelections.dataType);
@@ -44,15 +44,42 @@ export class ArtHistoryJobsService {
     rankSelections = this.rankSelections$.asObservable();
     yearsSelection$: BehaviorSubject<YearsSelection> = new BehaviorSubject(initSelections.years);
     yearsSelection = this.yearsSelection$.asObservable();
-    selections$: BehaviorSubject<ArtHistorySelections> = new BehaviorSubject(initSelections);
-    selections = this.selections$.asObservable();
+    selections: ArtHistorySelections;
 
-    constructor(private resource: ArtHistoryJobsResource) {}
+    constructor(private resource: ArtHistoryJobsResource) {
+        combineLatest([
+            this.fields,
+            this.dataType,
+            this.tenureSelections,
+            this.rankSelections,
+            this.yearsSelection,
+        ]).subscribe(
+            ([fields, dataType, tenureSelections, rankSelections, yearsSelection]: [
+                string[],
+                'percent' | 'count',
+                AttributeSelection,
+                AttributeSelection,
+                YearsSelection
+            ]) => {
+                this.selections = {
+                    fields,
+                    dataType,
+                    tenure: tenureSelections,
+                    rank: rankSelections,
+                    years: yearsSelection,
+                };
+                if (this.data) {
+                    this.filterData();
+                }
+            }
+        );
+    }
 
     getData(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.resource.getData().subscribe((data) => {
                 this.data = this.parseData(data);
+                this.filterData();
                 resolve();
             });
         });
@@ -100,13 +127,7 @@ export class ArtHistoryJobsService {
     }
 
     updateYearsSelections(years: YearsSelection): void {
-        const selections = this.selections$.value;
-        selections.years = years;
-        this.updateSelections(selections);
-    }
-
-    updateSelections(selections: ArtHistorySelections): void {
-        this.selections$.next(selections);
+        this.yearsSelection$.next(years);
     }
 
     getColorForField(field: string): string {
@@ -120,5 +141,35 @@ export class ArtHistoryJobsService {
             array.push(x);
         });
         return data;
+    }
+
+    filterData(): void {
+        // const dataForFields = this.data.filter((x) => this.selections.fields.includes(x.field));
+        // const dataForYears = dataForFields.filter(
+        //     (x) => x.year >= this.selections.years.start && x.year <= this.selections.years.end
+        // );
+        // const dataForTenure = dataForYears.filter((x) => this.selections.tenure.selection.includes(x.isTt));
+        // const dataForRank = dataForTenure.filter((x) => {
+        //     const rank = x.rank.filter((r) => this.selections.rank.selection.includes(r));
+        //     return rank.length > 0;
+        // });
+        this.setLineChartData();
+    }
+
+    setLineChartData(): void {
+        const lineDefs = this.getLineDefs();
+        console.log(lineDefs);
+    }
+
+    getLineDefs(): any[] {
+        const lines = [];
+        for (let field of this.selections.fields) {
+            for (let tt of this.selections.tenure.selection) {
+                for (let rank of this.selections.rank.selection) {
+                    lines.push([field, tt, rank]);
+                }
+            }
+        }
+        return lines;
     }
 }

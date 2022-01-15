@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ButtonGroupComponent } from './components/button-group/button-group.component';
+import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
+import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
+import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 import { RadioInputComponent } from './components/radio-input/radio-input.component';
 import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.component';
 import { StackedAreaChartComponent } from './components/stacked-area-chart/stacked-area-chart.component';
@@ -24,7 +26,7 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         HoverClassOnSiblingsDirective,
         ContentNavbarComponent,
         StylesDisplayComponent,
-        ButtonGroupComponent,
+        RadioGroupComponent,
         RadioInputComponent,
         FormatForIdPipe,
         SafePipe,
@@ -32,6 +34,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         SortArrowsComponent,
         StackedAreaChartComponent,
         StackedAreaTooltipComponent,
+        CheckboxInputComponent,
+        CheckboxGroupComponent,
     ],
     imports: [CommonModule, RouterModule],
     exports: [
@@ -41,13 +45,16 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         HoverClassOnSiblingsDirective,
         ContentNavbarComponent,
         StylesDisplayComponent,
-        ButtonGroupComponent,
+        RadioGroupComponent,
         FormatForIdPipe,
         SafePipe,
         TableComponent,
         SortArrowsComponent,
         StackedAreaChartComponent,
         StackedAreaTooltipComponent,
+        CheckboxInputComponent,
+        RadioInputComponent,
+        CheckboxGroupComponent,
     ],
 })
 export class SharedModule {}

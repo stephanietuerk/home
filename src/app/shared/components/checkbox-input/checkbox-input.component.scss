@@ -2,14 +2,14 @@
 
 $icon-dimension: 16px;
 
-.radio-input-container {
+.checkbox-input-container {
     display: flex;
 
     .hidden-input {
         @extend %hidden-input-element;
     }
 
-    .radio-input-label {
+    .checkbox-input-label {
         display: flex;
         align-items: center;
     }

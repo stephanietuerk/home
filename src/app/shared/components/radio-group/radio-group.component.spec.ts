@@ -1,19 +1,19 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ButtonOption } from 'src/app/core/models/selectors/button-group.model';
-import { ButtonGroupComponent } from './button-group.component';
+import { ButtonOption } from 'src/app/core/models/selectors/input-option.model';
+import { RadioGroupComponent } from './radio-group.component';
 
 describe('ButtonGroupComponent', () => {
-    let component: ButtonGroupComponent;
-    let fixture: ComponentFixture<ButtonGroupComponent>;
+    let component: RadioGroupComponent;
+    let fixture: ComponentFixture<RadioGroupComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            declarations: [ButtonGroupComponent],
+            declarations: [RadioGroupComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ButtonGroupComponent);
+        fixture = TestBed.createComponent(RadioGroupComponent);
         component = fixture.componentInstance;
     });
 

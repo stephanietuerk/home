@@ -10,20 +10,26 @@ import { AttributeSelection, Field } from '../../../models/art-history-config';
 })
 export class FieldSelectionComponent implements OnInit {
     fields: Field[] = artHistoryFields;
+    isDisaggregated: boolean = false;
 
     constructor(public service: ArtHistoryJobsService) {}
 
     ngOnInit(): void {
         this.service.rankSelections.subscribe((rankSelections: AttributeSelection) => {
-            if (rankSelections.type === 'disaggregate') {
-                this.resetToOneField();
-            }
+            this.processAttributeSelection(rankSelections);
         });
         this.service.tenureSelections.subscribe((tenureSelections: AttributeSelection) => {
-            if (tenureSelections.type === 'disaggregate') {
-                this.resetToOneField();
-            }
+            this.processAttributeSelection(tenureSelections);
         });
+    }
+
+    processAttributeSelection(attributeSelection: AttributeSelection): void {
+        if (attributeSelection.type === 'filter') {
+            this.isDisaggregated = false;
+        } else {
+            this.isDisaggregated = true;
+            this.resetToOneField();
+        }
     }
 
     resetToOneField(): void {
@@ -40,6 +46,14 @@ export class FieldSelectionComponent implements OnInit {
     }
 
     handleFieldSelection(fieldToUpdate: string): void {
+        if (this.isDisaggregated) {
+            this.selectNewFieldWhenDisaggregated(fieldToUpdate);
+        } else {
+            this.selectNewField(fieldToUpdate);
+        }
+    }
+
+    selectNewField(fieldToUpdate: string): void {
         let newField = fieldToUpdate;
         const field = this.fields.find((x) => x.name.full === fieldToUpdate);
         field.selected = !field.selected;
@@ -48,5 +62,18 @@ export class FieldSelectionComponent implements OnInit {
             newField = this.fields[0].name.full;
         }
         this.service.updateFields([fieldToUpdate]);
+    }
+
+    selectNewFieldWhenDisaggregated(fieldToUpdate: string): void {
+        this.unselectSelectedFields();
+        this.selectNewField(fieldToUpdate);
+    }
+
+    unselectSelectedFields(): void {
+        const selectedFields = this.fields.filter((x) => x.selected);
+        selectedFields.forEach((field: Field) => {
+            field.selected = false;
+        });
+        this.service.updateFields(selectedFields.map((x) => x.name.full));
     }
 }

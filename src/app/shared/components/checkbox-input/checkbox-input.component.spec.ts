@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ArtHistorySelectionsComponent } from './selections.component';
+import { CheckboxComponent } from './checkbox-input.component';
 
-describe('SelectionsComponent', () => {
-    let component: ArtHistorySelectionsComponent;
-    let fixture: ComponentFixture<ArtHistorySelectionsComponent>;
+describe('CheckboxComponent', () => {
+    let component: CheckboxComponent;
+    let fixture: ComponentFixture<CheckboxComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ArtHistorySelectionsComponent],
+            declarations: [CheckboxComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ArtHistorySelectionsComponent);
+        fixture = TestBed.createComponent(CheckboxComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

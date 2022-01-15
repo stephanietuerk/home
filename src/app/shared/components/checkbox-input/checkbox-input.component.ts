@@ -4,17 +4,17 @@ import { InputOption } from '../input-option.model';
 let nextUniqueId = 0;
 
 @Component({
-    selector: 'app-radio-input',
-    templateUrl: './radio-input.component.html',
-    styleUrls: ['./radio-input.component.scss'],
+    selector: 'app-checkbox-input',
+    templateUrl: './checkbox-input.component.html',
+    styleUrls: ['./checkbox-input.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class RadioInputComponent implements OnInit {
+export class CheckboxInputComponent implements OnInit {
     private _uniqueId = `st-${++nextUniqueId}`;
     @Input() id: string;
     @Input() option: InputOption;
     @Input() group;
-    @Input() isStyledRadio: boolean;
+    @Input() isStyledCheckbox: boolean;
 
     @Output() selection = new EventEmitter();
     uniqueId: string;
@@ -24,7 +24,7 @@ export class RadioInputComponent implements OnInit {
     }
 
     getId(): void {
-        this.uniqueId = `${this.id || this._uniqueId}-radio-input`;
+        this.uniqueId = `${this.id || this._uniqueId}-checkbox-input`;
     }
 
     onClick(): void {
@@ -34,6 +34,6 @@ export class RadioInputComponent implements OnInit {
     }
 
     getIconName(): string {
-        return this.isStyledRadio && this.option.selected ? 'radio-selected' : 'radio-unselected';
+        return this.isStyledCheckbox && this.option.selected ? 'checkbox-selected' : 'checkbox-unselected';
     }
 }

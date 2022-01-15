@@ -1,25 +1,25 @@
-<div class="radio-input-container">
+<div class="checkbox-input-container">
     <input
-        class="radio-input"
-        [ngClass]="{ 'hidden-input': isStyledRadio }"
-        type="radio"
+        (click)="onClick()"
+        class="checkbox-input"
+        [ngClass]="{ 'hidden-input': isStyledCheckbox }"
+        type="checkbox"
         [name]="group"
         [value]="option.label | formatForId"
         [id]="uniqueId"
         [attr.aria-labelledby]="'label-' + uniqueId"
         [checked]="option.selected"
-        (click)="onClick()"
     />
     <label
-        class="radio-input-label"
+        class="checkbox-input-label"
         [ngClass]="{ selected: option.selected }"
         [for]="uniqueId"
         [id]="'label-' + uniqueId"
     >
         <app-svg-icon
-            *ngIf="isStyledRadio"
+            *ngIf="isStyledCheckbox"
             class="icon"
-            [ngClass]="{ 'radio-selected-icon': option.selected, 'radio-unselected-icon': !option.selected }"
+            [ngClass]="{ 'checkbox-selected-icon': option.selected, 'checkbox-unselected-icon': !option.selected }"
             [name]="getIconName()"
         ></app-svg-icon>
         <span class="label-text">{{ option.label }}</span>
