@@ -120,7 +120,6 @@ export class ChartComponent extends UnsubscribeDirective implements OnInit, OnCh
     }
 
     getScaledHeight(): number {
-        console.log('getScaledHeight', this.divRef.nativeElement.offsetHeight);
         return this.chartShouldScale() ? this.divRef.nativeElement.offsetWidth / this.aspectRatio : this.height;
     }
 

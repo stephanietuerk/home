@@ -93,7 +93,6 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
     }
 
     resizeMarks(): void {
-        console.log('resizeMarks');
         if (this.values.x && this.values.y) {
             this.setRanges();
             this.setScaledSpaceProperties();
@@ -141,7 +140,6 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
         this.values.indicies = range(this.values.x.length).filter((i) =>
             new InternSet(this.config.category.domain).has(this.values.category[i])
         );
-        console.log('setValueIndicies', this.values);
     }
 
     initRanges(): void {
@@ -209,7 +207,6 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
             any,
             any
         >;
-
         const data = group(this.values.indicies, (i) => this.values.category[i]);
         this.lines = select(this.linesRef.nativeElement)
             .selectAll('path')
