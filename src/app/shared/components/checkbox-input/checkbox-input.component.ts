@@ -28,9 +28,8 @@ export class CheckboxInputComponent implements OnInit {
     }
 
     onClick(): void {
-        if (!this.option.selected) {
-            this.selection.emit();
-        }
+        this.option.selected = !this.option.selected;
+        this.selection.emit();
     }
 
     getIconName(): string {

@@ -1,0 +1,39 @@
+@import 'vars', 'placeholders';
+
+.tooltip-container {
+    width: 200px;
+}
+
+.tooltip-label {
+    @extend %slab-regular;
+    display: flex;
+    flex-direction: column;
+    line-height: 1rem;
+}
+
+.tooltip-label.category {
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--color);
+    border-bottom: 1px solid var(--color);
+    padding-bottom: $space-1;
+}
+
+.value-label {
+    @extend %sans-medium;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    letter-spacing: 0.08rem;
+}
+
+.values-container {
+    padding-top: $space-2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tooltip-label.y {
+    justify-self: end;
+    align-items: flex-end;
+}

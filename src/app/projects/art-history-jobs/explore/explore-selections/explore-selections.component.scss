@@ -1,0 +1,248 @@
+@use 'sass:color';
+@import 'vars', 'placeholders';
+
+%input-element-label {
+    @extend %slab-medium;
+    display: flex;
+    font-size: 0.85rem;
+    color: $color-highlight;
+}
+
+$svg-icon-color: $color-dark-primary;
+
+.explore-selections-container {
+    // padding-bottom: $space-12;
+    // margin-bottom: 4rem;
+    border-bottom: 1px solid $color-light-gray-medium;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    overflow-y: auto;
+
+    .selection-section {
+        padding-bottom: $space-6;
+    }
+
+    .selection-interface {
+        &.tenure-values,
+        &.rank-values {
+            padding-top: $space-4;
+        }
+    }
+
+    .container-title {
+        @extend %sans-bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        line-height: 1;
+    }
+
+    .selection-title {
+        @extend %sans-bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: $color-highlight;
+        line-height: 1;
+    }
+
+    .selection-instructions {
+        @extend %sans-regular-italic;
+        line-height: 1.3;
+
+        .filter-use-name {
+            font-style: normal;
+            font-weight: 500;
+        }
+    }
+
+    .time-range-slider-component {
+        display: block;
+        padding: 0 $space-4;
+    }
+
+    .checkbox-group-container.fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-auto-rows: 1fr;
+        gap: $space-2;
+        align-items: stretch;
+        align-content: stretch;
+    }
+
+    .radio-group-container.tenure-values,
+    .checkbox-group-container.tenure-values,
+    .radio-group-container.rank-values,
+    .checkbox-group-container.rank-values {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 1fr;
+        row-gap: $space-1;
+    }
+
+    .radio-group-container {
+        &.rank-use,
+        &.data-type,
+        &.tenure-use {
+            display: flex;
+        }
+
+        .radio-input-component.button-style {
+            display: inline-flex;
+
+            .radio-input-label {
+                @extend %slab-medium;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                width: 100px;
+                font-size: 0.85rem;
+                border: 1px solid $color-highlight;
+                padding: $space-2 $space-2 6px $space-2;
+            }
+
+            .radio-input-label.selected {
+                border: 1px solid $color-highlight;
+                background-color: $color-highlight;
+                color: white;
+            }
+
+            .radio-input-label:not(.selected) {
+                border: 1px solid $color-highlight;
+                background-color: white;
+                color: $color-highlight;
+            }
+
+            .radio-input-label:not(.selected):hover {
+                background: $color-light-gray-light;
+            }
+
+            &.tenure-use,
+            &.rank-use {
+                .radio-input-label {
+                    width: 120px;
+                }
+            }
+        }
+
+        .radio-input-component.input-element-style {
+            display: inline-flex;
+
+            .radio-input-container .icon-component {
+                margin: 0 $space-1 0 0;
+
+                svg {
+                    margin: 0;
+                    fill: $svg-icon-color;
+                    width: $space-4;
+                    height: $space-4;
+                }
+            }
+
+            .radio-input-label {
+                @extend %input-element-label;
+
+                &.selected {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .radio-input {
+            @extend %hidden-input-element;
+
+            &:checked + label {
+                cursor: default;
+            }
+        }
+    }
+
+    .checkbox-group-container {
+        .checkbox-input-component.button-style {
+            .checkbox-input-container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .checkbox-input-label {
+                border: 1px solid $color-highlight;
+                border-radius: $space-1;
+                padding: $space-2;
+                @extend %slab-medium;
+                line-height: 1.1;
+                font-size: 0.85rem;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            &.fields {
+                .checkbox-input-label {
+                    padding-bottom: 6px;
+                    line-height: 1.2;
+                    @extend %slab-extrabold;
+                }
+
+                .checkbox-input-label.selected {
+                    border: 1px solid $color-highlight;
+                    background-color: var(--color);
+                    color: white;
+                }
+
+                .checkbox-input-label:not(.selected) {
+                    border: 1px solid $color-highlight;
+                    background-color: white;
+                    color: var(--color);
+                }
+
+                .checkbox-input-label:not(.selected):hover {
+                    background: $color-light-gray-light;
+                }
+            }
+
+            .checkbox-input-label.selected {
+                border: 1px solid $color-highlight;
+                background-color: $color-highlight;
+                color: white;
+            }
+
+            .checkbox-input-label:not(.selected) {
+                border: 1px solid $color-highlight;
+                background-color: white;
+                color: $color-highlight;
+            }
+
+            .checkbox-input-label:not(.selected):hover {
+                background: $color-light-gray-light;
+            }
+        }
+
+        .checkbox-input-component.input-element-style {
+            .checkbox-input-container .icon-component {
+                margin: 0 $space-1 0 0;
+                svg {
+                    margin: 0;
+                    width: $space-4;
+                    height: $space-4;
+                    fill: $svg-icon-color;
+                }
+            }
+
+            .checkbox-input-label {
+                @extend %input-element-label;
+
+                &.selected {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

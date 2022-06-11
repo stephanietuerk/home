@@ -1,4 +1,7 @@
+@use '@angular/cdk';
 @import 'vars', 'placeholders';
+
+@include cdk.a11y-visually-hidden();
 
 * {
     box-sizing: border-box;

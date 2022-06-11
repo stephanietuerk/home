@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ArtHistoryJobsService } from './art-history-jobs.service';
+import { ArtHistoryDataService } from './art-history-data.service';
 
 @Injectable({ providedIn: 'root' })
 export class ArtHistoryJobsResolver implements Resolve<any> {
-    constructor(private service: ArtHistoryJobsService) {}
+    constructor(private service: ArtHistoryDataService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+    resolve(): Observable<any> {
         return this.service.getData();
     }
 }

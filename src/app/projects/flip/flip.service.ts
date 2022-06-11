@@ -53,7 +53,6 @@ export class FlipService {
         this.flipResource.getFlipTopoJson().subscribe(
             (data) => {
                 this.flipTopojson = data;
-                console.log(data);
             },
             (error) => {
                 console.log(error);

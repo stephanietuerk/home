@@ -10,7 +10,7 @@ let nextUniqueId = 0;
     encapsulation: ViewEncapsulation.None,
 })
 export class RadioInputComponent implements OnInit {
-    private _uniqueId = `st-${++nextUniqueId}`;
+    private _uniqueId = `${++nextUniqueId}`;
     @Input() id: string;
     @Input() option: InputOption;
     @Input() group;
@@ -24,7 +24,7 @@ export class RadioInputComponent implements OnInit {
     }
 
     getId(): void {
-        this.uniqueId = `${this.id || this._uniqueId}-radio-input`;
+        this.uniqueId = `st-radio-input-${this.id || this._uniqueId}`;
     }
 
     onClick(): void {

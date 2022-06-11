@@ -117,7 +117,6 @@ export class FlipBar {
     }
 
     initiateDrag(event) {
-        console.log(this);
         this.dragStartVotes = this.isDragged ? this.draggedData : this.data;
         const [x, y] = this.getPointerCoordsOnBar(event);
         const onClickVotes = this.getVotesFromPosition(x, y, this.data);

@@ -1,0 +1,20 @@
+<div class="select-container">
+  <mat-form-field appearance="outline" [ngClass]="textAlign">
+    <mat-select
+      [formControlName]="formControlName"
+      disableOptionCentering
+      [placeholder]="placeholder"
+      [panelClass]="'nc-dash-select-panel' + ' ' + overlayClass"
+      [disableRipple]="true"
+      [ngStyle]="{'text-align': textAlign}"
+    >
+      <mat-option
+        *ngFor="let option of options"
+        [value]="option"
+        [ngStyle]="{'text-align': textAlign}"
+      >
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

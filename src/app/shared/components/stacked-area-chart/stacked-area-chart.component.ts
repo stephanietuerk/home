@@ -157,17 +157,17 @@ export class StackedAreaChartComponent implements OnInit {
         }
     }
 
-    setZDomain(): void {
-        if (this.zDomain === undefined) {
-            this.zDomain = this.Z;
-        }
-    }
-
     setYDomain(series): void {
         if (this.yDomain === undefined) {
             this.yDomain = extent(series.flat(2));
             this.yDomain[0] = Math.floor(this.yDomain[0]);
             this.yDomain[1] = Math.ceil(this.yDomain[1]);
+        }
+    }
+
+    setZDomain(): void {
+        if (this.zDomain === undefined) {
+            this.zDomain = this.Z;
         }
     }
 

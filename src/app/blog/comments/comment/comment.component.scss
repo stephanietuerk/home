@@ -3,7 +3,7 @@
 $frame-color: get($colors, 'grays.light-2');
 
 :host {
-    box-shadow: $subtler-drop-shadow;
+    box-shadow: $drop-shadow-lightest;
 }
 
 .header {

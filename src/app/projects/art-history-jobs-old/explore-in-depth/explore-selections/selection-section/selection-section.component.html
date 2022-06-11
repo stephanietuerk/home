@@ -1,0 +1,13 @@
+<fieldset>
+    <div class="section-header-container">
+        <legend class="section-title-container">
+            <ng-content select="[title]"></ng-content>
+            <div class="section-instructions-container">
+                <ng-content select="[instructions]"></ng-content>
+            </div>
+        </legend>
+    </div>
+    <div class="section-content-container">
+        <ng-content select="[content]"></ng-content>
+    </div>
+</fieldset>

@@ -3,5 +3,9 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.inlineHints.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
-    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#0088ff",
+        "titleBar.inactiveBackground": "#0088ff"
+    }
 }

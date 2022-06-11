@@ -1,35 +1,40 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'src/app/shared/components/charts/charts.module';
+import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ArtHistoryJobsComponent } from './art-history-jobs.component';
-import { ExploreChangeComponent } from './explore-in-depth/explore-change/explore-change.component';
-import { ExploreInDepthComponent } from './explore-in-depth/explore-in-depth.component';
-import { ExploreLineComponent } from './explore-in-depth/explore-line/explore-line.component';
-import { DataTypeSelectionComponent } from './explore-in-depth/explore-selections/data-type-selection/data-type-selection.component';
-import { ExploreSelectionsComponent } from './explore-in-depth/explore-selections/explore-selections.component';
-import { FieldSelectionComponent } from './explore-in-depth/explore-selections/field-selection/field-selection.component';
-import { FiltersSelectionComponent } from './explore-in-depth/explore-selections/filters-selection/filters-selection.component';
-import { YearsSelectionComponent } from './explore-in-depth/explore-selections/years-selection/years-selection.component';
-import { ArtHistoryStackedAreaChartComponent } from './jobs-by-field/art-history-stacked-area-chart/art-history-stacked-area-chart.component';
-import { ArtHistoryTableComponent } from './jobs-by-field/art-history-table/art-history-table.component';
-import { JobsByFieldComponent } from './jobs-by-field/jobs-by-field.component';
+import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
+import { ExploreSelectionsComponent } from './explore/explore-selections/explore-selections.component';
+import { YearsSelectionComponent } from './explore/explore-selections/years-selection/years-selection.component';
+import { ExploreTimeRangeChartComponent } from './explore/explore-time-range-chart/explore-time-range-chart.component';
+import { ExploreComponent } from './explore/explore.component';
+import { SummaryChartComponent } from './summary/summary-chart/summary-chart.component';
+import { SummaryTableComponent } from './summary/summary-table/summary-table.component';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
     declarations: [
         ArtHistoryJobsComponent,
-        JobsByFieldComponent,
-        FieldSelectionComponent,
-        ExploreInDepthComponent,
+        ExploreComponent,
+        SummaryComponent,
+        SummaryTableComponent,
+        SummaryChartComponent,
+        ExploreTimeRangeChartComponent,
+        ExploreChangeChartComponent,
         ExploreSelectionsComponent,
         YearsSelectionComponent,
-        DataTypeSelectionComponent,
-        FiltersSelectionComponent,
-        ExploreLineComponent,
-        ExploreChangeComponent,
-        ArtHistoryTableComponent,
-        ArtHistoryStackedAreaChartComponent,
     ],
-    imports: [CommonModule, SharedModule],
-    exports: [ArtHistoryJobsComponent],
+    imports: [
+        CommonModule,
+        SharedModule,
+        ChartsModule,
+        FormComponentsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PipesModule,
+    ],
 })
 export class ArtHistoryJobsModule {}

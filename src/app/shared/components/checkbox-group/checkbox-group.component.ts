@@ -31,13 +31,8 @@ export class CheckboxGroupComponent implements OnInit {
     }
 
     onSelect(option: InputOption): void {
-        this.toggleOption(option);
         this.emitSelections();
         this.clicked.emit();
-    }
-
-    toggleOption(option: InputOption): void {
-        option.selected = !option.selected;
     }
 
     emitSelections(): void {

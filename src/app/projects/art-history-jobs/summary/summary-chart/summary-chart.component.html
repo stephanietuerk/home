@@ -1,0 +1,24 @@
+<app-chart
+    [scaleChartWithContainer]="false"
+    [margin]="margin"
+    [height]="height"
+    [width]="width"
+    (tooltipData)="updateChartOnNewTooltipData($event)"
+>
+    <svg:g xy-chart-space svg-elements>
+        <svg:g x-axis side="bottom" [config]="xAxisConfig"></svg:g>
+        <svg:g y-axis side="left" [config]="yAxisConfig"></svg:g>
+        <svg:g data-marks-stacked-area [config]="dataMarksConfig"></svg:g>
+    </svg:g>
+    <ng-container tooltip-content>
+        <div [style.--color]="(tooltipData | async)?.color" class="tooltip-container">
+            <p class="tooltip-label category">{{ (tooltipData | async)?.category }}</p>
+            <div class="values-container">
+                <p class="tooltip-label x">
+                    <span class="value-label">Time period</span> {{ (tooltipData | async)?.x }}
+                </p>
+                <p class="tooltip-label y"><span class="value-label">Value</span>{{ (tooltipData | async)?.y }}</p>
+            </div>
+        </div>
+    </ng-container>
+</app-chart>

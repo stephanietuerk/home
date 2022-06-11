@@ -238,14 +238,17 @@
 
 /* ---- ACCESSIBILITY ---- */
 %visuallyhidden {
-    border: 0;
     clip: rect(0 0 0 0);
+    clip-path: inset(50%);
     height: 1px;
+    width: 1px;
     margin: -1px;
     overflow: hidden;
+    position: absolute;
+    left: -30000px;
+    white-space: nowrap;
     padding: 0;
-    position: relative;
-    width: 1px;
+    border: 0;
 }
 
 %focus-ring-style {

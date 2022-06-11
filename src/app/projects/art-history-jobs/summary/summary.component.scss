@@ -1,0 +1,16 @@
+@import 'vars', 'placeholders';
+
+.section-header {
+    @extend %h3;
+    text-align: center;
+    padding-bottom: $space-1;
+}
+
+.charts-container {
+    display: flex;
+    overflow-x: auto;
+}
+
+.table-component {
+    width: 400px;
+}

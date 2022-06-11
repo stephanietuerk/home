@@ -1,0 +1,16 @@
+<div class="summary-container">
+    <h2 class="section-header">All jobs by field, 2011&ndash;2021</h2>
+    <div *ngIf="vm$ | async as vm" class="charts-container">
+        <app-summary-chart
+            [dataMarksConfig]="vm.chartConfig"
+            [xAxisConfig]="vm.xAxisConfig"
+            [yAxisConfig]="vm.yAxisConfig"
+        ></app-summary-chart>
+        <app-summary-table
+            class="table-component"
+            [headers]="tableHeaders"
+            [rows]="vm.tableData"
+            (newSort)="handleTableSort()"
+        ></app-summary-table>
+    </div>
+</div>

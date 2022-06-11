@@ -1,0 +1,17 @@
+@import 'vars', 'placeholders';
+
+.select-container {
+  .mat-form-field-appearance-outline {
+    @extend %mat-form-field-outline;
+    @extend %mat-select-no-arrow;
+    @extend %mat-select-placeholder;
+  }
+}
+
+.nc-dash-select-panel.mat-select-panel {
+  @extend %mat-overlay-panel-open-bottom;
+
+  .mat-option {
+    @extend %mat-option;
+  }
+}

@@ -1,0 +1,31 @@
+@import 'vars', 'placeholders';
+
+:host {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header {
+    @extend %h3;
+    text-align: center;
+    padding-bottom: $space-1;
+}
+
+.data-display-container {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    overflow-y: hidden;
+}
+
+.charts-container {
+    display: flex;
+    width: 100%;
+}
+
+.time-range-chart-component {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
