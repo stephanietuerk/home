@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
+import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
 import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
 import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { StackedAreaConfig } from './stacked-area.model';
@@ -20,6 +20,7 @@ import { StackedAreaConfig } from './stacked-area.model';
 })
 export class StackedAreaComponent extends UnsubscribeDirective implements XYDataMarksComponent, OnChanges, OnInit {
     @Input() config: StackedAreaConfig;
+    ranges: Ranges;
     xScale: (x: any) => number;
     yScale: (x: any) => number;
     values: XYDataMarksValues = new XYDataMarksValues();
@@ -47,7 +48,7 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
     }
 
     subscribeToScales(): void {
-        const subscriptions = [this.xySpace.xScale, this.xySpace.yScale];
+        const subscriptions = [this.xySpace.xScale$, this.xySpace.yScale$];
         combineLatest(subscriptions)
             .pipe(takeUntil(this.unsubscribe))
             .subscribe(([xScale, yScale]): void => {
@@ -56,9 +57,15 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
             });
     }
 
+    subscribeToRanges(): void {
+        this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
+            this.ranges = ranges;
+            this.resizeMarks();
+        });
+    }
+
     resizeMarks(): void {
         if (this.values.x && this.values.y) {
-            this.setRanges();
             this.setScaledSpaceProperties();
             this.setArea();
             this.drawMarks(0);
@@ -72,7 +79,6 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
         this.setValueIndicies();
         this.setSeries();
         this.initYDomain();
-        this.initRanges();
         this.setScaledSpaceProperties();
         this.initCategoryScale();
         this.setArea();
@@ -131,23 +137,9 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
         }
     }
 
-    initRanges(): void {
-        if (this.config.x.range === undefined) {
-            this.config.x.range = this.chart.getXRange();
-        }
-        if (this.config.y.range === undefined) {
-            this.config.y.range = this.chart.getYRange();
-        }
-    }
-
-    setRanges(): void {
-        this.config.x.range = this.chart.getXRange();
-        this.config.y.range = this.chart.getYRange();
-    }
-
     setScaledSpaceProperties(): void {
-        this.xySpace.updateXScale(this.config.x.scaleType(this.config.x.domain, this.config.x.range));
-        this.xySpace.updateYScale(this.config.y.scaleType(this.config.y.domain, this.config.y.range));
+        this.xySpace.updateXScale(this.config.x.scaleType(this.config.x.domain, this.ranges.x));
+        this.xySpace.updateYScale(this.config.y.scaleType(this.config.y.domain, this.ranges.y));
     }
 
     initCategoryScale(): void {

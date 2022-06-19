@@ -14,10 +14,11 @@ import {
 import { InternSet, map, max, min, range, scaleOrdinal, select, Transition } from 'd3';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ChartDataDomainService } from 'src/app/core/services/chart-data-domain.service';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
+import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
 import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
 import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { BarsConfig, BarsTooltipData } from './bars.model';
@@ -36,6 +37,7 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
     @Input() config: BarsConfig;
     @Output() tooltipData = new EventEmitter<BarsTooltipData>();
     values: XYDataMarksValues = new XYDataMarksValues();
+    ranges: Ranges;
     hasBarsWithNegativeValues: boolean;
     bars;
     xScale: (x: any) => number;
@@ -44,7 +46,8 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
     constructor(
         private utilities: UtilitiesService,
         public chart: ChartComponent,
-        public xySpace: XYChartSpaceComponent
+        public xySpace: XYChartSpaceComponent,
+        private dataDomainService: ChartDataDomainService
     ) {
         super();
     }
@@ -56,25 +59,33 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
     }
 
     ngOnInit(): void {
+        this.subscribeToRanges();
         this.subscribeToScales();
+        this.setMethodsFromConfigAndDraw();
+    }
+
+    subscribeToRanges(): void {
+        this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
+            this.setRanges(ranges);
+            if (this.xScale && this.yScale) {
+                this.resizeMarks();
+            }
+        });
+    }
+
+    setRanges(ranges: Ranges): void {
+        this.ranges.x = ranges.x;
+        this.ranges.y = ranges.y;
     }
 
     subscribeToScales(): void {
-        const subscriptions = [this.xySpace.xScale, this.xySpace.yScale];
+        const subscriptions = [this.xySpace.xScale$, this.xySpace.yScale$];
         combineLatest(subscriptions)
             .pipe(takeUntil(this.unsubscribe))
             .subscribe(([xScale, yScale]): void => {
                 this.xScale = xScale;
                 this.yScale = yScale;
             });
-    }
-
-    resizeMarks(): void {
-        if (this.values.x && this.values.y) {
-            this.setRanges();
-            this.setScaledSpaceProperties();
-            this.drawMarks(0);
-        }
     }
 
     setMethodsFromConfigAndDraw(): void {
@@ -84,9 +95,15 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         this.setHasBarsWithNegativeValues();
         this.initQuantitativeDomain();
         this.initCategoryScale();
-        this.initRanges();
         this.setScaledSpaceProperties();
         this.drawMarks(this.config.transitionDuration);
+    }
+
+    resizeMarks(): void {
+        if (this.values.x && this.values.y) {
+            this.setScaledSpaceProperties();
+            this.drawMarks(0);
+        }
     }
 
     setValueArrays(): void {
@@ -124,11 +141,41 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
 
     initQuantitativeDomain(): void {
         if (this.config.quantitative.domain === undefined) {
-            const dataMin = min([min(this.values[this.config.dimensions.quantitative]), 0]);
-            const dataMax = max(this.values[this.config.dimensions.quantitative]);
-            const domainMax = dataMax > 0 ? dataMax : this.config.positivePaddingForAllNegativeValues * dataMin * -1;
+            const dataMin = this.getDataMin();
+            const dataMax = this.getDataMax();
+            const domainMin = this.getDomainMinFromDataMin(dataMin);
+            const domainMax = this.getDomainMaxFromValueExtents(dataMax, dataMin);
             this.config.quantitative.domain = [dataMin, domainMax];
         }
+    }
+
+    getDataMin(): number {
+        return min([min(this.values[this.config.dimensions.quantitative]), 0]);
+    }
+
+    getDataMax(): number {
+        return max(this.values[this.config.dimensions.quantitative]);
+    }
+
+    getDomainMinFromDataMin(minValue: number): number {
+        return minValue < 0
+            ? this.dataDomainService.getPaddedDomainValue(minValue, this.config.quantitative.domainPadding)
+            : minValue;
+    }
+
+    getDomainMaxFromValueExtents(maxValue: number, minValue: number): number {
+        return maxValue > 0
+            ? this.dataDomainService.getPaddedDomainValue(maxValue, this.config.quantitative.domainPadding)
+            : this.getDomainMaxForNegativeMax(minValue);
+    }
+
+    getDomainMaxForNegativeMax(dataMin: number): number {
+        const positiveValue = this.config.positivePaddingForAllNegativeValues * dataMin * -1;
+        const roundedValue = this.dataDomainService.getQuantitativeDomainMaxRoundedUp(
+            positiveValue,
+            this.config.quantitative.domainPadding.sigDigits
+        );
+        return roundedValue;
     }
 
     initCategoryScale(): void {
@@ -137,36 +184,6 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
                 new InternSet(this.config.category.domain),
                 this.config.category.colors
             );
-        }
-    }
-
-    initRanges(): void {
-        if (this.config.ordinal.range === undefined) {
-            this.setOrdinalRange();
-        }
-        if (this.config.quantitative.range === undefined) {
-            this.setQuantitativeRange();
-        }
-    }
-
-    setRanges(): void {
-        this.setOrdinalRange();
-        this.setQuantitativeRange();
-    }
-
-    setOrdinalRange(): void {
-        if (this.config.dimensions.ordinal === 'x') {
-            this.config.ordinal.range = this.chart.getXRange();
-        } else {
-            this.config.ordinal.range = this.chart.getYRange();
-        }
-    }
-
-    setQuantitativeRange(): void {
-        if (this.config.dimensions.ordinal === 'x') {
-            this.config.quantitative.range = this.chart.getYRange();
-        } else {
-            this.config.quantitative.range = this.chart.getXRange();
         }
     }
 
@@ -182,13 +199,17 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
 
     getOrdinalScale(): any {
         return this.config.ordinal
-            .scaleType(this.config.ordinal.domain, this.config.ordinal.range)
+            .scaleType(this.config.ordinal.domain, this.ranges[this.config.dimensions.ordinal])
             .paddingInner(this.config.ordinal.paddingInner)
-            .paddingOuter(this.config.ordinal.paddingOuter);
+            .paddingOuter(this.config.ordinal.paddingOuter)
+            .align(this.config.ordinal.align);
     }
 
     getQuantitativeScale(): any {
-        return this.config.quantitative.scaleType(this.config.quantitative.domain, this.config.quantitative.range);
+        return this.config.quantitative.scaleType(
+            this.config.quantitative.domain,
+            this.ranges[this.config.dimensions.quantitative]
+        );
     }
 
     drawMarks(transitionDuration: number): void {

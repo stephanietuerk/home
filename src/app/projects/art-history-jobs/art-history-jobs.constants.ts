@@ -4,15 +4,15 @@ export const artHistoryFormatSpecifications: ArtHistoryFormatSpecifications = {
     explore: {
         chart: {
             value: {
-                percent: '.1%',
-                integer: ',.0f',
-                decimal: ',.1f',
                 year: '%Y',
+                percent: '.1%',
+                count: ',.0f',
+                decimal: ',.1f',
             },
             tick: {
                 year: '%Y',
                 percent: '.0%',
-                integer: ',.0f',
+                count: ',.0f',
                 decimal: ',.0f',
             },
         },

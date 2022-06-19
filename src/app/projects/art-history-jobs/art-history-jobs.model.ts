@@ -28,7 +28,7 @@ export interface ExploreFormat {
 
 export interface DataValueFormat {
     percent: string;
-    integer: string;
+    count: string;
     decimal: string;
 }
 

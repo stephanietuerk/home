@@ -47,7 +47,6 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     ngOnInit(): void {
         this.vm$ = this.exploreDataService.timeRangeChartData$.pipe(
             map((chartData) => {
-                console.log('chartData', chartData);
                 if (chartData) {
                     return {
                         dataMarksConfig: this.getDataMarksConfig(chartData),
@@ -67,7 +66,6 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         config.y.valueFormat = artHistoryFormatSpecifications.explore.chart.value[chartData.dataType];
         config.category.valueAccessor = (d: any) => d[chartData.categories];
         config.category.colorScale = this.getColorScale(chartData.categories);
-        console.log('dataMarksConfig', config);
         return config;
     }
 
@@ -103,11 +101,14 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     }
 
     updateChartOnNewTooltipData(data: LinesTooltipData): void {
-        // const transformedData: LinesTooltipData = {
-        //     ...data,
-        //     x: data.x.split(' ')[3],
-        // };
-        // this.updateTooltipData(transformedData);
+        if (data) {
+            const { x, ...rest } = data;
+            const transformedData: LinesTooltipData = {
+                ...rest,
+                x: x.split(' ')[3],
+            };
+            this.updateTooltipData(transformedData);
+        }
     }
 
     updateTooltipData(data: LinesTooltipData): void {

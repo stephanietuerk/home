@@ -4,6 +4,7 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    NgZone,
     OnChanges,
     OnInit,
     Output,
@@ -33,7 +34,7 @@ import { takeUntil } from 'rxjs/operators';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
+import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
 import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
 import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { LinesConfig, LinesTooltipData } from './lines.model';
@@ -59,17 +60,27 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
     yScale: (x: any) => number;
     line: (x: any[]) => any;
     values: XYDataMarksValues = new XYDataMarksValues();
-    lines: any;
-    markers: any;
-    hoverDot: any;
     tooltipCurrentlyShown = false;
+    ranges: Ranges;
 
     constructor(
         protected utilities: UtilitiesService,
         public chart: ChartComponent,
-        public xySpace: XYChartSpaceComponent
+        public xySpace: XYChartSpaceComponent,
+        private zone: NgZone
     ) {
         super();
+    }
+
+    get markers(): any {
+        return select(this.markersRef.nativeElement).selectAll('circle');
+    }
+
+    get lines(): any {
+        return select(this.linesRef.nativeElement).selectAll('path');
+    }
+    get hoverDot(): any {
+        return select(this.dotRef.nativeElement).selectAll('circle');
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -79,11 +90,22 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
     }
 
     ngOnInit(): void {
+        this.subscribeToRanges();
         this.subscribeToScales();
+        this.setMethodsFromConfigAndDraw();
+    }
+
+    subscribeToRanges(): void {
+        this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
+            this.ranges = ranges;
+            if (this.xScale && this.yScale) {
+                this.zone.run(() => this.resizeMarks());
+            }
+        });
     }
 
     subscribeToScales(): void {
-        const subscriptions = [this.xySpace.xScale, this.xySpace.yScale];
+        const subscriptions = [this.xySpace.xScale$, this.xySpace.yScale$];
         combineLatest(subscriptions)
             .pipe(takeUntil(this.unsubscribe))
             .subscribe(([xScale, yScale]): void => {
@@ -92,25 +114,21 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
             });
     }
 
-    resizeMarks(): void {
-        if (this.values.x && this.values.y) {
-            this.setRanges();
-            this.setScaledSpaceProperties();
-            this.setLine();
-            this.drawMarks(0);
-        }
-    }
-
     setMethodsFromConfigAndDraw(): void {
         this.setChartTooltipProperty();
         this.setValueArrays();
         this.initDomains();
         this.setValueIndicies();
-        this.initRanges();
         this.setScaledSpaceProperties();
         this.initCategoryScale();
         this.setLine();
         this.drawMarks(this.config.transitionDuration);
+    }
+
+    resizeMarks(): void {
+        this.setScaledSpaceProperties();
+        this.setLine();
+        this.drawMarks(0);
     }
 
     setChartTooltipProperty(): void {
@@ -142,23 +160,11 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
         );
     }
 
-    initRanges(): void {
-        if (this.config.x.range === undefined) {
-            this.config.x.range = this.chart.getXRange();
-        }
-        if (this.config.y.range === undefined) {
-            this.config.y.range = this.chart.getYRange();
-        }
-    }
-
-    setRanges(): void {
-        this.config.x.range = this.chart.getXRange();
-        this.config.y.range = this.chart.getYRange();
-    }
-
     setScaledSpaceProperties(): void {
-        this.xySpace.updateXScale(this.config.x.scaleType(this.config.x.domain, this.config.x.range));
-        this.xySpace.updateYScale(this.config.y.scaleType(this.config.y.domain, this.config.y.range));
+        const x = this.config.x.scaleType(this.config.x.domain, this.ranges.x);
+        const y = this.config.y.scaleType(this.config.y.domain, this.ranges.y);
+        this.xySpace.updateXScale(x);
+        this.xySpace.updateYScale(y);
     }
 
     initCategoryScale(): void {
@@ -207,28 +213,33 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
             any,
             any
         >;
+
         const data = group(this.values.indicies, (i) => this.values.category[i]);
-        this.lines = select(this.linesRef.nativeElement)
+
+        select(this.linesRef.nativeElement)
             .selectAll('path')
-            .data(data, (d: string) => d)
+            .data(data, (d): string => d[0])
             .join(
                 (enter) =>
                     enter
                         .append('path')
-                        .property('key', ([z]) => z)
+                        .attr('key', ([z]) => z)
                         .attr('class', 'line')
                         .attr('stroke', ([z]) => this.config.category.colorScale(z))
                         .attr('d', ([, I]) => this.line(I)),
                 (update) =>
                     update
                         .attr('stroke', ([z]) => this.config.category.colorScale(z))
-                        .call((update) => update.transition(t as any).attr('d', ([, I]) => this.line(I))),
+                        .call((update) => {
+                            console.log('update', update);
+                            return update.transition(t as any).attr('d', ([, I]) => this.line(I));
+                        }),
                 (exit) => exit.remove()
             );
     }
 
     drawHoverDot(): void {
-        this.hoverDot = select(this.dotRef.nativeElement)
+        select(this.dotRef.nativeElement)
             .append('circle')
             .attr('class', 'tooltip-dot')
             .attr('r', 4)
@@ -243,31 +254,35 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
             any,
             any
         >;
-        const markersData = this.values.indicies.map((i) => [this.getMarkerKey(i), i]);
-        this.markers = select(this.markersRef.nativeElement)
+
+        const markersData = this.values.indicies.map((i) => {
+            return { key: this.getMarkerKey(i), index: i };
+        });
+
+        select(this.markersRef.nativeElement)
             .selectAll('circle')
-            .data(markersData, (d: string) => d)
+            .data(markersData, (obj: { key: string; index: number }): string => obj.key)
             .join(
                 (enter) =>
                     enter
                         .append('circle')
                         .filter(this.config.valueIsDefined)
                         .attr('class', 'marker')
+                        .attr('key', (d) => d.key)
                         .style('mix-blend-mode', this.config.mixBlendMode)
-                        .attr('cx', (d) => this.xScale(this.values.x[d[1]]))
-                        .attr('cy', (d) => this.yScale(this.values.y[d[1]]))
+                        .attr('cx', (d) => this.xScale(this.values.x[d.index]))
+                        .attr('cy', (d) => this.yScale(this.values.y[d.index]))
                         .attr('r', this.config.pointMarker.radius)
-                        .attr('fill', (d) => this.config.category.colorScale(this.values.category[d[1]])),
+                        .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index])),
                 (update) =>
-                    update
-                        .attr('fill', (d) => this.config.category.colorScale(this.values.category[d[1]]))
-                        .call((update) =>
-                            update
-                                .filter(this.config.valueIsDefined)
-                                .transition(t as any)
-                                .attr('cx', (d) => this.xScale(this.values.x[d[1]]))
-                                .attr('cy', (d) => this.yScale(this.values.y[d[1]]))
-                        ),
+                    update.call((update) =>
+                        update
+                            .filter(this.config.valueIsDefined)
+                            .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index]))
+                            .transition(t as any)
+                            .attr('cx', (d) => this.xScale(this.values.x[d.index]))
+                            .attr('cy', (d) => this.yScale(this.values.y[d.index]))
+                    ),
                 (exit) => exit.remove()
             );
     }
@@ -313,10 +328,10 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
 
     pointerIsInChartArea(pointerX: number, pointerY: number): boolean {
         return (
-            pointerX > this.config.x.range[0] &&
-            pointerX < this.config.x.range[1] &&
-            pointerY > this.config.y.range[1] &&
-            pointerY < this.config.y.range[0]
+            pointerX > this.ranges.x[0] &&
+            pointerX < this.ranges.x[1] &&
+            pointerY > this.ranges.y[1] &&
+            pointerY < this.ranges.y[0]
         );
     }
 
@@ -383,10 +398,18 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
 
     styleMarkersForHover(closestPointIndex: number): void {
         this.markers
-            .style('fill', (valueIndex) =>
-                this.values.category[closestPointIndex] === this.values.category[valueIndex] ? null : '#ddd'
+            .style('fill', (d: { key: string; index: number }): string => {
+                return this.values.category[closestPointIndex] === this.values.category[d.index] ? null : '#ddd';
+            })
+            .attr('r', (d: { key: string; index: number }): number => {
+                return closestPointIndex === d.index
+                    ? this.config.pointMarker.radius + 1
+                    : this.config.pointMarker.radius;
+            })
+            .filter(
+                (d: { key: string; index: number }): boolean =>
+                    this.values.category[closestPointIndex] === this.values.category[d.index]
             )
-            .filter((valueIndex) => this.values.category[closestPointIndex] === this.values.category[valueIndex])
             .raise();
     }
 
@@ -403,7 +426,10 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
         this.chart.emitTooltipData(null);
         this.lines.style('mix-blend-mode', this.config.mixBlendMode).style('stroke', null);
         if (this.config.pointMarker) {
-            this.markers.style('mix-blend-mode', this.config.mixBlendMode).style('fill', null);
+            this.markers
+                .style('mix-blend-mode', this.config.mixBlendMode)
+                .style('fill', null)
+                .attr('r', this.config.pointMarker.radius);
         } else {
             this.hoverDot.style('display', 'none');
         }

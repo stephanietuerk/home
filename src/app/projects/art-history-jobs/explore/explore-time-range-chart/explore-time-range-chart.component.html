@@ -7,19 +7,17 @@
             <svg:g y-axis side="left" [config]="vm.yAxisConfig"></svg:g>
             <svg:g data-marks-lines [config]="vm.dataMarksConfig"></svg:g>
         </svg:g>
-        <!-- <ng-container tooltip-content>
+        <ng-container tooltip-content>
             <div [style.--color]="(tooltipData | async)?.color" class="tooltip-container">
                 <p class="tooltip-label category">
                     <span class="value-label">{{ vm.lineCategoryLabel }}</span
                     >{{ (tooltipData | async)?.category }}
                 </p>
                 <div class="values-container">
-                    <p class="tooltip-label x">
-                        <span class="value-label">Time period</span> {{ (tooltipData | async)?.x }}
-                    </p>
+                    <p class="tooltip-label x"><span class="value-label">Year</span> {{ (tooltipData | async)?.x }}</p>
                     <p class="tooltip-label y"><span class="value-label">Value</span>{{ (tooltipData | async)?.y }}</p>
                 </div>
             </div>
-        </ng-container> -->
+        </ng-container>
     </app-chart>
 </ng-container>

@@ -1,24 +1,63 @@
-import { Directive, ElementRef, Input, ViewChild } from '@angular/core';
-import { format, select, timeFormat } from 'd3';
+import { AfterContentInit, Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { format, select, timeFormat, TimeInterval, Transition } from 'd3';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
+import { ChartComponent } from '../chart/chart.component';
 import { SvgUtilities } from '../utilities/svg-utilities.class';
 import { SvgWrapOptions } from '../utilities/svg-utilities.model';
 import { AxisConfig, TickWrap } from './axis-config.model';
+import { XYChartSpaceComponent } from './xy-chart-space.component';
 
 @Directive()
-export abstract class XYAxisElement extends UnsubscribeDirective {
+export abstract class XYAxisElement extends UnsubscribeDirective implements OnInit, AfterContentInit {
     @ViewChild('axis', { static: true }) axisRef: ElementRef<SVGGElement>;
     @Input() config: AxisConfig;
+    transitionDuration: number;
+    axisFunction: any;
     axis: any;
     scale: any;
 
-    abstract subscribeToScale(): void;
+    constructor(public chart: ChartComponent, public xySpace: XYChartSpaceComponent) {
+        super();
+    }
 
-    updateAxis(): void {
-        const axisFunction = this.getAxisFunction();
-        this.setAxis(axisFunction);
+    abstract subscribeToScale(): void;
+    abstract setAxisFunction(): any;
+    abstract initNumTicks(): number;
+    abstract setTranslate(): void;
+
+    ngOnInit(): void {
+        this.setAxisFunction();
         this.setTranslate();
-        this.drawAxis();
+        this.subscribeToScale();
+    }
+
+    ngAfterContentInit(): void {
+        this.setTransitionDuration();
+    }
+
+    setTransitionDuration(): void {
+        this.transitionDuration = this.chart.dataMarksComponent.config.transitionDuration;
+    }
+
+    onScaleUpdate(prev: any, curr: any): void {
+        if (curr) {
+            let transitionDuration;
+            if (prev) {
+                const currRange = curr.range();
+                const prevRange = prev.range();
+                transitionDuration =
+                    currRange[0] === prevRange[0] && currRange[1] === prevRange[1] ? this.transitionDuration : 0;
+            } else {
+                transitionDuration = 0;
+            }
+            this.scale = curr;
+            this.updateAxis(transitionDuration);
+        }
+    }
+
+    updateAxis(transitionDuration: number): void {
+        this.setAxis(this.axisFunction);
+        this.drawAxis(transitionDuration);
         this.processAxisFeatures();
     }
 
@@ -26,7 +65,7 @@ export abstract class XYAxisElement extends UnsubscribeDirective {
         if (this.config.dimensionType === 'ordinal') {
             this.axis = axisFunction(this.scale).tickSizeOuter(this.config.tickSizeOuter);
         } else {
-            const numTicks = this.config.numTicks || this.initNumTicks();
+            let numTicks = this.config.numTicks || this.initNumTicks();
             this.axis = axisFunction(this.scale);
             if (this.config.tickValues) {
                 this.axis.tickValues(this.config.tickValues).tickFormat((d) => {
@@ -34,17 +73,39 @@ export abstract class XYAxisElement extends UnsubscribeDirective {
                     return formatter(this.config.tickFormat)(d);
                 });
             } else {
+                numTicks = this.getValidatedNumTicks();
                 this.axis.ticks(numTicks, this.config.tickFormat);
             }
         }
     }
 
-    abstract getAxisFunction(): any;
-    abstract initNumTicks(): number;
-    abstract setTranslate(): void;
+    getValidatedNumTicks(): number | TimeInterval {
+        let numTicks = this.config.numTicks;
+        if (!this.config.numTicks) {
+            numTicks = this.initNumTicks();
+        }
+        if (typeof numTicks === 'number' && this.ticksAreIntegers()) {
+            const [start, end] = this.scale.domain();
+            if (numTicks > end - start) {
+                numTicks = end - start;
+            }
+        }
+        return numTicks;
+    }
 
-    drawAxis(): void {
-        select(this.axisRef.nativeElement).call(this.axis);
+    ticksAreIntegers(): boolean {
+        return this.config.tickFormat.includes('0f');
+    }
+
+    drawAxis(transitionDuration: number): void {
+        const t = select(this.axisRef.nativeElement).transition().duration(transitionDuration) as Transition<
+            SVGSVGElement,
+            any,
+            any,
+            any
+        >;
+
+        select(this.axisRef.nativeElement).transition(t).call(this.axis);
 
         if (this.config.tickLabelFontSize) {
             select(this.axisRef.nativeElement).selectAll('.tick text').attr('font-size', this.config.tickLabelFontSize);

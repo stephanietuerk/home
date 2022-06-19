@@ -21,7 +21,7 @@ export class ArtHistoryDataService {
     parseData(data): JobDatum[] {
         return csvParse(data).map((x) => {
             return {
-                year: new Date(`${x.year}-01-01T00:00:00Z`),
+                year: new Date(`${x.year}-01-01T00:00:00`),
                 field: x.field,
                 isTt: x.is_tt.toLowerCase(),
                 rank: x.rank.split(', '),
