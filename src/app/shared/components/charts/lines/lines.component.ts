@@ -34,9 +34,10 @@ import { takeUntil } from 'rxjs/operators';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
-import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
-import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
+import { Ranges } from '../chart/chart.model';
+import { DATA_MARKS } from '../data-marks/data-marks.token';
+import { XyDataMarks, XyDataMarksValues } from '../data-marks/xy-data-marks.model';
+import { XyChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { LinesConfig, LinesTooltipData } from './lines.model';
 
 @Component({
@@ -46,9 +47,9 @@ import { LinesConfig, LinesTooltipData } from './lines.model';
     styleUrls: ['./lines.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: DATA_MARKS_COMPONENT, useExisting: LinesComponent }],
+    providers: [{ provide: DATA_MARKS, useExisting: LinesComponent }],
 })
-export class LinesComponent extends UnsubscribeDirective implements XYDataMarksComponent, OnChanges, OnInit {
+export class LinesComponent extends UnsubscribeDirective implements XyDataMarks, OnChanges, OnInit {
     @ViewChild('lines', { static: true }) linesRef: ElementRef<SVGSVGElement>;
     @ViewChild('dot', { static: true }) dotRef: ElementRef<SVGSVGElement>;
     @ViewChild('markers', { static: true }) markersRef: ElementRef<SVGSVGElement>;
@@ -59,14 +60,14 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
     xScale: (x: any) => number;
     yScale: (x: any) => number;
     line: (x: any[]) => any;
-    values: XYDataMarksValues = new XYDataMarksValues();
+    values: XyDataMarksValues = new XyDataMarksValues();
     tooltipCurrentlyShown = false;
     ranges: Ranges;
 
     constructor(
         protected utilities: UtilitiesService,
         public chart: ChartComponent,
-        public xySpace: XYChartSpaceComponent,
+        public xySpace: XyChartSpaceComponent,
         private zone: NgZone
     ) {
         super();
@@ -99,7 +100,7 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
         this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
             this.ranges = ranges;
             if (this.xScale && this.yScale) {
-                this.zone.run(() => this.resizeMarks());
+                this.resizeMarks();
             }
         });
     }
@@ -122,7 +123,7 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
         this.setScaledSpaceProperties();
         this.initCategoryScale();
         this.setLine();
-        this.drawMarks(this.config.transitionDuration);
+        this.drawMarks(this.chart.transitionDuration);
     }
 
     resizeMarks(): void {
@@ -163,8 +164,10 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
     setScaledSpaceProperties(): void {
         const x = this.config.x.scaleType(this.config.x.domain, this.ranges.x);
         const y = this.config.y.scaleType(this.config.y.domain, this.ranges.y);
-        this.xySpace.updateXScale(x);
-        this.xySpace.updateYScale(y);
+        this.zone.run(() => {
+            this.xySpace.updateXScale(x);
+            this.xySpace.updateYScale(y);
+        });
     }
 
     initCategoryScale(): void {
@@ -230,10 +233,7 @@ export class LinesComponent extends UnsubscribeDirective implements XYDataMarksC
                 (update) =>
                     update
                         .attr('stroke', ([z]) => this.config.category.colorScale(z))
-                        .call((update) => {
-                            console.log('update', update);
-                            return update.transition(t as any).attr('d', ([, I]) => this.line(I));
-                        }),
+                        .call((update) => update.transition(t as any).attr('d', ([, I]) => this.line(I))),
                 (exit) => exit.remove()
             );
     }

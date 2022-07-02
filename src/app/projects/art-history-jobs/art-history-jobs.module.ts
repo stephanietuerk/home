@@ -14,6 +14,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { SummaryChartComponent } from './summary/summary-chart/summary-chart.component';
 import { SummaryTableComponent } from './summary/summary-table/summary-table.component';
 import { SummaryComponent } from './summary/summary.component';
+import { ExploreSelectionsNavbarComponent } from './explore/explore-selections-navbar/explore-selections-navbar.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { SummaryComponent } from './summary/summary.component';
         ExploreChangeChartComponent,
         ExploreSelectionsComponent,
         YearsSelectionComponent,
+        ExploreSelectionsNavbarComponent,
     ],
     imports: [
         CommonModule,

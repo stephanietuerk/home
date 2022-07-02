@@ -2,13 +2,11 @@ import {
     AfterContentInit,
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
     EventEmitter,
     Input,
-    NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
@@ -18,15 +16,14 @@ import {
     ViewChild,
 } from '@angular/core';
 import { min } from 'd3';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, shareReplay, startWith, throttleTime } from 'rxjs/operators';
 import { ResizeChartHeightPipe } from 'src/app/shared/pipes/resize-chart-height/resize-chart-height.pipe';
-import { DataMarksComponent } from '../data-marks/data-marks.model';
-import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
+import { DataMarks } from '../data-marks/data-marks.model';
+import { DATA_MARKS } from '../data-marks/data-marks.token';
 import { HtmlTooltipConfig } from '../html-tooltip/html-tooltip.model';
-import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
-import { ElementSpacing } from '../xy-chart-space/xy-chart-space.model';
-import { Dimensions, Ranges } from './chart.model';
+import { XyChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
+import { Dimensions, ElementSpacing, Ranges } from './chart.model';
 
 @Component({
     selector: 'app-chart',
@@ -36,15 +33,10 @@ import { Dimensions, Ranges } from './chart.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
-    unlistenPointerMove: () => void;
-    unlistenPointerLeave: () => void;
-    unlistenTouchStart: () => void;
-    unlistenMouseWheel: () => void;
-    unlistenPointerEnter: () => void;
+    @ContentChild(XyChartSpaceComponent) xySpace: XyChartSpaceComponent;
+    @ContentChild(DATA_MARKS) dataMarksComponent: DataMarks;
     @ViewChild('div', { static: true }) divRef: ElementRef<HTMLDivElement>;
     @ViewChild('svg', { static: true }) svgRef: ElementRef<SVGSVGElement>;
-    @ContentChild(XYChartSpaceComponent) xySpace: XYChartSpaceComponent;
-    @ContentChild(DATA_MARKS_COMPONENT) dataMarksComponent: DataMarksComponent;
     @Input() width?: number;
     @Input() height: number;
     @Input() margin: ElementSpacing = {
@@ -54,17 +46,28 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         left: 36,
     };
     @Input() scaleChartWithContainer = true;
+    @Input() transitionDuration?: number = 250;
     @Output() tooltipData = new EventEmitter<any>();
+    unlistenPointerMove: () => void;
+    unlistenPointerLeave: () => void;
+    unlistenTouchStart: () => void;
+    unlistenMouseWheel: () => void;
+    unlistenPointerEnter: () => void;
     aspectRatio: number;
     htmlTooltip: HtmlTooltipConfig = new HtmlTooltipConfig();
-    ranges$: Observable<Ranges>;
     svgDimensions$: Observable<{ width: number; height: number }>;
+    ranges$: Observable<Ranges>;
+    heightSubject = new Subject<number>();
+    height$ = this.heightSubject.asObservable();
 
-    constructor(private renderer: Renderer2, private zone: NgZone, private cd: ChangeDetectorRef) {}
+    constructor(private renderer: Renderer2) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['width'] || changes['height']) {
             this.setAspectRatio();
+        }
+        if (changes['height']) {
+            this.heightSubject.next(this.height);
         }
     }
 
@@ -100,12 +103,16 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
     }
 
     createDimensionObservables() {
-        this.svgDimensions$ = this.getDivWidthResizeObservable().pipe(
+        const divWidth$ = this.getDivWidthResizeObservable().pipe(
             throttleTime(100),
             startWith(min([this.divRef.nativeElement.offsetWidth, this.width])),
-            distinctUntilChanged(),
-            map((divWidth) => this.getSvgDimensionsFromDivWidth(divWidth)),
-            shareReplay()
+            distinctUntilChanged()
+        );
+
+        const height$ = this.height$.pipe(startWith(this.height));
+
+        this.svgDimensions$ = combineLatest([divWidth$, height$]).pipe(
+            map(([divWidth, height]) => this.getSvgDimensionsFromDivWidth(divWidth))
         );
 
         this.ranges$ = this.svgDimensions$.pipe(
@@ -128,9 +135,23 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         });
     }
 
-    getSvgDimensionsFromDivWidth(divWidth: any) {
-        const width = this.getSvgWidthFromDivWidth(divWidth);
-        const height = this.getSvgHeightFromWidth(width);
+    getSvgDimensionsFromHeight(height: number): Dimensions {
+        return {
+            height,
+            width: height * this.aspectRatio,
+        };
+    }
+
+    getSvgDimensionsFromWidth(width: number): Dimensions {
+        return {
+            height: width / this.aspectRatio,
+            width,
+        };
+    }
+
+    getSvgDimensionsFromDivWidth(roWidth: any): Dimensions {
+        const width = this.getSvgWidthFromDivWidth(roWidth);
+        const height = this.getSvgHeightFromDivWidth(width);
         return { width, height };
     }
 
@@ -138,8 +159,8 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         return !this.scaleChartWithContainer ? this.width : divWidth;
     }
 
-    getSvgHeightFromWidth(width: number): number {
-        return !this.chartShouldScale() ? this.height : width / this.aspectRatio;
+    getSvgHeightFromDivWidth(width: number): number {
+        return !this.chartShouldScaleWidth() ? this.height : width / this.aspectRatio;
     }
 
     getRangesFromSvgDimensions(dimensions: Dimensions): Ranges {
@@ -148,7 +169,7 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         return { x: xRange, y: yRange };
     }
 
-    chartShouldScale(): boolean {
+    chartShouldScaleWidth(): boolean {
         return this.scaleChartWithContainer && this.divRef.nativeElement.offsetWidth <= this.width;
     }
 
@@ -185,9 +206,6 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         this.unlistenPointerMove = this.renderer.listen(el, 'pointermove', (event) => {
             this.dataMarksComponent.onPointerMove(event);
         });
-        // this.zone.runOutsideAngular(() => {
-        //     // run outside angular to prevent CD on every mousemove
-        // });
     }
 
     private setPointerLeaveListener(el: Element) {

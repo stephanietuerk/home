@@ -5,9 +5,10 @@ import { takeUntil } from 'rxjs/operators';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
-import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
-import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
+import { Ranges } from '../chart/chart.model';
+import { DATA_MARKS } from '../data-marks/data-marks.token';
+import { XyDataMarks, XyDataMarksValues } from '../data-marks/xy-data-marks.model';
+import { XyChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { StackedAreaConfig } from './stacked-area.model';
 
 @Component({
@@ -16,14 +17,14 @@ import { StackedAreaConfig } from './stacked-area.model';
     templateUrl: './stacked-area.component.html',
     styleUrls: ['./stacked-area.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: DATA_MARKS_COMPONENT, useExisting: StackedAreaComponent }],
+    providers: [{ provide: DATA_MARKS, useExisting: StackedAreaComponent }],
 })
-export class StackedAreaComponent extends UnsubscribeDirective implements XYDataMarksComponent, OnChanges, OnInit {
+export class StackedAreaComponent extends UnsubscribeDirective implements XyDataMarks, OnChanges, OnInit {
     @Input() config: StackedAreaConfig;
+    values: XyDataMarksValues = new XyDataMarksValues();
     ranges: Ranges;
-    xScale: (x: any) => number;
-    yScale: (x: any) => number;
-    values: XYDataMarksValues = new XYDataMarksValues();
+    xScale: (d: any) => any;
+    yScale: (d: any) => any;
     series: any;
     area: any;
     areas: any;
@@ -32,7 +33,7 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
         private areasRef: ElementRef<SVGSVGElement>,
         protected utilities: UtilitiesService,
         public chart: ChartComponent,
-        public xySpace: XYChartSpaceComponent
+        public xySpace: XyChartSpaceComponent
     ) {
         super();
     }
@@ -44,7 +45,16 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
     }
 
     ngOnInit(): void {
+        this.subscribeToRanges();
         this.subscribeToScales();
+        this.setMethodsFromConfigAndDraw();
+    }
+
+    subscribeToRanges(): void {
+        this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
+            this.ranges = ranges;
+            this.resizeMarks();
+        });
     }
 
     subscribeToScales(): void {
@@ -57,21 +67,6 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
             });
     }
 
-    subscribeToRanges(): void {
-        this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
-            this.ranges = ranges;
-            this.resizeMarks();
-        });
-    }
-
-    resizeMarks(): void {
-        if (this.values.x && this.values.y) {
-            this.setScaledSpaceProperties();
-            this.setArea();
-            this.drawMarks(0);
-        }
-    }
-
     setMethodsFromConfigAndDraw(): void {
         this.setChartTooltipProperty();
         this.setValueArrays();
@@ -82,7 +77,15 @@ export class StackedAreaComponent extends UnsubscribeDirective implements XYData
         this.setScaledSpaceProperties();
         this.initCategoryScale();
         this.setArea();
-        this.drawMarks(this.config.transitionDuration);
+        this.drawMarks(this.chart.transitionDuration);
+    }
+
+    resizeMarks(): void {
+        if (this.values.x && this.values.y) {
+            this.setScaledSpaceProperties();
+            this.setArea();
+            this.drawMarks(0);
+        }
     }
 
     setChartTooltipProperty(): void {

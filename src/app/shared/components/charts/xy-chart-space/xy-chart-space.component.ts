@@ -2,22 +2,22 @@ import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: '[xy-chart-space]',
-    templateUrl: './xy-chart-space.component.html',
-    styleUrls: ['./xy-chart-space.component.scss'],
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: '[xy-chart-space]',
+  templateUrl: './xy-chart-space.component.html',
+  styleUrls: ['./xy-chart-space.component.scss'],
 })
-export class XYChartSpaceComponent {
-    private xScale: BehaviorSubject<any> = new BehaviorSubject(null);
-    xScale$ = this.xScale.asObservable();
-    private yScale: BehaviorSubject<any> = new BehaviorSubject(null);
-    yScale$ = this.yScale.asObservable();
+export class XyChartSpaceComponent {
+  private xScale: BehaviorSubject<any> = new BehaviorSubject(null);
+  xScale$ = this.xScale.asObservable();
+  private yScale: BehaviorSubject<any> = new BehaviorSubject(null);
+  yScale$ = this.yScale.asObservable();
 
-    updateXScale(scale: any): void {
-        this.xScale.next(scale);
-    }
+  updateXScale(scale: any): void {
+    this.xScale.next(scale);
+  }
 
-    updateYScale(scale: any): void {
-        this.yScale.next(scale);
-    }
+  updateYScale(scale: any): void {
+    this.yScale.next(scale);
+  }
 }

@@ -22,7 +22,7 @@ export class ArtHistoryDataService {
         return csvParse(data).map((x) => {
             return {
                 year: new Date(`${x.year}-01-01T00:00:00`),
-                field: x.field,
+                field: x.field === 'all' ? 'All' : x.field,
                 isTt: x.is_tt.toLowerCase(),
                 rank: x.rank.split(', '),
                 count: +x.count,

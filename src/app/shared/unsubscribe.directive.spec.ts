@@ -1,4 +1,4 @@
-import { UnsubscribeDirectiveStub } from '../testing/services/classes/unsubscribe.directive.stub';
+import { UnsubscribeDirectiveStub } from '../testing/classes/unsubscribe.directive.stub';
 
 describe('the Subscription abstract class', () => {
     let directive: UnsubscribeDirectiveStub;

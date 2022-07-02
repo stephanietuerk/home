@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LineChartComponent } from './components/charts/line-chart/line-chart.component';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
 import { ContentNavbarComponent } from './components/content-navbar/content-navbar.component';
@@ -34,7 +33,6 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
         StackedAreaTooltipComponent,
         CheckboxInputComponent,
         CheckboxGroupComponent,
-        LineChartComponent,
     ],
     imports: [CommonModule, RouterModule, PipesModule],
     exports: [
@@ -52,7 +50,6 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
         CheckboxInputComponent,
         RadioInputComponent,
         CheckboxGroupComponent,
-        LineChartComponent,
     ],
 })
 export class SharedModule {}

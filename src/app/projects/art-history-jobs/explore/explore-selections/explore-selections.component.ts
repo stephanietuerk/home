@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { isEqual } from 'lodash';
 import { Subject } from 'rxjs';
@@ -28,7 +20,6 @@ import { ExploreFormSelections, ExploreSelections, FilterType, ValueType } from 
 })
 export class ExploreSelectionsComponent extends UnsubscribeDirective implements OnInit {
     @Input() yearsRange: [number, number];
-    @Output() selectionChange = new EventEmitter<ExploreSelections>();
     FormArray = FormArray;
     FormControl = FormControl;
     form: FormGroup;
@@ -61,7 +52,7 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
 
     constructor(private formService: ExploreSelectionsFormService, private dataService: ExploreDataService) {
         super();
-        this.debouncer.pipe(debounceTime(100)).subscribe((x) => this.dataService.updateSelections(x));
+        this.debouncer.pipe(debounceTime(200)).subscribe((x) => this.dataService.updateSelections(x));
     }
 
     ngOnInit(): void {
@@ -265,10 +256,7 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
     }
 
     updateTenureDisaggValues(): void {
-        const currentFilterValue = this.form.value.tenureFilterValue;
-        const newDisaggValues = currentFilterValue
-            ? this.tenureValueOptions.map((x) => x.value === currentFilterValue)
-            : this.tenureValueOptions.map((x) => x.selected);
+        const newDisaggValues = this.tenureValueOptions.map((x) => (x.value === 'all' ? false : true));
         this.tenureDisaggValues.setValue(newDisaggValues);
     }
 
@@ -279,10 +267,7 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
     }
 
     updateRankDisaggValues(): void {
-        const currentFilterValue = this.form.value.rankFilterValue;
-        const newDisaggValues = currentFilterValue
-            ? this.rankValueOptions.map((x) => x.value === currentFilterValue)
-            : this.rankValueOptions.map((x) => x.selected);
+        const newDisaggValues = this.rankValueOptions.map((x) => (x.value === 'all' ? false : true));
         this.rankDisaggValues.setValue(newDisaggValues);
     }
 

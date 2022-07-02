@@ -4,6 +4,7 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    NgZone,
     OnChanges,
     OnInit,
     Output,
@@ -11,16 +12,17 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
-import { InternSet, map, max, min, range, scaleOrdinal, select, Transition } from 'd3';
+import { format, InternSet, map, max, min, range, scaleOrdinal, select, Transition } from 'd3';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChartDataDomainService } from 'src/app/core/services/chart-data-domain.service';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
-import { Ranges, XYDataMarksComponent, XYDataMarksValues } from '../data-marks/data-marks.model';
-import { DATA_MARKS_COMPONENT } from '../data-marks/data-marks.token';
-import { XYChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
+import { Ranges } from '../chart/chart.model';
+import { DATA_MARKS } from '../data-marks/data-marks.token';
+import { XyDataMarks, XyDataMarksValues } from '../data-marks/xy-data-marks.model';
+import { XyChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
 import { BarsConfig, BarsTooltipData } from './bars.model';
 
 @Component({
@@ -29,25 +31,27 @@ import { BarsConfig, BarsTooltipData } from './bars.model';
     templateUrl: './bars.component.html',
     styleUrls: ['./bars.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [{ provide: DATA_MARKS_COMPONENT, useExisting: BarsComponent }],
+    providers: [{ provide: DATA_MARKS, useExisting: BarsComponent }],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BarsComponent extends UnsubscribeDirective implements XYDataMarksComponent, OnChanges, OnInit {
+export class BarsComponent extends UnsubscribeDirective implements XyDataMarks, OnChanges, OnInit {
     @ViewChild('bars', { static: true }) barsRef: ElementRef<SVGSVGElement>;
     @Input() config: BarsConfig;
     @Output() tooltipData = new EventEmitter<BarsTooltipData>();
-    values: XYDataMarksValues = new XYDataMarksValues();
+    values: XyDataMarksValues = new XyDataMarksValues();
     ranges: Ranges;
+    xScale: (d: any) => any;
+    yScale: (d: any) => any;
     hasBarsWithNegativeValues: boolean;
-    bars;
-    xScale: (x: any) => number;
-    yScale: (x: any) => number;
+    bars: any;
+    barsKeyFunction: (i: number) => string;
 
     constructor(
         private utilities: UtilitiesService,
         public chart: ChartComponent,
-        public xySpace: XYChartSpaceComponent,
-        private dataDomainService: ChartDataDomainService
+        public xySpace: XyChartSpaceComponent,
+        private dataDomainService: ChartDataDomainService,
+        private zone: NgZone
     ) {
         super();
     }
@@ -66,16 +70,11 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
 
     subscribeToRanges(): void {
         this.chart.ranges$.pipe(takeUntil(this.unsubscribe)).subscribe((ranges) => {
-            this.setRanges(ranges);
+            this.ranges = ranges;
             if (this.xScale && this.yScale) {
                 this.resizeMarks();
             }
         });
-    }
-
-    setRanges(ranges: Ranges): void {
-        this.ranges.x = ranges.x;
-        this.ranges.y = ranges.y;
     }
 
     subscribeToScales(): void {
@@ -96,14 +95,13 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         this.initQuantitativeDomain();
         this.initCategoryScale();
         this.setScaledSpaceProperties();
-        this.drawMarks(this.config.transitionDuration);
+        this.setBarsKeyFunction();
+        this.drawMarks(this.chart.transitionDuration);
     }
 
     resizeMarks(): void {
-        if (this.values.x && this.values.y) {
-            this.setScaledSpaceProperties();
-            this.drawMarks(0);
-        }
+        this.setScaledSpaceProperties();
+        this.drawMarks(0);
     }
 
     setValueArrays(): void {
@@ -188,13 +186,15 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
     }
 
     setScaledSpaceProperties(): void {
-        if (this.config.dimensions.ordinal === 'x') {
-            this.xySpace.updateXScale(this.getOrdinalScale());
-            this.xySpace.updateYScale(this.getQuantitativeScale());
-        } else {
-            this.xySpace.updateXScale(this.getQuantitativeScale());
-            this.xySpace.updateYScale(this.getOrdinalScale());
-        }
+        this.zone.run(() => {
+            if (this.config.dimensions.ordinal === 'x') {
+                this.xySpace.updateXScale(this.getOrdinalScale());
+                this.xySpace.updateYScale(this.getQuantitativeScale());
+            } else {
+                this.xySpace.updateXScale(this.getQuantitativeScale());
+                this.xySpace.updateYScale(this.getOrdinalScale());
+            }
+        });
     }
 
     getOrdinalScale(): any {
@@ -212,6 +212,10 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         );
     }
 
+    setBarsKeyFunction(): void {
+        this.barsKeyFunction = (i: number): string => `${this.values[this.config.dimensions.ordinal][i]}`;
+    }
+
     drawMarks(transitionDuration: number): void {
         this.drawBars(transitionDuration);
     }
@@ -225,35 +229,96 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         >;
 
         this.bars = select(this.barsRef.nativeElement)
-            .selectAll('rect')
-            .data(this.values.indicies, (i: number) => this.values[this.config.dimensions.ordinal][i])
+            .selectAll('.bar-group')
+            .data(this.values.indicies, this.barsKeyFunction)
+            .join(
+                (enter) =>
+                    enter
+                        .append('g')
+                        .attr('class', 'bar-group')
+                        .attr('transform', (i) => {
+                            const x = this.getBarX(i);
+                            const y = this.getBarY(i);
+                            return `translate(${x},${y})`;
+                        }),
+                (update) =>
+                    update.call((update) =>
+                        update.transition(t as any).attr('transform', (i) => {
+                            const x = this.getBarX(i);
+                            const y = this.getBarY(i);
+                            return `translate(${x},${y})`;
+                        })
+                    ),
+                (exit) => exit.remove()
+            );
+
+        this.bars
+            .selectAll('.bar')
+            .data((i: number) => [i])
             .join(
                 (enter) =>
                     enter
                         .append('rect')
+                        .attr('class', 'bar')
                         .property('key', (i) => this.values[this.config.dimensions.ordinal][i])
-                        .attr('fill', (i) => this.getBarColor(i))
-                        .attr('x', (i) => this.getBarX(i))
-                        .attr('y', (i) => this.getBarY(i))
-                        .attr('width', (i) => this.getBarWidth(i))
-                        .attr('height', (i) => this.getBarHeight(i)),
+                        .attr('fill', (i) => this.getBarColor(i as number))
+                        .attr('width', (i) => this.getBarWidth(i as number))
+                        .attr('height', (i) => this.getBarHeight(i as number)),
                 (update) =>
                     update.call((update) =>
                         update
                             .transition(t as any)
-                            .attr('x', (i) => this.getBarX(i))
-                            .attr('y', (i) => this.getBarY(i))
-                            .attr('width', (i) => this.getBarWidth(i))
-                            .attr('height', (i) => this.getBarHeight(i))
+                            .attr('width', (i) => this.getBarWidth(i as number))
+                            .attr('height', (i) => this.getBarHeight(i as number))
                     ),
-                (exit) =>
-                    exit // TODO: fancy exit needs to be tested with actual/any data -- don't think it will work for both axes as is/copied from D3 example
-                        .transition(t as any)
-                        .delay((_, i) => i * 20)
-                        .attr('y', this.yScale(0))
-                        .attr('height', 0)
-                        .remove()
+                (exit) => exit.remove()
             );
+    }
+
+    drawBarLabels(transitionDuration): void {
+        const t = select(this.chart.svgRef.nativeElement).transition().duration(transitionDuration) as Transition<
+            SVGSVGElement,
+            any,
+            any,
+            any
+        >;
+
+        this.bars
+            .selectAll('text')
+            .data((i: number) => [i])
+            .join(
+                (enter) =>
+                    enter
+                        .append('text')
+                        .attr('class', 'bar-label')
+                        .text((i) => this.getBarLabelText(i))
+                        .style('fill', (i) => this.getBarLabelColor(i))
+                        .attr('x', (i) => this.getBarLabelX(i))
+                        .attr('y', (i) => this.getBarLabelY(i)),
+                (update) =>
+                    update.call((update) =>
+                        update
+                            .text((i) => this.getBarLabelText(i))
+                            .style('fill', (i) => this.getBarLabelColor(i))
+                            .transition(t as any)
+                            .attr('x', (i) => this.getBarLabelX(i))
+                            .attr('y', (i) => this.getBarLabelY(i))
+                    ),
+                (exit) => exit.remove()
+            );
+    }
+
+    getBarLabelText(i: number): string {
+        const value = this.values[this.config.dimensions.quantitative][i];
+        if (value === null || value === undefined) {
+            return this.config.labels.noValueString;
+        } else {
+            return format(this.config.quantitative.valueFormat)(value);
+        }
+    }
+
+    getBarLabelColor(i: number): string {
+        return this.config.labels.color ?? this.getBarColor(i);
     }
 
     getBarColor(i: number): string {
@@ -296,6 +361,18 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         }
     }
 
+    getBarLabelX(i: number): number {
+        if (this.config.dimensions.ordinal === 'x') {
+            return this.getBarWidthOrdinal(i) / 2;
+        } else {
+            let barWidth = this.getBarWidthQuantitative(i);
+            if (!barWidth || isNaN(barWidth)) {
+                barWidth = 0;
+            }
+            return barWidth + this.config.labels.offset;
+        }
+    }
+
     getBarWidthOrdinal(i: number): number {
         return (this.xScale as any).bandwidth();
     }
@@ -313,6 +390,18 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         }
     }
 
+    getBarLabelY(i: number): number {
+        if (this.config.dimensions.ordinal === 'x') {
+            let barHeight = this.getBarHeightQuantitative(i);
+            if (isNaN(barHeight)) {
+                barHeight = 0;
+            }
+            return barHeight + this.config.labels.offset;
+        } else {
+            return this.getBarHeightOrdinal(i) / 2;
+        }
+    }
+
     getBarHeightOrdinal(i: number): number {
         return (this.yScale as any).bandwidth();
     }
@@ -322,12 +411,7 @@ export class BarsComponent extends UnsubscribeDirective implements XYDataMarksCo
         return Math.abs(this.yScale(origin - this.values.y[i]));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onPointerEnter(event: PointerEvent) {}
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onPointerLeave(event: PointerEvent) {}
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onPointerMove(event: PointerEvent) {}
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onWheel(event: Event) {}
+    onPointerEnter: (event: PointerEvent) => void;
+    onPointerLeave: (event: PointerEvent) => void;
+    onPointerMove: (event: PointerEvent) => void;
 }

@@ -1,11 +1,12 @@
 <h2 class="section-header">Explore in depth</h2>
+<app-explore-selections-navbar></app-explore-selections-navbar>
 <div class="data-display-container">
     <app-explore-selections
         *ngIf="yearsRange$ | async as yearsRange"
         [yearsRange]="yearsRange"
-        (selectionChange)="updateSelections($event)"
     ></app-explore-selections>
     <div class="charts-container">
         <app-explore-time-range-chart class="time-range-chart-component"></app-explore-time-range-chart>
+        <app-explore-change-chart></app-explore-change-chart>
     </div>
 </div>

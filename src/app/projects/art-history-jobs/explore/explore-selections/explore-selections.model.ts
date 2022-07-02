@@ -1,3 +1,12 @@
+export enum Selection {
+    fields,
+    valuetype,
+    timerange,
+    filters,
+}
+
+export type SelectionType = keyof typeof Selection;
+
 export enum ValueType {
     count = 'count',
     percent = 'percent',

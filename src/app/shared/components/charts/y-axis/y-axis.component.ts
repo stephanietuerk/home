@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { axisLeft, axisRight } from 'd3';
 import { Observable } from 'rxjs';
 import { map, pairwise, takeUntil } from 'rxjs/operators';
-import { XYAxisElement } from '../xy-chart-space/xy-axis.class';
+import { XyAxisElement } from '../xy-chart-space/xy-axis.class';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,7 +10,7 @@ import { XYAxisElement } from '../xy-chart-space/xy-axis.class';
     templateUrl: './y-axis.component.html',
     styleUrls: ['./y-axis.component.scss'],
 })
-export class YAxisComponent extends XYAxisElement implements OnInit {
+export class YAxisComponent extends XyAxisElement implements OnInit {
     @Input() side: 'left' | 'right' = 'left';
     translate$: Observable<string>;
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ChartComponent } from '../chart/chart.component';
 
 @Component({
@@ -7,8 +7,8 @@ import { ChartComponent } from '../chart/chart.component';
     templateUrl: './xy-background.component.html',
     styleUrls: ['./xy-background.component.scss'],
 })
-export class XYBackgroundComponent {
+export class XyBackgroundComponent {
     @Input() color = 'whitesmoke';
 
-    constructor(public chart: ChartComponent) {}
+    constructor(public chart: ChartComponent, private cd: ChangeDetectorRef) {}
 }

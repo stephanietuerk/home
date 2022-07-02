@@ -13,6 +13,7 @@ export class QuantitativeDimension extends DataDimension {
 
     constructor() {
         super();
+        this.domainPadding = new DomainPadding();
     }
 }
 

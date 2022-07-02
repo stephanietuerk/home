@@ -36,9 +36,4 @@ export class ExploreComponent implements OnInit {
     getTimeRangeChartConfig(data: JobDatum[], selections: ExploreSelections): ExploreTimeRangeChartConfig {
         return new ExploreTimeRangeChartConfig();
     }
-
-    updateSelections(selections: ExploreSelections): void {
-        console.log('big component', selections);
-        this.selections.next(selections);
-    }
 }

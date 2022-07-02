@@ -54,8 +54,6 @@ export class ExploreLineChartComponent implements OnInit {
         config.y.valueFormat = formatSpecifications.explore.chart.value[this.artHistoryJobsService.selections.dataType];
         config.category.valueAccessor = (d: JobDatum[]) => d[this.artHistoryJobsService.lineChartCategoriesAccessor];
         config.category.colorScale = this.getColorScale();
-        console.log('categories accessor', this.artHistoryJobsService.lineChartCategoriesAccessor);
-        console.log(config);
         return config;
     }
 

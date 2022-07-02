@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { cloneDeep } from 'lodash';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { JobDatum, LineDef } from '../art-history-data.model';
+import { filter, map, shareReplay } from 'rxjs/operators';
+import { JobDatum, JobDatumTimeRangeChart, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
+import { ExploreChangeChartData, ExploreChartsData, ExploreTimeRangeChartData } from './explore-data.model';
 import { ExploreSelections } from './explore-selections/explore-selections.model';
-import { ExploreTimeRangeChartData } from './explore-time-range-chart/explore-time-range-chart.model';
 
 @Injectable({
     providedIn: 'root',
@@ -12,28 +13,72 @@ import { ExploreTimeRangeChartData } from './explore-time-range-chart/explore-ti
 export class ExploreDataService {
     selections: BehaviorSubject<ExploreSelections> = new BehaviorSubject(null);
     selections$ = this.selections.asObservable();
-    timeRangeChartData$: Observable<ExploreTimeRangeChartData>;
+    chartsData$: Observable<ExploreChartsData>;
 
     constructor(private artHistoryDataService: ArtHistoryDataService) {
+        this.setExploreChartsData();
+    }
+
+    setExploreChartsData(): void {
         const data$ = this.artHistoryDataService.getData();
-        this.timeRangeChartData$ = combineLatest([this.selections$, data$]).pipe(
-            map(([selections, data]) => {
+        const selections$ = this.selections$.pipe(filter((selections) => selections !== null));
+
+        this.chartsData$ = combineLatest([data$, selections$]).pipe(
+            map(([data, selections]) => {
                 if (selections && data) {
+                    const lineDefs = this.getLineDefs(selections);
+                    const timeRange = {
+                        data: this.getLineChartDataForSelections(selections, lineDefs, data),
+                        dataType: selections.dataType,
+                        categories: this.getLineChartCategoriesAccessor(selections),
+                    };
+                    const change = this.getChangeChartData(selections, lineDefs, timeRange);
                     return {
-                        data: selections ? this.getLineChartDataForSelections(selections, data) : null,
-                        dataType: selections ? selections.dataType : null,
-                        categories: selections ? this.getLineChartCategoriesAccessor(selections) : null,
+                        timeRange,
+                        change,
                     };
                 }
-            })
+            }),
+            shareReplay()
         );
     }
 
-    private getLineChartDataForSelections(selections: ExploreSelections, data: JobDatum[]): JobDatum[] {
-        const lineDefs = this.getLineDefs(selections);
+    private getChangeChartData(
+        selections: ExploreSelections,
+        lineDefs: LineDef[],
+        timeRangeChartData: ExploreTimeRangeChartData
+    ): ExploreChangeChartData {
+        const lines = lineDefs.map((x) => x[timeRangeChartData.categories]);
+        const data = lines.map((lineType) => {
+            const start = timeRangeChartData.data.find(
+                (x) => x[timeRangeChartData.categories] === lineType && x.year.getFullYear() === selections.years.start
+            );
+            const end = timeRangeChartData.data.find(
+                (x) => x[timeRangeChartData.categories] === lineType && x.year.getFullYear() === selections.years.end
+            );
+            const { year, ...newDatum } = start;
+            newDatum.count = end.count - start.count;
+            if (newDatum.percent) {
+                newDatum.percent = end.percent - start.percent;
+            }
+            return newDatum;
+        });
+        return {
+            data,
+            dataType: timeRangeChartData.dataType,
+            categories: timeRangeChartData.categories,
+        };
+    }
+
+    private getLineChartDataForSelections(
+        selections: ExploreSelections,
+        lineDefs: LineDef[],
+        data: JobDatum[]
+    ): JobDatumTimeRangeChart[] {
+        const dataForYearsRange = this.getFilteredDataForYearsRange(selections, data);
         const dataForSelections = lineDefs
             .map((lineDef) => {
-                const filteredData = this.getFilteredDataForLineDef(lineDef, data);
+                const filteredData = this.getFilteredDataForLineDef(lineDef, dataForYearsRange);
                 let aggregatedData = filteredData;
                 if (lineDef.rank !== 'all') {
                     aggregatedData = this.getAggregatedDataForRankByYear(aggregatedData, filteredData, lineDef);
@@ -47,7 +92,8 @@ export class ExploreDataService {
                 return aggregatedData;
             })
             .flat();
-        return dataForSelections;
+        const chartDataForSelections = this.transformDataRankToString(dataForSelections);
+        return chartDataForSelections;
     }
 
     private getLineDefs(selections: ExploreSelections): LineDef[] {
@@ -62,8 +108,18 @@ export class ExploreDataService {
         return lines;
     }
 
+    private getFilteredDataForYearsRange(selections: ExploreSelections, data: JobDatum[]): JobDatum[] {
+        return data.filter(
+            (x) => x.year.getFullYear() >= selections.years.start && x.year.getFullYear() <= selections.years.end
+        );
+    }
+
     private getFilteredDataForLineDef(def: LineDef, data: JobDatum[]): JobDatum[] {
-        return data.filter((x) => x.field === def.field && x.isTt === def.isTt && x.rank.includes(def.rank));
+        const dataForField = data.filter((x) => x.field === def.field);
+        const dataForIsTt = dataForField.filter((x) => x.isTt === def.isTt);
+        const dataForRank = dataForIsTt.filter((x) => x.rank.includes(def.rank));
+        return dataForRank;
+        // return data.filter((x) => x.field === def.field && x.isTt === def.isTt && x.rank.includes(def.rank));
     }
 
     private getAggregatedDataForRankByYear(data: JobDatum[], filteredData: JobDatum[], def: LineDef) {
@@ -112,6 +168,13 @@ export class ExploreDataService {
             );
         }
         x.percent = x.count / allDatum[0].count;
+    }
+
+    private transformDataRankToString(data: JobDatum[]): JobDatumTimeRangeChart[] {
+        return cloneDeep(data).map((x) => {
+            x.rank = x.rank[0];
+            return x as unknown as JobDatumTimeRangeChart;
+        });
     }
 
     updateSelections(selections: ExploreSelections): void {

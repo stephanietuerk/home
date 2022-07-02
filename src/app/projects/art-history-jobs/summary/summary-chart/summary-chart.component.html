@@ -10,7 +10,7 @@
         <svg:g y-axis side="left" [config]="yAxisConfig"></svg:g>
         <svg:g data-marks-stacked-area [config]="dataMarksConfig"></svg:g>
     </svg:g>
-    <ng-container tooltip-content>
+    <!-- <ng-container tooltip-content>
         <div [style.--color]="(tooltipData | async)?.color" class="tooltip-container">
             <p class="tooltip-label category">{{ (tooltipData | async)?.category }}</p>
             <div class="values-container">
@@ -20,5 +20,5 @@
                 <p class="tooltip-label y"><span class="value-label">Value</span>{{ (tooltipData | async)?.y }}</p>
             </div>
         </div>
-    </ng-container>
+    </ng-container> -->
 </app-chart>

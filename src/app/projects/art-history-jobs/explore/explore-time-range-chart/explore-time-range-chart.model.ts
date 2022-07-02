@@ -2,7 +2,6 @@ import { scaleLinear, scaleUtc } from 'd3';
 import { LinesConfig } from 'src/app/shared/components/charts/lines/lines.model';
 import { QuantitativeAxisConfig } from 'src/app/shared/components/charts/xy-chart-space/axis-config.model';
 import { JobDatum } from '../../art-history-data.model';
-import { ValueType } from '../explore-selections/explore-selections.model';
 
 export class ExploreTimeRangeChartConfig extends LinesConfig {
     constructor() {
@@ -30,11 +29,3 @@ export class ExploreTimeRangeYAxisConfig extends QuantitativeAxisConfig {
         this.removeDomain = true;
     }
 }
-
-export interface ExploreTimeRangeChartData {
-    data: JobDatum[];
-    dataType: ValueType.count | ValueType.percent;
-    categories: LineCategoryType;
-}
-
-export type LineCategoryType = 'field' | 'isTt' | 'rank';

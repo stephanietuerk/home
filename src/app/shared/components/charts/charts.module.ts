@@ -7,15 +7,15 @@ import { HtmlTooltipComponent } from './html-tooltip/html-tooltip.component';
 import { LinesComponent } from './lines/lines.component';
 import { StackedAreaComponent } from './stacked-area/stacked-area.component';
 import { XAxisComponent } from './x-axis/x-axis.component';
-import { XYBackgroundComponent } from './xy-background/xy-background.component';
-import { XYChartSpaceComponent } from './xy-chart-space/xy-chart-space.component';
+import { XyBackgroundComponent } from './xy-background/xy-background.component';
+import { XyChartSpaceComponent } from './xy-chart-space/xy-chart-space.component';
 import { YAxisComponent } from './y-axis/y-axis.component';
 
 @NgModule({
     declarations: [
         ChartComponent,
-        XYChartSpaceComponent,
-        XYBackgroundComponent,
+        XyChartSpaceComponent,
+        XyBackgroundComponent,
         XAxisComponent,
         YAxisComponent,
         BarsComponent,
@@ -26,8 +26,8 @@ import { YAxisComponent } from './y-axis/y-axis.component';
     imports: [CommonModule, PipesModule],
     exports: [
         ChartComponent,
-        XYChartSpaceComponent,
-        XYBackgroundComponent,
+        XyChartSpaceComponent,
+        XyBackgroundComponent,
         XAxisComponent,
         YAxisComponent,
         BarsComponent,

@@ -56,9 +56,6 @@ describe('SelectWithFilteringComponent', () => {
         it('calls filterOptionsByInputValue once and with the correct parameter for each new input value emitted', () => {
             spyOn(component, 'filterOptionsByInputValue');
             component.updateFilterOptionsForInput();
-            component.filteredOptions.subscribe((data) => {
-                console.log(data);
-            });
             component.ngControl.control.setValue('hello');
             expect(component.filterOptionsByInputValue).toHaveBeenCalledTimes(2);
             expect(component.filterOptionsByInputValue).toHaveBeenCalledWith('hello');

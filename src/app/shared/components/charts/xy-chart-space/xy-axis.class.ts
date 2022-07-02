@@ -1,22 +1,21 @@
-import { AfterContentInit, Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { format, select, timeFormat, TimeInterval, Transition } from 'd3';
+import { ChangeDetectorRef, Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { format, select, timeFormat, TimeInterval } from 'd3';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { ChartComponent } from '../chart/chart.component';
 import { SvgUtilities } from '../utilities/svg-utilities.class';
 import { SvgWrapOptions } from '../utilities/svg-utilities.model';
-import { AxisConfig, TickWrap } from './axis-config.model';
-import { XYChartSpaceComponent } from './xy-chart-space.component';
+import { AxisConfig } from './axis-config.model';
+import { XyChartSpaceComponent } from './xy-chart-space.component';
 
 @Directive()
-export abstract class XYAxisElement extends UnsubscribeDirective implements OnInit, AfterContentInit {
+export abstract class XyAxisElement extends UnsubscribeDirective implements OnInit {
     @ViewChild('axis', { static: true }) axisRef: ElementRef<SVGGElement>;
     @Input() config: AxisConfig;
-    transitionDuration: number;
     axisFunction: any;
     axis: any;
     scale: any;
 
-    constructor(public chart: ChartComponent, public xySpace: XYChartSpaceComponent) {
+    constructor(public chart: ChartComponent, public xySpace: XyChartSpaceComponent, public cd: ChangeDetectorRef) {
         super();
     }
 
@@ -31,14 +30,6 @@ export abstract class XYAxisElement extends UnsubscribeDirective implements OnIn
         this.subscribeToScale();
     }
 
-    ngAfterContentInit(): void {
-        this.setTransitionDuration();
-    }
-
-    setTransitionDuration(): void {
-        this.transitionDuration = this.chart.dataMarksComponent.config.transitionDuration;
-    }
-
     onScaleUpdate(prev: any, curr: any): void {
         if (curr) {
             let transitionDuration;
@@ -46,7 +37,7 @@ export abstract class XYAxisElement extends UnsubscribeDirective implements OnIn
                 const currRange = curr.range();
                 const prevRange = prev.range();
                 transitionDuration =
-                    currRange[0] === prevRange[0] && currRange[1] === prevRange[1] ? this.transitionDuration : 0;
+                    currRange[0] === prevRange[0] && currRange[1] === prevRange[1] ? this.chart.transitionDuration : 0;
             } else {
                 transitionDuration = 0;
             }
@@ -98,22 +89,32 @@ export abstract class XYAxisElement extends UnsubscribeDirective implements OnIn
     }
 
     drawAxis(transitionDuration: number): void {
-        const t = select(this.axisRef.nativeElement).transition().duration(transitionDuration) as Transition<
-            SVGSVGElement,
-            any,
-            any,
-            any
-        >;
+        const t = select(this.axisRef.nativeElement).transition().duration(transitionDuration);
 
-        select(this.axisRef.nativeElement).transition(t).call(this.axis);
+        select(this.axisRef.nativeElement)
+            .transition(t as any)
+            .call(this.axis)
+            .on('end', (d, i, nodes) => {
+                const tickText = select(nodes[i]).selectAll('.tick text');
+                if (this.config.tickLabelFontSize) {
+                    this.setTickFontSize(tickText);
+                }
+                if (this.config.wrap) {
+                    this.wrapAxisTickText(tickText);
+                }
+            });
+    }
 
-        if (this.config.tickLabelFontSize) {
-            select(this.axisRef.nativeElement).selectAll('.tick text').attr('font-size', this.config.tickLabelFontSize);
-        }
+    setTickFontSize(tickTextSelection: any): void {
+        tickTextSelection.attr('font-size', this.config.tickLabelFontSize);
+    }
 
-        if (this.config.wrap) {
-            this.wrapAxisTickText(this.config.wrap);
-        }
+    wrapAxisTickText(tickTextSelection: any): void {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { wrapWidth, ...properties } = this.config.wrap;
+        const config = Object.assign(new SvgWrapOptions(), properties) as SvgWrapOptions;
+        config.width = this.config.wrap.wrapWidth === 'bandwidth' ? this.scale.bandwidth() : this.config.wrap.wrapWidth;
+        tickTextSelection.call(SvgUtilities.textWrap, config);
     }
 
     processAxisFeatures(): void {
@@ -126,13 +127,5 @@ export abstract class XYAxisElement extends UnsubscribeDirective implements OnIn
         if (this.config.removeTickMarks) {
             select(this.axisRef.nativeElement).call((g) => g.selectAll('.tick line').remove());
         }
-    }
-
-    wrapAxisTickText(options: TickWrap): void {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { wrapWidth, ...properties } = options;
-        const config = Object.assign(new SvgWrapOptions(), properties) as SvgWrapOptions;
-        config.width = options.wrapWidth === 'bandwidth' ? this.scale.bandwidth() : options.wrapWidth;
-        select(this.axisRef.nativeElement).selectAll('.tick text').call(SvgUtilities.textWrap, config);
     }
 }

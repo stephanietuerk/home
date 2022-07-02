@@ -147,18 +147,18 @@ describe('ChartComponent', () => {
         });
         describe('if scaleChartContainer is true', () => {
             it('returns true if divRef.nativeElement.offsetWidth is less than width', () => {
-                expect(component.chartShouldScale()).toBe(true);
+                expect(component.chartShouldScaleWidth()).toBe(true);
             });
 
             it('returns false if divRef.nativeElement.offsetWidth is greater than or equal to width', () => {
                 component.divRef = { nativeElement: { offsetWidth: 200 } } as any;
-                expect(component.chartShouldScale()).toBe(false);
+                expect(component.chartShouldScaleWidth()).toBe(false);
             });
         });
 
         it('returns false if chartShouldScale is false', () => {
             component.scaleChartWithContainer = false;
-            expect(component.chartShouldScale()).toBe(false);
+            expect(component.chartShouldScaleWidth()).toBe(false);
         });
     });
 
