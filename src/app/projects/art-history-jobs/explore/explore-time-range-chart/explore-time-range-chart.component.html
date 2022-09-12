@@ -1,9 +1,10 @@
 <ng-container *ngIf="vm$ | async as vm">
+    <p class="chart-title" [style.padding-left.px]="margin.left">{{ vm.title }}</p>
     <app-chart [margin]="margin" [height]="height" [width]="width" (tooltipData)="updateChartOnNewTooltipData($event)">
         <svg:g xy-chart-space svg-elements>
-            <svg:g xy-background></svg:g>
-            <svg:g x-axis side="bottom" [config]="vm.xAxisConfig"></svg:g>
-            <svg:g y-axis side="left" [config]="vm.yAxisConfig"></svg:g>
+            <svg:g xy-background [color]="chartBackgroundColor"></svg:g>
+            <svg:g x-quantitative-axis side="bottom" [config]="vm.xAxisConfig"></svg:g>
+            <svg:g y-quantitative-axis side="left" [config]="vm.yAxisConfig"></svg:g>
             <svg:g data-marks-lines [config]="vm.dataMarksConfig"></svg:g>
         </svg:g>
         <ng-container tooltip-content>

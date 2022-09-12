@@ -1,6 +1,6 @@
 import { scaleUtc } from 'd3';
+import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
 import { StackedAreaConfig } from 'src/app/shared/components/charts/stacked-area/stacked-area.model';
-import { QuantitativeAxisConfig } from 'src/app/shared/components/charts/xy-chart-space/axis-config.model';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 
 export class SummaryChartConfig extends StackedAreaConfig {
@@ -17,14 +17,14 @@ export class SummaryChartConfig extends StackedAreaConfig {
     }
 }
 
-export class SummaryChartXAxisConfig extends QuantitativeAxisConfig {
+export class SummaryChartXAxisConfig extends AxisConfig {
     constructor() {
         super();
         this.tickFormat = artHistoryFormatSpecifications.summary.chart.tick.year;
     }
 }
 
-export class SummaryChartYAxisConfig extends QuantitativeAxisConfig {
+export class SummaryChartYAxisConfig extends AxisConfig {
     constructor() {
         super();
         this.numTicks = 5;

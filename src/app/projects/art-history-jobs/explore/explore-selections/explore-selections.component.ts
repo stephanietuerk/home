@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { isEqual } from 'lodash';
 import { Subject } from 'rxjs';
 import { debounceTime, map, pairwise, startWith, takeUntil } from 'rxjs/operators';
+import { animations } from 'src/app/core/constants/animations.constants';
 import { SelectionOption } from 'src/app/shared/components/form-components/form-radio-input/form-radio-input.model';
 import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
 import { artHistoryFields } from '../../art-history-fields.constants';
@@ -17,6 +18,7 @@ import { ExploreFormSelections, ExploreSelections, FilterType, ValueType } from 
     styleUrls: ['./explore-selections.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [animations.slide('selection-interface')],
 })
 export class ExploreSelectionsComponent extends UnsubscribeDirective implements OnInit {
     @Input() yearsRange: [number, number];
@@ -37,6 +39,8 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
     filtersFormControl: FormControl;
     defaults: ExploreFormSelections;
     debouncer: Subject<ExploreSelections> = new Subject<ExploreSelections>();
+    isOpen = false;
+    openContent: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank' | null;
 
     get fields(): FormArray {
         return this.form.get('fields') as FormArray;
@@ -72,11 +76,11 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
             },
             fields: this.getSelectedValues(this.fieldOptions),
             tenureUse: FilterType.disaggregate,
-            tenureFilterValue: this.tenureValueOptions[0].value as string,
-            tenureDisaggValues: this.getSelectedValues(this.tenureValueOptions),
+            tenureFilterValue: this.tenureValueOptions[0].label as string,
+            tenureDisaggValues: this.getSelectedLabels(this.tenureValueOptions),
             rankUse: FilterType.filter,
-            rankFilterValue: this.rankValueOptions[0].value as string,
-            rankDisaggValues: this.getSelectedValues(this.rankValueOptions),
+            rankFilterValue: this.rankValueOptions[0].label as string,
+            rankDisaggValues: this.getSelectedLabels(this.rankValueOptions),
         };
     }
 
@@ -256,7 +260,7 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
     }
 
     updateTenureDisaggValues(): void {
-        const newDisaggValues = this.tenureValueOptions.map((x) => (x.value === 'all' ? false : true));
+        const newDisaggValues = this.tenureValueOptions.map((x) => (x.value === 'All' ? false : true));
         this.tenureDisaggValues.setValue(newDisaggValues);
     }
 
@@ -267,7 +271,7 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
     }
 
     updateRankDisaggValues(): void {
-        const newDisaggValues = this.rankValueOptions.map((x) => (x.value === 'all' ? false : true));
+        const newDisaggValues = this.rankValueOptions.map((x) => (x.value === 'All' ? false : true));
         this.rankDisaggValues.setValue(newDisaggValues);
     }
 
@@ -310,5 +314,22 @@ export class ExploreSelectionsComponent extends UnsubscribeDirective implements 
 
     emitSelections(selections: ExploreSelections): void {
         this.debouncer.next(selections);
+    }
+
+    toggleOpenContent(selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank') {
+        if (this.openContent === selected) {
+            this.openContent = null;
+            this.isOpen = false;
+        } else {
+            this.openContent = selected;
+            this.isOpen = true;
+        }
+    }
+
+    closeDropdown(event: MouseEvent): void {
+        if (!(event.target as HTMLElement).parentElement.classList.contains('links-container')) {
+            this.openContent = null;
+            this.isOpen = false;
+        }
     }
 }

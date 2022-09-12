@@ -6,8 +6,8 @@
     (tooltipData)="updateChartOnNewTooltipData($event)"
 >
     <svg:g xy-chart-space svg-elements>
-        <svg:g x-axis side="bottom" [config]="xAxisConfig"></svg:g>
-        <svg:g y-axis side="left" [config]="yAxisConfig"></svg:g>
+        <svg:g x-quantitative-axis side="bottom" [config]="xAxisConfig"></svg:g>
+        <svg:g y-quantitative-axis side="left" [config]="yAxisConfig"></svg:g>
         <svg:g data-marks-stacked-area [config]="dataMarksConfig"></svg:g>
     </svg:g>
     <!-- <ng-container tooltip-content>

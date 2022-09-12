@@ -80,7 +80,7 @@ export class ExploreDataService {
             .map((lineDef) => {
                 const filteredData = this.getFilteredDataForLineDef(lineDef, dataForYearsRange);
                 let aggregatedData = filteredData;
-                if (lineDef.rank !== 'all') {
+                if (lineDef.rank !== 'All') {
                     aggregatedData = this.getAggregatedDataForRankByYear(aggregatedData, filteredData, lineDef);
                 }
                 if (selections.dataType === 'percent') {
@@ -158,10 +158,10 @@ export class ExploreDataService {
         const dataForYear = allData.filter((d) => d.year.getFullYear() === x.year.getFullYear());
         if (categoriesAccessor === 'isTt') {
             allDatum = dataForYear.filter(
-                (d) => d.field === def.field && d.isTt === 'all' && d.rank.includes(def.rank)
+                (d) => d.field === def.field && d.isTt === 'All' && d.rank.includes(def.rank)
             );
         } else if (categoriesAccessor === 'rank') {
-            allDatum = dataForYear.filter((d) => d.field === def.field && d.isTt === def.isTt && d.rank === ['all']);
+            allDatum = dataForYear.filter((d) => d.field === def.field && d.isTt === def.isTt && d.rank === ['All']);
         } else {
             allDatum = dataForYear.filter(
                 (d) => d.field.toLowerCase() === 'all' && d.isTt === def.isTt && d.rank.includes(def.rank)

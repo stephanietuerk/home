@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { timeYear } from 'd3';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { rankOptions, tenureOptions } from 'src/app/projects/art-history-jobs-old/art-history-jobs.constants';
 import { LinesTooltipData } from 'src/app/shared/components/charts/lines/lines.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ExploreTimeRangeChartData, LineCategoryType } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
+import { rankOptions, tenureOptions } from '../explore-selections/explore-selections.constants';
+import { ExploreSelections } from '../explore-selections/explore-selections.model';
 import {
     ExploreTimeRangeChartConfig,
     ExploreTimeRangeXAxisConfig,
@@ -20,6 +22,7 @@ interface ViewModel {
     xAxisConfig: ExploreTimeRangeXAxisConfig;
     yAxisConfig: ExploreTimeRangeYAxisConfig;
     lineCategoryLabel: string;
+    title: string;
 }
 
 @Component({
@@ -32,25 +35,27 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     width = 800;
     height = 500;
     margin: ElementSpacing = {
-        top: 36,
+        top: 4,
         right: 36,
         bottom: 36,
-        left: 96,
+        left: 36,
     };
     tooltipData: BehaviorSubject<LinesTooltipData> = new BehaviorSubject<LinesTooltipData>(null);
     tooltipData$ = this.tooltipData.asObservable();
+    chartBackgroundColor = grayLightest;
 
-    constructor(private exploreDataService: ExploreDataService, private fieldsService: ArtHistoryFieldsService) {}
+    constructor(public exploreDataService: ExploreDataService, private fieldsService: ArtHistoryFieldsService) {}
 
     ngOnInit(): void {
-        this.vm$ = this.exploreDataService.chartsData$.pipe(
-            map((chartData) => {
+        this.vm$ = combineLatest([this.exploreDataService.chartsData$, this.exploreDataService.selections$]).pipe(
+            map(([chartData, selections]) => {
                 if (chartData.timeRange) {
                     return {
                         dataMarksConfig: this.getDataMarksConfig(chartData.timeRange),
                         xAxisConfig: this.getXAxisConfig(chartData.timeRange),
                         yAxisConfig: this.getYAxisConfig(chartData.timeRange),
                         lineCategoryLabel: this.getLineCategoryLabel(chartData.timeRange.categories),
+                        title: !!selections ? this.getTitle(chartData.timeRange.categories, selections) : '',
                     };
                 }
             })
@@ -64,6 +69,11 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         config.y.valueFormat = artHistoryFormatSpecifications.explore.chart.value[chartData.dataType];
         config.category.valueAccessor = (d: any) => d[chartData.categories];
         config.category.colorScale = this.getColorScale(chartData);
+        if (chartData.categories !== 'field') {
+            config.lineLabels.show = true;
+            config.lineLabels.align = 'inside';
+            config.lineLabels.format = (d: any) => this.getCategoryLabel(d, chartData.categories);
+        }
         return config;
     }
 
@@ -114,12 +124,33 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     }
 
     getCategoryLabel(value: string, category: string): string {
-        if (category === 'Field') {
+        if (category === 'Field' || category === 'fields') {
             return value;
-        } else if (category === 'Tenure status') {
-            return tenureOptions.find((x) => x.value === value).label;
-        } else if (category === 'Rank') {
-            return rankOptions.find((x) => x.value === value).label;
+        } else if (category === 'Tenure status' || category === 'isTt') {
+            return tenureOptions.find((x) => x.label === value).label;
+        } else if (category === 'Rank' || category === 'rank') {
+            return rankOptions.find((x) => x.label === value).label;
         }
+    }
+
+    getTitle(categories: LineCategoryType, selections: ExploreSelections): string {
+        let fields;
+        let disaggregation;
+        if (categories === 'field') {
+            disaggregation = 'by field';
+            if (selections.dataType === 'count') {
+                fields = '';
+            } else {
+                fields = 'all';
+            }
+        } else {
+            fields = selections.fields.join('');
+            if (categories === 'isTt') {
+                disaggregation = 'by tenure status';
+            } else {
+                disaggregation = 'by rank';
+            }
+        }
+        return `${selections.dataType} of ${fields.toLowerCase()} jobs ${disaggregation}`;
     }
 }

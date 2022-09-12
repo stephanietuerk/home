@@ -1,5 +1,11 @@
 @import 'vars', 'placeholders';
 
+.chart-title {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+}
+
 .tooltip-container {
     width: 200px;
 }

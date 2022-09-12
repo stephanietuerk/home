@@ -1,9 +1,5 @@
+import { AxisConfig, TickWrap } from 'src/app/shared/components/charts/axes/axis-config.model';
 import { BarsConfig, horizontalBarChartDimensionsConfig } from 'src/app/shared/components/charts/bars/bars.model';
-import {
-    OrdinalAxisConfig,
-    QuantitativeAxisConfig,
-    TickWrap,
-} from 'src/app/shared/components/charts/xy-chart-space/axis-config.model';
 
 export class ChangeChartConfig extends BarsConfig {
     constructor() {
@@ -15,7 +11,7 @@ export class ChangeChartConfig extends BarsConfig {
     }
 }
 
-export class ChangeChartYAxisConfig extends OrdinalAxisConfig {
+export class ChangeChartYAxisConfig extends AxisConfig {
     constructor() {
         super();
         this.tickSizeOuter = 0;
@@ -29,7 +25,7 @@ export class ChangeChartYAxisConfig extends OrdinalAxisConfig {
     }
 }
 
-export class ChangeChartXAxisConfig extends QuantitativeAxisConfig {
+export class ChangeChartXAxisConfig extends AxisConfig {
     constructor() {
         super();
         this.numTicks = 5;

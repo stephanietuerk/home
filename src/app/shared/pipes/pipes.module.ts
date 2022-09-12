@@ -7,5 +7,6 @@ import { SentenceCasePipe } from './sentence-case/sentence-case.pipe';
 @NgModule({
     declarations: [SentenceCasePipe, FormatForIdPipe, ResizeChartHeightPipe, AsPipe],
     exports: [SentenceCasePipe, FormatForIdPipe, ResizeChartHeightPipe, AsPipe],
+    providers: [SentenceCasePipe],
 })
 export class PipesModule {}

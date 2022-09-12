@@ -46,6 +46,7 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
         left: 36,
     };
     @Input() scaleChartWithContainer = true;
+    @Input() maintainAspectRatio = true;
     @Input() transitionDuration?: number = 250;
     @Output() tooltipData = new EventEmitter<any>();
     unlistenPointerMove: () => void;
@@ -160,7 +161,7 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit, AfterCo
     }
 
     getSvgHeightFromDivWidth(width: number): number {
-        return !this.chartShouldScaleWidth() ? this.height : width / this.aspectRatio;
+        return !this.chartShouldScaleWidth() || !this.maintainAspectRatio ? this.height : width / this.aspectRatio;
     }
 
     getRangesFromSvgDimensions(dimensions: Dimensions): Ranges {

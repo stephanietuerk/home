@@ -19,7 +19,7 @@ import {
     InternSet,
     least,
     line,
-    map as d3map,
+    map,
     max,
     min,
     pointer,
@@ -38,7 +38,7 @@ import { Ranges } from '../chart/chart.model';
 import { DATA_MARKS } from '../data-marks/data-marks.token';
 import { XyDataMarks, XyDataMarksValues } from '../data-marks/xy-data-marks.model';
 import { XyChartSpaceComponent } from '../xy-chart-space/xy-chart-space.component';
-import { LinesConfig, LinesTooltipData } from './lines.model';
+import { LinesConfig, LinesTooltipData, Marker } from './lines.model';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -57,17 +57,21 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
     lineLabelsRef: ElementRef<SVGSVGElement>;
     @Input() config: LinesConfig;
     @Output() tooltipData = new EventEmitter<LinesTooltipData>();
-    xScale: (x: any) => number;
-    yScale: (x: any) => number;
-    line: (x: any[]) => any;
     values: XyDataMarksValues = new XyDataMarksValues();
-    tooltipCurrentlyShown = false;
     ranges: Ranges;
+    xScale: (d: any) => any;
+    yScale: (d: any) => any;
+    line: (x: any[]) => any;
+    linesD3Data;
+    linesKeyFunction: (d) => string;
+    markersD3Data: Marker[];
+    markersKeyFunction: (d) => string;
+    tooltipCurrentlyShown = false;
 
     constructor(
-        protected utilities: UtilitiesService,
         public chart: ChartComponent,
         public xySpace: XyChartSpaceComponent,
+        private utilities: UtilitiesService,
         private zone: NgZone
     ) {
         super();
@@ -80,8 +84,13 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
     get lines(): any {
         return select(this.linesRef.nativeElement).selectAll('path');
     }
+
     get hoverDot(): any {
         return select(this.dotRef.nativeElement).selectAll('circle');
+    }
+
+    get lineLabels(): any {
+        return select(this.lineLabelsRef.nativeElement).selectAll('text');
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -123,6 +132,10 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
         this.setScaledSpaceProperties();
         this.initCategoryScale();
         this.setLine();
+        this.setLinesD3Data();
+        this.setLinesKeyFunction();
+        this.setMarkersD3Data();
+        this.setMarkersKeyFunction();
         this.drawMarks(this.chart.transitionDuration);
     }
 
@@ -137,9 +150,9 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
     }
 
     setValueArrays(): void {
-        this.values.x = d3map(this.config.data, this.config.x.valueAccessor);
-        this.values.y = d3map(this.config.data, this.config.y.valueAccessor);
-        this.values.category = d3map(this.config.data, this.config.category.valueAccessor);
+        this.values.x = map(this.config.data, this.config.x.valueAccessor);
+        this.values.y = map(this.config.data, this.config.y.valueAccessor);
+        this.values.category = map(this.config.data, this.config.category.valueAccessor);
     }
 
     initDomains(): void {
@@ -162,11 +175,9 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
     }
 
     setScaledSpaceProperties(): void {
-        const x = this.config.x.scaleType(this.config.x.domain, this.ranges.x);
-        const y = this.config.y.scaleType(this.config.y.domain, this.ranges.y);
         this.zone.run(() => {
-            this.xySpace.updateXScale(x);
-            this.xySpace.updateYScale(y);
+            this.xySpace.updateXScale(this.config.x.scaleType(this.config.x.domain, this.ranges.x));
+            this.xySpace.updateYScale(this.config.y.scaleType(this.config.y.domain, this.ranges.y));
         });
     }
 
@@ -184,7 +195,7 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
             this.config.valueIsDefined = (d, i) =>
                 this.canBeDrawnByPath(this.values.x[i]) && this.canBeDrawnByPath(this.values.y[i]);
         }
-        const isDefinedValues = d3map(this.config.data, this.config.valueIsDefined);
+        const isDefinedValues = map(this.config.data, this.config.valueIsDefined);
 
         this.line = line()
             .defined((i: any) => isDefinedValues[i] as boolean)
@@ -197,14 +208,42 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
         return !(isNaN(x) || x === null || typeof x === 'boolean');
     }
 
+    setLinesD3Data(): void {
+        this.linesD3Data = group(this.values.indicies, (i) => this.values.category[i]);
+    }
+
+    setLinesKeyFunction(): void {
+        this.linesKeyFunction = (d): string => d[0];
+    }
+
+    setMarkersD3Data(): void {
+        this.markersD3Data = this.values.indicies
+            .map((i) => {
+                return { key: this.getMarkerKey(i), index: i };
+            })
+            .filter(
+                (marker: Marker) =>
+                    this.canBeDrawnByPath(this.values.x[marker.index]) &&
+                    this.canBeDrawnByPath(this.values.y[marker.index])
+            );
+    }
+
+    getMarkerKey(i: number): string {
+        return `${this.values.category[i]}-${this.values.x[i]}`;
+    }
+
+    setMarkersKeyFunction(): void {
+        this.markersKeyFunction = (d) => (d as Marker).key;
+    }
+
     drawMarks(transitionDuration: number): void {
         this.drawLines(transitionDuration);
-        if (this.config.pointMarker.radius) {
+        if (this.config.pointMarker.display) {
             this.drawPointMarkers(transitionDuration);
         } else if (this.config.showTooltip) {
             this.drawHoverDot();
         }
-        if (this.config.labelLines) {
+        if (this.config.lineLabels.show) {
             this.drawLineLabels();
         }
     }
@@ -217,25 +256,20 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
             any
         >;
 
-        const data = group(this.values.indicies, (i) => this.values.category[i]);
-
-        select(this.linesRef.nativeElement)
-            .selectAll('path')
-            .data(data, (d): string => d[0])
-            .join(
-                (enter) =>
-                    enter
-                        .append('path')
-                        .attr('key', ([z]) => z)
-                        .attr('class', 'line')
-                        .attr('stroke', ([z]) => this.config.category.colorScale(z))
-                        .attr('d', ([, I]) => this.line(I)),
-                (update) =>
-                    update
-                        .attr('stroke', ([z]) => this.config.category.colorScale(z))
-                        .call((update) => update.transition(t as any).attr('d', ([, I]) => this.line(I))),
-                (exit) => exit.remove()
-            );
+        this.lines.data(this.linesD3Data, this.linesKeyFunction).join(
+            (enter) =>
+                enter
+                    .append('path')
+                    .property('key', ([category]) => category)
+                    .attr('class', 'line')
+                    .attr('stroke', ([category]) => this.config.category.colorScale(category))
+                    .attr('d', ([, lineData]) => this.line(lineData)),
+            (update) =>
+                update
+                    .attr('stroke', ([category]) => this.config.category.colorScale(category))
+                    .call((update) => update.transition(t as any).attr('d', ([, lineData]) => this.line(lineData))),
+            (exit) => exit.remove()
+        );
     }
 
     drawHoverDot(): void {
@@ -255,52 +289,51 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
             any
         >;
 
-        const markersData = this.values.indicies.map((i) => {
-            return { key: this.getMarkerKey(i), index: i };
-        });
-
-        select(this.markersRef.nativeElement)
-            .selectAll('circle')
-            .data(markersData, (obj: { key: string; index: number }): string => obj.key)
-            .join(
-                (enter) =>
-                    enter
-                        .append('circle')
-                        .filter(this.config.valueIsDefined)
-                        .attr('class', 'marker')
-                        .attr('key', (d) => d.key)
-                        .style('mix-blend-mode', this.config.mixBlendMode)
-                        .attr('cx', (d) => this.xScale(this.values.x[d.index]))
-                        .attr('cy', (d) => this.yScale(this.values.y[d.index]))
-                        .attr('r', this.config.pointMarker.radius)
-                        .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index])),
-                (update) =>
-                    update.call((update) =>
+        this.markers.data(this.markersD3Data, this.markersKeyFunction).join(
+            (enter) =>
+                enter
+                    .append('circle')
+                    .attr('class', 'marker')
+                    .attr('key', (d) => d.key)
+                    .style('mix-blend-mode', this.config.mixBlendMode)
+                    .attr('cx', (d) => this.xScale(this.values.x[d.index]))
+                    .attr('cy', (d) => this.yScale(this.values.y[d.index]))
+                    .attr('r', this.config.pointMarker.radius)
+                    .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index])),
+            (update) =>
+                update
+                    .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index]))
+                    .call((update) =>
                         update
                             .filter(this.config.valueIsDefined)
-                            .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index]))
                             .transition(t as any)
                             .attr('cx', (d) => this.xScale(this.values.x[d.index]))
                             .attr('cy', (d) => this.yScale(this.values.y[d.index]))
                     ),
-                (exit) => exit.remove()
-            );
-    }
-
-    getMarkerKey(i: number): string {
-        return `${this.values.category[i]}-${this.values.x[i]}`;
+            (exit) => exit.remove()
+        );
     }
 
     drawLineLabels(): void {
+        const lastPoints = [];
+        this.linesD3Data.forEach((values, key) => {
+            const lastPoint = values[values.length - 1];
+            lastPoints.push({ category: key, index: lastPoint });
+        });
+
+        const xOffset = this.config.lineLabels.align === 'outside' ? 4 : -4;
+        const textAnchor = this.config.lineLabels.align === 'outside' ? 'start' : 'end';
         // TODO: make more flexible (or its own element? currently this only puts labels on the right side of the chart
         select(this.lineLabelsRef.nativeElement)
             .selectAll('text')
-            .data(this.values.indicies.filter((i) => this.values.x[i] === this.config.x.domain[1]))
+            .data(lastPoints)
             .join('text')
             .attr('class', 'line-label')
-            .attr('x', (i) => `${this.xScale(this.values.x[i]) + 4}px`)
-            .attr('y', (i) => `${this.yScale(this.values.y[i]) - 12}px`)
-            .text((i) => this.config.lineLabelsFormat(this.values.category[i]));
+            .attr('text-anchor', textAnchor)
+            .attr('fill', (d) => this.config.category.colorScale(this.values.category[d.index]))
+            .attr('x', (d) => `${this.xScale(this.values.x[d.index]) + xOffset}px`)
+            .attr('y', (d) => `${this.yScale(this.values.y[d.index]) - 12}px`)
+            .text((d) => this.config.lineLabels.format(d.category));
     }
 
     onPointerEnter(): void {
@@ -337,10 +370,7 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
 
     determineHoverStyles(pointerX: number, pointerY: number): void {
         const closestPointIndex = this.getClosestPointIndex(pointerX, pointerY);
-        if (
-            this.config.tooltipDetectionRadius &&
-            this.pointerIsInsideShowTooltipRadius(closestPointIndex, pointerX, pointerY)
-        ) {
+        if (this.pointerIsInsideShowTooltipRadius(closestPointIndex, pointerX, pointerY)) {
             this.applyHoverStyles(closestPointIndex);
         } else {
             this.removeHoverStyles();
@@ -355,10 +385,13 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
 
     applyHoverStyles(closestPointIndex: number): void {
         this.styleLinesForHover(closestPointIndex);
-        if (this.config.pointMarker) {
+        if (this.config.pointMarker.display) {
             this.styleMarkersForHover(closestPointIndex);
         } else {
             this.styleHoverDotForHover(closestPointIndex);
+        }
+        if (this.config.lineLabels.show) {
+            this.styleLineLabelsForHover(closestPointIndex);
         }
         this.setTooltipData(closestPointIndex);
         this.setTooltipOffsetValues(closestPointIndex);
@@ -389,27 +422,35 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
 
     styleLinesForHover(closestPointIndex: number): void {
         this.lines
-            .style('stroke', ([categoryValue]) =>
-                this.values.category[closestPointIndex] === categoryValue ? null : '#ddd'
+            .style('stroke', ([category]): string =>
+                this.values.category[closestPointIndex] === category ? null : '#ddd'
             )
-            .filter(([categoryValue]) => this.values.category[closestPointIndex] === categoryValue)
+            .filter(([category]): boolean => this.values.category[closestPointIndex] === category)
+            .raise();
+    }
+
+    styleLineLabelsForHover(closestPointIndex: number): void {
+        this.lineLabels
+            .style('fill', (lineLabel): string =>
+                this.values.category[closestPointIndex] === lineLabel.category ? null : '#ddd'
+            )
+            .filter((lineLabel): boolean => this.values.category[closestPointIndex] === lineLabel.category)
             .raise();
     }
 
     styleMarkersForHover(closestPointIndex: number): void {
         this.markers
-            .style('fill', (d: { key: string; index: number }): string => {
-                return this.values.category[closestPointIndex] === this.values.category[d.index] ? null : '#ddd';
-            })
-            .attr('r', (d: { key: string; index: number }): number => {
-                return closestPointIndex === d.index
-                    ? this.config.pointMarker.radius + 1
-                    : this.config.pointMarker.radius;
-            })
-            .filter(
-                (d: { key: string; index: number }): boolean =>
-                    this.values.category[closestPointIndex] === this.values.category[d.index]
+            .style('fill', (d): string =>
+                this.values.category[closestPointIndex] === this.values.category[d.index] ? null : '#ddd'
             )
+            .attr('r', (d): number => {
+                let r = this.config.pointMarker.radius;
+                if (closestPointIndex === d.index) {
+                    r = this.config.pointMarker.radius + this.config.pointMarker.growByOnHover;
+                }
+                return r;
+            })
+            .filter((d): boolean => this.values.category[closestPointIndex] === this.values.category[d.index])
             .raise();
     }
 
@@ -425,13 +466,13 @@ export class LinesComponent extends UnsubscribeDirective implements XyDataMarks,
         this.chart.htmlTooltip.display = 'none';
         this.chart.emitTooltipData(null);
         this.lines.style('mix-blend-mode', this.config.mixBlendMode).style('stroke', null);
-        if (this.config.pointMarker) {
-            this.markers
-                .style('mix-blend-mode', this.config.mixBlendMode)
-                .style('fill', null)
-                .attr('r', this.config.pointMarker.radius);
+        if (this.config.pointMarker.display) {
+            this.markers.style('mix-blend-mode', this.config.mixBlendMode).style('fill', null);
         } else {
             this.hoverDot.style('display', 'none');
+        }
+        if (this.config.lineLabels.show) {
+            this.lineLabels.style('fill', null);
         }
     }
 

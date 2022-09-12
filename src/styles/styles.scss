@@ -1,4 +1,5 @@
 @use '@angular/cdk';
+@import '@angular/cdk/overlay-prebuilt.css';
 @import 'vars', 'placeholders';
 
 @include cdk.a11y-visually-hidden();

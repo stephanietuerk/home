@@ -7,7 +7,7 @@ export const animations = {
                 query(`.${className}`, [
                     style({ opacity: 0, height: 0 }),
                     animate(
-                        '0.2s ease-out',
+                        '2.2s ease-out',
                         style({
                             opacity: 1,
                             height: '*',

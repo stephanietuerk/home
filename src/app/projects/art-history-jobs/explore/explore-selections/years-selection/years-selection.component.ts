@@ -2,7 +2,11 @@ import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } fr
 import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms';
 import { format } from 'd3';
 import noUiSlider from 'nouislider';
-import { YearsSelection } from 'src/app/projects/art-history-jobs-old/models/art-history-config';
+
+export interface YearsSelection {
+    start: number;
+    end: number;
+}
 
 @Component({
     selector: 'app-years-selection',

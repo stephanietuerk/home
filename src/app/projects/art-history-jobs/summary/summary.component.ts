@@ -5,7 +5,7 @@ import { merge, Observable, Subject } from 'rxjs';
 import { map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
-import { AxisConfig } from 'src/app/shared/components/charts/xy-chart-space/axis-config.model';
+import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
@@ -83,7 +83,7 @@ export class SummaryComponent implements OnInit {
 
     getTableData(data: JobDatum[]): JobTableDatum[] {
         const currentYear = max(data.map((x) => x.year.getFullYear()));
-        const filteredData = data.filter((x) => x.isTt === 'all' && x.rank[0] === 'all');
+        const filteredData = data.filter((x) => x.isTt === 'All' && x.rank[0] === 'All');
         const fields = artHistoryFields.map((x) => x.name.full);
         const tableData = fields.map((field) => {
             const fieldData = filteredData.filter((x) => x.field === field);
@@ -159,7 +159,7 @@ export class SummaryComponent implements OnInit {
 
     getChartData(data: JobDatum[]): JobDatum[] {
         const filteredData = cloneDeep(data).filter(
-            (x) => x.isTt === 'all' && x.rank[0] === 'all' && x.field !== 'All'
+            (x) => x.isTt === 'All' && x.rank[0] === 'All' && x.field !== 'All'
         );
         return filteredData;
     }

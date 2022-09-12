@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
 import { LinesTooltipData } from 'src/app/shared/components/charts/lines/lines.model';
-import { AxisConfig } from 'src/app/shared/components/charts/xy-chart-space/axis-config.model';
 import { SummaryChartConfig } from './summary-chart.model';
 
 @Component({
