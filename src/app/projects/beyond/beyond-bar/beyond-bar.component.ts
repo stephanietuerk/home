@@ -299,7 +299,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             brushed.each((d, i, nodes) => {
                 const barTract = nodes[i].getAttribute('tract');
                 tracts
-                    .filter((tractD) => tractD.properties.GEO_ID === barTract)
+                    .filter((tractD: any) => tractD.properties.GEO_ID === barTract)
                     .raise()
                     .classed('brushed', true)
                     .style('stroke', 'black')
@@ -363,11 +363,11 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         } else {
             const scaleType = this.electionYear === ElectionYear.change ? 'change' : 'vote';
             const partyType = value < 0 ? 'd' : 'r';
-            return BEYOND_SCALES[scaleType][partyType](value);
+            return BEYOND_SCALES[scaleType][partyType](value) as unknown as string;
         }
     }
 
-    getQuantileValues(multiplier: number): void {
+    getQuantileValues(multiplier: number): number[] {
         const quantiles = range(this.numQuantiles * multiplier).map((x) => x / (this.numQuantiles * multiplier));
         const values = this.data.map((x) => this.getDemoValue(x)).filter((x) => x !== null && !isNaN(x));
         return quantiles.map((q) => quantileSorted(values, q));
@@ -379,22 +379,24 @@ export class BeyondBarComponent implements OnInit, OnChanges {
 
         const tickFormat = this.getAxisTickFormat();
 
-        const barsYQuantiles = scalePoint().domain(quantileValues).range([0, this.height]);
-        const barsYQuantilesTicks = scalePoint().domain(horizontalGridValues).range([0, this.height]);
+        const barsYQuantiles = scalePoint()
+            .domain(quantileValues as any)
+            .range([0, this.height]);
 
-        const barsXAxisTop = axisTop().scale(this.x).tickFormat(tickFormat);
-        const barsXAxisBottom = axisBottom().scale(this.x).tickFormat(tickFormat);
+        const barsYQuantilesTicks = scalePoint()
+            .domain(horizontalGridValues as any)
+            .range([0, this.height]);
 
-        const barsZeroAxis = axisLeft().scale(this.y).tickSize(0).tickFormat('');
+        const barsXAxisTop = axisTop(this.x).tickFormat(tickFormat);
+        const barsXAxisBottom = axisBottom(this.x).tickFormat(tickFormat);
 
-        const barsYAxis = axisLeft().scale(barsYQuantiles).tickFormat(tickFormat);
+        const barsZeroAxis = axisLeft(this.y).tickSize(0);
 
-        const gridVerticalLines = axisTop().scale(this.x).tickSize(this.height, 0, 0).tickFormat('');
+        const barsYAxis = axisLeft(barsYQuantiles);
 
-        const gridHorizontalLines = axisLeft()
-            .scale(barsYQuantilesTicks)
-            .tickSize(-this.x.range()[1], 0, 0)
-            .tickFormat('');
+        const gridVerticalLines = axisTop(this.x).tickSize(this.height).tickFormat(null);
+
+        const gridHorizontalLines = axisLeft(barsYQuantilesTicks).tickSize(-this.x.range()[1]).tickFormat(null);
 
         this.barMain
             .append('g')
@@ -403,6 +405,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             .attr('transform', 'translate(0,' + (this.height + 0) + ')')
             .call(gridVerticalLines)
             .call((g) => g.select('.domain').remove())
+            .call((g) => g.selectAll('.tick text').remove())
             .call((g) =>
                 g
                     .selectAll('.tick line')
@@ -417,6 +420,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             .attr('id', 'gridHorizontal')
             .call(gridHorizontalLines)
             .call((g) => g.select('.domain').remove())
+            .call((g) => g.selectAll('.tick text').remove())
             .call((g) =>
                 g
                     .selectAll('.tick line')
@@ -446,7 +450,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             .attr('class', 'y axis')
             .attr('id', 'yAxis')
             .attr('transform', `translate(-${this.axisOffset}, 0)`)
-            .call(barsYAxis);
+            .call(barsYAxis)
+            .call((g) => g.selectAll('.tick text').text((d) => tickFormat(d)));
 
         //dynamic Y axis that shifts with data
         this.barMain
@@ -454,7 +459,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             .attr('class', 'zero axis')
             .attr('id', 'zeroAxis')
             .attr('transform', 'translate(' + this.x(0) + ',0)')
-            .call(barsZeroAxis);
+            .call(barsZeroAxis)
+            .call((g) => g.selectAll('.tick text').remove());
 
         this.barMain.selectAll('.domain').attr('stroke', 'black').attr('stroke-width', '1');
         this.barMain.selectAll('.y.axis text').style('font-size', '0.8rem');

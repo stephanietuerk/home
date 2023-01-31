@@ -51,7 +51,7 @@ export class BeyondService {
             const datum = this.makeTractDatum(x);
             acc[x.tract] = datum;
             return acc;
-        }, {});
+        }, {} as TractObject);
     }
 
     makeTractDatum(obj: any): TractDatum {
