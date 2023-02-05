@@ -36,7 +36,6 @@ export class ExploreChangeChartComponent implements OnInit {
     ngOnInit(): void {
         this.vm$ = this.exploreDataService.chartsData$.pipe(
             map((chartsData) => {
-                console.log('new data', chartsData);
                 if (chartsData.change) {
                     return {
                         dataMarksConfig: this.getDataMarksConfig(chartsData.change),

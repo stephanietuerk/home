@@ -161,7 +161,9 @@ export class ExploreDataService {
                 (d) => d.field === def.field && d.isTt === 'All' && d.rank.includes(def.rank)
             );
         } else if (categoriesAccessor === 'rank') {
-            allDatum = dataForYear.filter((d) => d.field === def.field && d.isTt === def.isTt && d.rank === ['All']);
+            allDatum = dataForYear.filter(
+                (d) => d.field === def.field && d.isTt === def.isTt && d.rank.length === 1 && d.rank[0] === 'All'
+            );
         } else {
             allDatum = dataForYear.filter(
                 (d) => d.field.toLowerCase() === 'all' && d.isTt === def.isTt && d.rank.includes(def.rank)

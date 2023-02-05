@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { format, select, selectAll } from 'd3';
 import { DistrictVotes, Party, StateVotes } from 'src/app/projects/flip/flip.model';
-import { FlipBar } from '../flip-bar.class';
-import { FLIPCOLORS, FLIPGRIDLAYOUT } from '../flip.constants';
-import { FlipResource } from '../resources/flip.resource';
+import { FlipBar } from './flip-bar.class';
+import { FLIPCOLORS, FLIPGRIDLAYOUT } from './flip.constants';
+import { FlipResource } from './flip.resource';
 
 @Injectable({
     providedIn: 'root',
