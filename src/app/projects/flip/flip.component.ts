@@ -383,7 +383,7 @@ export class FlipComponent implements OnInit {
         this.flipService.showDistrictInfo(this.flipService.districtsData[district], container);
         select(container)
             .selectAll('g.bar')
-            .filter((d, i, nodes) => +nodes[i].getAttribute('district') !== district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') !== district)
             .selectAll('rect')
             .style('opacity', 0.3);
     }
@@ -393,7 +393,7 @@ export class FlipComponent implements OnInit {
         const container = document.getElementById(this.divId.replace('#', ''));
         this.flipService.hideDistrictInfo(this.flipService.districtsData[district], container);
         select(container)
-            .filter((d, i, nodes) => +nodes[i].getAttribute('district') !== district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') !== district)
             .selectAll('rect')
             .style('opacity', 1);
     }

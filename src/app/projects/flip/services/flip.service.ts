@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { FlipResource } from '../resources/flip.resource';
+import { format, select, selectAll } from 'd3';
 import { DistrictVotes, Party, StateVotes } from 'src/app/projects/flip/flip.model';
 import { FlipBar } from '../flip-bar.class';
-import { select, selectAll, format } from 'd3';
 import { FLIPCOLORS, FLIPGRIDLAYOUT } from '../flip.constants';
-import { ConstantPool } from '@angular/compiler';
+import { FlipResource } from '../resources/flip.resource';
 
 @Injectable()
 export class FlipService {
@@ -126,12 +125,12 @@ export class FlipService {
 
         select(this.elId)
             .selectAll('.grid-square')
-            .attr('squareColor', (d, i, nodes) => {
-                if (nodes[i].getAttribute('cellnum') <= cutDGrid) {
+            .attr('squareColor', (d, i, nodes: HTMLElement[]) => {
+                if (+nodes[i].getAttribute('cellnum') <= cutDGrid) {
                     return FLIPCOLORS.dColor;
                 } else if (
-                    nodes[i].getAttribute('cellnum') > cutDGrid &&
-                    nodes[i].getAttribute('cellnum') <= cutOtherGrid
+                    +nodes[i].getAttribute('cellnum') > cutDGrid &&
+                    +nodes[i].getAttribute('cellnum') <= cutOtherGrid
                 ) {
                     return FLIPCOLORS.oColor;
                 } else {
@@ -140,23 +139,23 @@ export class FlipService {
             })
             .transition()
             .duration(100)
-            .style('fill', (d, i, nodes) => nodes[i].getAttribute('squareColor'));
+            .style('fill', (d, i, nodes: HTMLElement[]) => nodes[i].getAttribute('squareColor'));
     }
 
     updateMap(bar: FlipBar) {
         select(this.elId)
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == bar.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') == bar.data.district)
             .raise()
             .classed('active-drag', true)
             .classed('active-mouseover', false)
             .attr('winner', () => this.getDistrictWinner(bar.draggedData))
             .transition()
             .duration(120)
-            .style('fill', (d, i, nodes) => {
-                if (nodes[i].getAttribute('winner') == Party.D) {
+            .style('fill', (d, i, nodes: HTMLElement[]) => {
+                if (nodes[i].getAttribute('winner') === Party.D) {
                     return FLIPCOLORS.dMapColor;
-                } else if (nodes[i].getAttribute('winner') == Party.R) {
+                } else if (nodes[i].getAttribute('winner') === Party.R) {
                     return FLIPCOLORS.rColor;
                 } else {
                     return FLIPCOLORS.oColor;
@@ -164,7 +163,7 @@ export class FlipService {
             });
 
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') != bar.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') !== bar.data.district)
             .classed('active-drag-others', true);
     }
 
@@ -197,7 +196,7 @@ export class FlipService {
             .selectAll('.congress-square')
             .transition()
             .duration(100)
-            .style('fill', (d, i, nodes) => this.getCongressSquareColor(nodes[i]));
+            .style('fill', (d, i, nodes: HTMLElement[]) => this.getCongressSquareColor(nodes[i]));
     }
 
     getDistrictWinner(data: DistrictVotes): string {
@@ -210,15 +209,15 @@ export class FlipService {
         }
     }
 
-    getCongressSquareColor(el) {
-        if (el.getAttribute('cellnum') <= this.stateData.dDistricts) {
+    getCongressSquareColor(el: HTMLElement) {
+        if (+el.getAttribute('cellnum') <= this.stateData.dDistricts) {
             return FLIPCOLORS.dColor;
         } else if (
-            el.getAttribute('cellnum') > this.stateData.dDistricts &&
-            el.getAttribute('cellnum') <= this.stateData.dDistricts + this.stateData.oDistricts
+            +el.getAttribute('cellnum') > this.stateData.dDistricts &&
+            +el.getAttribute('cellnum') <= this.stateData.dDistricts + this.stateData.oDistricts
         ) {
             return FLIPCOLORS.oColor;
-        } else if (el.getAttribute('cellnum') >= this.stateData.dDistricts + this.stateData.oDistricts) {
+        } else if (+el.getAttribute('cellnum') >= this.stateData.dDistricts + this.stateData.oDistricts) {
             return FLIPCOLORS.rColor;
         }
     }
@@ -229,7 +228,7 @@ export class FlipService {
 
         visContainer
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == +data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') === data.district)
             .classed('active-mouseover', true)
             .raise();
 
@@ -345,7 +344,7 @@ export class FlipService {
         const visContainer = select(visDiv);
         visContainer
             .selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') === data.district)
             .classed('active-mouseover', false);
 
         visContainer.selectAll('.district-info-container').style('opacity', 0);

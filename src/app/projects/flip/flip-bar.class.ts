@@ -1,7 +1,7 @@
-import { select, selectAll, scaleLinear } from 'd3';
-import { drag } from 'd3-drag';
+import { scaleLinear, select, selectAll } from 'd3';
 import { range } from 'd3-array';
-import { FLIPCOLORS, FLIPBARLAYOUT, FLIPTRANSITIONS } from './flip.constants';
+import { drag } from 'd3-drag';
+import { FLIPBARLAYOUT, FLIPCOLORS, FLIPTRANSITIONS } from './flip.constants';
 import { DistrictVotes, Party } from './flip.model';
 import { FlipService } from './services/flip.service';
 
@@ -135,12 +135,12 @@ export class FlipBar {
 
     dragEnd() {
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') == this.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') === this.data.district)
             .classed('active-drag', false)
             .classed('active-mouseover', false);
 
         selectAll('.district-boundary')
-            .filter((d, i, nodes) => nodes[i].getAttribute('district') != this.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') !== this.data.district)
             .classed('active-drag-others', false);
     }
 

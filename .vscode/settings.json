@@ -3,5 +3,14 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.inlineHints.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
-    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#0088ff",
+        "titleBar.activeForeground": "#ffffff",
+        "titleBar.inactiveBackground": "#0088ff",
+        "titleBar.inactiveForeground": "#ffffff"
+    }
 }
