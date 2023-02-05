@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import firebase from 'firebase/app';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
 import { Comment } from 'src/app/core/models/blog/comment.model';
 import { EnvironmentService } from 'src/app/core/services/environment.service';
 import Timestamp = firebase.firestore.Timestamp;

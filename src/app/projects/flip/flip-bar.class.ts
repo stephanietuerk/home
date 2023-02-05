@@ -134,12 +134,12 @@ export class FlipBar {
 
     dragEnd() {
         selectAll('.district-boundary')
-            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') == this.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') === this.data.district)
             .classed('active-drag', false)
             .classed('active-mouseover', false);
 
         selectAll('.district-boundary')
-            .filter((d, i, nodes: Element[]) => +nodes[i].getAttribute('district') != this.data.district)
+            .filter((d, i, nodes: HTMLElement[]) => +nodes[i].getAttribute('district') !== this.data.district)
             .classed('active-drag-others', false);
     }
 
