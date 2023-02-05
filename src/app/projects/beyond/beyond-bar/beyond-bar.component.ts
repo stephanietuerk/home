@@ -245,6 +245,7 @@ export class BeyondBarComponent implements OnInit, OnChanges {
             .attr('width', this.width.index + this.margin.index.left + this.margin.index.right)
             .attr('height', this.height + this.margin.top + this.margin.bottom)
             .attr('class', 'beyond-bar-svg-index')
+            .style('overflow', 'visible')
             .append('g')
             .attr('class', 'beyond-bar-index-g')
             .attr('transform', `translate(0, ${this.margin.top})`);

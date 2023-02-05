@@ -6,7 +6,7 @@ $leaving-highlight: $color-highlight;
     @extend %flex-column;
     background: white;
     margin-bottom: $space-4;
-    padding: $space-4 $space-6;
+    padding: $space-3 $space-6;
     box-shadow: $subtler-drop-shadow;
 
     .question-container {
