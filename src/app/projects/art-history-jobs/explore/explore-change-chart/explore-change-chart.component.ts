@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, Observable } from 'rxjs';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
 import { JobDatumChangeChart } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';

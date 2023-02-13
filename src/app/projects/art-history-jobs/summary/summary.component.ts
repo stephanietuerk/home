@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash';
-import { merge, Observable, Subject } from 'rxjs';
-import { map, scan } from 'rxjs/operators';
+import { map, merge, Observable, scan, Subject } from 'rxjs';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
-import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
+import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
@@ -27,7 +26,7 @@ interface ViewModel {
 
 interface ChartSort {
     function: SortFunction;
-    keyOrder: string[];
+    categoryOrder: string[];
 }
 
 type SortFunction = (series: any) => number[];
@@ -50,7 +49,7 @@ export class SummaryComponent implements OnInit {
 
     ngOnInit(): void {
         const vm$ = this.dataService.getData().pipe(
-            map((data: JobDatum[]): ViewModel => {
+            map((data: JobDatum[]) => (vm: ViewModel) => {
                 const [tableData, chartSort]: [JobTableDatum[], ChartSort] = this.getTableDataAndChartSort(data);
                 return {
                     chartConfig: this.getChartConfig(data, chartSort),
@@ -70,7 +69,7 @@ export class SummaryComponent implements OnInit {
         );
 
         this.vm$ = merge(vm$, sort$).pipe(
-            scan((vm: ViewModel, mutationFn: (vm: ViewModel) => ViewModel) => mutationFn(vm))
+            scan((vm: ViewModel, mutationFn: (vm: ViewModel) => ViewModel) => mutationFn(vm), {})
         );
     }
 
@@ -119,7 +118,7 @@ export class SummaryComponent implements OnInit {
         const order = this.getKeyOrder(data);
         return {
             function: func,
-            keyOrder: order,
+            categoryOrder: order,
         };
     }
 
@@ -152,8 +151,8 @@ export class SummaryComponent implements OnInit {
         const config = new SummaryChartConfig();
         config.data = chartData;
         config.category.colorScale = (d) => this.fieldsService.getColorForField(d);
-        config.order = chartSort.function;
-        config.keyOrder = chartSort.keyOrder;
+        config.stackOrderFunction = chartSort.function;
+        config.categoryOrder = chartSort.categoryOrder;
         return config;
     }
 
@@ -170,7 +169,7 @@ export class SummaryComponent implements OnInit {
     }
 
     getUpdatedChartConfigForSort(config: SummaryChartConfig, chartSort: ChartSort): SummaryChartConfig {
-        return { ...config, order: chartSort.function, keyOrder: chartSort.keyOrder };
+        return { ...config, stackOrderFunction: chartSort.function, categoryOrder: chartSort.categoryOrder };
     }
 
     handleTableSort(): void {

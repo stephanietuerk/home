@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { max, min } from 'd3';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { JobDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { ExploreSelections } from './explore-selections/explore-selections.model';

@@ -48,8 +48,8 @@ export const artHistoryFields: Field[] = [
     },
     {
         name: {
-            full: 'Arts Management / Arts Administration',
-            short: 'Arts Mgmt / Admin',
+            full: 'Curatorial Studies / Arts Administration',
+            short: 'Curation / Arts Admin',
         },
         color: artHistoryJobsColors.maroon,
         selected: false,
@@ -101,7 +101,7 @@ export const artHistoryFields: Field[] = [
         sort: 9,
     },
     {
-        name: { full: 'Gender Studies', short: 'Gender Studies' },
+        name: { full: 'Gender and Sexuality Studies', short: 'Gender / Sex. Studies' },
         color: artHistoryJobsColors.brightPurple,
         selected: false,
         sort: 10,

@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChartsModule } from 'src/app/shared/components/charts/charts.module';
+import { ChartsModule } from 'src/app/shared/charts/charts.module';
 import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';

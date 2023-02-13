@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { timeYear } from 'd3';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { LinesTooltipData } from 'src/app/shared/components/charts/lines/lines.model';
+import { EventEffect } from 'src/app/shared/charts/events/effect';
+import { HtmlTooltipConfig } from 'src/app/shared/charts/html-tooltip/html-tooltip.config';
+import { EmitLinesTooltipData, LinesHoverAndMoveEffectDefaultStyles } from 'src/app/shared/charts/lines/lines-effects';
+import {
+    LinesEmittedOutput,
+    LinesHoverAndMoveEventDirective,
+} from 'src/app/shared/charts/lines/lines-hover-move-event.directive';
+import { LinesTooltipData } from 'src/app/shared/components/charts_old/lines/lines.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ExploreTimeRangeChartData, LineCategoryType } from '../explore-data.model';
@@ -40,8 +46,16 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         bottom: 36,
         left: 36,
     };
-    tooltipData: BehaviorSubject<LinesTooltipData> = new BehaviorSubject<LinesTooltipData>(null);
+    tooltipConfig: BehaviorSubject<HtmlTooltipConfig> = new BehaviorSubject<HtmlTooltipConfig>(
+        new HtmlTooltipConfig({ show: false })
+    );
+    tooltipConfig$ = this.tooltipConfig.asObservable();
+    tooltipData: BehaviorSubject<LinesEmittedOutput> = new BehaviorSubject<LinesEmittedOutput>(null);
     tooltipData$ = this.tooltipData.asObservable();
+    hoverEffects: EventEffect<LinesHoverAndMoveEventDirective>[] = [
+        new LinesHoverAndMoveEffectDefaultStyles(),
+        new EmitLinesTooltipData(),
+    ];
     chartBackgroundColor = grayLightest;
 
     constructor(public exploreDataService: ExploreDataService, private fieldsService: ArtHistoryFieldsService) {}
@@ -70,7 +84,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         config.category.valueAccessor = (d: any) => d[chartData.categories];
         config.category.colorScale = this.getColorScale(chartData);
         if (chartData.categories !== 'field') {
-            config.lineLabels.show = true;
+            config.lineLabels.display = true;
             config.lineLabels.align = 'inside';
             config.lineLabels.format = (d: any) => this.getCategoryLabel(d, chartData.categories);
         }
@@ -108,6 +122,29 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         }
     }
 
+    updateTooltipForNewOutput(data: LinesEmittedOutput): void {
+        this.updateTooltipData(data);
+        this.updateTooltipConfig(data);
+    }
+
+    updateTooltipData(data: LinesEmittedOutput): void {
+        this.tooltipData.next(data);
+    }
+
+    updateTooltipConfig(data: LinesEmittedOutput): void {
+        const config = new HtmlTooltipConfig();
+        config.position.panelClass = 'time-range-tooltip';
+        config.size.minWidth = 200;
+        if (data) {
+            config.position.offsetX = data.positionX;
+            config.position.offsetY = data.positionY - 16;
+            config.show = true;
+        } else {
+            config.show = false;
+        }
+        this.tooltipConfig.next(config);
+    }
+
     updateChartOnNewTooltipData(data: LinesTooltipData): void {
         if (data) {
             const { x, ...rest } = data;
@@ -117,10 +154,6 @@ export class ExploreTimeRangeChartComponent implements OnInit {
             };
             this.updateTooltipData(transformedData);
         }
-    }
-
-    updateTooltipData(data: LinesTooltipData): void {
-        this.tooltipData.next(data);
     }
 
     getCategoryLabel(value: string, category: string): string {

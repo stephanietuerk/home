@@ -1,23 +1,29 @@
 <ng-container *ngIf="vm$ | async as vm">
     <p class="chart-title" [style.padding-left.px]="margin.left">{{ vm.title }}</p>
-    <app-chart [margin]="margin" [height]="height" [width]="width" (tooltipData)="updateChartOnNewTooltipData($event)">
-        <svg:g xy-chart-space svg-elements>
+    <app-xy-chart [margin]="margin" [height]="height" [width]="width">
+        <ng-container svg-elements>
             <svg:g xy-background [color]="chartBackgroundColor"></svg:g>
             <svg:g x-quantitative-axis side="bottom" [config]="vm.xAxisConfig"></svg:g>
             <svg:g y-quantitative-axis side="left" [config]="vm.yAxisConfig"></svg:g>
-            <svg:g data-marks-lines [config]="vm.dataMarksConfig"></svg:g>
-        </svg:g>
-        <ng-container tooltip-content>
-            <div *ngIf="tooltipData$ | async as tooltip" [style.--color]="tooltip.color" class="tooltip-container">
-                <p class="tooltip-label category">
-                    <span class="value-label">{{ vm.lineCategoryLabel }}</span
-                    >{{ getCategoryLabel(tooltip.category, vm.lineCategoryLabel) }}
-                </p>
-                <div class="values-container">
-                    <p class="tooltip-label x"><span class="value-label">Year</span> {{ tooltip.x }}</p>
-                    <p class="tooltip-label y"><span class="value-label">Value</span>{{ tooltip.y }}</p>
-                </div>
-            </div>
+            <svg:g
+                data-marks-lines
+                [config]="vm.dataMarksConfig"
+                [appLinesHoverAndMoveEffects]="hoverEffects"
+                (hoverAndMoveEventOutput)="updateTooltipForNewOutput($event)"
+            ></svg:g>
+            <app-html-tooltip [config]="tooltipConfig$ | async" [template]="htmlTooltip"></app-html-tooltip>
         </ng-container>
-    </app-chart>
+    </app-xy-chart>
+    <ng-template #htmlTooltip>
+        <div [style.--color]="(tooltipData$ | async)?.color" class="tooltip-container">
+            <p class="tooltip-label category">
+                <span class="value-label">{{ (tooltipData$ | async)?.category }}</span
+                >{{ getCategoryLabel((tooltipData$ | async)?.category, vm.lineCategoryLabel) }}
+            </p>
+            <div class="values-container">
+                <p class="tooltip-label x"><span class="value-label">Year</span> {{ (tooltipData$ | async)?.x }}</p>
+                <p class="tooltip-label y"><span class="value-label">Value</span>{{ (tooltipData$ | async)?.y }}</p>
+            </div>
+        </div>
+    </ng-template>
 </ng-container>

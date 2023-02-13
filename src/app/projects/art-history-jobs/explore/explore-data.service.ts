@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, filter, map, Observable, shareReplay } from 'rxjs';
 import { JobDatum, JobDatumTimeRangeChart, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { ExploreChangeChartData, ExploreChartsData, ExploreTimeRangeChartData } from './explore-data.model';

@@ -1,13 +1,12 @@
 import { Component, Input, OnChanges, Optional, Self, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { ControlContainer, FormGroupDirective, NgControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, Observable, startWith } from 'rxjs';
 import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 
 @Component({
     selector: 'app-form-select-with-filtering',
     templateUrl: './form-select-with-filtering.component.html',
-    styleUrls: ['../select/form-select.component.scss', './select-with-filtering.component.scss'],
+    styleUrls: ['../form-select/form-select.component.scss', './form-select-with-filtering.component.scss'],
     encapsulation: ViewEncapsulation.None,
     viewProviders: [
         {

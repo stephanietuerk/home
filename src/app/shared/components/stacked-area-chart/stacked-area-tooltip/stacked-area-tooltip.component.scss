@@ -3,14 +3,14 @@
 .stacked-area-tooltip-container {
     position: relative;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: $space-1;
+    border-radius: $grid-1;
     box-shadow: $drop-shadow-light;
-    padding: $space-2;
+    padding: $grid-2;
 
     .x-axis-value {
-        padding-bottom: $space-1;
+        padding-bottom: $grid-1;
         border-bottom: 1px solid $color-light-gray-light;
-        margin-bottom: $space-1;
+        margin-bottom: $grid-1;
     }
 
     .tooltip-row {
@@ -21,7 +21,7 @@
 
     .area-name-container {
         display: flex;
-        padding-right: $space-2;
+        padding-right: $grid-2;
         align-items: center;
     }
 
@@ -33,12 +33,12 @@
     }
 
     .area-color-square {
-        $size: $space-4;
+        $size: $grid-4;
         height: $size;
         width: $size;
         background: var(--color);
-        margin-right: $space-1;
-        border-radius: $space-1;
+        margin-right: $grid-1;
+        border-radius: $grid-1;
     }
 }
 

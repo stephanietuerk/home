@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { isEqual } from 'lodash';
-import { Subject } from 'rxjs';
-import { debounceTime, map, pairwise, startWith, takeUntil } from 'rxjs/operators';
+import { debounceTime, map, pairwise, startWith, Subject, takeUntil } from 'rxjs';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { SelectionOption } from 'src/app/shared/components/form-components/form-radio-input/form-radio-input.model';
-import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { artHistoryFields } from '../../art-history-fields.constants';
 import { ExploreDataService } from '../explore-data.service';
 import { ExploreSelectionsFormService } from './explore-selections-form.service';
@@ -20,7 +19,7 @@ import { ExploreFormSelections, ExploreSelections, FilterType, ValueType } from 
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [animations.slide('selection-interface')],
 })
-export class ExploreSelectionsComponent extends UnsubscribeDirective implements OnInit {
+export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     @Input() yearsRange: [number, number];
     FormArray = FormArray;
     FormControl = FormControl;

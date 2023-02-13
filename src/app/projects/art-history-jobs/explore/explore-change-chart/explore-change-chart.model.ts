@@ -1,5 +1,6 @@
-import { AxisConfig, TickWrap } from 'src/app/shared/components/charts/axes/axis-config.model';
-import { BarsConfig, horizontalBarChartDimensionsConfig } from 'src/app/shared/components/charts/bars/bars.model';
+import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
+import { BarsConfig, horizontalBarChartDimensionsConfig } from 'src/app/shared/charts/bars/bars.config';
+import { TickWrap } from 'src/app/shared/components/charts_old/axes/axis-config.model';
 
 export class ChangeChartConfig extends BarsConfig {
     constructor() {

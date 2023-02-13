@@ -1,3 +1,3 @@
-import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 
-export class UnsubscribeDirectiveStub extends UnsubscribeDirective {}
+export class UnsubscribeDirectiveStub extends Unsubscribe {}

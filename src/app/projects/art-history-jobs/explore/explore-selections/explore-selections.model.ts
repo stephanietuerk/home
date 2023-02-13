@@ -30,6 +30,7 @@ export enum RankType {
     associate_prof = 'associate_prof',
     full_prof = 'full_prof',
     open_rank = 'open_rank',
+    chair = 'chair',
     lecturer = 'lecturer',
     vap = 'vap',
     unknown = 'unknown',

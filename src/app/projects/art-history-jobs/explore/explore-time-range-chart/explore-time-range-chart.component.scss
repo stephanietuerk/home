@@ -22,7 +22,7 @@
     font-weight: 600;
     color: var(--color);
     border-bottom: 1px solid $color-dark-primary;
-    padding-bottom: $space-1;
+    padding-bottom: $grid-1;
 
     .value-label {
         color: $color-dark-primary;
@@ -38,7 +38,7 @@
 }
 
 .values-container {
-    padding-top: $space-2;
+    padding-top: $grid-2;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }

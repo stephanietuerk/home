@@ -22,12 +22,12 @@
     .section-header {
         @extend %h3;
         text-align: center;
-        padding-bottom: $space-1;
+        padding-bottom: $grid-1;
     }
 
     .description {
         max-width: 600px;
         line-height: 1.5;
-        padding-bottom: $space-6;
+        padding-bottom: $grid-6;
     }
 }

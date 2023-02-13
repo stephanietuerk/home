@@ -1,6 +1,6 @@
 import { scaleLinear, scaleUtc } from 'd3';
-import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
-import { LinesConfig } from 'src/app/shared/components/charts/lines/lines.model';
+import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
+import { LinesConfig } from 'src/app/shared/charts/lines/lines.config';
 import { JobDatum } from '../../art-history-data.model';
 
 export class ExploreTimeRangeChartConfig extends LinesConfig {
@@ -10,8 +10,8 @@ export class ExploreTimeRangeChartConfig extends LinesConfig {
         this.x.scaleType = scaleUtc;
         this.y.scaleType = scaleLinear;
         this.pointMarker.display = true;
-        this.showTooltip = true;
-        this.tooltipDetectionRadius = 80;
+        // this.showTooltip = true;
+        // this.tooltipDetectionRadius = 80;
     }
 }
 

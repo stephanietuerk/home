@@ -5,7 +5,7 @@
     border-collapse: collapse;
 
     .sort-arrows {
-        padding-left: $space-1;
+        padding-left: $grid-1;
     }
 
     .head {
@@ -14,7 +14,7 @@
         }
 
         .header.cell:not(:last-child) {
-            padding-right: $space-2;
+            padding-right: $grid-2;
         }
 
         .header.cell:last-child {
@@ -66,7 +66,7 @@
         .cell.data {
             @extend %slab-medium;
             font-size: 0.85rem;
-            padding: $space-2 $space-2 6px $space-2;
+            padding: $grid-2 $grid-2 6px $grid-2;
             color: var(--color);
             border-bottom: 1px solid $color-light-gray-light;
 

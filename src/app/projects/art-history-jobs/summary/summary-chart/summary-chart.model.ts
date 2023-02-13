@@ -1,8 +1,7 @@
 import { scaleUtc } from 'd3';
-import { AxisConfig } from 'src/app/shared/components/charts/axes/axis-config.model';
-import { StackedAreaConfig } from 'src/app/shared/components/charts/stacked-area/stacked-area.model';
+import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
+import { StackedAreaConfig } from 'src/app/shared/charts/stacked-area/stacked-area.config';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
-
 export class SummaryChartConfig extends StackedAreaConfig {
     constructor() {
         super();
@@ -12,7 +11,6 @@ export class SummaryChartConfig extends StackedAreaConfig {
         this.x.scaleType = scaleUtc;
         this.x.valueFormat = artHistoryFormatSpecifications.summary.chart.value.year;
         this.y.valueFormat = artHistoryFormatSpecifications.summary.chart.value.count;
-        this.showTooltip = false;
         this.category.colors = undefined;
     }
 }

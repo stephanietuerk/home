@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, Optional, Self, ViewEncapsulation } from '@angular/core';
 import { ControlContainer, FormGroupDirective, NgControl } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
+import { takeUntil } from 'rxjs';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 import { SelectionOption } from './form-radio-input.model';
 
@@ -19,7 +19,7 @@ let nextUniqueId = 0;
         },
     ],
 })
-export class FormRadioInputComponent extends UnsubscribeDirective implements OnInit, OnDestroy {
+export class FormRadioInputComponent extends Unsubscribe implements OnInit, OnDestroy {
     _uniqueId = ++nextUniqueId;
     @Input() formControlName: string;
     @Input() option: SelectionOption;

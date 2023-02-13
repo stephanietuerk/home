@@ -44,12 +44,12 @@ $drop-shadow-bottom-lightest: 0 1px 3px -1px rgba($color-dark-primary, 0.06),
 
 $landing-page-max-width: 1000px;
 
-$vertical-scrollbar-thickness: $space-3;
-$horizontal-scrollbar-thickness: $space-3;
+$vertical-scrollbar-thickness: $grid-3;
+$horizontal-scrollbar-thickness: $grid-3;
 
-$content-component-padding: 0px $space-10 $space-4 $space-10;
+$content-component-padding: 0px $grid-10 $grid-4 $grid-10;
 
-$navbar-height: $space-16;
+$navbar-height: $grid-16;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;

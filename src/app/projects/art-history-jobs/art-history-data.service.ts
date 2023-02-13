@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, Observable, shareReplay } from 'rxjs';
 import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
 import { JobDatum } from './art-history-data.model';
 
@@ -51,6 +50,8 @@ export class ArtHistoryDataService {
                     return 'Associate professor';
                 case 'full_prof':
                     return 'Full professor';
+                case 'chair':
+                    return 'Chair';
                 case 'open_rank':
                     return 'Open rank';
                 case 'vap':

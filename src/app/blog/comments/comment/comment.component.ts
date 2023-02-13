@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, Observable } from 'rxjs';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Comment } from 'src/app/core/models/blog/comment.model';
 

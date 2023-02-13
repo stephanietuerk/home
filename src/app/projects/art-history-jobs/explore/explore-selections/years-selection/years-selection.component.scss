@@ -7,10 +7,10 @@
         background: none;
         box-shadow: none;
         border: none;
-        margin: $space-8 0 $space-4 0;
+        margin: $grid-8 0 $grid-4 0;
     }
 
-    $track-size: $space-3;
+    $track-size: $grid-3;
     .noUi-connects {
         background: #e8e8e8;
         height: $track-size;
@@ -21,7 +21,7 @@
     }
 
     .noUi-handle {
-        $size: $space-5;
+        $size: $grid-5;
         width: $size;
         height: $size;
         border-radius: 50%;

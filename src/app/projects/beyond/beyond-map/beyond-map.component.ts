@@ -1,10 +1,9 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { transition } from 'd3';
 import { easeQuadOut } from 'd3-ease';
 import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
-import { Subject } from 'rxjs';
 import * as topojson from 'topojson';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
 import { BeyondService } from '../beyond.service';
@@ -15,7 +14,7 @@ import { BeyondService } from '../beyond.service';
     styleUrls: ['./beyond-map.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
+export class BeyondMapComponent implements OnInit, OnChanges {
     @Input() electionYear: string;
     @Input() electionType: string;
     mapCreated: boolean = false;
@@ -28,7 +27,6 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
     viewPlaceNames: boolean = true;
     mapZoom: any = zoom().scaleExtent([1, 10]);
     mapPath: any;
-    private destroy$ = new Subject();
 
     constructor(private beyondService: BeyondService) {}
 
@@ -417,10 +415,5 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             return 2;
         }
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }

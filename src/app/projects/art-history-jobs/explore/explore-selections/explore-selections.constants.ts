@@ -54,6 +54,10 @@ export const rankOptions: SelectionOption[] = [
         selected: false,
     },
     {
+        label: 'Chair',
+        selected: false,
+    },
+    {
         label: 'Open rank',
         selected: false,
     },

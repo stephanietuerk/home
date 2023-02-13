@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable, switchMap } from 'rxjs';
 import { Comment } from '../models/blog/comment.model';
 
 @Injectable({

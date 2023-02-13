@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Optional, Self, ViewEncapsulation } from '@angular/core';
 import { ControlContainer, FormGroupDirective, NgControl } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeDirective } from 'src/app/shared/unsubscribe.directive';
+import { takeUntil } from 'rxjs';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { SelectionOption } from '../form-radio-input/form-radio-input.model';
 import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 
@@ -19,7 +19,7 @@ let nextUniqueId = 0;
         },
     ],
 })
-export class FormCheckboxInputComponent extends UnsubscribeDirective implements OnInit {
+export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
     _uniqueId = ++nextUniqueId;
     @Input() formControlName: string;
     @Input() id: string;

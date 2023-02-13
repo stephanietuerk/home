@@ -9,12 +9,12 @@
 .section-header {
     @extend %h3;
     text-align: center;
-    padding-bottom: $space-1;
+    padding-bottom: $grid-1;
 }
 
 .charts-container {
     display: flex;
-    padding-top: $space-4;
+    padding-top: $grid-4;
 }
 
 .time-range-chart-component {
