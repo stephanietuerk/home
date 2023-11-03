@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FlipResource {
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    getFlipData() {
-        return this.http.get('assets/flipthedistrict/flip_vote_data.csv', { responseType: 'text' });
-    }
+  getFlipData() {
+    return this.http.get('assets/flipthedistrict/flip_vote_data.csv', {
+      responseType: 'text',
+    });
+  }
 
-    getFlipTopoJson() {
-        return this.http.get('assets/flipthedistrict/pa_districts.json', { responseType: 'json' });
-    }
+  getFlipTopoJson() {
+    return this.http.get('assets/flipthedistrict/pa_districts.json', {
+      responseType: 'json',
+    });
+  }
 }
