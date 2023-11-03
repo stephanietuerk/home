@@ -15,7 +15,6 @@ describe('ProjectListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectsTableComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

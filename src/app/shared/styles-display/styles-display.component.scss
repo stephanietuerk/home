@@ -1,45 +1,45 @@
 @import 'vars', 'placeholders';
 
 .h1-placeholder {
-    @extend %h1;
+  @extend %h1;
 }
 .h2-placeholder {
-    @extend %h2;
+  @extend %h2;
 }
 .h3-placeholder {
-    @extend %h3;
+  @extend %h3;
 }
 .h4-placeholder {
-    @extend %h4;
+  @extend %h4;
 }
 .h5-placeholder {
-    @extend %h5;
+  @extend %h5;
 }
 
 .subtitle1-placeholder {
-    @extend %subtitle1;
+  @extend %subtitle1;
 }
 .subtitle2-placeholder {
-    @extend %subtitle2;
+  @extend %subtitle2;
 }
 .body1-placeholder {
-    @extend %body1;
+  @extend %body1;
 }
 .body2-placeholder {
-    @extend %body2;
+  @extend %body2;
 }
 .button-placeholder {
-    @extend %button;
+  @extend %button;
 }
 .caption-placeholder {
-    @extend %caption;
+  @extend %caption;
 }
 .overline-placeholder {
-    @extend %overline;
+  @extend %overline;
 }
 .small-caps-instructions {
-    @extend %small-caps-overline;
+  @extend %small-caps-overline;
 }
 .instructions {
-    @extend %instructions;
+  @extend %instructions;
 }

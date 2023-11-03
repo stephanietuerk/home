@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DomSanitizerStub } from 'src/app/testing/stubs/dom-sanitizer.stub';
+import { DomSanitizerStub } from 'src/app/testing/stubs/angular/dom-sanitizer.stub';
 import { SafePipe } from './safe.pipe';
 
 describe('SafePipe', () => {
   let pipe: SafePipe;
-  let domsanitizerStub: DomSanitizerStub;
+  let domSanitizerStub: DomSanitizerStub;
 
   beforeEach(() => {
-    domsanitizerStub = new DomSanitizerStub();
+    domSanitizerStub = new DomSanitizerStub();
 
     TestBed.configureTestingModule({
       declarations: [SafePipe],
       providers: [
         SafePipe,
-        { provide: DomSanitizer, useValue: domsanitizerStub },
+        { provide: DomSanitizer, useValue: domSanitizerStub },
       ],
     });
     pipe = TestBed.inject(SafePipe);
@@ -23,7 +23,7 @@ describe('SafePipe', () => {
   it('calls bypassSecurityTrustHtml', () => {
     const html = '<a></a>';
     pipe.transform(html);
-    expect(domsanitizerStub.bypassSecurityTrustHtml).toHaveBeenCalledTimes(1);
-    expect(domsanitizerStub.bypassSecurityTrustHtml).toHaveBeenCalledWith(html);
+    expect(domSanitizerStub.bypassSecurityTrustHtml).toHaveBeenCalledTimes(1);
+    expect(domSanitizerStub.bypassSecurityTrustHtml).toHaveBeenCalledWith(html);
   });
 });
