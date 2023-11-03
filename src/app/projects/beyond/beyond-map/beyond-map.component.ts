@@ -12,7 +12,7 @@ import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
 import { Subject } from 'rxjs';
-import * as topojson from 'topojson';
+import * as topojson from 'topojson-client';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
 import { BeyondService } from '../services/beyond.service';
 
