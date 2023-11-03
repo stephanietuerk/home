@@ -6,15 +6,15 @@ import { get, isEqual } from 'lodash';
     providedIn: 'root',
 })
 export class UtilitiesService {
-    objectChangedNotFirstTime(changes: SimpleChanges, object: string, property?: string): boolean {
+    objectOnNgChangesChangedNotFirstTime(changes: SimpleChanges, object: string, property?: string): boolean {
         return (
             changes[object] !== undefined &&
             !changes[object].firstChange &&
-            this.objectChanged(changes, object, property)
+            this.objectOnNgChangesChanged(changes, object, property)
         );
     }
 
-    objectChanged(changes: SimpleChanges, objectName: string, property?: string): boolean {
+    objectOnNgChangesChanged(changes: SimpleChanges, objectName: string, property?: string): boolean {
         const previousValue = this.getPreviousValue(changes, objectName, property);
         const currentValue = this.getCurrentValue(changes, objectName, property);
         return changes[objectName] !== undefined && !isEqual(previousValue, currentValue);
@@ -28,7 +28,7 @@ export class UtilitiesService {
         return property ? get(changes[objectName].currentValue, property) : changes[objectName].currentValue;
     }
 
-    getSplitCategoryAndEntity(item: string): number[] {
-        return item.split('-').map((x) => +x);
+    isDate(x: any): boolean {
+        return Object.prototype.toString.call(x) === '[object Date]' && !isNaN(x);
     }
 }

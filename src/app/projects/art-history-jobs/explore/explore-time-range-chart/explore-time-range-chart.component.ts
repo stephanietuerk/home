@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { timeYear } from 'd3';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { DATA_MARKS } from 'src/app/shared/charts/data-marks/data-marks.token';
 import { EventEffect } from 'src/app/shared/charts/events/effect';
 import { HtmlTooltipConfig } from 'src/app/shared/charts/html-tooltip/html-tooltip.config';
 import { EmitLinesTooltipData, LinesHoverAndMoveEffectDefaultStyles } from 'src/app/shared/charts/lines/lines-effects';
@@ -10,7 +11,7 @@ import {
     LinesEmittedOutput,
     LinesHoverAndMoveEventDirective,
 } from 'src/app/shared/charts/lines/lines-hover-move-event.directive';
-import { LinesTooltipData } from 'src/app/shared/components/charts_old/lines/lines.model';
+import { LINES } from 'src/app/shared/charts/lines/lines.component';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ExploreTimeRangeChartData, LineCategoryType } from '../explore-data.model';
@@ -29,12 +30,18 @@ interface ViewModel {
     yAxisConfig: ExploreTimeRangeYAxisConfig;
     lineCategoryLabel: string;
     title: string;
+    dataType: string;
 }
 
 @Component({
     selector: 'app-explore-time-range-chart',
     templateUrl: './explore-time-range-chart.component.html',
     styleUrls: ['./explore-time-range-chart.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        { provide: LINES, useExisting: ExploreTimeRangeChartComponent },
+        { provide: DATA_MARKS, useExisting: ExploreTimeRangeChartComponent },
+    ],
 })
 export class ExploreTimeRangeChartComponent implements OnInit {
     vm$: Observable<ViewModel>;
@@ -70,6 +77,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
                         yAxisConfig: this.getYAxisConfig(chartData.timeRange),
                         lineCategoryLabel: this.getLineCategoryLabel(chartData.timeRange.categories),
                         title: !!selections ? this.getTitle(chartData.timeRange.categories, selections) : '',
+                        dataType: !!selections ? selections.dataType : '',
                     };
                 }
             })
@@ -133,7 +141,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
 
     updateTooltipConfig(data: LinesEmittedOutput): void {
         const config = new HtmlTooltipConfig();
-        config.position.panelClass = 'time-range-tooltip';
+        config.position.panelClass = 'explore-time-range-tooltip';
         config.size.minWidth = 200;
         if (data) {
             config.position.offsetX = data.positionX;
@@ -145,10 +153,10 @@ export class ExploreTimeRangeChartComponent implements OnInit {
         this.tooltipConfig.next(config);
     }
 
-    updateChartOnNewTooltipData(data: LinesTooltipData): void {
+    updateChartOnNewTooltipData(data: LinesEmittedOutput): void {
         if (data) {
             const { x, ...rest } = data;
-            const transformedData: LinesTooltipData = {
+            const transformedData: LinesEmittedOutput = {
                 ...rest,
                 x: x.split(' ')[3],
             };

@@ -1,0 +1,30 @@
+@import 'vars', 'placeholders';
+
+:host {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header {
+    @extend %h3;
+    text-align: center;
+    padding-bottom: $grid-1;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: $grid-4;
+}
+
+.all-schools-container {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(200px, 1fr));
+}
+
+.school-name {
+    @extend %small-caps;
+    @extend %slab-medium;
+    line-height: 1;
+}

@@ -8,9 +8,15 @@
 
 .charts-container {
     display: flex;
-    overflow-x: auto;
+}
+
+.chart-component {
+    display: block;
+    flex-grow: 1;
+    min-width: 340px;
 }
 
 .table-component {
-    width: 400px;
+    flex-basis: 400px;
+    flex-shrink: 0;
 }

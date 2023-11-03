@@ -48,21 +48,12 @@ export const artHistoryFields: Field[] = [
     },
     {
         name: {
-            full: 'Curatorial Studies / Arts Administration',
-            short: 'Curation / Arts Admin',
-        },
-        color: artHistoryJobsColors.maroon,
-        selected: false,
-        sort: 4,
-    },
-    {
-        name: {
             full: 'Asian / Asian Diaspora Art',
             short: 'Asian / Asian Dias. Art',
         },
         color: artHistoryJobsColors.pineGreen,
         selected: false,
-        sort: 5,
+        sort: 4,
     },
     {
         name: {
@@ -70,6 +61,15 @@ export const artHistoryFields: Field[] = [
             short: 'Byz. / Medieval Art',
         },
         color: artHistoryJobsColors.slateBlueGray,
+        selected: false,
+        sort: 5,
+    },
+    {
+        name: {
+            full: 'Curatorial Studies / Arts Administration',
+            short: 'Curation / Arts Admin',
+        },
+        color: artHistoryJobsColors.maroon,
         selected: false,
         sort: 6,
     },
@@ -84,12 +84,21 @@ export const artHistoryFields: Field[] = [
     },
     {
         name: {
+            full: 'Digital Art History',
+            short: 'Digital Art History',
+        },
+        color: artHistoryJobsColors.darkVioletBlue,
+        selected: false,
+        sort: 8,
+    },
+    {
+        name: {
             full: 'Early Modern / Renaissance / Eighteenth & Nineteenth Century Art',
             short: `Early Mod. ${enDash} 19th C. Art`,
         },
         color: artHistoryJobsColors.grassGreen,
         selected: false,
-        sort: 8,
+        sort: 9,
     },
     {
         name: {
@@ -98,19 +107,19 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.paleChartreuse,
         selected: false,
-        sort: 9,
+        sort: 10,
     },
     {
         name: { full: 'Gender and Sexuality Studies', short: 'Gender / Sex. Studies' },
         color: artHistoryJobsColors.brightPurple,
         selected: false,
-        sort: 10,
+        sort: 11,
     },
     {
         name: { full: 'General / Open', short: 'General / Open' },
         color: artHistoryJobsColors.gold,
         selected: false,
-        sort: 11,
+        sort: 12,
     },
     {
         name: {
@@ -119,7 +128,7 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.brightMagenta,
         selected: false,
-        sort: 12,
+        sort: 13,
     },
     {
         name: {
@@ -128,7 +137,7 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.lightOrange,
         selected: false,
-        sort: 13,
+        sort: 14,
     },
     {
         name: {
@@ -137,7 +146,7 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.brightSkyBlue,
         selected: false,
-        sort: 14,
+        sort: 15,
     },
     {
         name: {
@@ -146,7 +155,7 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.redOrange,
         selected: false,
-        sort: 15,
+        sort: 16,
     },
     {
         name: {
@@ -155,7 +164,7 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.brightMint,
         selected: false,
-        sort: 16,
+        sort: 17,
     },
     {
         name: {
@@ -164,6 +173,6 @@ export const artHistoryFields: Field[] = [
         },
         color: artHistoryJobsColors.poopBrown,
         selected: false,
-        sort: 17,
+        sort: 18,
     },
 ];

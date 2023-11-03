@@ -5,116 +5,101 @@ import { HoverAndMoveEventDirective } from '../events/hover-move-event';
 import { LINES, LinesComponent } from './lines.component';
 
 export class LinesEmittedOutput {
-  datum: any;
-  color: string;
-  x: string;
-  y: string;
-  category: string;
-  positionX?: number;
-  positionY?: number;
+    datum: any;
+    color: string;
+    x: string;
+    y: string;
+    category: string;
+    positionX?: number;
+    positionY?: number;
 }
 
 @Directive({
-  selector: '[appLinesHoverAndMoveEffects]',
+    selector: '[appLinesHoverAndMoveEffects]',
 })
 export class LinesHoverAndMoveEventDirective extends HoverAndMoveEventDirective {
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('appLinesHoverAndMoveEffects')
-  effects: EventEffect<LinesHoverAndMoveEventDirective>[];
-  @Input() pointerDetectionRadius: number | null = 80;
-  @Output() hoverAndMoveEventOutput = new EventEmitter<LinesEmittedOutput>();
-  pointerX: number;
-  pointerY: number;
-  closestPointIndex: number;
+    // eslint-disable-next-line @angular-eslint/no-input-rename
+    @Input('appLinesHoverAndMoveEffects')
+    effects: EventEffect<LinesHoverAndMoveEventDirective>[];
+    @Input() pointerDetectionRadius: number | null = 80;
+    @Output() hoverAndMoveEventOutput = new EventEmitter<LinesEmittedOutput>();
+    pointerX: number;
+    pointerY: number;
+    closestPointIndex: number;
 
-  constructor(@Inject(LINES) public lines: LinesComponent) {
-    super();
-  }
-
-  setElements(): void {
-    this.elements = [this.lines.chart.svgRef.nativeElement];
-  }
-
-  elementPointerEnter(): void {
-    return;
-  }
-
-  elementPointerMove(event: PointerEvent) {
-    [this.pointerX, this.pointerY] = this.getPointerValuesArray(event);
-    if (this.pointerIsInChartArea()) {
-      this.determineHoverStyles();
+    constructor(@Inject(LINES) public lines: LinesComponent) {
+        super();
     }
-  }
 
-  elementPointerLeave() {
-    if (this.effects) {
-      this.effects.forEach((effect) => effect.removeEffect(this));
+    setListenedElements(): void {
+        this.elements = [this.lines.chart.svgRef.nativeElement];
+        this.setListeners();
     }
-  }
 
-  pointerIsInChartArea(): boolean {
-    return (
-      this.pointerX > this.lines.ranges.x[0] &&
-      this.pointerX < this.lines.ranges.x[1] &&
-      this.pointerY > this.lines.ranges.y[1] &&
-      this.pointerY < this.lines.ranges.y[0]
-    );
-  }
-
-  determineHoverStyles(): void {
-    this.closestPointIndex = this.getClosestPointIndex();
-    if (
-      this.effects &&
-      this.pointerIsInsideShowTooltipRadius(
-        this.closestPointIndex,
-        this.pointerX,
-        this.pointerY
-      )
-    ) {
-      this.effects.forEach((effect) => effect.applyEffect(this));
-    } else {
-      this.effects.forEach((effect) => effect.removeEffect(this));
+    elementPointerEnter(): void {
+        return;
     }
-  }
 
-  getClosestPointIndex(): number {
-    return least(this.lines.values.indicies, (i) =>
-      this.getPointerDistanceFromPoint(
-        this.lines.values.x[i],
-        this.lines.values.y[i],
-        this.pointerX,
-        this.pointerY
-      )
-    );
-  }
-
-  getPointerDistanceFromPoint(
-    pointX: number,
-    pointY: number,
-    pointerX: number,
-    pointerY: number
-  ): number {
-    return Math.hypot(
-      this.lines.xScale(pointX) - pointerX,
-      this.lines.yScale(pointY) - pointerY
-    );
-  }
-
-  pointerIsInsideShowTooltipRadius(
-    closestPointIndex: number,
-    pointerX: number,
-    pointerY: number
-  ): boolean {
-    if (this.pointerDetectionRadius === null) {
-      return true;
-    } else {
-      const cursorDistanceFromPoint = this.getPointerDistanceFromPoint(
-        this.lines.values.x[closestPointIndex],
-        this.lines.values.y[closestPointIndex],
-        pointerX,
-        pointerY
-      );
-      return cursorDistanceFromPoint < this.pointerDetectionRadius;
+    elementPointerMove(event: PointerEvent) {
+        [this.pointerX, this.pointerY] = this.getPointerValuesArray(event);
+        if (this.pointerIsInChartArea()) {
+            this.determineHoverStyles();
+        }
     }
-  }
+
+    elementPointerLeave() {
+        if (this.effects) {
+            this.effects.forEach((effect) => effect.removeEffect(this));
+        }
+    }
+
+    pointerIsInChartArea(): boolean {
+        return (
+            this.pointerX > this.lines.ranges.x[0] &&
+            this.pointerX < this.lines.ranges.x[1] &&
+            this.pointerY > this.lines.ranges.y[1] &&
+            this.pointerY < this.lines.ranges.y[0]
+        );
+    }
+
+    determineHoverStyles(): void {
+        this.closestPointIndex = this.getClosestPointIndex();
+        if (
+            this.effects &&
+            this.pointerIsInsideShowTooltipRadius(this.closestPointIndex, this.pointerX, this.pointerY)
+        ) {
+            this.effects.forEach((effect) => effect.applyEffect(this));
+        } else {
+            this.effects.forEach((effect) => effect.removeEffect(this));
+        }
+    }
+
+    getClosestPointIndex(): number {
+        return least(this.lines.values.indicies, (i) =>
+            this.getPointerDistanceFromPoint(
+                this.lines.values.x[i],
+                this.lines.values.y[i],
+                this.pointerX,
+                this.pointerY
+            )
+        );
+    }
+
+    getPointerDistanceFromPoint(pointX: number, pointY: number, pointerX: number, pointerY: number): number {
+        return Math.hypot(this.lines.xScale(pointX) - pointerX, this.lines.yScale(pointY) - pointerY);
+    }
+
+    pointerIsInsideShowTooltipRadius(closestPointIndex: number, pointerX: number, pointerY: number): boolean {
+        if (this.pointerDetectionRadius === null) {
+            return true;
+        } else {
+            const cursorDistanceFromPoint = this.getPointerDistanceFromPoint(
+                this.lines.values.x[closestPointIndex],
+                this.lines.values.y[closestPointIndex],
+                pointerX,
+                pointerY
+            );
+            return cursorDistanceFromPoint < this.pointerDetectionRadius;
+        }
+    }
 }

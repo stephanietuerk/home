@@ -6,44 +6,66 @@
     font-size: 0.7rem;
 }
 
-.tooltip-container {
-    width: 200px;
-}
-
-.tooltip-label {
-    @extend %slab-regular;
-    display: flex;
-    flex-direction: column;
-    line-height: 1rem;
-}
-
-.tooltip-label.category {
-    line-height: 1.1;
-    font-weight: 600;
-    color: var(--color);
-    border-bottom: 1px solid $color-dark-primary;
-    padding-bottom: $grid-1;
-
-    .value-label {
-        color: $color-dark-primary;
+.time-range-xy-chart {
+    .chart-svg {
+        overflow: visible;
     }
 }
 
-.value-label {
-    @extend %sans-medium;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    line-height: 1rem;
-    letter-spacing: 0.08rem;
-}
+.explore-time-range-tooltip {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    width: 200px;
 
-.values-container {
-    padding-top: $grid-2;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
+    .tooltip-container {
+        background: rgba(white, 0.95);
+        border: 1px solid $color-light-gray-light;
+        padding: $grid-2;
+        border-radius: $grid-1;
+    }
 
-.tooltip-label.y {
-    justify-self: end;
-    align-items: flex-end;
+    .tooltip-label {
+        @extend %slab-regular;
+        display: flex;
+        flex-direction: column;
+        line-height: 1rem;
+    }
+
+    .tooltip-label.category {
+        line-height: 1.1;
+        font-weight: 600;
+        color: var(--color);
+        border-bottom: 1px solid $color-dark-primary;
+        padding-bottom: $grid-1;
+
+        .value-label {
+            color: $color-dark-primary;
+        }
+    }
+
+    .value-label {
+        @extend %sans-medium;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        line-height: 1rem;
+        letter-spacing: 0.08rem;
+    }
+
+    .values-container {
+        padding-top: $grid-2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tooltip-label.y {
+        justify-self: end;
+        align-items: flex-end;
+    }
+
+    .percent-sign {
+        font-size: 0.9rem;
+    }
 }

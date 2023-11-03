@@ -1,8 +1,0 @@
-<svg:rect
-    *ngIf="chart.ranges$ | async as ranges"
-    [attr.x]="ranges.x[0]"
-    [attr.y]="ranges.y[1]"
-    [attr.width]="ranges.x[1] - ranges.x[0]"
-    [attr.height]="ranges.y[0] - ranges.y[1]"
-    [attr.fill]="color"
-></svg:rect>

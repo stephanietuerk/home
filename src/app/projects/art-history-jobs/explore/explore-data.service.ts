@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { BehaviorSubject, combineLatest, filter, map, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, shareReplay, withLatestFrom } from 'rxjs';
 import { JobDatum, JobDatumTimeRangeChart, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { ExploreChangeChartData, ExploreChartsData, ExploreTimeRangeChartData } from './explore-data.model';
@@ -19,11 +19,11 @@ export class ExploreDataService {
     }
 
     setExploreChartsData(): void {
-        const data$ = this.artHistoryDataService.getData();
         const selections$ = this.selections$.pipe(filter((selections) => selections !== null));
 
-        this.chartsData$ = combineLatest([data$, selections$]).pipe(
-            map(([data, selections]) => {
+        this.chartsData$ = selections$.pipe(
+            withLatestFrom(this.artHistoryDataService.data$),
+            map(([selections, data]) => {
                 if (selections && data) {
                     const lineDefs = this.getLineDefs(selections);
                     const timeRange = {

@@ -3,19 +3,25 @@ import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
 import { map, Observable, shareReplay } from 'rxjs';
 import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
-import { JobDatum } from './art-history-data.model';
+import { JobDatum, JobsByCountry } from './art-history-data.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ArtHistoryDataService {
+    data$: Observable<JobDatum[]>;
+    dataBySchool$: Observable<JobsByCountry>;
+
     constructor(private http: HttpClient, private sentenceCase: SentenceCasePipe) {}
 
-    getData(): Observable<JobDatum[]> {
-        return this.http.get('assets/artHistoryJobs/aggregated_data.csv', { responseType: 'text' }).pipe(
+    getData(): void {
+        this.data$ = this.http.get('assets/artHistoryJobs/aggregated_data.csv', { responseType: 'text' }).pipe(
             map((data) => this.parseData(data)),
-            shareReplay()
+            shareReplay(1)
         );
+        this.dataBySchool$ = this.http
+            .get<JobsByCountry>('assets/artHistoryJobs/jobsByCountry.json')
+            .pipe(shareReplay(1));
     }
 
     parseData(data): JobDatum[] {

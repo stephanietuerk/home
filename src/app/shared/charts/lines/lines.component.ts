@@ -67,7 +67,7 @@ export class LinesComponent extends XyContent implements XyDataMarks, OnChanges,
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (this.utilities.objectChangedNotFirstTime(changes, 'config')) {
+        if (this.utilities.objectOnNgChangesChangedNotFirstTime(changes, 'config')) {
             this.setMethodsFromConfigAndDraw();
         }
     }

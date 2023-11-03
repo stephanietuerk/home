@@ -48,7 +48,7 @@ export class SummaryComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const vm$ = this.dataService.getData().pipe(
+        const vm$ = this.dataService.data$.pipe(
             map((data: JobDatum[]) => (vm: ViewModel) => {
                 const [tableData, chartSort]: [JobTableDatum[], ChartSort] = this.getTableDataAndChartSort(data);
                 return {
@@ -150,7 +150,9 @@ export class SummaryComponent implements OnInit {
         const chartData = this.getChartData(data);
         const config = new SummaryChartConfig();
         config.data = chartData;
-        config.category.colorScale = (d) => this.fieldsService.getColorForField(d);
+        config.category.colorScale = (d) => {
+            return this.fieldsService.getColorForField(d);
+        };
         config.stackOrderFunction = chartSort.function;
         config.categoryOrder = chartSort.categoryOrder;
         return config;

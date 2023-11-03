@@ -1,24 +1,39 @@
-<app-chart
+<app-xy-chart
+    class="xy-chart-component"
     [scaleChartWithContainerWidth]="{ width: true, height: false }"
     [margin]="margin"
     [height]="height"
     [width]="width"
-    (tooltipData)="updateChartOnNewTooltipData($event)"
 >
-    <svg:g xy-chart-space svg-elements>
+    <ng-container svg-elements>
+        <svg:g xy-background [color]="chartBackgroundColor"></svg:g>
         <svg:g x-quantitative-axis side="bottom" [config]="xAxisConfig"></svg:g>
         <svg:g y-quantitative-axis side="left" [config]="yAxisConfig"></svg:g>
-        <svg:g data-marks-stacked-area [config]="dataMarksConfig"></svg:g>
-    </svg:g>
-    <!-- <ng-container tooltip-content>
-        <div [style.--color]="(tooltipData | async)?.color" class="tooltip-container">
-            <p class="tooltip-label category">{{ (tooltipData | async)?.category }}</p>
-            <div class="values-container">
-                <p class="tooltip-label x">
-                    <span class="value-label">Time period</span> {{ (tooltipData | async)?.x }}
-                </p>
-                <p class="tooltip-label y"><span class="value-label">Value</span>{{ (tooltipData | async)?.y }}</p>
+        <svg:g
+            data-marks-stacked-area
+            [config]="dataMarksConfig"
+            [appStackedAreaHoverAndMoveEffects]="hoverEffects"
+            (hoverAndMoveEventOutput)="updateTooltipForNewOutput($event)"
+        >
+            <app-html-tooltip [config]="tooltipConfig$ | async" [template]="htmlTooltip"></app-html-tooltip>
+        </svg:g>
+    </ng-container>
+    <ng-template #htmlTooltip>
+        <ng-container *ngIf="tooltipData$ | async as tooltipData">
+            <div class="top-space"><div class="left-space"></div></div>
+            <div class="tooltip-container" *ngIf="tooltipData.data">
+                <div class="year-row">
+                    <p class="tooltip-label x">{{ tooltipData.data[0].x }}</p>
+                    <p><span class="total-label">total:</span> {{ tooltipData.total }}.0</p>
+                </div>
+                <div *ngFor="let data of tooltipData.data" class="tooltip-field-value-row">
+                    <p class="tooltip-label category" [style.color]="data.color">{{ data.category }}</p>
+                    <div class="values-container">
+                        <p class="tooltip-label y">{{ data.y }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </ng-container> -->
-</app-chart>
+            <div class="bottom-space"><div class="left-space"></div></div>
+        </ng-container>
+    </ng-template>
+</app-xy-chart>

@@ -19,8 +19,7 @@ export class ExploreComponent implements OnInit {
     constructor(private dataService: ArtHistoryDataService) {}
 
     ngOnInit(): void {
-        const data$ = this.dataService.getData();
-        this.yearsRange$ = data$.pipe(map((data: JobDatum[]) => this.getYearsRange(data)));
+        this.yearsRange$ = this.dataService.data$.pipe(map((data: JobDatum[]) => this.getYearsRange(data)));
     }
 
     getYearsRange(data: JobDatum[]): [number, number] {

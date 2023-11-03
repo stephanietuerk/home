@@ -18,7 +18,10 @@ import { MapChartComponent } from './map-chart/map-chart.component';
 import { ContinuousLegendComponent } from './map-legend/continuous-legend/continuous-legend.component';
 import { DiscontinuousLegendComponent } from './map-legend/discontinuous-legend/discontinuous-legend.component';
 import { MapLegendComponent } from './map-legend/map-legend.component';
+import { OrdinalQuantitativeChartComponent } from './ordinal-quantitative-chart/ordinal-quantitative-chart.component';
+import { StackedAreaHoverAndMoveEventDirective } from './stacked-area/stacked-area-hover-move-event.directive';
 import { StackedAreaComponent } from './stacked-area/stacked-area.component';
+import { UnitsComponent } from './units/units.component';
 import { XYBackgroundComponent } from './xy-background/xy-background.component';
 import { XyChartComponent } from './xy-chart/xy-chart.component';
 
@@ -42,8 +45,12 @@ import { XyChartComponent } from './xy-chart/xy-chart.component';
         LinesHoverAndMoveEventDirective,
         LinesInputEventDirective,
         LinesHoverEventDirective,
+        LinesHoverAndMoveEventDirective,
         GeographiesHoverAndMoveEventDirective,
         StackedAreaComponent,
+        StackedAreaHoverAndMoveEventDirective,
+        UnitsComponent,
+        OrdinalQuantitativeChartComponent,
     ],
     imports: [CommonModule, PipesModule],
     exports: [
@@ -65,6 +72,8 @@ import { XyChartComponent } from './xy-chart/xy-chart.component';
         LinesHoverEventDirective,
         GeographiesHoverAndMoveEventDirective,
         StackedAreaComponent,
+        StackedAreaHoverAndMoveEventDirective,
+        UnitsComponent,
     ],
 })
 export class ChartsModule {}

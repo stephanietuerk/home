@@ -52,7 +52,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (this.utilities.objectChanged(changes, 'config', 'show') && this.overlayRef) {
+        if (this.utilities.objectOnNgChangesChanged(changes, 'config', 'show') && this.overlayRef) {
             if (this.config.show) {
                 this.show();
             } else {
@@ -60,15 +60,15 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
             }
         }
 
-        if (this.utilities.objectChanged(changes, 'config', 'position') && this.overlayRef) {
+        if (this.utilities.objectOnNgChangesChanged(changes, 'config', 'position') && this.overlayRef) {
             this.updatePosition();
         }
 
-        if (this.utilities.objectChanged(changes, 'config', 'size') && this.overlayRef) {
+        if (this.utilities.objectOnNgChangesChanged(changes, 'config', 'size') && this.overlayRef) {
             this.updateSize();
         }
 
-        if (this.utilities.objectChanged(changes, 'config', 'panelClass') && this.overlayRef) {
+        if (this.utilities.objectOnNgChangesChanged(changes, 'config', 'panelClass') && this.overlayRef) {
             this.updateClasses();
         }
     }

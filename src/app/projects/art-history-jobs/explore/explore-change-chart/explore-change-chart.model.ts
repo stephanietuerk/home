@@ -1,14 +1,14 @@
 import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
-import { BarsConfig, horizontalBarChartDimensionsConfig } from 'src/app/shared/charts/bars/bars.config';
-import { TickWrap } from 'src/app/shared/components/charts_old/axes/axis-config.model';
+import { BarsConfig, BarsLabelsConfig, HorizontalBarsDimensionsConfig } from 'src/app/shared/charts/bars/bars.config';
+import { TickWrapConfig } from 'src/app/shared/charts/utilities/svg-wrap.config';
 
 export class ChangeChartConfig extends BarsConfig {
     constructor() {
         super();
-        this.dimensions = horizontalBarChartDimensionsConfig;
+        this.dimensions = new HorizontalBarsDimensionsConfig();
         // this.category.colors = [highlightColor];
         this.ordinal.paddingInner = 0.15;
-        this.labels.show = true;
+        this.labels = new BarsLabelsConfig();
     }
 }
 
@@ -19,7 +19,7 @@ export class ChangeChartYAxisConfig extends AxisConfig {
         this.removeTickMarks = true;
         this.removeDomain = true;
         this.tickLabelFontSize = 14;
-        this.wrap = new TickWrap();
+        this.wrap = new TickWrapConfig();
         this.wrap.maintainXPosition = true;
         this.wrap.maintainYPosition = true;
         this.wrap.lineHeight = 0.9;

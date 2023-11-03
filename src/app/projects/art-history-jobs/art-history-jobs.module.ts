@@ -15,6 +15,9 @@ import { ExploreComponent } from './explore/explore.component';
 import { SummaryChartComponent } from './summary/summary-chart/summary-chart.component';
 import { SummaryTableComponent } from './summary/summary-table/summary-table.component';
 import { SummaryComponent } from './summary/summary.component';
+import { SchoolsComponent } from './schools/schools.component';
+import { SchoolChartComponent } from './schools/school-chart/school-chart.component';
+import { ItemsComponent } from './schools/items/items.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +30,9 @@ import { SummaryComponent } from './summary/summary.component';
         ExploreChangeChartComponent,
         ExploreSelectionsComponent,
         YearsSelectionComponent,
+        SchoolsComponent,
+        SchoolChartComponent,
+        ItemsComponent,
     ],
     imports: [
         CommonModule,

@@ -2,6 +2,7 @@ import { scaleLinear, scaleUtc } from 'd3';
 import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
 import { LinesConfig } from 'src/app/shared/charts/lines/lines.config';
 import { JobDatum } from '../../art-history-data.model';
+import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 
 export class ExploreTimeRangeChartConfig extends LinesConfig {
     constructor() {
@@ -10,8 +11,7 @@ export class ExploreTimeRangeChartConfig extends LinesConfig {
         this.x.scaleType = scaleUtc;
         this.y.scaleType = scaleLinear;
         this.pointMarker.display = true;
-        // this.showTooltip = true;
-        // this.tooltipDetectionRadius = 80;
+        this.x.valueFormat = artHistoryFormatSpecifications.summary.chart.value.year;
     }
 }
 

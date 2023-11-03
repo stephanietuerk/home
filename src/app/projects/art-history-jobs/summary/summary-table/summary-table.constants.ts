@@ -21,18 +21,18 @@ export const tableHeaders: TableHeader[] = [
         formatter: (x) => format(artHistoryFormatSpecifications.summary.table.avg)(x),
         sort: {
             canSort: true,
-            direction: null,
+            direction: 'desc',
         },
     },
     {
-        display: '2021',
+        display: '2022',
         align: 'right',
         id: 'current',
         type: 'number',
         formatter: (x) => format(artHistoryFormatSpecifications.summary.table.current)(x),
         sort: {
             canSort: true,
-            direction: 'desc',
+            direction: null,
         },
     },
 ];

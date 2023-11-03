@@ -4,14 +4,13 @@ export type UnlistenFunction = () => void;
 
 @Directive()
 export abstract class EventDirective implements AfterViewInit {
-  elements: Element[];
-  protected renderer = inject(Renderer2);
+    elements: Element[];
+    protected renderer = inject(Renderer2);
 
-  abstract setListeners(): void;
-  abstract setElements(): void;
+    abstract setListeners(): void;
+    abstract setListenedElements(): void;
 
-  ngAfterViewInit(): void {
-    this.setElements();
-    this.setListeners();
-  }
+    ngAfterViewInit(): void {
+        this.setListenedElements();
+    }
 }

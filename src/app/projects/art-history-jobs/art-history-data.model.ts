@@ -35,3 +35,25 @@ export interface LineDef {
     isTt: string;
     rank: string;
 }
+
+export interface JobBySchoolDatum {
+    id: string;
+    isTt: string;
+    rank: string;
+    field: string[];
+}
+
+export interface JobsByYear {
+    year: Date;
+    jobs: JobBySchoolDatum[];
+}
+
+export interface JobsBySchool {
+    school: string;
+    jobsByYear: JobBySchoolDatum[];
+}
+
+export interface JobsByCountry {
+    country: string;
+    jobsBySchool: JobBySchoolDatum[];
+}

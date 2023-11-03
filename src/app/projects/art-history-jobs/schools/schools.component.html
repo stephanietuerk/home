@@ -1,0 +1,11 @@
+<h2 class="section-header">View jobs by institution</h2>
+<div class="charts-container">
+    <div class="country-container" *ngFor="let country of dataService.dataBySchool$ | async">
+        <h3>{{ country.country }}</h3>
+        <div class="all-schools-container">
+            <div class="school-container" *ngFor="let school of country.jobsBySchool">
+                <h4 class="school-name">{{ school.school }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
