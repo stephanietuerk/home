@@ -9,8 +9,14 @@ import { ProjectComponent } from './project.component';
 import { ProjectsRoutingModule } from './projects-routing.module';
 
 @NgModule({
-    declarations: [ProjectComponent, FlipComponent, BeyondComponent, BeyondMapComponent, BeyondBarComponent],
-    providers: [],
-    imports: [CommonModule, ProjectsRoutingModule, SharedModule],
+  declarations: [
+    ProjectComponent,
+    FlipComponent,
+    BeyondComponent,
+    BeyondMapComponent,
+    BeyondBarComponent,
+  ],
+  providers: [],
+  imports: [CommonModule, ProjectsRoutingModule, SharedModule],
 })
 export class ProjectsModule {}

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StylesDisplayComponent } from './styles-display.component';
 
 describe('StylesDisplayComponent', () => {
@@ -8,9 +7,8 @@ describe('StylesDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StylesDisplayComponent ]
-    })
-    .compileComponents();
+      declarations: [StylesDisplayComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
