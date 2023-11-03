@@ -1,41 +1,41 @@
 @import 'vars', 'placeholders', 'mixins';
 
 :host {
-    @extend %navbar;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+  @extend %navbar;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .my-name {
-    @extend %h1;
-    cursor: pointer;
-    padding-top: 6px;
-    position: relative;
-    top: 3px;
-    @include breakpoint-max(600px) {
-        font-size: 1.7rem;
-        top: 5px;
-    }
+  @extend %h1;
+  cursor: pointer;
+  padding-top: 6px;
+  position: relative;
+  top: 3px;
+  @include breakpoint-max(600px) {
+    font-size: 1.7rem;
+    top: 5px;
+  }
 }
 
 .nav-item-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
 }
 
 .nav-item {
-    @extend %nav-link;
-    @extend %button-behavior;
-    font-size: 1rem;
+  @extend %nav-link;
+  @extend %button-behavior;
+  font-size: 1rem;
 
-    &:not(:last-of-type) {
-        margin-right: $space-6;
-    }
+  &:not(:last-of-type) {
+    margin-right: $space-6;
+  }
 
-    @include breakpoint-max(600px) {
-        font-size: 0.8rem;
-        margin-right: 1rem;
-    }
+  @include breakpoint-max(600px) {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+  }
 }

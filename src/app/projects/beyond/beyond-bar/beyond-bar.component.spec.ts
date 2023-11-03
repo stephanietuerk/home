@@ -8,9 +8,8 @@ describe('BeyondBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BeyondBarComponent ]
-    })
-    .compileComponents();
+      declarations: [BeyondBarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

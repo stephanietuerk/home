@@ -10,14 +10,14 @@ import { ProjectOverviewComponent } from './project-overview/project-overview.co
 import { ProjectsTableComponent } from './projects-table/projects-table.component';
 
 @NgModule({
-    imports: [CommonModule, LandingRoutingModule, SharedModule],
-    declarations: [
-        LandingComponent,
-        NavbarComponent,
-        AboutComponent,
-        ProjectsTableComponent,
-        ProjectOverviewComponent,
-        ContactComponent,
-    ],
+  imports: [CommonModule, LandingRoutingModule, SharedModule],
+  declarations: [
+    LandingComponent,
+    NavbarComponent,
+    AboutComponent,
+    ProjectsTableComponent,
+    ProjectOverviewComponent,
+    ContactComponent,
+  ],
 })
 export class LandingModule {}

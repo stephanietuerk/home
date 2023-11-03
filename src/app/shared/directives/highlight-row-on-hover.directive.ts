@@ -7,7 +7,7 @@ import {
 } from '../../core/constants/colors.constants';
 
 @Directive({
-  selector: '[highlightRowOnHover]',
+  selector: '[appHighlightRowOnHover]',
 })
 export class HighlightRowOnHoverDirective {
   constructor(private el: ElementRef) {}

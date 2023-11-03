@@ -1,17 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlipComponent } from './flip.component';
 
 describe('FlipComponent', () => {
   let component: FlipComponent;
   let fixture: ComponentFixture<FlipComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlipComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [FlipComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FlipComponent);

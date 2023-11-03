@@ -1,5 +1,5 @@
 export function interpolateNumber(a, b) {
-    return function (t) {
-        return a + t * (b - a);
-    };
+  return function (t) {
+    return a + t * (b - a);
+  };
 }

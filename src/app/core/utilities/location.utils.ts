@@ -1,3 +1,3 @@
 export function getWindowHref() {
-    return window.location.href;
+  return window.location.href;
 }

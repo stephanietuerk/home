@@ -4,17 +4,24 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class BeyondResource {
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    getTractData(): Observable<any> {
-        return this.http.get('assets/beyondthecountyline/censusTractData.csv', { responseType: 'text' });
-    }
+  getTractData(): Observable<any> {
+    return this.http.get('assets/beyondthecountyline/censusTractData.csv', {
+      responseType: 'text',
+    });
+  }
 
-    getTractMap(): Observable<any> {
-        return this.http.get('assets/beyondthecountyline/PA_CensusTracts_2010.json', { responseType: 'json' });
-    }
+  getTractMap(): Observable<any> {
+    return this.http.get(
+      'assets/beyondthecountyline/PA_CensusTracts_2010.json',
+      { responseType: 'json' }
+    );
+  }
 
-    getCitiesMap(): Observable<any> {
-        return this.http.get('assets/beyondthecountyline/PA_Cities.json', { responseType: 'json' });
-    }
+  getCitiesMap(): Observable<any> {
+    return this.http.get('assets/beyondthecountyline/PA_Cities.json', {
+      responseType: 'json',
+    });
+  }
 }

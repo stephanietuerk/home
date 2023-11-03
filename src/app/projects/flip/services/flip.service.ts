@@ -11,7 +11,7 @@ import { FlipResource } from '../resources/flip.resource';
 
 @Injectable()
 export class FlipService {
-  elId: string = '#flip-the-district';
+  elId = '#flip-the-district';
   flipTopojson: any;
   flipData: any = [];
   districtsData: any;
@@ -25,7 +25,7 @@ export class FlipService {
         const csvToRowArray = data.split('\n');
         const header = csvToRowArray[0].split(',');
         const rows = csvToRowArray.slice(1);
-        const dataArr = rows.map((row, i) => {
+        const dataArr = rows.map((row) => {
           const rowObj = new DistrictVotes();
           const rowValues = row.split(',');
           rowValues.forEach((val, j) => {

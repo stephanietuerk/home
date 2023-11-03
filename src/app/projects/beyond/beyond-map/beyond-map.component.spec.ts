@@ -8,9 +8,8 @@ describe('BeyondMapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BeyondMapComponent ]
-    })
-    .compileComponents();
+      declarations: [BeyondMapComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

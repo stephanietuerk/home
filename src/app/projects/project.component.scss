@@ -1,13 +1,13 @@
 @import 'vars', 'placeholders';
 
 :host {
-    @extend %content-component-host;
+  @extend %content-component-host;
 }
 
 .project-navbar {
-    @extend %content-component-navbar;
+  @extend %content-component-navbar;
 }
 
 .project-container {
-    @extend %content-component-container;
+  @extend %content-component-container;
 }

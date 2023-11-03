@@ -4,10 +4,13 @@ import { Observable } from 'rxjs';
 import { BeyondService } from './services/beyond.service';
 
 @Injectable({ providedIn: 'root' })
-export class BeyondResolver  {
-    constructor(private service: BeyondService) {}
+export class BeyondResolver {
+  constructor(private service: BeyondService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.service.getBeyondData();
-    }
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
+    return this.service.getBeyondData();
+  }
 }

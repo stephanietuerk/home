@@ -1,11 +1,11 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[hoverClassOnSiblings]',
+  selector: '[appHoverClassOnSiblings]',
 })
 export class HoverClassOnSiblingsDirective {
-  nonHoverClass: string = 'not-hovered';
-  hoverClass: string = 'hovered';
+  nonHoverClass = 'not-hovered';
+  hoverClass = 'hovered';
 
   constructor(public el: ElementRef) {}
 
