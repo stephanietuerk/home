@@ -19,18 +19,13 @@ export class CommentComponent implements OnInit {
   @Input() postId: string;
   @Input() comment: Comment;
   @ViewChild('replyButton') replyButton: ElementRef;
-  private commentsCollection: AngularFirestoreCollection<Comment>;
-  childComments: Observable<Comment[]>;
+  childComments$: Observable<Comment[]>;
   showCreateComment = false;
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
-    this.commentsCollection = this.afs.collection<Comment>(
-      'comments-dev',
-      (ref) => ref.where('postId', '==', this.postId)
-    );
-    this.childComments = this.commentsCollection
+    this.childComments$ = this.getComments()
       .valueChanges({ idField: 'fsId' })
       .pipe(
         map((comments) =>
@@ -40,6 +35,12 @@ export class CommentComponent implements OnInit {
           )
         )
       );
+  }
+
+  getComments(): AngularFirestoreCollection<Comment> {
+    return this.firestore.collection<Comment>('comments-dev', (ref) =>
+      ref.where('postId', '==', this.postId)
+    );
   }
 
   onReply(): void {

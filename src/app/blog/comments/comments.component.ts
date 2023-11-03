@@ -23,7 +23,7 @@ export class CommentsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private afs: AngularFirestore,
+    private firestore: AngularFirestore,
     private environmentService: EnvironmentService
   ) {}
 
@@ -31,8 +31,8 @@ export class CommentsComponent implements OnInit {
     this.route.url.subscribe((url) => {
       this.postId = url[0].path;
     });
-    this.commentsCollection = this.afs.collection<Comment>(
-      this.environmentService.environmentSettings.comments,
+    this.commentsCollection = this.firestore.collection<Comment>(
+      this.environmentService.currentEnvironment.comments,
       (ref) => ref.where('postId', '==', this.postId)
     );
     this.commentsCollection

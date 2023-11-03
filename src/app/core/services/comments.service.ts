@@ -20,14 +20,19 @@ export class CommentsService {
   topLevelFilter = this.topLevelFilter$.asObservable();
 
   constructor(private firestore: AngularFirestore) {
-    this.commentsCollection = firestore.collection<Comment>('comments-dev');
+    this.init();
+  }
+
+  init(): void {
+    this.commentsCollection =
+      this.firestore.collection<Comment>('comments-dev');
     this.topLevelFilter$ = new BehaviorSubject(null);
     this.comments$ = combineLatest([
       this.postFilter$,
       this.topLevelFilter$,
     ]).pipe(
       switchMap(([postId, parentId]) =>
-        firestore
+        this.firestore
           .collection<Comment>('comments-dev', (ref) => {
             let query:
               | firebase.firestore.CollectionReference

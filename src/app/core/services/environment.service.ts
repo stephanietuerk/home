@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environmentConstants } from '../constants/environment.constants';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import {
-  Environments,
   EnvironmentSettings,
+  Environments,
 } from '../models/environments.model';
 import { Environment, EnvironmentOption } from '../models/project.model';
 
@@ -10,40 +10,37 @@ import { Environment, EnvironmentOption } from '../models/project.model';
   providedIn: 'root',
 })
 export class EnvironmentService {
+  origin: string;
   environment: Environments;
-  environmentSettings: EnvironmentSettings;
+  currentEnvironment: EnvironmentSettings;
   localStrings: string[] = ['localhost'];
   productionStrings: string[] = ['personal-site-c3c69', 'stephanietuerk'];
   errorMessage: 'Cannot determine environment';
 
-  constructor() {
-    this.getSettings();
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.origin = this.document.location.href;
   }
 
-  private getSettings(): void {
-    const origin = window.location.href;
-    this.environment = environmentConstants;
-    if (this.stringInArray(origin, this.localStrings)) {
-      this.environmentSettings = this.environment.local;
-    } else if (this.stringInArray(origin, this.productionStrings)) {
-      this.environmentSettings = this.environment.production;
+  init(): void {
+    if (this.originInArray(this.localStrings)) {
+      this.currentEnvironment = this.environment.local;
+    } else if (this.originInArray(this.productionStrings)) {
+      this.currentEnvironment = this.environment.production;
     } else {
       console.error(this.errorMessage);
     }
   }
 
   private isLocal(): boolean {
-    const origin = window.location.href;
-    return this.stringInArray(origin, this.localStrings);
+    return this.originInArray(this.localStrings);
   }
 
   private isProduction(): boolean {
-    const origin = window.location.href;
-    return this.stringInArray(origin, this.productionStrings);
+    return this.originInArray(this.productionStrings);
   }
 
-  private stringInArray(str: string, arr: string[]): boolean {
-    return arr.some((x) => str.match(new RegExp(x, 'gi')));
+  private originInArray(arr: string[]): boolean {
+    return arr.some((x) => this.origin.match(new RegExp(x, 'gi')));
   }
 
   getEnvironment(): EnvironmentOption {
