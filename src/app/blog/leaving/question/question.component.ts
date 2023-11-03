@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { LeavingQuestion } from '../leaving,model';
 
 @Component({
@@ -7,12 +7,10 @@ import { LeavingQuestion } from '../leaving,model';
   styleUrls: ['./question.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent {
   @Input() question: LeavingQuestion;
   @Input() toggle: boolean;
   expanded = false;
-
-  ngOnInit(): void {}
 
   toggleQuestion(): void {
     this.expanded = !this.expanded;

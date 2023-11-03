@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -18,10 +18,10 @@ export interface comment {
   templateUrl: './create-comment.component.html',
   styleUrls: ['./create-comment.component.scss'],
 })
-export class CreateCommentComponent implements OnInit {
+export class CreateCommentComponent {
   @Input() postId: string;
   @Input() parentId: string;
-  @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() closeEvent: EventEmitter<void> = new EventEmitter();
   private commentsCollection: AngularFirestoreCollection<Comment>;
   comment: comment = {
     content: '',
@@ -37,10 +37,8 @@ export class CreateCommentComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
-
   onCancel(): void {
-    this.close.emit(null);
+    this.closeEvent.emit(null);
   }
 
   onSubmit(): void {
