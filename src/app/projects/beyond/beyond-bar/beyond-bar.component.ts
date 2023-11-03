@@ -47,8 +47,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
   @Input() demoType: string;
   @Input() demoYear: string;
   data: { string: TractDatum }[];
-  barCreated: boolean = false;
-  divId: string = '#beyond-bar';
+  barCreated = false;
+  divId = '#beyond-bar';
   svgMain: any;
   svgIndex: any;
   barMain: any;

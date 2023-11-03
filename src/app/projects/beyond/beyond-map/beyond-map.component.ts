@@ -25,15 +25,15 @@ import { BeyondService } from '../services/beyond.service';
 export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   @Input() electionYear: string;
   @Input() electionType: string;
-  mapCreated: boolean = false;
-  divId: string = '#beyond-map';
+  mapCreated = false;
+  divId = '#beyond-map';
   svg: any;
   map: any;
   projection: any;
   width = 900;
   height = 540;
-  viewPlaceNames: boolean = true;
-  mapZoom: any = zoom().scaleExtent([1, 10]);
+  viewPlaceNames = true;
+  mapZoom = zoom().scaleExtent([1, 10]);
   mapPath: any;
   private destroy$ = new Subject();
 

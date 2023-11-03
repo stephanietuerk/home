@@ -10,8 +10,6 @@ export class NavbarComponent implements OnInit {
   sections: string[];
   scrollToId: any;
 
-  constructor() {}
-
   ngOnInit() {
     this.sections = Object.values(SECTIONS);
   }

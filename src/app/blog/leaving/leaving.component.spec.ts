@@ -1,22 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LeavingComponent } from './leaving.component';
 
 describe('LeavingComponent', () => {
   let component: LeavingComponent;
   let fixture: ComponentFixture<LeavingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeavingComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [LeavingComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LeavingComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

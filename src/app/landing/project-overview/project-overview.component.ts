@@ -9,8 +9,6 @@ import { Project } from 'src/app/core/models/project.model';
 export class ProjectOverviewComponent {
   @Input() project: Project;
 
-  constructor() {}
-
   isProject(title: string): boolean {
     return this.project.title === title;
   }

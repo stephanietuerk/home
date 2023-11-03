@@ -29,8 +29,6 @@ export class BeyondComponent implements OnInit {
   electionYearLabels: any[];
   legendValues: string[];
 
-  constructor() {}
-
   ngOnInit() {
     this.initSelections();
     this.demoTypeLabels = BEYOND_DEMOTYPES;

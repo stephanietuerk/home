@@ -12,8 +12,6 @@ export class LandingComponent implements OnInit {
   projects: Project[];
   sections: any;
 
-  constructor() {}
-
   ngOnInit() {
     this.projects = PROJECTS;
     this.sections = SECTIONS;

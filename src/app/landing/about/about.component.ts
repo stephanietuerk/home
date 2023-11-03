@@ -11,8 +11,6 @@ export class AboutComponent implements OnInit {
   expanded = false;
   toggleText: string;
 
-  constructor() {}
-
   ngOnInit() {
     this.sections = SECTIONS;
     this.setToggleText();

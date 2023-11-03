@@ -1,6 +1,6 @@
 export class LeavingQuestion {
-    id: string;
-    type: string;
-    q: string;
-    a: string[];
+  id: string;
+  type: string;
+  q: string;
+  a: string[];
 }

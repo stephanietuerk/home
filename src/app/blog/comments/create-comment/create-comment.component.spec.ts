@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateCommentComponent } from './create-comment.component';
 
 describe('CreateCommentComponent', () => {
   let component: CreateCommentComponent;
   let fixture: ComponentFixture<CreateCommentComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CreateCommentComponent ]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [CreateCommentComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
