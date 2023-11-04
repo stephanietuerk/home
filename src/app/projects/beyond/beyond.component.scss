@@ -12,158 +12,158 @@ $zoombox-text-color: #bbb;
 $dark-gray: #666666;
 
 .beyond-intro {
-    @extend %flex-column;
-    max-width: 740px;
-    margin: 0 auto;
+  @extend %flex-column;
+  max-width: 740px;
+  margin: 0 auto;
 
-    p {
-        @extend %sans-regular;
-        padding-top: 1rem;
-        text-align: justify;
-        color: rgba($color-dark-primary, 0.85);
+  p {
+    @extend %sans-regular;
+    padding-top: 1rem;
+    text-align: justify;
+    color: rgba($color-dark-primary, 0.85);
 
-        &:last-of-type {
-            padding-bottom: 1rem;
-        }
+    &:last-of-type {
+      padding-bottom: 1rem;
     }
+  }
 }
 
 .beyond-div {
-    @extend %flex-column;
-    font-family: 'Roboto';
-    align-items: center;
-    padding-bottom: 64px;
+  @extend %flex-column;
+  font-family: 'Roboto';
+  align-items: center;
+  padding-bottom: 64px;
 
-    .beyond-selectors {
-        display: flex;
-        flex-direction: column;
-        padding: 24px 0;
+  .beyond-selectors {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
 
-        input[type='radio'],
-        input[type='checkbox'] {
-            @extend %visuallyhidden;
-        }
-
-        label {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: $beyond-mono;
-            font-size: 14px;
-            padding: 6px 10px;
-            border: 1px solid $button-active;
-            color: $button-active;
-            width: 120px;
-
-            &.selected {
-                background: #cccccc;
-                color: white;
-            }
-        }
+    input[type='radio'],
+    input[type='checkbox'] {
+      @extend %visuallyhidden;
     }
 
-    .election-selectors,
-    .demo-selectors {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8rem;
+    label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: $beyond-mono;
+      font-size: 14px;
+      padding: 6px 10px;
+      border: 1px solid $button-active;
+      color: $button-active;
+      width: 120px;
 
-        & > div:first-of-type {
-            margin-right: 18px;
-        }
+      &.selected {
+        background: #cccccc;
+        color: white;
+      }
+    }
+  }
+
+  .election-selectors,
+  .demo-selectors {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+
+    & > div:first-of-type {
+      margin-right: 18px;
+    }
+  }
+
+  .election-selectors {
+    padding-bottom: 1rem;
+  }
+
+  .demo-selectors {
+    label {
+      height: 48px;
+      line-height: 0.9rem;
+    }
+  }
+
+  .election-year-selectors,
+  .election-type-selectors,
+  .demo-type-selectors {
+    display: flex;
+  }
+
+  .bars-title,
+  .map-title {
+    font-family: $beyond-mono;
+    font-size: 14px;
+    font-weight: 700;
+    color: $dark-gray;
+
+    &.subtitle {
+      font-size: 12px;
+    }
+  }
+
+  .legend-container {
+    display: flex;
+    padding-top: 18px;
+  }
+
+  .inner-legend-container {
+    width: 560px;
+    padding-top: 4px;
+  }
+
+  .legend-bar-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .legend-bar {
+    height: 10px;
+
+    &.dem {
+      flex-basis: 45%;
+      background: linear-gradient(to right, #3c5bff, #d2e4ff);
     }
 
-    .election-selectors {
-        padding-bottom: 1rem;
+    &.rep {
+      flex-basis: 45%;
+      background: linear-gradient(to right, #f8e5e6, #dd0035);
+    }
+  }
+
+  .legend-scale-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2px;
+  }
+
+  .value-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .legend-text {
+    font-family: $beyond-mono;
+    color: $button-active;
+    font-size: 12px;
+
+    &.party {
+      position: relative;
+
+      &.dem {
+        left: 12px;
+      }
+
+      &.rep {
+        right: 12px;
+      }
     }
 
-    .demo-selectors {
-        label {
-            height: 48px;
-            line-height: 0.9rem;
-        }
+    &.value {
+      align-self: center;
     }
-
-    .election-year-selectors,
-    .election-type-selectors,
-    .demo-type-selectors {
-        display: flex;
-    }
-
-    .bars-title,
-    .map-title {
-        font-family: $beyond-mono;
-        font-size: 14px;
-        font-weight: 700;
-        color: $dark-gray;
-
-        &.subtitle {
-            font-size: 12px;
-        }
-    }
-
-    .legend-container {
-        display: flex;
-        padding-top: 18px;
-    }
-
-    .inner-legend-container {
-        width: 560px;
-        padding-top: 4px;
-    }
-
-    .legend-bar-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    .legend-bar {
-        height: 10px;
-
-        &.dem {
-            flex-basis: 45%;
-            background: linear-gradient(to right, #3c5bff, #d2e4ff);
-        }
-
-        &.rep {
-            flex-basis: 45%;
-            background: linear-gradient(to right, #f8e5e6, #dd0035);
-        }
-    }
-
-    .legend-scale-container {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 2px;
-    }
-
-    .value-container {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        width: 100%;
-    }
-
-    .legend-text {
-        font-family: $beyond-mono;
-        color: $button-active;
-        font-size: 12px;
-
-        &.party {
-            position: relative;
-
-            &.dem {
-                left: 12px;
-            }
-
-            &.rep {
-                right: 12px;
-            }
-        }
-
-        &.value {
-            align-self: center;
-        }
-    }
+  }
 }

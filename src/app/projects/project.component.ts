@@ -4,20 +4,20 @@ import { PROJECTS } from '../core/constants/projects.constants';
 import { Project } from '../core/models/project.model';
 
 @Component({
-    selector: 'app-project',
-    templateUrl: './project.component.html',
-    styleUrls: ['./project.component.scss'],
+  selector: 'app-project',
+  templateUrl: './project.component.html',
+  styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-    project: Project;
+  project: Project;
 
-    constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-    ngOnInit() {
-        this.setProject();
-    }
+  ngOnInit() {
+    this.setProject();
+  }
 
-    setProject() {
-        this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
-    }
+  setProject() {
+    this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
+  }
 }

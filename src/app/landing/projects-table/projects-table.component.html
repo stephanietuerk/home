@@ -1,48 +1,58 @@
 <div class="table-component-container">
-    <h2 class="projects-title">projects</h2>
-    <p class="instruction-text">click any row to see details and view project</p>
+  <h2 class="projects-title">projects</h2>
+  <p class="instruction-text">click any row to see details and view project</p>
 
-    <div class="table-container">
-        <table class="projects-table">
-            <thead>
-                <tr class="table-row header">
-                    <th class="table-cell header title">title</th>
-                    <th class="table-cell header type">type</th>
-                    <th class="table-cell header year">year</th>
-                    <th class="table-cell header more"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let project of projects">
-                    <tr
-                        class="table-row body index"
-                        [ngClass]="{ open: state[project.id] }"
-                        (click)="toggleDescription(project.id)"
-                        (keydown.enter)="toggleDescription(project.id)"
-                        tabindex="0"
-                    >
-                        <td highlightRowOnHover class="table-cell body title">{{ getTitle(project) }}</td>
-                        <td highlightRowOnHover class="table-cell body type">{{ project.type }}</td>
-                        <td highlightRowOnHover class="table-cell body year">{{ project.year }}</td>
-                        <td highlightRowOnHover class="table-cell body more">
-                            <app-svg-icon
-                                class="arrow-icon"
-                                [ngClass]="{ up: state[project.id], down: !state[project.id] }"
-                                [name]="getIcon(project.id)"
-                            ></app-svg-icon>
-                        </td>
-                    </tr>
-                    <tr class="table-row body description" @slide *ngIf="state[project.id]">
-                        <td colspan="4" class="table-cell body description">
-                            <app-project-overview
-                                class="project-overview-component"
-                                [project]="project"
-                            ></app-project-overview>
-                        </td>
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-        <p class="asterisk">* indicates work done as part of my full-time job</p>
-    </div>
+  <div class="table-container">
+    <table class="projects-table">
+      <thead>
+        <tr class="table-row header">
+          <th class="table-cell header title">title</th>
+          <th class="table-cell header type">type</th>
+          <th class="table-cell header year">year</th>
+          <th class="table-cell header more"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let project of projects">
+          <tr
+            class="table-row body index"
+            [ngClass]="{ open: state[project.id] }"
+            (click)="toggleDescription(project.id)"
+            (keydown.enter)="toggleDescription(project.id)"
+            tabindex="0"
+          >
+            <td appHighlightRowOnHover class="table-cell body title"
+              >{{ getTitle(project) }}</td
+            >
+            <td appHighlightRowOnHover class="table-cell body type"
+              >{{ project.type }}</td
+            >
+            <td appHighlightRowOnHover class="table-cell body year"
+              >{{ project.year }}</td
+            >
+            <td appHighlightRowOnHover class="table-cell body more">
+              <app-svg-icon
+                class="arrow-icon"
+                [ngClass]="{ up: state[project.id], down: !state[project.id] }"
+                [name]="getIcon(project.id)"
+              ></app-svg-icon>
+            </td>
+          </tr>
+          <tr
+            class="table-row body description"
+            @slide
+            *ngIf="state[project.id]"
+          >
+            <td colspan="4" class="table-cell body description">
+              <app-project-overview
+                class="project-overview-component"
+                [project]="project"
+              ></app-project-overview>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <p class="asterisk">* indicates work done as part of my full-time job</p>
+  </div>
 </div>

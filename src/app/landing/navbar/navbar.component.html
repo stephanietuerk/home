@@ -1,12 +1,12 @@
 <h1 class="my-name" (click)="scrollToTop($event)">Stephanie Tuerk</h1>
 <nav class="nav-item-container">
-    <a
-        *ngFor="let section of sections"
-        class="nav-item"
-        (click)="scrollToSection($event, section)"
-        (keydown.enter)="scrollToSection($event, section)"
-        tabindex="0"
-    >
-        {{ section }}
-    </a>
+  <a
+    *ngFor="let section of sections"
+    class="nav-item"
+    (click)="scrollToSection($event, section)"
+    (keydown.enter)="scrollToSection($event, section)"
+    tabindex="0"
+  >
+    {{ section }}
+  </a>
 </nav>

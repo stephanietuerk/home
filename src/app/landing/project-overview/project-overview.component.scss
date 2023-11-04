@@ -1,42 +1,42 @@
 @import 'vars', 'placeholders', 'mixins';
 
 .project-overview-container {
-    padding-bottom: $space-2;
+  padding-bottom: $space-2;
 
-    .description {
-        padding: $space-2 0;
+  .description {
+    padding: $space-2 0;
 
-        .info-text {
-            font-size: 1rem;
-            line-height: 1.8rem;
-            padding-bottom: $space-6;
-        }
+    .info-text {
+      font-size: 1rem;
+      line-height: 1.8rem;
+      padding-bottom: $space-6;
     }
+  }
 
-    .project-link:not(.image) {
-        @extend %button-styles;
-        @extend %button-behavior;
-        @extend %slab-medium;
-        display: inline-flex;
-        font-size: 1rem;
-        line-height: 1.3rem;
-        letter-spacing: 0.2px;
-        padding: $space-1 0 $space-1 0;
-    }
+  .project-link:not(.image) {
+    @extend %button-styles;
+    @extend %button-behavior;
+    @extend %slab-medium;
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    letter-spacing: 0.2px;
+    padding: $space-1 0 $space-1 0;
+  }
 
-    .screenshots-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        padding-top: $space-4;
-        align-items: baseline;
-    }
+  .screenshots-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: $space-4;
+    align-items: baseline;
+  }
 
-    .project-image {
-        object-fit: cover;
-        align-self: center;
-        width: 400px;
-        padding: $space-2 0;
-        max-width: 100%;
-    }
+  .project-image {
+    object-fit: cover;
+    align-self: center;
+    width: 400px;
+    padding: $space-2 0;
+    max-width: 100%;
+  }
 }

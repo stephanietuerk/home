@@ -1,17 +1,22 @@
-<button class="leave-comment-button" (click)="onLeaveCommentClick()" #leaveButton>Leave a comment</button>
+<button
+  class="leave-comment-button"
+  (click)="onLeaveCommentClick()"
+  #leaveButton
+  >Leave a comment</button
+>
 <div *ngIf="showCreateComment" @slide>
-    <app-create-comment
-        class="create-comment-component"
-        [postId]="postId"
-        (close)="onCloseComment()"
-    ></app-create-comment>
+  <app-create-comment
+    class="create-comment-component"
+    [postId]="postId"
+    (closeEvent)="onCloseComment()"
+  ></app-create-comment>
 </div>
 <h3 class="title">Comments</h3>
 <app-comment
-    *ngFor="let comment of nestedComments"
-    [postId]="postId"
-    [comment]="comment"
-    [parentId]="null"
-    class="comment-component"
+  *ngFor="let comment of nestedComments"
+  [postId]="postId"
+  [comment]="comment"
+  [parentId]="null"
+  class="comment-component"
 ></app-comment>
 <p *ngIf="!hasComments()">There are no comments to display yet.</p>

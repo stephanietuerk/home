@@ -3,34 +3,34 @@
 $min-height: 300px;
 
 :host {
-    @extend %flex-column;
-    height: 100%;
-    min-height: $min-height;
-    overflow-y: auto;
-    font-family: 'Source Sans Pro';
+  @extend %flex-column;
+  height: 100%;
+  min-height: $min-height;
+  overflow-y: auto;
+  font-family: 'Source Sans Pro';
 }
 
 .navbar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    flex-shrink: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
 }
 
 .landing-container {
-    @extend %flex-column;
-    align-items: center;
-    padding: $space-20 $space-6 $space-12 $space-6;
+  @extend %flex-column;
+  align-items: center;
+  padding: $space-20 $space-6 $space-12 $space-6;
 
-    @include breakpoint(mobile-device) {
-        padding: $space-12 $space-4 $space-4 $space-4;
-    }
+  @include breakpoint(mobile-device) {
+    padding: $space-12 $space-4 $space-4 $space-4;
+  }
 
-    * {
-        max-width: 1000px;
-    }
+  * {
+    max-width: 1000px;
+  }
 
-    *:not(:last-child) {
-        padding-bottom: 7rem;
-    }
+  *:not(:last-child) {
+    padding-bottom: 7rem;
+  }
 }

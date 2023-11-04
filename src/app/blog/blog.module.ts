@@ -13,15 +13,21 @@ import { LeavingComponent } from './leaving/leaving.component';
 import { QuestionComponent } from './leaving/question/question.component';
 
 @NgModule({
-    declarations: [
-        BlogComponent,
-        LeavingComponent,
-        QuestionComponent,
-        CommentComponent,
-        CommentsComponent,
-        CreateCommentComponent,
-    ],
-    providers: [CommentsService],
-    imports: [CommonModule, BlogRoutingModule, SharedModule, PipesModule, FormsModule],
+  declarations: [
+    BlogComponent,
+    LeavingComponent,
+    QuestionComponent,
+    CommentComponent,
+    CommentsComponent,
+    CreateCommentComponent,
+  ],
+  providers: [CommentsService],
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    SharedModule,
+    PipesModule,
+    FormsModule,
+  ],
 })
 export class BlogModule {}

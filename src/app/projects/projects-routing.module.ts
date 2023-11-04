@@ -8,32 +8,32 @@ import { FlipComponent } from './flip/flip.component';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: ProjectComponent,
-        children: [
-            {
-                path: flipPath,
-                component: FlipComponent,
-            },
-            {
-                path: beyondPath,
-                component: BeyondComponent,
-                resolve: {
-                    data: BeyondResolver,
-                },
-            },
-            {
-                path: '**',
-                redirectTo: '/main',
-                pathMatch: 'full',
-            },
-        ],
-    },
+  {
+    path: '',
+    component: ProjectComponent,
+    children: [
+      {
+        path: flipPath,
+        component: FlipComponent,
+      },
+      {
+        path: beyondPath,
+        component: BeyondComponent,
+        resolve: {
+          data: BeyondResolver,
+        },
+      },
+      {
+        path: '**',
+        redirectTo: '/main',
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes), CommonModule],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes), CommonModule],
+  exports: [RouterModule],
 })
 export class ProjectsRoutingModule {}

@@ -4,25 +4,25 @@ import { PROJECTS } from '../core/constants/projects.constants';
 import { Project } from '../core/models/project.model';
 
 @Component({
-    selector: 'app-blog',
-    templateUrl: './blog.component.html',
-    styleUrls: ['./blog.component.scss'],
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
-    project: Project;
+  project: Project;
 
-    constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-    ngOnInit() {
-        this.setProject();
-    }
+  ngOnInit() {
+    this.setProject();
+  }
 
-    setProject() {
-        this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
-    }
+  setProject() {
+    this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
+  }
 
-    getDate(date: Date) {
-        const options = { dateStyle: 'long' } as any;
-        return new Intl.DateTimeFormat('en-US', options).format(date);
-    }
+  getDate(date: Date) {
+    const options = { dateStyle: 'long' } as any;
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
 }
