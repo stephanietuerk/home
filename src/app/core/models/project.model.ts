@@ -5,7 +5,6 @@ export class Project {
   year: string | number;
   technologies?: string[];
   description?: string[];
-  show?: Visibility;
   images?: Image[];
   links: Link[];
   allowComments?: boolean;
@@ -19,11 +18,6 @@ export enum Environment {
 }
 
 export type EnvironmentOption = keyof typeof Environment;
-
-export class Visibility {
-  [Environment.local]: boolean;
-  [Environment.production]: boolean;
-}
 
 export class Image {
   path: string;

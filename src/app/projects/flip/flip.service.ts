@@ -9,9 +9,7 @@ import { FlipBar } from './flip-bar.class';
 import { FLIPCOLORS, FLIPGRIDLAYOUT } from './flip.constants';
 import { FlipResource } from './flip.resource';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class FlipService {
   elId = '#flip-the-district';
   flipTopojson: any;

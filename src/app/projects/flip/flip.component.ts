@@ -20,6 +20,7 @@ import { FlipService } from './flip.service';
   selector: 'app-flip',
   templateUrl: './flip.component.html',
   styleUrls: ['./flip.component.scss'],
+  providers: [FlipService],
   encapsulation: ViewEncapsulation.None,
 })
 export class FlipComponent implements OnInit {

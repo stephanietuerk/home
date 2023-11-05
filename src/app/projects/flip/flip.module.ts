@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FlipComponent } from './flip.component';
 
 @NgModule({
-    declarations: [FlipComponent],
-    imports: [CommonModule],
-    exports: [FlipComponent],
+  declarations: [FlipComponent],
+  imports: [CommonModule],
+  exports: [FlipComponent],
 })
 export class FlipModule {}

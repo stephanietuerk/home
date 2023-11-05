@@ -14,10 +14,6 @@ export const PROJECTS: Project[] = [
     title: 'Leaving Academia FAQ',
     type: ProjectType.blogPost,
     year: 2021,
-    show: {
-      local: true,
-      production: true,
-    },
     description: [
       "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
     ],
@@ -37,10 +33,6 @@ export const PROJECTS: Project[] = [
     title: 'COVID School Testing Tool',
     type: ProjectType.dataViz,
     year: 2021,
-    show: {
-      local: true,
-      production: true,
-    },
     description: [
       'How can we display data to help people choose among options, each with a unique set of benefits and trade-offs?',
       "This is what three of us from Mathematica's web development group asked when people from our data science team asked us to build an interface for the results of their agent-based model that simulated the effects of various COVID testing strategies in K-12 schools. (Project undertaken in conjunction with the Rockefeller Foundation.) For each testing strategy, comprise of a combination of a test population (students only, adults only, students and adults), a test frequency, and a test type, the model predicted various metrics such as infections detected and transmissions reduced, but also days of school missed by students (whether due to infections or needing to quarantine from exposure or false positives) and number of tests administered (which has a cost implication).",
@@ -68,10 +60,6 @@ export const PROJECTS: Project[] = [
     description: [
       'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python, visualizations were built in an Observable notebook.',
     ],
-    show: {
-      local: true,
-      production: true,
-    },
     images: [
       {
         path: 'assets/artHistoryJobsSelects.png',
@@ -103,10 +91,6 @@ export const PROJECTS: Project[] = [
       'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture. The campaign took off but was dispersed across various media -- letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
       'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. Additional content was added throughout the summer.',
     ],
-    show: {
-      local: true,
-      production: true,
-    },
     images: [
       {
         path: 'assets/severnAgainstRacism_embed2.png',
@@ -136,10 +120,6 @@ export const PROJECTS: Project[] = [
       'This was the first public-facing true web application at Mathematica, and we all learned a ton in the process of making it. The content will seem extremely wonky to non-specialist users, but has been very well received by policy researchers. We are proud of the extent to which we were able to make a ton of information available in an organized and easily-navigable fashion.',
       'The site is fully 508 compliant and supports IE11, in addition to modern browsers.',
     ],
-    show: {
-      local: true,
-      production: true,
-    },
     images: [
       {
         path: 'assets/atlasWelcome.png',
@@ -169,10 +149,6 @@ export const PROJECTS: Project[] = [
       "This project also came out of MIT DUSP 11.S941 in spring 2017. I started it during the course and then took a few weeks after the course to finish it. (We only needed to do one final project, this was my second :).)  Like Flip the District, the code on this was a mess, it definitely is not scaled for mobile, and even on desktop, there are certainly some issues, but I'm still proud to have done this with only a month or two of d3/JS experience.",
       'This project mapped Pennsylvania precinct level election results for 2012 and 2016 national elections onto census tracts, allowing for a granular analysis of the much hypothesized relationship between demographic characteristics (using census tract-level ACS data) and election results. The project page gives additional details about how correspondences were made between these two different administrative systems.',
     ],
-    show: {
-      local: true,
-      production: true,
-    },
     images: [
       {
         path: 'assets/beyond_map.png',
@@ -201,10 +177,6 @@ export const PROJECTS: Project[] = [
       "I did this when I audited MIT DUSP's 11.S947, Big Data, Visualization, and Society. Everything here is svg and made with D3 because...I learned D3 before learning almost anything about JavaScript, HTML, CSS, code splitting...the list goes on.",
       "The original code was like 1500 lines inside a single d3.csv() call, haha, but I had such a blast figuring out how to do all of this and am still proud of having made it with zero background in D3 or JS. I think it's telling that what is most novel here is the interactivity, which is still one of my favorite things to design and build. This is not scaled for mobile and it would be a waste of time to go back and retrofit, so, consider yourself warned.",
     ],
-    show: {
-      local: true,
-      production: true,
-    },
     images: [
       {
         path: 'assets/flip.gif',

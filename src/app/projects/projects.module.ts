@@ -17,7 +17,6 @@ import { ProjectsRoutingModule } from './projects-routing.module';
     ArtHistoryJobsModule,
     BeyondModule,
     FlipModule,
-    ArtHistoryJobsModule,
   ],
 })
 export class ProjectsModule {}

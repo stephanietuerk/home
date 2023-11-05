@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Project } from 'src/app/core/models/project.model';
-import { EnvironmentService } from 'src/app/core/services/environment.service';
 import { PROJECTS } from '../../core/constants/projects.constants';
 
 @Component({
@@ -13,15 +12,10 @@ import { PROJECTS } from '../../core/constants/projects.constants';
 })
 export class ProjectsTableComponent implements OnInit {
   sections: any;
-  projects: Project[];
+  projects = PROJECTS;
   state: { [index: string]: boolean };
 
-  constructor(private environmentService: EnvironmentService) {}
-
   ngOnInit(): void {
-    this.projects = PROJECTS.filter(
-      (x) => x.show[this.environmentService.getEnvironment()]
-    );
     this.initializeState();
   }
 
