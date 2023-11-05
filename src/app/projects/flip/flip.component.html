@@ -1,38 +1,51 @@
-<div id="flip-intro" class="flip-intro">
-    <p class="project-description">
-        Most people are familiar with the potential for disparity between the popular and electoral vote in U.S.
-        Presidential elections. But we hear less about similar misrepresentation in Congress, where the share of seats a
-        party wins in the House of Representatives frequently does not match the share of votes that that party
-        received, either within a state or at the national level.
-    </p>
-    <p class="project-description">
-        Using data from the Pennsylvania 2016 U.S. Congressional elections, this visualization / interface helps people
-        gain insight into how winner-takes-all electoral systems can create imbalances between the number of votes cast
-        and number of seats awarded. Users can interact with a series of bars that visualize the proportion of votes won
-        by each party in each of Pennsylvania/'s eighteen Congressional districts.
-    </p>
-    <p class="project-description">
-        By dragging up or down on these bars, users can play out different scenarios with either more or less equitable
-        representation.
-    </p>
-    <p class="project-description">
-        Displaying the same data in a variety of visualizations, in which pixels on the screen represent different
-        concepts (individual votes, geographic area, or a portion of a congressional district), this project also aims
-        to illustrate how representational choices construct our understanding of data, facts, and reality.
-    </p>
-    <p class="project-description">[Spring 2017]</p>
+<div id="flip-intro" class="flip-intro" #intro>
+  <p class="project-description">
+    Most people are familiar with the potential for disparity between the
+    popular and electoral vote in U.S. Presidential elections. But we hear less
+    about similar misrepresentation in Congress, where the share of seats a
+    party wins in the House of Representatives frequently does not match the
+    share of votes that that party received, either within a state or at the
+    national level.
+  </p>
+  <p class="project-description">
+    Using data from the Pennsylvania 2016 U.S. Congressional elections, this
+    visualization / interface helps people gain insight into how
+    winner-takes-all electoral systems can create imbalances between the number
+    of votes cast and number of seats awarded. Users can interact with a series
+    of bars that visualize the proportion of votes won by each party in each of
+    Pennsylvania/'s eighteen Congressional districts.
+  </p>
+  <p class="project-description">
+    By dragging up or down on these bars, users can play out different scenarios
+    with either more or less equitable representation.
+  </p>
+  <p class="project-description">
+    Displaying the same data in a variety of visualizations, in which pixels on
+    the screen represent different concepts (individual votes, geographic area,
+    or a portion of a congressional district), this project also aims to
+    illustrate how representational choices construct our understanding of data,
+    facts, and reality.
+  </p>
+  <p class="project-description">[Spring 2017]</p>
 </div>
-<div id="flip-the-district" class="flip-div">
+<div id="flip-the-district" class="flip-div" #main>
+  <div
+    id="flip-start-container"
+    class="start-container"
+    style="
+      background-image: url('assets/flipthedistrict/background_text_big.png');
+    "
+  >
+    <p class="flip-text">Flip the District</p>
     <div
-        id="flip-start-container"
-        class="start-container"
-        style="background-image: url('assets/flipthedistrict/background_text_big.png')"
+      role="button"
+      class="start-button-container"
+      aria-labelledby="load-text"
+      (click)="initVis()"
     >
-        <p class="flip-text">Flip the District</p>
-        <div role="button" class="start-button-container" aria-labelledby="load-text" (click)="initVis()">
-            <p class="drag-text">drag the bars &mdash; change the vote</p>
-            <div class="enter-button">let's go</div>
-            <p id="load-text" class="load-text">click to load visualization</p>
-        </div>
+      <p class="drag-text">drag the bars &mdash; change the vote</p>
+      <div class="enter-button">let's go</div>
+      <p id="load-text" class="load-text">click to load visualization</p>
     </div>
+  </div>
 </div>

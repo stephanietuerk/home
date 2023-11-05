@@ -1,14 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-content-navbar',
-    templateUrl: './content-navbar.component.html',
-    styleUrls: ['./content-navbar.component.scss'],
+  selector: 'app-content-navbar',
+  templateUrl: './content-navbar.component.html',
+  styleUrls: ['./content-navbar.component.scss'],
 })
-export class ContentNavbarComponent implements OnInit {
-    @Input() title: string;
-
-    constructor() {}
-
-    ngOnInit() {}
+export class ContentNavbarComponent {
+  @Input() title: string;
 }

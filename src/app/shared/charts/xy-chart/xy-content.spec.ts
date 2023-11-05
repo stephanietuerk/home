@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
-import { XyChartComponentStub } from 'src/app/testing/stubs/components/xy-chart.component.stub';
-import { XyContentStub } from 'src/app/testing/stubs/components/xy-content.stub';
+import { XyChartComponentStub } from '../testing/stubs/xy-chart.component.stub';
+import { XyContentStub } from '../testing/stubs/xy-content.stub';
 
 describe('XyContent abstract class', () => {
   let abstractClass: XyContentStub;

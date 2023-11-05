@@ -1,30 +1,38 @@
 <div class="project-overview-container">
-    <div class="description">
-        <p *ngFor="let text of project.description" class="info-text">{{ text }}</p>
-    </div>
-    <div class="text-links-container">
-        <ng-container *ngFor="let link of project.links">
-            <a *ngIf="link.url" class="project-link" [href]="'http://' + link.url" target="_blank" rel="noopener"
-                >View {{ link.name.toLowerCase() }} &rarr;</a
-            >
-            <a *ngIf="link.routerLink" class="project-link" [routerLink]="[link.routerLink]"
-                >View {{ link.name.toLowerCase() }} &rarr;</a
-            >
-        </ng-container>
-    </div>
-    <div class="screenshots-container" *ngIf="project.images">
-        <a
-            *ngFor="let image of project.images; index as i"
-            class="project-link image"
-            [href]="'http://' + project.links[0].url"
-            target="_blank"
-            rel="noopener"
-        >
-            <img
-                [src]="image.path"
-                [alt]="'screenshot ' + i + ' of ' + project.title + ': ' + image.altText"
-                class="project-image"
-            />
-        </a>
-    </div>
+  <div class="description">
+    <p *ngFor="let text of project.description" class="info-text">{{ text }}</p>
+  </div>
+  <div class="text-links-container">
+    <ng-container *ngFor="let link of project.links">
+      <a
+        *ngIf="link.url"
+        class="project-link"
+        [href]="'http://' + link.url"
+        target="_blank"
+        rel="noopener"
+        >View {{ link.name.toLowerCase() }} &rarr;</a
+      >
+      <a
+        *ngIf="link.routerLink"
+        class="project-link"
+        [routerLink]="[link.routerLink]"
+        >View {{ link.name.toLowerCase() }} &rarr;</a
+      >
+    </ng-container>
+  </div>
+  <div class="screenshots-container" *ngIf="project.images">
+    <a
+      *ngFor="let image of project.images; index as i"
+      class="project-link image"
+      [href]="'http://' + project.links[0].url"
+      target="_blank"
+      rel="noopener"
+    >
+      <img
+        [src]="image.path"
+        [alt]="'screenshot ' + i + ' of ' + project.title + ': ' + image.altText"
+        class="project-image"
+      />
+    </a>
+  </div>
 </div>

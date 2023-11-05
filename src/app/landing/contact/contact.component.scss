@@ -1,46 +1,65 @@
 @import 'mixins', 'vars', 'placeholders';
 
 .component-container {
+  @extend %flex-column;
+  align-items: center;
+
+  .contact-title {
+    @extend %section-header;
+  }
+
+  .contact-container {
     @extend %flex-column;
     align-items: center;
+    padding-bottom: $grid-3;
 
-    .contact-title {
-        @extend %section-header;
+    &:last-of-type {
+      padding-bottom: 0;
     }
+  }
 
-    .contact-container {
-        @extend %flex-column;
-        align-items: center;
-        padding-bottom: $grid-3;
-
-        &:last-of-type {
-            padding-bottom: 0;
-        }
-    }
-
-    .contact-type-text {
-        @extend %small-caps-overline;
-    }
+  .contact-container {
+    @extend %flex-column;
+    align-items: center;
+    padding-bottom: $grid-3;
 
     .contact-text {
-        @extend %body1;
+      @extend %body1;
     }
 
     .social-media-container {
-        display: flex;
-        padding-top: $grid-1;
+      display: flex;
+      padding-top: $grid-1;
 
-        .social-media-link {
-            padding-top: $grid-1;
-        }
+      .social-media-link {
+        padding-top: $grid-1;
+      }
+    }
+
+    .contact-type-text {
+      @extend %small-caps-overline;
+    }
+
+    .contact-text {
+      @extend %body1;
+    }
+
+    .social-media-container {
+      display: flex;
+      padding-top: $grid-1;
+
+      .social-media-link {
+        padding-top: $grid-1;
+      }
     }
 
     .social-media-icon {
-        padding: 0 $grid-2;
+      padding: 0 $grid-2;
 
-        svg {
-            height: $grid-7;
-            width: $grid-7;
-        }
+      svg {
+        height: $grid-7;
+        width: $grid-7;
+      }
     }
+  }
 }

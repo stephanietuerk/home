@@ -12,18 +12,14 @@ import {
   ViewChild,
 } from '@angular/core';
 import { min } from 'd3';
+import { Observable, Subject, combineLatest, merge, of } from 'rxjs';
 import {
-  combineLatest,
   distinctUntilChanged,
   map,
-  merge,
-  Observable,
-  of,
   shareReplay,
   startWith,
-  Subject,
   throttleTime,
-} from 'rxjs';
+} from 'rxjs/operators';
 import { DataMarks } from '../data-marks/data-marks';
 import { DATA_MARKS } from '../data-marks/data-marks.token';
 import { Chart } from './chart';

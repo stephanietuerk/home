@@ -1,27 +1,34 @@
 import { Directive } from '@angular/core';
-import { combineLatest, takeUntil } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Unsubscribe } from '../../unsubscribe.directive';
 import { AttributeDataDimensionConfig } from '../geographies/geographies.config';
 import { MapChartComponent } from './map-chart.component';
 
 @Directive()
 export abstract class MapContent extends Unsubscribe {
-    attributeDataScale: any;
-    attributeDataConfig: AttributeDataDimensionConfig;
+  attributeDataScale: any;
+  attributeDataConfig: AttributeDataDimensionConfig;
 
-    constructor(public chart: MapChartComponent) {
-        super();
-    }
+  constructor(public chart: MapChartComponent) {
+    super();
+  }
 
-    subscribeToScalesAndConfig(): void {
-        const subscriptions = [this.chart.attributeDataScale$, this.chart.attributeDataConfig$];
+  subscribeToScalesAndConfig(): void {
+    const subscriptions = [
+      this.chart.attributeDataScale$,
+      this.chart.attributeDataConfig$,
+    ];
 
-        combineLatest(subscriptions)
-            .pipe(takeUntil(this.unsubscribe))
-            .subscribe(([scale, config]) => {
-                this.setScaleAndConfig(scale, config);
-            });
-    }
+    combineLatest(subscriptions)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(([scale, config]) => {
+        this.setScaleAndConfig(scale, config);
+      });
+  }
 
-    abstract setScaleAndConfig(scale: any, config: AttributeDataDimensionConfig): void;
+  abstract setScaleAndConfig(
+    scale: any,
+    config: AttributeDataDimensionConfig
+  ): void;
 }

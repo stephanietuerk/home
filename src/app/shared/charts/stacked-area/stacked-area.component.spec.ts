@@ -1,7 +1,7 @@
 import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
-import { MainServiceStub } from 'src/app/testing/stubs/main.service.stub';
+import { MainServiceStub } from '../testing/stubs/services/main.service.stub';
 import { XyChartComponent } from '../xy-chart/xy-chart.component';
 import { StackedAreaComponent } from './stacked-area.component';
 import { StackedAreaConfig } from './stacked-area.config';

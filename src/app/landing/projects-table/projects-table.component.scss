@@ -3,113 +3,113 @@
 $table-width: 900px;
 
 .table-component-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .projects-title {
-        @extend %section-header;
+  .projects-title {
+    @extend %section-header;
+  }
+
+  .instruction-text {
+    @extend %instructions;
+    padding-bottom: $grid-1;
+  }
+
+  .table-container {
+    max-width: 900px;
+    padding: 0 $grid-6;
+
+    @include breakpoint(mobile-device) {
+      padding: 0;
+    }
+  }
+
+  .projects-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 900px;
+
+    @media screen and (max-width: 1000px) {
+      max-width: 1000px;
+      width: initial;
     }
 
-    .instruction-text {
-        @extend %instructions;
-        padding-bottom: $grid-1;
+    .table-cell.header {
+      @extend %sans-medium;
+      @extend %small-caps;
+      font-size: 1.1rem;
+      letter-spacing: 0.13em;
+      text-align: left;
     }
 
-    .table-container {
-        max-width: 900px;
-        padding: 0 $grid-6;
+    .table-row {
+      &:not(.open) {
+        border-bottom: 1px solid $color-highlight-light;
+      }
+      &.open {
+        border-bottom: 1px solid white;
+      }
 
-        @include breakpoint(mobile-device) {
-            padding: 0;
-        }
+      &.body {
+        height: $grid-16;
+      }
     }
 
-    .projects-table {
-        table-layout: auto;
-        border-collapse: collapse;
-        width: 900px;
+    .table-cell.body {
+      @extend %slab-medium;
+      font-size: 1rem;
+      text-align: left;
+      padding-top: $grid-2;
 
-        @media screen and (max-width: 1000px) {
-            max-width: 1000px;
-            width: initial;
-        }
+      &.view {
+        @extend %small-caps;
+      }
 
-        .table-cell.header {
-            @extend %sans-medium;
-            @extend %small-caps;
-            font-size: 1.1rem;
-            letter-spacing: 0.13em;
-            text-align: left;
-        }
-
-        .table-row {
-            &:not(.open) {
-                border-bottom: 1px solid $color-highlight-light;
-            }
-            &.open {
-                border-bottom: 1px solid white;
-            }
-
-            &.body {
-                height: $grid-16;
-            }
-        }
-
-        .table-cell.body {
-            @extend %slab-medium;
-            font-size: 1rem;
-            text-align: left;
-            padding-top: $grid-2;
-
-            &.view {
-                @extend %small-caps;
-            }
-
-            &.description {
-                width: 100%;
-            }
-        }
-
-        .table-cell {
-            &:not(:last-of-type) {
-                padding-right: $grid-5;
-            }
-
-            &.year {
-                text-align: right;
-            }
-        }
-
-        .arrow-icon {
-            &.down {
-                position: relative;
-                top: $grid-1;
-            }
-            &.up {
-                position: relative;
-                top: -#{$grid-1};
-            }
-
-            svg {
-                height: $grid-4;
-                width: $grid-5;
-                fill: $color-dark-primary;
-                stroke: $color-dark-primary;
-            }
-        }
-
-        .project-overview-component {
-            display: block;
-            padding-top: $grid-2;
-            padding-bottom: $grid-4;
-        }
+      &.description {
+        width: 100%;
+      }
     }
 
-    .asterisk {
-        align-self: flex-start;
-        margin-top: $grid-2;
-        font-weight: 300;
-        font-size: 0.9rem;
+    .table-cell {
+      &:not(:last-of-type) {
+        padding-right: $grid-5;
+      }
+
+      &.year {
+        text-align: right;
+      }
     }
+
+    .arrow-icon {
+      &.down {
+        position: relative;
+        top: $grid-1;
+      }
+      &.up {
+        position: relative;
+        top: -#{$grid-1};
+      }
+
+      svg {
+        height: $grid-4;
+        width: $grid-5;
+        fill: $color-dark-primary;
+        stroke: $color-dark-primary;
+      }
+    }
+
+    .project-overview-component {
+      display: block;
+      padding-top: $grid-2;
+      padding-bottom: $grid-4;
+    }
+  }
+
+  .asterisk {
+    align-self: flex-start;
+    margin-top: $grid-2;
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
 }

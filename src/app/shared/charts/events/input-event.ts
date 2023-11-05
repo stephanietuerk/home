@@ -1,14 +1,20 @@
 import { Directive, Input, OnInit } from '@angular/core';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Unsubscribe } from '../../unsubscribe.directive';
 
 @Directive()
-export abstract class InputEventDirective extends Unsubscribe implements OnInit {
-    @Input() inputEvent$: Observable<any>;
+export abstract class InputEventDirective
+  extends Unsubscribe
+  implements OnInit
+{
+  @Input() inputEvent$: Observable<any>;
 
-    abstract handleNewEvent(event: any): void;
+  abstract handleNewEvent(event: any): void;
 
-    ngOnInit(): void {
-        this.inputEvent$.pipe(takeUntil(this.unsubscribe)).subscribe((event) => this.handleNewEvent(event));
-    }
+  ngOnInit(): void {
+    this.inputEvent$
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((event) => this.handleNewEvent(event));
+  }
 }

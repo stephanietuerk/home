@@ -1,5 +1,5 @@
-import { OrdinalAxisStub } from 'src/app/testing/stubs/components/ordinal-axis.stub';
-import { XyChartComponentStub } from 'src/app/testing/stubs/components/xy-chart.component.stub';
+import { OrdinalAxisStub } from '../../testing/stubs/ordinal-axis.stub';
+import { XyChartComponentStub } from '../../testing/stubs/xy-chart.component.stub';
 
 describe('the OrdinalAxis mixin', () => {
   let abstractClass: OrdinalAxisStub;

@@ -1,48 +1,48 @@
 @import 'vars', 'placeholders', 'mixins';
 
 .project-overview-container {
-    padding-bottom: $grid-2;
+  padding-bottom: $grid-2;
 
-    .description {
-        padding-top: $grid-2;
+  .description {
+    padding-top: $grid-2;
 
-        .info-text {
-            font-size: 1rem;
-            line-height: 1.8rem;
-            padding-bottom: $grid-6;
-        }
+    .info-text {
+      font-size: 1rem;
+      line-height: 1.8rem;
+      padding-bottom: $grid-6;
     }
+  }
+}
 
-    .text-links-container {
-        .project-link {
-            @extend %button-styles;
-            @extend %button-behavior;
-            @extend %slab-medium;
-            display: inline-flex;
-            font-size: 1rem;
-            line-height: 1.2rem;
-            letter-spacing: 0.2px;
-            padding: $grid-4 0 $grid-1 0;
+.text-links-container {
+  .project-link {
+    @extend %button-styles;
+    @extend %button-behavior;
+    @extend %slab-medium;
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.2px;
+    padding: $grid-4 0 $grid-1 0;
 
-            &:not(:last-child) {
-                margin-right: $grid-8;
-            }
-        }
+    &:not(:last-child) {
+      margin-right: $grid-8;
     }
+  }
+}
 
-    .screenshots-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        padding-top: $grid-4;
-        align-items: baseline;
-    }
+.screenshots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-top: $grid-4;
+  align-items: baseline;
+}
 
-    .project-image {
-        object-fit: cover;
-        align-self: center;
-        width: 400px;
-        padding: $grid-2 0;
-        max-width: 100%;
-    }
+.project-image {
+  object-fit: cover;
+  align-self: center;
+  width: 400px;
+  padding: $grid-2 0;
+  max-width: 100%;
 }

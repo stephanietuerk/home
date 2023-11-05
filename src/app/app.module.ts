@@ -10,18 +10,18 @@ import { AppComponent } from './app.component';
 import { RoutingModule } from './routing.module';
 import { SharedModule } from './shared/shared.module';
 @NgModule({
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        RoutingModule,
-        HttpClientModule,
-        SharedModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideFirestore(() => getFirestore()),
-        provideAnalytics(() => getAnalytics()),
-    ],
-    providers: [],
-    declarations: [AppComponent],
-    bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RoutingModule,
+    HttpClientModule,
+    SharedModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAnalytics(() => getAnalytics()),
+  ],
+  providers: [],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

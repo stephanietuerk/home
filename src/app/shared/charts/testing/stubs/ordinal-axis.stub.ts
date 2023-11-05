@@ -1,7 +1,7 @@
-import { OrdinalAxisMixin } from '../../axes/ordinal/ordinal-axis';
+import { mixinOrdinalAxis } from '../../axes/ordinal/ordinal-axis';
 import { XyAxisStub } from './xy-axis.stub';
 
-export class OrdinalAxisStub extends OrdinalAxisMixin(XyAxisStub) {
+export class OrdinalAxisStub extends mixinOrdinalAxis(XyAxisStub) {
   setScale(): void {
     return;
   }

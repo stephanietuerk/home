@@ -11,66 +11,66 @@ $button-active: #999999;
 $zoombox-text-color: #bbb;
 
 .beyond-map {
-    @extend %flex-column;
-    font-family: 'Roboto';
-    align-items: center;
+  @extend %flex-column;
+  font-family: 'Roboto';
+  align-items: center;
 
-    .click-overlay {
-        fill: none;
-        pointer-events: all;
-    }
+  .click-overlay {
+    fill: none;
+    pointer-events: all;
+  }
 
-    .click-overlay-variable {
-        fill: none;
-    }
+  .click-overlay-variable {
+    fill: none;
+  }
 
-    .map-text {
-        font: 14px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
-    }
+  .map-text {
+    font: 14px $beyond-mono;
+    font-weight: 400;
+    fill: $zoombox-text-color;
+    stroke: none;
+    text-anchor: end;
+  }
 
-    .map-text-sm {
-        font: 11px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
-    }
+  .map-text-sm {
+    font: 11px $beyond-mono;
+    font-weight: 400;
+    fill: $zoombox-text-color;
+    stroke: none;
+    text-anchor: end;
+  }
 
-    .map-sel-text {
-        font: 11px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
-    }
+  .map-sel-text {
+    font: 11px $beyond-mono;
+    font-weight: 400;
+    fill: $zoombox-text-color;
+    stroke: none;
+    text-anchor: end;
+  }
 
-    .reset-text {
-        font: 14px $beyond-mono;
-        font-weight: 400;
-        fill: $zoombox-text-color;
-        stroke: none;
-        text-anchor: end;
-    }
+  .reset-text {
+    font: 14px $beyond-mono;
+    font-weight: 400;
+    fill: $zoombox-text-color;
+    stroke: none;
+    text-anchor: end;
+  }
 
-    .city {
-        fill: none;
-        stroke: black;
-        vector-effect: non-scaling-stroke;
-    }
+  .city {
+    fill: none;
+    stroke: black;
+    vector-effect: non-scaling-stroke;
+  }
 
-    .town {
-        fill: none;
-        stroke: black;
-        vector-effect: non-scaling-stroke;
-    }
+  .town {
+    fill: none;
+    stroke: black;
+    vector-effect: non-scaling-stroke;
+  }
 
-    .city-label {
-        font: 400 0.7rem $beyond-mono;
-        fill: black;
-        stroke: none;
-    }
+  .city-label {
+    font: 400 0.7rem $beyond-mono;
+    fill: black;
+    stroke: none;
+  }
 }

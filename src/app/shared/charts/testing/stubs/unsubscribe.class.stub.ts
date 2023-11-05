@@ -1,3 +1,3 @@
-import { Unsubscribe } from 'src/app/shared/unsubscribe.class';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 
 export class UnsubscribeStub extends Unsubscribe {}

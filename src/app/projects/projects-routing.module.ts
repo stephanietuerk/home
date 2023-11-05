@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { artHistoryJobsPath, beyondPath, flipPath } from '../core/constants/routing.constants';
+import {
+  artHistoryJobsPath,
+  beyondPath,
+  flipPath,
+} from '../core/constants/routing.constants';
 import { ArtHistoryJobsResolver } from './art-history-jobs/art-history-jobs-resolver';
 import { ArtHistoryJobsComponent } from './art-history-jobs/art-history-jobs.component';
 import { BeyondResolver } from './beyond/beyond-resolver';
@@ -10,39 +14,39 @@ import { FlipComponent } from './flip/flip.component';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: ProjectComponent,
-        children: [
-            {
-                path: flipPath,
-                component: FlipComponent,
-            },
-            {
-                path: beyondPath,
-                component: BeyondComponent,
-                resolve: {
-                    data: BeyondResolver,
-                },
-            },
-            {
-                path: artHistoryJobsPath,
-                component: ArtHistoryJobsComponent,
-                resolve: {
-                    data: ArtHistoryJobsResolver,
-                },
-            },
-            {
-                path: '**',
-                redirectTo: '/main',
-                pathMatch: 'full',
-            },
-        ],
-    },
+  {
+    path: '',
+    component: ProjectComponent,
+    children: [
+      {
+        path: flipPath,
+        component: FlipComponent,
+      },
+      {
+        path: beyondPath,
+        component: BeyondComponent,
+        resolve: {
+          data: BeyondResolver,
+        },
+      },
+      {
+        path: artHistoryJobsPath,
+        component: ArtHistoryJobsComponent,
+        resolve: {
+          data: ArtHistoryJobsResolver,
+        },
+      },
+      {
+        path: '**',
+        redirectTo: '/main',
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes), CommonModule],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes), CommonModule],
+  exports: [RouterModule],
 })
 export class ProjectsRoutingModule {}

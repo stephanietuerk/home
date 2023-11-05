@@ -5,41 +5,43 @@ import { EnvironmentService } from 'src/app/core/services/environment.service';
 import { PROJECTS } from '../../core/constants/projects.constants';
 
 @Component({
-    selector: 'app-projects-table',
-    templateUrl: './projects-table.component.html',
-    styleUrls: ['./projects-table.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    animations: [animations.slide('project-overview-component')],
+  selector: 'app-projects-table',
+  templateUrl: './projects-table.component.html',
+  styleUrls: ['./projects-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations: [animations.slide('project-overview-component')],
 })
 export class ProjectsTableComponent implements OnInit {
-    sections: any;
-    projects: Project[];
-    state: { [index: string]: boolean };
+  sections: any;
+  projects: Project[];
+  state: { [index: string]: boolean };
 
-    constructor(private environmentService: EnvironmentService) {}
+  constructor(private environmentService: EnvironmentService) {}
 
-    ngOnInit(): void {
-        this.projects = PROJECTS.filter((x) => x.show[this.environmentService.getEnvironment()]);
-        this.initializeState();
-    }
+  ngOnInit(): void {
+    this.projects = PROJECTS.filter(
+      (x) => x.show[this.environmentService.getEnvironment()]
+    );
+    this.initializeState();
+  }
 
-    initializeState(): void {
-        this.state = this.projects.reduce((state, project) => {
-            state[project.id] = false;
-            return state;
-        }, {});
-    }
+  initializeState(): void {
+    this.state = this.projects.reduce((state, project) => {
+      state[project.id] = false;
+      return state;
+    }, {});
+  }
 
-    getTitle(project: Project): string {
-        const asterisk = project.professional ? '*' : '';
-        return project.title + asterisk;
-    }
+  getTitle(project: Project): string {
+    const asterisk = project.professional ? '*' : '';
+    return project.title + asterisk;
+  }
 
-    toggleDescription(projectId): void {
-        this.state[projectId] = !this.state[projectId];
-    }
+  toggleDescription(projectId): void {
+    this.state[projectId] = !this.state[projectId];
+  }
 
-    getIcon(projectId): string {
-        return this.state[projectId] ? 'row-arrow-up' : 'row-arrow-down';
-    }
+  getIcon(projectId): string {
+    return this.state[projectId] ? 'row-arrow-up' : 'row-arrow-down';
+  }
 }

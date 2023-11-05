@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
-import { MapContentStub } from 'src/app/testing/stubs/components/map-content.stub';
 import { MapChartComponentStub } from '../testing/stubs/map-chart.stub';
+import { MapContentStub } from '../testing/stubs/map-content.stub';
 
 describe('MapContent abstract class', () => {
   let abstractClass: MapContentStub;

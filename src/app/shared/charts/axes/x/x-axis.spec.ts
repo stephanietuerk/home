@@ -1,7 +1,7 @@
 import { axisBottom, axisTop } from 'd3';
 import { BehaviorSubject } from 'rxjs';
-import { XAxisStub } from 'src/app/testing/stubs/components/x-axis.stub';
-import { XyChartComponentStub } from 'src/app/testing/stubs/components/xy-chart.component.stub';
+import { XAxisStub } from 'src/app/shared/charts/testing/stubs/x-axis.stub';
+import { XyChartComponentStub } from 'src/app/shared/charts/testing/stubs/xy-chart.component.stub';
 import { Ranges } from '../../chart/chart.component';
 
 describe('the XAxis mixin', () => {

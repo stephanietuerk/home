@@ -1,4 +1,4 @@
-import { MapLegendContentStub } from 'src/app/testing/stubs/components/map-legend-content.stub';
+import { MapLegendContentStub } from '../testing/stubs/map-legend-content.stub';
 
 describe('the MapLegendContent abstract class', () => {
   let abstractClass: MapLegendContentStub;

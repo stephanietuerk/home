@@ -1,5 +1,5 @@
-import { QuantitativeAxisStub } from 'src/app/testing/stubs/components/quantitative-axis.stub';
-import { XyChartComponentStub } from 'src/app/testing/stubs/components/xy-chart.component.stub';
+import { QuantitativeAxisStub } from '../../testing/stubs/quantitative-axis.stub';
+import { XyChartComponentStub } from '../../testing/stubs/xy-chart.component.stub';
 
 describe('the QuantitativeAxis mixin', () => {
   let abstractClass: QuantitativeAxisStub;

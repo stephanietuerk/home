@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InternSet } from 'd3';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
-import { MainServiceStub } from 'src/app/testing/stubs/main.service.stub';
+import { MainServiceStub } from '../testing/stubs/services/main.service.stub';
 import { XyChartComponent } from '../xy-chart/xy-chart.component';
 import { BarsComponent } from './bars.component';
 import { BarsConfig } from './bars.config';
@@ -450,7 +450,7 @@ describe('BarsComponent', () => {
       spyOn(component, 'drawBars');
       spyOn(component, 'drawBarLabels');
       component.config = new BarsConfig();
-      component.config.labels.show = true;
+      component.config.labels.display = true;
     });
     it('calls drawBars once with the correct parameter', () => {
       component.drawMarks(100);
@@ -463,7 +463,7 @@ describe('BarsComponent', () => {
     });
 
     it('does not call drawBarLabels if config.labels.show is falsey', () => {
-      component.config.labels.show = false;
+      component.config.labels.display = false;
       component.drawMarks(100);
       expect(component.drawBarLabels).not.toHaveBeenCalled();
     });

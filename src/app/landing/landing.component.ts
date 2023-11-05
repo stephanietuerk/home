@@ -6,17 +6,14 @@ import { Project } from '../core/models/project.model';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-    projects: Project[];
-    sections: any;
+  projects: Project[];
+  sections: any;
 
-    constructor() {}
-
-    ngOnInit() {
-        this.projects = PROJECTS;
-        this.sections = SECTIONS;
-    }
-
+  ngOnInit() {
+    this.projects = PROJECTS;
+    this.sections = SECTIONS;
+  }
 }

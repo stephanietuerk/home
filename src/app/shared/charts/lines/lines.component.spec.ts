@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UtilitiesService } from 'src/app/core/services/utilities.service';
-import { MainServiceStub } from 'src/app/testing/stubs/main.service.stub';
+import { MainServiceStub } from '../testing/stubs/services/main.service.stub';
 import { XyChartComponent } from '../xy-chart/xy-chart.component';
 import { LinesComponent } from './lines.component';
 import { LinesConfig } from './lines.config';
@@ -298,7 +298,7 @@ describe('LinesComponent', () => {
     });
 
     it('calls drawLineLabels once if config.labelLines is true', () => {
-      component.config.labelLines = true;
+      component.config.labels.display = true;
       component.drawMarks(duration);
       expect(component.drawLineLabels).toHaveBeenCalledTimes(1);
     });

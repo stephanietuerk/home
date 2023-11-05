@@ -1,5 +1,4 @@
-import { PatternPredicate } from '../data-marks/data-marks.config';
-import { PatternUtilities } from './pattern-utilities.class';
+import { PatternPredicate, PatternUtilities } from './pattern-utilities.class';
 
 describe('PatternUtilities', () => {
   describe('integration: getPatternFill', () => {
