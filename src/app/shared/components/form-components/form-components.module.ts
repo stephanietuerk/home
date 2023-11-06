@@ -7,27 +7,29 @@ import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from '../../shared.module';
 import { FormCheckboxInputComponent } from './form-checkbox-input/form-checkbox-input.component';
 import { FormRadioInputComponent } from './form-radio-input/form-radio-input.component';
+import { FormSelectWithFilteringComponent } from './form-select-with-filtering/form-select-with-filtering.component';
+import { FormSelectComponent } from './form-select/form-select.component';
 
 @NgModule({
-    imports: [
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatNativeDateModule,
-        MatAutocompleteModule,
-        CommonModule,
-        SharedModule,
-    ],
-    declarations: [
-        FormRadioInputComponent,
-        // FormSelectComponent,
-        // FormSelectWithFilteringComponent,
-        FormCheckboxInputComponent,
-    ],
-    exports: [
-        FormRadioInputComponent,
-        // FormSelectComponent,
-        // FormSelectWithFilteringComponent,
-        FormCheckboxInputComponent,
-    ],
+  imports: [
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    CommonModule,
+    SharedModule,
+  ],
+  declarations: [
+    FormRadioInputComponent,
+    FormSelectComponent,
+    FormSelectWithFilteringComponent,
+    FormCheckboxInputComponent,
+  ],
+  exports: [
+    FormRadioInputComponent,
+    FormSelectComponent,
+    FormSelectWithFilteringComponent,
+    FormCheckboxInputComponent,
+  ],
 })
 export class FormComponentsModule {}

@@ -124,9 +124,9 @@ export class ExploreDataService {
 
   private getLineDefs(selections: ExploreSelections): LineDef[] {
     const lines = [];
-    for (let field of selections.fields) {
-      for (let isTt of selections.tenureValues) {
-        for (let rank of selections.rankValues) {
+    for (const field of selections.fields) {
+      for (const isTt of selections.tenureValues) {
+        for (const rank of selections.rankValues) {
           lines.push({ field, isTt, rank });
         }
       }

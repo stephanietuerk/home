@@ -1,11 +1,11 @@
 export interface Field {
-    name: FieldName;
-    color: string;
-    selected: boolean;
-    sort: number;
+  name: FieldName;
+  color: string;
+  selected: boolean;
+  sort: number;
 }
 
 export interface FieldName {
-    full: string;
-    short: string;
+  full: string;
+  short: string;
 }

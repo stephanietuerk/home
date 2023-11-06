@@ -1,5 +1,5 @@
 export class InputOption {
-    label: string;
-    selected: boolean;
-    value?: string;
+  label: string;
+  selected: boolean;
+  value?: string;
 }

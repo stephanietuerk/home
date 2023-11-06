@@ -63,8 +63,6 @@ export class SummaryChartComponent {
   ];
   chartBackgroundColor = grayLightest;
 
-  constructor() {}
-
   updateTooltipForNewOutput(data: StackedAreaEventOutput): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig(data);

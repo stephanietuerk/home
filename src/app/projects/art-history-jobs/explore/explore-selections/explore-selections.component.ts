@@ -379,7 +379,7 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     options: SelectionOption[]
   ): string[] {
     return fa.value.reduce((acc, x, i) => {
-      if (!!x) {
+      if (x) {
         acc.push(options[i].value ?? options[i].label);
       }
       return acc;

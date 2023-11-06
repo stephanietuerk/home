@@ -18,6 +18,6 @@ describe('FormatForIdPipe', () => {
   });
   it('return value for non-string values', () => {
     const value = 1;
-    expect(pipe.transform(value as any)).toEqual(1);
+    expect(pipe.transform(value)).toEqual(1);
   });
 });

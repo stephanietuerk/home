@@ -3,8 +3,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'sentencecase',
 })
-export class SentenceCasePipe implements PipeTransform {
-  transform(value: any): any {
+export class SentenceCasePipe<T> implements PipeTransform {
+  transform(value: T): string | T {
     if (typeof value === 'string') {
       const first = value.charAt(0).toUpperCase();
       const others = value.slice(1).toLowerCase();

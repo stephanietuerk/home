@@ -2,21 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SummaryChartComponent } from './summary-chart.component';
 
 describe('SummaryChartComponent', () => {
-    let component: SummaryChartComponent;
-    let fixture: ComponentFixture<SummaryChartComponent>;
+  let component: SummaryChartComponent;
+  let fixture: ComponentFixture<SummaryChartComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [SummaryChartComponent],
-        }).compileComponents();
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [SummaryChartComponent],
+    }).compileComponents();
+  });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(SummaryChartComponent);
-        component = fixture.componentInstance;
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SummaryChartComponent);
+    component = fixture.componentInstance;
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

@@ -15,7 +15,7 @@ export class ArtHistoryDataService {
 
   constructor(
     private http: HttpClient,
-    private sentenceCase: SentenceCasePipe
+    private sentenceCase: SentenceCasePipe<string>
   ) {}
 
   getData(): void {
