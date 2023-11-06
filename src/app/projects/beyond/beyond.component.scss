@@ -61,6 +61,14 @@ $dark-gray: #666666;
         color: white;
       }
     }
+
+    .button-group-item {
+      &:not(:first-child) {
+        label {
+          border-left: none;
+        }
+      }
+    }
   }
 
   .election-selectors,

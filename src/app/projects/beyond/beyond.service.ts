@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
+import { GeoJsonProperties } from 'geojson';
 import { BehaviorSubject, forkJoin } from 'rxjs';
+import { GeometryCollection, Objects, Topology } from 'topojson-specification';
 import { BeyondResource } from './beyond.resource';
 import {
   DemoData,
@@ -15,13 +17,37 @@ import {
 } from './models/beyond-enums.model';
 import { BeyondState } from './models/beyond-state.model';
 
+export type PaCensusMapTopology = Topology<PaCensusTractsMapObjects>;
+
+export interface PaCensusTractsMapObjects extends Objects {
+  tracts: GeometryCollection<PaCensusGeometryProperties>;
+}
+
+export interface PaCensusGeometryProperties extends GeoJsonProperties {
+  TRACT: string;
+  GEO_ID: string;
+}
+
+export type PaCitiesMapTopology = Topology<PaCitiesMapObjects>;
+
+export interface PaCitiesMapObjects extends Objects {
+  cities: GeometryCollection<PaCitiesGeometryProperties>;
+}
+
+export interface PaCitiesGeometryProperties extends GeoJsonProperties {
+  City: string;
+  Population: number;
+  Lat: number;
+  Lon: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class BeyondService {
   elId = '#beyond-vis';
-  tractsTopojson: any;
-  citiesTopojson: any;
+  tractsTopojson: Topology<PaCensusTractsMapObjects>;
+  citiesTopojson: Topology<PaCitiesMapObjects>;
   tractData: any;
   _state: BeyondState = new BeyondState();
   state$: BehaviorSubject<BeyondState> = new BehaviorSubject(null);
@@ -43,7 +69,7 @@ export class BeyondService {
   }
 
   getBeyondData(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       forkJoin([
         this.beyondResource.getTractData(),
         this.beyondResource.getTractMap(),

@@ -105,7 +105,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     const allTracts = topojson.feature(
       this.beyondService.tractsTopojson,
-      this.beyondService.tractsTopojson.objects.PA_CensusTracts_2010
+      this.beyondService.tractsTopojson.objects.tracts
     );
 
     this.projection.scale(1).translate([0, 0]);
@@ -131,7 +131,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
     this.map
       .append('g')
       .selectAll('path')
-      .data(allTracts)
+      .data(allTracts.features)
       .enter()
       .append('path')
       .attr('class', 'tracts vote-tracts')
@@ -180,12 +180,12 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   makeCities() {
     const cities = topojson.feature(
       this.beyondService.citiesTopojson,
-      this.beyondService.citiesTopojson.objects.PA_Cities
+      this.beyondService.citiesTopojson.objects.cities
     );
 
     this.map
       .selectAll('.city')
-      .data(cities)
+      .data(cities.features)
       .enter()
       .append('path')
       .attr('d', this.mapPath)
@@ -194,10 +194,11 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     this.map
       .selectAll('.city-label')
-      .data(cities)
+      .data(cities.features)
       .enter()
       .append('text')
       .attr('class', 'city-label')
+      .style('cursor', 'default')
       .attr('transform', (d) => {
         return 'translate(' + this.projection(d.geometry.coordinates) + ')';
       })

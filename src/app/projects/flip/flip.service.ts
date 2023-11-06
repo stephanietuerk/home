@@ -11,7 +11,7 @@ import { FlipBar } from './flip-bar.class';
 import { FLIPCOLORS, FLIPGRIDLAYOUT } from './flip.constants';
 import { FlipResource } from './flip.resource';
 
-export type PaMapTopology = Topology<PaMapObjects>;
+export type PaCongressionalMapTopology = Topology<PaMapObjects>;
 export interface PaMapObjects extends Objects {
   districts: GeometryCollection<MapGeometryProperties>;
 }
@@ -25,7 +25,7 @@ export interface MapGeometryProperties extends GeoJsonProperties {
 @Injectable()
 export class FlipService {
   elId = '#flip-the-district';
-  flipTopojson: PaMapTopology;
+  flipTopojson: PaCongressionalMapTopology;
   flipData: any = [];
   districtsData: any;
   stateData: StateVotes;

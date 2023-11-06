@@ -95894,7 +95894,7 @@
     "translate": [-80.519891, 39.7198]
   },
   "objects": {
-    "PA_CensusTracts_2010": {
+    "tracts": {
       "type": "GeometryCollection",
       "geometries": [
         {

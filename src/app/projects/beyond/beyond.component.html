@@ -89,7 +89,8 @@
       <div class="election-type-selectors">
         <div
           *ngFor="let button of electionTypeLabels"
-          class="election-type-sel"
+          class="election-type-sel button-group-item"
+          [class.selected]="isSelectedElectionType(button.value)"
         >
           <input
             type="radio"
@@ -100,7 +101,7 @@
           />
           <label
             [for]="'election-type-sel-' + button.value"
-            [ngClass]="{ selected: isSelectedElectionType(button.value) }"
+            [class.selected]="isSelectedElectionType(button.value)"
             (click)="updateElectionType(button.value)"
             >{{ button.name }}</label
           >
@@ -109,7 +110,8 @@
       <div class="election-year-selectors">
         <div
           *ngFor="let button of electionYearLabels"
-          class="election-year-sel"
+          class="election-year-sel button-group-item"
+          [class.selected]="isSelectedElectionYear(button.value)"
         >
           <input
             type="radio"
@@ -129,7 +131,11 @@
     </div>
     <div class="demo-selectors">
       <div class="demo-type-selectors">
-        <div *ngFor="let button of demoTypeLabels" class="demo-type-sel">
+        <div
+          *ngFor="let button of demoTypeLabels"
+          class="demo-type-sel button-group-item"
+          [class.selected]="isSelectedDemoType(button.value)"
+        >
           <input
             type="radio"
             [id]="'demo-type-sel-' + button.value"
@@ -148,7 +154,7 @@
       <div
         *ngFor="let button of [demoYearLabels[1]]"
         class="election-year-sel"
-        [ngClass]=""
+        [class.selected]="demoYear === 'change'"
       >
         <input
           type="checkbox"
