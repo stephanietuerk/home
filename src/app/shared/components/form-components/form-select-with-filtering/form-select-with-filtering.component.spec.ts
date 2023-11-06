@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { skip } from 'rxjs';
 import { NG_CONTROL_PROVIDER } from 'src/app/testing/forms/ng-control-provider.stub';
-import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 import { FormSelectWithFilteringComponent } from './form-select-with-filtering.component';
 
 describe('SelectWithFilteringComponent', () => {
@@ -26,12 +27,6 @@ describe('SelectWithFilteringComponent', () => {
     component = fixture.componentInstance;
   });
 
-  describe('constructor()', () => {
-    it('sets ngControl valueAccessor to NOOP_VALUE_ACCESSOR is ngControl exists', () => {
-      expect(component.ngControl.valueAccessor).toEqual(NOOP_VALUE_ACCESSOR);
-    });
-  });
-
   describe('ngOnChanges()', () => {
     beforeEach(() => {
       spyOn(component, 'updateFilterOptionsForInput');
@@ -53,24 +48,31 @@ describe('SelectWithFilteringComponent', () => {
   });
 
   describe('updateFilterOptionsForInput()', () => {
-    it('calls filterOptionsByInputValue once and with the correct parameter for each new input value emitted', () => {
+    beforeEach(() => {
+      component.control = new FormControl<string>('default');
+    });
+    it('calls filterOptionsByInputValue once and with the correct parameter for each new input value emitted', (done) => {
       spyOn(component, 'filterOptionsByInputValue');
       component.updateFilterOptionsForInput();
-      component.ngControl.control.setValue('hello');
-      expect(component.filterOptionsByInputValue).toHaveBeenCalledTimes(2);
-      expect(component.filterOptionsByInputValue).toHaveBeenCalledWith('hello');
+      component.filteredOptions$.pipe(skip(1)).subscribe((str) => {
+        expect(component.filterOptionsByInputValue).toHaveBeenCalledTimes(2);
+        expect(component.filterOptionsByInputValue).toHaveBeenCalledWith(
+          'hello'
+        );
+        done();
+      });
+      component.control.setValue('hello');
     });
-    it('calls filterOptionsByInputValue once for each time filterOptions is updated and sets filterOptions to the correct value', () => {
+    it('calls filterOptionsByInputValue once for each time filterOptions is updated and sets filterOptions to the correct value', (done) => {
       spyOn(component, 'filterOptionsByInputValue').and.returnValue(['hello']);
       component.updateFilterOptionsForInput();
-      component.filteredOptions
-        .subscribe((data) => {
-          expect(component.filterOptionsByInputValue).toHaveBeenCalledOnceWith(
-            ''
-          );
-          expect(data).toEqual(['hello']);
-        })
-        .unsubscribe();
+      component.filteredOptions$.subscribe((data) => {
+        expect(component.filterOptionsByInputValue).toHaveBeenCalledOnceWith(
+          ''
+        );
+        expect(data).toEqual(['hello']);
+        done();
+      });
     });
   });
 

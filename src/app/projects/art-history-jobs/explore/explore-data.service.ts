@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { cloneDeep } from 'lodash';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, shareReplay, withLatestFrom } from 'rxjs/operators';
 import {
@@ -15,15 +14,17 @@ import {
 } from './explore-data.model';
 import { ExploreSelections } from './explore-selections/explore-selections.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ExploreDataService {
   selections: BehaviorSubject<ExploreSelections> = new BehaviorSubject(null);
   selections$ = this.selections.asObservable();
   chartsData$: Observable<ExploreChartsData>;
 
   constructor(private artHistoryDataService: ArtHistoryDataService) {
+    this.setExploreChartsData();
+  }
+
+  init(): void {
     this.setExploreChartsData();
   }
 
@@ -34,28 +35,19 @@ export class ExploreDataService {
 
     this.chartsData$ = selections$.pipe(
       withLatestFrom(this.artHistoryDataService.data$),
+      filter(([selections, data]) => !!selections && !!data),
       map(([selections, data]) => {
-        if (selections && data) {
-          const lineDefs = this.getLineDefs(selections);
-          const timeRange = {
-            data: this.getLineChartDataForSelections(
-              selections,
-              lineDefs,
-              data
-            ),
-            dataType: selections.dataType,
-            categories: this.getLineChartCategoriesAccessor(selections),
-          };
-          const change = this.getChangeChartData(
-            selections,
-            lineDefs,
-            timeRange
-          );
-          return {
-            timeRange,
-            change,
-          };
-        }
+        const lineDefs = this.getLineDefs(selections);
+        const timeRange = {
+          data: this.getLineChartDataForSelections(selections, lineDefs, data),
+          dataType: selections.dataType,
+          categories: this.getLineChartCategoriesAccessor(selections),
+        };
+        const change = this.getChangeChartData(selections, lineDefs, timeRange);
+        return {
+          timeRange,
+          change,
+        };
       }),
       shareReplay()
     );
@@ -242,9 +234,15 @@ export class ExploreDataService {
   private transformDataRankToString(
     data: JobDatum[]
   ): JobDatumTimeRangeChart[] {
-    return cloneDeep(data).map((x) => {
-      x.rank = x.rank[0];
-      return x as unknown as JobDatumTimeRangeChart;
+    return data.map((x) => {
+      const newObj = {} as JobDatumTimeRangeChart;
+      newObj.year = x.year;
+      newObj.field = x.field;
+      newObj.isTt = x.isTt;
+      newObj.count = x.count;
+      newObj.percent = x.percent;
+      newObj.rank = x.rank[0];
+      return newObj;
     });
   }
 

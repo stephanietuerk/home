@@ -35,7 +35,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   viewPlaceNames = true;
   mapZoom = zoom().scaleExtent([1, 10]);
   mapPath: any;
-  private destroy$ = new Subject();
+  unsubscribe: Subject<void> = new Subject();
 
   constructor(private beyondService: BeyondService) {}
 
@@ -131,7 +131,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
     this.map
       .append('g')
       .selectAll('path')
-      .data(allTracts.features)
+      .data(allTracts)
       .enter()
       .append('path')
       .attr('class', 'tracts vote-tracts')
@@ -185,7 +185,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     this.map
       .selectAll('.city')
-      .data(cities.features)
+      .data(cities)
       .enter()
       .append('path')
       .attr('d', this.mapPath)
@@ -194,7 +194,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     this.map
       .selectAll('.city-label')
-      .data(cities.features)
+      .data(cities)
       .enter()
       .append('text')
       .attr('class', 'city-label')
@@ -379,6 +379,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
       })
       .style('fill', function () {
         if (zoomedInForText) return 'black';
+        return null;
       });
 
     howText.text(() => {
@@ -391,6 +392,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     placeNamesText.style('fill', function () {
       if (zoomedInForText) return 'black';
+      return null;
     });
 
     resetBox.attr('pointer-events', function () {
@@ -457,7 +459,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

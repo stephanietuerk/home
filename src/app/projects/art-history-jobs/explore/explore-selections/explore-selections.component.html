@@ -1,203 +1,238 @@
-<form *ngIf="form" [formGroup]="form" class="explore-selections-container" [class.open]="isOpen">
-    <p class="container-title">Data selections</p>
-    <button class="navbar" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-        <div class="links-container">
-            <p
-                class="selection-title"
-                [class.open]="isOpen && openContent === 'fields'"
-                (click)="toggleOpenContent('fields')"
-            >
-                Fields
-            </p>
-            <p
-                class="selection-title"
-                [class.open]="isOpen && openContent === 'dataType'"
-                (click)="toggleOpenContent('dataType')"
-            >
-                Data type
-            </p>
-            <p
-                class="selection-title"
-                [class.open]="isOpen && openContent === 'timeRange'"
-                (click)="toggleOpenContent('timeRange')"
-            >
-                Time range
-            </p>
-            <p
-                class="selection-title"
-                [class.open]="isOpen && openContent === 'tenure'"
-                (click)="toggleOpenContent('tenure')"
-            >
-                Tenure status
-            </p>
-            <p
-                class="selection-title"
-                [class.open]="isOpen && openContent === 'rank'"
-                (click)="toggleOpenContent('rank')"
-            >
-                Rank
-            </p>
-        </div>
-    </button>
+<form
+  *ngIf="form"
+  [formGroup]="form"
+  class="explore-selections-container"
+  [class.open]="isOpen"
+>
+  <p class="container-title">Data selections</p>
+  <button
+    class="navbar"
+    type="button"
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+  >
+    <div class="links-container">
+      <p
+        class="selection-title"
+        [class.open]="isOpen && openContent === 'fields'"
+        (click)="toggleOpenContent('fields')"
+      >
+        Fields
+      </p>
+      <p
+        class="selection-title"
+        [class.open]="isOpen && openContent === 'dataType'"
+        (click)="toggleOpenContent('dataType')"
+      >
+        Data type
+      </p>
+      <p
+        class="selection-title"
+        [class.open]="isOpen && openContent === 'timeRange'"
+        (click)="toggleOpenContent('timeRange')"
+      >
+        Time range
+      </p>
+      <p
+        class="selection-title"
+        [class.open]="isOpen && openContent === 'tenure'"
+        (click)="toggleOpenContent('tenure')"
+      >
+        Tenure status
+      </p>
+      <p
+        class="selection-title"
+        [class.open]="isOpen && openContent === 'rank'"
+        (click)="toggleOpenContent('rank')"
+      >
+        Rank
+      </p>
+    </div>
+  </button>
 
-    <ng-template
-        cdkConnectedOverlay
-        cdkConnectedOverlayPanelClass="selections-dropdown"
-        [cdkConnectedOverlayOrigin]="trigger"
-        [cdkConnectedOverlayOpen]="isOpen"
-        (overlayOutsideClick)="closeDropdown($event)"
-    >
-        <div @slide class="dropdown-container" [ngSwitch]="openContent">
-            <ng-container *ngSwitchCase="'dataType'">
-                <ng-container *ngTemplateOutlet="dataTypeDd"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="'timeRange'">
-                <ng-container *ngTemplateOutlet="timeRangeDd"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="'tenure'">
-                <ng-container *ngTemplateOutlet="tenureDd"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="'rank'">
-                <ng-container *ngTemplateOutlet="rankDd"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchDefault>
-                <ng-container *ngTemplateOutlet="fieldsDd"></ng-container>
-            </ng-container>
-        </div>
-    </ng-template>
+  <ng-template
+    cdkConnectedOverlay
+    cdkConnectedOverlayPanelClass="selections-dropdown"
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="isOpen"
+    (overlayOutsideClick)="closeDropdown($event)"
+  >
+    <div @slide class="dropdown-container" [ngSwitch]="openContent">
+      <ng-container *ngSwitchCase="'dataType'">
+        <ng-container *ngTemplateOutlet="dataTypeDd"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'timeRange'">
+        <ng-container *ngTemplateOutlet="timeRangeDd"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'tenure'">
+        <ng-container *ngTemplateOutlet="tenureDd"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'rank'">
+        <ng-container *ngTemplateOutlet="rankDd"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <ng-container *ngTemplateOutlet="fieldsDd"></ng-container>
+      </ng-container>
+    </div>
+  </ng-template>
 
-    <ng-template #fieldsDd>
-        <div class="selection-container fields">
-            <div class="selection-instructions">
-                <p>Select fields to view in the chart below</p>
-            </div>
-            <div class="selection-interface fields checkbox-input-container" formArrayName="fields">
-                <app-form-checkbox-input
-                    *ngFor="let control of fields.controls; let i = index"
-                    class="checkbox-input-component fields button-style"
-                    [formControlName]="i"
-                    [option]="fieldOptions[i]"
-                    [isStyledCheckbox]="false"
-                    [style.--color]="artHistoryFields[i].color"
-                ></app-form-checkbox-input>
-            </div>
-        </div>
-    </ng-template>
+  <ng-template #fieldsDd>
+    <div class="selection-container fields">
+      <div class="selection-instructions">
+        <p>Select fields to view in the chart below</p>
+      </div>
+      <div
+        class="selection-interface fields checkbox-input-container"
+        formArrayName="fields"
+      >
+        <app-form-checkbox-input
+          *ngFor="let control of form.controls.fields.controls; let i = index"
+          class="checkbox-input-component fields button-style"
+          [control]="control"
+          [option]="fieldOptions[i]"
+          [isStyledCheckbox]="false"
+          [style.--color]="artHistoryFields[i].color"
+        ></app-form-checkbox-input>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #dataTypeDd>
-        <div class="selection-container radio-input-container data-type">
-            <p class="selection-instructions">
-                Select count to see the total number of jobs for each year or percent for the number of jobs for your
-                selection as a share of all jobs.
-            </p>
-            <div class="selection-interface data-type radio-input-container">
-                <app-form-radio-input
-                    *ngFor="let option of dataTypeOptions"
-                    class="radio-input-component data-type button-style"
-                    formControlName="dataType"
-                    [option]="option"
-                    [isStyledRadio]="false"
-                ></app-form-radio-input>
-            </div>
-        </div>
-    </ng-template>
+  <ng-template #dataTypeDd>
+    <div class="selection-container radio-input-container data-type">
+      <p class="selection-instructions">
+        Select count to see the total number of jobs for each year or percent
+        for the number of jobs for your selection as a share of all jobs.
+      </p>
+      <div class="selection-interface data-type radio-input-container">
+        <app-form-radio-input
+          *ngFor="let option of dataTypeOptions"
+          class="radio-input-component data-type button-style"
+          formControlName="dataType"
+          [option]="option"
+          [isStyledRadio]="false"
+        ></app-form-radio-input>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #timeRangeDd
-        ><div class="selection-container">
-            <p class="selection-instructions">Select years across which to compare the change in jobs.</p>
-            <app-years-selection
-                class="time-range-slider-component selection-interface time-range"
-                [years]="yearsRange"
-                [formGroup]="form.controls.years"
-            ></app-years-selection></div
-    ></ng-template>
+  <ng-template #timeRangeDd
+    ><div class="selection-container">
+      <p class="selection-instructions"
+        >Select years across which to compare the change in jobs.</p
+      >
+      <app-years-selection
+        class="time-range-slider-component selection-interface time-range"
+        [years]="yearsRange"
+        [formGroup]="form.controls.years"
+      ></app-years-selection></div
+  ></ng-template>
 
-    <ng-template #tenureDd>
-        <div dropdown-content class="selection-container tenure">
-            <div class="filter-instructions">
-                <p>Select <span class="filter-use-name"> filter</span> to see jobs for a particular tenure status.</p>
-                <p>Select <span class="filter-use-name"> disaggregate</span> to compare among tenure statuses.</p>
-                <ng-container *ngTemplateOutlet="limitations"></ng-container>
-            </div>
-            <div class="selection-interface tenure-use radio-input-container">
-                <app-form-radio-input
-                    *ngFor="let option of filterUseOptions"
-                    class="radio-input-component tenure-use button-style"
-                    formControlName="tenureUse"
-                    [option]="option"
-                    [isStyledRadio]="false"
-                ></app-form-radio-input>
-            </div>
-            <div class="selection-interface tenure-values radio-input-container" *ngIf="tenureIsFilter">
-                <app-form-radio-input
-                    *ngFor="let option of tenureValueOptions"
-                    class="radio-input-component tenure-values input-element-style"
-                    formControlName="tenureFilterValue"
-                    [option]="option"
-                    [isStyledRadio]="true"
-                ></app-form-radio-input>
-            </div>
-            <div
-                class="selection-interface tenure-values checkbox-input-container"
-                *ngIf="!tenureIsFilter"
-                formArrayName="tenureDisaggValues"
-            >
-                <app-form-checkbox-input
-                    *ngFor="let _ of tenureDisaggValues.controls; let i = index"
-                    class="checkbox-input-component tenure-values input-element-style"
-                    [formControlName]="i"
-                    [option]="tenureValueOptions[i]"
-                    [isStyledCheckbox]="true"
-                ></app-form-checkbox-input>
-            </div>
-        </div>
-    </ng-template>
+  <ng-template #tenureDd>
+    <div dropdown-content class="selection-container tenure">
+      <div class="filter-instructions">
+        <p
+          >Select <span class="filter-use-name"> filter</span> to see jobs for a
+          particular tenure status.</p
+        >
+        <p
+          >Select <span class="filter-use-name"> disaggregate</span> to compare
+          among tenure statuses.</p
+        >
+        <ng-container *ngTemplateOutlet="limitations"></ng-container>
+      </div>
+      <div class="selection-interface tenure-use radio-input-container">
+        <app-form-radio-input
+          *ngFor="let option of filterUseOptions"
+          class="radio-input-component tenure-use button-style"
+          formControlName="tenureUse"
+          [option]="option"
+          [isStyledRadio]="false"
+        ></app-form-radio-input>
+      </div>
+      <div
+        class="selection-interface tenure-values radio-input-container"
+        *ngIf="tenureIsFilter"
+      >
+        <app-form-radio-input
+          *ngFor="let option of tenureValueOptions"
+          class="radio-input-component tenure-values input-element-style"
+          formControlName="tenureFilterValue"
+          [option]="option"
+          [isStyledRadio]="true"
+        ></app-form-radio-input>
+      </div>
+      <div
+        class="selection-interface tenure-values checkbox-input-container"
+        *ngIf="!tenureIsFilter"
+        formArrayName="tenureDisaggValues"
+      >
+        <app-form-checkbox-input
+          *ngFor="let control of form.controls.tenureDisaggValues.controls; let i = index"
+          class="checkbox-input-component tenure-values input-element-style"
+          [control]="control"
+          [option]="tenureValueOptions[i]"
+          [isStyledCheckbox]="true"
+        ></app-form-checkbox-input>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #rankDd
-        ><div class="selection-container rank">
-            <div class="filter-instructions">
-                <p>Select <span class="filter-use-name"> filter</span> to see jobs for a particular job rank.</p>
-                <p>Select <span class="filter-use-name"> disaggregate</span> to compare among job ranks.</p>
-                <ng-container *ngTemplateOutlet="limitations"></ng-container>
-            </div>
-            <div class="selection-interface rank-use radio-input-container">
-                <app-form-radio-input
-                    *ngFor="let option of filterUseOptions"
-                    class="radio-input-component rank-use button-style"
-                    formControlName="rankUse"
-                    [option]="option"
-                    [isStyledRadio]="false"
-                ></app-form-radio-input>
-            </div>
-            <div content class="selection-interface rank-values radio-input-container" *ngIf="rankIsFilter">
-                <app-form-radio-input
-                    *ngFor="let option of rankValueOptions"
-                    class="radio-input-component rank-values input-element-style"
-                    formControlName="rankFilterValue"
-                    [option]="option"
-                    [isStyledRadio]="true"
-                ></app-form-radio-input>
-            </div>
-            <div
-                class="selection-interface rank-values checkbox-input-container"
-                *ngIf="!rankIsFilter"
-                formArrayName="rankDisaggValues"
-            >
-                <app-form-checkbox-input
-                    *ngFor="let _ of rankDisaggValues.controls; let i = index"
-                    class="checkbox-input-component rank-values input-element-style"
-                    [formControlName]="i"
-                    [option]="rankValueOptions[i]"
-                    [isStyledCheckbox]="true"
-                ></app-form-checkbox-input>
-            </div>
-        </div>
-    </ng-template>
+  <ng-template #rankDd
+    ><div class="selection-container rank">
+      <div class="filter-instructions">
+        <p
+          >Select <span class="filter-use-name"> filter</span> to see jobs for a
+          particular job rank.</p
+        >
+        <p
+          >Select <span class="filter-use-name"> disaggregate</span> to compare
+          among job ranks.</p
+        >
+        <ng-container *ngTemplateOutlet="limitations"></ng-container>
+      </div>
+      <div class="selection-interface rank-use radio-input-container">
+        <app-form-radio-input
+          *ngFor="let option of filterUseOptions"
+          class="radio-input-component rank-use button-style"
+          formControlName="rankUse"
+          [option]="option"
+          [isStyledRadio]="false"
+        ></app-form-radio-input>
+      </div>
+      <div
+        content
+        class="selection-interface rank-values radio-input-container"
+        *ngIf="rankIsFilter"
+      >
+        <app-form-radio-input
+          *ngFor="let option of rankValueOptions"
+          class="radio-input-component rank-values input-element-style"
+          formControlName="rankFilterValue"
+          [option]="option"
+          [isStyledRadio]="true"
+        ></app-form-radio-input>
+      </div>
+      <div
+        class="selection-interface rank-values checkbox-input-container"
+        *ngIf="!rankIsFilter"
+        formArrayName="rankDisaggValues"
+      >
+        <app-form-checkbox-input
+          *ngFor="let control of form.controls.rankDisaggValues.controls; let i = index"
+          class="checkbox-input-component rank-values input-element-style"
+          [control]="control"
+          [option]="rankValueOptions[i]"
+          [isStyledCheckbox]="true"
+        ></app-form-checkbox-input>
+      </div>
+    </div>
+  </ng-template>
 </form>
 
 <ng-template #limitations>
-    <p>
-        Constraints: Only one of the variables below can be disaggregated at a time. Only one field can be selected when
-        disaggregating. Selection updates will be made automatically.
-    </p>
+  <p>
+    Constraints: Only one of the variables below can be disaggregated at a time.
+    Only one field can be selected when disaggregating. Selection updates will
+    be made automatically.
+  </p>
 </ng-template>

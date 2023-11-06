@@ -393,12 +393,12 @@ export class FlipComponent implements OnInit {
     const geoData = topojson.feature(
       this.flipService.flipTopojson,
       this.flipService.flipTopojson.objects.districts
-    ).features;
+    );
 
     mapContainer
       .append('g')
       .selectAll('path')
-      .data(geoData)
+      .data(geoData.features)
       .enter()
       .append('path')
       .attr('class', 'district-boundary')
@@ -536,7 +536,7 @@ export class FlipComponent implements OnInit {
               100 * delay
             );
           }
-        } else if (nodes[i].getAttribute('squareColor') == FLIPCOLORS.rColor) {
+        } else {
           return (
             pause + (numSquares - nodes[i].getAttribute('cellnum') + 1) * delay
           );
@@ -593,8 +593,7 @@ export class FlipComponent implements OnInit {
         const color = this.flipService.getCongressSquareColor(nodes[i]);
         if (color == FLIPCOLORS.dColor) {
           return pause + nodes[i].getAttribute('cellnum') * delay;
-        }
-        if (color == FLIPCOLORS.oColor) {
+        } else if (color == FLIPCOLORS.oColor) {
           if (cutOtherGrid < numSquares / 2) {
             return (
               pause +
@@ -608,8 +607,7 @@ export class FlipComponent implements OnInit {
               100 * delay
             );
           }
-        }
-        if (color == FLIPCOLORS.rColor) {
+        } else {
           return (
             pause + (numSquares - nodes[i].getAttribute('cellnum') + 1) * delay
           );

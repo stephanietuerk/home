@@ -114,7 +114,7 @@ export class FlipBar {
             el.getAttribute('cellnum') * FLIPTRANSITIONS.delay * 2 +
             this.cutOther * FLIPTRANSITIONS.delay
           );
-        } else if (el.getAttribute('squareColor') == FLIPCOLORS.rColor) {
+        } else {
           return (
             FLIPTRANSITIONS.pause +
             (this.cutD * FLIPTRANSITIONS.delay +

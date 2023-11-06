@@ -9,7 +9,7 @@ import { InputOption } from '../input-option.model';
 export class RadioGroupComponent implements OnInit {
   @Input() options: InputOption[];
   @Input() group: string;
-  @Input() isStyledRadio: boolean = false;
+  @Input() isStyledRadio = false;
   @Input() conditionalClassSetter: (
     option: InputOption,
     index: number

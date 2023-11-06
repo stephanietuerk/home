@@ -7,8 +7,6 @@ import { ContentNavbarComponent } from './components/content-navbar/content-navb
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 import { RadioInputComponent } from './components/radio-input/radio-input.component';
 import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.component';
-import { StackedAreaChartComponent } from './components/stacked-area-chart/stacked-area-chart.component';
-import { StackedAreaTooltipComponent } from './components/stacked-area-chart/stacked-area-tooltip/stacked-area-tooltip.component';
 import { SvgDefinitionsComponent } from './components/svg-icon/svg-definitions.component';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { TableComponent } from './components/table/table.component';
@@ -29,8 +27,6 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
     RadioInputComponent,
     TableComponent,
     SortArrowsComponent,
-    StackedAreaChartComponent,
-    StackedAreaTooltipComponent,
     CheckboxInputComponent,
     CheckboxGroupComponent,
   ],
@@ -45,8 +41,6 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
     RadioGroupComponent,
     TableComponent,
     SortArrowsComponent,
-    StackedAreaChartComponent,
-    StackedAreaTooltipComponent,
     CheckboxInputComponent,
     RadioInputComponent,
     CheckboxGroupComponent,

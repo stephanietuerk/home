@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
 import { JobDatumChangeChart } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
@@ -42,15 +42,14 @@ export class ExploreChangeChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.vm$ = this.exploreDataService.chartsData$.pipe(
+      filter((chartsData) => !!chartsData.change),
       map((chartsData) => {
-        if (chartsData.change) {
-          return {
-            dataMarksConfig: this.getDataMarksConfig(chartsData.change),
-            xAxisConfig: this.getXAxisConfig(chartsData.change),
-            yAxisConfig: this.getYAxisConfig(),
-            height: this.setChartHeight(chartsData.change.data),
-          };
-        }
+        return {
+          dataMarksConfig: this.getDataMarksConfig(chartsData.change),
+          xAxisConfig: this.getXAxisConfig(chartsData.change),
+          yAxisConfig: this.getYAxisConfig(),
+          height: this.setChartHeight(chartsData.change.data),
+        };
       })
     );
   }

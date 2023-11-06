@@ -11,7 +11,7 @@ import { JobDatum, JobsByCountry } from './art-history-data.model';
 })
 export class ArtHistoryDataService {
   data$: Observable<JobDatum[]>;
-  dataBySchool$: Observable<JobsByCountry>;
+  dataBySchool$: Observable<JobsByCountry[]>;
 
   constructor(
     private http: HttpClient,
@@ -28,18 +28,18 @@ export class ArtHistoryDataService {
         shareReplay(1)
       );
     this.dataBySchool$ = this.http
-      .get<JobsByCountry>('assets/artHistoryJobs/jobsByCountry.json')
+      .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
       .pipe(shareReplay(1));
   }
 
   parseData(data): JobDatum[] {
     return csvParse(data).map((x) => {
       return {
-        year: new Date(`${x.year}-01-01T00:00:00`),
-        field: x.field === 'all' ? 'All' : x.field,
-        isTt: this.transformIsTt(x.is_tt),
-        rank: this.transformRank(x.rank),
-        count: +x.count,
+        year: new Date(`${x['year']}-01-01T00:00:00`),
+        field: x['field'] === 'all' ? 'All' : x['field'],
+        isTt: this.transformIsTt(x['is_tt']),
+        rank: this.transformRank(x['rank']),
+        count: +x['count'],
       };
     });
   }

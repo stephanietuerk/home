@@ -2,19 +2,16 @@ import {
   Component,
   Input,
   OnChanges,
-  Optional,
-  Self,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   ControlContainer,
+  FormControl,
   FormGroupDirective,
-  NgControl,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 
 @Component({
   selector: 'app-form-select-with-filtering',
@@ -32,7 +29,7 @@ import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
   ],
 })
 export class FormSelectWithFilteringComponent implements OnChanges {
-  @Input() formControlName: string;
+  @Input() control: FormControl<string>;
   @Input() options: string[];
   @Input() placeholder = '';
   @Input() textAlign?:
@@ -44,11 +41,7 @@ export class FormSelectWithFilteringComponent implements OnChanges {
     | 'justify'
     | 'match-parent';
   @Input() overlayClass: string;
-  filteredOptions: Observable<string[]>;
-
-  constructor(@Self() @Optional() public ngControl: NgControl) {
-    this.ngControl.valueAccessor = NOOP_VALUE_ACCESSOR;
-  }
+  filteredOptions$: Observable<string[]>;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['options']) {
@@ -57,9 +50,9 @@ export class FormSelectWithFilteringComponent implements OnChanges {
   }
 
   updateFilterOptionsForInput(): void {
-    this.filteredOptions = this.ngControl.control.valueChanges.pipe(
+    this.filteredOptions$ = this.control.valueChanges.pipe(
       startWith(''),
-      map((inputValue) => {
+      map((inputValue: string) => {
         return this.filterOptionsByInputValue(inputValue);
       })
     );

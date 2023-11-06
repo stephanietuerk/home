@@ -1,20 +1,12 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Optional,
-  Self,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   ControlContainer,
+  FormControl,
   FormGroupDirective,
-  NgControl,
 } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { SelectionOption } from '../form-radio-input/form-radio-input.model';
-import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 
 let nextUniqueId = 0;
 
@@ -32,7 +24,7 @@ let nextUniqueId = 0;
 })
 export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
   _uniqueId = ++nextUniqueId;
-  @Input() formControlName: string;
+  @Input() control: FormControl<boolean>;
   @Input() id: string;
   @Input() option: SelectionOption;
   @Input() isStyledCheckbox: boolean;
@@ -40,11 +32,6 @@ export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
   label: string;
   value: string | number;
   selected: boolean;
-
-  constructor(@Self() @Optional() public ngControl: NgControl) {
-    super();
-    this.ngControl.valueAccessor = NOOP_VALUE_ACCESSOR;
-  }
 
   ngOnInit(): void {
     this.setUniqueId();
@@ -63,11 +50,11 @@ export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
   }
 
   setSelected(): void {
-    this.selected = this.ngControl.control.value;
+    this.selected = this.control.value;
   }
 
   setFormListener(): void {
-    this.ngControl.control.valueChanges
+    this.control.valueChanges
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
         this.setSelected();
@@ -78,13 +65,5 @@ export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
     return this.isStyledCheckbox && this.selected
       ? 'checkbox-selected'
       : 'checkbox-unselected';
-  }
-
-  updateChecked(event: Event): void {
-    const checked = (event.target as HTMLInputElement).checked;
-    const value = checked
-      ? [...this.ngControl.control.value, this.value]
-      : this.ngControl.control.value.filter((v) => v !== this.value);
-    this.ngControl.control.setValue(value);
   }
 }

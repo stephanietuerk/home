@@ -3,7 +3,7 @@ import { NG_CONTROL_PROVIDER } from 'src/app/testing/forms/ng-control-provider.s
 import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 import { FormRadioInputComponent } from './form-radio-input.component';
 
-describe('RadioInputComponent', () => {
+describe('FormRadioInputComponent', () => {
   let component: FormRadioInputComponent;
   let fixture: ComponentFixture<FormRadioInputComponent>;
   let ngControl;
@@ -111,7 +111,7 @@ describe('RadioInputComponent', () => {
       it('sets uniqueId to the correct value', () => {
         component._uniqueId = 12;
         component.setUniqueId();
-        expect(component.uniqueId).toEqual('nc-dash-radio-input-12');
+        expect(component.uniqueId).toEqual('smt-radio-input-12');
       });
     });
   });

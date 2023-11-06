@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputOption } from '../input-option.model';
 import { RadioGroupComponent } from './radio-group.component';
 
-describe('ButtonGroupComponent', () => {
+describe('RadioGroupComponent', () => {
   let component: RadioGroupComponent;
   let fixture: ComponentFixture<RadioGroupComponent>;
 
@@ -103,7 +103,7 @@ describe('ButtonGroupComponent', () => {
         { label: 'hm', selected: false },
         { label: 'rf', selected: false },
       ];
-      component.selectOption('hm' as any);
+      component.selectOption(component.options[0]);
       expect(component.options[0].selected).toEqual(true);
     });
   });

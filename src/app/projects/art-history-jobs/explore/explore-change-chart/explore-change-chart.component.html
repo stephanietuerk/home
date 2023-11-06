@@ -1,16 +1,20 @@
 <ng-container *ngIf="vm$ | async as vm">
-    <app-xy-chart
-        class="chart-component"
-        [margin]="margin"
-        [height]="vm.height"
-        [width]="width"
-        [scaleChartWithContainerWidth]="{ width: true, height: false }"
-    >
-        <svg:g svg-elements>
-            <svg:g xy-background></svg:g>
-            <svg:g x-quantitative-axis side="bottom" [config]="vm.xAxisConfig"></svg:g>
-            <svg:g y-ordinal-axis side="left" [config]="vm.yAxisConfig"></svg:g>
-            <svg:g data-marks-bars [config]="vm.dataMarksConfig"></svg:g>
-        </svg:g>
-    </app-xy-chart>
+  <vic-xy-chart
+    class="chart-component"
+    [margin]="margin"
+    [height]="vm.height"
+    [width]="width"
+    [scaleChartWithContainerWidth]="{ width: true, height: false }"
+  >
+    <svg:g svg-elements>
+      <svg:g vic-xy-background></svg:g>
+      <svg:g
+        vic-x-quantitative-axis
+        side="bottom"
+        [config]="vm.xAxisConfig"
+      ></svg:g>
+      <svg:g vic-y-ordinal-axis side="left" [config]="vm.yAxisConfig"></svg:g>
+      <svg:g vic-data-marks-bars [config]="vm.dataMarksConfig"></svg:g>
+    </svg:g>
+  </vic-xy-chart>
 </ng-container>

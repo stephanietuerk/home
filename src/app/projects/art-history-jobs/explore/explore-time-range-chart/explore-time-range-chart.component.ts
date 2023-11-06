@@ -1,21 +1,20 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { timeYear } from 'd3';
+import {
+  DATA_MARKS,
+  EventEffect,
+  HtmlTooltipConfig,
+  HtmlTooltipOffsetFromOriginPosition,
+  LINES,
+  LinesEventOutput,
+  LinesHoverMoveDefaultStyles,
+  LinesHoverMoveDirective,
+  LinesHoverMoveEmitTooltipData,
+} from '@web-ast/viz-components';
+import { timeYear } from 'd3-time';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { DATA_MARKS } from 'src/app/shared/charts/data-marks/data-marks.token';
-import { EventEffect } from 'src/app/shared/charts/events/effect';
-import { HtmlTooltipConfig } from 'src/app/shared/charts/html-tooltip/html-tooltip.config';
-import {
-  EmitLinesTooltipData,
-  LinesHoverAndMoveEffectDefaultStyles,
-} from 'src/app/shared/charts/lines/lines-effects';
-import {
-  LinesEmittedOutput,
-  LinesHoverAndMoveEventDirective,
-} from 'src/app/shared/charts/lines/lines-hover-move-event.directive';
-import { LINES } from 'src/app/shared/charts/lines/lines.component';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import {
@@ -68,12 +67,12 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       new HtmlTooltipConfig({ show: false })
     );
   tooltipConfig$ = this.tooltipConfig.asObservable();
-  tooltipData: BehaviorSubject<LinesEmittedOutput> =
-    new BehaviorSubject<LinesEmittedOutput>(null);
+  tooltipData: BehaviorSubject<LinesEventOutput> =
+    new BehaviorSubject<LinesEventOutput>(null);
   tooltipData$ = this.tooltipData.asObservable();
-  hoverEffects: EventEffect<LinesHoverAndMoveEventDirective>[] = [
-    new LinesHoverAndMoveEffectDefaultStyles(),
-    new EmitLinesTooltipData(),
+  hoverEffects: EventEffect<LinesHoverMoveDirective>[] = [
+    new LinesHoverMoveDefaultStyles(),
+    new LinesHoverMoveEmitTooltipData(),
   ];
   chartBackgroundColor = grayLightest;
 
@@ -87,21 +86,20 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       this.exploreDataService.chartsData$,
       this.exploreDataService.selections$,
     ]).pipe(
+      filter(([chartData]) => !!chartData?.timeRange),
       map(([chartData, selections]) => {
-        if (chartData.timeRange) {
-          return {
-            dataMarksConfig: this.getDataMarksConfig(chartData.timeRange),
-            xAxisConfig: this.getXAxisConfig(chartData.timeRange),
-            yAxisConfig: this.getYAxisConfig(chartData.timeRange),
-            lineCategoryLabel: this.getLineCategoryLabel(
-              chartData.timeRange.categories
-            ),
-            title: !!selections
-              ? this.getTitle(chartData.timeRange.categories, selections)
-              : '',
-            dataType: !!selections ? selections.dataType : '',
-          };
-        }
+        return {
+          dataMarksConfig: this.getDataMarksConfig(chartData.timeRange),
+          xAxisConfig: this.getXAxisConfig(chartData.timeRange),
+          yAxisConfig: this.getYAxisConfig(chartData.timeRange),
+          lineCategoryLabel: this.getLineCategoryLabel(
+            chartData.timeRange.categories
+          ),
+          title: selections
+            ? this.getTitle(chartData.timeRange.categories, selections)
+            : '',
+          dataType: selections ? selections.dataType : '',
+        };
       })
     );
   }
@@ -117,9 +115,10 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     config.category.valueAccessor = (d: any) => d[chartData.categories];
     config.category.colorScale = this.getColorScale(chartData);
     if (chartData.categories !== 'field') {
-      config.labels.display = true;
-      config.labels.align = 'inside';
-      config.labels.format = (d: any) =>
+      config.labelLines = true;
+      // config.labels.display = true;
+      // config.labels.align = 'inside';
+      config.lineLabelsFormat = (d: any) =>
         this.getCategoryLabel(d, chartData.categories);
     }
     return config;
@@ -160,23 +159,26 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       return 'Tenure status';
     } else if (lineType === 'rank') {
       return 'Rank';
+    } else {
+      return '';
     }
   }
 
-  updateTooltipForNewOutput(data: LinesEmittedOutput): void {
+  updateTooltipForNewOutput(data: LinesEventOutput): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig(data);
   }
 
-  updateTooltipData(data: LinesEmittedOutput): void {
+  updateTooltipData(data: LinesEventOutput): void {
     this.tooltipData.next(data);
   }
 
-  updateTooltipConfig(data: LinesEmittedOutput): void {
+  updateTooltipConfig(data: LinesEventOutput): void {
     const config = new HtmlTooltipConfig();
-    config.position.panelClass = 'explore-time-range-tooltip';
-    config.size.minWidth = 200;
+    config.panelClass = 'explore-time-range-tooltip';
+    config.position = new HtmlTooltipOffsetFromOriginPosition();
     if (data) {
+      config.size.minWidth = 200;
       config.position.offsetX = data.positionX;
       config.position.offsetY = data.positionY - 16;
       config.show = true;
@@ -186,10 +188,10 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     this.tooltipConfig.next(config);
   }
 
-  updateChartOnNewTooltipData(data: LinesEmittedOutput): void {
+  updateChartOnNewTooltipData(data: LinesEventOutput): void {
     if (data) {
       const { x, ...rest } = data;
-      const transformedData: LinesEmittedOutput = {
+      const transformedData: LinesEventOutput = {
         ...rest,
         x: x.split(' ')[3],
       };
@@ -204,6 +206,8 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       return tenureOptions.find((x) => x.label === value).label;
     } else if (category === 'Rank' || category === 'rank') {
       return rankOptions.find((x) => x.label === value).label;
+    } else {
+      return value;
     }
   }
 

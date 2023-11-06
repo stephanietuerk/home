@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ContentNavbarComponent } from './content-navbar.component';
 
-import { CheckboxGroupComponent } from './checkbox-group.component';
-
-describe('CheckboxGroupComponent', () => {
-  let component: CheckboxGroupComponent;
-  let fixture: ComponentFixture<CheckboxGroupComponent>;
+describe('ContentNavbarComponent', () => {
+  let component: ContentNavbarComponent;
+  let fixture: ComponentFixture<ContentNavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CheckboxGroupComponent],
+      declarations: [ContentNavbarComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxGroupComponent);
+    fixture = TestBed.createComponent(ContentNavbarComponent);
     component = fixture.componentInstance;
   });
 

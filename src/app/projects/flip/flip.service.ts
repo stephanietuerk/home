@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { format, select, selectAll } from 'd3';
+import { GeoJsonProperties } from 'geojson';
 import {
   DistrictVotes,
   Party,
   StateVotes,
 } from 'src/app/projects/flip/flip.model';
+import { GeometryCollection, Objects, Topology } from 'topojson-specification';
 import { FlipBar } from './flip-bar.class';
 import { FLIPCOLORS, FLIPGRIDLAYOUT } from './flip.constants';
 import { FlipResource } from './flip.resource';
 
+export type PaMapTopology = Topology<PaMapObjects>;
+export interface PaMapObjects extends Objects {
+  districts: GeometryCollection<MapGeometryProperties>;
+}
+
+export interface MapGeometryProperties extends GeoJsonProperties {
+  STATEFP: string;
+  CD114FP: string;
+  GEOID: string;
+}
+
 @Injectable()
 export class FlipService {
   elId = '#flip-the-district';
-  flipTopojson: any;
+  flipTopojson: PaMapTopology;
   flipData: any = [];
   districtsData: any;
   stateData: StateVotes;
@@ -231,7 +244,7 @@ export class FlipService {
     }
   }
 
-  getCongressSquareColor(el: HTMLElement) {
+  getCongressSquareColor(el: HTMLElement): string {
     if (+el.getAttribute('cellnum') <= this.stateData.dDistricts) {
       return FLIPCOLORS.dColor;
     } else if (
@@ -240,10 +253,7 @@ export class FlipService {
         this.stateData.dDistricts + this.stateData.oDistricts
     ) {
       return FLIPCOLORS.oColor;
-    } else if (
-      +el.getAttribute('cellnum') >=
-      this.stateData.dDistricts + this.stateData.oDistricts
-    ) {
+    } else {
       return FLIPCOLORS.rColor;
     }
   }

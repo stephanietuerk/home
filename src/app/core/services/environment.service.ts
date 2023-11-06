@@ -48,6 +48,7 @@ export class EnvironmentService {
       return Environment.production;
     } else {
       console.error(this.errorMessage);
+      return null;
     }
   }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AxisConfig } from '@web-ast/viz-components';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash';
 import { Observable, Subject, merge } from 'rxjs';
 import { map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
-import { AxisConfig } from 'src/app/shared/charts/axes/axis.config';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';

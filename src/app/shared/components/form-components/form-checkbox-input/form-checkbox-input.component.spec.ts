@@ -8,15 +8,13 @@ describe('FormCheckboxInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormCheckboxInputComponent ]
-    })
-    .compileComponents();
+      declarations: [FormCheckboxInputComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FormCheckboxInputComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

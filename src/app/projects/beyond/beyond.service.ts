@@ -60,7 +60,7 @@ export class BeyondService {
   getTractData(data): TractObject {
     return csvParse(data).reduce((acc, x) => {
       const datum = this.makeTractDatum(x);
-      acc[x.tract] = datum;
+      acc[x['tract']] = datum;
       return acc;
     }, {} as TractObject);
   }

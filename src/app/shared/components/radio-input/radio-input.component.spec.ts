@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormatForIdPipe } from '../../pipes/format-for-id/format-for-id.pipe';
 import { RadioInputComponent } from './radio-input.component';
 
 describe('RadioInputComponent', () => {
@@ -8,15 +9,14 @@ describe('RadioInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RadioInputComponent ]
-    })
-    .compileComponents();
+      declarations: [RadioInputComponent, FormatForIdPipe],
+      providers: [FormatForIdPipe],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioInputComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

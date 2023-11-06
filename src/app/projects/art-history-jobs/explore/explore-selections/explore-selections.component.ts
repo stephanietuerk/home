@@ -20,7 +20,10 @@ import { SelectionOption } from 'src/app/shared/components/form-components/form-
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { artHistoryFields } from '../../art-history-fields.constants';
 import { ExploreDataService } from '../explore-data.service';
-import { ExploreSelectionsFormService } from './explore-selections-form.service';
+import {
+  ExploreSelectionsFormGroup,
+  ExploreSelectionsFormService,
+} from './explore-selections-form.service';
 import {
   dataTypeOptions,
   filterUseOptions,
@@ -30,6 +33,7 @@ import {
 import {
   ExploreFormSelections,
   ExploreSelections,
+  ExploreSelectionsDefaults,
   FilterType,
   ValueType,
 } from './explore-selections.model';
@@ -46,9 +50,9 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
   @Input() yearsRange: [number, number];
   FormArray = FormArray;
   FormControl = FormControl;
-  form: FormGroup;
-  tenureIsFilter: boolean = false;
-  rankIsFilter: boolean = true;
+  form: FormGroup<ExploreSelectionsFormGroup>;
+  tenureIsFilter = false;
+  rankIsFilter = true;
   dataTypeOptions: SelectionOption[] = dataTypeOptions;
   artHistoryFields = artHistoryFields;
   fieldOptions: SelectionOption[] = artHistoryFields.map((x) => {
@@ -59,20 +63,20 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
   rankValueOptions = rankOptions;
   filtersFormArray: FormArray;
   filtersFormControl: FormControl;
-  defaults: ExploreFormSelections;
+  defaults: ExploreSelectionsDefaults;
   debouncer: Subject<ExploreSelections> = new Subject<ExploreSelections>();
   isOpen = false;
   openContent: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank' | null;
 
-  get fields(): FormArray {
-    return this.form.get('fields') as FormArray;
+  get fields(): FormArray<FormControl<boolean>> {
+    return this.form.controls.fields;
   }
 
-  get tenureDisaggValues(): FormArray {
+  get tenureDisaggValues(): FormArray<FormControl<boolean>> {
     return this.form.get('tenureDisaggValues') as FormArray;
   }
 
-  get rankDisaggValues(): FormArray {
+  get rankDisaggValues(): FormArray<FormControl<boolean>> {
     return this.form.get('rankDisaggValues') as FormArray;
   }
 
@@ -212,7 +216,7 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
   }
 
   getSelectionsFromFormValues(
-    formValues: ExploreFormSelections
+    formValues: Partial<ExploreFormSelections>
   ): ExploreSelections {
     const tenureValues =
       formValues.tenureUse === FilterType.filter
@@ -230,7 +234,10 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
           );
     const selections: ExploreSelections = {
       dataType: formValues.dataType,
-      years: formValues.years,
+      years: {
+        start: formValues.years.start,
+        end: formValues.years.end,
+      },
       fields: this.getSelectedValuesFromFormArray(
         this.fields,
         this.fieldOptions
@@ -296,7 +303,7 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     if (currentDisaggValues.filter((x) => !!x).length === 1) {
       const selectedIndex = currentDisaggValues.findIndex((x) => !!x);
       this.form.controls.tenureFilterValue.setValue(
-        this.tenureValueOptions[selectedIndex].value
+        this.tenureValueOptions[selectedIndex].label
       );
     } else {
       this.form.controls.tenureFilterValue.setValue(
@@ -310,7 +317,7 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     if (currentDisaggValues.filter((x) => !!x).length === 1) {
       const selectedIndex = currentDisaggValues.findIndex((x) => !!x);
       this.form.controls.rankFilterValue.setValue(
-        this.rankValueOptions[selectedIndex].value
+        this.rankValueOptions[selectedIndex].label
       );
     } else {
       this.form.controls.rankFilterValue.setValue(

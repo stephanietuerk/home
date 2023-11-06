@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { PaMapTopology } from './flip.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +16,8 @@ export class FlipResource {
   }
 
   getFlipTopoJson() {
-    return this.http.get('assets/flipthedistrict/pa_districts.json', {
-      responseType: 'json',
-    });
+    return this.http
+      .get('assets/flipthedistrict/pa_districts.json')
+      .pipe(map((response) => response as PaMapTopology));
   }
 }

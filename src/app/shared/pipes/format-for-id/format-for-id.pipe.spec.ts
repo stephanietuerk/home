@@ -1,7 +1,7 @@
 import { FormatForIdPipe } from './format-for-id.pipe';
 
 describe('FormatForIdPipe', () => {
-  let pipe: FormatForIdPipe;
+  let pipe: FormatForIdPipe<any>;
 
   beforeEach(() => {
     pipe = new FormatForIdPipe();
@@ -16,8 +16,8 @@ describe('FormatForIdPipe', () => {
     const result = pipe.transform('TestMe');
     expect(result).toEqual('testme');
   });
-  it('return undefined with non-string values', () => {
+  it('return value for non-string values', () => {
     const value = 1;
-    expect(pipe.transform(value as any)).toBeUndefined();
+    expect(pipe.transform(value as any)).toEqual(1);
   });
 });
