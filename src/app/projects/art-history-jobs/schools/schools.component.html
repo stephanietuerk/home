@@ -6,8 +6,17 @@
   >
     <h3>{{ country.country }}</h3>
     <div class="all-schools-container">
-      <div class="school-container" *ngFor="let school of country.jobsBySchool">
+      <div
+        class="school-container"
+        *ngFor="let school of country.jobsBySchool; let i = index"
+      >
         <h4 class="school-name">{{ school.school }}</h4>
+        <app-school-chart
+          class="school-chart"
+          [jobsByYear]="school.jobsByYear"
+          [years]="yearRange"
+          [isFirstColumn]="i % 5 === 0"
+        ></app-school-chart>
       </div>
     </div>
   </div>

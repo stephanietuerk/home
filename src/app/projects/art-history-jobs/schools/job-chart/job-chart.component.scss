@@ -1,0 +1,12 @@
+.job-rect {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 1px solid white;
+}
+
+.field-rect {
+  flex-grow: 1;
+  flex-shrink: 0;
+  background: var(--color, dodgerblue);
+}

@@ -23,7 +23,7 @@ import { ExploreSelectionsComponent } from './explore/explore-selections/explore
 import { YearsSelectionComponent } from './explore/explore-selections/years-selection/years-selection.component';
 import { ExploreTimeRangeChartComponent } from './explore/explore-time-range-chart/explore-time-range-chart.component';
 import { ExploreComponent } from './explore/explore.component';
-import { ItemsComponent } from './schools/items/items.component';
+import { JobChartComponent } from './schools/job-chart/job-chart.component';
 import { SchoolChartComponent } from './schools/school-chart/school-chart.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { SummaryChartComponent } from './summary/summary-chart/summary-chart.component';
@@ -43,7 +43,7 @@ import { SummaryComponent } from './summary/summary.component';
     YearsSelectionComponent,
     SchoolsComponent,
     SchoolChartComponent,
-    ItemsComponent,
+    JobChartComponent,
   ],
   imports: [
     CommonModule,

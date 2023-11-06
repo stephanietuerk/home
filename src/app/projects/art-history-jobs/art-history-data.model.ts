@@ -36,7 +36,7 @@ export interface LineDef {
   rank: string;
 }
 
-export interface JobBySchoolDatum {
+export interface JobsBySchoolDatum {
   id: string;
   isTt: string;
   rank: string;
@@ -50,10 +50,10 @@ export interface JobsByCountry {
 
 export interface JobsBySchool {
   school: string;
-  jobsByYear: JobBySchoolDatum[];
+  jobsByYear: JobsByYear[];
 }
 
 export interface JobsByYear {
-  year: Date;
-  jobs: JobBySchoolDatum[];
+  year: string;
+  jobs: JobsBySchoolDatum[];
 }

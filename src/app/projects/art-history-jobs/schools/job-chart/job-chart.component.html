@@ -1,0 +1,7 @@
+<div class="job-rect">
+  <div
+    *ngFor="let field of job.field"
+    class="field-rect"
+    [style.--color]="fieldsService.getColorForField(field)"
+  ></div>
+</div>
