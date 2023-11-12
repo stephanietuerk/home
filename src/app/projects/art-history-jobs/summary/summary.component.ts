@@ -50,7 +50,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {
     const vm$ = this.dataService.data$.pipe(
-      map((data: JobDatum[]) => (vm: ViewModel) => {
+      map((data: JobDatum[]) => () => {
         const [tableData, chartSort]: [JobTableDatum[], ChartSort] =
           this.getTableDataAndChartSort(data);
         return {

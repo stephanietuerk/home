@@ -85,8 +85,9 @@ export class SummaryChartComponent {
       config.size.minWidth = 200;
       config.size.height =
         data.svgHeight - this.margin.top - this.margin.bottom;
-      config.position.offsetX = data.positionX + 1;
-      config.position.offsetY = -this.margin.bottom;
+      config.position.offsetX = data.positionX;
+      config.position.offsetY = data.svgHeight - this.margin.bottom;
+      // config.position.offsetY = -this.margin.bottom;
       config.show = true;
     } else {
       config.show = false;

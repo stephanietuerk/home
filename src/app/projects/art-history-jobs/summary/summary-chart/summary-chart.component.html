@@ -20,10 +20,14 @@
         [template]="htmlTooltip"
       ></vic-html-tooltip>
     </svg:g>
+    <!-- <svg:g app-summary-chart-slider></svg:g> -->
   </ng-container>
   <ng-template #htmlTooltip>
-    <ng-container *ngIf="tooltipData$ | async as tooltipData">
-      <div class="top-space"><div class="left-space"></div></div>
+    <div
+      *ngIf="tooltipData$ | async as tooltipData"
+      class="summary-chart-tooltip"
+    >
+      <div class="tooltip-line"></div>
       <div class="tooltip-container" *ngIf="tooltipData.data">
         <div class="year-row">
           <p class="tooltip-label x">{{ tooltipData.data[0].x }}</p>
@@ -44,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="bottom-space"><div class="left-space"></div></div>
-    </ng-container>
+      <div class="tooltip-line"></div>
+    </div>
   </ng-template>
 </vic-xy-chart>
