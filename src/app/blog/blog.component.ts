@@ -13,15 +13,15 @@ export class BlogComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setProject();
   }
 
-  setProject() {
+  setProject(): void {
     this.project = getProjectFromURL(this.router.url);
   }
 
-  getDate(date: Date) {
+  getDate(date: Date): string {
     const options = { dateStyle: 'long' } as any;
     return new Intl.DateTimeFormat('en-US', options).format(date);
   }

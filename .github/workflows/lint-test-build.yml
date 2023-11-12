@@ -5,9 +5,9 @@ name: Lint / Test / Build
 
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'project/*']
   pull_request:
-    branches: ['main']
+    branches: ['main', 'project/*']
 
 jobs:
   lint-test-build:

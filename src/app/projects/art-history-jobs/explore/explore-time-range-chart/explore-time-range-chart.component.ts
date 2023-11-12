@@ -1,20 +1,22 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-  DATA_MARKS,
-  EventEffect,
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
-  LINES,
-  LinesEventOutput,
-  LinesHoverMoveDefaultStyles,
-  LinesHoverMoveDirective,
-  LinesHoverMoveEmitTooltipData,
-} from '@web-ast/viz-components';
 import { timeYear } from 'd3-time';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
+import { EventEffect } from 'src/app/viz-components/events/effect';
+import {
+  LinesHoverMoveDefaultStyles,
+  LinesHoverMoveEmitTooltipData,
+} from 'src/app/viz-components/lines/lines-hover-move-effects';
+import { LinesHoverMoveDirective } from 'src/app/viz-components/lines/lines-hover-move.directive';
+import { LinesEventOutput } from 'src/app/viz-components/lines/lines-tooltip-data';
+import { LINES } from 'src/app/viz-components/lines/lines.component';
+import {
+  HtmlTooltipConfig,
+  HtmlTooltipOffsetFromOriginPosition,
+} from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import {

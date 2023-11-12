@@ -14,7 +14,7 @@ export class LeavingComponent implements OnInit {
   youQuestions: any;
   state: { [index: string]: boolean };
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.whatQuestion = LEAVING_OVERVIEW[0];
     this.whoQuestion = LEAVING_OVERVIEW[1];
     this.meQuestions = LEAVING_ME;
