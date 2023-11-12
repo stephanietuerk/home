@@ -66,7 +66,6 @@ export interface ChartScaling {
  *  and scaled svg element in the DOM. USeful for adding elements that require access to chart scales.
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],

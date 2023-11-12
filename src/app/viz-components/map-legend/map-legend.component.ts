@@ -4,7 +4,6 @@ import { MapChartComponent } from '../map-chart/map-chart.component';
 import { MapContent } from '../map-chart/map-content';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-map-legend',
   templateUrl: './map-legend.component.html',
   styleUrls: ['./map-legend.component.scss'],

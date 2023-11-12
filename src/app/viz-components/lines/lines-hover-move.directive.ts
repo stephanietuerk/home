@@ -5,8 +5,8 @@ import { least } from 'd3';
 import { HoverMoveEventEffect } from '../events/effect';
 import { HoverMoveDirective } from '../events/hover-move.directive';
 import {
-  getLinesTooltipDataFromDatum,
   LinesEventOutput,
+  getLinesTooltipDataFromDatum,
 } from './lines-tooltip-data';
 import { LINES, LinesComponent } from './lines.component';
 
@@ -14,7 +14,7 @@ import { LINES, LinesComponent } from './lines.component';
   selector: '[vicLinesHoverMoveEffects]',
 })
 export class LinesHoverMoveDirective<
-  T extends LinesComponent = LinesComponent
+  T extends LinesComponent = LinesComponent,
 > extends HoverMoveDirective {
   @Input('vicLinesHoverMoveEffects')
   effects: HoverMoveEventEffect<LinesHoverMoveDirective<T>>[];

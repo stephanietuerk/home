@@ -17,8 +17,8 @@ import { LinesHoverMoveDirective } from './lines-hover-move.directive';
 import { LinesHoverDirective } from './lines-hover.directive';
 import { LinesInputEventDirective } from './lines-input-event.directive';
 import {
-  getLinesTooltipDataFromDatum,
   LinesEventOutput,
+  getLinesTooltipDataFromDatum,
 } from './lines-tooltip-data';
 import { LINES, LinesComponent } from './lines.component';
 
@@ -36,7 +36,7 @@ type LinesEventDirective =
   selector: '[vicLinesMarkerClickEffects]',
 })
 export class LinesMarkerClickDirective<
-  T extends LinesComponent = LinesComponent
+  T extends LinesComponent = LinesComponent,
 > extends ClickDirective {
   /**
    * An array of user-provided [EventEffect]{@link EventEffect} instances.

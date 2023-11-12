@@ -23,7 +23,6 @@ import { CHART } from '../chart/chart.token';
  *  and scaled svg element in the DOM. USeful for adding elements that require access to chart scales.
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-xy-chart',
   templateUrl: '../chart/chart.component.html',
   styleUrls: ['../chart/chart.component.scss'],

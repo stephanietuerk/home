@@ -10,7 +10,7 @@ import { LINES, LinesComponent } from './lines.component';
   selector: '[vicLinesInputEffects]',
 })
 export class LinesInputEventDirective<
-  T extends LinesComponent = LinesComponent
+  T extends LinesComponent = LinesComponent,
 > extends InputEventDirective {
   @Input('vicLinesInputEffects')
   effects: InputEventEffect<LinesInputEventDirective<T>>[];

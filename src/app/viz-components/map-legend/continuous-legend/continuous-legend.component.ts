@@ -6,7 +6,6 @@ import { MapLegendContent } from '../map-legend-content';
  * @internal
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-continuous-legend',
   templateUrl: './continuous-legend.component.html',
   styleUrls: ['./continuous-legend.component.scss'],

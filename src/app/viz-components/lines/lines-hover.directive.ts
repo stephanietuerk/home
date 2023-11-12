@@ -7,7 +7,7 @@ import { LINES, LinesComponent } from './lines.component';
   selector: '[vicLinesHoverEffects]',
 })
 export class LinesHoverDirective<
-  T extends LinesComponent = LinesComponent
+  T extends LinesComponent = LinesComponent,
 > extends HoverDirective {
   @Input('vicLinesHoverEffects')
   effects: EventEffect<LinesHoverDirective<T>>[];

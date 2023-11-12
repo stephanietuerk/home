@@ -19,7 +19,7 @@ import { BARS, BarsComponent } from './bars.component';
   selector: '[vicBarsHoverEffects]',
 })
 export class BarsHoverDirective<
-  T extends BarsComponent = BarsComponent
+  T extends BarsComponent = BarsComponent,
 > extends HoverDirective {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('vicBarsHoverEffects') effects: EventEffect<BarsHoverDirective<T>>[];

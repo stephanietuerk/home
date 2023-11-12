@@ -19,7 +19,7 @@ import { BARS, BarsComponent } from './bars.component';
   selector: '[vicBarsHoverMoveEffects]',
 })
 export class BarsHoverMoveDirective<
-  T extends BarsComponent = BarsComponent
+  T extends BarsComponent = BarsComponent,
 > extends HoverMoveDirective {
   @Input('vicBarsHoverMoveEffects')
   effects: HoverMoveEventEffect<BarsHoverMoveDirective<T>>[];

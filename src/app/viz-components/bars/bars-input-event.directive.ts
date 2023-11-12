@@ -10,7 +10,7 @@ import { BARS, BarsComponent } from './bars.component';
   selector: '[vicBarsInputEventEffects]',
 })
 export class BarsInputEventDirective<
-  T extends BarsComponent = BarsComponent
+  T extends BarsComponent = BarsComponent,
 > extends InputEventDirective {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('vicBarsInputEventEffects')
