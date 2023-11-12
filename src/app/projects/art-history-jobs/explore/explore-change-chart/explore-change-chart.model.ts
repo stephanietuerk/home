@@ -1,10 +1,10 @@
+import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
 import {
-  AxisConfig,
   BarsConfig,
   BarsLabelsConfig,
   HorizontalBarsDimensionsConfig,
-  TickWrapConfig,
-} from '@web-ast/viz-components';
+} from 'src/app/viz-components/bars/bars.config';
+import { TickWrapConfig } from 'src/app/viz-components/svg-text-wrap/tick-wrap.config';
 
 export class ChangeChartConfig extends BarsConfig {
   constructor() {

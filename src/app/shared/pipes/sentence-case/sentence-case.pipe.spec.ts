@@ -1,7 +1,7 @@
 import { SentenceCasePipe } from './sentence-case.pipe';
 
 describe('SentenceCasePipe', () => {
-  let pipe: SentenceCasePipe;
+  let pipe: SentenceCasePipe<string | number>;
 
   beforeEach(() => {
     pipe = new SentenceCasePipe();
