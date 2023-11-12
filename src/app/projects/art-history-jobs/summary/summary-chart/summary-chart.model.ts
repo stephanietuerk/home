@@ -1,4 +1,4 @@
-import { scaleUtc } from 'd3';
+import { scaleTime } from 'd3';
 import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
 import { StackedAreaConfig } from 'src/app/viz-components/stacked-area/stacked-area.config';
 import { JobDatum } from '../../art-history-data.model';
@@ -10,7 +10,7 @@ export class SummaryChartConfig extends StackedAreaConfig {
     this.x.valueAccessor = (x: JobDatum) => x.year;
     this.y.valueAccessor = (x: JobDatum) => x.count;
     this.category.valueAccessor = (x: JobDatum) => x.field;
-    this.x.scaleType = scaleUtc;
+    this.x.scaleType = scaleTime;
     this.x.valueFormat =
       artHistoryFormatSpecifications.summary.chart.value.year;
     this.y.valueFormat =
