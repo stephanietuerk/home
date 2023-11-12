@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AxisConfig } from '@web-ast/viz-components';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash';
 import { Observable, Subject, merge } from 'rxjs';
@@ -7,6 +6,7 @@ import { map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
+import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { artHistoryFields } from '../art-history-fields.constants';

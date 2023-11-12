@@ -1,19 +1,21 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import {
-  AxisConfig,
-  DATA_MARKS,
-  EventEffect,
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
-  STACKED_AREA,
-  StackedAreaEventDatum,
-  StackedAreaEventOutput,
-  StackedAreaHoverMoveDirective,
-  StackedAreaHoverMoveEmitTooltipData,
-} from '@web-ast/viz-components';
 import { BehaviorSubject } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
+import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
+import { EventEffect } from 'src/app/viz-components/events/effect';
+import { StackedAreaHoverMoveEmitTooltipData } from 'src/app/viz-components/stacked-area/stacked-area-hover-move-effects';
+import { StackedAreaHoverMoveDirective } from 'src/app/viz-components/stacked-area/stacked-area-hover-move.directive';
+import {
+  StackedAreaEventDatum,
+  StackedAreaEventOutput,
+} from 'src/app/viz-components/stacked-area/stacked-area-tooltip-data';
+import { STACKED_AREA } from 'src/app/viz-components/stacked-area/stacked-area.component';
+import {
+  HtmlTooltipConfig,
+  HtmlTooltipOffsetFromOriginPosition,
+} from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { SummaryChartConfig } from './summary-chart.model';
 
 class SummaryChartTooltipData implements StackedAreaEventOutput {

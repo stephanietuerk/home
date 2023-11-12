@@ -1,5 +1,6 @@
-import { AxisConfig, LinesConfig } from '@web-ast/viz-components';
 import { scaleLinear, scaleUtc } from 'd3';
+import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
+import { LinesConfig } from 'src/app/viz-components/lines/lines.config';
 import { JobDatum } from '../../art-history-data.model';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 
