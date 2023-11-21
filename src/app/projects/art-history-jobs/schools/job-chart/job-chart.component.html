@@ -4,4 +4,9 @@
     class="field-rect"
     [style.--color]="fieldsService.getColorForField(field)"
   ></div>
+  <vic-html-tooltip
+    [config]="tooltipConfig$ | async"
+    [template]="htmlTooltip"
+  ></vic-html-tooltip>
 </div>
+><ng-template #htmlTooltip><p>hi</p></ng-template>

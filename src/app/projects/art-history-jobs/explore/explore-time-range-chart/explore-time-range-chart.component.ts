@@ -92,7 +92,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       map(([chartData, selections]) => {
         return {
           dataMarksConfig: this.getDataMarksConfig(chartData.timeRange),
-          xAxisConfig: this.getXAxisConfig(chartData.timeRange),
+          xAxisConfig: this.getXAxisConfig(),
           yAxisConfig: this.getYAxisConfig(chartData.timeRange),
           lineCategoryLabel: this.getLineCategoryLabel(
             chartData.timeRange.categories
@@ -137,9 +137,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     }
   }
 
-  private getXAxisConfig(
-    chartData: ExploreTimeRangeChartData
-  ): ExploreTimeRangeXAxisConfig {
+  private getXAxisConfig(): ExploreTimeRangeXAxisConfig {
     const config = new ExploreTimeRangeXAxisConfig();
     config.numTicks = timeYear;
     return config;

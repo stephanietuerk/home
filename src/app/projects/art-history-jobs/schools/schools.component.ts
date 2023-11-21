@@ -19,7 +19,6 @@ export class SchoolsComponent extends Unsubscribe implements OnInit {
 
   ngOnInit(): void {
     this.setData();
-    this.setYearRange();
   }
 
   setData(): void {
