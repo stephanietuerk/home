@@ -2,6 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComboboxModule } from 'src/app/shared/components/combobox/combobox.module';
 import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -70,6 +71,7 @@ import { SummaryComponent } from './summary/summary.component';
     VicYOrdinalAxisModule,
     VicBarsModule,
     VicYQuantitativeAxisModule,
+    ComboboxModule,
   ],
 })
 export class ArtHistoryJobsModule {}
