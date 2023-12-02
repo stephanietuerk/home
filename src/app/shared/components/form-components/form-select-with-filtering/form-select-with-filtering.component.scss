@@ -1,4 +1,6 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .select-with-filtering-container {
   width: 100%;

@@ -1,4 +1,6 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .select-container {
   .mat-form-field-appearance-outline {

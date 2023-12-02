@@ -1,4 +1,7 @@
-@import 'vars', 'placeholders', 'mixins';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+@use 'functions' as *;
 
 $min-height: 300px;
 
@@ -17,18 +20,18 @@ $min-height: 300px;
   flex-shrink: 0;
 
   @include breakpoint(mobile-device) {
-    padding-right: $grid-4;
-    padding-left: $grid-4;
+    padding-right: grid(4);
+    padding-left: grid(4);
   }
 }
 
 .landing-container {
   @extend %flex-column;
   align-items: center;
-  padding: $grid-20 $grid-6 $grid-12 $grid-6;
+  padding: grid(2);0 grid(6) grid(1)2 grid(6);
 
   @include breakpoint(mobile-device) {
-    padding: $grid-12 $grid-4 $grid-4 $grid-4;
+    padding: grid(1)2 grid(4) grid(4) grid(4);
   }
 
   * {

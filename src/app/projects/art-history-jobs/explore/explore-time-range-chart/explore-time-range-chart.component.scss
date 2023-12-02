@@ -1,71 +1,73 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .chart-title {
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
 }
 
 .time-range-xy-chart {
-    .chart-svg {
-        overflow: visible;
-    }
+  .chart-svg {
+    overflow: visible;
+  }
 }
 
 .explore-time-range-tooltip {
-    pointer-events: none;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  width: 200px;
+
+  .tooltip-container {
+    background: rgba(white, 0.95);
+    border: 1px solid $color-light-gray-light;
+    padding: grid(2);
+    border-radius: grid(1);
+  }
+
+  .tooltip-label {
+    @extend %slab-regular;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 300px;
-    width: 200px;
+    line-height: 1rem;
+  }
 
-    .tooltip-container {
-        background: rgba(white, 0.95);
-        border: 1px solid $color-light-gray-light;
-        padding: $grid-2;
-        border-radius: $grid-1;
-    }
-
-    .tooltip-label {
-        @extend %slab-regular;
-        display: flex;
-        flex-direction: column;
-        line-height: 1rem;
-    }
-
-    .tooltip-label.category {
-        line-height: 1.1;
-        font-weight: 600;
-        color: var(--color);
-        border-bottom: 1px solid $color-dark-primary;
-        padding-bottom: $grid-1;
-
-        .value-label {
-            color: $color-dark-primary;
-        }
-    }
+  .tooltip-label.category {
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--color);
+    border-bottom: 1px solid $color-dark-primary;
+    padding-bottom: grid(1);
 
     .value-label {
-        @extend %sans-medium;
-        text-transform: uppercase;
-        font-size: 0.7rem;
-        line-height: 1rem;
-        letter-spacing: 0.08rem;
+      color: $color-dark-primary;
     }
+  }
 
-    .values-container {
-        padding-top: $grid-2;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .value-label {
+    @extend %sans-medium;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    letter-spacing: 0.08rem;
+  }
 
-    .tooltip-label.y {
-        justify-self: end;
-        align-items: flex-end;
-    }
+  .values-container {
+    padding-top: grid(2);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .percent-sign {
-        font-size: 0.9rem;
-    }
+  .tooltip-label.y {
+    justify-self: end;
+    align-items: flex-end;
+  }
+
+  .percent-sign {
+    font-size: 0.9rem;
+  }
 }

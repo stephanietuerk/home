@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import 'system', 'functions';
+@use 'functions' as *;
 
 $colors: (
   'highlights': (
@@ -54,12 +54,12 @@ $drop-shadow-bottom-lightest:
 
 $landing-page-max-width: 1000px;
 
-$vertical-scrollbar-thickness: $grid-3;
-$horizontal-scrollbar-thickness: $grid-3;
+$vertical-scrollbar-thickness: grid(3);
+$horizontal-scrollbar-thickness: grid(3);
 
-$content-component-padding: 0px $grid-10 $grid-4 $grid-10;
+$content-component-padding: 0px grid(1) 0 grid(4) grid(1) 0;
 
-$navbar-height: $grid-16;
+$navbar-height: grid(1) 6;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;
@@ -71,6 +71,6 @@ $viewport-width-lg: 1200px;
 $viewport-width-xl: 1400px;
 
 /* ----- MATERIAL COMPONENTS ----- */
-$mat-form-field-vertical-padding: $grid-3;
-$mat-form-field-horizontal-padding: $grid-2;
+$mat-form-field-vertical-padding: grid(3);
+$mat-form-field-horizontal-padding: grid(2);
 $mat-placeholder-color: rgba(0, 0, 0, 0.42);

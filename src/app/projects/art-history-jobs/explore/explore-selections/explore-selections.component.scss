@@ -1,5 +1,7 @@
 @use 'sass:color';
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 %input-element-label {
     @extend %slab-medium;
@@ -23,7 +25,7 @@ $panel-opacity: 0.9;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
         font-size: 0.9rem;
-        padding-bottom: $grid-1;
+        padding-bottom: grid(1);
     }
 
     &.open {
@@ -31,7 +33,7 @@ $panel-opacity: 0.9;
     }
 
     .navbar {
-        padding-top: $grid-3;
+        padding-top: grid(3);
         background: rgba($color-light-gray-lightest, $panel-opacity);
     }
 
@@ -46,7 +48,7 @@ $panel-opacity: 0.9;
         font-size: 1.15rem;
         color: $color-highlight;
         line-height: 1;
-        padding-bottom: $grid-1;
+        padding-bottom: grid(1);
         border-bottom: 2px solid rgba($color-light-gray-lightest, $panel-opacity);
         transition: border-bottom 0.25s ease-in-out;
 
@@ -65,7 +67,7 @@ $panel-opacity: 0.9;
     // background: rgba(white, 0.8);
     background: rgba($color-light-gray-lightest, $panel-opacity);
     border-bottom: 1px solid $color-light-gray-medium;
-    padding: 0 $grid-4;
+    padding: 0 grid(4);
 
     .dropdown-container {
         width: 100%;
@@ -73,11 +75,11 @@ $panel-opacity: 0.9;
 
     .selection-container {
         width: 100%;
-        padding: $grid-4 0 $grid-6 0;
+        padding: grid(4) 0 grid(6) 0;
 
         &.tenure-values,
         &.rank-values {
-            padding-top: $grid-4;
+            padding-top: grid(4);
         }
     }
 
@@ -94,19 +96,19 @@ $panel-opacity: 0.9;
 
     .time-range-slider-component {
         display: block;
-        padding: 0 $grid-4;
+        padding: 0 grid(4);
         max-width: 600px;
     }
 
     .selection-interface {
-        padding-top: $grid-3;
+        padding-top: grid(3);
     }
 
     .selection-interface.fields {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         grid-auto-rows: 1fr;
-        gap: $grid-2;
+        gap: grid(2);;
         align-items: stretch;
         align-content: stretch;
     }
@@ -116,7 +118,7 @@ $panel-opacity: 0.9;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: 1fr;
-        row-gap: $grid-1;
+        row-gap: grid(1);
     }
 
     .radio-input-container {
@@ -139,7 +141,7 @@ $panel-opacity: 0.9;
                 width: 100px;
                 font-size: 0.85rem;
                 border: 1px solid $color-highlight;
-                padding: $grid-2 $grid-2 6px $grid-2;
+                padding: grid(2); grid(2); 6px grid(2);;
             }
 
             .radio-input-label.selected {
@@ -170,13 +172,13 @@ $panel-opacity: 0.9;
             display: inline-flex;
 
             .radio-input-container .icon-component {
-                margin: 0 $grid-1 0 0;
+                margin: 0 grid(1) 0 0;
 
                 svg {
                     margin: 0;
                     fill: $svg-icon-color;
-                    width: $grid-4;
-                    height: $grid-4;
+                    width: grid(4);
+                    height: grid(4);
                 }
             }
 
@@ -208,8 +210,8 @@ $panel-opacity: 0.9;
 
             .checkbox-input-label {
                 border: 1px solid $color-highlight;
-                border-radius: $grid-1;
-                padding: $grid-2;
+                border-radius: grid(1);
+                padding: grid(2);;
                 @extend %slab-medium;
                 line-height: 1.1;
                 font-size: 0.85rem;
@@ -263,11 +265,11 @@ $panel-opacity: 0.9;
 
         .checkbox-input-component.input-element-style {
             .checkbox-input-container .icon-component {
-                margin: 0 $grid-1 0 0;
+                margin: 0 grid(1) 0 0;
                 svg {
                     margin: 0;
-                    width: $grid-4;
-                    height: $grid-4;
+                    width: grid(4);
+                    height: grid(4);
                     fill: $svg-icon-color;
                 }
             }

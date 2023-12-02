@@ -1,4 +1,6 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 :host {
   flex-grow: 1;
@@ -9,26 +11,26 @@
 .section-header {
   @extend %h3;
   text-align: center;
-  padding-bottom: $grid-1;
+  padding-bottom: grid(1);
 }
 
 .charts-container {
   display: flex;
   flex-direction: column;
-  padding-top: $grid-4;
+  padding-top: grid(4);
 }
 
 .all-schools-container {
   display: grid;
   grid-template-columns: repeat(5, minmax(200px, 1fr));
-  grid-gap: $grid-6;
+  grid-gap: grid(6);
 }
 
 .school-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: $grid-6;
+  padding-bottom: grid(6);
 }
 
 .school-name {
@@ -36,5 +38,5 @@
   @extend %slab-medium;
   line-height: 1;
   height: 100%;
-  padding-bottom: $grid-3;
+  padding-bottom: grid(3);
 }

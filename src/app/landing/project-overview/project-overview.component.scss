@@ -1,15 +1,18 @@
-@import 'vars', 'placeholders', 'mixins';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+@use 'functions' as *;
 
 .project-overview-container {
-  padding-bottom: $grid-2;
+  padding-bottom: grid(2);;
 
   .description {
-    padding-top: $grid-2;
+    padding-top: grid(2);;
 
     .info-text {
       font-size: 1rem;
       line-height: 1.8rem;
-      padding-bottom: $grid-6;
+      padding-bottom: grid(6);
     }
   }
 }
@@ -23,10 +26,10 @@
     font-size: 1rem;
     line-height: 1.2rem;
     letter-spacing: 0.2px;
-    padding: $grid-4 0 $grid-1 0;
+    padding: grid(4) 0 grid(1) 0;
 
     &:not(:last-child) {
-      margin-right: $grid-8;
+      margin-right: grid(8);
     }
   }
 }
@@ -35,7 +38,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-top: $grid-4;
+  padding-top: grid(4);
   align-items: baseline;
 }
 
@@ -43,6 +46,6 @@
   object-fit: cover;
   align-self: center;
   width: 400px;
-  padding: $grid-2 0;
+  padding: grid(2); 0;
   max-width: 100%;
 }

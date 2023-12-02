@@ -16,11 +16,11 @@
       (vicStackedAreaHoverMoveOutput)="updateTooltipForNewOutput($event)"
     >
       <vic-html-tooltip
+        *ngIf="(tooltipConfig$ | async)?.show"
         [config]="tooltipConfig$ | async"
         [template]="htmlTooltip"
       ></vic-html-tooltip>
     </svg:g>
-    <!-- <svg:g app-summary-chart-slider></svg:g> -->
   </ng-container>
   <ng-template #htmlTooltip>
     <div

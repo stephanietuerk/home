@@ -1,12 +1,14 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 $leaving-highlight: $color-highlight;
 
 .card {
     @extend %flex-column;
     background: white;
-    margin-bottom: $grid-4;
-    padding: $grid-3 $grid-6;
+    margin-bottom: grid(4);
+    padding: grid(3) grid(6);
     box-shadow: $drop-shadow-lightest;
 
     .question-container {
@@ -15,8 +17,8 @@ $leaving-highlight: $color-highlight;
         align-items: center;
         border-left: 1px solid $color-dark-primary;
         border-bottom: 1px solid $color-dark-primary;
-        margin: $grid-2 0 $grid-3 0;
-        padding-left: $grid-1;
+        margin: grid(2); 0 grid(3) 0;
+        padding-left: grid(1);
 
         &.collapse:hover {
             cursor: pointer;
@@ -39,14 +41,14 @@ $leaving-highlight: $color-highlight;
     .question {
         @extend %slab-bold;
         font-size: 1.2rem;
-        padding: $grid-3 $grid-2 $grid-2 $grid-2;
+        padding: grid(3) grid(2); grid(2); grid(2);;
         line-height: 1.5rem;
         text-align: left;
     }
 
     .answer-container {
-        padding-right: $grid-2;
-        padding-left: $grid-2;
+        padding-right: grid(2);;
+        padding-left: grid(2);;
     }
 
     .answer-text {
@@ -57,21 +59,21 @@ $leaving-highlight: $color-highlight;
 
     .list-label {
         @extend %sans-regular-italic;
-        padding-bottom: $grid-2;
+        padding-bottom: grid(2);;
 
         &.q10 {
-            padding-top: $grid-4;
+            padding-top: grid(4);
         }
     }
 
     .list-container {
-        padding: 0 $grid-6 $grid-2 $grid-6;
+        padding: 0 grid(6) grid(2); grid(6);
     }
 
     .list-item {
         @extend %sans-regular;
         font-size: 1.1rem;
-        padding-bottom: $grid-2;
+        padding-bottom: grid(2);;
     }
 
     .italics {
@@ -79,15 +81,15 @@ $leaving-highlight: $color-highlight;
     }
 
     .arrow-icon {
-        padding-right: $grid-1;
+        padding-right: grid(1);
 
         &.down {
             position: relative;
-            top: $grid-1;
+            top: grid(1);
         }
         &.up {
             position: relative;
-            top: -$grid-1;
+            top: -grid(1);
         }
 
         svg {

@@ -1,12 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { OverlayService } from 'src/app/core/services/overlay.service';
 import {
   HtmlTooltipConfig,
   HtmlTooltipOffsetFromOriginPosition,
@@ -18,7 +11,6 @@ import { ArtHistoryFieldsService } from '../../art-history-fields.service';
   selector: 'app-job-chart',
   templateUrl: './job-chart.component.html',
   styleUrls: ['./job-chart.component.scss'],
-  providers: [OverlayService],
 })
 export class JobChartComponent {
   @Input() job: JobsBySchoolDatum;
@@ -30,13 +22,14 @@ export class JobChartComponent {
     );
   tooltipConfig$ = this.tooltipConfig.asObservable();
 
-  @HostListener('mouseenter', ['event']) onMouseEnter(
+  @HostListener('mouseenter', ['$event']) onMouseEnter(
     event: PointerEvent
   ): void {
-    this.updateTooltipConfig();
+    console.log('mouse enter', event);
+    this.updateTooltipConfig(event.target as HTMLElement);
   }
 
-  @HostListener('mouseleave', ['event']) onMouseLeave(
+  @HostListener('mouseleave', ['$event']) onMouseLeave(
     event: PointerEvent
   ): void {
     this.tooltipConfig.next(new HtmlTooltipConfig({ show: false }));
@@ -44,18 +37,17 @@ export class JobChartComponent {
 
   constructor(
     public fieldsService: ArtHistoryFieldsService,
-    private elRef: ElementRef,
-    private viewContainerRef: ViewContainerRef
+    private elRef: ElementRef
   ) {}
 
-  updateTooltipConfig(): void {
+  updateTooltipConfig(el: HTMLElement): void {
     const config = new HtmlTooltipConfig();
     config.panelClass = 'explore-time-range-tooltip';
     config.position = new HtmlTooltipOffsetFromOriginPosition();
-    config.origin = this.elRef.nativeElement;
-    config.size.minWidth = 200;
+    config.origin = new ElementRef(el);
+    config.size.minWidth = 220;
     config.position.offsetX = this.elRef.nativeElement.offsetWidth / 2;
-    config.position.offsetY = -16;
+    config.position.offsetY = 0;
     config.show = true;
     this.tooltipConfig.next(config);
   }

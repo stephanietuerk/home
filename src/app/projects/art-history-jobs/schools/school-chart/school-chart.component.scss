@@ -1,4 +1,5 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
 
 :host {
   display: flex;

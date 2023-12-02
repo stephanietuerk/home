@@ -28,6 +28,7 @@ export class SchoolsComponent extends Unsubscribe implements OnInit {
         filter((x) => !!x)
       )
       .subscribe((data) => {
+        console.log(data);
         this.dataBySchool = data;
         this.setYearRange();
       });

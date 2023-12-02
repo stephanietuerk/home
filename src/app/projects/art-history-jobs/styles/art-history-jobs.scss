@@ -1,4 +1,6 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .selection-section-label {
     @extend %sans-bold;
@@ -41,7 +43,7 @@
         @extend %slab-regular;
         font-size: 0.85rem;
         letter-spacing: 0.05rem;
-        padding: $grid-2 $grid-4 $grid-1 $grid-4;
+        padding: grid(2); grid(4) grid(1) grid(4);
         display: flex;
         justify-content: center;
         border: 1px solid $color-highlight;

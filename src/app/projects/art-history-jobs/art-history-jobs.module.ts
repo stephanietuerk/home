@@ -15,6 +15,11 @@ import { VicStackedAreaModule } from 'src/app/viz-components/stacked-area/stacke
 import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
 import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
 import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
+import {
+  ColorForFieldPipe,
+  RankReadoutPipe,
+  TenureReadoutPipe,
+} from './art-history-fields.pipe';
 import { ArtHistoryJobsComponent } from './art-history-jobs.component';
 import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
 import { ExploreSelectionsComponent } from './explore/explore-selections/explore-selections.component';
@@ -42,6 +47,9 @@ import { SummaryComponent } from './summary/summary.component';
     SchoolsComponent,
     SchoolChartComponent,
     JobChartComponent,
+    ColorForFieldPipe,
+    TenureReadoutPipe,
+    RankReadoutPipe,
   ],
   imports: [
     CommonModule,

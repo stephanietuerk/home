@@ -1,33 +1,35 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 :host {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
 }
 
 .project-container {
-    max-width: 1080px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    align-items: center;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+
+  & > * {
     width: 100%;
+  }
 
-    & > * {
-        width: 100%;
-    }
+  .section-header {
+    @extend %h3;
+    text-align: center;
+    padding-bottom: grid(1);
+  }
 
-    .section-header {
-        @extend %h3;
-        text-align: center;
-        padding-bottom: $grid-1;
-    }
-
-    .description {
-        max-width: 600px;
-        line-height: 1.5;
-        padding-bottom: $grid-6;
-    }
+  .description {
+    max-width: 600px;
+    line-height: 1.5;
+    padding-bottom: grid(6);
+  }
 }

@@ -27,6 +27,7 @@
         (vicLinesHoverMoveOutput)="updateTooltipForNewOutput($event)"
       >
         <vic-html-tooltip
+          *ngIf="(tooltipConfig$ | async)?.show"
           [config]="tooltipConfig$ | async"
           [template]="htmlTooltip"
         ></vic-html-tooltip>

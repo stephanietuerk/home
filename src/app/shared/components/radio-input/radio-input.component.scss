@@ -1,34 +1,36 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 $icon-dimension: 16px;
 
 .radio-input-container {
+  display: flex;
+
+  .hidden-input {
+    @extend %hidden-input-element;
+  }
+
+  .radio-input-label {
     display: flex;
+    align-items: center;
+  }
 
-    .hidden-input {
-        @extend %hidden-input-element;
+  .icon {
+    display: block;
+    height: $icon-dimension;
+
+    svg {
+      display: block;
+      height: $icon-dimension;
+      width: $icon-dimension;
+      margin-right: grid(1);
+
+      path {
+        stroke: $color-highlight;
+        fill: $color-highlight;
+        stroke-width: 0.1;
+      }
     }
-
-    .radio-input-label {
-        display: flex;
-        align-items: center;
-    }
-
-    .icon {
-        display: block;
-        height: $icon-dimension;
-
-        svg {
-            display: block;
-            height: $icon-dimension;
-            width: $icon-dimension;
-            margin-right: $grid-1;
-
-            path {
-                stroke: $color-highlight;
-                fill: $color-highlight;
-                stroke-width: 0.1;
-            }
-        }
-    }
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { isEqual } from 'lodash-es';
+import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
 import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
@@ -56,10 +57,14 @@ export class SummaryChartComponent {
     new BehaviorSubject<HtmlTooltipConfig>(
       new HtmlTooltipConfig({ show: false })
     );
-  tooltipConfig$ = this.tooltipConfig.asObservable();
+  tooltipConfig$ = this.tooltipConfig
+    .asObservable()
+    .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
   tooltipData: BehaviorSubject<SummaryChartTooltipData> =
     new BehaviorSubject<SummaryChartTooltipData>(null);
-  tooltipData$ = this.tooltipData.asObservable();
+  tooltipData$ = this.tooltipData
+    .asObservable()
+    .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
   hoverEffects: EventEffect<StackedAreaHoverMoveDirective>[] = [
     new StackedAreaHoverMoveEmitTooltipData(),
   ];

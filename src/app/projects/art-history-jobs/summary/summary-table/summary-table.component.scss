@@ -1,96 +1,98 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .table-component {
-    text-align: left;
-    border-collapse: collapse;
+  text-align: left;
+  border-collapse: collapse;
 
-    .sort-arrows {
-        padding-left: $grid-1;
+  .sort-arrows {
+    padding-left: grid(1);
+  }
+
+  .head {
+    .header.cell {
+      border-bottom: 1px solid $color-dark-gray;
     }
 
-    .head {
-        .header.cell {
-            border-bottom: 1px solid $color-dark-gray;
-        }
-
-        .header.cell:not(:last-child) {
-            padding-right: $grid-2;
-        }
-
-        .header.cell:last-child {
-            .header-text {
-                font-size: 0.8rem;
-                position: relative;
-                bottom: 1px;
-            }
-        }
-
-        .header-contents {
-            @extend %sans-regular;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-
-            .arrows-container {
-                &.desc {
-                    .arrow.down {
-                        color: $color-highlight;
-                    }
-                }
-
-                &.asc {
-                    .arrow.up {
-                        color: $color-highlight;
-                    }
-                }
-
-                .arrow {
-                    font-size: 0.7rem;
-                }
-            }
-
-            &.sorted {
-                @extend %sans-bold;
-                color: $color-highlight;
-            }
-        }
-
-        .header-contents.right {
-            float: right;
-        }
+    .header.cell:not(:last-child) {
+      padding-right: grid(2);
     }
 
-    .body {
-        .cell.data {
-            @extend %slab-medium;
-            font-size: 0.85rem;
-            padding: $grid-2 $grid-2 6px $grid-2;
-            color: var(--color);
-            border-bottom: 1px solid $color-light-gray-light;
-
-            &.row-header {
-                @extend %slab-extrabold;
-            }
-
-            &.right {
-                @extend %sans-regular;
-                font-size: 0.95rem;
-                transform: translate(0, -2px);
-                line-height: 1;
-                text-align: right;
-            }
-        }
+    .header.cell:last-child {
+      .header-text {
+        font-size: 0.8rem;
+        position: relative;
+        bottom: 1px;
+      }
     }
 
-    .header.row .header.cell,
-    .data.row .data.cell {
-        &:first-child {
-            padding-left: 0;
+    .header-contents {
+      @extend %sans-regular;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+
+      .arrows-container {
+        &.desc {
+          .arrow.down {
+            color: $color-highlight;
+          }
         }
-        &:last-child {
-            padding-right: 0;
+
+        &.asc {
+          .arrow.up {
+            color: $color-highlight;
+          }
         }
+
+        .arrow {
+          font-size: 0.7rem;
+        }
+      }
+
+      &.sorted {
+        @extend %sans-bold;
+        color: $color-highlight;
+      }
     }
+
+    .header-contents.right {
+      float: right;
+    }
+  }
+
+  .body {
+    .cell.data {
+      @extend %slab-medium;
+      font-size: 0.85rem;
+      padding: grid(2) grid(2) 6px grid(2);
+      color: var(--color);
+      border-bottom: 1px solid $color-light-gray-light;
+
+      &.row-header {
+        @extend %slab-extrabold;
+      }
+
+      &.right {
+        @extend %sans-regular;
+        font-size: 0.95rem;
+        transform: translate(0, -2px);
+        line-height: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  .header.row .header.cell,
+  .data.row .data.cell {
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
 }

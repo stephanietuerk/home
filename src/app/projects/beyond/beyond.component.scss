@@ -1,4 +1,5 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
 
 $rColor: #f4003d;
 $dColor: #2437ff;

@@ -4,7 +4,6 @@ import {
   Overlay,
   OverlayPositionBuilder,
   OverlayRef,
-  OverlaySizeConfig,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -44,7 +43,6 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   @Output() backdropClick = new EventEmitter<void>();
   overlayRef: OverlayRef;
   positionStrategy: FlexibleConnectedPositionStrategy | GlobalPositionStrategy;
-  size: OverlaySizeConfig;
   panelClass: string[];
   backdropUnsubscribe: Subject<void> = new Subject<void>();
   portalAttached = false;
@@ -55,7 +53,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     private overlay: Overlay,
     private overlayPositionBuilder: OverlayPositionBuilder,
     private utilities: UtilitiesService,
-    @Inject(DATA_MARKS) private dataMarks: DataMarks,
+    @Optional() @Inject(DATA_MARKS) private dataMarks: DataMarks,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Optional() @Inject(DOCUMENT) document: any
   ) {
@@ -69,7 +67,9 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   init(): void {
-    this.createOverlay();
+    if (!this.overlayRef) {
+      this.createOverlay();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -176,7 +176,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     this.setPanelClasses();
     this.setPositionStrategy();
     this.overlayRef = this.overlay.create({
-      ...this.size,
+      ...this.config.size,
       panelClass: this.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.close(),
       positionStrategy: this.positionStrategy,
@@ -204,7 +204,15 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   setPositionStrategy(): void {
-    const origin = this.config.origin ?? this.dataMarks.chart.svgRef;
+    let origin;
+    if (this.config.origin) {
+      origin = this.config.origin;
+    } else if (this.dataMarks) {
+      origin = this.dataMarks.chart.svgRef;
+    } else {
+      origin = undefined;
+      console.error('No origin provided for tooltip');
+    }
     if (this.config.position) {
       if (this.config.position.type === 'connected') {
         this.setConnectedPositionStrategy(

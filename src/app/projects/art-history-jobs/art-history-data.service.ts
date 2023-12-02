@@ -69,7 +69,7 @@ export class ArtHistoryDataService {
         case 'open_rank':
           return 'Open rank';
         case 'vap':
-          return 'Visiting position';
+          return 'Visiting assistant professor';
         case 'postdoc':
           return 'Postdoc';
         case 'lecturer':

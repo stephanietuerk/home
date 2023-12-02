@@ -1,54 +1,56 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 $leaving-highlight: $color-highlight;
 
 .faq-container {
-    display: flex;
-    flex-direction: column;
-    padding: $grid-1 0 6rem 0;
+  display: flex;
+  flex-direction: column;
+  padding: grid(1) 0 6rem 0;
 
-    .header-item {
-        align-self: center;
+  .header-item {
+    align-self: center;
+  }
+
+  .date {
+    @extend %subtitle2;
+    padding-bottom: grid(4);
+  }
+
+  .instruction {
+    @extend %instructions;
+    padding-bottom: grid(1);
+  }
+
+  .tldr-button {
+    @extend %button;
+    @extend %button-styles;
+    margin: grid(1) 0 grid(3) 0;
+
+    &:hover {
+      background: transparent;
+      font-weight: 700;
     }
+  }
 
-    .date {
-        @extend %subtitle2;
-        padding-bottom: $grid-4;
+  .category-label {
+    @extend %h5;
+    align-self: center;
+    padding-bottom: grid(2);
+  }
+
+  .comment-instructions {
+    font-size: 1.1rem;
+    padding: 0 0 grid(1) 0;
+  }
+
+  app-question {
+    display: block;
+    padding-bottom: grid(4);
+
+    &:first-of-type {
+      padding-top: grid(3);
     }
-
-    .instruction {
-        @extend %instructions;
-        padding-bottom: $grid-1;
-    }
-
-    .tldr-button {
-        @extend %button;
-        @extend %button-styles;
-        margin: $grid-1 0 $grid-3 0;
-
-        &:hover {
-            background: transparent;
-            font-weight: 700;
-        }
-    }
-
-    .category-label {
-        @extend %h5;
-        align-self: center;
-        padding-bottom: $grid-2;
-    }
-
-    .comment-instructions {
-        font-size: 1.1rem;
-        padding: 0 0 $grid-1 0;
-    }
-
-    app-question {
-        display: block;
-        padding-bottom: $grid-4;
-
-        &:first-of-type {
-            padding-top: $grid-3;
-        }
-    }
+  }
 }
