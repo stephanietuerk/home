@@ -1,5 +1,8 @@
 import { Pipe, type PipeTransform } from '@angular/core';
+import { JobsBySchoolDatum } from './art-history-data.model';
 import { artHistoryFields } from './art-history-fields.constants';
+import { ArtHistoryUtilities } from './art-history.utilities';
+import { SchoolsState } from './schools/schools-data.service';
 
 @Pipe({
   name: 'appColorForField',
@@ -54,5 +57,14 @@ export class RankReadoutPipe implements PipeTransform {
       default:
         return 'Unknown';
     }
+  }
+}
+
+@Pipe({
+  name: 'appJobIsInFilters',
+})
+export class JobIsInFiltersPipe implements PipeTransform {
+  transform(job: JobsBySchoolDatum, state: SchoolsState): boolean {
+    return ArtHistoryUtilities.jobInFilters(job, state);
   }
 }

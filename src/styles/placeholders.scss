@@ -396,3 +396,170 @@
   line-height: 1.5;
   height: initial;
 }
+
+%combobox-basic-styles {
+  .combobox-component {
+    .combobox-textbox {
+      background: white;
+      border: 1px solid $color-light-gray-light;
+      padding: grid(3);
+      // color: colors.$muted-blue-700;
+    }
+
+    .textbox-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .material-symbols-outlined {
+        transform: scale(1.5);
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48;
+      }
+    }
+
+    .textbox-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .combobox-listbox.open {
+      background: white;
+      border-right: 1px solid $color-light-gray-light;
+      border-bottom: 1px solid $color-light-gray-light;
+      border-left: 1px solid $color-light-gray-light;
+      border-radius: 2px;
+    }
+  }
+}
+
+/* ---- DEFAULT COMBOBOX STYLING ---- */
+%combobox-styles {
+  $border-radius: grid(1);
+  $open-border-color: $color-light-gray-medium;
+
+  .combobox-component {
+    .combobox-label {
+      // @extend %typography-ui-label-sm-regular;
+      // color: colors.$blue-800;
+      padding-bottom: grid(1);
+    }
+
+    .combobox-textbox {
+      background: white;
+      border: 1px solid $color-light-gray-light;
+      border-radius: $border-radius;
+      padding: grid(3);
+      // color: colors.$muted-blue-700;
+      transition: all 100ms ease-in-out;
+
+      &:hover {
+        border-color: $open-border-color;
+
+        .textbox-icon .material-symbols-outlined {
+          color: $color-dark-primary;
+        }
+      }
+
+      &.open {
+        border-left-color: $open-border-color;
+        border-top-color: $open-border-color;
+        border-right-color: $open-border-color;
+        border-bottom-color: $color-light-gray-light;
+        border-radius: $border-radius $border-radius 0 0;
+
+        .textbox-icon .material-symbols-outlined {
+          color: $color-dark-primary;
+        }
+      }
+    }
+
+    .textbox-label {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 500px; // required for ellipsis to work; maybe take this off later
+    }
+
+    .textbox-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .material-symbols-outlined {
+        transform: scale(1.5);
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48;
+      }
+    }
+
+    .textbox-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .combobox-listbox.open {
+      background: white;
+      border-right: 1px solid $open-border-color;
+      border-bottom: 1px solid $open-border-color;
+      border-left: 1px solid $open-border-color;
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+
+    .listbox-label {
+      // @extend %typography-ui-label-sm-regular;
+      padding: grid(2) grid(3) grid(1) grid(3);
+      // color: colors.$blue-700;
+      font-weight: 500;
+    }
+
+    .listbox-option {
+      // @extend %typography-ui-label-sm-regular;
+      // color: colors.$muted-blue-700;
+
+      &:hover:not(.disabled):not(.selected) {
+        background: $color-light-gray-lightest;
+        // color: colors.$blue-800;
+      }
+
+      &:hover.multi {
+        background: $color-light-gray-lightest;
+      }
+
+      &.current:not(.disabled) {
+        // color: colors.$blue-800;
+
+        &.multi {
+          background: $color-light-gray-lightest;
+        }
+
+        &:not(.selected) {
+          background: $color-light-gray-lightest;
+        }
+      }
+
+      &.selected:not(.multi) {
+        background: $color-light-gray-light;
+        // color: colors.$blue-800;
+        font-weight: 500;
+      }
+
+      &.selected.multi {
+        // color: colors.$muted-blue-800;
+      }
+
+      &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .option-label {
+        padding: grid(3);
+      }
+    }
+  }
+}

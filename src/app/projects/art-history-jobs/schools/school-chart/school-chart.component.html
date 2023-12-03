@@ -1,7 +1,12 @@
 <div class="chart">
   <div *ngFor="let year of years; let i = index" class="year">
     <ng-container *ngFor="let job of getJobsForYear(year); let j = index">
-      <app-job-chart [job]="job" [year]="year" class="job"></app-job-chart>
+      <app-job-chart
+        *ngIf="job | appJobIsInFilters:(data.state$ | async)"
+        [job]="job"
+        [year]="year"
+        class="job"
+      ></app-job-chart>
     </ng-container>
   </div>
 </div>

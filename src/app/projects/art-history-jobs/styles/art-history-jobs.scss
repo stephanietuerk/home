@@ -3,89 +3,89 @@
 @use 'functions' as *;
 
 .selection-section-label {
-    @extend %sans-bold;
-    @extend %small-caps;
-    color: $color-highlight;
-    text-transform: uppercase;
-    letter-spacing: 0.15rem;
-    font-size: 1.1rem;
+  @extend %sans-bold;
+  @extend %small-caps;
+  color: $color-highlight;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-size: 1.1rem;
 
-    &.sub-selection {
-        font-size: 0.95rem;
-        letter-spacing: 0.1rem;
-    }
+  &.sub-selection {
+    font-size: 0.95rem;
+    letter-spacing: 0.1rem;
+  }
 }
 
 .selection-instructions {
-    @extend %sans-regular-italic;
+  @extend %sans-regular-italic;
 }
 
 %button-toggle {
-    .options-container {
-        display: flex;
-    }
+  .options-container {
+    display: flex;
+  }
 
-    .radio-input-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .radio-input-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .radio-input {
-        @extend %hidden-input-element;
-    }
+  .radio-input {
+    @extend %hidden-input-element;
+  }
 
-    .radio-input-label.selected {
-        color: white;
-        background-color: $color-highlight;
-    }
+  .radio-input-label.selected {
+    color: white;
+    background-color: $color-highlight;
+  }
 
+  .radio-input-label {
+    @extend %slab-regular;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+    padding: grid(2) grid(4) grid(1) grid(4);
+    display: flex;
+    justify-content: center;
+    border: 1px solid $color-highlight;
+    color: $color-highlight;
+  }
+
+  .radio-input-component:not(:first-child) {
     .radio-input-label {
-        @extend %slab-regular;
-        font-size: 0.85rem;
-        letter-spacing: 0.05rem;
-        padding: grid(2); grid(4) grid(1) grid(4);
-        display: flex;
-        justify-content: center;
-        border: 1px solid $color-highlight;
-        color: $color-highlight;
+      border-left-width: 0;
+    }
+  }
+
+  .radio-input-component {
+    .radio-input-container {
+      border-left-width: 0;
     }
 
-    .radio-input-component:not(:first-child) {
-        .radio-input-label {
-            border-left-width: 0;
+    &:not(.selected) {
+      .radio-input-label {
+        cursor: pointer;
+
+        &:hover {
+          background-color: $color-light-gray-lightest;
+          color: $color-highlight;
         }
+      }
     }
-
-    .radio-input-component {
-        .radio-input-container {
-            border-left-width: 0;
-        }
-
-        &:not(.selected) {
-            .radio-input-label {
-                cursor: pointer;
-
-                &:hover {
-                    background-color: $color-light-gray-lightest;
-                    color: $color-highlight;
-                }
-            }
-        }
-    }
+  }
 }
 
 .filters-selection-container .button-toggle {
-    @extend %button-toggle;
+  @extend %button-toggle;
 
-    .radio-input-label {
-        width: 136px;
-    }
+  .radio-input-label {
+    width: 136px;
+  }
 }
 
 .data-type-selection-container .button-toggle {
-    @extend %button-toggle;
+  @extend %button-toggle;
 
-    .radio-input-label {
-        width: 204px;
-    }
+  .radio-input-label {
+    width: 204px;
+  }
 }

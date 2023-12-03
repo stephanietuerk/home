@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash';
 import { Observable, Subject, merge } from 'rxjs';
-import { map, scan } from 'rxjs/operators';
+import { filter, map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
@@ -50,6 +50,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {
     const vm$ = this.dataService.data$.pipe(
+      filter((data) => !!data),
       map((data: JobDatum[]) => () => {
         const [tableData, chartSort]: [JobTableDatum[], ChartSort] =
           this.getTableDataAndChartSort(data);
@@ -94,7 +95,7 @@ export class SummaryComponent implements OnInit {
     const filteredData = data.filter(
       (x) => x.isTt === 'All' && x.rank[0] === 'All'
     );
-    const fields = artHistoryFields.map((x) => x.name.full);
+    const fields = cloneDeep(artHistoryFields).map((x) => x.name.full);
     const tableData = fields.map((field) => {
       const fieldData = filteredData.filter((x) => x.field === field);
       const avg =

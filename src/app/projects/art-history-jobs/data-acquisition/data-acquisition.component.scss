@@ -1,0 +1,21 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.section-header {
+  @extend %h3;
+  text-align: center;
+  padding-bottom: grid(1);
+}
+
+.section-subheader {
+  @extend %h4;
+  text-align: center;
+  padding-bottom: grid(1);
+}
+
+.description {
+  max-width: 600px;
+  line-height: 1.5;
+  padding-bottom: grid(6);
+}

@@ -184,3 +184,75 @@ export const artHistoryFields: Field[] = [
     sort: 18,
   },
 ];
+
+export enum Tenure {
+  tt = 'tt',
+  nonTt = 'nonTt',
+  unknown = 'unknown',
+}
+
+export enum Rank {
+  assistant = 'assistant',
+  associate = 'associate',
+  full = 'full',
+  chair = 'chair',
+  open = 'open',
+  vap = 'vap',
+  postdoc = 'postdoc',
+  lecturer = 'lecturer',
+  unknown = 'unknown',
+}
+
+export const tenureOptions: { value: keyof typeof Tenure; label: string }[] = [
+  {
+    value: Tenure.tt,
+    label: 'Tenure track',
+  },
+  {
+    value: Tenure.nonTt,
+    label: 'Non-tenure track',
+  },
+  {
+    value: Tenure.unknown,
+    label: 'Unknown',
+  },
+];
+
+export const rankOptions: { value: keyof typeof Rank; label: string }[] = [
+  {
+    value: Rank.assistant,
+    label: 'Assistant professor',
+  },
+  {
+    value: Rank.associate,
+    label: 'Associate professor',
+  },
+  {
+    value: Rank.full,
+    label: 'Full professor',
+  },
+  {
+    value: Rank.chair,
+    label: 'Chair',
+  },
+  {
+    value: Rank.open,
+    label: 'Open rank',
+  },
+  {
+    value: Rank.vap,
+    label: 'Visiting assistant professor',
+  },
+  {
+    value: Rank.postdoc,
+    label: 'Postdoc',
+  },
+  {
+    value: Rank.lecturer,
+    label: 'Lecturer',
+  },
+  {
+    value: Rank.unknown,
+    label: 'Unknown',
+  },
+];

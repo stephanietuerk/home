@@ -16,13 +16,26 @@
   height: 100%;
   align-items: center;
   width: 100%;
+  padding-top: grid(16);
 
   & > * {
     width: 100%;
   }
 
+  .top-matter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: grid(8);
+  }
+
   .section-header {
     @extend %h3;
+    text-align: center;
+    padding-bottom: grid(1);
+  }
+  .section-subheader {
+    @extend %h4;
     text-align: center;
     padding-bottom: grid(1);
   }

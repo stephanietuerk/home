@@ -1,23 +1,47 @@
-<h2 class="section-header">View jobs by institution</h2>
-<div class="charts-container">
-  <div
-    class="country-container"
-    *ngFor="let country of dataService.dataBySchool$ | async"
-  >
-    <h3>{{ country.country }}</h3>
-    <div class="all-schools-container">
-      <div
-        class="school-container"
-        *ngFor="let school of country.jobsBySchool; let i = index"
+<div class="schools-encapsulation-container">
+  <h2 class="section-header">View jobs by institution</h2>
+  <app-school-filters></app-school-filters>
+  <div class="charts-container">
+    <div
+      class="country-container"
+      *ngFor="let country of dataService.dataBySchool$ | async; let i = index"
+    >
+      <mat-expansion-panel
+        *ngIf="country.jobsBySchool.length > 0"
+        hideToggle
+        [expanded]="panelIsOpen[i]"
+        (opened)="panelIsOpen[i] = true"
+        (closed)="panelIsOpen[i] = false"
+        class="mat-elevation-z0 country-expansion-panel"
       >
-        <h4 class="school-name">{{ school.school }}</h4>
-        <app-school-chart
-          class="school-chart"
-          [jobsByYear]="school.jobsByYear"
-          [years]="yearRange"
-          [isFirstColumn]="i % 5 === 0"
-        ></app-school-chart>
-      </div>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="country-name">{{ country.country }}</h3>
+          </mat-panel-title>
+          <mat-panel-description>
+            <p class="num-schools">{{country.jobsBySchool.length}} schools</p>
+            <mat-icon class="expand-icon" [class.expanded]="panelIsOpen[i]"
+              >expand_more</mat-icon
+            >
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <div class="all-schools-container">
+            <div
+              class="school-container"
+              *ngFor="let school of country.jobsBySchool; let i = index"
+            >
+              <h4 class="school-name">{{ school.school }}</h4>
+              <app-school-chart
+                class="school-chart"
+                [jobsByYear]="school.jobsByYear"
+                [years]="dataService.yearRange"
+                [isFirstColumn]="i % 5 === 0"
+              ></app-school-chart>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
     </div>
   </div>
 </div>

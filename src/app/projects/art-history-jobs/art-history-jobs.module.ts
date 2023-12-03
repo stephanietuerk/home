@@ -2,6 +2,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 import { ComboboxModule } from 'src/app/shared/components/combobox/combobox.module';
 import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
@@ -18,10 +20,12 @@ import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-b
 import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
 import {
   ColorForFieldPipe,
+  JobIsInFiltersPipe,
   RankReadoutPipe,
   TenureReadoutPipe,
 } from './art-history-fields.pipe';
 import { ArtHistoryJobsComponent } from './art-history-jobs.component';
+import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
 import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
 import { ExploreSelectionsComponent } from './explore/explore-selections/explore-selections.component';
 import { YearsSelectionComponent } from './explore/explore-selections/years-selection/years-selection.component';
@@ -29,6 +33,7 @@ import { ExploreTimeRangeChartComponent } from './explore/explore-time-range-cha
 import { ExploreComponent } from './explore/explore.component';
 import { JobChartComponent } from './schools/job-chart/job-chart.component';
 import { SchoolChartComponent } from './schools/school-chart/school-chart.component';
+import { SchoolFiltersComponent } from './schools/school-filters/school-filters.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { SummaryChartComponent } from './summary/summary-chart/summary-chart.component';
 import { SummaryTableComponent } from './summary/summary-table/summary-table.component';
@@ -51,6 +56,9 @@ import { SummaryComponent } from './summary/summary.component';
     ColorForFieldPipe,
     TenureReadoutPipe,
     RankReadoutPipe,
+    SchoolFiltersComponent,
+    JobIsInFiltersPipe,
+    DataAcquisitionComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +80,8 @@ import { SummaryComponent } from './summary/summary.component';
     VicBarsModule,
     VicYQuantitativeAxisModule,
     ComboboxModule,
+    MatIconModule,
+    MatExpansionModule,
   ],
 })
 export class ArtHistoryJobsModule {}

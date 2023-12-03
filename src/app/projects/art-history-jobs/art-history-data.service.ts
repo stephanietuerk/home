@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
 import { JobDatum, JobsByCountry } from './art-history-data.model';
+import { ArtHistoryUtilities } from './art-history.utilities';
 
 @Injectable({
   providedIn: 'root',
@@ -37,48 +38,10 @@ export class ArtHistoryDataService {
       return {
         year: new Date(`${x['year']}-01-01T00:00:00`),
         field: x['field'] === 'all' ? 'All' : x['field'],
-        isTt: this.transformIsTt(x['is_tt']),
-        rank: this.transformRank(x['rank']),
+        isTt: ArtHistoryUtilities.transformIsTt(x['is_tt']),
+        rank: ArtHistoryUtilities.transformRank(x['rank']),
         count: +x['count'],
       };
-    });
-  }
-
-  transformIsTt(isTt: string): string {
-    if (isTt.toLowerCase() === 'true') {
-      return 'Tenure track';
-    } else if (isTt.toLowerCase() === 'false') {
-      return 'Non-tenure track';
-    } else {
-      return this.sentenceCase.transform(isTt);
-    }
-  }
-
-  transformRank(rank: string): string[] {
-    const transformedRank = rank.split(', ');
-    return transformedRank.map((str) => {
-      switch (str) {
-        case 'assistant_prof':
-          return 'Assistant professor';
-        case 'associate_prof':
-          return 'Associate professor';
-        case 'full_prof':
-          return 'Full professor';
-        case 'chair':
-          return 'Chair';
-        case 'open_rank':
-          return 'Open rank';
-        case 'vap':
-          return 'Visiting assistant professor';
-        case 'postdoc':
-          return 'Postdoc';
-        case 'lecturer':
-          return 'Lecturer';
-        case 'unknown':
-          return 'Unknown';
-        default:
-          return this.sentenceCase.transform(str);
-      }
     });
   }
 }

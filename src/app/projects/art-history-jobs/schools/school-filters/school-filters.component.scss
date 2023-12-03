@@ -1,0 +1,51 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.schools-filters-encapsulation-container {
+  display: flex;
+  gap: grid(8);
+
+  .fields-combobox,
+  .tenure-combobox,
+  .rank-combobox {
+    @extend %combobox-styles;
+
+    .combobox-label {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: grid(1);
+
+      .dropdown-label {
+        // @extend %typography-ui-label-sm-semibold;
+        padding-right: grid(2);
+      }
+
+      .available-count {
+        text-align: right;
+      }
+
+      .count-num {
+        // @extend %typography-ui-label-sm-semibold;
+      }
+    }
+
+    .option-container {
+      padding-left: grid(2);
+
+      .option-label {
+        padding-left: grid(2);
+      }
+    }
+
+    .material-symbols-outlined.checkbox {
+      transform: scale(0.75);
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48;
+      color: $color-dark-primary;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 @use 'sass:math';
-@import '~nouislider/dist/nouislider.min.css';
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@import '~nouislider/dist/nouislider.min.css';
 
 .noUi-art-history {
   &.noUi-target {
@@ -13,11 +13,13 @@
   }
 
   $track-size: grid(3);
+
   .noUi-connects {
     background: #e8e8e8;
     height: $track-size;
     border-radius: math.div($track-size, 2);
   }
+
   .noUi-connect {
     background: $color-highlight;
   }

@@ -17,7 +17,7 @@ $leaving-highlight: $color-highlight;
         align-items: center;
         border-left: 1px solid $color-dark-primary;
         border-bottom: 1px solid $color-dark-primary;
-        margin: grid(2); 0 grid(3) 0;
+        margin: grid(2) 0 grid(3) 0;
         padding-left: grid(1);
 
         &.collapse:hover {
