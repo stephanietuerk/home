@@ -119,4 +119,25 @@
       </app-listbox-option>
     </app-listbox>
   </app-combobox>
+  <app-combobox class="sort-combobox">
+    <app-combobox-label>
+      <span class="dropdown-label label-item">Select a sort order</span>
+    </app-combobox-label>
+    <app-textbox [displaySelected]="true">
+      <span class="material-symbols-outlined expand-more" boxIcon>
+        expand_more
+      </span>
+    </app-textbox>
+    <app-listbox
+      [isMultiSelect]="false"
+      (valueChanges)="data.updateSortOrder($event)"
+    >
+      <app-listbox-option
+        *ngFor="let option of data.sortOptions"
+        [value]="option.value"
+        [selected]="(data.state$ | async).sortOrder === option.value"
+        >{{ option.label }}
+      </app-listbox-option>
+    </app-listbox>
+  </app-combobox>
 </div>

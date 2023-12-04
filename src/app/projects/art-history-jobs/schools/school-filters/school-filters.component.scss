@@ -8,8 +8,10 @@
 
   .fields-combobox,
   .tenure-combobox,
-  .rank-combobox {
+  .rank-combobox,
+  .sort-combobox {
     @extend %combobox-styles;
+    min-width: 200px;
 
     .combobox-label {
       display: flex;
@@ -35,6 +37,7 @@
 
       .option-label {
         padding-left: grid(2);
+        line-height: 1;
       }
     }
 
@@ -46,6 +49,12 @@
         'GRAD' 0,
         'opsz' 48;
       color: $color-dark-primary;
+    }
+  }
+
+  .sort-combobox {
+    .option-label {
+      white-space: nowrap;
     }
   }
 }
