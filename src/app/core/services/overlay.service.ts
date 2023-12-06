@@ -63,7 +63,7 @@ export const aboveCenterAligned: ConnectedPosition = {
   overlayY: 'bottom',
 };
 
-class ScorecardOverlayConfig {
+class AppOverlayConfig {
   /**
    * The CSS class to apply to the Angular Material CDK backdrop element. Default value is `${appName}-overlay-backdrop`.
    */
@@ -111,7 +111,7 @@ class ScorecardOverlayConfig {
   }
 }
 
-export class ConnectedOverlayConfig extends ScorecardOverlayConfig {
+export class ConnectedOverlayConfig extends AppOverlayConfig {
   constructor(init?: Partial<ConnectedOverlayConfig>) {
     super();
     this.positions = [aboveCenterAligned];
@@ -119,7 +119,7 @@ export class ConnectedOverlayConfig extends ScorecardOverlayConfig {
   }
 }
 
-export class GlobalOverlayConfig extends ScorecardOverlayConfig {
+export class GlobalOverlayConfig extends AppOverlayConfig {
   override connectedElementRef: never;
   override positions: never;
 

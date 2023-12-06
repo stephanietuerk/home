@@ -1,8 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Input,
+  OnDestroy,
   OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
@@ -16,6 +21,12 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 import { animations } from 'src/app/core/constants/animations.constants';
+import {
+  ConnectedOverlayConfig,
+  OverlayService,
+  aboveLeftAligned,
+  belowLeftAligned,
+} from 'src/app/core/services/overlay.service';
 import { SelectionOption } from 'src/app/shared/components/form-components/form-radio-input/form-radio-input.model';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { artHistoryFields } from '../../art-history-fields.constants';
@@ -45,9 +56,19 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [animations.slide('selection-interface')],
+  providers: [OverlayService],
 })
-export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
+export class ExploreSelectionsComponent
+  extends Unsubscribe
+  implements OnInit, OnDestroy
+{
   @Input() yearsRange: [number, number];
+  @ViewChild('fieldsDd') fieldsDropdown: TemplateRef<HTMLDivElement>;
+  @ViewChild('dataTypeDd') dataTypeDropdown: TemplateRef<HTMLDivElement>;
+  @ViewChild('timeRangeDd') timeRangeDropdown: TemplateRef<HTMLDivElement>;
+  @ViewChild('tenureDd') tenureDropdown: TemplateRef<HTMLDivElement>;
+  @ViewChild('rankDd') rankDropdown: TemplateRef<HTMLDivElement>;
+  @ViewChild('ddOrigin') dropdownOrigin: ElementRef<HTMLButtonElement>;
   FormArray = FormArray;
   FormControl = FormControl;
   form: FormGroup<ExploreSelectionsFormGroup>;
@@ -82,7 +103,9 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
 
   constructor(
     private formService: ExploreSelectionsFormService,
-    private dataService: ExploreDataService
+    private dataService: ExploreDataService,
+    private overlayService: OverlayService,
+    private viewContainerRef: ViewContainerRef
   ) {
     super();
     this.debouncer
@@ -96,6 +119,11 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     this.subscribeToFormChanges();
     this.subscribeToFieldsChanges();
     this.subscribeToFilterUseChanges();
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.overlayService.destroyOverlay();
   }
 
   setDefaultSelections(): void {
@@ -398,16 +426,61 @@ export class ExploreSelectionsComponent extends Unsubscribe implements OnInit {
     this.debouncer.next(selections);
   }
 
+  initializeDropdownOverlay(): void {
+    const config = this.overlayService.getOverlayConfig(
+      new ConnectedOverlayConfig({
+        scrollStrategy: 'close',
+        connectedElementRef: this.dropdownOrigin,
+        positions: [belowLeftAligned, aboveLeftAligned],
+      })
+    );
+    this.overlayService.createOverlay(config);
+    this.overlayService.overlayRef.backdropClick().subscribe(() => {
+      this.openContent = null;
+      this.isOpen = false;
+      this.overlayService.detachOverlay();
+    });
+  }
+
   toggleOpenContent(
     selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank'
-  ) {
+  ): void {
     if (this.openContent === selected) {
       this.openContent = null;
       this.isOpen = false;
+      this.overlayService.detachOverlay();
     } else {
       this.openContent = selected;
       this.isOpen = true;
+      if (!this.overlayService.overlayRef) {
+        this.initializeDropdownOverlay();
+      }
+      this.attachOverlay(selected);
     }
+  }
+
+  attachOverlay(
+    selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank'
+  ): void {
+    let template;
+    switch (selected) {
+      case 'fields':
+        template = this.fieldsDropdown;
+        break;
+      case 'dataType':
+        template = this.dataTypeDropdown;
+        break;
+      case 'timeRange':
+        template = this.timeRangeDropdown;
+        break;
+      case 'tenure':
+        template = this.tenureDropdown;
+        break;
+      case 'rank':
+        template = this.rankDropdown;
+        break;
+    }
+    this.overlayService.attachTemplate(template, this.viewContainerRef);
   }
 
   closeDropdown(event: MouseEvent): void {

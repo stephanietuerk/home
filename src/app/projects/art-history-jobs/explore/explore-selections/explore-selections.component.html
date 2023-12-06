@@ -5,12 +5,7 @@
   [class.open]="isOpen"
 >
   <p class="container-title">Data selections</p>
-  <button
-    class="navbar"
-    type="button"
-    cdkOverlayOrigin
-    #trigger="cdkOverlayOrigin"
-  >
+  <button class="navbar" type="button" #ddOrigin>
     <div class="links-container">
       <p
         class="selection-title"
@@ -50,11 +45,12 @@
     </div>
   </button>
 
-  <ng-template
+  <!-- <ng-template
     cdkConnectedOverlay
     cdkConnectedOverlayPanelClass="selections-dropdown"
     [cdkConnectedOverlayOrigin]="trigger"
     [cdkConnectedOverlayOpen]="isOpen"
+    [cdkConnectedOverlayScrollStrategy]=""
     (overlayOutsideClick)="closeDropdown($event)"
   >
     <div @slide class="dropdown-container" [ngSwitch]="openContent">
@@ -74,7 +70,7 @@
         <ng-container *ngTemplateOutlet="fieldsDd"></ng-container>
       </ng-container>
     </div>
-  </ng-template>
+  </ng-template> -->
 
   <ng-template #fieldsDd>
     <div class="selection-container fields">
