@@ -1,9 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import {
-  EnvironmentSettings,
-  Environments,
-} from '../models/environments.model';
+import { environmentConstants } from '../constants/environment.constants';
+import { EnvironmentSettings } from '../models/environments.model';
 import { Environment, EnvironmentOption } from '../models/project.model';
 
 @Injectable({
@@ -11,7 +9,7 @@ import { Environment, EnvironmentOption } from '../models/project.model';
 })
 export class EnvironmentService {
   origin: string;
-  environment: Environments;
+  environment = environmentConstants;
   currentEnvironment: EnvironmentSettings;
   localStrings: string[] = ['localhost'];
   productionStrings: string[] = ['personal-site-c3c69', 'stephanietuerk'];
