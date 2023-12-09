@@ -14,11 +14,8 @@ $svg-icon-color: $color-dark-primary;
 $panel-opacity: 0.9;
 
 .explore-selections-container {
-  // margin-bottom: 4rem;
-  border-bottom: 1px solid $color-light-gray-medium;
   display: flex;
   flex-direction: column;
-  transition: border-bottom 0.25s ease-in-out;
 
   .container-title {
     @extend %sans-medium;
@@ -34,6 +31,7 @@ $panel-opacity: 0.9;
 
   .navbar {
     padding-top: grid(3);
+    padding-bottom: grid(1);
     background: rgba($color-light-gray-lightest, $panel-opacity);
   }
 
@@ -47,9 +45,10 @@ $panel-opacity: 0.9;
     @extend %slab-medium;
     font-size: 1.15rem;
     color: $color-highlight;
-    line-height: 1;
-    padding-bottom: grid(1);
+    // line-height: 1;
+    // padding-bottom: grid(1);
     border-bottom: 2px solid rgba($color-light-gray-lightest, $panel-opacity);
+    border-bottom: 2px solid transparent;
     transition: border-bottom 0.25s ease-in-out;
 
     &:hover {
@@ -62,7 +61,7 @@ $panel-opacity: 0.9;
   }
 }
 
-.cdk-overlay-pane.selections-dropdown {
+.cdk-overlay-pane {
   width: 1080px;
   // background: rgba(white, 0.8);
   background: rgba($color-light-gray-lightest, $panel-opacity);

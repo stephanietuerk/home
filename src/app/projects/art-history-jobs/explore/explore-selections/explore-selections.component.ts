@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { isEqual } from 'lodash';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import {
   debounceTime,
   map,
@@ -48,6 +48,19 @@ import {
   FilterType,
   ValueType,
 } from './explore-selections.model';
+
+interface DropdownContent {
+  isOpen: boolean;
+  content: keyof typeof ExploreSelection | null;
+}
+
+export enum ExploreSelection {
+  fields = 'fields',
+  dataType = 'dataType',
+  timeRange = 'timeRange',
+  tenure = 'tenure',
+  rank = 'rank',
+}
 
 @Component({
   selector: 'app-explore-selections',
@@ -86,8 +99,15 @@ export class ExploreSelectionsComponent
   filtersFormControl: FormControl;
   defaults: ExploreSelectionsDefaults;
   debouncer: Subject<ExploreSelections> = new Subject<ExploreSelections>();
-  isOpen = false;
-  openContent: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank' | null;
+  // isOpen = false;
+  // openContent: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank' | null;
+  dropdownContent: BehaviorSubject<DropdownContent> =
+    new BehaviorSubject<DropdownContent>({
+      isOpen: false,
+      content: null,
+    });
+  dropdownContent$ = this.dropdownContent.asObservable();
+  backdropClickSubscription: Subscription;
 
   get fields(): FormArray<FormControl<boolean>> {
     return this.form.controls.fields;
@@ -427,6 +447,9 @@ export class ExploreSelectionsComponent
   }
 
   initializeDropdownOverlay(): void {
+    if (this.backdropClickSubscription) {
+      this.backdropClickSubscription.unsubscribe();
+    }
     const config = this.overlayService.getOverlayConfig(
       new ConnectedOverlayConfig({
         scrollStrategy: 'close',
@@ -435,23 +458,25 @@ export class ExploreSelectionsComponent
       })
     );
     this.overlayService.createOverlay(config);
-    this.overlayService.overlayRef.backdropClick().subscribe(() => {
-      this.openContent = null;
-      this.isOpen = false;
-      this.overlayService.detachOverlay();
-    });
+    this.backdropClickSubscription = this.overlayService.overlayRef
+      .backdropClick()
+      .subscribe(() => {
+        this.resetDropdownContent();
+        this.overlayService.detachOverlay();
+      });
   }
 
   toggleOpenContent(
     selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank'
   ): void {
-    if (this.openContent === selected) {
-      this.openContent = null;
-      this.isOpen = false;
+    if (this.dropdownContent.getValue().content === selected) {
+      this.resetDropdownContent();
       this.overlayService.detachOverlay();
     } else {
-      this.openContent = selected;
-      this.isOpen = true;
+      this.dropdownContent.next({
+        isOpen: true,
+        content: selected,
+      });
       if (!this.overlayService.overlayRef) {
         this.initializeDropdownOverlay();
       }
@@ -489,8 +514,14 @@ export class ExploreSelectionsComponent
         'links-container'
       )
     ) {
-      this.openContent = null;
-      this.isOpen = false;
+      this.resetDropdownContent();
     }
+  }
+
+  resetDropdownContent(): void {
+    this.dropdownContent.next({
+      isOpen: false,
+      content: null,
+    });
   }
 }
