@@ -9,6 +9,7 @@ import { Environment, EnvironmentOption } from '../models/project.model';
 })
 export class EnvironmentService {
   origin: string;
+  environments = environmentConstants;
   currentEnvironment: EnvironmentSettings;
   environment = environmentConstants;
   localStrings: string[] = ['localhost'];
@@ -21,9 +22,9 @@ export class EnvironmentService {
 
   init(): void {
     if (this.originInArray(this.localStrings)) {
-      this.currentEnvironment = this.environment.local;
+      this.currentEnvironment = this.environments.local;
     } else if (this.originInArray(this.productionStrings)) {
-      this.currentEnvironment = this.environment.production;
+      this.currentEnvironment = this.environments.production;
     } else {
       console.error(this.errorMessage);
     }
