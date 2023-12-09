@@ -28,10 +28,10 @@ $min-height: 300px;
 .landing-container {
   @extend %flex-column;
   align-items: center;
-  padding: grid(2);0 grid(6) grid(1)2 grid(6);
+  padding: grid(2) grid(6) grid(1) grid(6);
 
   @include breakpoint(mobile-device) {
-    padding: grid(1)2 grid(4) grid(4) grid(4);
+    padding: grid(1) 2 grid(4) grid(4) grid(4);
   }
 
   * {
