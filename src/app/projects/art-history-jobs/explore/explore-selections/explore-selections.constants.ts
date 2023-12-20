@@ -1,12 +1,18 @@
-import { SelectionOption } from 'src/app/shared/components/form-components/form-radio-input/form-radio-input.model';
-import { FilterType, ValueType } from './explore-selections.model';
+import { rankOptions, tenureOptions } from '../../art-history-fields.constants';
+import {
+  FilterType,
+  ValueType,
+  ValueTypeOption,
+  VariableOption,
+  VariableUseOption,
+} from './explore-selections.model';
 
-export const dataTypeOptions: SelectionOption[] = [
+export const valueTypeOptions: ValueTypeOption[] = [
   { label: 'Count', value: ValueType.count },
   { label: 'Percent', value: ValueType.percent },
 ];
 
-export const filterUseOptions: SelectionOption[] = [
+export const variableUseOptions: VariableUseOption[] = [
   {
     label: 'Filter',
     value: FilterType.filter,
@@ -17,60 +23,23 @@ export const filterUseOptions: SelectionOption[] = [
   },
 ];
 
-export const tenureOptions: SelectionOption[] = [
+export const fieldsUseOptions: VariableUseOption[] = [
   {
-    label: 'All',
-    selected: false,
+    label: 'Explore within a field',
+    value: FilterType.filter,
   },
   {
-    label: 'Tenure track',
-    selected: true,
-  },
-  {
-    label: 'Non-tenure track',
-    selected: true,
-  },
-  {
-    label: 'Unknown',
-    selected: false,
+    label: 'Compare across fields',
+    value: FilterType.disaggregate,
   },
 ];
 
-export const rankOptions: SelectionOption[] = [
-  {
-    label: 'All',
-    selected: true,
-  },
-  {
-    label: 'Assistant professor',
-    selected: false,
-  },
-  {
-    label: 'Associate professor',
-    selected: false,
-  },
-  {
-    label: 'Full professor',
-    selected: false,
-  },
-  {
-    label: 'Chair',
-    selected: false,
-  },
-  {
-    label: 'Open rank',
-    selected: false,
-  },
-  {
-    label: 'Lecturer',
-    selected: false,
-  },
-  {
-    label: 'Visiting position',
-    selected: false,
-  },
-  {
-    label: 'Unknown',
-    selected: false,
-  },
+export const tenureValueOptions: VariableOption[] = [
+  { label: 'All', value: 'all' },
+  ...tenureOptions,
+];
+
+export const rankValueOptions: VariableOption[] = [
+  { label: 'All', value: 'all' },
+  ...rankOptions,
 ];

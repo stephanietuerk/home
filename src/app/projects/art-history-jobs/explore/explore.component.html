@@ -1,6 +1,15 @@
 <h2 class="section-header">Explore in depth</h2>
-<app-explore-selections *ngIf="yearsRange$ | async as yearsRange" [yearsRange]="yearsRange"></app-explore-selections>
+<app-explore-selections
+  *ngIf="yearsRange$ | async as yearsRange"
+  [yearsRange]="yearsRange"
+></app-explore-selections>
 <div class="charts-container">
-    <app-explore-time-range-chart class="time-range-chart-component"></app-explore-time-range-chart>
-    <app-explore-change-chart class="change-chart-component"></app-explore-change-chart>
+  <app-explore-across-time-chart
+    *ngIf="exploreDataService.acrossTimeData$ | async"
+    class="time-range-chart-component"
+  ></app-explore-across-time-chart>
+  <app-explore-change-chart
+    *ngIf="exploreDataService.changeData$ | async"
+    class="change-chart-component"
+  ></app-explore-change-chart>
 </div>

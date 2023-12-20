@@ -49,8 +49,6 @@ export class RankReadoutPipe implements PipeTransform {
         return 'Open rank';
       case 'vap':
         return 'Visiting assistant professor';
-      case 'postdoc':
-        return 'Postdoc';
       case 'lecturer':
         return 'Lecturer';
       case 'unknown':

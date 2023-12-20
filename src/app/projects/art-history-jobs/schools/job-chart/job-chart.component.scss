@@ -16,8 +16,8 @@
 }
 
 .job-tooltip-container {
-  $tt-outline-color: $color-light-gray-dark;
-  $tt-background-color: $color-light-gray-lightest;
+  $tt-outline-color: $color-light-gray-medium;
+  $tt-background-color: rgba(white, 0.95);
 
   .tooltip {
     background: $tt-background-color;
@@ -28,14 +28,11 @@
 
     .year {
       @extend %subtitle2;
-
-      // margin-bottom: grid(1);
-      padding-bottom: grid(1);
+      padding-bottom: grid(2);
     }
 
     .tenure {
       padding-top: grid(2);
-      border-top: 1px solid $color-light-gray-dark;
     }
 
     .rank .label {
@@ -47,6 +44,11 @@
       color: var(--color, dodgerblue);
       font-weight: 500;
       padding-bottom: grid(1);
+
+      &.last {
+        padding-bottom: grid(2);
+        border-bottom: 1px solid $color-dark-primary;
+      }
     }
   }
 

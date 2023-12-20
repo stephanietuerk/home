@@ -1,0 +1,11 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.vic-background-bar {
+  fill: $color-light-gray-lightest;
+}
+
+.vic-bar-zero-axis {
+  stroke: $color-light-gray-dark;
+}

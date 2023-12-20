@@ -126,6 +126,25 @@ export class LinesHoverMoveDefaultHoverDotStyles
   }
 }
 
+export class LinesHoverMoveDefaultLabelsStyles
+  implements HoverMoveEventEffect<LinesHoverMoveDirective>
+{
+  applyEffect(directive: LinesHoverMoveDirective): void {
+    directive.lines.lineLabels.style('display', ({ category, index }) => {
+      return directive.lines.values.category[directive.closestPointIndex] ===
+        category
+        ? 'inline-block'
+        : 'none';
+    });
+  }
+
+  removeEffect(directive: LinesHoverMoveDirective): void {
+    directive.lines.lineLabels.style('display', (d, i) =>
+      directive.lines.lineLabelShouldBeDisplayed(d.y, i)
+    );
+  }
+}
+
 /**
  * A collection of suggested default effects for the hover and move event
  *  on lines and line markers.
@@ -139,6 +158,7 @@ export class LinesHoverMoveDefaultStyles
   linesStyles: HoverMoveEventEffect<LinesHoverMoveDirective>;
   markersStyles: HoverMoveEventEffect<LinesHoverMoveDirective>;
   hoverDotStyles: HoverMoveEventEffect<LinesHoverMoveDirective>;
+  labelsStyles: HoverMoveEventEffect<LinesHoverMoveDirective>;
 
   constructor(config?: LinesHoverMoveDefaultStylesConfig) {
     const markersStylesConfig =
@@ -148,6 +168,7 @@ export class LinesHoverMoveDefaultStyles
       markersStylesConfig
     );
     this.hoverDotStyles = new LinesHoverMoveDefaultHoverDotStyles();
+    this.labelsStyles = new LinesHoverMoveDefaultLabelsStyles();
   }
 
   applyEffect(directive: LinesHoverMoveDirective) {
@@ -157,6 +178,9 @@ export class LinesHoverMoveDefaultStyles
     } else {
       this.hoverDotStyles.applyEffect(directive);
     }
+    if (directive.lines.config.labels.display) {
+      this.labelsStyles.applyEffect(directive);
+    }
   }
 
   removeEffect(directive: LinesHoverMoveDirective) {
@@ -165,6 +189,9 @@ export class LinesHoverMoveDefaultStyles
       this.markersStyles.removeEffect(directive);
     } else {
       this.hoverDotStyles.removeEffect(directive);
+    }
+    if (directive.lines.config.labels.display) {
+      this.labelsStyles.removeEffect(directive);
     }
   }
 }

@@ -2,10 +2,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { ComboboxModule } from 'src/app/shared/components/combobox/combobox.module';
 import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
+import { SubstringHighlightDirective } from 'src/app/shared/directives/substring-highlight.directive';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VicXQuantitativeAxisModule } from 'src/app/viz-components/axes/x-quantitative/x-quantitative-axis.module';
@@ -26,10 +28,17 @@ import {
 } from './art-history-fields.pipe';
 import { ArtHistoryJobsComponent } from './art-history-jobs.component';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
+import { ExploreAcrossTimeChartComponent } from './explore/explore-across-time-chart/explore-across-time-chart.component';
+import { ChangeBarsComponent } from './explore/explore-change-chart/change-bars/change-bars.component';
+import { ChangeYAxisComponent } from './explore/explore-change-chart/change-y-axis/change-y-axis.component';
 import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
 import { ExploreSelectionsComponent } from './explore/explore-selections/explore-selections.component';
+import { FieldsSelectionComponent } from './explore/explore-selections/fields-selection/fields-selection.component';
+import { FieldsUseSelectionComponent } from './explore/explore-selections/fields-use-selection/fields-use-selection.component';
+import { ValueTypeSelectionComponent } from './explore/explore-selections/value-type-selection/value-type-selection.component';
+import { VariableSingleMultiSelectionComponent } from './explore/explore-selections/variable-single-multi-selection/variable-single-multi-selection.component';
+import { VariableUseSelectionComponent } from './explore/explore-selections/variable-use-selection/variable-use-selection.component';
 import { YearsSelectionComponent } from './explore/explore-selections/years-selection/years-selection.component';
-import { ExploreTimeRangeChartComponent } from './explore/explore-time-range-chart/explore-time-range-chart.component';
 import { ExploreComponent } from './explore/explore.component';
 import { JobChartComponent } from './schools/job-chart/job-chart.component';
 import { SchoolChartComponent } from './schools/school-chart/school-chart.component';
@@ -46,7 +55,7 @@ import { SummaryComponent } from './summary/summary.component';
     SummaryComponent,
     SummaryTableComponent,
     SummaryChartComponent,
-    ExploreTimeRangeChartComponent,
+    ExploreAcrossTimeChartComponent,
     ExploreChangeChartComponent,
     ExploreSelectionsComponent,
     YearsSelectionComponent,
@@ -82,6 +91,15 @@ import { SummaryComponent } from './summary/summary.component';
     ComboboxModule,
     MatIconModule,
     MatExpansionModule,
+    SubstringHighlightDirective,
+    MatButtonToggleModule,
+    FieldsSelectionComponent,
+    ValueTypeSelectionComponent,
+    VariableUseSelectionComponent,
+    VariableSingleMultiSelectionComponent,
+    FieldsUseSelectionComponent,
+    ChangeBarsComponent,
+    ChangeYAxisComponent,
   ],
 })
 export class ArtHistoryJobsModule {}

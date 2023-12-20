@@ -4,8 +4,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JobDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
+import { ExploreTimeRangeChartConfig } from './explore-across-time-chart/explore-across-time-chart.model';
+import { ExploreDataService } from './explore-data.service';
 import { ExploreSelections } from './explore-selections/explore-selections.model';
-import { ExploreTimeRangeChartConfig } from './explore-time-range-chart/explore-time-range-chart.model';
 
 @Component({
   selector: 'app-explore',
@@ -17,7 +18,10 @@ export class ExploreComponent implements OnInit {
   selections$ = this.selections.asObservable();
   yearsRange$: Observable<[number, number]>;
 
-  constructor(private dataService: ArtHistoryDataService) {}
+  constructor(
+    private dataService: ArtHistoryDataService,
+    public exploreDataService: ExploreDataService
+  ) {}
 
   ngOnInit(): void {
     this.yearsRange$ = this.dataService.data$.pipe(

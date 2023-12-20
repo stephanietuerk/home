@@ -1,31 +1,64 @@
 import { Injectable } from '@angular/core';
+import { cloneDeep, isEqual } from 'lodash-es';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, map, shareReplay, withLatestFrom } from 'rxjs/operators';
 import {
-  JobDatum,
-  JobDatumTimeRangeChart,
-  LineDef,
-} from '../art-history-data.model';
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  withLatestFrom,
+} from 'rxjs/operators';
+import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
+import { JobDatum, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
+import { artHistoryFields } from '../art-history-fields.constants';
+import { EntityCategory } from './explore-data.model';
 import {
-  ExploreChangeChartData,
-  ExploreChartsData,
-  ExploreTimeRangeChartData,
-} from './explore-data.model';
-import { ExploreSelections } from './explore-selections/explore-selections.model';
+  rankValueOptions,
+  tenureValueOptions,
+} from './explore-selections/explore-selections.constants';
+import {
+  ExploreSelections,
+  FilterType,
+  ValueType,
+} from './explore-selections/explore-selections.model';
 
 @Injectable()
-export class ExploreDataService {
-  selections: BehaviorSubject<ExploreSelections> = new BehaviorSubject(null);
+export class ExploreDataService extends Unsubscribe {
+  defaultSelections: ExploreSelections = {
+    valueType: ValueType.count,
+    years: {
+      start: undefined,
+      end: undefined,
+    },
+    fields: [artHistoryFields[0].name.full],
+    fieldsUse: FilterType.filter,
+    tenureUse: FilterType.disaggregate,
+    tenureValues: [tenureValueOptions[1].label, tenureValueOptions[2].label],
+    rankUse: FilterType.filter,
+    rankValues: [rankValueOptions[0].label],
+  };
+  private selections: BehaviorSubject<ExploreSelections> = new BehaviorSubject(
+    null
+  );
   selections$ = this.selections.asObservable();
-  chartsData$: Observable<ExploreChartsData>;
+  acrossTimeData$: Observable<JobDatum[]>;
+  changeData$: Observable<JobDatum[]>;
+  entityCategory$: Observable<EntityCategory>;
 
-  constructor(private artHistoryDataService: ArtHistoryDataService) {
-    this.setExploreChartsData();
+  constructor(private artHistoryData: ArtHistoryDataService) {
+    super();
   }
 
   init(): void {
+    this.initDefaultSelections();
     this.setExploreChartsData();
+  }
+
+  initDefaultSelections(): void {
+    this.defaultSelections.years.start = this.artHistoryData.dataYears[0];
+    this.defaultSelections.years.end = this.artHistoryData.dataYears[1];
+    this.selections.next(this.defaultSelections);
   }
 
   setExploreChartsData(): void {
@@ -33,62 +66,69 @@ export class ExploreDataService {
       filter((selections) => selections !== null)
     );
 
-    this.chartsData$ = selections$.pipe(
-      withLatestFrom(this.artHistoryDataService.data$),
+    const lineDefs$ = selections$.pipe(
+      map((selections) => this.getLineDefs(selections))
+    );
+
+    this.entityCategory$ = selections$.pipe(
+      map((selections) => this.getLineChartCategoriesAccessor(selections))
+    );
+
+    this.acrossTimeData$ = selections$.pipe(
+      withLatestFrom(this.artHistoryData.data$, lineDefs$),
       filter(([selections, data]) => !!selections && !!data),
-      map(([selections, data]) => {
-        const lineDefs = this.getLineDefs(selections);
-        const timeRange = {
-          data: this.getLineChartDataForSelections(selections, lineDefs, data),
-          dataType: selections.dataType,
-          categories: this.getLineChartCategoriesAccessor(selections),
-        };
-        const change = this.getChangeChartData(selections, lineDefs, timeRange);
-        return {
-          timeRange,
-          change,
-        };
-      }),
-      shareReplay()
+      map(([selections, data, lineDefs]) =>
+        this.getAcrossTimeData(selections, lineDefs, data)
+      ),
+      distinctUntilChanged((a, b) => isEqual(a, b)),
+      shareReplay(1)
+    );
+
+    this.changeData$ = selections$.pipe(
+      withLatestFrom(this.acrossTimeData$, lineDefs$, this.entityCategory$),
+      filter(([selections, data]) => !!selections && !!data),
+      map(([selections, data, lineDefs, entityCategory]) =>
+        this.getChangeChartData(selections, lineDefs, data, entityCategory)
+      ),
+      distinctUntilChanged((a, b) => isEqual(a, b)),
+      shareReplay(1)
     );
   }
 
   private getChangeChartData(
     selections: ExploreSelections,
     lineDefs: LineDef[],
-    timeRangeChartData: ExploreTimeRangeChartData
-  ): ExploreChangeChartData {
-    const lines = lineDefs.map((x) => x[timeRangeChartData.categories]);
+    timeRangeChartData: JobDatum[],
+    entityCategory: EntityCategory
+  ): JobDatum[] {
+    const lines = lineDefs.map((x) => x[entityCategory]);
     const data = lines.map((lineType) => {
-      const start = timeRangeChartData.data.find(
+      const start = timeRangeChartData.find(
         (x) =>
-          x[timeRangeChartData.categories] === lineType &&
+          x[entityCategory] === lineType &&
           x.year.getFullYear() === selections.years.start
       );
-      const end = timeRangeChartData.data.find(
+      const end = timeRangeChartData.find(
         (x) =>
-          x[timeRangeChartData.categories] === lineType &&
+          x[entityCategory] === lineType &&
           x.year.getFullYear() === selections.years.end
       );
-      const { year, ...newDatum } = start;
+      const newDatum = cloneDeep(start);
       newDatum.count = end.count - start.count;
       if (newDatum.percent) {
         newDatum.percent = end.percent - start.percent;
       }
+      newDatum.year = null;
       return newDatum;
     });
-    return {
-      data,
-      dataType: timeRangeChartData.dataType,
-      categories: timeRangeChartData.categories,
-    };
+    return data;
   }
 
-  private getLineChartDataForSelections(
+  private getAcrossTimeData(
     selections: ExploreSelections,
     lineDefs: LineDef[],
     data: JobDatum[]
-  ): JobDatumTimeRangeChart[] {
+  ): JobDatum[] {
     const dataForYearsRange = this.getFilteredDataForYearsRange(
       selections,
       data
@@ -107,7 +147,7 @@ export class ExploreDataService {
             lineDef
           );
         }
-        if (selections.dataType === 'percent') {
+        if (selections.valueType === ValueType.percent) {
           const categoriesAccessor =
             this.getLineChartCategoriesAccessor(selections);
           aggregatedData.forEach((x) => {
@@ -149,10 +189,16 @@ export class ExploreDataService {
     def: LineDef,
     data: JobDatum[]
   ): JobDatum[] {
-    const dataForField = data.filter((x) => x.field === def.field);
-    const dataForIsTt = dataForField.filter((x) => x.isTt === def.isTt);
-    const dataForRank = dataForIsTt.filter((x) => x.rank.includes(def.rank));
-    return dataForRank;
+    // const dataForField = data.filter((x) => x.field === def.field);
+    // const dataForIsTt = dataForField.filter((x) => x.isTt === def.isTt);
+    // const dataForRank = dataForIsTt.filter((x) => x.rank.includes(def.rank));
+    const filteredData = data.filter(
+      (x) =>
+        x.field === def.field &&
+        x.isTt === def.isTt &&
+        x.rank.includes(def.rank)
+    );
+    return filteredData;
     // return data.filter((x) => x.field === def.field && x.isTt === def.isTt && x.rank.includes(def.rank));
   }
 
@@ -231,11 +277,9 @@ export class ExploreDataService {
     x.percent = x.count / allDatum[0].count;
   }
 
-  private transformDataRankToString(
-    data: JobDatum[]
-  ): JobDatumTimeRangeChart[] {
-    return data.map((x) => {
-      const newObj = {} as JobDatumTimeRangeChart;
+  private transformDataRankToString(data: JobDatum[]): JobDatum[] {
+    const transformedData = data.map((x) => {
+      const newObj = {} as JobDatum;
       newObj.year = x.year;
       newObj.field = x.field;
       newObj.isTt = x.isTt;
@@ -244,9 +288,129 @@ export class ExploreDataService {
       newObj.rank = x.rank[0];
       return newObj;
     });
+    return transformedData;
   }
 
-  updateSelections(selections: ExploreSelections): void {
-    this.selections.next(selections);
+  updateSelections(selections: Partial<ExploreSelections>): void {
+    const update = this.getUpdatedSelections(selections);
+    this.selections.next(update);
+  }
+
+  getUpdatedSelections(
+    userUpdate: Partial<ExploreSelections>
+  ): ExploreSelections {
+    if (Object.keys(userUpdate).includes('tenureUse')) {
+      const update = this.getUpdateForVariableUseChange(
+        userUpdate,
+        'tenureUse'
+      );
+      return { ...this.selections.getValue(), ...update };
+    } else if (Object.keys(userUpdate).includes('rankUse')) {
+      const update = this.getUpdateForVariableUseChange(userUpdate, 'rankUse');
+      return { ...this.selections.getValue(), ...update };
+    } else if (Object.keys(userUpdate).includes('fieldsUse')) {
+      const update = this.getUpdateForFieldsUseChange(userUpdate);
+      return { ...this.selections.getValue(), ...update };
+    } else if (Object.keys(userUpdate).includes('valueType')) {
+      return this.getUpdateForValueTypeChange(userUpdate);
+    } else {
+      return { ...this.selections.getValue(), ...userUpdate };
+    }
+  }
+
+  getUpdateForVariableUseChange(
+    userUpdate: Partial<ExploreSelections>,
+    variableUse: 'tenureUse' | 'rankUse'
+  ): Partial<ExploreSelections> {
+    const current = this.selections.getValue();
+    const variableValues =
+      variableUse === 'tenureUse' ? 'tenureValues' : 'rankValues';
+    const altVariableUse =
+      variableUse === 'tenureUse' ? 'rankUse' : 'tenureUse';
+    const altVariableValues =
+      variableUse === 'tenureUse' ? 'rankValues' : 'tenureValues';
+    const options =
+      variableUse === 'tenureUse' ? tenureValueOptions : rankValueOptions;
+    const altOptions =
+      variableUse === 'tenureUse' ? rankValueOptions : tenureValueOptions;
+    let changedValues;
+    let otherValues = current[altVariableValues];
+    let fields = current.fields;
+    let fieldsUse = current.fieldsUse;
+    if (userUpdate[variableUse] === FilterType.filter) {
+      changedValues = [options[0].label];
+    } else {
+      changedValues = options
+        .filter((x) =>
+          current.valueType === ValueType.percent ? x.value !== 'all' : true
+        )
+        .map((x) => x.label);
+      otherValues = [altOptions[0].label];
+      fields = current.fields[0]
+        ? [current.fields[0]]
+        : [artHistoryFields[0].name.full];
+      fieldsUse = FilterType.filter;
+    }
+    return {
+      [variableUse]: userUpdate[variableUse],
+      [variableValues]: changedValues,
+      [altVariableUse]:
+        userUpdate[variableUse] === FilterType.disaggregate
+          ? FilterType.filter
+          : current[altVariableUse],
+      [altVariableValues]: otherValues,
+      fields,
+      fieldsUse,
+    };
+  }
+
+  getUpdateForFieldsUseChange(
+    userUpdate: Partial<ExploreSelections>
+  ): Partial<ExploreSelections> {
+    const current = this.selections.getValue();
+    let fields = current.fields;
+    let tenureUse = current.tenureUse;
+    let rankUse = current.rankUse;
+    let tenureValues = current.tenureValues;
+    let rankValues = current.rankValues;
+    if (userUpdate.fieldsUse === FilterType.filter) {
+      fields = [current.fields[0]];
+    } else {
+      tenureUse = FilterType.filter;
+      rankUse = FilterType.filter;
+      tenureValues = [tenureValueOptions[0].label];
+      rankValues = [rankValueOptions[0].label];
+    }
+    return {
+      fields,
+      fieldsUse: userUpdate.fieldsUse,
+      tenureUse,
+      rankUse,
+      tenureValues,
+      rankValues,
+    };
+  }
+
+  getUpdateForValueTypeChange(
+    userUpdate: Partial<ExploreSelections>
+  ): ExploreSelections {
+    const current = this.selections.getValue();
+    const update = { ...current, ...userUpdate };
+    if (userUpdate.valueType === ValueType.percent) {
+      if (current.fieldsUse === FilterType.disaggregate) {
+        update.fields = update.fields.filter((x) => x.toLowerCase() !== 'all');
+      }
+      if (current.tenureUse === FilterType.disaggregate) {
+        update.tenureValues = update.tenureValues.filter(
+          (x) => x.toLowerCase() !== 'all'
+        );
+      }
+      if (current.rankUse === FilterType.disaggregate) {
+        update.rankValues = update.rankValues.filter(
+          (x) => x.toLowerCase() !== 'all'
+        );
+      }
+    }
+    return update;
   }
 }

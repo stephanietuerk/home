@@ -198,7 +198,6 @@ export enum Rank {
   chair = 'chair',
   open = 'open',
   vap = 'vap',
-  postdoc = 'postdoc',
   lecturer = 'lecturer',
   unknown = 'unknown',
 }
@@ -242,10 +241,6 @@ export const rankOptions: { value: keyof typeof Rank; label: string }[] = [
   {
     value: Rank.vap,
     label: 'Visiting assistant professor',
-  },
-  {
-    value: Rank.postdoc,
-    label: 'Postdoc',
   },
   {
     value: Rank.lecturer,

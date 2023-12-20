@@ -12,7 +12,9 @@ import {
   scan,
   shareReplay,
   take,
+  withLatestFrom,
 } from 'rxjs';
+import { SearchUtilities } from 'src/app/core/utilities/search.util';
 import { JobsByCountry } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import {
@@ -27,6 +29,7 @@ export enum SchoolStateProperty {
   tenure = 'tenure',
   rank = 'rank',
   sortOrder = 'sortOrder',
+  searchTerms = 'searchTerms',
 }
 
 export enum SchoolSort {
@@ -40,6 +43,7 @@ export interface SchoolsState {
   [SchoolStateProperty.tenure]: string[];
   [SchoolStateProperty.rank]: string[];
   [SchoolStateProperty.sortOrder]: keyof typeof SchoolSort;
+  [SchoolStateProperty.searchTerms]: string[];
 }
 
 @Injectable({
@@ -52,9 +56,9 @@ export class SchoolsDataService {
   tenureOptions = tenureOptions;
   rankOptions = rankOptions;
   sortOptions = [
-    { value: SchoolSort.desc, label: 'Job count (desc)' },
-    { value: SchoolSort.asc, label: 'Job count (asc)' },
-    { value: SchoolSort.alpha, label: 'Alphabetical' },
+    { value: SchoolSort.desc, label: 'Jobs' },
+    { value: SchoolSort.asc, label: 'Jobs' },
+    { value: SchoolSort.alpha, label: 'A to Z' },
   ];
   yearRange: string[];
   dataBySchool$: Observable<JobsByCountry[]>;
@@ -64,6 +68,7 @@ export class SchoolsDataService {
       tenure: this.tenureOptions.map((x) => x.label),
       rank: this.rankOptions.map((x) => x.label),
       sortOrder: this.sortOptions[0].value,
+      searchTerms: [],
     });
   state$ = this.state.asObservable();
 
@@ -77,6 +82,7 @@ export class SchoolsDataService {
           field: state.field,
           tenure: state.tenure,
           rank: state.rank,
+          searchTerms: state.searchTerms,
         };
       }),
       distinctUntilChanged((a, b) => isEqual(a, b))
@@ -92,8 +98,11 @@ export class SchoolsDataService {
     });
 
     const filterData$ = combineLatest([data$, filterSelections$]).pipe(
-      map(([data, state]) => () => {
-        return this.filterDataForState(data, state);
+      withLatestFrom(sortOrder$),
+      map(([[data, state], sortOrder]) => () => {
+        const filteredData = cloneDeep(this.filterDataForState(data, state));
+        this.sortData(filteredData, sortOrder);
+        return filteredData;
       }),
       distinctUntilChanged((a, b) => isEqual(a, b)),
       shareReplay(1)
@@ -101,22 +110,27 @@ export class SchoolsDataService {
 
     const sortData$ = combineLatest([sortOrder$, data$]).pipe(
       map(([sortOrder, data]) => (filteredData) => {
-        console.log('sort', data, filteredData);
         const modifiedData = filteredData ?? data;
-        if (modifiedData.length > 0) {
-          if (sortOrder === SchoolSort.alpha) {
-            this.sortSchoolsAlphabetically(modifiedData);
-          } else {
-            this.sortSchoolsByJobCount(modifiedData, sortOrder);
-          }
-          return modifiedData;
-        }
+        this.sortData(modifiedData, sortOrder);
+        return modifiedData;
       })
     );
 
     this.dataBySchool$ = merge(filterData$, sortData$).pipe(
-      scan((data, mutationFn) => mutationFn(data), [] as JobsByCountry[])
+      scan((data, mutationFn) => mutationFn(data), [] as JobsByCountry[]),
+      distinctUntilChanged((a, b) => isEqual(a, b)),
+      shareReplay(1)
     );
+  }
+
+  sortData(data: JobsByCountry[], sortOrder: 'asc' | 'desc' | 'alpha'): void {
+    if (data.length > 0) {
+      if (sortOrder === SchoolSort.alpha) {
+        this.sortSchoolsAlphabetically(data);
+      } else {
+        this.sortSchoolsByJobCount(data, sortOrder);
+      }
+    }
   }
 
   sortSchoolsAlphabetically(data: JobsByCountry[]): void {
@@ -151,14 +165,32 @@ export class SchoolsDataService {
   ): JobsByCountry[] {
     let filteredData = cloneDeep(data);
     if (
+      state.searchTerms.length > 0 ||
       state.field.length !== this.fieldOptions.length ||
       state.tenure.length !== this.tenureOptions.length ||
       state.rank.length !== this.rankOptions.length
     ) {
-      filteredData = filteredData.map((country) => {
-        country.jobsBySchool = country.jobsBySchool.filter((school) => {
-          return school.jobsByYear.some((year) => {
-            return year.jobs.some((job) => {
+      filteredData = this.getFilteredDataForState(filteredData, state);
+    }
+    return filteredData;
+  }
+
+  getFilteredDataForState(
+    data: JobsByCountry[],
+    state: Partial<SchoolsState>
+  ): JobsByCountry[] {
+    let filteredDataByCountry = data.map((country) => {
+      country.jobsBySchool = country.jobsBySchool.map((school) => {
+        if (
+          state.searchTerms.length === 0 ||
+          (state.searchTerms.length > 0 &&
+            SearchUtilities.hasPartialMatchesInText(
+              school.school,
+              state.searchTerms
+            ))
+        ) {
+          school.jobsByYear = school.jobsByYear.map((year) => {
+            year.jobs = year.jobs.filter((job) => {
               const inFields =
                 state.field.length !== this.fieldOptions.length
                   ? state.field.some((field) => {
@@ -181,12 +213,25 @@ export class SchoolsDataService {
                   : true;
               return inFields && inTenure && inRank;
             });
+            return year;
           });
-        });
-        return country;
+          return school;
+        } else {
+          school.jobsByYear = [];
+          return school;
+        }
       });
-    }
-    return filteredData;
+      country.jobsBySchool = country.jobsBySchool.filter((school) => {
+        return school.jobsByYear.some((year) => {
+          return year.jobs.length > 0;
+        });
+      });
+      return country;
+    });
+    filteredDataByCountry = filteredDataByCountry.filter((country) => {
+      return country.jobsBySchool.length > 0;
+    });
+    return filteredDataByCountry;
   }
 
   updateState(

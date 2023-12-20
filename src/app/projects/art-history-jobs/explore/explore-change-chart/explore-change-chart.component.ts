@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { isEqual } from 'lodash-es';
+import { Observable, combineLatest } from 'rxjs';
+import { distinctUntilChanged, filter, map, shareReplay } from 'rxjs/operators';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { JobDatumChangeChart } from '../../art-history-data.model';
+import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
-import { ExploreChangeChartData } from '../explore-data.model';
+import { EntityCategory } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
+import {
+  ExploreSelections,
+  ValueType,
+} from '../explore-selections/explore-selections.model';
 import {
   ChangeChartConfig,
   ChangeChartXAxisConfig,
@@ -18,6 +23,7 @@ interface ViewModel {
   xAxisConfig: ChangeChartXAxisConfig;
   yAxisConfig: ChangeChartXAxisConfig;
   height: number;
+  title: string;
 }
 @Component({
   selector: 'app-explore-change-chart',
@@ -41,66 +47,78 @@ export class ExploreChangeChartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.vm$ = this.exploreDataService.chartsData$.pipe(
-      filter((chartsData) => !!chartsData.change),
-      map((chartsData) => {
+    this.vm$ = combineLatest([
+      this.exploreDataService.changeData$,
+      this.exploreDataService.selections$,
+      this.exploreDataService.entityCategory$,
+    ]).pipe(
+      filter(([data, selections]) => !!data && !!selections),
+      map(([data, selections, entityCategory]) => {
         return {
-          dataMarksConfig: this.getDataMarksConfig(chartsData.change),
-          xAxisConfig: this.getXAxisConfig(chartsData.change),
+          dataMarksConfig: this.getDataMarksConfig(
+            data,
+            entityCategory,
+            selections.valueType
+          ),
+          xAxisConfig: this.getXAxisConfig(selections.valueType),
           yAxisConfig: this.getYAxisConfig(),
-          height: this.setChartHeight(chartsData.change.data),
+          height: this.setChartHeight(data),
+          title: this.getTitle(entityCategory, selections),
         };
-      })
+      }),
+      distinctUntilChanged((a, b) => isEqual(a, b)),
+      shareReplay(1)
     );
   }
 
-  getDataMarksConfig(chartData: ExploreChangeChartData): ChangeChartConfig {
+  getDataMarksConfig(
+    data: JobDatum[],
+    entityCategory: EntityCategory,
+    valueType: keyof typeof ValueType
+  ): ChangeChartConfig {
     const config = new ChangeChartConfig();
-    config.data = chartData.data;
-    config.ordinal.valueAccessor = (d) => d[chartData.categories];
-    config.quantitative.valueAccessor = (d) => d[chartData.dataType];
-    config.quantitative.domain = this.getQuantitativeDomain(chartData);
+    config.data = data;
+    config.ordinal.valueAccessor = (d) => d[entityCategory];
+    config.quantitative.valueAccessor = (d) => d[valueType];
+    config.quantitative.domain = this.getQuantitativeDomain(valueType);
     config.quantitative.valueFormat =
-      this.getQuantitativeValueFormat(chartData);
-    config.category.valueAccessor = (d) => d[chartData.categories];
-    config.category.colorScale = this.getColorScale(chartData);
+      this.getQuantitativeValueFormat(valueType);
+    config.category.valueAccessor = (d) => d[entityCategory];
+    config.category.colorScale = this.getColorScale(data, entityCategory);
     return config;
   }
 
-  getColorScale(chartData: ExploreChangeChartData): (x: any) => any {
-    if (chartData.categories === 'field') {
+  getColorScale(
+    data: JobDatum[],
+    entityCategory: EntityCategory
+  ): (x: any) => any {
+    if (entityCategory === 'field') {
       return (d) => this.fieldsService.getColorForField(d);
     } else {
-      const color = this.fieldsService.getColorForField(
-        chartData.data[0].field
-      );
+      const color = this.fieldsService.getColorForField(data[0].field);
       return (d) => color;
     }
   }
 
-  getQuantitativeDomain(chartData: ExploreChangeChartData): any {
-    return chartData.dataType === 'percent' ? [0, 1] : undefined;
+  getQuantitativeDomain(valueType: keyof typeof ValueType): any {
+    return valueType === 'percent' ? [0, 1] : undefined;
   }
 
-  getQuantitativeValueFormat(chartData: ExploreChangeChartData): string {
-    return artHistoryFormatSpecifications.explore.chart.value[
-      chartData.dataType
-    ];
+  getQuantitativeValueFormat(valueType: keyof typeof ValueType): string {
+    return artHistoryFormatSpecifications.explore.chart.value[valueType];
   }
 
-  getQuantitativeTickFormat(chartData: ExploreChangeChartData): string {
-    return artHistoryFormatSpecifications.explore.chart.tick[
-      chartData.dataType
-    ];
+  getQuantitativeTickFormat(valueType: keyof typeof ValueType): string {
+    return artHistoryFormatSpecifications.explore.chart.tick[valueType];
   }
 
-  setChartHeight(data: JobDatumChangeChart[]): number {
+  setChartHeight(data: JobDatum[]): number {
     return data.length * this.barHeight + this.margin.top + this.margin.bottom;
   }
 
-  getXAxisConfig(chartData: ExploreChangeChartData): ChangeChartXAxisConfig {
+  getXAxisConfig(valueType: keyof typeof ValueType): ChangeChartXAxisConfig {
     const config = new ChangeChartXAxisConfig();
-    config.tickFormat = this.getQuantitativeTickFormat(chartData);
+    config.tickFormat = this.getQuantitativeTickFormat(valueType);
     return config;
   }
 
@@ -108,5 +126,31 @@ export class ExploreChangeChartComponent implements OnInit {
     const config = new ChangeChartYAxisConfig();
     config.wrap.wrapWidth = this.margin.left;
     return config;
+  }
+
+  getTitle(
+    entityCategory: EntityCategory,
+    selections: ExploreSelections
+  ): string {
+    let fields;
+    let disaggregation;
+    if (entityCategory === 'field') {
+      disaggregation = 'by field';
+      if (selections.valueType === 'count') {
+        fields = '';
+      } else {
+        fields = 'all';
+      }
+    } else {
+      fields = selections.fields.join('');
+      if (entityCategory === 'isTt') {
+        disaggregation = 'by tenure status';
+      } else {
+        disaggregation = 'by rank';
+      }
+    }
+    return `Change${
+      selections.valueType === ValueType.percent ? '(%)' : ''
+    } in ${fields.toLowerCase()} jobs ${disaggregation}`;
   }
 }

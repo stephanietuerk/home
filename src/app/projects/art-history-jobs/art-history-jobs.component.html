@@ -1,37 +1,38 @@
 <div class="project-container">
   <app-explore></app-explore>
-  <div class="top-matter-container">
+  <div class="top-matter-container" *ngIf="mainDataService.dataYears">
     <p class="description">
-      Inspired by similar efforts that I'd seen for Literature and History, I
-      wanted to take a look at trends in the Art History job market via the jobs
-      posted on the Academic Jobs Wiki.
+      In the field of Art History, the Academic Jobs wiki serves as an informal
+      clearinghouse for academic job postings. Inspired by similar efforts for
+      Literature and History, this project provides an interface for visually
+      exploring aggregated job postings from the Academic Jobs Wiki to
+      facilitate a data-driven understanding of the Art History job market.
     </p>
     <p class="description">
-      This work is intended to help art historians or people considering an
-      advanced degree in the field have a data-driven understanding of the job
-      market. Users can not only view changes in the total number of jobs over
-      time but also explore jobs by subfield, by tenure status and job rank, and
-      by institution.
+      Throughout the humanities, there is a collective understanding that
+      academic job markets are "in crisis," but as far as I know, there are no
+      attempts to describe this quantitatively. The data presented are an
+      attempt tp facilitate a shared understanding of hiring trends within the
+      field. I hope that this is useful for prospective and current PhD students
+      and faculty alike.
     </p>
-    <app-data-acquisition></app-data-acquisition>
-    <h2 class="section-header">Results</h2>
-    <h3 class="section-header">2022</h3>
-    <h3 class="section-header">2020</h3>
+    <p class="description"
+      >This interface allows users to explore {{ mainDataService.dataYears[1] -
+      mainDataService.dataYears[0] + 1}} years of data, from {{
+      mainDataService.dataYears[0] }} to {{ mainDataService.dataYears[1] }}
+      aggregated by scarping jobs posted on the Academic Jobs Wiki. Users can
+      view changes in the <span>total number of jobs</span> over time as well as
+      explore jobs by <span>subfield</span>, <span>tenure status</span>,
+      <span>job rank</span>, and <span>institution.</span></p
+    >
     <p class="description">
-      To no one's surprise, the Art History academic job market is pretty grim
-      in 2020. This year there are 50 jobs posted, while in the 9 years before
-      this, the average number of job listings was 141 per year.
-    </p>
-    <p class="description">
-      What was slightly surprising to me was that there wasn't a bigger drop off
-      in jobs before 2019. (Too bad there is not data that could show us where
-      things were before 2008.) 2019 is also an interesting year in that while
-      the overall number of jobs was considerably down, almost all of the loses
-      were in the Modern / Contemporary, Early Modern–19th Century, and General
-      fields.
+      The source code for data aggregation is available on GitHub. Additional
+      information on methods for aggregation and field imputation are available
+      in the section below. Please feel free to reach out to me via DM on
+      Twitter or email with any feedback or questions.
     </p>
   </div>
   <app-summary></app-summary>
-
   <app-schools></app-schools>
+  <app-data-acquisition></app-data-acquisition>
 </div>

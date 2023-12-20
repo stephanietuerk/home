@@ -45,12 +45,10 @@ export class ArtHistoryUtilities {
           return rankOptions[4].label;
         case 'vap':
           return rankOptions[5].label;
-        case 'postdoc':
-          return rankOptions[6].label;
         case 'lecturer':
-          return rankOptions[7].label;
+          return rankOptions[6].label;
         case 'unknown':
-          return rankOptions[8].label;
+          return rankOptions[7].label;
         default:
           return this.sentenceCase(str);
       }

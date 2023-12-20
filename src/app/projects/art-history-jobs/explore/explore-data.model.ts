@@ -1,7 +1,4 @@
-import {
-  JobDatumChangeChart,
-  JobDatumTimeRangeChart,
-} from '../art-history-data.model';
+import { JobDatum } from '../art-history-data.model';
 import { ValueType } from './explore-selections/explore-selections.model';
 
 export interface ExploreChartsData {
@@ -10,15 +7,15 @@ export interface ExploreChartsData {
 }
 
 export interface ExploreTimeRangeChartData {
-  data: JobDatumTimeRangeChart[];
+  data: JobDatum[];
   dataType: ValueType.count | ValueType.percent;
-  categories: LineCategoryType;
+  categories: EntityCategory;
 }
 
 export interface ExploreChangeChartData {
-  data: JobDatumChangeChart[];
+  data: JobDatum[];
   dataType: ValueType.count | ValueType.percent;
-  categories: LineCategoryType;
+  categories: EntityCategory;
 }
 
-export type LineCategoryType = 'field' | 'isTt' | 'rank';
+export type EntityCategory = 'field' | 'isTt' | 'rank';

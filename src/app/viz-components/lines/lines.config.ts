@@ -69,24 +69,10 @@ export class LinesConfig extends DataMarksConfig {
   stroke?: LinesStrokeConfig = new LinesStrokeConfig();
 
   /**
-   * A boolean to determine if the line will be labeled.
+   * A config for the behavior of the line labels.
    */
-  labelLines?: boolean;
+  labels?: LinesLabelsConfig = new LinesLabelsConfig();
 
-  /**
-   * A function that returns a string to be used as the label for a line. Can be used to modify the
-   * line label string as needed.
-   *
-   * Default is the identity function.
-   */
-  lineLabelsFormat?: (d: string) => string;
-
-  /**
-   * The distance from a line in which a hover event will trigger a tooltip, in px.
-   *  Default is 80.
-   *
-   * This is used to ensure that a tooltip is triggered only when a user's pointer is close to lines.
-   */
   pointerDetectionRadius: number;
 
   constructor(init?: Partial<LinesConfig>) {
@@ -98,7 +84,7 @@ export class LinesConfig extends DataMarksConfig {
     this.category.valueAccessor = () => 1;
     this.category.colors = schemeTableau10 as string[];
     this.curve = curveLinear;
-    this.lineLabelsFormat = (d: string) => d;
+    this.labels = new LinesLabelsConfig();
     this.pointerDetectionRadius = 80;
     this.hoverDot.radius = 4;
     Object.assign(this, init);
@@ -181,6 +167,41 @@ export class PointMarkersConfig extends PointMarkerConfig {
     super();
     this.display = true;
     this.growByOnHover = 1;
+    Object.assign(this, init);
+  }
+}
+
+export class LinesLabelsConfig {
+  /**
+   * A boolean to determine if the line will be labeled.
+   */
+  display: boolean;
+  /**
+   * A function that returns a string to be used as the label for a line. Can be used to modify the
+   * line label string as needed.
+   *
+   * Default is the identity function.
+   */
+  format: (d: string) => string;
+  /**
+   * A function that returns a color to use for the label. This overrides the default behavior
+   * of using the color of the line.
+   *
+   * Default is undefined.
+   */
+  fill: (d: string) => string;
+  /**
+   * A value for the minimum spacing between labels, in px. If a label would be placed closer than
+   * this value to another label, it will not be displayed.
+   *
+   * Default is 24.
+   */
+  minSpacing: number;
+
+  constructor(init?: Partial<LinesLabelsConfig>) {
+    this.display = false;
+    this.format = (d: string) => d;
+    this.minSpacing = 24;
     Object.assign(this, init);
   }
 }

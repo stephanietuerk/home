@@ -31,8 +31,12 @@ $panel-opacity: 0.9;
 
   .navbar {
     padding-top: grid(3);
-    padding-bottom: grid(1);
     background: rgba($color-light-gray-lightest, $panel-opacity);
+
+    &.open {
+      position: relative;
+      z-index: 1001;
+    }
   }
 
   .links-container {
@@ -45,11 +49,9 @@ $panel-opacity: 0.9;
     @extend %slab-medium;
     font-size: 1.15rem;
     color: $color-highlight;
-    // line-height: 1;
-    // padding-bottom: grid(1);
-    border-bottom: 2px solid rgba($color-light-gray-lightest, $panel-opacity);
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.25s ease-in-out;
+    padding-bottom: grid(1);
 
     &:hover {
       border-bottom: 2px solid $color-highlight;
@@ -61,7 +63,7 @@ $panel-opacity: 0.9;
   }
 }
 
-.cdk-overlay-pane {
+.cdk-overlay-pane.explore-dropdown {
   width: 1080px;
   // background: rgba(white, 0.8);
   background: rgba($color-light-gray-lightest, $panel-opacity);

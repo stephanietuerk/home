@@ -10,7 +10,52 @@
   .section-header {
     @extend %h3;
     text-align: center;
-    padding-bottom: grid(1);
+    padding-bottom: grid(2);
+    margin-bottom: grid(2);
+    border-bottom: 1px solid $color-light-gray-medium;
+  }
+
+  .overview-text {
+    line-height: 1.5;
+    padding-bottom: grid(3);
+  }
+
+  .filters-component {
+    display: block;
+    padding-top: grid(6);
+  }
+
+  .legend-container {
+    display: flex;
+    gap: grid(6);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: grid(2);
+    padding-top: grid(4);
+  }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: flex-start;
+    padding-right: grid(4);
+  }
+
+  .legend-color {
+    width: grid(3);
+    height: grid(3);
+    margin-right: grid(1);
+    flex-shrink: 0;
+    position: relative;
+    top: 3px;
+  }
+
+  .legend-text {
+    @extend %sans-light;
+    font-size: 0.9rem;
+    line-height: 1.2;
   }
 
   .charts-container {
@@ -22,28 +67,57 @@
   .all-schools-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: grid(6);
+    grid-auto-rows: 1fr;
+    row-gap: grid(10);
+    column-gap: grid(6);
+    padding-bottom: grid(4);
   }
 
   .school-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding-bottom: grid(6);
+    justify-content: space-between;
   }
 
   .school-name {
-    @extend %small-caps;
     @extend %slab-medium;
+    font-size: 0.9rem;
     line-height: 1;
-    height: 100%;
-    padding-bottom: grid(3);
+    padding-bottom: grid(1);
+    height: grid(6);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .highlight {
+      background-color: $color-search-highlight;
+    }
+  }
+
+  .no-schools-text {
+    @extend %sans-medium;
+    padding: grid(6) grid(4);
   }
 
   .mat-expansion-panel.country-expansion-panel {
     --mat-expansion-container-shape: 0px;
     overflow: visible;
     width: 100%;
+
+    &.mat-expanded {
+      .mat-content {
+        .country-name {
+          color: $color-highlight;
+          font-weight: 500;
+        }
+        .num-schools {
+          color: $color-highlight;
+        }
+        .mat-icon {
+          color: $color-highlight;
+        }
+      }
+    }
 
     .mat-expansion-panel-header {
       --mat-focus-indicator-border-width: 0px;
@@ -69,20 +143,25 @@
         .num-schools {
           color: white;
         }
-        &:not(.mat-expanded) {
+        .mat-icon {
+          color: white;
         }
       }
     }
 
     .mat-content {
       margin: 0;
-      padding: grid(2) grid(1) grid(2) grid(2);
+      padding: grid(1) grid(1) grid(1) grid(2);
       background-color: white;
       transition: background 0.2s ease-in-out;
     }
 
     .mat-expansion-panel-header-title {
-      // @extend %typography-ui-label-md-semibold;
+      .country-name {
+        @extend %sans-regular;
+        font-size: 1rem;
+        line-height: 1.2;
+      }
     }
 
     .mat-expansion-panel-header-description {
@@ -99,12 +178,12 @@
 
     .mat-expansion-panel-content {
       border-bottom: 1px solid $color-dark-gray;
-      padding: 0 grid(2) grid(4) grid(2);
+      padding: 0 grid(2);
       background-color: white;
     }
 
     .mat-expansion-panel-body {
-      padding: grid(3) 0 0 0;
+      padding: grid(4) 0 grid(2) 0;
       background-color: white;
       overflow: visible;
 

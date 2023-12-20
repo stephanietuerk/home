@@ -22,9 +22,12 @@
   max-width: 300px;
   width: 200px;
 
+  $tt-background-color: rgba(white, 0.95);
+  $tt-outline-color: $color-light-gray-medium;
+
   .tooltip-container {
-    background: rgba(white, 0.95);
-    border: 1px solid $color-light-gray-light;
+    background: $tt-background-color;
+    border: 1px solid $tt-outline-color;
     padding: grid(2);
     border-radius: grid(1);
   }
@@ -69,5 +72,17 @@
 
   .percent-sign {
     font-size: 0.9rem;
+  }
+
+  .svg-triangle {
+    $x-offset: calc(50% - (var(--width) / 2));
+    display: block;
+    transform: translate(#{$x-offset}, -2px);
+    fill: $tt-background-color;
+
+    .triangle-path {
+      fill: $tt-background-color;
+      stroke: $tt-outline-color;
+    }
   }
 }

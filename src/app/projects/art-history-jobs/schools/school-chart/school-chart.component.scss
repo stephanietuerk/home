@@ -4,12 +4,13 @@
 :host {
   display: flex;
   flex-direction: column;
-  flex-grow: 0;
+  flex-grow: 1;
 }
 
 .chart {
   display: flex;
   height: 100%;
+  background: $color-light-gray-lightest;
 }
 
 .year {

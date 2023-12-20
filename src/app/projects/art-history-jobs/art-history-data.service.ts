@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
 import { JobDatum, JobsByCountry } from './art-history-data.model';
 import { ArtHistoryUtilities } from './art-history.utilities';
 
@@ -13,13 +12,22 @@ import { ArtHistoryUtilities } from './art-history.utilities';
 export class ArtHistoryDataService {
   data$: Observable<JobDatum[]>;
   dataBySchool$: Observable<JobsByCountry[]>;
+  dataYears: [number, number];
 
-  constructor(
-    private http: HttpClient,
-    private sentenceCase: SentenceCasePipe<string>
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  getData(): void {
+  init(): Promise<void> {
+    return new Promise((resolve) => {
+      this.setData();
+      this.setDataBySchools();
+      this.data$.subscribe((data) => {
+        this.dataYears = this.getDataYears(data);
+        resolve();
+      });
+    });
+  }
+
+  setData(): void {
     this.data$ = this.http
       .get('assets/artHistoryJobs/aggregated_data.csv', {
         responseType: 'text',
@@ -28,6 +36,9 @@ export class ArtHistoryDataService {
         map((data) => this.parseData(data)),
         shareReplay(1)
       );
+  }
+
+  setDataBySchools(): void {
     this.dataBySchool$ = this.http
       .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
       .pipe(shareReplay(1));
@@ -43,5 +54,16 @@ export class ArtHistoryDataService {
         count: +x['count'],
       };
     });
+  }
+
+  getDataYears(data: JobDatum[]): [number, number] {
+    const years = [];
+    data.forEach((x) => {
+      if (!years.includes(x.year.getFullYear())) {
+        years.push(x.year.getFullYear());
+      }
+    });
+    years.sort((a, b) => a - b);
+    return [years[0], years[years.length - 1]];
   }
 }

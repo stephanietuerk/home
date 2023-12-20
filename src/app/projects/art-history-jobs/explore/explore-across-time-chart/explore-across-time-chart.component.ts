@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { timeYear } from 'd3-time';
+import { isEqual } from 'lodash-es';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, shareReplay } from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
 import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
@@ -17,23 +18,25 @@ import {
   HtmlTooltipConfig,
   HtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
+import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
-import {
-  ExploreTimeRangeChartData,
-  LineCategoryType,
-} from '../explore-data.model';
+import { EntityCategory } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
 import {
-  rankOptions,
-  tenureOptions,
+  rankValueOptions,
+  tenureValueOptions,
 } from '../explore-selections/explore-selections.constants';
-import { ExploreSelections } from '../explore-selections/explore-selections.model';
+import {
+  ExploreSelections,
+  FilterType,
+  ValueType,
+} from '../explore-selections/explore-selections.model';
 import {
   ExploreTimeRangeChartConfig,
   ExploreTimeRangeXAxisConfig,
   ExploreTimeRangeYAxisConfig,
-} from './explore-time-range-chart.model';
+} from './explore-across-time-chart.model';
 
 interface ViewModel {
   dataMarksConfig: ExploreTimeRangeChartConfig;
@@ -45,16 +48,16 @@ interface ViewModel {
 }
 
 @Component({
-  selector: 'app-explore-time-range-chart',
-  templateUrl: './explore-time-range-chart.component.html',
-  styleUrls: ['./explore-time-range-chart.component.scss'],
+  selector: 'app-explore-across-time-chart',
+  templateUrl: './explore-across-time-chart.component.html',
+  styleUrls: ['./explore-across-time-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [
-    { provide: LINES, useExisting: ExploreTimeRangeChartComponent },
-    { provide: DATA_MARKS, useExisting: ExploreTimeRangeChartComponent },
+    { provide: LINES, useExisting: ExploreAcrossTimeChartComponent },
+    { provide: DATA_MARKS, useExisting: ExploreAcrossTimeChartComponent },
   ],
 })
-export class ExploreTimeRangeChartComponent implements OnInit {
+export class ExploreAcrossTimeChartComponent implements OnInit {
   vm$: Observable<ViewModel>;
   width = 800;
   height = 500;
@@ -85,54 +88,58 @@ export class ExploreTimeRangeChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.vm$ = combineLatest([
-      this.exploreDataService.chartsData$,
+      this.exploreDataService.acrossTimeData$,
       this.exploreDataService.selections$,
+      this.exploreDataService.entityCategory$,
     ]).pipe(
-      filter(([chartData]) => !!chartData?.timeRange),
-      map(([chartData, selections]) => {
+      filter(([data, selections]) => !!data && !!selections),
+      map(([data, selections, entityCategory]) => {
         return {
-          dataMarksConfig: this.getDataMarksConfig(chartData.timeRange),
-          xAxisConfig: this.getXAxisConfig(),
-          yAxisConfig: this.getYAxisConfig(chartData.timeRange),
-          lineCategoryLabel: this.getLineCategoryLabel(
-            chartData.timeRange.categories
+          dataMarksConfig: this.getDataMarksConfig(
+            data,
+            entityCategory,
+            selections.valueType
           ),
-          title: selections
-            ? this.getTitle(chartData.timeRange.categories, selections)
-            : '',
-          dataType: selections ? selections.dataType : '',
+          xAxisConfig: this.getXAxisConfig(),
+          yAxisConfig: this.getYAxisConfig(selections.valueType),
+          lineCategoryLabel: this.getLineCategoryLabel(entityCategory),
+          title: this.getTitle(entityCategory, selections),
+          dataType: selections.valueType,
         };
-      })
+      }),
+      distinctUntilChanged((a, b) => isEqual(a, b)),
+      shareReplay(1)
     );
   }
 
   private getDataMarksConfig(
-    chartData: ExploreTimeRangeChartData
+    data: JobDatum[],
+    entityCategory: EntityCategory,
+    valueType: keyof typeof ValueType
   ): ExploreTimeRangeChartConfig {
     const config = new ExploreTimeRangeChartConfig();
-    config.data = chartData.data;
-    config.y.valueAccessor = (d: any) => d[chartData.dataType];
+    config.data = data;
+    config.y.valueAccessor = (d: any) => d[valueType];
     config.y.valueFormat =
-      artHistoryFormatSpecifications.explore.chart.value[chartData.dataType];
-    config.category.valueAccessor = (d: any) => d[chartData.categories];
-    config.category.colorScale = this.getColorScale(chartData);
-    if (chartData.categories !== 'field') {
-      config.labelLines = true;
-      // config.labels.display = true;
-      // config.labels.align = 'inside';
-      config.lineLabelsFormat = (d: any) =>
-        this.getCategoryLabel(d, chartData.categories);
+      artHistoryFormatSpecifications.explore.chart.value[valueType];
+    config.category.valueAccessor = (d: any) => d[entityCategory];
+    config.category.colorScale = this.getColorScale(entityCategory, data);
+    config.labels.display = entityCategory !== 'field';
+    if (entityCategory !== 'field') {
+      config.labels.format = (d: any) =>
+        this.getCategoryLabel(d, entityCategory);
     }
     return config;
   }
 
-  getColorScale(chartData: ExploreTimeRangeChartData): (x: any) => any {
-    if (chartData.categories === 'field') {
+  getColorScale(
+    entityCategory: EntityCategory,
+    data: JobDatum[]
+  ): (x: any) => any {
+    if (entityCategory === 'field') {
       return (d) => this.fieldsService.getColorForField(d);
     } else {
-      const color = this.fieldsService.getColorForField(
-        chartData.data[0].field
-      );
+      const color = this.fieldsService.getColorForField(data[0].field);
       return (d) => color;
     }
   }
@@ -144,20 +151,20 @@ export class ExploreTimeRangeChartComponent implements OnInit {
   }
 
   private getYAxisConfig(
-    chartData: ExploreTimeRangeChartData
+    valueType: keyof typeof ValueType
   ): ExploreTimeRangeYAxisConfig {
     const config = new ExploreTimeRangeYAxisConfig();
     config.tickFormat =
-      artHistoryFormatSpecifications.explore.chart.tick[chartData.dataType];
+      artHistoryFormatSpecifications.explore.chart.tick[valueType];
     return config;
   }
 
-  private getLineCategoryLabel(lineType: LineCategoryType): string {
-    if (lineType === 'field') {
+  private getLineCategoryLabel(entityCategory: EntityCategory): string {
+    if (entityCategory === 'field') {
       return 'Field';
-    } else if (lineType === 'isTt') {
+    } else if (entityCategory === 'isTt') {
       return 'Tenure status';
-    } else if (lineType === 'rank') {
+    } else if (entityCategory === 'rank') {
       return 'Rank';
     } else {
       return '';
@@ -180,7 +187,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     if (data) {
       config.size.minWidth = 200;
       config.position.offsetX = data.positionX;
-      config.position.offsetY = data.positionY - 16;
+      config.position.offsetY = data.positionY - 2;
       config.show = true;
     } else {
       config.show = false;
@@ -203,27 +210,42 @@ export class ExploreTimeRangeChartComponent implements OnInit {
     if (category === 'Field' || category === 'fields') {
       return value;
     } else if (category === 'Tenure status' || category === 'isTt') {
-      return tenureOptions.find((x) => x.label === value).label;
+      return tenureValueOptions.find((x) => x.label === value).label;
     } else if (category === 'Rank' || category === 'rank') {
-      return rankOptions.find((x) => x.label === value).label;
+      return rankValueOptions.find((x) => x.label === value).label;
     } else {
       return value;
     }
   }
 
-  getTitle(
-    categories: LineCategoryType,
-    selections: ExploreSelections
-  ): string {
-    let fields;
+  getTitle(categories: EntityCategory, selections: ExploreSelections): string {
+    let fields = '';
     let disaggregation;
+    let tenureSelection;
+    let rankSelection;
+    let tenureAndRankString = '';
     if (categories === 'field') {
-      disaggregation = 'by field';
-      if (selections.dataType === 'count') {
-        fields = '';
-      } else {
-        fields = 'all';
+      if (selections.fieldsUse === FilterType.disaggregate) {
+        disaggregation = 'by field';
+        if (selections.valueType === ValueType.percent) {
+          fields = 'all';
+        }
       }
+      if (
+        selections.tenureUse === 'filter' &&
+        selections.tenureValues[0] !== tenureValueOptions[0].label
+      ) {
+        tenureSelection = selections.tenureValues[0];
+      }
+      if (
+        selections.rankUse === 'filter' &&
+        selections.rankValues[0] !== rankValueOptions[0].label
+      ) {
+        rankSelection = selections.rankValues[0];
+      }
+      tenureAndRankString = `${tenureSelection ?? ''}${
+        tenureSelection && rankSelection ? ',' : ''
+      } ${rankSelection ?? ''}`;
     } else {
       fields = selections.fields.join('');
       if (categories === 'isTt') {
@@ -233,7 +255,7 @@ export class ExploreTimeRangeChartComponent implements OnInit {
       }
     }
     return `${
-      selections.dataType
-    } of ${fields.toLowerCase()} jobs ${disaggregation}`;
+      selections.valueType
+    } of ${fields.toLowerCase()}${tenureAndRankString} jobs ${disaggregation}`;
   }
 }

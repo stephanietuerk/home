@@ -1,0 +1,36 @@
+@use 'sass:color';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.checkbox-input-label {
+  border: 1px solid $color-highlight;
+  border-radius: grid(1);
+  padding: grid(2);
+  line-height: 1.1;
+  font-size: 0.85rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 6px;
+  line-height: 1.2;
+  @extend %slab-extrabold;
+}
+
+.checkbox-input-label.selected {
+  border: 1px solid $color-highlight;
+  background-color: var(--color);
+  color: white;
+}
+
+.checkbox-input-label:not(.selected) {
+  border: 1px solid $color-highlight;
+  background-color: white;
+  color: var(--color);
+}
+
+.checkbox-input-label:not(.selected):hover {
+  background: $color-light-gray-light;
+}

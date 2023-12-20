@@ -1,19 +1,15 @@
 import {
   Component,
   ElementRef,
-  Input,
   OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  ControlContainer,
-  FormGroup,
-  FormGroupDirective,
-} from '@angular/forms';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { format } from 'd3';
 import noUiSlider from 'nouislider';
-import { YearsFormGroup } from '../explore-selections-form.service';
+import { ArtHistoryDataService } from '../../../art-history-data.service';
+import { ExploreDataService } from '../../explore-data.service';
 
 export interface YearsSelection {
   start: number;
@@ -36,9 +32,12 @@ export interface YearsSelection {
   ],
 })
 export class YearsSelectionComponent implements OnInit {
-  @Input() years: [number, number];
-  @Input() formGroup: FormGroup<YearsFormGroup>;
   @ViewChild('slider', { static: true }) slider: ElementRef;
+
+  constructor(
+    private selections: ExploreDataService,
+    private data: ArtHistoryDataService
+  ) {}
 
   ngOnInit(): void {
     this.createSlider();
@@ -47,14 +46,11 @@ export class YearsSelectionComponent implements OnInit {
 
   createSlider() {
     noUiSlider.create(this.slider.nativeElement, {
-      start: [
-        this.formGroup.controls.start.value,
-        this.formGroup.controls.end.value,
-      ],
+      start: [this.data.dataYears[0], this.data.dataYears[1]],
       connect: true,
       range: {
-        min: this.years[0],
-        max: this.years[1],
+        min: this.data.dataYears[0],
+        max: this.data.dataYears[1],
       },
       step: 1,
       margin: 1,
@@ -88,7 +84,7 @@ export class YearsSelectionComponent implements OnInit {
         start: +values[0],
         end: +values[1],
       };
-      this.formGroup.setValue(selections);
+      this.selections.updateSelections({ years: selections });
     });
   }
 }

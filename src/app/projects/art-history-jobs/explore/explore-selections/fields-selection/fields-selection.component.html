@@ -1,0 +1,22 @@
+<ng-container *ngIf="inputType$ | async as inputType">
+  <ng-container *ngIf="data.selections$ | async as selections">
+    <ng-container *ngFor="let field of fieldOptions">
+      <input
+        class="cdk-visually-hidden"
+        [attr.type]="inputType"
+        [attr.id]="field.value"
+        [attr.name]="inputType === 'radio' ? 'field' : null"
+        [attr.checked]="inputType === 'checkbox' && selections.fields.includes(field.label) ? true : null"
+      />
+      <label
+        class="checkbox-input-label fields button-style"
+        [attr.for]="field.value"
+        [class.selected]="selections.fields.includes(field.value)"
+        (click)="updateField(field.value, inputType, selections.fields)"
+        [style.--color]="field.color"
+      >
+        {{field.label}}</label
+      >
+    </ng-container>
+  </ng-container>
+</ng-container>

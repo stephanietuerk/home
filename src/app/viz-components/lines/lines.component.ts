@@ -29,14 +29,14 @@ import {
   Transition,
 } from 'd3';
 import { ChartComponent } from '../chart/chart.component';
+import { DataDomainService } from '../core/services/data-domain.service';
 import { UtilitiesService } from '../core/services/utilities.service';
+import { DomainPaddingConfig } from '../data-marks/data-dimension.config';
 import { DATA_MARKS } from '../data-marks/data-marks.token';
 import { XyDataMarks, XyDataMarksValues } from '../data-marks/xy-data-marks';
 import { XyChartComponent } from '../xy-chart/xy-chart.component';
 import { XyContent } from '../xy-chart/xy-content';
 import { LinesConfig } from './lines.config';
-import { DataDomainService } from '../core/services/data-domain.service';
-import { DomainPaddingConfig } from '../data-marks/data-dimension.config';
 
 export interface Marker {
   key: string;
@@ -86,6 +86,7 @@ export class LinesComponent
   markerIndexAttr = 'index';
   unpaddedXDomain: [any, any];
   unpaddedYDomain: [any, any];
+  lineEndPoints: { category: string; index: number; y: number }[];
 
   private utilities = inject(UtilitiesService);
   private zone = inject(NgZone);
@@ -101,6 +102,10 @@ export class LinesComponent
 
   get markers(): any {
     return select(this.markersRef.nativeElement).selectAll('circle');
+  }
+
+  get lineLabels(): any {
+    return select(this.lineLabelsRef.nativeElement).selectAll('text');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -298,9 +303,7 @@ export class LinesComponent
     } else if (this.config.hoverDot.display) {
       this.drawHoverDot();
     }
-    if (this.config.labelLines) {
-      this.drawLineLabels();
-    }
+    this.drawLineLabels();
   }
 
   drawLines(transitionDuration: number): void {
@@ -372,21 +375,65 @@ export class LinesComponent
   }
 
   drawLineLabels(): void {
-    const lastPoints = [];
-    this.linesD3Data.forEach((values, key) => {
-      const lastPoint = values[values.length - 1];
-      lastPoints.push({ category: key, index: lastPoint });
-    });
+    this.lineEndPoints = [];
+    if (this.config.labels.display) {
+      this.linesD3Data.forEach((values, key) => {
+        const lastPoint = values[values.length - 1];
+        this.lineEndPoints.push({
+          category: key,
+          index: lastPoint,
+          y: this.yScale(this.values.y[lastPoint]),
+        });
+      });
+      this.lineEndPoints.sort((a, b) => a.y - b.y);
+    }
     // TODO: make more flexible (or its own element? currently this only puts labels on the right side of the chart
     select(this.lineLabelsRef.nativeElement)
       .selectAll('text')
-      .data(lastPoints)
-      .join('text')
-      .attr('class', 'vic-line-label')
-      .attr('text-anchor', 'end')
-      .attr('fill', (d) => this.categoryScale(this.values.category[d.index]))
-      .attr('x', (d) => `${this.xScale(this.values.x[d.index]) - 4}px`)
-      .attr('y', (d) => `${this.yScale(this.values.y[d.index]) - 12}px`)
-      .text((d) => this.config.lineLabelsFormat(d.category));
+      .data(this.lineEndPoints)
+      .join(
+        (enter) =>
+          enter
+            .append('text')
+            .attr('class', 'vic-line-label')
+            .attr('text-anchor', 'end')
+            .style('display', (d, i) => this.lineLabelShouldBeDisplayed(d.y, i))
+            .attr('fill', (d) =>
+              this.categoryScale(this.values.category[d.index])
+            )
+            .attr('x', (d) => `${this.xScale(this.values.x[d.index]) - 4}px`)
+            .attr('y', (d) => `${d.y - 8}px`)
+            .text((d) => this.config.labels.format(d.category)),
+        (update) =>
+          update
+            .attr('fill', (d) =>
+              this.categoryScale(this.values.category[d.index])
+            )
+            .call((update) =>
+              update
+                .transition()
+                .duration(this.chart.transitionDuration)
+                .style('display', (d, i) =>
+                  this.lineLabelShouldBeDisplayed(d.y, i)
+                )
+                .attr(
+                  'x',
+                  (d) => `${this.xScale(this.values.x[d.index]) - 4}px`
+                )
+                .attr('y', (d) => `${d.y - 8}px`)
+                .text((d) => this.config.labels.format(d.category))
+            ),
+        (exit) => exit.remove()
+      );
+  }
+
+  lineLabelShouldBeDisplayed(y: number, i: number): 'inline-block' | 'none' {
+    if (i === 0) {
+      return 'inline-block';
+    } else {
+      return y - this.lineEndPoints[i - 1].y > this.config.labels?.minSpacing
+        ? 'inline-block'
+        : 'none';
+    }
   }
 }

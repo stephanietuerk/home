@@ -25,13 +25,10 @@ export class JobChartComponent {
   @HostListener('mouseenter', ['$event']) onMouseEnter(
     event: PointerEvent
   ): void {
-    console.log('mouse enter', event);
     this.updateTooltipConfig(event.target as HTMLElement);
   }
 
-  @HostListener('mouseleave', ['$event']) onMouseLeave(
-    event: PointerEvent
-  ): void {
+  @HostListener('mouseleave') onMouseLeave(): void {
     this.tooltipConfig.next(new HtmlTooltipConfig({ show: false }));
   }
 
