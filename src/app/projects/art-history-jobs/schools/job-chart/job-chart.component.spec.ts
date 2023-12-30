@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { JobChartComponent } from './job-chart.component';
 
 describe('JobChartComponent', () => {
@@ -8,7 +7,7 @@ describe('JobChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [JobChartComponent]
+      declarations: [JobChartComponent],
     });
     fixture = TestBed.createComponent(JobChartComponent);
     component = fixture.componentInstance;

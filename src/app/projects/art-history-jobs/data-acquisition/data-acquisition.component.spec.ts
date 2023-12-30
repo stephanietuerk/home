@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DataAcquisitionComponent } from './data-acquisition.component';
 
 describe('DataAcquisitionComponent', () => {
@@ -8,7 +7,7 @@ describe('DataAcquisitionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DataAcquisitionComponent]
+      declarations: [DataAcquisitionComponent],
     });
     fixture = TestBed.createComponent(DataAcquisitionComponent);
     component = fixture.componentInstance;
