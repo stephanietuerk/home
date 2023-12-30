@@ -2,10 +2,57 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 
-.vic-background-bar {
-  fill: $color-light-gray-lightest;
-}
+.bars-styles-encapsulation-container {
+  .vic-background-bar {
+    fill: $color-light-gray-lightest;
+  }
 
-.vic-bar-zero-axis {
-  stroke: $color-light-gray-dark;
+  .data-value-label {
+    cursor: default;
+  }
+
+  .zero-axis {
+    stroke: $color-dark-primary;
+    stroke-dasharray: 2 2;
+    stroke-width: 2;
+  }
+
+  .bar-container {
+    display: flex;
+    padding-bottom: grid(2);
+
+    &.row {
+      align-items: center;
+
+      .bar-category-label {
+        text-align: right;
+        padding-right: grid(1);
+        width: var(--chart-margin-left);
+      }
+    }
+
+    &.column {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .bar-category-label {
+        text-align: left;
+        padding-bottom: grid(1);
+        margin-left: var(--chart-margin-left);
+      }
+
+      .vic-chart-svg {
+        // margin-left: var(--chart-margin-left);
+      }
+    }
+  }
+
+  .bar-category-label {
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .vic-chart-svg {
+    overflow: visible;
+  }
 }

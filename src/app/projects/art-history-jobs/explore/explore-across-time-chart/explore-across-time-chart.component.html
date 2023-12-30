@@ -1,4 +1,4 @@
-<ng-container *ngIf="vm$ | async as vm">
+<div *ngIf="vm$ | async as vm" class="across-chart-container">
   <p class="chart-title" [style.padding-left.px]="margin.left"
     >{{ vm.title }}</p
   >
@@ -6,6 +6,7 @@
     [margin]="margin"
     [height]="height"
     [width]="width"
+    [scaleChartWithContainerWidth]="{ width: true, height: false }"
     class="time-range-xy-chart"
   >
     <ng-container svg-elements>
@@ -69,4 +70,4 @@
       </div>
     </ng-template>
   </vic-xy-chart>
-</ng-container>
+</div>

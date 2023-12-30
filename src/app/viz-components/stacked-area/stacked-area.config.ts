@@ -11,9 +11,9 @@ import {
   CategoricalColorDimensionConfig,
   QuantitativeDimensionConfig,
 } from '../data-marks/data-dimension.config';
-import { DataMarksConfig } from '../data-marks/data-marks.config';
+import { VicDataMarksConfig } from '../data-marks/data-marks.config';
 
-export class StackedAreaConfig extends DataMarksConfig {
+export class VicStackedAreaConfig extends VicDataMarksConfig {
   x: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
   y: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
   category: CategoricalColorDimensionConfig =
@@ -27,7 +27,7 @@ export class StackedAreaConfig extends DataMarksConfig {
   stackOrderFunction: (x: any) => any;
   categoryOrder?: string[];
 
-  constructor(init?: Partial<StackedAreaConfig>) {
+  constructor(init?: Partial<VicStackedAreaConfig>) {
     super();
     this.x.valueAccessor = ([x]) => x;
     this.x.scaleType = scaleUtc;

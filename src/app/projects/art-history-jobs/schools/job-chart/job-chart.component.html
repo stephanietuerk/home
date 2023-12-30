@@ -22,14 +22,10 @@
         [style.--color]="field | appColorForField"
         >{{field}}</p
       >
-      <p class="tenure"
-        ><span class="value">{{job.isTt | appTenureReadout}}</span></p
-      >
+      <p class="tenure"><span class="value">{{job.tenure}}</span></p>
       <div class="rank"
         ><p class="label">rank</p
-        ><p
-          *ngFor="let rank of job.rank.split(', '); let isLast = last"
-          class="value"
+        ><p *ngFor="let rank of job.rank; let isLast = last" class="value"
           >{{rank | appRankReadout}}<span *ngIf="!isLast">,</span></p
         ></div
       ></div

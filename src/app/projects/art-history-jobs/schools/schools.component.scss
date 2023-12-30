@@ -8,16 +8,17 @@
   flex-direction: column;
 
   .section-header {
-    @extend %h3;
+    @extend %h5;
     text-align: center;
-    padding-bottom: grid(2);
-    margin-bottom: grid(2);
-    border-bottom: 1px solid $color-light-gray-medium;
+    padding-bottom: grid(4);
   }
 
-  .overview-text {
+  .description {
+    max-width: 600px;
     line-height: 1.5;
-    padding-bottom: grid(3);
+    padding-bottom: grid(6);
+    align-self: center;
+    width: 100%;
   }
 
   .filters-component {
@@ -30,11 +31,19 @@
     gap: grid(6);
   }
 
+  .legend-label {
+    padding-top: grid(4);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    padding-bottom: grid(1);
+    padding-left: grid(2);
+  }
+
   .legend {
     display: flex;
     flex-wrap: wrap;
     padding-left: grid(2);
-    padding-top: grid(4);
   }
 
   .legend-item {

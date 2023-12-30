@@ -6,19 +6,21 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { CategoryLabelPipe } from '../../../art-history-fields.pipe';
+import { EntityCategory } from '../../explore-data.model';
 import { ExploreDataService } from '../../explore-data.service';
 import { variableUseOptions } from '../explore-selections.constants';
 
 @Component({
   selector: 'app-variable-use-selection',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CategoryLabelPipe],
   templateUrl: './variable-use-selection.component.html',
   styleUrls: ['./variable-use-selection.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VariableUseSelectionComponent implements OnChanges {
-  @Input() variable: 'tenure' | 'rank';
+  @Input() variable: EntityCategory;
   selectionsVariable: string;
   variableUseOptions = variableUseOptions;
 

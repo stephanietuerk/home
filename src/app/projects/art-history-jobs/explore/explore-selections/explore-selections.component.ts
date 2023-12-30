@@ -6,27 +6,21 @@ import {
   OnDestroy,
   TemplateRef,
   ViewChild,
-  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { animations } from 'src/app/core/constants/animations.constants';
-import {
-  ConnectedOverlayConfig,
-  OverlayService,
-  aboveLeftAligned,
-  belowLeftAligned,
-} from 'src/app/core/services/overlay.service';
-import { SelectionOption } from 'src/app/shared/components/form-components/form-radio-input/form-radio-input.model';
+import { OverlayService } from 'src/app/core/services/overlay.service';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
-import { artHistoryFields } from '../../art-history-fields.constants';
+import { JobProperty } from '../../art-history-data.model';
 import { ExploreDataService } from '../explore-data.service';
 import {
+  fieldValueOptions,
   rankValueOptions,
   tenureValueOptions,
-  valueTypeOptions,
   variableUseOptions,
 } from './explore-selections.constants';
+import { FilterType } from './explore-selections.model';
 
 interface DropdownContent {
   isOpen: boolean;
@@ -47,7 +41,7 @@ export enum ExploreSelection {
   styleUrls: ['./explore-selections.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [animations.slide('selection-interface')],
+  animations: [animations.slide('selection-interface-container')],
   providers: [OverlayService],
 })
 export class ExploreSelectionsComponent
@@ -61,11 +55,8 @@ export class ExploreSelectionsComponent
   @ViewChild('tenureDd') tenureDropdown: TemplateRef<HTMLDivElement>;
   @ViewChild('rankDd') rankDropdown: TemplateRef<HTMLDivElement>;
   @ViewChild('ddOrigin') dropdownOrigin: ElementRef<HTMLButtonElement>;
-  fieldOptions: SelectionOption[] = artHistoryFields.map((x) => {
-    return { label: x.name.short, value: x.name.full };
-  });
-  dataTypeOptions: SelectionOption[] = valueTypeOptions;
   filterUseOptions = variableUseOptions;
+  fieldValueOptions = fieldValueOptions;
   tenureValueOptions = tenureValueOptions;
   rankValueOptions = rankValueOptions;
   dropdownContent: BehaviorSubject<DropdownContent> =
@@ -75,41 +66,11 @@ export class ExploreSelectionsComponent
     });
   dropdownContent$ = this.dropdownContent.asObservable();
   backdropClickSubscription: Subscription;
+  JobProperty = JobProperty;
+  FilterType = FilterType;
 
-  constructor(
-    public dataService: ExploreDataService,
-    private overlayService: OverlayService,
-    private viewContainerRef: ViewContainerRef
-  ) {
+  constructor(public dataService: ExploreDataService) {
     super();
-  }
-
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();
-    this.overlayService.destroyOverlay();
-  }
-
-  initializeDropdownOverlay(): void {
-    if (this.backdropClickSubscription) {
-      this.backdropClickSubscription.unsubscribe();
-    }
-    const config = this.overlayService.getOverlayConfig(
-      new ConnectedOverlayConfig({
-        scrollStrategy: 'close',
-        panelClass: 'explore-dropdown',
-        connectedElementRef: this.dropdownOrigin,
-        positions: [belowLeftAligned, aboveLeftAligned],
-      })
-    );
-    this.overlayService.createOverlay(config);
-    this.backdropClickSubscription = this.overlayService.overlayRef
-      .backdropClick()
-      .subscribe((event: MouseEvent) => {
-        if (event.target !== this.dropdownOrigin.nativeElement) {
-          this.resetDropdownContent();
-          this.overlayService.detachOverlay();
-        }
-      });
   }
 
   toggleOpenContent(
@@ -120,45 +81,12 @@ export class ExploreSelectionsComponent
       this.dropdownContent.getValue().content === selected
     ) {
       this.resetDropdownContent();
-      this.overlayService.detachOverlay();
     } else {
-      const isOpen = this.dropdownContent.getValue().isOpen;
-      if (!this.overlayService.overlayRef) {
-        this.initializeDropdownOverlay();
-      }
-      if (isOpen) {
-        this.overlayService.detachOverlay();
-      }
-      this.attachOverlay(selected);
       this.dropdownContent.next({
         isOpen: true,
         content: selected,
       });
     }
-  }
-
-  attachOverlay(
-    selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank'
-  ): void {
-    let template;
-    switch (selected) {
-      case 'fields':
-        template = this.fieldsDropdown;
-        break;
-      case 'dataType':
-        template = this.dataTypeDropdown;
-        break;
-      case 'timeRange':
-        template = this.timeRangeDropdown;
-        break;
-      case 'tenure':
-        template = this.tenureDropdown;
-        break;
-      case 'rank':
-        template = this.rankDropdown;
-        break;
-    }
-    this.overlayService.attachTemplate(template, this.viewContainerRef);
   }
 
   closeDropdown(event: MouseEvent): void {
@@ -172,7 +100,6 @@ export class ExploreSelectionsComponent
   }
 
   resetDropdownContent(): void {
-    console.log('resetting dropdown content', this.dropdownContent.getValue());
     this.dropdownContent.next({
       isOpen: false,
       content: null,

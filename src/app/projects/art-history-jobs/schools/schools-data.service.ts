@@ -15,7 +15,7 @@ import {
   withLatestFrom,
 } from 'rxjs';
 import { SearchUtilities } from 'src/app/core/utilities/search.util';
-import { JobsByCountry } from '../art-history-data.model';
+import { JobProperty, JobsByCountry } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import {
   artHistoryFields,
@@ -39,9 +39,9 @@ export enum SchoolSort {
 }
 
 export interface SchoolsState {
-  [SchoolStateProperty.field]: string[];
-  [SchoolStateProperty.tenure]: string[];
-  [SchoolStateProperty.rank]: string[];
+  [JobProperty.field]: string[];
+  [JobProperty.tenure]: string[];
+  [JobProperty.rank]: string[];
   [SchoolStateProperty.sortOrder]: keyof typeof SchoolSort;
   [SchoolStateProperty.searchTerms]: string[];
 }
@@ -200,15 +200,15 @@ export class SchoolsDataService {
               const inTenure =
                 state.tenure.length !== this.tenureOptions.length
                   ? state.tenure.includes(
-                      ArtHistoryUtilities.transformIsTt(job.isTt)
+                      ArtHistoryUtilities.transformIsTt(job.tenure)
                     )
                   : true;
               const inRank =
                 state.rank.length !== this.rankOptions.length
-                  ? state.tenure.some((rank) => {
-                      return ArtHistoryUtilities.transformRank(
-                        job.rank
-                      ).includes(rank);
+                  ? state.rank.some((rank) => {
+                      return job.rank
+                        .map((x) => ArtHistoryUtilities.transformRank(x))
+                        .includes(rank);
                     })
                   : true;
               return inFields && inTenure && inRank;

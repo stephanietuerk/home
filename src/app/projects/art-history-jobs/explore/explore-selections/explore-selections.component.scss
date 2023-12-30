@@ -22,6 +22,12 @@ $panel-opacity: 0.9;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
+  }
+
+  .container-instructions {
+    @extend %sans-regular-italic;
+    line-height: 1.3;
+    max-width: 600px;
     padding-bottom: grid(1);
   }
 
@@ -31,12 +37,8 @@ $panel-opacity: 0.9;
 
   .navbar {
     padding-top: grid(3);
+    padding-left: grid(4);
     background: rgba($color-light-gray-lightest, $panel-opacity);
-
-    &.open {
-      position: relative;
-      z-index: 1001;
-    }
   }
 
   .links-container {
@@ -46,6 +48,8 @@ $panel-opacity: 0.9;
   }
 
   .selection-title {
+    display: flex;
+    align-items: center;
     @extend %slab-medium;
     font-size: 1.15rem;
     color: $color-highlight;
@@ -60,24 +64,21 @@ $panel-opacity: 0.9;
     &.open {
       border-bottom: 2px solid $color-highlight;
     }
+
+    .material-symbols-outlined {
+      margin-left: 2px;
+    }
   }
-}
 
-.cdk-overlay-pane.explore-dropdown {
-  width: 1080px;
-  // background: rgba(white, 0.8);
-  background: rgba($color-light-gray-lightest, $panel-opacity);
-  border-bottom: 1px solid $color-light-gray-medium;
-  padding: 0 grid(4);
-
-  .dropdown-container {
+  .selection-interface-container {
+    display: flex;
+    padding: grid(4) grid(2) grid(4) 0;
     width: 100%;
   }
 
   .selection-container {
-    width: 100%;
-    padding: grid(4) 0 grid(6) 0;
-
+    flex-grow: 1;
+    padding-right: grid(2);
     &.tenure-values,
     &.rank-values {
       padding-top: grid(4);
@@ -88,24 +89,28 @@ $panel-opacity: 0.9;
     @extend %sans-regular-italic;
     line-height: 1.3;
     max-width: 600px;
+    padding-bottom: grid(1);
 
     .filter-use-name {
       font-style: normal;
       font-weight: 500;
+    }
+
+    .secondary {
+      @extend %sans-regular;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 0.875rem;
     }
   }
 
   .time-range-slider-component {
     display: block;
     padding: 0 grid(4);
-    max-width: 600px;
+    max-width: 500px;
   }
 
-  .selection-interface {
-    padding-top: grid(3);
-  }
-
-  .selection-interface.fields {
+  .selection-interface.field-values {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     grid-auto-rows: 1fr;
@@ -118,170 +123,31 @@ $panel-opacity: 0.9;
   .selection-interface.rank-values {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;
+    grid-auto-flow: column;
     row-gap: grid(1);
   }
 
-  .radio-input-container {
-    &.rank-use,
-    &.tenure-use {
-      display: flex;
-    }
+  .selection-interface.tenure-values {
+    grid-template-rows: repeat(2, 1fr);
+  }
 
-    .radio-input-component.button-style {
-      display: inline-flex;
+  .selection-interface.rank-values {
+    grid-template-rows: repeat(5, 1fr);
+  }
 
-      .radio-input-label {
-        @extend %slab-medium;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100px;
-        font-size: 0.85rem;
-        border: 1px solid $color-highlight;
-        padding: grid(2) grid(2) 6px grid(2);
-      }
+  .close-button {
+    display: block;
+    cursor: pointer;
+    color: $color-highlight;
+    transform: scale(1.2);
 
-      .radio-input-label.selected {
-        border: 1px solid $color-highlight;
-        background-color: $color-highlight;
-        color: white;
-      }
-
-      .radio-input-label:not(.selected) {
-        border: 1px solid $color-highlight;
-        background-color: white;
-        color: $color-highlight;
-      }
-
-      .radio-input-label:not(.selected):hover {
-        background: $color-light-gray-light;
-      }
-
-      &.tenure-use,
-      &.rank-use {
-        .radio-input-label {
-          width: 120px;
-        }
-      }
-    }
-
-    .radio-input-component.input-element-style {
-      display: inline-flex;
-
-      .radio-input-container .icon-component {
-        margin: 0 grid(1) 0 0;
-
-        svg {
-          margin: 0;
-          fill: $svg-icon-color;
-          width: grid(4);
-          height: grid(4);
-        }
-      }
-
-      .radio-input-label {
-        @extend %input-element-label;
-
-        &.selected {
-          font-weight: 700;
-        }
-      }
-    }
-
-    .radio-input {
-      @extend %hidden-input-element;
-
-      &:checked + label {
-        cursor: default;
-      }
+    &:hover {
+      font-weight: 700;
     }
   }
 
-  .checkbox-input-container {
-    .checkbox-input-component.button-style {
-      .checkbox-input-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      .checkbox-input-label {
-        border: 1px solid $color-highlight;
-        border-radius: grid(1);
-        padding: grid(2);
-        @extend %slab-medium;
-        line-height: 1.1;
-        font-size: 0.85rem;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      &.fields {
-        .checkbox-input-label {
-          padding-bottom: 6px;
-          line-height: 1.2;
-          @extend %slab-extrabold;
-        }
-
-        .checkbox-input-label.selected {
-          border: 1px solid $color-highlight;
-          background-color: var(--color);
-          color: white;
-        }
-
-        .checkbox-input-label:not(.selected) {
-          border: 1px solid $color-highlight;
-          background-color: white;
-          color: var(--color);
-        }
-
-        .checkbox-input-label:not(.selected):hover {
-          background: $color-light-gray-light;
-        }
-      }
-
-      .checkbox-input-label.selected {
-        border: 1px solid $color-highlight;
-        background-color: $color-highlight;
-        color: white;
-      }
-
-      .checkbox-input-label:not(.selected) {
-        border: 1px solid $color-highlight;
-        background-color: white;
-        color: $color-highlight;
-      }
-
-      .checkbox-input-label:not(.selected):hover {
-        background: $color-light-gray-light;
-      }
-    }
-
-    .checkbox-input-component.input-element-style {
-      .checkbox-input-container .icon-component {
-        margin: 0 grid(1) 0 0;
-        svg {
-          margin: 0;
-          width: grid(4);
-          height: grid(4);
-          fill: $svg-icon-color;
-        }
-      }
-
-      .checkbox-input-label {
-        @extend %input-element-label;
-
-        &.selected {
-          font-weight: 700;
-        }
-      }
-    }
+  .variable-use-selection-component {
+    display: block;
+    padding-bottom: grid(3);
   }
 }

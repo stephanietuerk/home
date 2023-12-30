@@ -49,8 +49,8 @@ export class ArtHistoryDataService {
       return {
         year: new Date(`${x['year']}-01-01T00:00:00`),
         field: x['field'] === 'all' ? 'All' : x['field'],
-        isTt: ArtHistoryUtilities.transformIsTt(x['is_tt']),
-        rank: ArtHistoryUtilities.transformRank(x['rank']),
+        tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
+        rank: ArtHistoryUtilities.transformRankMulti(x['rank']),
         count: +x['count'],
       };
     });

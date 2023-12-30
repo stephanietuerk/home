@@ -1,4 +1,8 @@
-import { rankOptions, tenureOptions } from '../../art-history-fields.constants';
+import {
+  artHistoryFields,
+  rankOptions,
+  tenureOptions,
+} from '../../art-history-fields.constants';
 import {
   FilterType,
   ValueType,
@@ -14,16 +18,16 @@ export const valueTypeOptions: ValueTypeOption[] = [
 
 export const variableUseOptions: VariableUseOption[] = [
   {
-    label: 'Filter',
+    label: 'Explore within a ',
     value: FilterType.filter,
   },
   {
-    label: 'Disaggregate',
+    label: 'Compare across ',
     value: FilterType.disaggregate,
   },
 ];
 
-export const fieldsUseOptions: VariableUseOption[] = [
+export const fieldUseOptions: VariableUseOption[] = [
   {
     label: 'Explore within a field',
     value: FilterType.filter,
@@ -33,6 +37,10 @@ export const fieldsUseOptions: VariableUseOption[] = [
     value: FilterType.disaggregate,
   },
 ];
+
+export const fieldValueOptions: VariableOption[] = artHistoryFields.map((x) => {
+  return { label: x.name.short, value: x.name.full, color: x.color };
+});
 
 export const tenureValueOptions: VariableOption[] = [
   { label: 'All', value: 'all' },

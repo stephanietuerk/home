@@ -22,30 +22,37 @@ import { CHART } from '../chart/chart.token';
  * `html-elements-after`: Elements that will be projected after the chart's scaled div
  *  and scaled svg element in the DOM. USeful for adding elements that require access to chart scales.
  */
+export enum XyContentScale {
+  x = 'x',
+  y = 'y',
+  category = 'category',
+}
+
+export interface GenericScale<Domain, Range> {
+  (...args: any): any;
+  domain?(): Domain[];
+  range?(): Range[];
+}
+
+export interface XyChartScales {
+  [XyContentScale.x]: GenericScale<any, any>;
+  [XyContentScale.y]: GenericScale<any, any>;
+  [XyContentScale.category]?: GenericScale<any, any>;
+  useTransition: boolean;
+}
+
 @Component({
   selector: 'vic-xy-chart',
   templateUrl: '../chart/chart.component.html',
   styleUrls: ['../chart/chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: CHART, useExisting: ChartComponent }],
+  providers: [{ provide: CHART, useExisting: XyChartComponent }],
 })
 export class XyChartComponent extends ChartComponent implements Chart, OnInit {
-  private xScale: BehaviorSubject<any> = new BehaviorSubject(null);
-  xScale$ = this.xScale.asObservable();
-  private yScale: BehaviorSubject<any> = new BehaviorSubject(null);
-  yScale$ = this.yScale.asObservable();
-  private categoryScale: BehaviorSubject<any> = new BehaviorSubject(null);
-  categoryScale$ = this.categoryScale.asObservable();
+  private scales: BehaviorSubject<XyChartScales> = new BehaviorSubject(null);
+  scales$ = this.scales.asObservable();
 
-  updateXScale(scale: any): void {
-    this.xScale.next(scale);
-  }
-
-  updateYScale(scale: any): void {
-    this.yScale.next(scale);
-  }
-
-  updateCategoryScale(scale: any): void {
-    this.categoryScale.next(scale);
+  updateScales(scales: Partial<XyChartScales>): void {
+    this.scales.next({ ...this.scales.value, ...scales });
   }
 }

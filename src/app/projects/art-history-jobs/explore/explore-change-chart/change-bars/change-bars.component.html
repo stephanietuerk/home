@@ -1,4 +1,18 @@
-<svg:g #bars class="vic-bars-g" [style.mix-blend-mode]="config.mixBlendMode">
-  <svg:g #backgroundGroup class="background-group"></svg:g>
-  <svg:g #barsGroup class="bars-group"></svg:g>
-</svg:g>
+<div class="bars-styles-encapsulation-container">
+  <div class="axis-container">
+    <svg
+      [attr.width]="(chart.svgDimensions$ | async).width + 1"
+      [attr.height]="chart.margin.top + 1"
+      class="axis-svg"
+    >
+      <ng-content select="[axis]"></ng-content>
+      <!-- <svg:g
+        vic-x-quantitative-axis
+        side="top"
+        [config]="config.xAxisConfig"
+      ></svg:g> -->
+    </svg>
+  </div>
+
+  <div class="bars-container" #barsContainer></div>
+</div>

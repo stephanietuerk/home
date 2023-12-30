@@ -32,7 +32,7 @@ describe('GroupedBarsComponent', () => {
       spyOn(component, 'setGroupScale');
       spyOn(component, 'drawMarks');
       component.chart = { transitionDuration: 200 } as any;
-      component.setMethodsFromConfigAndDraw();
+      component.setMethodsFromConfig();
     });
 
     it('calls setValueArrays once', () => {
@@ -60,7 +60,7 @@ describe('GroupedBarsComponent', () => {
     });
 
     it('calls setScaledSpaceProperties once', () => {
-      expect(component.setScaledSpaceProperties).toHaveBeenCalledTimes(1);
+      expect(component.setChartScales).toHaveBeenCalledTimes(1);
     });
 
     it('calls setGroupScale once', () => {

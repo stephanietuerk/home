@@ -1,22 +1,124 @@
 <ng-container *ngIf="vm$ | async as vm">
-  <p class="chart-title" [style.padding-left.px]="margin.left"
-    >{{ vm.title }}</p
+  <div
+    class="change-chart-container"
+    *ngIf="exploreDataService.selections$ | async as selections"
   >
-  <vic-xy-chart
-    class="chart-component"
-    [margin]="margin"
-    [height]="vm.height"
-    [width]="width"
-    [scaleChartWithContainerWidth]="{ width: true, height: false }"
-  >
-    <svg:g svg-elements>
-      <svg:g
-        vic-x-quantitative-axis
-        side="top"
-        [config]="vm.xAxisConfig"
-      ></svg:g>
-      <svg:g vic-y-ordinal-axis side="left" [config]="vm.yAxisConfig"></svg:g>
-      <svg:g app-change-bars [config]="vm.dataMarksConfig"></svg:g>
-    </svg:g>
-  </vic-xy-chart>
+    <p class="instructions"
+      >Show change between
+      <span class="end-year">{{selections.years.end}}</span> and</p
+    >
+    <div class="change-chart-toggle">
+      <input
+        class="cdk-visually-hidden"
+        type="radio"
+        id="change-chart-avg-option"
+        name="change-chart-compare-against"
+      />
+      <label
+        class="radio-input-label change-chart-toggle-label avg button-style"
+        for="change-chart-avg-option"
+        [class.selected]="selections.changeIsAverage"
+        (click)="toggleChangeIsAverage(selections.changeIsAverage, 'avg')"
+      >
+        <span
+          >{{selections.years.start}}&ndash;{{selections.years.end}}&nbsp;</span
+        >
+        <span>average</span></label
+      >
+      <input
+        class="cdk-visually-hidden"
+        type="radio"
+        id="change-chart-first-year-option"
+        name="change-chart-compare-against"
+      />
+      <label
+        class="radio-input-label change-chart-toggle-label first-year button-style"
+        for="change-chart-first-year-option"
+        [class.selected]="!selections.changeIsAverage"
+        (click)="toggleChangeIsAverage(selections.changeIsAverage, 'year')"
+      >
+        {{selections.years.start}}</label
+      >
+    </div>
+    <p class="chart-title" [style.padding-left.px]="margin.left"
+      >{{ vm.title }}</p
+    >
+    <app-change-chart
+      #changeChart
+      class="chart-component"
+      [margin]="margin"
+      [height]="vm.height"
+      [width]="width"
+      [scaleChartWithContainerWidth]="{ width: true, height: false }"
+    >
+      <ng-container svg-elements>
+        <app-change-bars
+          [config]="vm.dataMarksConfig"
+          [vicBarsHoverMoveEffects]="hoverEffects"
+          (vicBarsHoverMoveOutput)="updateTooltipForNewOutput($event)"
+        >
+          <svg:g
+            vic-x-quantitative-axis
+            axis
+            side="top"
+            [config]="vm.xAxisConfig"
+          ></svg:g>
+          <vic-html-tooltip
+            *ngIf="(tooltipConfig$ | async)?.show"
+            [config]="tooltipConfig$ | async"
+            [template]="htmlTooltip"
+          ></vic-html-tooltip>
+          <ng-template #htmlTooltip>
+            <div *ngIf="tooltipData$ | async as tooltipData">
+              <div
+                [style.--color]="tooltipData.color"
+                class="tooltip-container"
+              >
+                <p class="tooltip-label category">
+                  <span class="value-label">{{ vm.categoryLabel }}</span>
+                  {{ tooltipData.category }}
+                </p>
+                <div class="values-container">
+                  <div class="secondary-values-container">
+                    <p class="tooltip-label start-value"
+                      ><span class="value-label"
+                        >{{selections.changeIsAverage ? 'Avg. value' :
+                        selections.years.start + ' value' }}</span
+                      >{{ tooltipData.datum.startValue |
+                      appD3FormatPipe:vm.dataMarksConfig.quantitative.valueFormat
+                      }}</p
+                    >
+                    <p class="tooltip-label end-value"
+                      ><span class="value-label"
+                        >{{selections.years.end + ' value'}}</span
+                      >{{ tooltipData.datum.endValue |
+                      appD3FormatPipe:vm.dataMarksConfig.quantitative.valueFormat
+                      }}</p
+                    >
+                  </div>
+                  <p class="tooltip-label change"
+                    ><span class="value-label">Change</span>{{
+                    tooltipData.quantitative }}</p
+                  >
+                </div></div
+              ><svg
+                width="100%"
+                height="12"
+                [style.--width]="'20px'"
+                class="svg-triangle"
+              >
+                <g class="svg-g">
+                  <path
+                    class="triangle-path"
+                    d="M 0,0 10,12 20,0"
+                    fill="white"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+          </ng-template>
+        </app-change-bars>
+      </ng-container>
+    </app-change-chart>
+  </div>
 </ng-container>

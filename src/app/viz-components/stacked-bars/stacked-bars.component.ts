@@ -5,18 +5,18 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  extent,
   InternMap,
   InternSet,
+  Transition,
+  extent,
   range,
   rollup,
   select,
   stack,
-  Transition,
 } from 'd3';
 import { BarsComponent } from '../bars/bars.component';
 import { DATA_MARKS } from '../data-marks/data-marks.token';
-import { StackDatum, StackedBarsConfig } from './stacked-bars.config';
+import { VicStackDatum, VicStackedBarsConfig } from './stacked-bars.config';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -28,19 +28,18 @@ import { StackDatum, StackedBarsConfig } from './stacked-bars.config';
   providers: [{ provide: DATA_MARKS, useExisting: StackedBarsComponent }],
 })
 export class StackedBarsComponent extends BarsComponent {
-  @Input() override config: StackedBarsConfig;
+  @Input() override config: VicStackedBarsConfig;
   stackedData: any;
 
-  override setMethodsFromConfigAndDraw(): void {
+  override setPropertiesFromConfig(): void {
     this.setValueArrays();
     this.initNonQuantitativeDomains();
     this.setValueIndicies();
     this.setHasBarsWithNegativeValues();
-    this.constructStackedData();
     this.initUnpaddedQuantitativeDomain();
     this.initCategoryScale();
-    this.setScaledSpaceProperties();
-    this.drawMarks(this.chart.transitionDuration);
+    this.constructStackedData();
+    this.setChartScalesFromRanges(true);
   }
 
   override setValueIndicies(): void {
@@ -55,6 +54,13 @@ export class StackedBarsComponent extends BarsComponent {
         (this.config.category.domain as InternSet).has(this.values.category[i])
       );
     });
+  }
+
+  override initUnpaddedQuantitativeDomain(): void {
+    // no unit test
+    if (this.config.quantitative.domain === undefined) {
+      this.config.quantitative.domain = extent(this.stackedData.flat(2));
+    }
   }
 
   constructStackedData(): void {
@@ -83,13 +89,6 @@ export class StackedBarsComponent extends BarsComponent {
       );
   }
 
-  override initUnpaddedQuantitativeDomain(): void {
-    // no unit test
-    if (this.config.quantitative.domain === undefined) {
-      this.config.quantitative.domain = extent(this.stackedData.flat(2));
-    }
-  }
-
   override drawBars(transitionDuration: number): void {
     const t = select(this.chart.svgRef.nativeElement)
       .transition()
@@ -100,7 +99,7 @@ export class StackedBarsComponent extends BarsComponent {
       .data(this.stackedData)
       .join('g')
       .attr('fill', ([{ i }]: any) => {
-        return this.config.category.colorScale(this.values.category[i]);
+        return this.scales.category(this.values.category[i]);
       })
       .selectAll('rect')
       .data((d) => d as any)
@@ -108,64 +107,68 @@ export class StackedBarsComponent extends BarsComponent {
         (enter) =>
           enter
             .append('rect')
-            .attr('x', (i) => this.getStackElementX(i as StackDatum))
-            .attr('y', (i) => this.getStackElementY(i as StackDatum))
-            .attr('width', (i) => this.getStackElementWidth(i as StackDatum))
-            .attr('height', (i) => this.getStackElementHeight(i as StackDatum)),
+            .attr('x', (i) => this.getStackElementX(i as VicStackDatum))
+            .attr('y', (i) => this.getStackElementY(i as VicStackDatum))
+            .attr('width', (i) => this.getStackElementWidth(i as VicStackDatum))
+            .attr('height', (i) =>
+              this.getStackElementHeight(i as VicStackDatum)
+            ),
         (update) =>
           update.call((update) =>
             update
               .transition(t as any)
-              .attr('x', (i) => this.getStackElementX(i as StackDatum))
-              .attr('y', (i) => this.getStackElementY(i as StackDatum))
-              .attr('width', (i) => this.getStackElementWidth(i as StackDatum))
+              .attr('x', (i) => this.getStackElementX(i as VicStackDatum))
+              .attr('y', (i) => this.getStackElementY(i as VicStackDatum))
+              .attr('width', (i) =>
+                this.getStackElementWidth(i as VicStackDatum)
+              )
               .attr('height', (i) =>
-                this.getStackElementHeight(i as StackDatum)
+                this.getStackElementHeight(i as VicStackDatum)
               )
           ),
         (exit) =>
           exit // fancy exit needs to be tested with actual/any data
             .transition(t as any)
             .delay((_, i) => i * 20)
-            .attr('y', this.yScale(0))
+            .attr('y', this.scales.y(0))
             .attr('height', 0)
             .remove()
       );
   }
 
-  getStackElementX(datum: StackDatum): number {
+  getStackElementX(datum: VicStackDatum): number {
     // no unit test
     if (this.config.dimensions.ordinal === 'x') {
-      return this.xScale(this.values.x[datum.i]);
+      return this.scales.x(this.values.x[datum.i]);
     } else {
-      return Math.min(this.xScale(datum[0]), this.xScale(datum[1]));
+      return Math.min(this.scales.x(datum[0]), this.scales.x(datum[1]));
     }
   }
 
-  getStackElementY(datum: StackDatum): number {
+  getStackElementY(datum: VicStackDatum): number {
     // no unit test
     if (this.config.dimensions.ordinal === 'x') {
-      return Math.min(this.yScale(datum[0]), this.yScale(datum[1]));
+      return Math.min(this.scales.y(datum[0]), this.scales.y(datum[1]));
     } else {
-      return this.yScale(this.values.y[datum.i]);
+      return this.scales.y(this.values.y[datum.i]);
     }
   }
 
-  getStackElementWidth(datum: StackDatum): number {
+  getStackElementWidth(datum: VicStackDatum): number {
     // no unit test
     if (this.config.dimensions.ordinal === 'x') {
-      return (this.xScale as any).bandwidth();
+      return (this.scales.x as any).bandwidth();
     } else {
-      return Math.abs(this.xScale(datum[0]) - this.xScale(datum[1]));
+      return Math.abs(this.scales.x(datum[0]) - this.scales.x(datum[1]));
     }
   }
 
-  getStackElementHeight(datum: StackDatum): number {
+  getStackElementHeight(datum: VicStackDatum): number {
     // no unit test
     if (this.config.dimensions.ordinal === 'x') {
-      return Math.abs(this.yScale(datum[0]) - this.yScale(datum[1]));
+      return Math.abs(this.scales.y(datum[0]) - this.scales.y(datum[1]));
     } else {
-      return (this.yScale as any).bandwidth();
+      return (this.scales.y as any).bandwidth();
     }
   }
 }

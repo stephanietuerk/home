@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { format } from 'd3';
+import { isEqual } from 'lodash-es';
 import noUiSlider from 'nouislider';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { ArtHistoryDataService } from '../../../art-history-data.service';
 import { ExploreDataService } from '../../explore-data.service';
 
@@ -31,22 +34,38 @@ export interface YearsSelection {
     },
   ],
 })
-export class YearsSelectionComponent implements OnInit {
+export class YearsSelectionComponent extends Unsubscribe implements OnInit {
   @ViewChild('slider', { static: true }) slider: ElementRef;
+  yearsSelection: YearsSelection;
 
   constructor(
     private selections: ExploreDataService,
     private data: ArtHistoryDataService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
+    this.subscribeToSelections();
     this.createSlider();
     this.setSliderListener();
   }
 
+  subscribeToSelections(): void {
+    this.selections.selections$
+      .pipe(
+        takeUntil(this.unsubscribe),
+        map((selections) => selections.years),
+        distinctUntilChanged((a, b) => !isEqual(a, b))
+      )
+      .subscribe((years) => {
+        this.yearsSelection = years;
+      });
+  }
+
   createSlider() {
     noUiSlider.create(this.slider.nativeElement, {
-      start: [this.data.dataYears[0], this.data.dataYears[1]],
+      start: [this.yearsSelection.start, this.yearsSelection.end],
       connect: true,
       range: {
         min: this.data.dataYears[0],

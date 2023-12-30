@@ -5,7 +5,7 @@ import { UtilitiesService } from '../core/services/utilities.service';
 import { MainServiceStub } from '../testing/stubs/services/main.service.stub';
 import { XyChartComponent } from '../xy-chart/xy-chart.component';
 import { LinesComponent } from './lines.component';
-import { LinesConfig } from './lines.config';
+import { VicLinesConfig } from './lines.config';
 
 describe('LineChartComponent', () => {
   let component: LinesComponent;
@@ -30,7 +30,7 @@ describe('LineChartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LinesComponent);
     component = fixture.componentInstance;
-    component.config = new LinesConfig();
+    component.config = new VicLinesConfig();
   });
 
   describe('ngOnChanges()', () => {
@@ -54,14 +54,14 @@ describe('LineChartComponent', () => {
         true
       );
       component.ngOnChanges(configChange);
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(1);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(1);
     });
     it('should call setMethodsFromConfigAndDraw once if objectOnNgChangesNotFirstTime returns false', () => {
       mainServiceStub.utilitiesServiceStub.objectOnNgChangesChangedNotFirstTime.and.returnValue(
         false
       );
       component.ngOnChanges(configChange);
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(0);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -83,7 +83,7 @@ describe('LineChartComponent', () => {
 
     it('calls setMethodsFromConfigAndDraw once', () => {
       component.ngOnInit();
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(1);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -101,7 +101,7 @@ describe('LineChartComponent', () => {
       spyOn(component, 'setMarkersKeyFunction');
       spyOn(component, 'drawMarks');
       component.chart = { transitionDuration: 200 } as any;
-      component.setMethodsFromConfigAndDraw();
+      component.setMethodsFromConfig();
     });
     it('calls setValueArrays once', () => {
       expect(component.setValueArrays).toHaveBeenCalledTimes(1);
@@ -116,7 +116,7 @@ describe('LineChartComponent', () => {
     });
 
     it('calls setScaledSpaceProperties once', () => {
-      expect(component.setScaledSpaceProperties).toHaveBeenCalledTimes(1);
+      expect(component.setChartScales).toHaveBeenCalledTimes(1);
     });
 
     it('calls initCategoryScale once', () => {
@@ -157,7 +157,7 @@ describe('LineChartComponent', () => {
     });
 
     it('calls setScaledSpaceProperties once', () => {
-      expect(component.setScaledSpaceProperties).toHaveBeenCalledTimes(1);
+      expect(component.setChartScales).toHaveBeenCalledTimes(1);
     });
 
     it('calls setLine once', () => {
@@ -254,12 +254,12 @@ describe('LineChartComponent', () => {
       spyOn(component, 'setYDomain');
     });
     it('calls updateXScale on chart once', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(component.chart.updateXScale).toHaveBeenCalledTimes(1);
     });
 
     it('calls x.scaleType once with the correct values', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(xScaleTypeSpy).toHaveBeenCalledOnceWith(
         component.config.x.domain,
         component.ranges.x
@@ -267,12 +267,12 @@ describe('LineChartComponent', () => {
     });
 
     it('calls updateYScale on chart once', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(component.chart.updateYScale).toHaveBeenCalledTimes(1);
     });
 
     it('calls y.scaleType once with the correct values', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(yScaleTypeSpy).toHaveBeenCalledOnceWith(
         component.config.y.domain,
         component.ranges.y
@@ -280,12 +280,12 @@ describe('LineChartComponent', () => {
     });
 
     it('calls setXDomain once', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(component.setXDomain).toHaveBeenCalledTimes(1);
     });
 
     it('calls setYDomain once', () => {
-      component.setScaledSpaceProperties();
+      component.setChartScales();
       expect(component.setYDomain).toHaveBeenCalledTimes(1);
     });
   });
@@ -296,7 +296,7 @@ describe('LineChartComponent', () => {
       spyOn(component, 'drawLines');
       spyOn(component, 'drawPointMarkers');
       spyOn(component, 'drawLineLabels');
-      component.config = new LinesConfig();
+      component.config = new VicLinesConfig();
     });
     it('calls drawLines once and with the correct argument', () => {
       component.drawMarks(duration);

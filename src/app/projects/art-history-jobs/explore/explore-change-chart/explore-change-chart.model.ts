@@ -1,22 +1,25 @@
-import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
+import { VicAxisConfig } from 'src/app/viz-components/axes/axis.config';
 import {
-  BarsConfig,
-  BarsLabelsConfig,
-  HorizontalBarsDimensionsConfig,
+  VicBarsConfig,
+  VicBarsLabelsConfig,
+  VicHorizontalBarsDimensionsConfig,
 } from 'src/app/viz-components/bars/bars.config';
 import { TickWrapConfig } from 'src/app/viz-components/svg-text-wrap/tick-wrap.config';
 
-export class ChangeChartConfig extends BarsConfig {
+export class ChangeChartConfig extends VicBarsConfig {
+  categoryLabelsAboveBars: boolean;
+  barHeight: number;
   constructor() {
     super();
-    this.dimensions = new HorizontalBarsDimensionsConfig();
+    this.dimensions = new VicHorizontalBarsDimensionsConfig();
     // this.category.colors = [highlightColor];
     this.ordinal.paddingInner = 0.15;
-    this.labels = new BarsLabelsConfig();
+    this.labels = new VicBarsLabelsConfig();
+    this.barHeight = 36;
   }
 }
 
-export class ChangeChartYAxisConfig extends AxisConfig {
+export class ChangeChartYAxisConfig extends VicAxisConfig {
   constructor() {
     super();
     this.tickSizeOuter = 0;
@@ -30,9 +33,10 @@ export class ChangeChartYAxisConfig extends AxisConfig {
   }
 }
 
-export class ChangeChartXAxisConfig extends AxisConfig {
+export class ChangeChartXAxisConfig extends VicAxisConfig {
   constructor() {
     super();
     this.numTicks = 5;
+    this.removeDomain = false;
   }
 }

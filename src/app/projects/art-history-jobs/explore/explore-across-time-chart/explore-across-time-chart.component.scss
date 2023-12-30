@@ -2,15 +2,18 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 
-.chart-title {
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.7rem;
-}
+.across-chart-container {
+  .chart-title {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
 
-.time-range-xy-chart {
-  .chart-svg {
-    overflow: visible;
+  .time-range-xy-chart {
+    .chart-svg {
+      overflow: visible;
+    }
   }
 }
 

@@ -1,11 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { timeYear } from 'd3-time';
 import { isEqual } from 'lodash-es';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { distinctUntilChanged, filter, map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
 import { EventEffect } from 'src/app/viz-components/events/effect';
 import {
   LinesHoverMoveDefaultStyles,
@@ -13,14 +19,14 @@ import {
 } from 'src/app/viz-components/lines/lines-hover-move-effects';
 import { LinesHoverMoveDirective } from 'src/app/viz-components/lines/lines-hover-move.directive';
 import { LinesEventOutput } from 'src/app/viz-components/lines/lines-tooltip-data';
-import { LINES } from 'src/app/viz-components/lines/lines.component';
 import {
   HtmlTooltipConfig,
   HtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
-import { JobDatum } from '../../art-history-data.model';
+import { JobDatum, JobProperty } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
+import { ArtHistoryUtilities } from '../../art-history.utilities';
 import { EntityCategory } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
 import {
@@ -52,10 +58,6 @@ interface ViewModel {
   templateUrl: './explore-across-time-chart.component.html',
   styleUrls: ['./explore-across-time-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [
-    { provide: LINES, useExisting: ExploreAcrossTimeChartComponent },
-    { provide: DATA_MARKS, useExisting: ExploreAcrossTimeChartComponent },
-  ],
 })
 export class ExploreAcrossTimeChartComponent implements OnInit {
   vm$: Observable<ViewModel>;
@@ -87,11 +89,12 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.vm$ = combineLatest([
-      this.exploreDataService.acrossTimeData$,
-      this.exploreDataService.selections$,
-      this.exploreDataService.entityCategory$,
-    ]).pipe(
+    this.vm$ = this.exploreDataService.acrossTimeData$.pipe(
+      debounceTime(0),
+      withLatestFrom(
+        this.exploreDataService.selections$,
+        this.exploreDataService.entityCategory$
+      ),
       filter(([data, selections]) => !!data && !!selections),
       map(([data, selections, entityCategory]) => {
         return {
@@ -102,7 +105,8 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
           ),
           xAxisConfig: this.getXAxisConfig(),
           yAxisConfig: this.getYAxisConfig(selections.valueType),
-          lineCategoryLabel: this.getLineCategoryLabel(entityCategory),
+          lineCategoryLabel:
+            ArtHistoryUtilities.getCategoryLabel(entityCategory),
           title: this.getTitle(entityCategory, selections),
           dataType: selections.valueType,
         };
@@ -159,18 +163,6 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
     return config;
   }
 
-  private getLineCategoryLabel(entityCategory: EntityCategory): string {
-    if (entityCategory === 'field') {
-      return 'Field';
-    } else if (entityCategory === 'isTt') {
-      return 'Tenure status';
-    } else if (entityCategory === 'rank') {
-      return 'Rank';
-    } else {
-      return '';
-    }
-  }
-
   updateTooltipForNewOutput(data: LinesEventOutput): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig(data);
@@ -224,21 +216,21 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
     let tenureSelection;
     let rankSelection;
     let tenureAndRankString = '';
-    if (categories === 'field') {
-      if (selections.fieldsUse === FilterType.disaggregate) {
+    if (categories === JobProperty.field) {
+      if (selections.fieldUse === FilterType.disaggregate) {
         disaggregation = 'by field';
         if (selections.valueType === ValueType.percent) {
           fields = 'all';
         }
       }
       if (
-        selections.tenureUse === 'filter' &&
+        selections.tenureUse === FilterType.filter &&
         selections.tenureValues[0] !== tenureValueOptions[0].label
       ) {
         tenureSelection = selections.tenureValues[0];
       }
       if (
-        selections.rankUse === 'filter' &&
+        selections.rankUse === FilterType.filter &&
         selections.rankValues[0] !== rankValueOptions[0].label
       ) {
         rankSelection = selections.rankValues[0];
@@ -247,8 +239,8 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
         tenureSelection && rankSelection ? ',' : ''
       } ${rankSelection ?? ''}`;
     } else {
-      fields = selections.fields.join('');
-      if (categories === 'isTt') {
+      fields = selections.fieldValues.join('');
+      if (categories === JobProperty.tenure) {
         disaggregation = 'by tenure status';
       } else {
         disaggregation = 'by rank';

@@ -1,11 +1,15 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { JobsBySchoolDatum } from './art-history-data.model';
+import { format } from 'd3';
+import { FormatSpecifier } from 'src/app/viz-components/value-format/value-format';
+import { JobProperty, JobsBySchoolDatum } from './art-history-data.model';
 import { artHistoryFields } from './art-history-fields.constants';
 import { ArtHistoryUtilities } from './art-history.utilities';
+import { EntityCategory } from './explore/explore-data.model';
 import { SchoolsState } from './schools/schools-data.service';
 
 @Pipe({
   name: 'appColorForField',
+  standalone: true,
 })
 export class ColorForFieldPipe implements PipeTransform {
   transform(field: string): string {
@@ -18,6 +22,7 @@ export class ColorForFieldPipe implements PipeTransform {
 
 @Pipe({
   name: 'appTenureReadout',
+  standalone: true,
 })
 export class TenureReadoutPipe implements PipeTransform {
   transform(tenure: string): string {
@@ -33,6 +38,7 @@ export class TenureReadoutPipe implements PipeTransform {
 
 @Pipe({
   name: 'appRankReadout',
+  standalone: true,
 })
 export class RankReadoutPipe implements PipeTransform {
   transform(rank: string): string {
@@ -60,9 +66,52 @@ export class RankReadoutPipe implements PipeTransform {
 
 @Pipe({
   name: 'appJobIsInFilters',
+  standalone: true,
 })
 export class JobIsInFiltersPipe implements PipeTransform {
   transform(job: JobsBySchoolDatum, state: SchoolsState): boolean {
     return ArtHistoryUtilities.jobInFilters(job, state);
+  }
+}
+
+@Pipe({
+  name: 'appCategoryLabel',
+  standalone: true,
+})
+export class CategoryLabelPipe implements PipeTransform {
+  transform(category: EntityCategory, pluralize = false): string {
+    if (category === JobProperty.field) {
+      return pluralize ? 'Fields' : 'Field';
+    } else if (category === JobProperty.tenure) {
+      return pluralize ? 'Tenure statuses' : 'Tenure status';
+    } else if (category === JobProperty.rank) {
+      return pluralize ? 'Ranks' : 'Rank';
+    } else {
+      return '';
+    }
+  }
+}
+
+@Pipe({
+  name: 'appD3FormatPipe',
+  standalone: true,
+})
+export class D3FormatPipe implements PipeTransform {
+  transform(value: number, formatSpec: FormatSpecifier): string {
+    if (typeof formatSpec === 'string') {
+      return format(formatSpec)(value);
+    } else {
+      return formatSpec(value);
+    }
+  }
+}
+
+@Pipe({
+  name: 'appUniqueValues',
+  standalone: true,
+})
+export class UniqueValuesPipe implements PipeTransform {
+  transform(values: string[]): string[] {
+    return [...new Set(values)];
   }
 }

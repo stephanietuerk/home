@@ -1,9 +1,10 @@
-import { JobsBySchoolDatum } from './art-history-data.model';
+import { JobProperty, JobsBySchoolDatum } from './art-history-data.model';
 import {
   artHistoryFields,
   rankOptions,
   tenureOptions,
 } from './art-history-fields.constants';
+import { EntityCategory } from './explore/explore-data.model';
 import { SchoolsState } from './schools/schools-data.service';
 
 export class ArtHistoryUtilities {
@@ -29,30 +30,32 @@ export class ArtHistoryUtilities {
     }
   }
 
-  static transformRank(rank: string): string[] {
+  static transformRankMulti(rank: string): string[] {
     const transformedRank = rank.split(', ');
-    return transformedRank.map((str) => {
-      switch (str) {
-        case 'assistant_prof':
-          return rankOptions[0].label;
-        case 'associate_prof':
-          return rankOptions[1].label;
-        case 'full_prof':
-          return rankOptions[2].label;
-        case 'chair':
-          return rankOptions[3].label;
-        case 'open_rank':
-          return rankOptions[4].label;
-        case 'vap':
-          return rankOptions[5].label;
-        case 'lecturer':
-          return rankOptions[6].label;
-        case 'unknown':
-          return rankOptions[7].label;
-        default:
-          return this.sentenceCase(str);
-      }
-    });
+    return transformedRank.map((str) => this.transformRank(str));
+  }
+
+  static transformRank(rank: string): string {
+    switch (rank) {
+      case 'assistant_prof':
+        return rankOptions[0].label;
+      case 'associate_prof':
+        return rankOptions[1].label;
+      case 'full_prof':
+        return rankOptions[2].label;
+      case 'chair':
+        return rankOptions[3].label;
+      case 'open_rank':
+        return rankOptions[4].label;
+      case 'vap':
+        return rankOptions[5].label;
+      case 'lecturer':
+        return rankOptions[6].label;
+      case 'unknown':
+        return rankOptions[7].label;
+      default:
+        return this.sentenceCase(rank);
+    }
   }
 
   static jobInFilters(job: JobsBySchoolDatum, state: SchoolsState): boolean {
@@ -64,14 +67,28 @@ export class ArtHistoryUtilities {
         : true;
     const inTenure =
       state.tenure.length !== tenureOptions.length
-        ? state.tenure.includes(ArtHistoryUtilities.transformIsTt(job.isTt))
+        ? state.tenure.includes(ArtHistoryUtilities.transformIsTt(job.tenure))
         : true;
     const inRank =
       state.rank.length !== rankOptions.length
-        ? state.tenure.some((rank) => {
-            return ArtHistoryUtilities.transformRank(job.rank).includes(rank);
+        ? state.rank.some((rank) => {
+            return job.rank
+              .map((x) => ArtHistoryUtilities.transformRank(x))
+              .includes(rank);
           })
         : true;
     return inFields && inTenure && inRank;
+  }
+
+  static getCategoryLabel(entityCategory: EntityCategory): string {
+    if (entityCategory === JobProperty.field) {
+      return 'Field';
+    } else if (entityCategory === JobProperty.tenure) {
+      return 'Tenure status';
+    } else if (entityCategory === JobProperty.rank) {
+      return 'Rank';
+    } else {
+      return '';
+    }
   }
 }

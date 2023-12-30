@@ -1,4 +1,4 @@
-import { JobDatum } from '../art-history-data.model';
+import { JobDatum, JobProperty } from '../art-history-data.model';
 import { ValueType } from './explore-selections/explore-selections.model';
 
 export interface ExploreChartsData {
@@ -18,4 +18,13 @@ export interface ExploreChangeChartData {
   categories: EntityCategory;
 }
 
-export type EntityCategory = 'field' | 'isTt' | 'rank';
+export type EntityCategory =
+  | JobProperty.field
+  | JobProperty.tenure
+  | JobProperty.rank;
+
+export interface ExploreChangeDatum extends JobDatum {
+  [JobProperty.year]: never;
+  startValue: number;
+  endValue: number;
+}

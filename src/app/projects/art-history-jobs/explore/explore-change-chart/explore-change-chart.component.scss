@@ -1,0 +1,151 @@
+@use 'sass:color';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.change-chart-container {
+  .instructions {
+    padding: 0 grid(3) grid(1) grid(3);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    line-height: 1.1;
+
+    .end-year {
+      color: $color-highlight;
+      font-size: 0.9rem;
+    }
+  }
+
+  .change-chart-toggle {
+    display: flex;
+    padding: 0 grid(3) grid(8) grid(3);
+    cursor: pointer;
+  }
+
+  .radio-input-group {
+    display: inline-flex;
+  }
+
+  .radio-input-label {
+    @extend %slab-medium;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+    border: 1px solid $color-highlight;
+    padding: grid(2) grid(2) 6px grid(2);
+    flex-basis: 50%;
+    flex-grow: 1;
+
+    &:first-of-type {
+      border-radius: grid(1) 0 0 grid(1);
+    }
+
+    &:last-of-type {
+      border-radius: 0 grid(1) grid(1) 0;
+    }
+  }
+
+  .radio-input-label.selected {
+    border: 1px solid $color-highlight;
+    background-color: $color-highlight;
+    color: white;
+  }
+
+  .radio-input-label:not(.selected) {
+    border: 1px solid $color-highlight;
+    background-color: white;
+    color: $color-highlight;
+  }
+
+  .radio-input-label:not(.selected):hover {
+    background: $color-light-gray-light;
+  }
+
+  .chart-title {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+}
+
+.explore-change-tooltip {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  width: 200px;
+
+  $tt-background-color: rgba(white, 0.95);
+  $tt-outline-color: $color-light-gray-medium;
+
+  .tooltip-container {
+    background: $tt-background-color;
+    border: 1px solid $tt-outline-color;
+    padding: grid(2);
+    border-radius: grid(1);
+  }
+
+  .tooltip-label {
+    @extend %slab-regular;
+    display: flex;
+    flex-direction: column;
+    line-height: 1rem;
+  }
+
+  .tooltip-label.category {
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--color);
+    border-bottom: 1px solid $color-dark-primary;
+    padding-bottom: grid(1);
+
+    .value-label {
+      color: $color-dark-primary;
+    }
+  }
+
+  .value-label {
+    @extend %sans-medium;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    letter-spacing: 0.08rem;
+  }
+
+  .values-container {
+    padding-top: grid(2);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .secondary-values-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tooltip-label.change {
+    padding-top: grid(2);
+  }
+
+  .percent-sign {
+    font-size: 0.9rem;
+  }
+
+  .svg-triangle {
+    $x-offset: calc(50% - (var(--width) / 2));
+    display: block;
+    transform: translate(#{$x-offset}, -2px);
+    fill: $tt-background-color;
+
+    .triangle-path {
+      fill: $tt-background-color;
+      stroke: $tt-outline-color;
+    }
+  }
+}

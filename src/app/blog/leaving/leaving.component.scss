@@ -35,7 +35,7 @@ $leaving-highlight: $color-highlight;
   }
 
   .category-label {
-    @extend %h5;
+    @extend %small-caps-slab-bold;
     align-self: center;
     padding-bottom: grid(2);
   }

@@ -3,13 +3,14 @@
 @use 'functions' as *;
 
 .section-header {
-  @extend %h3;
+  @extend %h5;
   text-align: center;
-  padding-bottom: grid(1);
+  padding-bottom: grid(2);
 }
 
 .charts-container {
   display: flex;
+  padding-top: grid(4);
 }
 
 .chart-component {

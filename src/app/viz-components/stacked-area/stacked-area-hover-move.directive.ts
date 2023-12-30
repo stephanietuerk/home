@@ -6,10 +6,10 @@ import { UtilitiesService } from '../core/services/utilities.service';
 import { HoverMoveEventEffect } from '../events/effect';
 import { HoverMoveDirective } from '../events/hover-move.directive';
 import {
-  getStackedAreaTooltipData,
   StackedAreaEventOutput,
+  getStackedAreaTooltipData,
 } from './stacked-area-tooltip-data';
-import { StackedAreaComponent, STACKED_AREA } from './stacked-area.component';
+import { STACKED_AREA, StackedAreaComponent } from './stacked-area.component';
 
 @Directive({
   selector: '[vicStackedAreaHoverMoveEffects]',
@@ -83,7 +83,7 @@ export class StackedAreaHoverMoveDirective extends HoverMoveDirective {
   getClosestXIndicies(): number[] {
     const uniqueXValues = [...new Set(this.stackedArea.values.x)];
     const closestXValue = least(uniqueXValues, (x) =>
-      Math.abs(this.stackedArea.xScale(x) - this.pointerX)
+      Math.abs(this.stackedArea.scales.x(x) - this.pointerX)
     );
     if (this.utilities.isDate(closestXValue)) {
       return this.stackedArea.values.indicies.filter(

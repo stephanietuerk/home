@@ -1,0 +1,10 @@
+<ng-content select="[html-elements-before]"></ng-content>
+<div
+  #div
+  class="vic-chart-container"
+  [style.maxWidth.px]="width"
+  [style.maxHeight.px]="height"
+>
+  <ng-content select="[svg-elements]"></ng-content>
+</div>
+<ng-content select="[html-elements-after]"></ng-content>

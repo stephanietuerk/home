@@ -90,40 +90,55 @@
 }
 
 %h1 {
-  @extend %slab-bold;
-  font-size: 2rem;
+  @extend %slab;
+  font-size: 6rem;
+  letter-spacing: -1.5px;
+  font-weight: 300;
 }
 
 %h2 {
-  @extend %slab-medium;
-  font-size: 2.375rem;
+  @extend %slab;
+  font-size: 3.75rem;
+  letter-spacing: -0.5px;
+  font-weight: 300;
 }
 
 %h3 {
   @extend %slab-regular;
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
 
 %h4 {
-  @extend %slab-bold;
-  font-size: 1.2rem;
-  line-height: 1.4rem;
+  @extend %slab-regular;
+  font-size: 2.215rem;
+  letter-spacing: -0.25px;
 }
 
 %h5 {
+  @extend %slab-regular;
+  font-size: 1.5rem;
+}
+
+%h6 {
+  @extend %slab-medium;
+  font-size: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+%small-caps-slab-bold {
   @extend %slab-extrabold;
   @extend %small-caps;
 }
 
 %subtitle1 {
   @extend %sans-regular;
-  font-size: 1.2rem;
+  font-size: 1rem;
   letter-spacing: 0.15px;
 }
 
 %subtitle2 {
   @extend %sans-medium;
-  font-size: 1rem;
+  font-size: 0.875rem;
   letter-spacing: 0.1px;
 }
 
@@ -191,7 +206,7 @@
 }
 
 %section-header {
-  @extend %h2;
+  @extend %h4;
   color: $color-highlight;
   padding-bottom: 0.25rem;
 }

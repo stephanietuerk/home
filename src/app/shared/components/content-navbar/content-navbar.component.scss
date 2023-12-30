@@ -28,7 +28,7 @@
   }
 
   .project-name {
-    @extend %h4;
+    @extend %h5;
     padding-top: 0.5rem;
     text-align: center;
     @include breakpoint-max(600px) {

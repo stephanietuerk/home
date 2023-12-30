@@ -3,7 +3,7 @@ import { isEqual } from 'lodash-es';
 import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
+import { VicAxisConfig } from 'src/app/viz-components/axes/axis.config';
 import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
 import { EventEffect } from 'src/app/viz-components/events/effect';
 import { StackedAreaHoverMoveEmitTooltipData } from 'src/app/viz-components/stacked-area/stacked-area-hover-move-effects';
@@ -48,8 +48,8 @@ class SummaryChartTooltipData implements StackedAreaEventOutput {
 })
 export class SummaryChartComponent {
   @Input() dataMarksConfig: SummaryChartConfig;
-  @Input() xAxisConfig: AxisConfig;
-  @Input() yAxisConfig: AxisConfig;
+  @Input() xAxisConfig: VicAxisConfig;
+  @Input() yAxisConfig: VicAxisConfig;
   width = 712;
   height = 652;
   margin: ElementSpacing = { top: 4, right: 56, bottom: 36, left: 24 };

@@ -33,7 +33,7 @@ export const artHistoryFields: Field[] = [
   {
     name: {
       full: 'African / African Diaspora Art',
-      short: 'Af. / Af. Dias. Art',
+      short: 'Afr. / Afr. Dias. Art',
     },
     color: artHistoryJobsColors.powderPink,
     selected: false,

@@ -61,7 +61,7 @@ $horizontal-scrollbar-thickness: grid(3);
 
 $content-component-padding: 0px grid(1) 0 grid(4) grid(1) 0;
 
-$navbar-height: grid(1) 6;
+$navbar-height: 48px;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;

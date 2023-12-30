@@ -1,11 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { isEqual } from 'lodash-es';
-import { Observable, combineLatest } from 'rxjs';
-import { distinctUntilChanged, filter, map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { JobDatum } from '../../art-history-data.model';
+import { BarsHoverMoveEmitTooltipData } from 'src/app/viz-components/bars/bars-hover-move-effects';
+import { BarsHoverMoveDirective } from 'src/app/viz-components/bars/bars-hover-move.directive';
+import { BarsEventOutput } from 'src/app/viz-components/bars/bars-tooltip-data';
+import { RoundUpToIntervalDomainPaddingConfig } from 'src/app/viz-components/data-marks/data-dimension.config';
+import { EventEffect } from 'src/app/viz-components/events/effect';
+import {
+  HtmlTooltipConfig,
+  HtmlTooltipOffsetFromOriginPosition,
+} from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
+import { JobDatum, JobProperty } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
+import { ArtHistoryUtilities } from '../../art-history.utilities';
 import { EntityCategory } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
 import {
@@ -24,47 +47,66 @@ interface ViewModel {
   yAxisConfig: ChangeChartXAxisConfig;
   height: number;
   title: string;
+  categoryLabel: string;
 }
 @Component({
   selector: 'app-explore-change-chart',
   templateUrl: './explore-change-chart.component.html',
   styleUrls: ['./explore-change-chart.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ExploreChangeChartComponent implements OnInit {
+  @ViewChild('changeChart') changeChart: ElementRef<Element>;
   vm$: Observable<ViewModel>;
+  xAxisConfig$: Observable<ChangeChartXAxisConfig>;
   width = 800;
   margin: ElementSpacing = {
-    top: 36,
-    right: 36,
+    top: 24,
+    right: 8,
     bottom: 36,
-    left: 96,
+    left: 12,
   };
-  barHeight = 54;
+  barHeight = 36;
+  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
+    new BehaviorSubject<HtmlTooltipConfig>(
+      new HtmlTooltipConfig({ show: false })
+    );
+  tooltipConfig$ = this.tooltipConfig.asObservable();
+  tooltipData: BehaviorSubject<BarsEventOutput> =
+    new BehaviorSubject<BarsEventOutput>(null);
+  tooltipData$ = this.tooltipData.asObservable();
+  hoverEffects: EventEffect<BarsHoverMoveDirective>[] = [
+    new BarsHoverMoveEmitTooltipData(),
+  ];
 
   constructor(
-    private exploreDataService: ExploreDataService,
-    private fieldsService: ArtHistoryFieldsService
+    public exploreDataService: ExploreDataService,
+    private fieldsService: ArtHistoryFieldsService,
+    private elRef: ElementRef
   ) {}
 
   ngOnInit(): void {
-    this.vm$ = combineLatest([
-      this.exploreDataService.changeData$,
-      this.exploreDataService.selections$,
-      this.exploreDataService.entityCategory$,
-    ]).pipe(
+    this.vm$ = this.exploreDataService.changeData$.pipe(
+      debounceTime(0),
+      withLatestFrom(
+        this.exploreDataService.selections$,
+        this.exploreDataService.entityCategory$
+      ),
       filter(([data, selections]) => !!data && !!selections),
       map(([data, selections, entityCategory]) => {
-        return {
+        const vm = {
           dataMarksConfig: this.getDataMarksConfig(
             data,
             entityCategory,
-            selections.valueType
+            selections
           ),
           xAxisConfig: this.getXAxisConfig(selections.valueType),
           yAxisConfig: this.getYAxisConfig(),
           height: this.setChartHeight(data),
           title: this.getTitle(entityCategory, selections),
+          categoryLabel: ArtHistoryUtilities.getCategoryLabel(entityCategory),
         };
+        return vm;
       }),
       distinctUntilChanged((a, b) => isEqual(a, b)),
       shareReplay(1)
@@ -74,17 +116,28 @@ export class ExploreChangeChartComponent implements OnInit {
   getDataMarksConfig(
     data: JobDatum[],
     entityCategory: EntityCategory,
-    valueType: keyof typeof ValueType
+    selections: ExploreSelections
   ): ChangeChartConfig {
+    this.barHeight = data.length > 6 ? 24 : 36;
     const config = new ChangeChartConfig();
     config.data = data;
     config.ordinal.valueAccessor = (d) => d[entityCategory];
-    config.quantitative.valueAccessor = (d) => d[valueType];
-    config.quantitative.domain = this.getQuantitativeDomain(valueType);
-    config.quantitative.valueFormat =
-      this.getQuantitativeValueFormat(valueType);
+    config.quantitative.valueAccessor = (d) => d[selections.valueType];
+    config.quantitative.valueFormat = this.getQuantitativeValueFormat(
+      selections.valueType,
+      selections.changeIsAverage
+    );
     config.category.valueAccessor = (d) => d[entityCategory];
     config.category.colorScale = this.getColorScale(data, entityCategory);
+    config.categoryLabelsAboveBars = true;
+    config.barHeight = this.barHeight;
+    config.quantitative.domainPadding =
+      new RoundUpToIntervalDomainPaddingConfig();
+    if (selections.valueType === ValueType.percent) {
+      config.quantitative.domainPadding.interval = () => 0.2;
+    } else {
+      config.quantitative.domainPadding.interval = () => 5;
+    }
     return config;
   }
 
@@ -104,8 +157,17 @@ export class ExploreChangeChartComponent implements OnInit {
     return valueType === 'percent' ? [0, 1] : undefined;
   }
 
-  getQuantitativeValueFormat(valueType: keyof typeof ValueType): string {
-    return artHistoryFormatSpecifications.explore.chart.value[valueType];
+  getQuantitativeValueFormat(
+    valueType: keyof typeof ValueType,
+    changeIsAverage: boolean
+  ): string {
+    let format;
+    if (changeIsAverage && valueType === ValueType.count) {
+      format = ',.1f';
+    } else {
+      format = artHistoryFormatSpecifications.explore.chart.value[valueType];
+    }
+    return format;
   }
 
   getQuantitativeTickFormat(valueType: keyof typeof ValueType): string {
@@ -113,7 +175,12 @@ export class ExploreChangeChartComponent implements OnInit {
   }
 
   setChartHeight(data: JobDatum[]): number {
-    return data.length * this.barHeight + this.margin.top + this.margin.bottom;
+    return (
+      data.length * this.barHeight +
+      this.margin.top +
+      this.margin.bottom +
+      (20 + 12) * data.length
+    );
   }
 
   getXAxisConfig(valueType: keyof typeof ValueType): ChangeChartXAxisConfig {
@@ -134,23 +201,68 @@ export class ExploreChangeChartComponent implements OnInit {
   ): string {
     let fields;
     let disaggregation;
-    if (entityCategory === 'field') {
+    let firstYear;
+    if (entityCategory === JobProperty.field) {
       disaggregation = 'by field';
-      if (selections.valueType === 'count') {
+      if (selections.valueType === ValueType.count) {
         fields = '';
       } else {
         fields = 'all';
       }
     } else {
-      fields = selections.fields.join('');
-      if (entityCategory === 'isTt') {
+      fields = selections.fieldValues.join('');
+      if (entityCategory === JobProperty.tenure) {
         disaggregation = 'by tenure status';
       } else {
         disaggregation = 'by rank';
       }
     }
+    if (selections.changeIsAverage) {
+      firstYear = 'Avg';
+    } else {
+      firstYear = selections.years.start;
+    }
     return `Change${
-      selections.valueType === ValueType.percent ? '(%)' : ''
-    } in ${fields.toLowerCase()} jobs ${disaggregation}`;
+      selections.valueType === ValueType.percent ? '(% pts)' : ''
+    } in ${
+      selections.valueType === ValueType.percent ? '' : 'count of'
+    } ${fields.toLowerCase()} jobs ${disaggregation}, ${firstYear}\u2013${
+      selections.years.end
+    }`;
+  }
+
+  toggleChangeIsAverage(currentValue: boolean, button: 'avg' | 'year'): void {
+    const changeIsAverage = button === 'avg' ? true : false;
+    if (changeIsAverage !== currentValue) {
+      this.exploreDataService.updateSelections({
+        changeIsAverage,
+      });
+    }
+  }
+
+  updateTooltipForNewOutput(data: BarsEventOutput): void {
+    this.updateTooltipData(data);
+    this.updateTooltipConfig(data);
+  }
+
+  updateTooltipData(data: BarsEventOutput): void {
+    this.tooltipData.next(data);
+  }
+
+  updateTooltipConfig(data: BarsEventOutput): void {
+    const config = new HtmlTooltipConfig();
+    config.panelClass = 'explore-change-tooltip';
+    config.position = new HtmlTooltipOffsetFromOriginPosition();
+    if (data) {
+      config.origin = data.elRef;
+      config.size.minWidth = 200;
+      config.position.offsetX = data.positionX;
+      config.position.offsetY = data.positionY - 2;
+      config.show = true;
+    } else {
+      config.show = false;
+      config.origin = undefined;
+    }
+    this.tooltipConfig.next(config);
   }
 }

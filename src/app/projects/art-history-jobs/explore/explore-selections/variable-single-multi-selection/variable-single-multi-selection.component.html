@@ -1,41 +1,47 @@
 <ng-container *ngIf="inputType$ | async as inputType">
-  <ng-container *ngIf="data.selections$ | async as selections">
-    <ng-container *ngFor="let option of options">
+  <div
+    *ngIf="data.selections$ | async as selections"
+    [ngClass]="['variable-single-multi-selection-container', variable]"
+  >
+    <div *ngFor="let option of options" [ngClass]="['option', variable]">
       <input
         class="cdk-visually-hidden"
         [attr.type]="inputType"
         [attr.id]="option.value"
         [attr.name]="inputType === 'radio' ? variable : null"
-        [attr.checked]="inputType === 'checkbox' && selections[selectionsVariable].includes(option.value) ? true : null"
+        [attr.checked]="inputType === 'checkbox' && selections[selectionsVariable].includes(option[valueAccessor]) ? true : null"
       />
       <label
-        class="checkbox-input-label fields button-style"
+        [ngClass]="[inputType + '-input-label', 'label', variable]"
         [attr.for]="option.value"
-        [class.selected]="selections[selectionsVariable].includes(option.label)"
-        (click)="updateVariableValues(option.label, inputType, selections[selectionsVariable])"
+        [class.selected]="selections[selectionsVariable].includes(option[valueAccessor])"
+        [style.--color]="option.color"
+        (click)="updateVariableValues(option[valueAccessor], inputType, selections[selectionsVariable])"
       >
-        <span
-          *ngIf="inputType === 'radio' && selections[selectionsVariable].includes(option.label)"
-          class="material-symbols-outlined"
-          >radio_button_checked</span
-        >
-        <span
-          *ngIf="inputType === 'radio' && !selections[selectionsVariable].includes(option.label)"
-          class="material-symbols-outlined"
-          >radio_button_unchecked</span
-        >
-        <span
-          *ngIf="inputType === 'checkbox' && selections[selectionsVariable].includes(option.label)"
-          class="material-symbols-outlined"
-          >check_box</span
-        >
-        <span
-          *ngIf="inputType === 'checkbox' && !selections[selectionsVariable].includes(option.label)"
-          class="material-symbols-outlined"
-          >check_box_outline_blank</span
+        <ng-container *ngIf="inputUsesIcon">
+          <span
+            *ngIf="inputType === 'radio' && selections[selectionsVariable].includes(option[valueAccessor])"
+            class="material-symbols-outlined"
+            >radio_button_checked</span
+          >
+          <span
+            *ngIf="inputType === 'radio' && !selections[selectionsVariable].includes(option[valueAccessor])"
+            class="material-symbols-outlined"
+            >radio_button_unchecked</span
+          >
+          <span
+            *ngIf="inputType === 'checkbox' && selections[selectionsVariable].includes(option[valueAccessor])"
+            class="material-symbols-outlined"
+            >check_box</span
+          >
+          <span
+            *ngIf="inputType === 'checkbox' && !selections[selectionsVariable].includes(option[valueAccessor])"
+            class="material-symbols-outlined"
+            >check_box_outline_blank</span
+          ></ng-container
         >
         {{option.label}}</label
       >
-    </ng-container>
-  </ng-container>
+    </div>
+  </div>
 </ng-container>

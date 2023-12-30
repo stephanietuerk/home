@@ -21,20 +21,22 @@ import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-toolt
 import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
 import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
 import {
+  CategoryLabelPipe,
   ColorForFieldPipe,
+  D3FormatPipe,
   JobIsInFiltersPipe,
   RankReadoutPipe,
   TenureReadoutPipe,
+  UniqueValuesPipe,
 } from './art-history-fields.pipe';
 import { ArtHistoryJobsComponent } from './art-history-jobs.component';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
 import { ExploreAcrossTimeChartComponent } from './explore/explore-across-time-chart/explore-across-time-chart.component';
 import { ChangeBarsComponent } from './explore/explore-change-chart/change-bars/change-bars.component';
+import { ChangeChartComponent } from './explore/explore-change-chart/change-chart/change-chart.component';
 import { ChangeYAxisComponent } from './explore/explore-change-chart/change-y-axis/change-y-axis.component';
 import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
 import { ExploreSelectionsComponent } from './explore/explore-selections/explore-selections.component';
-import { FieldsSelectionComponent } from './explore/explore-selections/fields-selection/fields-selection.component';
-import { FieldsUseSelectionComponent } from './explore/explore-selections/fields-use-selection/fields-use-selection.component';
 import { ValueTypeSelectionComponent } from './explore/explore-selections/value-type-selection/value-type-selection.component';
 import { VariableSingleMultiSelectionComponent } from './explore/explore-selections/variable-single-multi-selection/variable-single-multi-selection.component';
 import { VariableUseSelectionComponent } from './explore/explore-selections/variable-use-selection/variable-use-selection.component';
@@ -62,11 +64,7 @@ import { SummaryComponent } from './summary/summary.component';
     SchoolsComponent,
     SchoolChartComponent,
     JobChartComponent,
-    ColorForFieldPipe,
-    TenureReadoutPipe,
-    RankReadoutPipe,
     SchoolFiltersComponent,
-    JobIsInFiltersPipe,
     DataAcquisitionComponent,
   ],
   imports: [
@@ -93,13 +91,19 @@ import { SummaryComponent } from './summary/summary.component';
     MatExpansionModule,
     SubstringHighlightDirective,
     MatButtonToggleModule,
-    FieldsSelectionComponent,
     ValueTypeSelectionComponent,
     VariableUseSelectionComponent,
     VariableSingleMultiSelectionComponent,
-    FieldsUseSelectionComponent,
     ChangeBarsComponent,
     ChangeYAxisComponent,
+    ChangeChartComponent,
+    CategoryLabelPipe,
+    D3FormatPipe,
+    ColorForFieldPipe,
+    TenureReadoutPipe,
+    RankReadoutPipe,
+    JobIsInFiltersPipe,
+    UniqueValuesPipe,
   ],
 })
 export class ArtHistoryJobsModule {}

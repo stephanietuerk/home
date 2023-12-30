@@ -3,9 +3,9 @@ import {
   CategoricalColorDimensionConfig,
   QuantitativeDimensionConfig,
 } from '../data-marks/data-dimension.config';
-import { DataMarksConfig } from '../data-marks/data-marks.config';
+import { VicDataMarksConfig } from '../data-marks/data-marks.config';
 
-export class LinesConfig extends DataMarksConfig {
+export class VicLinesConfig extends VicDataMarksConfig {
   /**
    * A config for the behavior of the chart's x dimension
    *
@@ -54,28 +54,28 @@ export class LinesConfig extends DataMarksConfig {
   /**
    * A config for the behavior of markers for each datum on the line.
    */
-  pointMarkers: PointMarkersConfig = new PointMarkersConfig();
+  pointMarkers: VicPointMarkersConfig = new VicPointMarkersConfig();
 
   /**
    * A config for a dot that will appear on hover of a line. Intended to be used when there
    *  are no point markers along the line (i.e. at all points), particularly when a tooltip with point-specific
    *  data will be displayed. Will not be displayed if pointMarkers.display is true.
    */
-  hoverDot: PointMarkerConfig = new PointMarkerConfig();
+  hoverDot: VicPointMarkerConfig = new VicPointMarkerConfig();
 
   /**
    * A config for the behavior of the line stroke.
    */
-  stroke?: LinesStrokeConfig = new LinesStrokeConfig();
+  stroke?: VicLinesStrokeConfig = new VicLinesStrokeConfig();
 
   /**
    * A config for the behavior of the line labels.
    */
-  labels?: LinesLabelsConfig = new LinesLabelsConfig();
+  labels?: VicLinesLabelsConfig = new VicLinesLabelsConfig();
 
   pointerDetectionRadius: number;
 
-  constructor(init?: Partial<LinesConfig>) {
+  constructor(init?: Partial<VicLinesConfig>) {
     super();
     this.x.valueAccessor = ([x]) => x;
     this.x.scaleType = scaleUtc;
@@ -84,14 +84,14 @@ export class LinesConfig extends DataMarksConfig {
     this.category.valueAccessor = () => 1;
     this.category.colors = schemeTableau10 as string[];
     this.curve = curveLinear;
-    this.labels = new LinesLabelsConfig();
+    this.labels = new VicLinesLabelsConfig();
     this.pointerDetectionRadius = 80;
     this.hoverDot.radius = 4;
     Object.assign(this, init);
   }
 }
 
-export class LinesStrokeConfig {
+export class VicLinesStrokeConfig {
   /**
    * A value for the line's [stroke-linecap]{@link https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap}
    *  attribute.
@@ -124,7 +124,7 @@ export class LinesStrokeConfig {
    */
   width: number;
 
-  constructor(init?: Partial<LinesStrokeConfig>) {
+  constructor(init?: Partial<VicLinesStrokeConfig>) {
     this.linecap = 'round';
     this.linejoin = 'round';
     this.opacity = 1;
@@ -133,7 +133,7 @@ export class LinesStrokeConfig {
   }
 }
 
-export class PointMarkerConfig {
+export class VicPointMarkerConfig {
   /**
    * A boolean to determine if point markers will be displayed.
    *
@@ -148,14 +148,14 @@ export class PointMarkerConfig {
    */
   radius: number;
 
-  constructor(init?: Partial<PointMarkerConfig>) {
+  constructor(init?: Partial<VicPointMarkerConfig>) {
     this.display = false;
     this.radius = 3;
     Object.assign(this, init);
   }
 }
 
-export class PointMarkersConfig extends PointMarkerConfig {
+export class VicPointMarkersConfig extends VicPointMarkerConfig {
   /**
    * A value by which the point marker will expand on hover, in px.
    *
@@ -163,7 +163,7 @@ export class PointMarkersConfig extends PointMarkerConfig {
    */
   growByOnHover: number;
 
-  constructor(init?: Partial<PointMarkersConfig>) {
+  constructor(init?: Partial<VicPointMarkersConfig>) {
     super();
     this.display = true;
     this.growByOnHover = 1;
@@ -171,7 +171,7 @@ export class PointMarkersConfig extends PointMarkerConfig {
   }
 }
 
-export class LinesLabelsConfig {
+export class VicLinesLabelsConfig {
   /**
    * A boolean to determine if the line will be labeled.
    */
@@ -198,7 +198,7 @@ export class LinesLabelsConfig {
    */
   minSpacing: number;
 
-  constructor(init?: Partial<LinesLabelsConfig>) {
+  constructor(init?: Partial<VicLinesLabelsConfig>) {
     this.display = false;
     this.format = (d: string) => d;
     this.minSpacing = 24;

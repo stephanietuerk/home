@@ -1,7 +1,7 @@
-import { TimeInterval } from 'd3';
+import { AxisTimeInterval } from 'd3';
 import { TickWrapConfig } from '../svg-text-wrap/tick-wrap.config';
 
-export class AxisConfig {
+export class VicAxisConfig {
   /**
    * Used only on quantitative axes.
    *
@@ -16,7 +16,7 @@ export class AxisConfig {
    *  fit the domain given the precision of the percentage format, this value
    *  will be replaced by the largest number that fits the domain.
    */
-  numTicks?: number | TimeInterval;
+  numTicks?: number | AxisTimeInterval;
 
   /**
    * If true, the default line that D3 creates for the axis will be removed.
@@ -68,7 +68,7 @@ export class AxisConfig {
    *  method.
    *
    * Values will be formatted with either the provided value for
-   *  [tickFormat]{@link AxisConfig.tickFormat} or the default format.
+   *  [tickFormat]{@link VicAxisConfig.tickFormat} or the default format.
    */
   tickValues?: any[];
 
@@ -79,7 +79,7 @@ export class AxisConfig {
    */
   wrap?: TickWrapConfig;
 
-  constructor(init?: Partial<AxisConfig>) {
+  constructor(init?: Partial<VicAxisConfig>) {
     Object.assign(this, init);
   }
 }

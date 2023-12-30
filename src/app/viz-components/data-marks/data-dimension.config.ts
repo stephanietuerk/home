@@ -1,5 +1,6 @@
 import { InternSet, scaleBand } from 'd3';
 import { FormatSpecifier } from '../value-format/value-format';
+import { GenericScale } from '../xy-chart/xy-chart.component';
 
 export class DataDimensionConfig {
   valueAccessor: (...args: any) => any;
@@ -37,7 +38,8 @@ export class BaseDomainPaddingConfig {
 }
 
 export class RoundUpDomainPaddingConfig extends BaseDomainPaddingConfig {
-  type: Padding.roundUp;
+  type: Padding.roundUp = Padding.roundUp;
+
   constructor(init?: Partial<RoundUpDomainPaddingConfig>) {
     super();
     Object.assign(this, init);
@@ -45,7 +47,7 @@ export class RoundUpDomainPaddingConfig extends BaseDomainPaddingConfig {
 }
 
 export class RoundUpToIntervalDomainPaddingConfig extends BaseDomainPaddingConfig {
-  type: Padding.roundInterval;
+  type: Padding.roundInterval = Padding.roundInterval;
   interval: (maxValue: number) => number;
 
   constructor(init?: Partial<RoundUpToIntervalDomainPaddingConfig>) {
@@ -56,7 +58,7 @@ export class RoundUpToIntervalDomainPaddingConfig extends BaseDomainPaddingConfi
 }
 
 export class PercentOverDomainPaddingConfig extends BaseDomainPaddingConfig {
-  type: Padding.percentOver;
+  type: Padding.percentOver = Padding.percentOver;
   percentOver: number;
 
   constructor(init?: Partial<PercentOverDomainPaddingConfig>) {
@@ -67,7 +69,7 @@ export class PercentOverDomainPaddingConfig extends BaseDomainPaddingConfig {
 }
 
 export class PixelDomainPaddingConfig extends BaseDomainPaddingConfig {
-  type: Padding.numPixels;
+  type: Padding.numPixels = Padding.numPixels;
   numPixels: number;
 
   constructor(init?: Partial<PixelDomainPaddingConfig>) {
@@ -85,7 +87,7 @@ export type DomainPaddingConfig =
 
 export class CategoricalColorDimensionConfig extends DataDimensionConfig {
   override domain?: any[] | InternSet;
-  colorScale?: (...args: any) => any;
+  colorScale?: GenericScale<any, string>;
   colors?: string[];
   constructor(init?: Partial<CategoricalColorDimensionConfig>) {
     super();

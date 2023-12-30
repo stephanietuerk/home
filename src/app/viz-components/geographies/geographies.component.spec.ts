@@ -6,13 +6,13 @@ import { MapChartComponent } from '../map-chart/map-chart.component';
 import { MainServiceStub } from '../testing/stubs/services/main.service.stub';
 import { GeographiesComponent, MapDataValues } from './geographies.component';
 import {
-  CategoricalAttributeDataDimensionConfig,
-  CustomBreaksQuantitativeAttributeDataDimensionConfig,
-  DataGeographyConfig,
-  EqualNumbersQuantitativeAttributeDataDimensionConfig,
-  EqualValuesQuantitativeAttributeDataDimensionConfig,
-  GeographiesConfig,
-  NoBinsQuantitativeAttributeDataDimensionConfig,
+  Vic,
+  VicCategoricalAttributeDataDimensionConfig,
+  VicCustomBreaksQuantitativeAttributeDataDimensionConfig,
+  VicDataGeographyConfig,
+  VicEqualNumbersQuantitativeAttributeDataDimensionConfig,
+  VicEqualValuesQuantitativeAttributeDataDimensionConfig,
+  VicNoBinsQuantitativeAttributeDataDimensionConfig,
 } from './geographies.config';
 
 describe('GeographiesComponent', () => {
@@ -38,7 +38,7 @@ describe('GeographiesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GeographiesComponent);
     component = fixture.componentInstance;
-    component.config = new GeographiesConfig();
+    component.config = new Vic();
   });
 
   describe('ngOnChanges()', () => {
@@ -63,7 +63,7 @@ describe('GeographiesComponent', () => {
         true
       );
       component.ngOnChanges(configChange);
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(1);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(1);
     });
 
     it('does not  call setMethodsFromConfigAndDraw once if objectOnNgChangesNotFirstTime returns false', () => {
@@ -71,7 +71,7 @@ describe('GeographiesComponent', () => {
         false
       );
       component.ngOnChanges(configChange);
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(0);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -88,7 +88,7 @@ describe('GeographiesComponent', () => {
 
     it('calls setMethodsFromConfigAndDraw once', () => {
       component.ngOnInit();
-      expect(component.setMethodsFromConfigAndDraw).toHaveBeenCalledTimes(1);
+      expect(component.setMethodsFromConfig).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -123,7 +123,7 @@ describe('GeographiesComponent', () => {
       spyOn(component, 'initAttributeDataScaleAndUpdateChart');
       spyOn(component, 'drawMarks');
       component.chart = { transitionDuration: 200 } as any;
-      component.setMethodsFromConfigAndDraw();
+      component.setMethodsFromConfig();
     });
     it('calls setProjection once', () => {
       expect(component.setProjection).toHaveBeenCalledTimes(1);
@@ -158,14 +158,14 @@ describe('GeographiesComponent', () => {
 
   describe('integration: setting attribute data scale domain', () => {
     beforeEach(() => {
-      component.config = new GeographiesConfig();
-      component.config.dataGeographyConfig = new DataGeographyConfig();
+      component.config = new Vic();
+      component.config.dataGeographyConfig = new VicDataGeographyConfig();
       component.values = new MapDataValues();
     });
     describe('categorical attribute data', () => {
       beforeEach(() => {
         component.config.dataGeographyConfig.attributeDataConfig =
-          new CategoricalAttributeDataDimensionConfig();
+          new VicCategoricalAttributeDataDimensionConfig();
         component.values.attributeDataValues = ['a', 'a', 'b', 'b', 'c', 'c'];
       });
       it('sets the domain to the correct value, user did not specify domain', () => {
@@ -194,7 +194,7 @@ describe('GeographiesComponent', () => {
     describe('quantitative attribute data: no bins', () => {
       beforeEach(() => {
         component.config.dataGeographyConfig.attributeDataConfig =
-          new NoBinsQuantitativeAttributeDataDimensionConfig();
+          new VicNoBinsQuantitativeAttributeDataDimensionConfig();
         component.values.attributeDataValues = [1, 3, 5, 9, 10, 11];
       });
       it('sets the domain to the correct value, user did not specify domain', () => {
@@ -216,7 +216,7 @@ describe('GeographiesComponent', () => {
     describe('quantitative attribute data: equal num observations', () => {
       beforeEach(() => {
         component.config.dataGeographyConfig.attributeDataConfig =
-          new EqualNumbersQuantitativeAttributeDataDimensionConfig();
+          new VicEqualNumbersQuantitativeAttributeDataDimensionConfig();
         component.config.dataGeographyConfig.attributeDataConfig.numBins = 3;
         component.values.attributeDataValues = [1, 3, 5, 9, 10, 11];
       });
@@ -230,7 +230,7 @@ describe('GeographiesComponent', () => {
     describe('quantitative attribute data: equal values', () => {
       beforeEach(() => {
         component.config.dataGeographyConfig.attributeDataConfig =
-          new EqualValuesQuantitativeAttributeDataDimensionConfig();
+          new VicEqualValuesQuantitativeAttributeDataDimensionConfig();
         component.config.dataGeographyConfig.attributeDataConfig.numBins = 3;
         component.values.attributeDataValues = [1, 3, 5, 9, 10, 12];
       });
@@ -283,7 +283,7 @@ describe('GeographiesComponent', () => {
     describe('quantitative attribute data: custom breaks', () => {
       beforeEach(() => {
         component.config.dataGeographyConfig.attributeDataConfig =
-          new CustomBreaksQuantitativeAttributeDataDimensionConfig();
+          new VicCustomBreaksQuantitativeAttributeDataDimensionConfig();
         component.config.dataGeographyConfig.attributeDataConfig.numBins = 3;
         component.config.dataGeographyConfig.attributeDataConfig.breakValues = [
           0, 2, 4, 6, 8,
