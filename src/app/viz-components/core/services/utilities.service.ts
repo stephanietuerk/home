@@ -1,6 +1,6 @@
 /* eslint-disable no-var */
 import { Injectable, SimpleChanges } from '@angular/core';
-import { get, isEqual } from 'lodash';
+import { get, isEqual } from 'lodash-es';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { max } from 'd3';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { Observable, Subject, merge } from 'rxjs';
 import { filter, map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
