@@ -17,6 +17,14 @@
 .charts-container {
   display: flex;
   padding-top: grid(8);
+
+  @media screen and (max-width: 760px) {
+    flex-direction: column;
+
+    .change-chart-component {
+      padding-top: grid(6);
+    }
+  }
 }
 
 .time-range-chart-component {

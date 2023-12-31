@@ -1,6 +1,8 @@
 <div *ngIf="vm$ | async as vm" class="across-chart-container">
   <p class="chart-title" [style.padding-left.px]="margin.left"
-    >{{ vm.title }}</p
+    >{{ vm.title.valueType }} of {{vm.title.fields}}
+    <span class="tenure-rank">{{vm.title.tenureAndRank}}</span> jobs
+    {{vm.title.disaggregation}}</p
   >
   <vic-xy-chart
     [margin]="margin"

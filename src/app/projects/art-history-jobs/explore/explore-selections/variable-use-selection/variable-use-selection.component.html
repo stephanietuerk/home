@@ -12,11 +12,8 @@
       [class.selected]="selections[selectionsVariable] === use.value"
       (click)="updateVariableUse(use.value)"
     >
-      {{use.label}}<span *ngIf="use.value === 'filter'"
-        >&nbsp;{{variable | appCategoryLabel | lowercase}}</span
-      ><span *ngIf="use.value === 'disaggregate'"
-        >&nbsp;{{variable | appCategoryLabel:true | lowercase}}</span
-      ></label
-    >
+      {{use.label}} {{use.value === 'filter' ? (variable | appCategoryLabel |
+      lowercase) : (variable | appCategoryLabel:true | lowercase)}}
+    </label>
   </div>
 </ng-container>

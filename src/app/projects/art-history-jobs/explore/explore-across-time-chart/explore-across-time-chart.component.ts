@@ -23,21 +23,17 @@ import {
   HtmlTooltipConfig,
   HtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
-import { JobDatum, JobProperty } from '../../art-history-data.model';
+import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ArtHistoryUtilities } from '../../art-history.utilities';
-import { EntityCategory } from '../explore-data.model';
+import { EntityCategory, ExploreChartTitle } from '../explore-data.model';
 import { ExploreDataService } from '../explore-data.service';
 import {
   rankValueOptions,
   tenureValueOptions,
 } from '../explore-selections/explore-selections.constants';
-import {
-  ExploreSelections,
-  FilterType,
-  ValueType,
-} from '../explore-selections/explore-selections.model';
+import { ValueType } from '../explore-selections/explore-selections.model';
 import {
   ExploreTimeRangeChartConfig,
   ExploreTimeRangeXAxisConfig,
@@ -49,7 +45,7 @@ interface ViewModel {
   xAxisConfig: ExploreTimeRangeXAxisConfig;
   yAxisConfig: ExploreTimeRangeYAxisConfig;
   lineCategoryLabel: string;
-  title: string;
+  title: ExploreChartTitle;
   dataType: string;
 }
 
@@ -107,7 +103,10 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
           yAxisConfig: this.getYAxisConfig(selections.valueType),
           lineCategoryLabel:
             ArtHistoryUtilities.getCategoryLabel(entityCategory),
-          title: this.getTitle(entityCategory, selections),
+          title: this.exploreDataService.getChartTitle(
+            entityCategory,
+            selections
+          ),
           dataType: selections.valueType,
         };
       }),
@@ -208,46 +207,5 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
     } else {
       return value;
     }
-  }
-
-  getTitle(categories: EntityCategory, selections: ExploreSelections): string {
-    let fields = '';
-    let disaggregation;
-    let tenureSelection;
-    let rankSelection;
-    let tenureAndRankString = '';
-    if (categories === JobProperty.field) {
-      if (selections.fieldUse === FilterType.disaggregate) {
-        disaggregation = 'by field';
-        if (selections.valueType === ValueType.percent) {
-          fields = 'all';
-        }
-      }
-      if (
-        selections.tenureUse === FilterType.filter &&
-        selections.tenureValues[0] !== tenureValueOptions[0].label
-      ) {
-        tenureSelection = selections.tenureValues[0];
-      }
-      if (
-        selections.rankUse === FilterType.filter &&
-        selections.rankValues[0] !== rankValueOptions[0].label
-      ) {
-        rankSelection = selections.rankValues[0];
-      }
-      tenureAndRankString = `${tenureSelection ?? ''}${
-        tenureSelection && rankSelection ? ',' : ''
-      } ${rankSelection ?? ''}`;
-    } else {
-      fields = selections.fieldValues.join('');
-      if (categories === JobProperty.tenure) {
-        disaggregation = 'by tenure status';
-      } else {
-        disaggregation = 'by rank';
-      }
-    }
-    return `${
-      selections.valueType
-    } of ${fields.toLowerCase()}${tenureAndRankString} jobs ${disaggregation}`;
   }
 }

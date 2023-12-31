@@ -41,7 +41,10 @@ export class ArtHistoryDataService {
   setDataBySchools(): void {
     this.dataBySchool$ = this.http
       .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
-      .pipe(shareReplay(1));
+      .pipe(
+        map((data) => this.parseDataBySchools(data)),
+        shareReplay(1)
+      );
   }
 
   parseData(data): JobDatum[] {
@@ -52,6 +55,31 @@ export class ArtHistoryDataService {
         tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
         rank: ArtHistoryUtilities.transformRankMulti(x['rank']),
         count: +x['count'],
+      };
+    });
+  }
+
+  parseDataBySchools(data): JobsByCountry[] {
+    return data.map((country) => {
+      return {
+        ...country,
+        jobsBySchool: country.jobsBySchool.map((school) => {
+          return {
+            ...school,
+            jobsByYear: school.jobsByYear.map((year) => {
+              return {
+                ...year,
+                jobs: year.jobs.map((job) => {
+                  return {
+                    ...job,
+                    rank: ArtHistoryUtilities.transformRankMulti(job.rank[0]),
+                    tenure: ArtHistoryUtilities.transformIsTt(job.tenure),
+                  };
+                }),
+              };
+            }),
+          };
+        }),
       };
     });
   }

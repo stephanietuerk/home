@@ -54,9 +54,9 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'art-history-jobs',
-    title: 'Art History Jobs, 2011—2022',
+    title: 'Art History Jobs, 2011—2023',
     type: ProjectType.dataViz,
-    year: '2020—2022',
+    year: '2020—2023',
     description: [
       'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python, visualizations were built in an Observable notebook.',
     ],

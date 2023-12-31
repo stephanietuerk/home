@@ -6,13 +6,17 @@ import {
   filter,
   map,
   shareReplay,
+  take,
   withLatestFrom,
 } from 'rxjs/operators';
 import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { JobDatum, JobProperty, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
-import { artHistoryFields } from '../art-history-fields.constants';
-import { EntityCategory, ExploreChangeDatum } from './explore-data.model';
+import {
+  EntityCategory,
+  ExploreChangeDatum,
+  ExploreChartTitle,
+} from './explore-data.model';
 import {
   fieldValueOptions,
   rankValueOptions,
@@ -22,20 +26,21 @@ import {
   ExploreSelections,
   FilterType,
   ValueType,
+  VariableOption,
 } from './explore-selections/explore-selections.model';
 
 @Injectable()
 export class ExploreDataService extends Unsubscribe {
   defaultSelections: ExploreSelections = {
-    valueType: ValueType.count,
+    valueType: ValueType.percent,
     years: {
       start: undefined,
       end: undefined,
     },
-    fieldUse: FilterType.filter,
-    fieldValues: [artHistoryFields[0].name.full],
-    tenureUse: FilterType.disaggregate,
-    tenureValues: [tenureValueOptions[1].label, tenureValueOptions[2].label],
+    fieldUse: FilterType.disaggregate,
+    fieldValues: [],
+    tenureUse: FilterType.filter,
+    tenureValues: [tenureValueOptions[1].label],
     rankUse: FilterType.filter,
     rankValues: [rankValueOptions[0].label],
     changeIsAverage: true,
@@ -60,7 +65,35 @@ export class ExploreDataService extends Unsubscribe {
   initDefaultSelections(): void {
     this.defaultSelections.years.start = this.artHistoryData.dataYears[0];
     this.defaultSelections.years.end = this.artHistoryData.dataYears[1];
+    this.initFieldsSelections();
     this.selections.next(this.defaultSelections);
+  }
+
+  initFieldsSelections(): void {
+    this.artHistoryData.data$
+      .pipe(
+        filter((data) => !!data),
+        take(1)
+      )
+      .subscribe((data) => {
+        const recentYearData = data.filter(
+          (x) =>
+            x.year.getFullYear() === this.defaultSelections.years.end &&
+            x.rank.includes(this.defaultSelections.rankValues[0]) &&
+            x.tenure === this.defaultSelections.tenureValues[0]
+        );
+        const allDatum = recentYearData.find((x) => x.field === 'All');
+        recentYearData.forEach((x) => {
+          x.percent = x.count / allDatum.count;
+        });
+        const top5 = recentYearData
+          .filter((x) => x.field !== 'All')
+          .slice()
+          .sort((a, b) => b.percent - a.percent)
+          .slice(0, 5)
+          .map((x) => x.field);
+        this.defaultSelections.fieldValues = top5;
+      });
   }
 
   setExploreChartsData(): void {
@@ -134,13 +167,10 @@ export class ExploreDataService extends Unsubscribe {
       }
       newDatum.startValue = compareValue;
       newDatum.endValue = endValue;
-      if (selections.valueType === ValueType.count) {
-        newDatum.count = endValue - compareValue;
-      } else {
-        newDatum.percent = endValue - compareValue;
-      }
+      newDatum[selections.valueType] = endValue - compareValue;
       return newDatum;
     });
+    data.sort((a, b) => b[selections.valueType] - a[selections.valueType]);
     return data;
   }
 
@@ -287,12 +317,12 @@ export class ExploreDataService extends Unsubscribe {
     } else {
       allDatum = dataForYear.filter(
         (d) =>
-          d.field.toLowerCase() === 'all' &&
+          d.field === 'All' &&
           d.tenure === def.tenure &&
           d.rank.includes(def.rank)
       );
     }
-    x.percent = x.count / allDatum[0].count;
+    x.percent = allDatum[0].count ? x.count / allDatum[0].count : 0;
   }
 
   private transformDataRankToString(data: JobDatum[]): JobDatum[] {
@@ -318,19 +348,19 @@ export class ExploreDataService extends Unsubscribe {
     userUpdate: Partial<ExploreSelections>
   ): ExploreSelections {
     if (Object.keys(userUpdate).includes('tenureUse')) {
-      const update = this.getUpdateForVariableUseChange2(
+      const update = this.getUpdateForVariableUseChange(
         userUpdate,
         JobProperty.tenure
       );
       return { ...this.selections.getValue(), ...update };
     } else if (Object.keys(userUpdate).includes('rankUse')) {
-      const update = this.getUpdateForVariableUseChange2(
+      const update = this.getUpdateForVariableUseChange(
         userUpdate,
         JobProperty.rank
       );
       return { ...this.selections.getValue(), ...update };
     } else if (Object.keys(userUpdate).includes('fieldUse')) {
-      const update = this.getUpdateForVariableUseChange2(
+      const update = this.getUpdateForVariableUseChange(
         userUpdate,
         JobProperty.field
       );
@@ -342,14 +372,14 @@ export class ExploreDataService extends Unsubscribe {
     }
   }
 
-  getUpdateForVariableUseChange2(
+  getUpdateForVariableUseChange(
     userUpdate: Partial<ExploreSelections>,
     variable: EntityCategory
   ): Partial<ExploreSelections> {
     const current = this.selections.getValue();
     const variableUse = `${variable}Use`;
     const variableValues = `${variable}Values`;
-    let options;
+    let options: VariableOption[];
     let otherVariables;
     let changedValues;
     let otherValues;
@@ -369,78 +399,69 @@ export class ExploreDataService extends Unsubscribe {
           ? [current.fieldValues[0]] ?? [options[0].label]
           : [options[0].label];
     } else {
-      changedValues = options
-        .filter((x) =>
-          current.valueType === ValueType.percent
-            ? x.value !== 'all'
-            : variable === JobProperty.field
-            ? x.value === current.fieldValues[0]
-            : true
-        )
-        .map((x) => x.label);
-      otherValues = otherVariables.reduce((acc, x) => {
-        const otherOptions =
-          x === JobProperty.field
-            ? fieldValueOptions
-            : x === JobProperty.tenure
-            ? tenureValueOptions
-            : rankValueOptions;
-        acc[`${x}Values`] = [otherOptions[0].label];
-        acc[`${x}Use`] = FilterType.filter;
-        return acc;
-      }, {} as Partial<ExploreSelections>);
+      changedValues = this.getNewSelectionWhenSwitchingToDisaggregate(
+        options,
+        current,
+        variable
+      );
+      otherValues =
+        this.getSelectionForOtherVariablesWhenSwitchingToDisaggregate(
+          otherVariables
+        );
     }
-    return {
+    const newSelections = {
       [variableUse]: userUpdate[variableUse],
       [variableValues]: changedValues,
       ...otherValues,
     };
+    return newSelections;
   }
 
-  getUpdateForVariableUseChange(
-    userUpdate: Partial<ExploreSelections>,
-    variableUse: 'tenureUse' | 'rankUse'
-  ): Partial<ExploreSelections> {
-    const current = this.selections.getValue();
-    const variableValues =
-      variableUse === 'tenureUse' ? 'tenureValues' : 'rankValues';
-    const altVariableUse =
-      variableUse === 'tenureUse' ? 'rankUse' : 'tenureUse';
-    const altVariableValues =
-      variableUse === 'tenureUse' ? 'rankValues' : 'tenureValues';
-    const options =
-      variableUse === 'tenureUse' ? tenureValueOptions : rankValueOptions;
-    const altOptions =
-      variableUse === 'tenureUse' ? rankValueOptions : tenureValueOptions;
-    let changedValues;
-    let otherValues = current[altVariableValues];
-    let fieldValues = current.fieldValues;
-    let fieldUse = current.fieldUse;
-    if (userUpdate[variableUse] === FilterType.filter) {
-      changedValues = [options[0].label];
+  getNewSelectionWhenSwitchingToDisaggregate(
+    options: VariableOption[],
+    current: ExploreSelections,
+    variable: EntityCategory
+  ): string[] {
+    if (variable === JobProperty.field) {
+      if (current.valueType === ValueType.percent) {
+        if (
+          current.fieldValues.length === 1 &&
+          current.fieldValues[0].toLowerCase() === 'all'
+        ) {
+          return options
+            .filter((x) => x.value.toLowerCase() !== 'all')
+            .map((x) => x.value);
+        } else {
+          return current.fieldValues.filter((x) => x.toLowerCase() !== 'all');
+        }
+      } else {
+        return current.fieldValues;
+      }
     } else {
-      changedValues = options
-        .filter((x) =>
-          current.valueType === ValueType.percent ? x.value !== 'all' : true
-        )
-        .map((x) => x.label);
-      otherValues = [altOptions[0].label];
-      fieldValues = current.fieldValues[0]
-        ? [current.fieldValues[0]]
-        : [artHistoryFields[0].name.full];
-      fieldUse = FilterType.filter;
+      if (current.valueType === ValueType.percent) {
+        return options
+          .filter((x) => x.value.toLowerCase() !== 'all')
+          .map((x) => x.label);
+      } else {
+        return options.map((x) => x.label);
+      }
     }
-    return {
-      [variableUse]: userUpdate[variableUse],
-      [variableValues]: changedValues,
-      [altVariableUse]:
-        userUpdate[variableUse] === FilterType.disaggregate
-          ? FilterType.filter
-          : current[altVariableUse],
-      [altVariableValues]: otherValues,
-      fieldValues,
-      fieldUse,
-    };
+  }
+
+  getSelectionForOtherVariablesWhenSwitchingToDisaggregate(
+    otherVariables: EntityCategory[]
+  ): Partial<ExploreSelections> {
+    return otherVariables.reduce((acc, x) => {
+      const otherOptions =
+        x === JobProperty.field
+          ? fieldValueOptions
+          : x === JobProperty.tenure
+          ? tenureValueOptions
+          : rankValueOptions;
+      acc[`${x}Values`] = [otherOptions[0].label];
+      acc[`${x}Use`] = FilterType.filter;
+      return acc;
+    }, {} as Partial<ExploreSelections>);
   }
 
   getUpdateForFieldsUseChange(
@@ -493,5 +514,52 @@ export class ExploreDataService extends Unsubscribe {
       }
     }
     return update;
+  }
+
+  getChartTitle(
+    entityCategory: EntityCategory,
+    selections: ExploreSelections
+  ): ExploreChartTitle {
+    let fields = '';
+    let disaggregation;
+    let tenureSelection;
+    let rankSelection;
+    let tenureAndRankString = '';
+    if (entityCategory === JobProperty.field) {
+      if (selections.fieldUse === FilterType.disaggregate) {
+        disaggregation = 'by field';
+        if (selections.valueType === ValueType.percent) {
+          fields = 'all';
+        }
+      }
+      if (
+        selections.tenureUse === FilterType.filter &&
+        selections.tenureValues[0] !== tenureValueOptions[0].label
+      ) {
+        tenureSelection = selections.tenureValues[0];
+      }
+      if (
+        selections.rankUse === FilterType.filter &&
+        selections.rankValues[0] !== rankValueOptions[0].label
+      ) {
+        rankSelection = selections.rankValues[0];
+      }
+      tenureAndRankString = `${tenureSelection ?? ''}${
+        tenureSelection && rankSelection ? ',' : ''
+      } ${rankSelection ?? ''}`;
+    } else {
+      fields = selections.fieldValues.join('');
+      if (entityCategory === JobProperty.tenure) {
+        disaggregation = 'by tenure status';
+      } else if (entityCategory === JobProperty.rank) {
+        disaggregation = 'by rank';
+      }
+    }
+    return {
+      valueType: selections.valueType,
+      fields: fields.toLowerCase(),
+      tenureAndRank: tenureAndRankString,
+      disaggregation,
+    };
   }
 }

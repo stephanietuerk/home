@@ -1,0 +1,31 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+@use 'colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$blue-text;
+  border-radius: $ui-element-border-radius;
+  padding: grid(2);
+  color: white;
+  margin: grid(2) 0;
+}
+
+.relative-message-container {
+  display: flex;
+  justify-content: space-between;
+
+  .close-button {
+    @extend %message-close-button-styles;
+  }
+}
+
+.message {
+  @extend %typography-body;
+
+  &:not(:first-child) {
+    padding-top: grid(1);
+  }
+}

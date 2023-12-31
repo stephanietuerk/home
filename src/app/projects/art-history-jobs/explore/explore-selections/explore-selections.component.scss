@@ -24,13 +24,6 @@ $panel-opacity: 0.9;
     font-size: 0.9rem;
   }
 
-  .container-instructions {
-    @extend %sans-regular-italic;
-    line-height: 1.3;
-    max-width: 600px;
-    padding-bottom: grid(1);
-  }
-
   &.open {
     border-bottom: 1px solid white;
   }
@@ -45,6 +38,8 @@ $panel-opacity: 0.9;
     display: flex;
     justify-content: space-between;
     max-width: 700px;
+    align-items: flex-end;
+    gap: grid(2);
   }
 
   .selection-title {
@@ -56,6 +51,14 @@ $panel-opacity: 0.9;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.25s ease-in-out;
     padding-bottom: grid(1);
+
+    @media screen and (max-width: 760px) {
+      font-size: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 0.875rem;
+    }
 
     &:hover {
       border-bottom: 2px solid $color-highlight;
@@ -86,10 +89,13 @@ $panel-opacity: 0.9;
   }
 
   .selection-instructions {
-    @extend %sans-regular-italic;
-    line-height: 1.3;
+    line-height: 1.2;
     max-width: 600px;
     padding-bottom: grid(1);
+
+    .main {
+      @extend %subtitle2;
+    }
 
     .filter-use-name {
       font-style: normal;
@@ -101,6 +107,10 @@ $panel-opacity: 0.9;
       font-style: normal;
       font-weight: 300;
       font-size: 0.875rem;
+
+      &:not(:last-child) {
+        padding-bottom: grid(1);
+      }
     }
   }
 
@@ -147,7 +157,13 @@ $panel-opacity: 0.9;
   }
 
   .variable-use-selection-component {
-    display: block;
+    display: flex;
     padding-bottom: grid(3);
+    max-width: 600px;
+  }
+
+  .selection-interface.data-type {
+    display: flex;
+    max-width: 600px;
   }
 }

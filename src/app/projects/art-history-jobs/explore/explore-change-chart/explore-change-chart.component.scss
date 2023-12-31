@@ -4,14 +4,14 @@
 @use 'functions' as *;
 
 .change-chart-container {
-  .instructions {
+  .instruction {
     padding: 0 grid(3) grid(1) grid(3);
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    font-size: 0.7rem;
-    line-height: 1.1;
+    @extend %subtitle2;
+    line-height: 1.2;
 
     .end-year {
+      @extend %slab-bold;
+      font-style: normal;
       color: $color-highlight;
       font-size: 0.9rem;
     }
@@ -29,7 +29,6 @@
 
   .radio-input-label {
     @extend %slab-medium;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,6 +38,7 @@
     padding: grid(2) grid(2) 6px grid(2);
     flex-basis: 50%;
     flex-grow: 1;
+    flex-wrap: wrap;
 
     &:first-of-type {
       border-radius: grid(1) 0 0 grid(1);
@@ -46,6 +46,10 @@
 
     &:last-of-type {
       border-radius: 0 grid(1) grid(1) 0;
+    }
+
+    span {
+      white-space: nowrap;
     }
   }
 
@@ -68,8 +72,14 @@
   .chart-title {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     line-height: 1.1;
+    padding-bottom: grid(1);
+  }
+
+  .tenure-rank {
+    font-weight: 500;
+    color: $color-highlight;
   }
 }
 

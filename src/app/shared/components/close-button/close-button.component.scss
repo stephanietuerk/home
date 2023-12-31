@@ -1,0 +1,34 @@
+@use 'placeholders' as *;
+@use 'colors';
+
+.close-button {
+  @extend %typography-ui-label-sm-regular;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: grid(1);
+  color: var(--color);
+
+  &.hidden {
+    height: 0;
+  }
+
+  &:hover {
+    background: var(--hover-background);
+
+    .button-label {
+      text-decoration: underline;
+    }
+  }
+
+  .button-label {
+    display: inline-block;
+    padding-left: grid(1);
+  }
+
+  .material-symbols-outlined {
+    transform: scale(0.75);
+    position: relative;
+    left: 2px;
+  }
+}

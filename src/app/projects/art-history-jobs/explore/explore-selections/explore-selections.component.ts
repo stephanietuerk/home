@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { animations } from 'src/app/core/constants/animations.constants';
-import { OverlayService } from 'src/app/core/services/overlay.service';
+import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { JobProperty } from '../../art-history-data.model';
 import { ExploreDataService } from '../explore-data.service';

@@ -80,9 +80,6 @@ export class ChangeBarsComponent
 
   constructor() {
     super();
-    this.bars$.subscribe((bars) => {
-      console.log('bars', bars);
-    });
   }
 
   override setRequiredChartScales(): void {

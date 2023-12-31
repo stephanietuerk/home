@@ -52,7 +52,7 @@ export class SummaryChartComponent {
   @Input() yAxisConfig: VicAxisConfig;
   width = 712;
   height = 652;
-  margin: ElementSpacing = { top: 4, right: 56, bottom: 36, left: 24 };
+  margin: ElementSpacing = { top: 4, right: 0, bottom: 36, left: 24 };
   tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
     new BehaviorSubject<HtmlTooltipConfig>(
       new HtmlTooltipConfig({ show: false })

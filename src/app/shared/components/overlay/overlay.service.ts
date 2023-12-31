@@ -7,19 +7,9 @@ import {
   OverlaySizeConfig,
   PositionStrategy,
 } from '@angular/cdk/overlay';
-import {
-  ComponentPortal,
-  ComponentType,
-  TemplatePortal,
-} from '@angular/cdk/portal';
-import {
-  ElementRef,
-  Injectable,
-  Injector,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
-import { appName } from '../../core/constants/app.constants';
+import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { ElementRef, Injectable, Injector } from '@angular/core';
+import { appName } from 'src/app/core/constants/app.constants';
 
 export const belowLeftAligned: ConnectedPosition = {
   originX: 'start',
@@ -63,7 +53,7 @@ export const aboveCenterAligned: ConnectedPosition = {
   overlayY: 'bottom',
 };
 
-class AppOverlayConfig {
+class ScorecardOverlayConfig {
   /**
    * The CSS class to apply to the Angular Material CDK backdrop element. Default value is `${appName}-overlay-backdrop`.
    */
@@ -111,7 +101,7 @@ class AppOverlayConfig {
   }
 }
 
-export class ConnectedOverlayConfig extends AppOverlayConfig {
+export class ConnectedOverlayConfig extends ScorecardOverlayConfig {
   constructor(init?: Partial<ConnectedOverlayConfig>) {
     super();
     this.positions = [aboveCenterAligned];
@@ -119,7 +109,7 @@ export class ConnectedOverlayConfig extends AppOverlayConfig {
   }
 }
 
-export class GlobalOverlayConfig extends AppOverlayConfig {
+export class GlobalOverlayConfig extends ScorecardOverlayConfig {
   override connectedElementRef: never;
   override positions: never;
 
@@ -190,14 +180,6 @@ export class OverlayService {
       new ComponentPortal(component, null, injector)
     );
     return componentRef.instance;
-  }
-
-  attachTemplate(
-    template: TemplateRef<Element>,
-    viewContainerRef: ViewContainerRef
-  ): void {
-    const templatePortal = new TemplatePortal(template, viewContainerRef);
-    this.overlayRef.attach(templatePortal);
   }
 
   updateGlobalPosition(x: number, y: number): void {

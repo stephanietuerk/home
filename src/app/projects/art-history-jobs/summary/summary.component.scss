@@ -2,6 +2,12 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .section-header {
   @extend %h5;
   text-align: center;
@@ -11,6 +17,14 @@
 .charts-container {
   display: flex;
   padding-top: grid(4);
+  gap: grid(14);
+
+  @media screen and (max-width: 1000px) {
+    gap: grid(8);
+  }
+  @media screen and (max-width: 840px) {
+    flex-direction: column;
+  }
 }
 
 .chart-component {
@@ -22,4 +36,15 @@
 .table-component {
   flex-basis: 400px;
   flex-shrink: 0;
+}
+
+.description {
+  max-width: 600px;
+  line-height: 1.5;
+  align-self: center;
+  width: 100%;
+
+  &:not(:last-child) {
+    padding-bottom: grid(6);
+  }
 }

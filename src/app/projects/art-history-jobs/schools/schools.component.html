@@ -50,7 +50,10 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
-            <div class="all-schools-container">
+            <div
+              class="all-schools-container"
+              [style.--chart-width]="16 * numYears + 'px'"
+            >
               <div
                 class="school-container"
                 *ngFor="let school of country.jobsBySchool; let i = index"

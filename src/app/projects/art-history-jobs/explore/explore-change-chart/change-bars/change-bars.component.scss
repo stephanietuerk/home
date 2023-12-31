@@ -11,6 +11,10 @@
     cursor: default;
   }
 
+  .axis-container {
+    opacity: 0.6;
+  }
+
   .zero-axis {
     stroke: $color-dark-primary;
     stroke-dasharray: 2 2;
@@ -20,6 +24,11 @@
   .bar-container {
     display: flex;
     padding-bottom: grid(2);
+
+    .bar-category-label {
+      font-size: 0.875rem;
+      letter-spacing: 0.1px;
+    }
 
     &.row {
       align-items: center;
@@ -33,7 +42,6 @@
 
     &.column {
       flex-direction: column;
-      align-items: flex-start;
 
       .bar-category-label {
         text-align: left;

@@ -3,7 +3,7 @@
     class="change-chart-container"
     *ngIf="exploreDataService.selections$ | async as selections"
   >
-    <p class="instructions"
+    <p class="instruction"
       >Show change between
       <span class="end-year">{{selections.years.end}}</span> and</p
     >
@@ -41,7 +41,10 @@
       >
     </div>
     <p class="chart-title" [style.padding-left.px]="margin.left"
-      >{{ vm.title }}</p
+      >Change{{vm.title.valueTypePercent}} in {{vm.title.valueTypeCount}} {{
+      vm.title.fields }}
+      <span class="tenure-rank">{{vm.title.tenureAndRank}}</span> jobs
+      {{vm.title.disaggregation}}, {{vm.title.years}}</p
     >
     <app-change-chart
       #changeChart

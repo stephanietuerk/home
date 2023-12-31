@@ -3,6 +3,34 @@
     "country": "United States",
     "jobsBySchool": [
       {
+        "school": "Adelphi University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1527",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "school": "Albion College",
         "jobsByYear": [
           { "year": "2011", "jobs": [] },
@@ -26,7 +54,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -92,7 +121,18 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1545",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -147,7 +187,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -194,7 +235,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -221,7 +263,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -248,7 +291,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -277,7 +321,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -314,7 +359,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -351,7 +397,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -378,7 +425,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -409,7 +457,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -468,7 +517,8 @@
                 "field": ["Latin American Art", "North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -501,7 +551,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Augusta University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1528",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -528,7 +607,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -555,7 +635,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -604,7 +685,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -657,7 +739,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -694,7 +777,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -721,7 +805,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -774,7 +859,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -801,7 +887,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -868,7 +955,8 @@
                 "field": ["Curatorial Studies / Arts Administration"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -934,7 +1022,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -971,7 +1060,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1008,7 +1098,8 @@
                 "field": ["Architecture"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1047,7 +1138,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1076,7 +1168,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1141,7 +1234,8 @@
                 "field": ["Byzantine / Medieval Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1208,7 +1302,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1235,7 +1330,20 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1558",
+                "tenure": "Non-tenure track",
+                "rank": ["vap"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -1272,7 +1380,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1299,7 +1408,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1326,7 +1436,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1363,7 +1474,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1403,7 +1515,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1430,7 +1543,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1460,7 +1574,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1545,7 +1660,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1610,7 +1726,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1647,7 +1764,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1674,7 +1792,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1731,7 +1850,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1758,7 +1878,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1785,7 +1906,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1812,7 +1934,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1839,7 +1962,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1878,7 +2002,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1905,7 +2030,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1942,7 +2068,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -1969,7 +2096,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2006,7 +2134,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2045,7 +2174,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2072,7 +2202,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1553",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Film / Photography"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -2143,7 +2284,8 @@
                 "field": ["Latin American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2170,7 +2312,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2197,7 +2340,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2240,7 +2384,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1516",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -2267,7 +2422,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2304,7 +2460,8 @@
                 "field": ["Latin American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2331,7 +2488,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2358,7 +2516,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2385,7 +2544,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2424,7 +2584,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2451,7 +2612,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2478,7 +2640,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2543,6 +2706,17 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1559",
+                "tenure": "Non-tenure track",
+                "rank": ["vap"],
+                "field": ["Curatorial Studies / Arts Administration"]
+              }
+            ]
           }
         ]
       },
@@ -2570,7 +2744,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2597,7 +2772,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2644,7 +2820,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2681,7 +2858,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2721,7 +2899,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2784,7 +2963,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2814,7 +2994,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2851,7 +3032,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2878,7 +3060,8 @@
                 "field": ["Ancient Art", "Byzantine / Medieval Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2905,7 +3088,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2942,7 +3126,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1522",
+                "tenure": "Tenure track",
+                "rank": ["open_rank"],
+                "field": ["Design"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -2969,7 +3164,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -2998,7 +3194,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3035,7 +3232,20 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1526",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -3062,7 +3272,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3129,7 +3340,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3201,7 +3413,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3300,7 +3513,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3360,7 +3574,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3409,7 +3624,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3472,7 +3688,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3499,7 +3716,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1500",
+                "tenure": "Non-tenure track",
+                "rank": ["vap"],
+                "field": ["Curatorial Studies / Arts Administration"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3526,7 +3754,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3553,7 +3782,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3704,7 +3934,20 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1523",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -3731,7 +3974,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3768,7 +4012,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3815,7 +4060,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3852,7 +4098,8 @@
                 "field": ["Gender and Sexuality Studies"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3879,7 +4126,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3951,7 +4199,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -3978,7 +4227,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4005,7 +4255,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4080,7 +4331,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4143,7 +4395,8 @@
                 "field": ["Middle Eastern / Islamic Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4170,7 +4423,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4225,7 +4479,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4262,7 +4517,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4299,7 +4555,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4326,7 +4583,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4353,7 +4611,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4412,7 +4671,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4449,7 +4709,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4476,7 +4737,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4513,7 +4775,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4538,6 +4801,35 @@
                 "tenure": "Tenure track",
                 "rank": ["assistant_prof"],
                 "field": ["African / African Diaspora Art"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "East Tennessee State University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1537",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
               }
             ]
           }
@@ -4577,7 +4869,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4604,7 +4897,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4653,7 +4947,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4680,7 +4975,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4707,7 +5003,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4736,7 +5033,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4763,7 +5061,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4856,7 +5155,18 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1520",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -4883,7 +5193,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -4920,7 +5231,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5013,7 +5325,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5076,7 +5389,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5103,7 +5417,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5140,7 +5455,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5169,7 +5485,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5196,7 +5513,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5233,7 +5551,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5260,7 +5579,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5307,7 +5627,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5383,7 +5704,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5410,7 +5732,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5437,7 +5760,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5464,7 +5788,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5523,7 +5848,8 @@
                 "field": ["Global / Non-Western Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5550,7 +5876,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5629,7 +5956,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5666,7 +5994,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5693,7 +6022,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5730,7 +6060,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5757,7 +6088,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5796,7 +6128,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5823,7 +6156,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5850,7 +6184,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5877,7 +6212,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5906,7 +6242,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5957,7 +6294,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -5984,7 +6322,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6053,7 +6392,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6080,7 +6420,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6111,7 +6452,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6143,7 +6485,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6302,6 +6645,35 @@
                 "field": ["Ancient Art"]
               }
             ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Harvey Mudd College",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1514",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Architecture"]
+              }
+            ]
           }
         ]
       },
@@ -6329,7 +6701,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6358,7 +6731,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6397,7 +6771,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6434,7 +6809,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6473,7 +6849,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6500,7 +6877,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6527,7 +6905,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6554,7 +6933,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6607,7 +6987,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6634,7 +7015,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6702,7 +7084,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6785,7 +7168,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6812,7 +7196,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6849,7 +7234,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6876,7 +7262,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6903,7 +7290,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6930,7 +7318,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -6957,7 +7346,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "John Hopkins University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1542",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Byzantine / Medieval Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -7060,7 +7478,8 @@
                 "field": ["Ancient Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7097,7 +7516,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7124,7 +7544,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7151,7 +7572,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7188,7 +7610,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1530",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -7257,7 +7690,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7328,7 +7762,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7367,7 +7802,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7400,7 +7836,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7437,6 +7874,17 @@
                 "tenure": "Non-tenure track",
                 "rank": ["vap"],
                 "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1561",
+                "tenure": "Non-tenure track",
+                "rank": ["vap"],
+                "field": ["Modern / Contemporary Art"]
               }
             ]
           }
@@ -7506,7 +7954,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7543,7 +7992,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7611,7 +8061,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7638,7 +8089,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7665,7 +8117,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7692,7 +8145,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7761,7 +8215,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7798,7 +8253,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7825,7 +8281,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7852,7 +8309,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7889,7 +8347,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7926,7 +8385,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7953,7 +8413,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -7990,7 +8451,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8017,7 +8479,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8096,7 +8559,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8123,7 +8587,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8150,7 +8615,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8217,7 +8683,8 @@
                 "field": ["Architecture"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8244,7 +8711,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8277,7 +8745,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Mercy University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1531",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -8316,7 +8813,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8393,7 +8891,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8452,7 +8951,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8525,7 +9025,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8552,7 +9053,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8591,7 +9093,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8618,7 +9121,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8655,7 +9159,36 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Minnesota State University, Moorhead",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1532",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -8692,7 +9225,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8719,7 +9253,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8746,7 +9281,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8773,7 +9309,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8800,7 +9337,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8837,7 +9375,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8864,7 +9403,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8891,7 +9431,8 @@
                 "field": ["Curatorial Studies / Arts Administration"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8918,7 +9459,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -8949,7 +9491,18 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1511",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Architecture"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -8976,7 +9529,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9033,34 +9587,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
-        ]
-      },
-      {
-        "school": "NYU Shanghai",
-        "jobsByYear": [
-          { "year": "2011", "jobs": [] },
-          { "year": "2012", "jobs": [] },
-          { "year": "2013", "jobs": [] },
-          { "year": "2014", "jobs": [] },
-          { "year": "2015", "jobs": [] },
-          { "year": "2016", "jobs": [] },
-          { "year": "2017", "jobs": [] },
-          { "year": "2018", "jobs": [] },
-          {
-            "year": "2019",
-            "jobs": [
-              {
-                "id": "1104",
-                "tenure": "Tenure track",
-                "rank": ["full_prof"],
-                "field": ["Architecture"]
-              }
-            ]
-          },
-          { "year": "2020", "jobs": [] },
-          { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9087,7 +9615,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9114,7 +9643,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9151,7 +9681,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9316,6 +9847,20 @@
                 ]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1563",
+                "tenure": "Non-tenure track",
+                "rank": ["lecturer", "vap"],
+                "field": [
+                  "Curatorial Studies / Arts Administration",
+                  "Film / Photography"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -9343,7 +9888,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9386,7 +9932,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9413,7 +9960,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9485,6 +10033,20 @@
                 ]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1540",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Middle Eastern / Islamic Art",
+                  "Byzantine / Medieval Art"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -9512,7 +10074,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9551,7 +10114,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9714,6 +10278,23 @@
                 "field": [
                   "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
                 ]
+              },
+              {
+                "id": "1490",
+                "tenure": "Non-tenure track",
+                "rank": ["vap, assistant_prof"],
+                "field": ["Middle Eastern / Islamic Art"]
+              }
+            ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1541",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Middle Eastern / Islamic Art"]
               }
             ]
           }
@@ -9755,7 +10336,20 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1525",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -9850,7 +10444,8 @@
                 "field": ["Latin American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9877,7 +10472,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9924,7 +10520,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -9951,7 +10548,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10000,7 +10598,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10037,7 +10636,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10064,7 +10664,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10091,7 +10692,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10190,7 +10792,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10233,6 +10836,17 @@
                 ]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1539",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Global / Non-Western Art"]
+              }
+            ]
           }
         ]
       },
@@ -10260,7 +10874,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10300,7 +10915,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10329,7 +10945,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10369,7 +10986,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10412,7 +11030,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10575,6 +11194,17 @@
                 "field": ["Film / Photography"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1517",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
           }
         ]
       },
@@ -10625,7 +11255,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10656,7 +11287,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10693,7 +11325,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10720,7 +11353,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10747,7 +11381,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10794,7 +11429,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10821,7 +11457,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10848,7 +11485,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -10907,6 +11545,17 @@
                 "field": ["Global / Non-Western Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1550",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Global / Non-Western Art"]
+              }
+            ]
           }
         ]
       },
@@ -10934,7 +11583,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11017,7 +11667,8 @@
                 "field": ["Byzantine / Medieval Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11044,7 +11695,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11073,7 +11725,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11100,7 +11753,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11141,7 +11795,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11170,7 +11825,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11197,7 +11853,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1544",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -11268,7 +11935,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11295,7 +11963,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11322,7 +11991,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11349,7 +12019,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1519",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -11376,7 +12057,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11403,7 +12085,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11440,7 +12123,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11467,7 +12151,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11496,7 +12181,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11523,7 +12209,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11550,7 +12237,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11587,7 +12275,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11626,7 +12315,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11672,7 +12362,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1536",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Global / Non-Western Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -11709,7 +12410,21 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1506",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "African / African Diaspora Art",
+                  "Latin American Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -11736,7 +12451,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11763,7 +12479,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11820,6 +12537,17 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1501",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Global / Non-Western Art"]
+              }
+            ]
           }
         ]
       },
@@ -11847,7 +12575,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11886,7 +12615,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -11955,7 +12685,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12059,7 +12790,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12086,7 +12818,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12133,7 +12866,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12206,7 +12940,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12253,7 +12988,21 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1534",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Modern / Contemporary Art",
+                  "Visual Studies / Visual Culture"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -12283,7 +13032,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12310,7 +13060,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12349,7 +13100,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12378,7 +13130,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12467,7 +13220,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12494,7 +13248,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12521,7 +13276,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12548,7 +13304,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12575,7 +13332,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12602,7 +13360,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12651,7 +13410,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12745,7 +13505,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12772,7 +13533,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12835,7 +13597,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12862,7 +13625,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12911,7 +13675,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -12938,7 +13703,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1547",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -12975,7 +13751,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1566",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Architecture"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -13052,7 +13839,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13079,7 +13867,36 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Texas A&M International University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1535",
+                "tenure": "Unknown",
+                "rank": ["lecturer, assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -13136,7 +13953,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13163,7 +13981,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13220,7 +14039,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13271,7 +14091,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13298,7 +14119,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13325,7 +14147,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13400,7 +14223,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13427,7 +14251,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13464,7 +14289,8 @@
                 "field": ["Global / Non-Western Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13531,7 +14357,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13654,7 +14481,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13681,7 +14509,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13708,7 +14537,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13735,7 +14565,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13762,7 +14593,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13789,7 +14621,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13897,7 +14730,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13924,7 +14758,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13951,7 +14786,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -13978,7 +14814,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "University of Arkansas",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1508",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["North American Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -14031,6 +14896,17 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1515",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
           }
         ]
       },
@@ -14058,7 +14934,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14143,7 +15020,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14172,7 +15050,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14265,7 +15144,8 @@
                 "field": ["Ancient Art", "Byzantine / Medieval Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14362,7 +15242,8 @@
                 "field": ["Ancient Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14389,7 +15270,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14474,7 +15356,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14501,7 +15384,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14536,7 +15420,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14597,7 +15482,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1507",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["North American Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -14672,7 +15568,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14790,6 +15687,17 @@
                 "field": ["Architecture"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1509",
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": ["Ancient Art"]
+              }
+            ]
           }
         ]
       },
@@ -14817,7 +15725,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14844,7 +15753,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14913,7 +15823,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14972,7 +15883,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -14999,7 +15911,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15054,7 +15967,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15124,7 +16038,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15177,7 +16092,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15204,7 +16120,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15251,7 +16168,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15278,7 +16196,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15367,6 +16286,23 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1513",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Architecture"]
+              },
+              {
+                "id": "1564",
+                "tenure": "Unknown",
+                "rank": ["chair"],
+                "field": ["General / Open"]
+              }
+            ]
           }
         ]
       },
@@ -15414,7 +16350,8 @@
                 "field": ["Global / Non-Western Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15503,6 +16440,38 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "University of Illinois, Springfield",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1504",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "African / African Diaspora Art",
+                  "Gender and Sexuality Studies"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -15589,7 +16558,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15650,7 +16620,21 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1495",
+                "tenure": "Non-tenure track",
+                "rank": ["lecturer"],
+                "field": [
+                  "African / African Diaspora Art",
+                  "Modern / Contemporary Art"
+                ]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15729,7 +16713,26 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1524",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              },
+              {
+                "id": "1549",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Curatorial Studies / Arts Administration"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -15773,6 +16776,17 @@
                 "tenure": "Non-tenure track",
                 "rank": ["lecturer"],
                 "field": ["General / Open"]
+              }
+            ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1543",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
               }
             ]
           }
@@ -15845,7 +16859,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15872,7 +16887,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15899,7 +16915,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -15962,7 +16979,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16025,7 +17043,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16090,7 +17109,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16129,7 +17149,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16156,7 +17177,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16225,7 +17247,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16272,7 +17295,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16400,7 +17424,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16437,7 +17462,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16464,7 +17490,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16539,7 +17566,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16576,7 +17604,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16603,7 +17632,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16630,7 +17660,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16659,7 +17690,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16686,7 +17718,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16723,7 +17756,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16760,7 +17794,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16787,7 +17822,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16833,7 +17869,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16880,7 +17917,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16917,7 +17955,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -16954,7 +17993,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17003,7 +18043,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1548",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -17030,7 +18081,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17075,7 +18127,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17102,7 +18155,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17145,7 +18199,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1505",
+                "tenure": "Tenure track",
+                "rank": ["associate_prof"],
+                "field": ["African / African Diaspora Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -17223,6 +18288,17 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1510",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Ancient Art"]
+              }
+            ]
           }
         ]
       },
@@ -17250,7 +18326,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17331,7 +18408,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17439,7 +18517,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17542,7 +18621,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17569,7 +18649,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17596,7 +18677,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17625,7 +18707,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17708,7 +18791,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17747,7 +18831,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17784,7 +18869,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17811,7 +18897,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17860,7 +18947,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17887,7 +18975,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -17934,7 +19023,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18043,7 +19133,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18072,7 +19163,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18099,7 +19191,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18158,7 +19251,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18185,7 +19279,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18212,7 +19307,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18239,7 +19335,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18266,7 +19363,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18303,7 +19401,20 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1565",
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -18340,7 +19451,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18367,7 +19479,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18404,7 +19517,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1492",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18441,7 +19565,8 @@
                 "field": ["Curatorial Studies / Arts Administration"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18468,7 +19593,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18505,7 +19631,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18542,7 +19669,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18569,7 +19697,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18675,7 +19804,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18762,7 +19892,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18789,7 +19920,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18816,7 +19948,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18853,7 +19986,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18880,7 +20014,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18907,7 +20042,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -18988,7 +20124,23 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1557",
+                "tenure": "Non-tenure track",
+                "rank": ["postdoc", "vap"],
+                "field": [
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art",
+                  "Byzantine / Medieval Art",
+                  "Ancient Art",
+                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -19041,7 +20193,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19068,7 +20221,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19105,7 +20259,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19140,6 +20295,35 @@
                 "tenure": "Non-tenure track",
                 "rank": ["lecturer"],
                 "field": ["Design"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "University of Wisconsin,Madison",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1503",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["African / African Diaspora Art"]
               }
             ]
           }
@@ -19187,7 +20371,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19214,7 +20399,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19241,7 +20427,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19268,7 +20455,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Utah Valley University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1493",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Modern / Contemporary Art"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19315,7 +20531,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19362,7 +20579,18 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1521",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Asian / Asian Diaspora Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -19389,7 +20617,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19434,6 +20663,17 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1554",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Visual Studies / Visual Culture"]
+              }
+            ]
           }
         ]
       },
@@ -19461,7 +20701,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19511,7 +20752,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19574,6 +20816,17 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1512",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Architecture", "Latin American Art"]
+              }
+            ]
           }
         ]
       },
@@ -19603,7 +20856,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19640,7 +20894,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19706,7 +20961,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19735,7 +20991,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19762,7 +21019,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19807,7 +21065,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19834,7 +21093,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19861,7 +21121,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19888,7 +21149,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -19960,7 +21222,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1567",
+                "tenure": "Tenure track",
+                "rank": ["associate_prof, full_prof"],
+                "field": ["North American Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -20051,7 +21324,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20078,7 +21352,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20105,7 +21380,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20132,7 +21408,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20159,7 +21436,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20211,7 +21489,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20248,7 +21527,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20291,7 +21571,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20318,7 +21599,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20410,7 +21692,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20437,7 +21720,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20464,7 +21748,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20494,7 +21779,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20521,7 +21807,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20548,7 +21835,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20693,7 +21981,8 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20720,7 +22009,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20747,7 +22037,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -20779,7 +22070,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20834,7 +22126,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "Emily Carr University of Art + Design",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1529",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -20858,10 +22179,11 @@
                 "id": "1444",
                 "tenure": "Tenure track",
                 "rank": ["associate_prof"],
-                "field": ["Global / Non-Western Art"]
+                "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20908,7 +22230,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20945,7 +22268,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -20980,7 +22304,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21007,7 +22332,8 @@
                 "field": ["Film / Photography"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21034,7 +22360,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21089,7 +22416,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21116,7 +22444,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1551",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["North American Art"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -21273,7 +22612,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21300,7 +22640,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21335,7 +22676,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21365,7 +22707,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21408,7 +22751,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21435,7 +22779,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21468,7 +22813,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21495,7 +22841,36 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
+      {
+        "school": "University of Victoria",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1552",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["North American Art"]
+              }
+            ]
+          }
         ]
       }
     ]
@@ -21529,7 +22904,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21574,7 +22950,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21603,7 +22980,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21640,7 +23018,8 @@
                 "field": ["North American Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21673,7 +23052,8 @@
           },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21736,7 +23116,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21775,7 +23156,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21802,7 +23184,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21831,7 +23214,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21860,7 +23244,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1494",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["Curatorial Studies / Arts Administration"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21897,7 +23292,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -21979,7 +23375,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22018,7 +23415,8 @@
                 "field": ["Modern / Contemporary Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22050,6 +23448,20 @@
                 "field": ["General / Open"]
               }
             ]
+          },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1518",
+                "tenure": "Non-tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": [
+                  "Asian / Asian Diaspora Art",
+                  "Modern / Contemporary Art"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -22077,7 +23489,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22104,7 +23517,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22131,7 +23545,8 @@
                 "field": ["Curatorial Studies / Arts Administration"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22158,7 +23573,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22182,10 +23598,21 @@
             ]
           },
           { "year": "2018", "jobs": [] },
-          { "year": "2019", "jobs": [] },
+          {
+            "year": "2019",
+            "jobs": [
+              {
+                "id": "1104",
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": ["Architecture"]
+              }
+            ]
+          },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22212,7 +23639,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22320,7 +23748,8 @@
                 "field": ["Asian / Asian Diaspora Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22351,7 +23780,8 @@
                 ]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22405,7 +23835,8 @@
                 "field": ["Curatorial Studies / Arts Administration"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22432,7 +23863,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22479,7 +23911,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22508,7 +23941,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22540,7 +23974,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22567,7 +24002,8 @@
                 "field": ["General / Open"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22594,7 +24030,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22621,7 +24058,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22653,7 +24091,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22680,7 +24119,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22707,7 +24147,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22736,7 +24177,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22744,6 +24186,34 @@
   {
     "country": "Netherlands",
     "jobsBySchool": [
+      {
+        "school": "Radboud University",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          {
+            "year": "2022",
+            "jobs": [
+              {
+                "id": "1491",
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": ["Byzantine / Medieval Art"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      },
       {
         "school": "Rijksuniversiteit Groningen",
         "jobsByYear": [
@@ -22768,7 +24238,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22797,7 +24268,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22824,7 +24296,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22856,7 +24329,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22895,7 +24369,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22924,7 +24399,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -22956,7 +24432,8 @@
                 "field": ["Middle Eastern / Islamic Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -22999,7 +24476,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -23036,7 +24514,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23068,7 +24547,8 @@
             ]
           },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -23095,7 +24575,8 @@
               }
             ]
           },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23127,7 +24608,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       },
       {
@@ -23154,7 +24636,75 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "country": "1502\r",
+    "jobsBySchool": [
+      {
+        "school": "University of Florida",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": [
+                  "Global / Non-Western Art",
+                  "Modern / Contemporary Art"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "country": "1568",
+    "jobsBySchool": [
+      {
+        "school": "University of Pittsburgh",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       }
     ]
@@ -23210,7 +24760,18 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1538",
+                "tenure": "Unknown",
+                "rank": ["assistant_prof"],
+                "field": ["Global / Non-Western Art"]
+              }
+            ]
+          }
         ]
       }
     ]
@@ -23242,7 +24803,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23274,7 +24836,8 @@
                 "field": ["Middle Eastern / Islamic Art"]
               }
             ]
-          }
+          },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23319,7 +24882,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23351,7 +24915,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23383,7 +24948,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23443,6 +25009,40 @@
                 "field": ["African / African Diaspora Art"]
               }
             ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "country": "SG",
+    "jobsBySchool": [
+      {
+        "school": "Singapore University of Technology and Design",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1533",
+                "tenure": "Non-tenure track",
+                "rank": ["lecturer"],
+                "field": ["General / Open"]
+              }
+            ]
           }
         ]
       }
@@ -23491,7 +25091,8 @@
           { "year": "2019", "jobs": [] },
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] }
+          { "year": "2022", "jobs": [] },
+          { "year": "2023", "jobs": [] }
         ]
       }
     ]
@@ -23518,6 +25119,40 @@
             "jobs": [
               {
                 "id": "1425",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          },
+          { "year": "2023", "jobs": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "country": "United States",
+    "jobsBySchool": [
+      {
+        "school": "Montana State University, Billings",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1546",
                 "tenure": "Tenure track",
                 "rank": ["assistant_prof"],
                 "field": ["General / Open"]

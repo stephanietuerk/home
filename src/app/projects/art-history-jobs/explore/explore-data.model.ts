@@ -28,3 +28,10 @@ export interface ExploreChangeDatum extends JobDatum {
   startValue: number;
   endValue: number;
 }
+
+export interface ExploreChartTitle {
+  valueType: string;
+  fields: string;
+  tenureAndRank: string;
+  disaggregation: string;
+}

@@ -18,17 +18,72 @@
     background: $color-light-gray-lightest;
     padding: grid(2);
 
-    > :not(:first-child) {
-      padding-left: grid(4);
+    @media screen and (max-width: 1079px) {
+      flex-direction: column-reverse;
+
+      .filters-container {
+        padding-left: 0;
+
+        .filters-row {
+          flex-wrap: wrap;
+        }
+
+        .fields-combobox,
+        .tenure-combobox,
+        .rank-combobox {
+          flex-grow: 1;
+        }
+      }
+
+      .search-sort-container {
+        border-right: none;
+        border-top: 1px solid $color-light-gray-medium;
+        display: flex;
+        flex-direction: row;
+        padding-top: grid(2);
+        margin-top: grid(3);
+        gap: grid(4);
+
+        @media screen and (max-width: 550px) {
+          gap: grid(2);
+          flex-direction: column;
+        }
+      }
+
+      .search-feature {
+        flex-basis: 65%;
+
+        .search-input {
+          height: 38px;
+        }
+      }
+
+      .sort-container {
+        flex-basis: 35%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+        flex-grow: 1;
+      }
+
+      .sort-selection {
+        width: 100%;
+      }
     }
 
-    > :not(:last-child) {
-      padding-right: grid(4);
-      border-right: 1px solid $color-light-gray-medium;
+    @media screen and (min-width: 1080px) {
+      .filters-container {
+        padding-left: grid(4);
+      }
+
+      .search-sort-container {
+        padding-right: grid(4);
+        border-right: 1px solid $color-light-gray-medium;
+      }
     }
   }
 
-  .left-col {
+  .search-sort-container {
     flex-grow: 1;
   }
 

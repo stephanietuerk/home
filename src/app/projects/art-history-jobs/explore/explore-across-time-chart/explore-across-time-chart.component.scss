@@ -6,8 +6,13 @@
   .chart-title {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     line-height: 1.1;
+  }
+
+  .tenure-rank {
+    font-weight: 500;
+    color: $color-highlight;
   }
 
   .time-range-xy-chart {

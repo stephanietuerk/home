@@ -25,7 +25,7 @@ import {
   HtmlTooltipConfig,
   HtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
-import { JobDatum, JobProperty } from '../../art-history-data.model';
+import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ArtHistoryUtilities } from '../../art-history.utilities';
@@ -41,12 +41,21 @@ import {
   ChangeChartYAxisConfig,
 } from './explore-change-chart.model';
 
+interface ChangeChartTitle {
+  valueTypePercent: string;
+  valueTypeCount: string;
+  fields: string;
+  tenureAndRank: string;
+  disaggregation: string;
+  years: string;
+}
+
 interface ViewModel {
   dataMarksConfig: ChangeChartConfig;
   xAxisConfig: ChangeChartXAxisConfig;
   yAxisConfig: ChangeChartXAxisConfig;
   height: number;
-  title: string;
+  title: ChangeChartTitle;
   categoryLabel: string;
 }
 @Component({
@@ -198,37 +207,25 @@ export class ExploreChangeChartComponent implements OnInit {
   getTitle(
     entityCategory: EntityCategory,
     selections: ExploreSelections
-  ): string {
-    let fields;
-    let disaggregation;
-    let firstYear;
-    if (entityCategory === JobProperty.field) {
-      disaggregation = 'by field';
-      if (selections.valueType === ValueType.count) {
-        fields = '';
-      } else {
-        fields = 'all';
-      }
-    } else {
-      fields = selections.fieldValues.join('');
-      if (entityCategory === JobProperty.tenure) {
-        disaggregation = 'by tenure status';
-      } else {
-        disaggregation = 'by rank';
-      }
-    }
-    if (selections.changeIsAverage) {
-      firstYear = 'Avg';
-    } else {
-      firstYear = selections.years.start;
-    }
-    return `Change${
-      selections.valueType === ValueType.percent ? '(% pts)' : ''
-    } in ${
-      selections.valueType === ValueType.percent ? '' : 'count of'
-    } ${fields.toLowerCase()} jobs ${disaggregation}, ${firstYear}\u2013${
-      selections.years.end
-    }`;
+  ): ChangeChartTitle {
+    const components = this.exploreDataService.getChartTitle(
+      entityCategory,
+      selections
+    );
+    const firstYear = selections.changeIsAverage
+      ? 'Avg'
+      : selections.years.start;
+
+    return {
+      valueTypePercent:
+        selections.valueType === ValueType.percent ? ' (% pts)' : '',
+      valueTypeCount:
+        selections.valueType === ValueType.percent ? '' : 'count of',
+      fields: components.fields,
+      tenureAndRank: components.tenureAndRank,
+      disaggregation: components.disaggregation,
+      years: `${firstYear}\u2013${selections.years.end}`,
+    };
   }
 
   toggleChangeIsAverage(currentValue: boolean, button: 'avg' | 'year'): void {

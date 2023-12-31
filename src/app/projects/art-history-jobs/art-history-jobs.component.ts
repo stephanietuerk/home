@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import {
   Component,
@@ -11,6 +12,8 @@ import {
   navbarHeight,
   projectNavbarId,
 } from 'src/app/core/constants/dom.constants';
+import { MessageService } from 'src/app/shared/components/messages/message.service';
+import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
 import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { ArtHistoryDataService } from './art-history-data.service';
 import { ExploreDataService } from './explore/explore-data.service';
@@ -27,7 +30,7 @@ enum Section {
   selector: 'app-art-history-jobs',
   templateUrl: './art-history-jobs.component.html',
   styleUrls: ['./art-history-jobs.component.scss'],
-  providers: [ExploreDataService],
+  providers: [ExploreDataService, MessageService, OverlayService],
 })
 export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
   @ViewChild('intro') intro: ElementRef;
@@ -42,6 +45,8 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
   constructor(
     public mainDataService: ArtHistoryDataService,
     public exploreDataService: ExploreDataService,
+    private platform: Platform,
+    private messages: MessageService,
     @Inject(DOCUMENT) private document: Document
   ) {
     super();
@@ -52,6 +57,9 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
       this.exploreDataService.init();
     });
     this.setScrollListener();
+    if (this.platform.IOS || this.platform.ANDROID) {
+      this.displayMobileMessage();
+    }
   }
 
   setScrollListener(): void {
@@ -103,5 +111,14 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
     const currentSectionIndex = sections.indexOf(this.currentSection);
     const previousSection = sections[currentSectionIndex - 1];
     this.scrollTo(previousSection);
+  }
+
+  displayMobileMessage(): void {
+    this.messages.createGlobalMessage([
+      'Hello!',
+      'It looks like you are viewing this project on a mobile device.',
+      "This site will work on mobile, but certain features such as tooltips won't be available, and the layout is not optimal for exploring lots of data.",
+      'For a better experience, please view this site on a desktop/laptop.',
+    ]);
   }
 }

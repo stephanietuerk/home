@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { take } from 'rxjs';
 import { SchoolsDataService } from './schools-data.service';
 
 @Component({
@@ -9,9 +10,13 @@ import { SchoolsDataService } from './schools-data.service';
 })
 export class SchoolsComponent implements OnInit {
   panelIsOpen: boolean[] = [true];
+  numYears: number;
   constructor(public dataService: SchoolsDataService) {}
 
   ngOnInit(): void {
     this.dataService.init();
+    this.dataService.dataBySchool$.pipe(take(1)).subscribe((data) => {
+      this.numYears = this.dataService.yearRange.length;
+    });
   }
 }

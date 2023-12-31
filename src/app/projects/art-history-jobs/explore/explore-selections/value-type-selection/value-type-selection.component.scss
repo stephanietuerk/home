@@ -4,7 +4,8 @@
 @use 'functions' as *;
 
 .radio-input-group {
-  display: inline-flex;
+  flex-grow: 1;
+  width: 50%;
 
   &:first-of-type {
     .radio-input-label {
@@ -28,7 +29,6 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 300px;
   font-size: 0.85rem;
   border: 1px solid $color-highlight;
   padding: grid(2) grid(2) 6px grid(2);
