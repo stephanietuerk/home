@@ -1,8 +1,8 @@
 import { scaleLinear } from 'd3';
 import {
-  CategoricalColorDimensionConfig,
-  OrdinalDimensionConfig,
-  QuantitativeDimensionConfig,
+  VicCategoricalColorDimensionConfig,
+  VicOrdinalDimensionConfig,
+  VicQuantitativeDimensionConfig,
 } from '../data-marks/data-dimension.config';
 import {
   VicDataMarksConfig,
@@ -10,10 +10,11 @@ import {
 } from '../data-marks/data-marks.config';
 
 export class VicBarsConfig extends VicDataMarksConfig {
-  ordinal: OrdinalDimensionConfig = new OrdinalDimensionConfig();
-  quantitative: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
-  category: CategoricalColorDimensionConfig =
-    new CategoricalColorDimensionConfig();
+  ordinal: VicOrdinalDimensionConfig = new VicOrdinalDimensionConfig();
+  quantitative: VicQuantitativeDimensionConfig =
+    new VicQuantitativeDimensionConfig();
+  category: VicCategoricalColorDimensionConfig =
+    new VicCategoricalColorDimensionConfig();
   dimensions: VicBarsDimensionsConfig;
   labels: VicBarsLabelsConfig;
   patternPredicates?: VicPatternPredicate[];

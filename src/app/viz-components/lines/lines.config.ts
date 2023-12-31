@@ -1,7 +1,7 @@
 import { curveLinear, scaleLinear, scaleUtc, schemeTableau10 } from 'd3';
 import {
-  CategoricalColorDimensionConfig,
-  QuantitativeDimensionConfig,
+  VicCategoricalColorDimensionConfig,
+  VicQuantitativeDimensionConfig,
 } from '../data-marks/data-dimension.config';
 import { VicDataMarksConfig } from '../data-marks/data-marks.config';
 
@@ -13,7 +13,7 @@ export class VicLinesConfig extends VicDataMarksConfig {
    *
    * Default scaleType is D3's [scaleUtc]{@link https://github.com/d3/d3-scale#scaleUtc}.
    */
-  x: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
+  x: VicQuantitativeDimensionConfig = new VicQuantitativeDimensionConfig();
 
   /**
    * A config for the behavior of the chart's y dimension
@@ -22,7 +22,7 @@ export class VicLinesConfig extends VicDataMarksConfig {
    *
    * Default scaleType is D3's [scaleLinear]{@link https://github.com/d3/d3-scale#scaleLinear}.
    */
-  y: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
+  y: VicQuantitativeDimensionConfig = new VicQuantitativeDimensionConfig();
 
   /**
    * A config for the behavior of the chart's category dimension.
@@ -31,8 +31,8 @@ export class VicLinesConfig extends VicDataMarksConfig {
    *
    * Default colors array is D3's [schemeTableau10]{@link https://github.com/d3/d3-scale-chromatic#schemeTableau10}.
    */
-  category: CategoricalColorDimensionConfig =
-    new CategoricalColorDimensionConfig();
+  category: VicCategoricalColorDimensionConfig =
+    new VicCategoricalColorDimensionConfig();
 
   /**
    * A function that returns a boolean indicating whether a value in the data is defined.
@@ -73,6 +73,12 @@ export class VicLinesConfig extends VicDataMarksConfig {
    */
   labels?: VicLinesLabelsConfig = new VicLinesLabelsConfig();
 
+  /**
+   * The distance from a line in which a hover event will trigger a tooltip, in px.
+   *  Default is 80.
+   *
+   * This is used to ensure that a tooltip is triggered only when a user's pointer is close to lines.
+   */
   pointerDetectionRadius: number;
 
   constructor(init?: Partial<VicLinesConfig>) {

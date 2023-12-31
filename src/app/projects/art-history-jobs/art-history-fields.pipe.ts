@@ -1,6 +1,6 @@
 import { Pipe, type PipeTransform } from '@angular/core';
 import { format } from 'd3';
-import { FormatSpecifier } from 'src/app/viz-components/value-format/value-format';
+import { VicFormatSpecifier } from 'src/app/viz-components/value-format/value-format';
 import { JobProperty, JobsBySchoolDatum } from './art-history-data.model';
 import { artHistoryFields } from './art-history-fields.constants';
 import { ArtHistoryUtilities } from './art-history.utilities';
@@ -97,7 +97,7 @@ export class CategoryLabelPipe implements PipeTransform {
   standalone: true,
 })
 export class D3FormatPipe implements PipeTransform {
-  transform(value: number, formatSpec: FormatSpecifier): string {
+  transform(value: number, formatSpec: VicFormatSpecifier): string {
     if (typeof formatSpec === 'string') {
       return format(formatSpec)(value);
     } else {

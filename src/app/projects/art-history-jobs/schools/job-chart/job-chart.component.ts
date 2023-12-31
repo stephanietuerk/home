@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
+  VicHtmlTooltipConfig,
+  VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { JobsBySchoolDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
@@ -16,9 +16,9 @@ export class JobChartComponent {
   @Input() job: JobsBySchoolDatum;
   @Input() year: string;
   @Input() isFirstColumn: boolean;
-  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
-    new BehaviorSubject<HtmlTooltipConfig>(
-      new HtmlTooltipConfig({ show: false })
+  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
+    new BehaviorSubject<VicHtmlTooltipConfig>(
+      new VicHtmlTooltipConfig({ show: false })
     );
   tooltipConfig$ = this.tooltipConfig.asObservable();
 
@@ -29,7 +29,7 @@ export class JobChartComponent {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
-    this.tooltipConfig.next(new HtmlTooltipConfig({ show: false }));
+    this.tooltipConfig.next(new VicHtmlTooltipConfig({ show: false }));
   }
 
   constructor(
@@ -38,9 +38,9 @@ export class JobChartComponent {
   ) {}
 
   updateTooltipConfig(el: HTMLElement): void {
-    const config = new HtmlTooltipConfig();
+    const config = new VicHtmlTooltipConfig();
     config.panelClass = 'explore-time-range-tooltip';
-    config.position = new HtmlTooltipOffsetFromOriginPosition();
+    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
     config.origin = new ElementRef(el);
     config.size.minWidth = 220;
     config.position.offsetX = this.elRef.nativeElement.offsetWidth / 2;

@@ -20,8 +20,8 @@ import {
 import { LinesHoverMoveDirective } from 'src/app/viz-components/lines/lines-hover-move.directive';
 import { LinesEventOutput } from 'src/app/viz-components/lines/lines-tooltip-data';
 import {
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
+  VicHtmlTooltipConfig,
+  VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
@@ -65,9 +65,9 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
     bottom: 36,
     left: 36,
   };
-  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
-    new BehaviorSubject<HtmlTooltipConfig>(
-      new HtmlTooltipConfig({ show: false })
+  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
+    new BehaviorSubject<VicHtmlTooltipConfig>(
+      new VicHtmlTooltipConfig({ show: false })
     );
   tooltipConfig$ = this.tooltipConfig.asObservable();
   tooltipData: BehaviorSubject<LinesEventOutput> =
@@ -172,9 +172,9 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
   }
 
   updateTooltipConfig(data: LinesEventOutput): void {
-    const config = new HtmlTooltipConfig();
+    const config = new VicHtmlTooltipConfig();
     config.panelClass = 'explore-time-range-tooltip';
-    config.position = new HtmlTooltipOffsetFromOriginPosition();
+    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
     if (data) {
       config.size.minWidth = 200;
       config.position.offsetX = data.positionX;

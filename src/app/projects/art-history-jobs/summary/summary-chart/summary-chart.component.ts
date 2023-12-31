@@ -14,8 +14,8 @@ import {
 } from 'src/app/viz-components/stacked-area/stacked-area-tooltip-data';
 import { STACKED_AREA } from 'src/app/viz-components/stacked-area/stacked-area.component';
 import {
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
+  VicHtmlTooltipConfig,
+  VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { SummaryChartConfig } from './summary-chart.model';
 
@@ -53,9 +53,9 @@ export class SummaryChartComponent {
   width = 712;
   height = 652;
   margin: ElementSpacing = { top: 4, right: 0, bottom: 36, left: 24 };
-  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
-    new BehaviorSubject<HtmlTooltipConfig>(
-      new HtmlTooltipConfig({ show: false })
+  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
+    new BehaviorSubject<VicHtmlTooltipConfig>(
+      new VicHtmlTooltipConfig({ show: false })
     );
   tooltipConfig$ = this.tooltipConfig
     .asObservable()
@@ -84,9 +84,9 @@ export class SummaryChartComponent {
   }
 
   updateTooltipConfig(data: StackedAreaEventOutput): void {
-    const config = new HtmlTooltipConfig();
+    const config = new VicHtmlTooltipConfig();
     config.panelClass = 'summary-chart-tooltip';
-    config.position = new HtmlTooltipOffsetFromOriginPosition();
+    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
     config.position.tooltipOriginY = 'bottom';
     if (data) {
       config.size.minWidth = 200;

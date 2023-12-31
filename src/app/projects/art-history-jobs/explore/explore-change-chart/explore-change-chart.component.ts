@@ -19,11 +19,11 @@ import { ElementSpacing } from 'src/app/core/models/charts.model';
 import { BarsHoverMoveEmitTooltipData } from 'src/app/viz-components/bars/bars-hover-move-effects';
 import { BarsHoverMoveDirective } from 'src/app/viz-components/bars/bars-hover-move.directive';
 import { BarsEventOutput } from 'src/app/viz-components/bars/bars-tooltip-data';
-import { RoundUpToIntervalDomainPaddingConfig } from 'src/app/viz-components/data-marks/data-dimension.config';
+import { VicRoundUpToIntervalDomainPaddingConfig } from 'src/app/viz-components/data-marks/data-dimension.config';
 import { EventEffect } from 'src/app/viz-components/events/effect';
 import {
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
+  VicHtmlTooltipConfig,
+  VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
@@ -76,9 +76,9 @@ export class ExploreChangeChartComponent implements OnInit {
     left: 12,
   };
   barHeight = 36;
-  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
-    new BehaviorSubject<HtmlTooltipConfig>(
-      new HtmlTooltipConfig({ show: false })
+  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
+    new BehaviorSubject<VicHtmlTooltipConfig>(
+      new VicHtmlTooltipConfig({ show: false })
     );
   tooltipConfig$ = this.tooltipConfig.asObservable();
   tooltipData: BehaviorSubject<BarsEventOutput> =
@@ -141,7 +141,7 @@ export class ExploreChangeChartComponent implements OnInit {
     config.categoryLabelsAboveBars = true;
     config.barHeight = this.barHeight;
     config.quantitative.domainPadding =
-      new RoundUpToIntervalDomainPaddingConfig();
+      new VicRoundUpToIntervalDomainPaddingConfig();
     if (selections.valueType === ValueType.percent) {
       config.quantitative.domainPadding.interval = () => 0.2;
     } else {
@@ -247,9 +247,9 @@ export class ExploreChangeChartComponent implements OnInit {
   }
 
   updateTooltipConfig(data: BarsEventOutput): void {
-    const config = new HtmlTooltipConfig();
+    const config = new VicHtmlTooltipConfig();
     config.panelClass = 'explore-change-tooltip';
-    config.position = new HtmlTooltipOffsetFromOriginPosition();
+    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
     if (data) {
       config.origin = data.elRef;
       config.size.minWidth = 200;

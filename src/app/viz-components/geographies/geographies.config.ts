@@ -13,7 +13,7 @@ import {
   scaleThreshold,
 } from 'd3';
 import { Feature } from 'geojson';
-import { DataDimensionConfig } from '../data-marks/data-dimension.config';
+import { VicDataDimensionConfig } from '../data-marks/data-dimension.config';
 import {
   VicDataMarksConfig,
   VicPatternPredicate,
@@ -102,7 +102,7 @@ export class VicDataGeographyConfig extends VicBaseDataGeographyConfig {
   }
 }
 
-export class VicAttributeDataDimensionConfig extends DataDimensionConfig {
+export class VicAttributeDataDimensionConfig extends VicDataDimensionConfig {
   geoAccessor: (d: any) => any;
   valueType: string;
   binType: VicMapBinType;

@@ -3,7 +3,7 @@ import { ElementRef, Renderer2 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { SubstringHighlightDirective } from './substring-highlight.directive';
 
-describe('SearchHighlightDirective', () => {
+describe('SubstringHighlightDirective', () => {
   let directive: SubstringHighlightDirective;
 
   beforeEach(() => {
@@ -25,24 +25,38 @@ describe('SearchHighlightDirective', () => {
     beforeEach(() => {
       shouldHighlightSpy = spyOn(directive, 'shouldHighlight');
       spyOn(directive, 'highlightText');
-      spyOn(directive, 'createSpansFromSegments');
+      spyOn(directive, 'initialize');
     });
-    it('calls shouldHighlight once', () => {
-      directive.ngOnChanges();
-      expect(shouldHighlightSpy).toHaveBeenCalledTimes(1);
-    });
-    it('calls highlightText if shouldHighlight returns true', () => {
-      shouldHighlightSpy.and.returnValue(true);
-      directive.ngOnChanges();
-      expect(directive.highlightText).toHaveBeenCalledTimes(1);
-    });
-    it('calls createSpansFromSegments if shouldHighlight returns false', () => {
-      shouldHighlightSpy.and.returnValue(false);
-      directive.string = 'this is a string';
-      directive.ngOnChanges();
-      expect(directive.createSpansFromSegments).toHaveBeenCalledOnceWith([
-        { text: 'this is a string', highlight: false },
-      ]);
+    describe('if there is a nativeElement and highlight terms', () => {
+      beforeEach(() => {
+        (directive as any).elementRef.nativeElement =
+          document.createElement('div');
+        directive.highlightTerms = ['abc'];
+      });
+      it('calls initialize if isInitialized is false', () => {
+        directive.isInitialized = false;
+        directive.ngOnChanges();
+        expect(directive.initialize).toHaveBeenCalledTimes(1);
+      });
+      it('does not call initialize if isInitialized is true', () => {
+        directive.isInitialized = true;
+        directive.ngOnChanges();
+        expect(directive.initialize).not.toHaveBeenCalled();
+      });
+      it('calls shouldHighlight', () => {
+        directive.ngOnChanges();
+        expect(directive.shouldHighlight).toHaveBeenCalledTimes(1);
+      });
+      it('calls highlightText if shouldHighlight returns true', () => {
+        shouldHighlightSpy.and.returnValue(true);
+        directive.ngOnChanges();
+        expect(directive.highlightText).toHaveBeenCalledTimes(1);
+      });
+      it('does not call highlightText if shouldHighlight returns false', () => {
+        shouldHighlightSpy.and.returnValue(false);
+        directive.ngOnChanges();
+        expect(directive.highlightText).not.toHaveBeenCalled();
+      });
     });
   });
 

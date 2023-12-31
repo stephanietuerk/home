@@ -1,13 +1,12 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
-@use 'colors';
 
 :host {
   display: flex;
   flex-direction: column;
-  background-color: colors.$blue-text;
-  border-radius: $ui-element-border-radius;
+  background-color: $color-dark-primary;
+  border-radius: grid(1);
   padding: grid(2);
   color: white;
   margin: grid(2) 0;
@@ -23,8 +22,6 @@
 }
 
 .message {
-  @extend %typography-body;
-
   &:not(:first-child) {
     padding-top: grid(1);
   }

@@ -1,13 +1,11 @@
 @use 'placeholders' as *;
-@use 'colors';
 
 .close-button {
-  @extend %typography-ui-label-sm-regular;
   display: flex;
   align-items: center;
   background: transparent;
   border-radius: grid(1);
-  color: var(--color);
+  color: var(--color, white);
 
   &.hidden {
     height: 0;

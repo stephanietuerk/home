@@ -8,16 +8,16 @@ import {
   stackOrderNone,
 } from 'd3';
 import {
-  CategoricalColorDimensionConfig,
-  QuantitativeDimensionConfig,
+  VicCategoricalColorDimensionConfig,
+  VicQuantitativeDimensionConfig,
 } from '../data-marks/data-dimension.config';
 import { VicDataMarksConfig } from '../data-marks/data-marks.config';
 
 export class VicStackedAreaConfig extends VicDataMarksConfig {
-  x: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
-  y: QuantitativeDimensionConfig = new QuantitativeDimensionConfig();
-  category: CategoricalColorDimensionConfig =
-    new CategoricalColorDimensionConfig();
+  x: VicQuantitativeDimensionConfig = new VicQuantitativeDimensionConfig();
+  y: VicQuantitativeDimensionConfig = new VicQuantitativeDimensionConfig();
+  category: VicCategoricalColorDimensionConfig =
+    new VicCategoricalColorDimensionConfig();
   valueIsDefined?: (...args: any) => any;
   curve: (x: any) => any;
   stackOffsetFunction: (
