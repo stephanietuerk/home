@@ -10,6 +10,38 @@ import {
 
 export const PROJECTS: Project[] = [
   {
+    id: 'art-history-jobs',
+    title: 'Art History Jobs, 2011—2023',
+    type: ProjectType.dataViz,
+    year: '2020—2023',
+    description: [
+      'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python and some TypeScript.',
+      'In 2020 I built the visualizations in an Observable notebook, and in 2023 I revamped everything and significantly expanded the interface, creating a standalone project hosted on this site, using a standard web stack (Angular, TypeScript, D3, lots of abstractions on top of D3).',
+    ],
+    images: [
+      {
+        path: 'assets/artHistoryJobs/stackedArea2023.png',
+        altText:
+          'a screen capture of a stacked area chart from this project showing counts of jobs by field',
+      },
+      {
+        path: 'assets/artHistoryJobs/schoolCharts2023.png',
+        altText:
+          'a screen capture from this project of charts showing jobs for each school by fields over time',
+      },
+    ],
+    links: [
+      {
+        name: 'interactive project (2023)',
+        routerLink: `${projectsPath}/${artHistoryJobsPath}`,
+      },
+      {
+        name: 'notebook (2020)',
+        url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
+      },
+    ],
+  },
+  {
     id: 'leaving-academia-faq',
     title: 'Leaving Academia FAQ',
     type: ProjectType.blogPost,
@@ -51,36 +83,6 @@ export const PROJECTS: Project[] = [
       },
     ],
     professional: true,
-  },
-  {
-    id: 'art-history-jobs',
-    title: 'Art History Jobs, 2011—2023',
-    type: ProjectType.dataViz,
-    year: '2020—2023',
-    description: [
-      'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2020, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python, visualizations were built in an Observable notebook.',
-    ],
-    images: [
-      {
-        path: 'assets/artHistoryJobsSelects.png',
-        altText: 'a screen capture of form controls from this project',
-      },
-      {
-        path: 'assets/artHistoryJobsMain.png',
-        altText:
-          'a screen capture of a stacked line chart data visualization from this project',
-      },
-    ],
-    links: [
-      {
-        name: 'visualization (2022)',
-        routerLink: `${projectsPath}/${artHistoryJobsPath}`,
-      },
-      {
-        name: 'notebook (2020)',
-        url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
-      },
-    ],
   },
   {
     id: 'scsar',
