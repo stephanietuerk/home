@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
     year: '2020—2023',
     description: [
       'This is an exploratory set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python and some TypeScript.',
-      'In 2020 I built the visualizations in an Observable notebook, and in 2023 I revamped everything and significantly expanded the interface, creating a standalone project hosted on this site, using a standard web stack (Angular, TypeScript, D3, lots of abstractions on top of D3).',
+      'In 2020 I built the visualizations in an Observable notebook, and in 2023 I revamped everything and significantly expanded the interface, creating a standalone project hosted on this site, using a standard frontend stack (Angular, TypeScript, D3, lots of abstractions on top of D3).',
     ],
     images: [
       {
