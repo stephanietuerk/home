@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Overlay, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { ViewContainerRef } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { UtilitiesService } from '../../core/services/utilities.service';
 import { DataMarks } from '../../data-marks/data-marks';
 import { DATA_MARKS } from '../../data-marks/data-marks.token';
 import { MainServiceStub } from '../../testing/stubs/services/main.service.stub';
-import { HtmlTooltipConfig } from './html-tooltip.config';
+import { VicHtmlTooltipConfig } from './html-tooltip.config';
 import { HtmlTooltipDirective } from './html-tooltip.directive';
 
 describe('HtmlTooltipDirective', () => {
@@ -60,9 +60,14 @@ describe('HtmlTooltipDirective', () => {
     beforeEach(() => {
       spyOn(directive, 'createOverlay');
     });
-    it('calls createOverlay once', () => {
+    it('calls createOverlay once if overlayRef is falsy', () => {
       directive.init();
       expect(directive.createOverlay).toHaveBeenCalledTimes(1);
+    });
+    it('does not call createOverlay if overlayRef is truthy', () => {
+      directive.overlayRef = 'hello' as any;
+      directive.init();
+      expect(directive.createOverlay).not.toHaveBeenCalled();
     });
   });
 
@@ -75,7 +80,7 @@ describe('HtmlTooltipDirective', () => {
       spyOn(directive, 'checkBackdropChanges');
       spyOn(directive, 'updateVisibility');
       spyOn(directive, 'init');
-      directive.config = new HtmlTooltipConfig();
+      directive.config = new VicHtmlTooltipConfig();
       changes = {};
     });
     describe('if overlayRef and config are truthy', () => {
@@ -409,11 +414,9 @@ describe('HtmlTooltipDirective', () => {
       directive.panelClass = ['one', 'two'];
       directive.positionStrategy = 'positionStrategy' as any;
       mainServiceStub.overlayStub.create.and.returnValue('test ref' as any);
-      directive.size = {
-        width: 100,
-      };
       directive.config = {
         hasBackdrop: true,
+        size: { width: 100 },
       } as any;
     });
     it('calls setPanelClasses once', fakeAsync(() => {
@@ -484,7 +487,7 @@ describe('HtmlTooltipDirective', () => {
   describe('setPanelClasses', () => {
     describe('if addEventsDisabledClass is false', () => {
       beforeEach(() => {
-        directive.config = new HtmlTooltipConfig();
+        directive.config = new VicHtmlTooltipConfig();
         directive.config.addEventsDisabledClass = false;
       });
       it('sets panel class to the correct value - case user provides single string', () => {
@@ -511,7 +514,7 @@ describe('HtmlTooltipDirective', () => {
     });
     describe('if addEventsDisabledClass is true', () => {
       beforeEach(() => {
-        directive.config = new HtmlTooltipConfig();
+        directive.config = new VicHtmlTooltipConfig();
         directive.config.addEventsDisabledClass = true;
       });
       it('sets panel class to the correct value - case user provides single string', () => {

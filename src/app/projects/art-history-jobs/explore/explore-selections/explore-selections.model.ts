@@ -49,28 +49,41 @@ export interface ExploreFormSelections {
 }
 
 export interface ExploreSelections {
-  dataType: ValueType.count | ValueType.percent;
+  valueType: keyof typeof ValueType;
   years: ExploreYearsSelection;
-  fields: string[];
-  tenureUse: FilterType.filter | FilterType.disaggregate;
+  fieldValues: string[];
+  fieldUse: keyof typeof FilterType;
+  tenureUse: keyof typeof FilterType;
   tenureValues: string[];
-  rankUse: FilterType.filter | FilterType.disaggregate;
+  rankUse: keyof typeof FilterType;
   rankValues: string[];
-}
-
-export interface ExploreSelectionsDefaults {
-  dataType: ValueType.count | ValueType.percent;
-  years: ExploreYearsSelection;
-  fields: string[];
-  tenureUse: FilterType.filter | FilterType.disaggregate;
-  tenureFilterValue: string;
-  tenureDisaggValues: string[];
-  rankUse: FilterType.filter | FilterType.disaggregate;
-  rankFilterValue: string;
-  rankDisaggValues: string[];
+  changeIsAverage: boolean;
 }
 
 export interface ExploreYearsSelection {
   start: number;
   end: number;
+}
+
+export interface ValueTypeOption {
+  label: string;
+  value: keyof typeof ValueType;
+}
+
+export interface VariableUseOption {
+  label: string;
+  value: keyof typeof FilterType;
+}
+
+export interface VariableOption {
+  label: string;
+  value: string;
+  color?: string;
+}
+
+export type FieldUse = 'single' | 'multi';
+
+export interface FieldUseOption {
+  label: string;
+  value: FieldUse;
 }

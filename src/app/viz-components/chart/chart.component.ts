@@ -15,14 +15,16 @@ import {
   Observable,
   Subject,
   combineLatest,
-  distinctUntilChanged,
-  map,
   merge,
   of,
+} from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
   shareReplay,
   startWith,
   takeUntil,
-} from 'rxjs';
+} from 'rxjs/operators';
 import { Chart } from './chart';
 import { CHART } from './chart.token';
 

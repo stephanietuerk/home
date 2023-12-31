@@ -41,7 +41,7 @@ export class BarsHoverDirective<
         filter((barSels) => !!barSels)
       )
       .subscribe((barSels) => {
-        this.elements = barSels.nodes();
+        this.elements = (barSels as any).nodes();
         this.setListeners();
       });
   }

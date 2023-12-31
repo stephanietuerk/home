@@ -1,0 +1,78 @@
+<h2 class="section-header">Data Acquisition and Cleaning</h2>
+<p class="description">
+  I gathered data using the wikia python library that provides an interface on
+  top of the Wikia API. Many thanks to Ryan Heuser whose Colab notebook for
+  English Lit jobs data scraping I used as a model for getting data from the
+  Wikia page. I aggregated data using a few python and TypeScript scripts. You
+  can find a description of the workflows
+  <a
+    href="https://github.com/stephanietuerk/art-history-jobs/blob/main/data-processor/README.md"
+    target="_blank"
+    class="external-link"
+    >here<span class="material-symbols-outlined">open_in_new</span></a
+  >, along with code and data.
+</p>
+<p class="description">
+  For each job posting, I attributed one or more fields, such as Modern /
+  Contemporary Art, a tenure status (tenure track, non-tenure track, and
+  unknown), and one or more ranks, such as assistant professor or postdoc. The
+  vast majority of this (~95%) was done programmatically, using the field
+  headings that jobs are posted on the wiki page and scanning text for keywords
+  related to tenure status and rank. However, I also manually verify these
+  values for every job posting. (The most tedious part of this whole project.)
+</p>
+<p class="description">
+  I regularized field names across the years (so that Contemporary / Modern Art
+  and Modern / Contemporary Art became the same category) and also imputed
+  fields manually in some instances. In 2011-2012, Contemporary Art, Modern Art,
+  Architecture and Design was a single category, and I sorted those jobs by hand
+  into the appropriate categories that were used in all other years, based on
+  the job descriptions. In 2020, a Visiting Positions / Limited-Term
+  Appointments / Postdocs category appeared on the site, and I likewise sorted
+  these into fields based on job description, and accounted for the temporary
+  nature of these jobs in the rank category. For the data shown in this
+  interface, I filtered out all jobs whose rank was solely "postdoc", as I
+  wanted to focus on postings for faculty positions.
+</p>
+<p class="description">
+  I also checked the data to make sure there weren't nonsensical combinations,
+  such as a tenure-track postdoc, and manually verified and corrected the data
+  in a number of places.
+</p>
+<p class="description">
+  If you think there is an error in the data, please do not hesitate to get in
+  touch. Additionally, if you think that a job listing is missing, the best way
+  to have it added is to add the listing yourself to the Academic Jobs Wiki, and
+  then let me know so that I can re-run the data scraping and processing
+  scripts.
+</p>
+<p class="description">This data was last scraped on December 29, 2023.</p>
+<h3 class="section-subheader">Field Imputation</h3>
+<p class="description">
+  Across all years for which jobs are listed in the Academic Wiki, there are
+  likely over 60 different field names listed for jobs. Given that the highest
+  number of jobs for any one year was not even three times this number of
+  fields, I decided to consolidate categories to create more coherence in the
+  data. For partially the same reason, I leaned towards letting fields have
+  historical continuity in name, which does make the radical difference between
+  jobs for North American Art in 2023 (almost entirely focused on indigenous
+  art) and those from 2011 invisible in the data. Needless to say, other
+  completely defensible decisions around field creation could have been made
+  that would make the data look different.
+</p>
+<p class="description"
+  >Examples of difficult decisions include questions such as whether positions
+  for Pre-Columbian Art should fall under Ancient Art or Latin American Art,
+  whether fields should distinguish between jobs in American Art that focus on
+  19th C. painting and those that focus on indigenous art of North America, how
+  a job focusing on "British Art" with no time period attached should be
+  categorized, how many distinct regions of the world listed in a single post
+  gets the job classified as simply "global," and at what point in time does
+  "applicants should have a global focus" simply become "general / open"?
+</p>
+<p class="description">
+  Generally speaking, I urge you to think critically about how groupings, small
+  numbers, the fact that not all jobs in the field are posted to the Wiki,
+  incomplete descriptions, and other factors mean this data a good, but
+  certainly not perfect, representation of the art history job market.
+</p>

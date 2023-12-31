@@ -1,0 +1,55 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.cdk-overlay-container {
+  z-index: $global-overlay-z-index;
+}
+
+.message-full-screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color-dark-primary, 0.25);
+  color: white;
+
+  .message-container {
+    border-radius: grid(2);
+    min-width: 300px;
+    max-width: 700px;
+    margin: 20vh 10% 10% 10%;
+    padding: grid(4) grid(6);
+    background: $color-dark-primary;
+    color: white;
+  }
+
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: grid(4);
+    padding-bottom: grid(1);
+    border-bottom: 2px solid $color-highlight;
+    color: white;
+  }
+
+  .close-button {
+    @extend %message-close-button-styles;
+    color: white;
+    align-self: flex-end;
+  }
+
+  .title {
+    @extend %subtitle1;
+  }
+
+  .message {
+    color: white;
+    padding-bottom: grid(4);
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 1.1rem;
+  }
+}

@@ -4,7 +4,6 @@ import {
   Overlay,
   OverlayPositionBuilder,
   OverlayRef,
-  OverlaySizeConfig,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -27,9 +26,9 @@ import { UtilitiesService } from '../../core/services/utilities.service';
 import { DataMarks } from '../../data-marks/data-marks';
 import { DATA_MARKS } from '../../data-marks/data-marks.token';
 import {
-  HtmlTooltipCdkManagedFromOriginPosition,
-  HtmlTooltipConfig,
-  HtmlTooltipOffsetFromOriginPosition,
+  VicHtmlTooltipCdkManagedFromOriginPosition,
+  VicHtmlTooltipConfig,
+  VicHtmlTooltipOffsetFromOriginPosition,
 } from './html-tooltip.config';
 
 const defaultPanelClass = 'vic-html-tooltip-overlay';
@@ -40,11 +39,10 @@ const defaultPanelClass = 'vic-html-tooltip-overlay';
 })
 export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   @Input() template: TemplateRef<unknown>;
-  @Input() config: HtmlTooltipConfig;
+  @Input() config: VicHtmlTooltipConfig;
   @Output() backdropClick = new EventEmitter<void>();
   overlayRef: OverlayRef;
   positionStrategy: FlexibleConnectedPositionStrategy | GlobalPositionStrategy;
-  size: OverlaySizeConfig;
   panelClass: string[];
   backdropUnsubscribe: Subject<void> = new Subject<void>();
   portalAttached = false;
@@ -69,7 +67,9 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   init(): void {
-    this.createOverlay();
+    if (!this.overlayRef) {
+      this.createOverlay();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -86,7 +86,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
 
   configChanged(
     changes: SimpleChanges,
-    property: keyof HtmlTooltipConfig
+    property: keyof VicHtmlTooltipConfig
   ): boolean {
     return this.utilities.objectOnNgChangesChanged(changes, 'config', property);
   }
@@ -176,7 +176,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     this.setPanelClasses();
     this.setPositionStrategy();
     this.overlayRef = this.overlay.create({
-      ...this.size,
+      ...this.config.size,
       panelClass: this.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.close(),
       positionStrategy: this.positionStrategy,
@@ -222,7 +222,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
 
   setConnectedPositionStrategy(
     origin: Element,
-    position: HtmlTooltipCdkManagedFromOriginPosition
+    position: VicHtmlTooltipCdkManagedFromOriginPosition
   ): void {
     this.positionStrategy = this.overlayPositionBuilder
       .flexibleConnectedTo(origin)
@@ -231,7 +231,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
 
   setGlobalPositionStrategy(
     origin: Element,
-    position: HtmlTooltipOffsetFromOriginPosition
+    position: VicHtmlTooltipOffsetFromOriginPosition
   ): void {
     // gets dims without scrollbar thickness if scrollbar is on html or body
     const _window = this._document.defaultView || window;

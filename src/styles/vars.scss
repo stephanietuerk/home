@@ -1,11 +1,12 @@
 @use 'sass:color';
-@import 'system', 'functions';
+@use 'functions' as *;
 
 $colors: (
   'highlights': (
     // 208 deg
     'blue': #0088ff,
     'blue-light': #b2dbff,
+    'yellow': #eeff00,
   ),
   'darks': (
     // 232 deg
@@ -23,6 +24,7 @@ $colors: (
 
 $color-highlight: get($colors, 'highlights.blue');
 $color-highlight-light: get($colors, 'highlights.blue-light');
+$color-search-highlight: get($colors, 'highlights.yellow');
 $color-dark-primary: get($colors, 'darks.blue');
 $color-light-gray-lightest: get($colors, 'grays.light-4');
 $color-light-gray-light: get($colors, 'grays.light-3');
@@ -54,12 +56,12 @@ $drop-shadow-bottom-lightest:
 
 $landing-page-max-width: 1000px;
 
-$vertical-scrollbar-thickness: $grid-3;
-$horizontal-scrollbar-thickness: $grid-3;
+$vertical-scrollbar-thickness: grid(3);
+$horizontal-scrollbar-thickness: grid(3);
 
-$content-component-padding: 0px $grid-10 $grid-4 $grid-10;
+$content-component-padding: 0px grid(1) 0 grid(4) grid(1) 0;
 
-$navbar-height: $grid-16;
+$navbar-height: 48px;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;
@@ -70,7 +72,37 @@ $viewport-width-md: 992px;
 $viewport-width-lg: 1200px;
 $viewport-width-xl: 1400px;
 
+$global-overlay-z-index: 1010;
+
 /* ----- MATERIAL COMPONENTS ----- */
-$mat-form-field-vertical-padding: $grid-3;
-$mat-form-field-horizontal-padding: $grid-2;
+$mat-form-field-vertical-padding: grid(3);
+$mat-form-field-horizontal-padding: grid(2);
 $mat-placeholder-color: rgba(0, 0, 0, 0.42);
+
+/* ---- POPUP MESSAGES ---- */
+%message-close-button-styles {
+  // @extend %typography-ui-label-sm-regular;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: grid(1);
+
+  .button-label {
+    display: inline-block;
+    padding-left: grid(1);
+  }
+
+  &:hover {
+    background: $color-highlight-light;
+
+    .button-label {
+      text-decoration: underline;
+    }
+  }
+
+  .material-symbols-outlined {
+    transform: scale(0.75);
+    position: relative;
+    left: 2px;
+  }
+}

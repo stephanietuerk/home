@@ -1,56 +1,58 @@
-@import 'vars', 'placeholders', 'functions';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 $frame-color: get($colors, 'grays.light-2');
 
 :host {
-    box-shadow: $drop-shadow-lightest;
+  box-shadow: $drop-shadow-lightest;
 }
 
 .header {
-    background: $frame-color;
-    padding: 0 1rem;
+  background: $frame-color;
+  padding: 0 1rem;
 }
 
 .from {
-    @extend %small-caps;
-    @extend %sans-regular;
-    font-size: 1rem;
-    letter-spacing: 0.1rem;
+  @extend %small-caps;
+  @extend %sans-regular;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
 }
 
 .name {
-    @extend %slab-bold;
-    font-size: 1.15rem;
-    padding-bottom: 0.125rem;
+  @extend %slab-bold;
+  font-size: 1.15rem;
+  padding-bottom: 0.125rem;
 }
 
 .date {
-    @extend %sans-regular-italic;
-    padding-bottom: 0.25rem;
+  @extend %sans-regular-italic;
+  padding-bottom: 0.25rem;
 }
 
 .content {
-    border: 2px solid $frame-color;
-    padding: 1.5rem;
-    padding-bottom: 1rem;
-    background: white;
+  border: 2px solid $frame-color;
+  padding: 1.5rem;
+  padding-bottom: 1rem;
+  background: white;
 }
 
 .content-text {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .reply-button {
-    @extend %comment-button;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.65rem 0.4rem 0.65rem;
+  @extend %comment-button;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.65rem 0.4rem 0.65rem;
 }
 
 .create-comment-component {
-    display: block;
+  display: block;
 }
 
 .comment-component.nested {
-    display: block;
-    margin-top: 1rem;
+  display: block;
+  margin-top: 1rem;
 }

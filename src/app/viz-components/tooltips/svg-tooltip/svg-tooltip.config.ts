@@ -1,5 +1,9 @@
-import { TooltipConfig } from '../tooltip.config';
+export class VicTooltipConfig {
+  show: boolean;
+  type: 'svg' | 'html';
 
-export class SvgTooltipConfig extends TooltipConfig {
-  override type: 'svg';
+  constructor(init?: Partial<VicTooltipConfig>) {
+    this.show = false;
+    Object.assign(this, init);
+  }
 }

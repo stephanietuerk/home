@@ -1,0 +1,55 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.variable-single-multi-selection-container {
+  display: contents;
+
+  .option .label {
+    display: flex;
+    align-items: center;
+    color: $color-dark-primary;
+    line-height: 1.2;
+
+    .material-symbols-outlined {
+      color: $color-highlight;
+      padding-right: grid(1);
+      transform: scale(0.9);
+    }
+  }
+
+  .option.field {
+    .label {
+      border: 1px solid $color-highlight;
+      border-radius: grid(1);
+      padding: grid(2);
+      line-height: 1.1;
+      font-size: 0.85rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 6px;
+      line-height: 1.2;
+      @extend %slab-extrabold;
+      cursor: pointer;
+    }
+
+    .label.selected {
+      border: 1px solid $color-highlight;
+      background-color: var(--color);
+      color: white;
+    }
+
+    .label:not(.selected) {
+      border: 1px solid $color-highlight;
+      background-color: white;
+      color: var(--color);
+    }
+
+    .label:not(.selected):hover {
+      background: $color-light-gray-light;
+    }
+  }
+}

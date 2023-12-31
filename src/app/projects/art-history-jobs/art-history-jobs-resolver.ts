@@ -7,6 +7,6 @@ export class ArtHistoryJobsResolver implements Resolve<any> {
   constructor(private service: ArtHistoryDataService) {}
 
   resolve(): void {
-    return this.service.getData();
+    this.service.init();
   }
 }

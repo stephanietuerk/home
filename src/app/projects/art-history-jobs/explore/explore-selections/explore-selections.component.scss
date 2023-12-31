@@ -1,284 +1,169 @@
 @use 'sass:color';
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 %input-element-label {
-    @extend %slab-medium;
-    display: flex;
-    font-size: 0.85rem;
-    color: $color-highlight;
+  @extend %slab-medium;
+  display: flex;
+  font-size: 0.85rem;
+  color: $color-highlight;
 }
 
 $svg-icon-color: $color-dark-primary;
 $panel-opacity: 0.9;
 
 .explore-selections-container {
-    // margin-bottom: 4rem;
-    border-bottom: 1px solid $color-light-gray-medium;
-    display: flex;
-    flex-direction: column;
-    transition: border-bottom 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
 
-    .container-title {
-        @extend %sans-medium;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        font-size: 0.9rem;
-        padding-bottom: $grid-1;
+  .container-title {
+    @extend %sans-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.9rem;
+  }
+
+  &.open {
+    border-bottom: 1px solid white;
+  }
+
+  .navbar {
+    padding-top: grid(3);
+    padding-left: grid(4);
+    background: rgba($color-light-gray-lightest, $panel-opacity);
+  }
+
+  .links-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+    align-items: flex-end;
+    gap: grid(2);
+  }
+
+  .selection-title {
+    display: flex;
+    align-items: center;
+    @extend %slab-medium;
+    font-size: 1.15rem;
+    color: $color-highlight;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.25s ease-in-out;
+    padding-bottom: grid(1);
+
+    @media screen and (max-width: 760px) {
+      font-size: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 0.875rem;
+    }
+
+    &:hover {
+      border-bottom: 2px solid $color-highlight;
     }
 
     &.open {
-        border-bottom: 1px solid white;
+      border-bottom: 2px solid $color-highlight;
     }
 
-    .navbar {
-        padding-top: $grid-3;
-        background: rgba($color-light-gray-lightest, $panel-opacity);
+    .material-symbols-outlined {
+      margin-left: 2px;
+    }
+  }
+
+  .selection-interface-container {
+    display: flex;
+    padding: grid(4) grid(2) grid(4) 0;
+    width: 100%;
+  }
+
+  .selection-container {
+    flex-grow: 1;
+    padding-right: grid(2);
+    &.tenure-values,
+    &.rank-values {
+      padding-top: grid(4);
+    }
+  }
+
+  .selection-instructions {
+    line-height: 1.2;
+    max-width: 600px;
+    padding-bottom: grid(1);
+
+    .main {
+      @extend %subtitle2;
     }
 
-    .links-container {
-        display: flex;
-        justify-content: space-between;
-        max-width: 700px;
+    .filter-use-name {
+      font-style: normal;
+      font-weight: 500;
     }
 
-    .selection-title {
-        @extend %slab-medium;
-        font-size: 1.15rem;
-        color: $color-highlight;
-        line-height: 1;
-        padding-bottom: $grid-1;
-        border-bottom: 2px solid rgba($color-light-gray-lightest, $panel-opacity);
-        transition: border-bottom 0.25s ease-in-out;
+    .secondary {
+      @extend %sans-regular;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 0.875rem;
 
-        &:hover {
-            border-bottom: 2px solid $color-highlight;
-        }
-
-        &.open {
-            border-bottom: 2px solid $color-highlight;
-        }
+      &:not(:last-child) {
+        padding-bottom: grid(1);
+      }
     }
-}
+  }
 
-.cdk-overlay-pane.selections-dropdown {
-    width: 1080px;
-    // background: rgba(white, 0.8);
-    background: rgba($color-light-gray-lightest, $panel-opacity);
-    border-bottom: 1px solid $color-light-gray-medium;
-    padding: 0 $grid-4;
+  .time-range-slider-component {
+    display: block;
+    padding: 0 grid(4);
+    max-width: 500px;
+  }
 
-    .dropdown-container {
-        width: 100%;
+  .selection-interface.field-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: grid(2);
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  .selection-interface.tenure-values,
+  .selection-interface.rank-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    row-gap: grid(1);
+  }
+
+  .selection-interface.tenure-values {
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .selection-interface.rank-values {
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  .close-button {
+    display: block;
+    cursor: pointer;
+    color: $color-highlight;
+    transform: scale(1.2);
+
+    &:hover {
+      font-weight: 700;
     }
+  }
 
-    .selection-container {
-        width: 100%;
-        padding: $grid-4 0 $grid-6 0;
+  .variable-use-selection-component {
+    display: flex;
+    padding-bottom: grid(3);
+    max-width: 600px;
+  }
 
-        &.tenure-values,
-        &.rank-values {
-            padding-top: $grid-4;
-        }
-    }
-
-    .selection-instructions {
-        @extend %sans-regular-italic;
-        line-height: 1.3;
-        max-width: 600px;
-
-        .filter-use-name {
-            font-style: normal;
-            font-weight: 500;
-        }
-    }
-
-    .time-range-slider-component {
-        display: block;
-        padding: 0 $grid-4;
-        max-width: 600px;
-    }
-
-    .selection-interface {
-        padding-top: $grid-3;
-    }
-
-    .selection-interface.fields {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        grid-auto-rows: 1fr;
-        gap: $grid-2;
-        align-items: stretch;
-        align-content: stretch;
-    }
-
-    .selection-interface.tenure-values,
-    .selection-interface.rank-values {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 1fr;
-        row-gap: $grid-1;
-    }
-
-    .radio-input-container {
-        &.rank-use,
-        &.tenure-use {
-            display: flex;
-        }
-
-        .radio-input-component.button-style {
-            display: inline-flex;
-
-            .radio-input-label {
-                @extend %slab-medium;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                width: 100px;
-                font-size: 0.85rem;
-                border: 1px solid $color-highlight;
-                padding: $grid-2 $grid-2 6px $grid-2;
-            }
-
-            .radio-input-label.selected {
-                border: 1px solid $color-highlight;
-                background-color: $color-highlight;
-                color: white;
-            }
-
-            .radio-input-label:not(.selected) {
-                border: 1px solid $color-highlight;
-                background-color: white;
-                color: $color-highlight;
-            }
-
-            .radio-input-label:not(.selected):hover {
-                background: $color-light-gray-light;
-            }
-
-            &.tenure-use,
-            &.rank-use {
-                .radio-input-label {
-                    width: 120px;
-                }
-            }
-        }
-
-        .radio-input-component.input-element-style {
-            display: inline-flex;
-
-            .radio-input-container .icon-component {
-                margin: 0 $grid-1 0 0;
-
-                svg {
-                    margin: 0;
-                    fill: $svg-icon-color;
-                    width: $grid-4;
-                    height: $grid-4;
-                }
-            }
-
-            .radio-input-label {
-                @extend %input-element-label;
-
-                &.selected {
-                    font-weight: 700;
-                }
-            }
-        }
-
-        .radio-input {
-            @extend %hidden-input-element;
-
-            &:checked + label {
-                cursor: default;
-            }
-        }
-    }
-
-    .checkbox-input-container {
-        .checkbox-input-component.button-style {
-            .checkbox-input-container {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-            }
-
-            .checkbox-input-label {
-                border: 1px solid $color-highlight;
-                border-radius: $grid-1;
-                padding: $grid-2;
-                @extend %slab-medium;
-                line-height: 1.1;
-                font-size: 0.85rem;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-            }
-
-            &.fields {
-                .checkbox-input-label {
-                    padding-bottom: 6px;
-                    line-height: 1.2;
-                    @extend %slab-extrabold;
-                }
-
-                .checkbox-input-label.selected {
-                    border: 1px solid $color-highlight;
-                    background-color: var(--color);
-                    color: white;
-                }
-
-                .checkbox-input-label:not(.selected) {
-                    border: 1px solid $color-highlight;
-                    background-color: white;
-                    color: var(--color);
-                }
-
-                .checkbox-input-label:not(.selected):hover {
-                    background: $color-light-gray-light;
-                }
-            }
-
-            .checkbox-input-label.selected {
-                border: 1px solid $color-highlight;
-                background-color: $color-highlight;
-                color: white;
-            }
-
-            .checkbox-input-label:not(.selected) {
-                border: 1px solid $color-highlight;
-                background-color: white;
-                color: $color-highlight;
-            }
-
-            .checkbox-input-label:not(.selected):hover {
-                background: $color-light-gray-light;
-            }
-        }
-
-        .checkbox-input-component.input-element-style {
-            .checkbox-input-container .icon-component {
-                margin: 0 $grid-1 0 0;
-                svg {
-                    margin: 0;
-                    width: $grid-4;
-                    height: $grid-4;
-                    fill: $svg-icon-color;
-                }
-            }
-
-            .checkbox-input-label {
-                @extend %input-element-label;
-
-                &.selected {
-                    font-weight: 700;
-                }
-            }
-        }
-    }
+  .selection-interface.data-type {
+    display: flex;
+    max-width: 600px;
+  }
 }

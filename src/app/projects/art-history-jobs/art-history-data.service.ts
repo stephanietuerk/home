@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
 import { JobDatum, JobsByCountry } from './art-history-data.model';
+import { ArtHistoryUtilities } from './art-history.utilities';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,22 @@ import { JobDatum, JobsByCountry } from './art-history-data.model';
 export class ArtHistoryDataService {
   data$: Observable<JobDatum[]>;
   dataBySchool$: Observable<JobsByCountry[]>;
+  dataYears: [number, number];
 
-  constructor(
-    private http: HttpClient,
-    private sentenceCase: SentenceCasePipe<string>
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  getData(): void {
+  init(): Promise<void> {
+    return new Promise((resolve) => {
+      this.setData();
+      this.setDataBySchools();
+      this.data$.subscribe((data) => {
+        this.dataYears = this.getDataYears(data);
+        resolve();
+      });
+    });
+  }
+
+  setData(): void {
     this.data$ = this.http
       .get('assets/artHistoryJobs/aggregated_data.csv', {
         responseType: 'text',
@@ -27,9 +36,15 @@ export class ArtHistoryDataService {
         map((data) => this.parseData(data)),
         shareReplay(1)
       );
+  }
+
+  setDataBySchools(): void {
     this.dataBySchool$ = this.http
       .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
-      .pipe(shareReplay(1));
+      .pipe(
+        map((data) => this.parseDataBySchools(data)),
+        shareReplay(1)
+      );
   }
 
   parseData(data): JobDatum[] {
@@ -37,48 +52,46 @@ export class ArtHistoryDataService {
       return {
         year: new Date(`${x['year']}-01-01T00:00:00`),
         field: x['field'] === 'all' ? 'All' : x['field'],
-        isTt: this.transformIsTt(x['is_tt']),
-        rank: this.transformRank(x['rank']),
+        tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
+        rank: ArtHistoryUtilities.transformRankMulti(x['rank']),
         count: +x['count'],
       };
     });
   }
 
-  transformIsTt(isTt: string): string {
-    if (isTt.toLowerCase() === 'true') {
-      return 'Tenure track';
-    } else if (isTt.toLowerCase() === 'false') {
-      return 'Non-tenure track';
-    } else {
-      return this.sentenceCase.transform(isTt);
-    }
+  parseDataBySchools(data): JobsByCountry[] {
+    return data.map((country) => {
+      return {
+        ...country,
+        jobsBySchool: country.jobsBySchool.map((school) => {
+          return {
+            ...school,
+            jobsByYear: school.jobsByYear.map((year) => {
+              return {
+                ...year,
+                jobs: year.jobs.map((job) => {
+                  return {
+                    ...job,
+                    rank: ArtHistoryUtilities.transformRankMulti(job.rank[0]),
+                    tenure: ArtHistoryUtilities.transformIsTt(job.tenure),
+                  };
+                }),
+              };
+            }),
+          };
+        }),
+      };
+    });
   }
 
-  transformRank(rank: string): string[] {
-    const transformedRank = rank.split(', ');
-    return transformedRank.map((str) => {
-      switch (str) {
-        case 'assistant_prof':
-          return 'Assistant professor';
-        case 'associate_prof':
-          return 'Associate professor';
-        case 'full_prof':
-          return 'Full professor';
-        case 'chair':
-          return 'Chair';
-        case 'open_rank':
-          return 'Open rank';
-        case 'vap':
-          return 'Visiting position';
-        case 'postdoc':
-          return 'Postdoc';
-        case 'lecturer':
-          return 'Lecturer';
-        case 'unknown':
-          return 'Unknown';
-        default:
-          return this.sentenceCase.transform(str);
+  getDataYears(data: JobDatum[]): [number, number] {
+    const years = [];
+    data.forEach((x) => {
+      if (!years.includes(x.year.getFullYear())) {
+        years.push(x.year.getFullYear());
       }
     });
+    years.sort((a, b) => a - b);
+    return [years[0], years[years.length - 1]];
   }
 }

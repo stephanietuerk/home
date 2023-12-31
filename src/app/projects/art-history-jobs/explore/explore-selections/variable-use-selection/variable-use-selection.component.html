@@ -1,0 +1,19 @@
+<ng-container *ngIf="data.selections$ | async as selections">
+  <div class="radio-input-group" *ngFor="let use of variableUseOptions">
+    <input
+      class="cdk-visually-hidden"
+      type="radio"
+      [attr.id]="variable + '-' + use.value"
+      [attr.name]="variable + '-use'"
+    />
+    <label
+      class="radio-input-label fields button-style"
+      [attr.for]="use.value"
+      [class.selected]="selections[selectionsVariable] === use.value"
+      (click)="updateVariableUse(use.value)"
+    >
+      {{use.label}} {{use.value === 'filter' ? (variable | appCategoryLabel |
+      lowercase) : (variable | appCategoryLabel:true | lowercase)}}
+    </label>
+  </div>
+</ng-container>

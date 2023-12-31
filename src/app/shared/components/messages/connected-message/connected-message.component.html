@@ -1,0 +1,11 @@
+<div class="relative-message-container" cdkTrapFocus>
+  <div class="message-container"
+    ><p *ngFor="let pText of message" class="message">{{pText}}</p></div
+  >
+  <div class="button-container">
+    <app-close-button
+      *ngIf="!closeAfter"
+      (closeEvent)="onClose()"
+    ></app-close-button>
+  </div>
+</div>

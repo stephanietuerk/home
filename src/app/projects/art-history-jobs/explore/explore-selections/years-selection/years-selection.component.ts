@@ -1,19 +1,18 @@
 import {
   Component,
   ElementRef,
-  Input,
   OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  ControlContainer,
-  FormGroup,
-  FormGroupDirective,
-} from '@angular/forms';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { format } from 'd3';
+import { isEqual } from 'lodash-es';
 import noUiSlider from 'nouislider';
-import { YearsFormGroup } from '../explore-selections-form.service';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs';
+import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
+import { ArtHistoryDataService } from '../../../art-history-data.service';
+import { ExploreDataService } from '../../explore-data.service';
 
 export interface YearsSelection {
   start: number;
@@ -35,26 +34,42 @@ export interface YearsSelection {
     },
   ],
 })
-export class YearsSelectionComponent implements OnInit {
-  @Input() years: [number, number];
-  @Input() formGroup: FormGroup<YearsFormGroup>;
+export class YearsSelectionComponent extends Unsubscribe implements OnInit {
   @ViewChild('slider', { static: true }) slider: ElementRef;
+  yearsSelection: YearsSelection;
+
+  constructor(
+    private selections: ExploreDataService,
+    private data: ArtHistoryDataService
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
+    this.subscribeToSelections();
     this.createSlider();
     this.setSliderListener();
   }
 
+  subscribeToSelections(): void {
+    this.selections.selections$
+      .pipe(
+        takeUntil(this.unsubscribe),
+        map((selections) => selections.years),
+        distinctUntilChanged((a, b) => !isEqual(a, b))
+      )
+      .subscribe((years) => {
+        this.yearsSelection = years;
+      });
+  }
+
   createSlider() {
     noUiSlider.create(this.slider.nativeElement, {
-      start: [
-        this.formGroup.controls.start.value,
-        this.formGroup.controls.end.value,
-      ],
+      start: [this.yearsSelection.start, this.yearsSelection.end],
       connect: true,
       range: {
-        min: this.years[0],
-        max: this.years[1],
+        min: this.data.dataYears[0],
+        max: this.data.dataYears[1],
       },
       step: 1,
       margin: 1,
@@ -88,7 +103,7 @@ export class YearsSelectionComponent implements OnInit {
         start: +values[0],
         end: +values[1],
       };
-      this.formGroup.setValue(selections);
+      this.selections.updateSelections({ years: selections });
     });
   }
 }

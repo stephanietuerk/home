@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  DomainPaddingConfig,
   Padding,
+  VicDomainPaddingConfig,
 } from '../../data-marks/data-dimension.config';
 import { ValueUtilities } from '../../shared/value-utilities.class';
 
@@ -13,7 +13,7 @@ export type ValueType = 'max' | 'min';
 export class DataDomainService {
   getPaddedDomainValue(
     unpaddedDomain: [number, number],
-    padding: DomainPaddingConfig,
+    padding: VicDomainPaddingConfig,
     valueType: ValueType,
     scaleType?: any,
     pixelRange?: [number, number]
@@ -100,7 +100,7 @@ export class DataDomainService {
 
   getQuantitativeDomain(
     unpaddedDomain: [number, number],
-    domainPadding: DomainPaddingConfig,
+    domainPadding: VicDomainPaddingConfig,
     scaleType?: any,
     pixelRange?: [number, number]
   ): [number, number] {

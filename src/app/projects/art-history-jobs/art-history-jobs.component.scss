@@ -1,33 +1,142 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 :host {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
 }
 
 .project-container {
-    max-width: 1080px;
+  margin: 0;
+  min-height: 100vh;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+  padding-top: grid(5);
+
+  @media screen and (max-width: 1080px) {
+    padding-right: 4%;
+    padding-left: 4%;
+  }
+
+  & > * {
+    width: 100%;
+  }
+
+  .section-top-border {
+    max-width: 600px;
+    align-self: center;
+    border-top: 6px solid $color-light-gray-light;
+  }
+
+  .section:not(:first-child) {
+    padding-top: grid(6);
+    position: relative;
+  }
+
+  .section:not(:last-child) {
+    padding-bottom: grid(20);
+  }
+
+  .top-matter-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
     align-items: center;
+    padding-bottom: grid(8);
+  }
+
+  .section-subheader {
+    @extend %h6;
+    text-align: center;
+    padding-bottom: grid(2);
+  }
+
+  .section-link {
+    color: $color-highlight;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .external-link {
+    @extend %sans-regular;
+    color: $color-highlight;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .material-symbols-outlined {
+      transform: scale(0.8);
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  .description {
+    max-width: 600px;
+    line-height: 1.5;
+    align-self: center;
     width: 100%;
 
-    & > * {
-        width: 100%;
+    &:not(:last-child) {
+      padding-bottom: grid(6);
+    }
+  }
+
+  .scroll-to-container {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: grid(4);
+    left: auto;
+    width: 60px;
+    margin-right: grid(4);
+    cursor: pointer;
+  }
+
+  .scroll-to-next-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: rgba(white, 0.8);
+    border-radius: grid(1);
+
+    @media screen and (max-width: 500px) {
+      font-size: 0.875rem;
     }
 
-    .section-header {
-        @extend %h3;
-        text-align: center;
-        padding-bottom: $grid-1;
+    &.previous {
+      padding-bottom: grid(6);
+
+      .scroll-to-next-label {
+        padding-top: grid(2);
+        padding-bottom: 0;
+      }
     }
 
-    .description {
-        max-width: 600px;
-        line-height: 1.5;
-        padding-bottom: $grid-6;
+    .scroll-to-next-label {
+      width: 60px;
+      text-align: right;
+      line-height: 1.2;
+      padding-bottom: grid(2);
     }
+
+    .material-symbols-outlined {
+      align-self: flex-end;
+      transform: scale(1.5);
+
+      @media screen and (max-width: 500px) {
+        transform: scale(1.3);
+      }
+    }
+  }
 }

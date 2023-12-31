@@ -26,7 +26,7 @@ export const tableHeaders: TableHeader[] = [
     },
   },
   {
-    display: '2022',
+    display: '2023',
     align: 'right',
     id: 'current',
     type: 'number',

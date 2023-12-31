@@ -1,25 +1,45 @@
-import { Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { select } from 'd3';
-import { Observable, pairwise, takeUntil } from 'rxjs';
+import { isEqual } from 'lodash-es';
+import { Observable, takeUntil } from 'rxjs';
 import { Unsubscribe } from '../shared/unsubscribe.class';
 import { svgTextWrap } from '../svg-text-wrap/svg-text-wrap';
 import { SvgTextWrapConfig } from '../svg-text-wrap/svg-wrap.config';
-import { XyChartComponent } from '../xy-chart/xy-chart.component';
-import { AxisConfig } from './axis.config';
+import { GenericScale, XyChartComponent } from '../xy-chart/xy-chart.component';
+import { VicAxisConfig } from './axis.config';
+
+type XyAxisScale =
+  | {
+      useTransition: boolean;
+      x: GenericScale<any, any>;
+    }
+  | {
+      useTransition: boolean;
+      y: GenericScale<any, any>;
+    };
 
 /**
  * A base directive for all axes.
  */
 @Directive()
-export abstract class XyAxis extends Unsubscribe implements OnInit {
+export abstract class XyAxis extends Unsubscribe implements OnInit, OnChanges {
   /**
    * The configuration for the axis.
    */
-  @Input() config: AxisConfig;
+  @Input() config: VicAxisConfig;
   @ViewChild('axis', { static: true }) axisRef: ElementRef<SVGGElement>;
   axisFunction: any;
   axis: any;
   scale: any;
+  transitionDuration: number;
 
   constructor(public chart: XyChartComponent) {
     super();
@@ -31,34 +51,33 @@ export abstract class XyAxis extends Unsubscribe implements OnInit {
   abstract setTranslate(): void;
   abstract setAxis(axisFunction: any): void;
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      this.scale &&
+      !isEqual(changes['config'].previousValue, changes['config'].currentValue)
+    ) {
+      this.updateAxis(this.transitionDuration);
+    }
+  }
+
   ngOnInit(): void {
     this.setAxisFunction();
     this.setTranslate();
     this.setScale();
   }
 
-  subscribeToScale(scale$: Observable<any>): void {
-    scale$
-      .pipe(takeUntil(this.unsubscribe), pairwise())
-      .subscribe(([prev, curr]) => this.onScaleUpdate(prev, curr));
+  subscribeToScale(scale$: Observable<XyAxisScale>): void {
+    scale$.pipe(takeUntil(this.unsubscribe)).subscribe((scale) => {
+      const { useTransition, ...rest } = scale;
+      const axisScale = Object.values(rest)[0];
+      this.onScaleUpdate(axisScale, useTransition);
+    });
   }
 
-  onScaleUpdate(prev: any, curr: any): void {
-    if (curr) {
-      let transitionDuration;
-      if (prev) {
-        const currRange = curr.range();
-        const prevRange = prev.range();
-        transitionDuration =
-          currRange[0] === prevRange[0] && currRange[1] === prevRange[1]
-            ? this.chart.transitionDuration
-            : 0;
-      } else {
-        transitionDuration = 0;
-      }
-      this.scale = curr;
-      this.updateAxis(transitionDuration);
-    }
+  onScaleUpdate(scale: GenericScale<any, any>, useTransition: boolean): void {
+    this.transitionDuration = useTransition ? this.chart.transitionDuration : 0;
+    this.scale = scale;
+    this.updateAxis(this.transitionDuration);
   }
 
   updateAxis(transitionDuration: number): void {

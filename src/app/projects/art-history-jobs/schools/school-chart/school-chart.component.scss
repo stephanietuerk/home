@@ -1,0 +1,34 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.chart {
+  display: flex;
+  height: 100%;
+  background: $color-light-gray-lightest;
+}
+
+.year {
+  width: 16px;
+  flex-shrink: 0;
+  border-bottom: 1px solid $color-light-gray-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.job {
+  width: 16px;
+  height: 16px;
+}
+
+.years-readout {
+  display: flex;
+  justify-content: space-between;
+  @extend %caption;
+}

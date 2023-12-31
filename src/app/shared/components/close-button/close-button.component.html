@@ -1,0 +1,11 @@
+<button
+  (click)="onClose()"
+  class="close-button"
+  type="button"
+  [class.hidden]="!isVisible"
+  [attr.aria-label]="ariaLabel"
+  ><ng-container *ngIf="isVisible">
+    <span class="button-label">Close</span
+    ><span class="material-symbols-outlined">close</span>
+  </ng-container>
+</button>

@@ -6,7 +6,6 @@ import {
   beyondPath,
   flipPath,
 } from '../core/constants/routing.constants';
-import { ArtHistoryJobsResolver } from './art-history-jobs/art-history-jobs-resolver';
 import { ArtHistoryJobsComponent } from './art-history-jobs/art-history-jobs.component';
 import { BeyondResolver } from './beyond/beyond-resolver';
 import { BeyondComponent } from './beyond/beyond.component';
@@ -32,9 +31,6 @@ const routes: Routes = [
       {
         path: artHistoryJobsPath,
         component: ArtHistoryJobsComponent,
-        resolve: {
-          data: ArtHistoryJobsResolver,
-        },
       },
       {
         path: '**',

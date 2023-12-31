@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash';
 import { Observable, Subject, merge } from 'rxjs';
-import { map, scan } from 'rxjs/operators';
+import { filter, map, scan } from 'rxjs/operators';
 import { Sort } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
 import { TableHeader } from 'src/app/shared/components/table/table.model';
-import { AxisConfig } from 'src/app/viz-components/axes/axis.config';
+import { VicAxisConfig } from 'src/app/viz-components/axes/axis.config';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { artHistoryFields } from '../art-history-fields.constants';
@@ -21,8 +21,8 @@ import { tableHeaders } from './summary-table/summary-table.constants';
 interface ViewModel {
   chartConfig: SummaryChartConfig;
   tableData: JobTableDatum[];
-  xAxisConfig: AxisConfig;
-  yAxisConfig: AxisConfig;
+  xAxisConfig: VicAxisConfig;
+  yAxisConfig: VicAxisConfig;
 }
 
 interface ChartSort {
@@ -50,6 +50,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {
     const vm$ = this.dataService.data$.pipe(
+      filter((data) => !!data),
       map((data: JobDatum[]) => () => {
         const [tableData, chartSort]: [JobTableDatum[], ChartSort] =
           this.getTableDataAndChartSort(data);
@@ -92,9 +93,9 @@ export class SummaryComponent implements OnInit {
   getTableData(data: JobDatum[]): JobTableDatum[] {
     const currentYear = max(data.map((x) => x.year.getFullYear()));
     const filteredData = data.filter(
-      (x) => x.isTt === 'All' && x.rank[0] === 'All'
+      (x) => x.tenure === 'All' && x.rank[0] === 'All'
     );
-    const fields = artHistoryFields.map((x) => x.name.full);
+    const fields = cloneDeep(artHistoryFields).map((x) => x.name.full);
     const tableData = fields.map((field) => {
       const fieldData = filteredData.filter((x) => x.field === field);
       const avg =
@@ -111,12 +112,12 @@ export class SummaryComponent implements OnInit {
     return tableData;
   }
 
-  getXAxisConfig(data: JobDatum[]): AxisConfig {
+  getXAxisConfig(data: JobDatum[]): VicAxisConfig {
     const config = new SummaryChartXAxisConfig();
     return config;
   }
 
-  getYAxisConfig(): AxisConfig {
+  getYAxisConfig(): VicAxisConfig {
     return new SummaryChartYAxisConfig();
   }
 
@@ -178,7 +179,7 @@ export class SummaryComponent implements OnInit {
 
   getChartData(data: JobDatum[]): JobDatum[] {
     const filteredData = cloneDeep(data).filter(
-      (x) => x.isTt === 'All' && x.rank[0] === 'All' && x.field !== 'All'
+      (x) => x.tenure === 'All' && x.rank[0] === 'All' && x.field !== 'All'
     );
     return filteredData;
   }

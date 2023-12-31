@@ -1,79 +1,114 @@
 <div class="project-container">
-    <app-summary></app-summary>
-    <app-schools></app-schools>
-    <app-explore></app-explore>
-    <div class="top-matter-container">
-        <p class="description">
-            Inspired by similar efforts that I'd seen for Literature and History, I wanted to take a look at recent
-            trends in the Art History job market via the jobs posted on the Academic Jobs Wiki.
-        </p>
-        <h2 class="section-header">Data Acquisition and Cleaning</h2>
-        <p class="description">
-            I gathered data using the wikia python library that provides an interface on top of the wikia API. You can
-            see my work in this Colab Notebook. Many thanks to Ryan Heuser whose notebook for English Lit jobs data
-            scraping (posted on Twitter) I used as a model for getting data from the Wikia page.
-        </p>
-        <p class="description">
-            For each job posting, I attributed a field, such as Modern / Contemporary Art, tenure status (tenure track,
-            non-tenure track, and unknown), and one or more ranks, such as assistant professor or postdoc. The vast
-            majority of this (99%) was done programmatically, using the field headings that jobs are posted on the wiki
-            page and scanning text for keywords related to tenure status and rank.
-        </p>
-        <p class="description">
-            I regularized field names across the years (so that Contemporary / Modern Art and Modern / Contemporary Art
-            became the same category) and also imputed fields manually in a few instances. In 2011-2012, Contemporary
-            Art, Modern Art, Architecture and Design was a single category, and I sorted those jobs by hand into the
-            appropriate categories that were used in all other years, based on the job descriptions. In 2020, a Visiting
-            Positions / Limited-Term Appointments / Postdocs category appeared on the site, and I likewise sorted these
-            into fields based on job description, and accounted for the temporary nature of these jobs in the rank
-            category.
-        </p>
-        <p class="description">
-            Finally, I also checked the data to make sure there weren't nonsensical combinations, such as a tenure-track
-            postdoc, and manually corrected the data in the few records that needed correcting.
-        </p>
-        <p class="description">
-            Known problems in the data include the fact that I chose not to try to account for instances in which two
-            positions were advertised in one posting, and in the one case in which a job was determined to be in two
-            completely distinct fields (Islamic Art or Latin-American Art), I arbitrarily put it in one of the fields,
-            in an effort to keep the sum of the number of jobs in each field equal to the sum of all jobs.
-        </p>
-        <p class="description">
-            The work described above yielded a JSON that I brought into this notebook, which you can see in the cell
-            below.
-        </p>
-        <p class="description">This data was last scraped on December 19, 2020.</p>
-        <h2 class="section-header">Field Creation</h2>
-        <p class="description">
-            When I brought the data into this notebook, there were 45 different fields. I decided that given that the
-            highest number of jobs for any year was just over three times this number of fields, I needed to consolidate
-            categories to create more coherence in the data. Some of the decisions I made in grouping things required a
-            fair amount of judgment, and other completely defensible decisions could have been made that would make the
-            data look different.
-        </p>
-        <p class="description">
-            If you want to explore alternate groupings, you can edit the code that generates the fieldGroupings array
-            below to reconfigure things. Edit the code by clicking the three dots that appear to the left of the cell
-            when you hover over it. Changes won't be saved beyond a refresh of your browser. Also note that there are
-            only enough distinct colors for 18 fields.
-        </p>
-        <p class="description">
-            Generally speaking, I urge you to think critically about how groupings, small numbers, the fact that not all
-            jobs in the field are posted to the Wiki, incomplete descriptions, and other factors make this data a good
-            representation of the art history job market, but one that is certainly not perfect.
-        </p>
-        <h2 class="section-header">Results</h2>
-        <h3 class="section-header">2022</h3>
-        <h3 class="section-header">2020</h3>
-        <p class="description">
-            To no one's surprise, the Art History academic job market is pretty grim in 2020. This year there are 50
-            jobs posted, while in the 9 years before this, the average number of job listings was 141 per year.
-        </p>
-        <p class="description">
-            What was slightly surprising to me was that there wasn't a bigger drop off in jobs before 2019. (Too bad
-            there is not data that could show us where things were before 2008.) 2019 is also an interesting year in
-            that while the overall number of jobs was considerably down, almost all of the loses were in the Modern /
-            Contemporary, Early Modern–19th Century, and General fields.
-        </p>
-    </div>
+  <div
+    class="top-matter-container section"
+    *ngIf="mainDataService.dataYears"
+    #intro
+  >
+    <p class="description">
+      In the field of Art History, the
+      <a
+        href="https://academicjobs.fandom.com/wiki/Art_History_2023-24"
+        target="_blank"
+        class="external-link"
+        >Academic Jobs Wiki<span class="material-symbols-outlined"
+          >open_in_new</span
+        ></a
+      >
+      serves as an informal clearinghouse for academic job postings. Inspired by
+      similar efforts for Literature and History, this project provides an
+      interface for visually exploring aggregated job postings from the Academic
+      Jobs Wiki to facilitate a data-driven understanding of the Art History job
+      market.
+    </p>
+    <p class="description">
+      Throughout the humanities, there is a collective understanding that
+      academic job markets are "in crisis," but as far as I know, there are no
+      attempts to describe this quantitatively. The data presented are an
+      attempt tp facilitate a shared understanding of hiring trends within the
+      field. I hope that this is useful for prospective and current PhD students
+      and faculty alike.
+    </p>
+    <p class="description"
+      >This interface allows users to explore {{ mainDataService.dataYears[1] -
+      mainDataService.dataYears[0] + 1}} years of data, from {{
+      mainDataService.dataYears[0] }} to {{ mainDataService.dataYears[1] }},
+      aggregated by scraping jobs posted on the Academic Jobs Wiki. Users can
+      view changes in the total number of jobs over time as well as explore jobs
+      by field, tenure status, job rank, and institution.</p
+    >
+    <h3 class="section-subheader">Exploring the data</h3>
+    <p class="description"
+      >Along with a
+      <span (click)="scrollTo('summary')" class="section-link"
+        >summary chart</span
+      >
+      of jobs by field across time, there are two interactive sections in this
+      project that you can use to explore the data according to your
+      interest.</p
+    >
+    <p class="description"
+      >The
+      <span (click)="scrollTo('jobCharacteristics')" class="section-link"
+        >Explore by Job Characteristics</span
+      >
+      section can be used to ask questions about the quantity of jobs. This
+      includes questions such as, "has the number of tenure-track jobs in Global
+      / Non-Western Art increased or decreased over time?" and "how does the
+      share of jobs listed for specific regions compare to that of jobs listed
+      as General / Open?"
+    </p>
+    <p class="description"
+      >The
+      <span (click)="scrollTo('schools')" class="section-link"
+        >Explore by Institution</span
+      >
+      section can be used to ask questions that begin with, "which schools...?"
+      For example, you could use this section to understand which schools have
+      historically hired for a specific field, which schools hire frequently, or
+      which schools only hire for non-tenure track positions.
+    </p>
+    <p class="description">
+      The source code for data scraping and aggregation is
+      <a
+        href="https://github.com/stephanietuerk/art-history-jobs"
+        target="_blank"
+        class="external-link"
+        >available on GitHub<span class="material-symbols-outlined"
+          >open_in_new</span
+        ></a
+      >. Additional
+      <span (click)="scrollTo('methods')" class="section-link"
+        >information on methods</span
+      >
+      for aggregation and field imputation are available at the bottom of the
+      page . Please feel free to reach out to me via DM on Twitter or email with
+      any feedback or questions.
+    </p>
+  </div>
+  <div class="section-top-border"></div>
+  <app-summary #summary class="section"></app-summary>
+  <div class="section-top-border"></div>
+  <app-explore #jobCharacteristics class="section"></app-explore>
+  <div class="section-top-border"></div>
+  <app-schools #schools class="section"></app-schools>
+  <div class="section-top-border"></div>
+  <app-data-acquisition #methods class="section"></app-data-acquisition>
+  <div class="scroll-to-container">
+    <div
+      *ngIf="currentSection !== 'intro'"
+      class="scroll-to-next-section previous"
+      (click)="jumpToPrevious()"
+      ><span class="material-symbols-outlined"> keyboard_double_arrow_up </span
+      ><p class="scroll-to-next-label">Jump to previous section</p></div
+    >
+    <div
+      *ngIf="currentSection !== 'methods'"
+      class="scroll-to-next-section"
+      (click)="jumpToNext()"
+      ><p class="scroll-to-next-label">Jump to next section</p
+      ><span class="material-symbols-outlined">
+        keyboard_double_arrow_down
+      </span></div
+    >
+  </div>
 </div>

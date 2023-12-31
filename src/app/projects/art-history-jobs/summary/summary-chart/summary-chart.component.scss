@@ -1,10 +1,11 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 .summary-chart-tooltip {
   pointer-events: none;
   display: flex;
   flex-direction: column;
-  //   justify-content: center;
   max-width: 340px;
   height: 100%;
 
@@ -16,7 +17,7 @@
   }
 
   .tooltip-container {
-    padding: $grid-2;
+    padding: grid(2);
   }
 
   .top-space,
@@ -34,8 +35,8 @@
   .tooltip-container {
     background: rgba(white, 0.93);
     border: 1px solid $color-light-gray-light;
-    padding: $grid-2;
-    border-radius: $grid-1;
+    padding: grid(2);
+    border-radius: grid(1);
   }
 
   .year-row {
@@ -64,6 +65,6 @@
   }
 
   .values-container {
-    padding-left: $grid-2;
+    padding-left: grid(2);
   }
 }

@@ -1,62 +1,67 @@
 @use 'sass:math';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 @import '~nouislider/dist/nouislider.min.css';
-@import 'vars', 'placeholders';
 
 .noUi-art-history {
-    &.noUi-target {
-        background: none;
-        box-shadow: none;
-        border: none;
-        margin: $grid-8 0 $grid-4 0;
+  &.noUi-target {
+    background: none;
+    box-shadow: none;
+    border: none;
+    margin: grid(8) 0 grid(4) 0;
+  }
+
+  $track-size: grid(3);
+
+  .noUi-connects {
+    background: #e8e8e8;
+    height: $track-size;
+    border-radius: math.div($track-size, 2);
+  }
+
+  .noUi-connect {
+    background: $color-highlight;
+  }
+
+  .noUi-handle {
+    $size: grid(5);
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    box-shadow: $drop-shadow-lightest;
+    top: -4px;
+    right: -10px;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+
+  .noUi-tooltip {
+    border: none;
+    padding: 0;
+    color: unset;
+    font-size: 0.85rem;
+    background: transparent;
+  }
+
+  .noUi-pips {
+    padding: 0;
+
+    .noUi-value {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      top: -4px;
+      color: $color-light-gray-dark;
+      display: none;
     }
 
-    $track-size: $grid-3;
-    .noUi-connects {
-        background: #e8e8e8;
-        height: $track-size;
-        border-radius: math.div($track-size, 2);
+    .noUi-marker {
+      height: 8px;
+      width: 1px;
+      background: $color-light-gray-dark;
     }
-    .noUi-connect {
-        background: $color-highlight;
-    }
-
-    .noUi-handle {
-        $size: $grid-5;
-        width: $size;
-        height: $size;
-        border-radius: 50%;
-        box-shadow: $drop-shadow-lightest;
-        top: -4px;
-        right: -10px;
-
-        &:before,
-        &:after {
-            content: none;
-        }
-    }
-
-    .noUi-tooltip {
-        border: none;
-        padding: 0;
-        color: unset;
-        font-size: 0.85rem;
-    }
-
-    .noUi-pips {
-        padding: 0;
-
-        .noUi-value {
-            font-size: 0.8rem;
-            line-height: 1.2rem;
-            top: -4px;
-            color: $color-light-gray-dark;
-            display: none;
-        }
-
-        .noUi-marker {
-            height: 8px;
-            width: 1px;
-            background: $color-light-gray-dark;
-        }
-    }
+  }
 }

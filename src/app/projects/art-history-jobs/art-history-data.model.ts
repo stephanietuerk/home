@@ -1,46 +1,36 @@
+export enum JobProperty {
+  year = 'year',
+  field = 'field',
+  tenure = 'tenure',
+  rank = 'rank',
+}
+
 export interface JobDatum {
-  year: Date;
-  field: string;
-  isTt: string;
-  rank: string[];
-  count: number;
-  percent?: number;
-}
-
-export interface JobDatumTimeRangeChart {
-  year: Date;
-  field: string;
-  isTt: string;
-  rank: string;
-  count: number;
-  percent?: number;
-}
-
-export interface JobDatumChangeChart {
-  field: string;
-  isTt: string;
-  rank: string;
+  [JobProperty.year]: Date;
+  [JobProperty.field]: string;
+  [JobProperty.tenure]: string;
+  [JobProperty.rank]: string[] | string;
   count: number;
   percent?: number;
 }
 
 export interface JobTableDatum {
-  field: string;
+  [JobProperty.field]: string;
   avg: number;
   current: number;
 }
 
 export interface LineDef {
-  field: string;
-  isTt: string;
-  rank: string;
+  [JobProperty.field]: string;
+  [JobProperty.tenure]: string;
+  [JobProperty.rank]: string;
 }
 
-export interface JobBySchoolDatum {
+export interface JobsBySchoolDatum {
   id: string;
-  isTt: string;
-  rank: string;
-  field: string[];
+  [JobProperty.tenure]: string;
+  [JobProperty.rank]: string[];
+  [JobProperty.field]: string[];
 }
 
 export interface JobsByCountry {
@@ -50,10 +40,10 @@ export interface JobsByCountry {
 
 export interface JobsBySchool {
   school: string;
-  jobsByYear: JobBySchoolDatum[];
+  jobsByYear: JobsByYear[];
 }
 
 export interface JobsByYear {
-  year: Date;
-  jobs: JobBySchoolDatum[];
+  [JobProperty.year]: string;
+  jobs: JobsBySchoolDatum[];
 }
