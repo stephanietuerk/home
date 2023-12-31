@@ -1,0 +1,18 @@
+<ng-container *ngIf="data.selections$ | async as selections">
+  <div class="radio-input-group" *ngFor="let valueType of valueTypeOptions">
+    <input
+      class="cdk-visually-hidden"
+      type="radio"
+      [attr.id]="valueType.value"
+      name="valueType"
+    />
+    <label
+      class="radio-input-label fields button-style"
+      [attr.for]="valueType.value"
+      [class.selected]="selections.valueType === valueType.value"
+      (click)="updateValueType(valueType.value)"
+    >
+      {{valueType.label}}</label
+    >
+  </div>
+</ng-container>

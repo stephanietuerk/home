@@ -1,23 +1,31 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { easeQuadOut, format } from 'd3';
 import { range } from 'd3-array';
 import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
-import { scrollToId } from 'src/app/core/utilities/dom.utils';
 import { interpolateNumber } from 'src/app/core/utilities/number.utils';
-import { FlipService } from 'src/app/projects/flip/services/flip.service';
 import * as topojson from 'topojson-client';
 import { FlipBar } from './flip-bar.class';
 import { FLIPBARLAYOUT, FLIPCOLORS } from './flip.constants';
 import { Party } from './flip.model';
+import { FlipService } from './flip.service';
 
 @Component({
   selector: 'app-flip',
   templateUrl: './flip.component.html',
   styleUrls: ['./flip.component.scss'],
+  providers: [FlipService],
   encapsulation: ViewEncapsulation.None,
 })
 export class FlipComponent implements OnInit {
+  @ViewChild('intro', { static: true }) introElRef: ElementRef;
+  @ViewChild('main', { static: true }) mainElRef: ElementRef;
   divId = '#flip-the-district';
   introId = '#flip-intro';
 
@@ -29,7 +37,7 @@ export class FlipComponent implements OnInit {
 
   initVis() {
     this.makeVis();
-    scrollToId(this.divId.replace('#', ''), 'smooth', 'start');
+    this.mainElRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   makeVis() {
@@ -385,12 +393,12 @@ export class FlipComponent implements OnInit {
     const geoData = topojson.feature(
       this.flipService.flipTopojson,
       this.flipService.flipTopojson.objects.districts
-    ).features;
+    );
 
     mapContainer
       .append('g')
       .selectAll('path')
-      .data(geoData)
+      .data(geoData.features)
       .enter()
       .append('path')
       .attr('class', 'district-boundary')
@@ -423,6 +431,7 @@ export class FlipComponent implements OnInit {
   handleMapMouseOver(event, d) {
     const district = +d.properties.CD114FP;
     const container = document.getElementById(this.divId.replace('#', ''));
+    this.flipService.styleMapOnHover(district, container, 'start');
     this.flipService.showDistrictInfo(
       this.flipService.districtsData[district],
       container
@@ -440,11 +449,13 @@ export class FlipComponent implements OnInit {
   handleMapMouseOut(event, d) {
     const district = +d.properties.CD114FP;
     const container = document.getElementById(this.divId.replace('#', ''));
+    this.flipService.styleMapOnHover(district, container, 'end');
     this.flipService.hideDistrictInfo(
       this.flipService.districtsData[district],
       container
     );
     select(container)
+      .selectAll('g.bar')
       .filter(
         (d, i, nodes: HTMLElement[]) =>
           +nodes[i].getAttribute('district') !== district
@@ -525,7 +536,7 @@ export class FlipComponent implements OnInit {
               100 * delay
             );
           }
-        } else if (nodes[i].getAttribute('squareColor') == FLIPCOLORS.rColor) {
+        } else {
           return (
             pause + (numSquares - nodes[i].getAttribute('cellnum') + 1) * delay
           );
@@ -582,8 +593,7 @@ export class FlipComponent implements OnInit {
         const color = this.flipService.getCongressSquareColor(nodes[i]);
         if (color == FLIPCOLORS.dColor) {
           return pause + nodes[i].getAttribute('cellnum') * delay;
-        }
-        if (color == FLIPCOLORS.oColor) {
+        } else if (color == FLIPCOLORS.oColor) {
           if (cutOtherGrid < numSquares / 2) {
             return (
               pause +
@@ -597,8 +607,7 @@ export class FlipComponent implements OnInit {
               100 * delay
             );
           }
-        }
-        if (color == FLIPCOLORS.rColor) {
+        } else {
           return (
             pause + (numSquares - nodes[i].getAttribute('cellnum') + 1) * delay
           );

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PROJECTS } from '../core/constants/projects.constants';
 import { Project } from '../core/models/project.model';
+import { getProjectFromURL } from '../core/utilities/route.utils';
 
 @Component({
   selector: 'app-blog',
@@ -13,15 +13,15 @@ export class BlogComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setProject();
   }
 
-  setProject() {
-    this.project = PROJECTS.find((x) => x.routerLink === this.router.url);
+  setProject(): void {
+    this.project = getProjectFromURL(this.router.url);
   }
 
-  getDate(date: Date) {
+  getDate(date: Date): string {
     const options = { dateStyle: 'long' } as any;
     return new Intl.DateTimeFormat('en-US', options).format(date);
   }

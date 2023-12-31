@@ -1,7 +1,6 @@
 <div class="table-component-container">
   <h2 class="projects-title">projects</h2>
   <p class="instruction-text">click any row to see details and view project</p>
-
   <div class="table-container">
     <table class="projects-table">
       <thead>
@@ -16,7 +15,7 @@
         <ng-container *ngFor="let project of projects">
           <tr
             class="table-row body index"
-            [ngClass]="{ open: state[project.id] }"
+            [ngClass]="{ open: expanded[project.id] }"
             (click)="toggleDescription(project.id)"
             (keydown.enter)="toggleDescription(project.id)"
             tabindex="0"
@@ -33,7 +32,7 @@
             <td appHighlightRowOnHover class="table-cell body more">
               <app-svg-icon
                 class="arrow-icon"
-                [ngClass]="{ up: state[project.id], down: !state[project.id] }"
+                [ngClass]="{ up: expanded[project.id], down: !expanded[project.id] }"
                 [name]="getIcon(project.id)"
               ></app-svg-icon>
             </td>
@@ -41,7 +40,7 @@
           <tr
             class="table-row body description"
             @slide
-            *ngIf="state[project.id]"
+            *ngIf="expanded[project.id]"
           >
             <td colspan="4" class="table-cell body description">
               <app-project-overview

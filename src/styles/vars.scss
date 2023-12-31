@@ -1,44 +1,67 @@
 @use 'sass:color';
-@import 'system', 'functions';
+@use 'functions' as *;
 
 $colors: (
-    'highlights': (
-        // 208 deg
-        'blue': #0088ff,
-    ),
-    'darks': (
-        // 232 deg
-        'blue': #2a3058,
-    ),
-    'grays': (
-        // 190 deg
-        'light-1': #c3d0d2,
-        'light-2': #d3ddde,
-        'light-3': #e4eaeb,
-        'light-4': #f5f7f7,
-        'dark-1': #6d7c81,
-    ),
+  'highlights': (
+    // 208 deg
+    'blue': #0088ff,
+    'blue-light': #b2dbff,
+    'yellow': #eeff00,
+  ),
+  'darks': (
+    // 232 deg
+    'blue': #2a3058,
+  ),
+  'grays': (
+    // 190 deg
+    'light-1': #c3d0d2,
+    'light-2': #d3ddde,
+    'light-3': #e4eaeb,
+    'light-4': #f5f7f7,
+    'dark-1': #6d7c81,
+  ),
 );
 
 $color-highlight: get($colors, 'highlights.blue');
+$color-highlight-light: get($colors, 'highlights.blue-light');
+$color-search-highlight: get($colors, 'highlights.yellow');
 $color-dark-primary: get($colors, 'darks.blue');
-$highlight-light: get($colors, 'grays.light-4');
-$highlight-dull: get($colors, 'grays.light-4');
+$color-light-gray-lightest: get($colors, 'grays.light-4');
+$color-light-gray-light: get($colors, 'grays.light-3');
+$color-light-gray-medium: get($colors, 'grays.light-2');
+$color-light-gray-dark: get($colors, 'grays.light-1');
+$color-dark-gray: get($colors, 'grays.dark-1');
 
 $color-scrollbar: get($colors, 'grays.light-1');
 $color-scrollbar-ie: $color-scrollbar;
 
-$subtle-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.12), 0 1px 2px rgba($color-dark-primary, 0.24);
-$subtler-drop-shadow: 0 1px 3px rgba($color-dark-primary, 0.06), 0 1px 2px rgba($color-dark-primary, 0.212);
+$subtle-drop-shadow:
+  0 1px 3px rgba($color-dark-primary, 0.12),
+  0 1px 2px rgba($color-dark-primary, 0.24);
+$subtler-drop-shadow:
+  0 1px 3px rgba($color-dark-primary, 0.06),
+  0 1px 2px rgba($color-dark-primary, 0.212);
+$drop-shadow-light:
+  0 1px 3px rgba($color-dark-primary, 0.12),
+  0 1px 2px rgba($color-dark-primary, 0.24);
+$drop-shadow-lightest:
+  0 1px 3px rgba($color-dark-primary, 0.06),
+  0 1px 2px rgba($color-dark-primary, 0.12);
+$drop-shadow-bottom-light:
+  0 1px 3px -1px rgba($color-dark-primary, 0.12),
+  0 1px 2px -1px rgba($color-dark-primary, 0.24);
+$drop-shadow-bottom-lightest:
+  0 1px 3px -1px rgba($color-dark-primary, 0.06),
+  0 1px 2px -1px rgba($color-dark-primary, 0.12);
 
 $landing-page-max-width: 1000px;
 
-$vertical-scrollbar-thickness: $space-3;
-$horizontal-scrollbar-thickness: $space-3;
+$vertical-scrollbar-thickness: grid(3);
+$horizontal-scrollbar-thickness: grid(3);
 
-$content-component-padding: 0px $space-10 $space-4 $space-10;
+$content-component-padding: 0px grid(1) 0 grid(4) grid(1) 0;
 
-$navbar-height: $space-16;
+$navbar-height: 48px;
 $project-navbar-height: $navbar-height;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;
@@ -48,3 +71,38 @@ $viewport-width-sm: 768px;
 $viewport-width-md: 992px;
 $viewport-width-lg: 1200px;
 $viewport-width-xl: 1400px;
+
+$global-overlay-z-index: 1010;
+
+/* ----- MATERIAL COMPONENTS ----- */
+$mat-form-field-vertical-padding: grid(3);
+$mat-form-field-horizontal-padding: grid(2);
+$mat-placeholder-color: rgba(0, 0, 0, 0.42);
+
+/* ---- POPUP MESSAGES ---- */
+%message-close-button-styles {
+  // @extend %typography-ui-label-sm-regular;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: grid(1);
+
+  .button-label {
+    display: inline-block;
+    padding-left: grid(1);
+  }
+
+  &:hover {
+    background: $color-highlight-light;
+
+    .button-label {
+      text-decoration: underline;
+    }
+  }
+
+  .material-symbols-outlined {
+    transform: scale(0.75);
+    position: relative;
+    left: 2px;
+  }
+}

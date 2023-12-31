@@ -5,11 +5,8 @@ export class Project {
   year: string | number;
   technologies?: string[];
   description?: string[];
-  show?: Visibility;
   images?: Image[];
-  url?: string;
-  routerLink?: string;
-  linkName?: string;
+  links: Link[];
   allowComments?: boolean;
   professional?: boolean;
   postConfig?: Post;
@@ -22,11 +19,6 @@ export enum Environment {
 
 export type EnvironmentOption = keyof typeof Environment;
 
-export class Visibility {
-  [Environment.local]: boolean;
-  [Environment.production]: boolean;
-}
-
 export class Image {
   path: string;
   altText: string;
@@ -36,6 +28,12 @@ export class Post {
   postedDate: Date;
   updatedDate?: Date;
   title?: string;
+}
+
+export class Link {
+  url?: string;
+  routerLink?: string;
+  name: string;
 }
 
 export enum ProjectType {

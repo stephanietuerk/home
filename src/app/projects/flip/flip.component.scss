@@ -1,4 +1,5 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
 
 $rColor: #f4003d;
 $dColor: #2437ff;
@@ -128,12 +129,9 @@ $button-active: #999999;
   }
 
   .active-drag {
-    /*stroke: white;*/
-    /*stroke-width: 1.5px;*/
-    /*opacity: .5;*/
-    /*stroke-dasharray: 2, 2;*/
     stroke-linecap: butt;
   }
+
   .active-drag-others {
     opacity: 0.3;
   }
@@ -144,11 +142,15 @@ $button-active: #999999;
     stroke-linecap: round;
   }
 
-  .active-mouseover {
+  .inactive-mouseover {
     stroke: white;
-    stroke-width: 3px;
-    opacity: 0.4;
-    /*stroke-dasharray: 2, 2;*/
+    opacity: 0.3;
+    stroke-linecap: butt;
+  }
+
+  .active-mouseover {
+    stroke-width: 2px;
+    opacity: 1;
     stroke-linecap: butt;
   }
 

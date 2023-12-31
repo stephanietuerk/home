@@ -1,0 +1,12 @@
+<div class="message-full-screen-container">
+  <div class="message-container" cdkTrapFocus>
+    <div class="title-row">
+      <h1 class="title">{{title}}</h1>
+      <app-close-button
+        *ngIf="!closeAfter"
+        (closeEvent)="onClose()"
+      ></app-close-button>
+    </div>
+    <p *ngFor="let pText of message" class="message">{{pText}}</p>
+  </div>
+</div>

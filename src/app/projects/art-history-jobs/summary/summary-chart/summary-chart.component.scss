@@ -1,0 +1,70 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.summary-chart-tooltip {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 340px;
+  height: 100%;
+
+  .tooltip-line {
+    position: relative;
+    border-left: 2px dashed $color-light-gray-medium;
+    height: 100%;
+    align-self: center;
+  }
+
+  .tooltip-container {
+    padding: grid(2);
+  }
+
+  .top-space,
+  .bottom-space {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .left-space {
+    flex-basis: 50%;
+    border-right: 2px dotted $color-light-gray-light;
+    mix-blend-mode: difference;
+  }
+
+  .tooltip-container {
+    background: rgba(white, 0.93);
+    border: 1px solid $color-light-gray-light;
+    padding: grid(2);
+    border-radius: grid(1);
+  }
+
+  .year-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-dark-primary;
+  }
+
+  .total-label {
+    @extend %overline;
+    font-size: 0.8rem;
+  }
+
+  .tooltip-label.y,
+  .tooltip-label.category {
+    @extend %body2;
+    line-height: 1.1;
+  }
+
+  .tooltip-field-value-row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-bottom: 1px solid $color-light-gray-light;
+  }
+
+  .values-container {
+    padding-left: grid(2);
+  }
+}

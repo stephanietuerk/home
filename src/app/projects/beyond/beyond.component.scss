@@ -1,4 +1,5 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
 
 $rColor: #f4003d;
 $dColor: #2437ff;
@@ -59,6 +60,14 @@ $dark-gray: #666666;
       &.selected {
         background: #cccccc;
         color: white;
+      }
+    }
+
+    .button-group-item {
+      &:not(:first-child) {
+        label {
+          border-left: none;
+        }
       }
     }
   }

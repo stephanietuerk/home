@@ -1,4 +1,7 @@
-@import 'mixins', 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+@use 'functions' as *;
 
 :host {
   @extend %flex-column;
@@ -13,7 +16,7 @@
   @extend %body1;
   text-align: justify;
   max-width: 800px;
-  padding-bottom: $space-3;
+  padding-bottom: grid(3);
 
   &:first-of-type {
     text-align: center;
@@ -25,6 +28,5 @@
 
 .read-more {
   @extend %button;
-  @extend %button-styles;
   @extend %button-behavior;
 }

@@ -27,13 +27,13 @@ import {
   BEYOND_DEMOTYPES,
   BEYOND_SCALES,
 } from '../beyond.constants';
+import { BeyondService } from '../beyond.service';
 import { TractDatum } from '../models/beyond-data.model';
 import {
   DemoTime,
   DemoVariable,
   ElectionYear,
 } from '../models/beyond-enums.model';
-import { BeyondService } from '../services/beyond.service';
 
 @Component({
   selector: 'app-beyond-bar',

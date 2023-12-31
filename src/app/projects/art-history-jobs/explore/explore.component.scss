@@ -1,0 +1,54 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  @extend %h5;
+  text-align: center;
+  padding-bottom: grid(4);
+}
+
+.charts-container {
+  display: flex;
+  padding-top: grid(8);
+
+  @media screen and (max-width: 760px) {
+    flex-direction: column;
+
+    .change-chart-component {
+      padding-top: grid(6);
+    }
+  }
+}
+
+.time-range-chart-component {
+  $chart-width: 65%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: $chart-width;
+  flex-shrink: 1;
+  min-width: $chart-width;
+}
+
+.change-chart-component {
+  $chart-width: 35%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: $chart-width;
+  flex-shrink: 1;
+  min-width: $chart-width;
+}
+
+.description {
+  max-width: 600px;
+  line-height: 1.5;
+  padding-bottom: grid(6);
+  align-self: center;
+  width: 100%;
+}

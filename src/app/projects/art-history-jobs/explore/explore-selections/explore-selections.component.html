@@ -1,0 +1,257 @@
+<ng-container *ngIf="dropdownContent$ | async as dropdownContent">
+  <div
+    *ngIf="dataService.selections$ | async as selections"
+    class="explore-selections-container"
+    [class.open]="dropdownContent.isOpen"
+  >
+    <p class="container-title">Data selections</p>
+    <div
+      class="navbar"
+      type="button"
+      [class.open]="dropdownContent.isOpen"
+      #ddOrigin
+    >
+      <div class="links-container">
+        <button
+          class="selection-title"
+          [class.open]="dropdownContent.isOpen && dropdownContent.content === 'fields'"
+          (click)="toggleOpenContent('fields')"
+        >
+          Fields
+          <span class="material-symbols-outlined"
+            >{{dropdownContent.isOpen && dropdownContent.content === 'fields' ?
+            'expand_less' : 'expand_more'}}</span
+          >
+        </button>
+        <button
+          class="selection-title"
+          [class.open]="dropdownContent.isOpen && dropdownContent.content === 'tenure'"
+          (click)="toggleOpenContent('tenure')"
+        >
+          Tenure status
+          <span class="material-symbols-outlined"
+            >{{dropdownContent.isOpen && dropdownContent.content === 'tenure' ?
+            'expand_less' : 'expand_more'}}</span
+          >
+        </button>
+        <button
+          class="selection-title"
+          [class.open]="dropdownContent.isOpen && dropdownContent.content === 'rank'"
+          (click)="toggleOpenContent('rank')"
+        >
+          Rank
+          <span class="material-symbols-outlined"
+            >{{dropdownContent.isOpen && dropdownContent.content === 'rank' ?
+            'expand_less' : 'expand_more'}}</span
+          >
+        </button>
+        <button
+          class="selection-title"
+          [class.open]="dropdownContent.isOpen && dropdownContent.content === 'dataType'"
+          (click)="toggleOpenContent('dataType')"
+        >
+          Data type
+          <span class="material-symbols-outlined"
+            >{{dropdownContent.isOpen && dropdownContent.content === 'dataType'
+            ? 'expand_less' : 'expand_more'}}</span
+          >
+        </button>
+        <button
+          class="selection-title"
+          [class.open]="dropdownContent.isOpen && dropdownContent.content === 'timeRange'"
+          (click)="toggleOpenContent('timeRange')"
+        >
+          Years
+          <span class="material-symbols-outlined"
+            >{{dropdownContent.isOpen && dropdownContent.content === 'timeRange'
+            ? 'expand_less' : 'expand_more'}}</span
+          >
+        </button>
+      </div>
+      <div *ngIf="dropdownContent.isOpen" @slide>
+        <div
+          [ngSwitch]="dropdownContent.content"
+          class="selection-interface-container"
+        >
+          <ng-container *ngSwitchCase="'fields'">
+            <ng-container *ngTemplateOutlet="fieldsDd"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'dataType'">
+            <ng-container *ngTemplateOutlet="dataTypeDd"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'timeRange'">
+            <ng-container *ngTemplateOutlet="timeRangeDd"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'tenure'">
+            <ng-container *ngTemplateOutlet="tenureDd"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'rank'">
+            <ng-container *ngTemplateOutlet="rankDd"></ng-container>
+          </ng-container>
+          <ng-container *ngTemplateOutlet="closeButton"></ng-container>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #fieldsDd>
+      <div class="selection-container field">
+        <div class="selection-instructions field-use"
+          ><p class="main">Select a data view</p
+          ><p class="secondary"
+            >Exploring within a field will allow you to compare across different
+            tenure statuses or ranks for a single field. If you choose to
+            compare across fields, you will be limited to one tenure status and
+            one rank selection. If necessary, selections will update
+            automatically to meet these constraints.</p
+          ></div
+        >
+        <app-variable-use-selection
+          [variable]="JobProperty.field"
+          class="field-use variable-use-selection-component"
+        ></app-variable-use-selection>
+        <div class="selection-instructions field">
+          <p class="main"
+            >Select
+            <span *ngIf="selections.fieldUse === FilterType.disaggregate"
+              >fields</span
+            ><span *ngIf="selections.fieldUse === FilterType.filter"
+              >a field</span
+            >
+            to view in the charts below</p
+          >
+        </div>
+        <app-variable-single-multi-selection
+          class="selection-interface field-values"
+          [variable]="JobProperty.field"
+          [options]="fieldValueOptions"
+        ></app-variable-single-multi-selection>
+      </div>
+    </ng-template>
+
+    <ng-template #dataTypeDd>
+      <div class="selection-container radio-input-container data-type">
+        <div class="selection-instructions value-type"
+          ><p class="main">Select a data type</p
+          ><p class="secondary"
+            >If the data type is count, each value will be the total number of
+            jobs for the specified field / tenure status / rank / year.</p
+          >
+          <p class="secondary"
+            >If the data type is percent, each value will represent the share of
+            jobs for the selection for which ever variable is disaggregated / is
+            being "compared across" out of all jobs for that year and
+            non-disaggregated variables.
+          </p></div
+        >
+        <app-value-type-selection
+          class="selection-interface data-type radio-input-container"
+        >
+        </app-value-type-selection>
+      </div>
+    </ng-template>
+
+    <ng-template #timeRangeDd
+      ><div class="selection-container">
+        <div class="selection-instructions value-type"
+          ><p class="main">Select a range of years</p
+          ><p class="secondary"
+            >This selection establishes the years shown in the line chart, and
+            well as the years used in the change across time bar chart on the
+            right.</p
+          ></div
+        >
+        <app-years-selection
+          class="time-range-slider-component selection-interface time-range"
+        ></app-years-selection></div
+    ></ng-template>
+
+    <ng-template #tenureDd>
+      <div class="selection-container tenure">
+        <div class="selection-instructions tenure-use"
+          ><p class="main">Select a data view</p
+          ><p class="secondary"
+            >Exploring within a tenure status will allow you to compare across
+            different fields or ranks for a single tenure status. If you choose
+            to compare across tenure statuses, you will be limited to one field
+            and one rank selection. If necessary, selections will update
+            automatically to meet these constraints.</p
+          ></div
+        >
+        <app-variable-use-selection
+          [variable]="JobProperty.tenure"
+          class="tenure-use variable-use-selection-component"
+        ></app-variable-use-selection>
+        <div class="selection-instructions tenure">
+          <p class="main"
+            >Select
+            <span *ngIf="selections.tenureUse === FilterType.disaggregate"
+              >tenure statuses</span
+            ><span *ngIf="selections.tenureUse === FilterType.filter"
+              >a tenure status</span
+            >
+            to view in the charts below</p
+          >
+        </div>
+        <app-variable-single-multi-selection
+          class="selection-interface tenure-values"
+          [variable]="JobProperty.tenure"
+          [options]="tenureValueOptions"
+        ></app-variable-single-multi-selection>
+      </div>
+    </ng-template>
+
+    <ng-template #rankDd
+      ><div class="selection-container rank">
+        <div class="selection-instructions rank-use"
+          ><p class="main">Select a data view</p
+          ><p class="secondary"
+            >Exploring within a rank will allow you to compare across different
+            fields or tenure statuses for a single rank. If you choose to
+            compare across ranks, you will be limited to one field and one
+            tenure status selection. If necessary, selections will update
+            automatically to meet these constraints.</p
+          ></div
+        >
+        <app-variable-use-selection
+          [variable]="JobProperty.rank"
+          class="rank-use variable-use-selection-component"
+        >
+        </app-variable-use-selection>
+        <div class="selection-instructions rank">
+          <p class="main"
+            >Select
+            <span *ngIf="selections.rankUse === FilterType.disaggregate"
+              >ranks</span
+            ><span *ngIf="selections.rankUse === FilterType.filter"
+              >a rank</span
+            >
+            to view in the charts below</p
+          >
+        </div>
+        <app-variable-single-multi-selection
+          class="selection-interface rank-values"
+          [variable]="JobProperty.rank"
+          [options]="rankValueOptions"
+        ></app-variable-single-multi-selection>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #limitations>
+    <p>
+      Constraints: Only one of the variables below can be disaggregated at a
+      time. Only one field can be selected when disaggregating. Selection
+      updates will be made automatically.
+    </p>
+  </ng-template>
+
+  <ng-template #closeButton>
+    <div class="close-button-container">
+      <span
+        class="close-button material-symbols-outlined"
+        (click)="toggleOpenContent(null)"
+        >close</span
+      >
+    </div>
+  </ng-template>
+</ng-container>

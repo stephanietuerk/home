@@ -3,7 +3,7 @@ import { range } from 'd3-array';
 import { drag } from 'd3-drag';
 import { FLIPBARLAYOUT, FLIPCOLORS, FLIPTRANSITIONS } from './flip.constants';
 import { DistrictVotes, Party } from './flip.model';
-import { FlipService } from './services/flip.service';
+import { FlipService } from './flip.service';
 
 export class FlipBar {
   data: DistrictVotes;
@@ -114,7 +114,7 @@ export class FlipBar {
             el.getAttribute('cellnum') * FLIPTRANSITIONS.delay * 2 +
             this.cutOther * FLIPTRANSITIONS.delay
           );
-        } else if (el.getAttribute('squareColor') == FLIPCOLORS.rColor) {
+        } else {
           return (
             FLIPTRANSITIONS.pause +
             (this.cutD * FLIPTRANSITIONS.delay +
@@ -131,14 +131,23 @@ export class FlipBar {
 
   handleMouseOver() {
     this.flipService.showDistrictInfo(this.data, this.visContainer);
+    this.flipService.styleMapOnHover(
+      this.data.district,
+      this.visContainer,
+      'start'
+    );
   }
 
   handleMouseOut() {
     this.flipService.hideDistrictInfo(this.data, this.visContainer);
+    this.flipService.styleMapOnHover(
+      this.data.district,
+      this.visContainer,
+      'end'
+    );
   }
 
   initiateDrag(event) {
-    console.log(this);
     this.dragStartVotes = this.isDragged ? this.draggedData : this.data;
     const [x, y] = this.getPointerCoordsOnBar(event);
     const onClickVotes = this.getVotesFromPosition(x, y, this.data);

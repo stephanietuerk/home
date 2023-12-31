@@ -1,100 +1,102 @@
-@import 'vars', 'placeholders';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 $leaving-highlight: $color-highlight;
 
 .card {
-    @extend %flex-column;
-    background: white;
-    margin-bottom: $space-4;
-    padding: $space-3 $space-6;
-    box-shadow: $subtler-drop-shadow;
+  @extend %flex-column;
+  background: white;
+  margin-bottom: grid(4);
+  padding: grid(3) grid(6);
+  box-shadow: $drop-shadow-lightest;
 
-    .question-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-left: 1px solid $color-dark-primary;
-        border-bottom: 1px solid $color-dark-primary;
-        margin: $space-2 0 $space-3 0;
-        padding-left: $space-1;
+  .question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 1px solid $color-dark-primary;
+    border-bottom: 1px solid $color-dark-primary;
+    margin: grid(2) 0 grid(3) 0;
+    padding-left: grid(1);
 
-        &.collapse:hover {
-            cursor: pointer;
-            background: $highlight-light;
-            border-left: 1px solid $leaving-highlight;
-            border-bottom: 1px solid $leaving-highlight;
+    &.collapse:hover {
+      cursor: pointer;
+      background: $color-light-gray-lightest;
+      border-left: 1px solid $leaving-highlight;
+      border-bottom: 1px solid $leaving-highlight;
 
-            .question {
-                color: $leaving-highlight;
-                font-weight: 800;
-            }
+      .question {
+        color: $leaving-highlight;
+        font-weight: 800;
+      }
 
-            .arrow-icon svg {
-                fill: $leaving-highlight;
-                stroke: $leaving-highlight;
-            }
-        }
+      .arrow-icon svg {
+        fill: $leaving-highlight;
+        stroke: $leaving-highlight;
+      }
+    }
+  }
+
+  .question {
+    @extend %slab-bold;
+    font-size: 1.2rem;
+    padding: grid(3) grid(2) grid(2) grid(2);
+    line-height: 1.5rem;
+    text-align: left;
+  }
+
+  .answer-container {
+    padding-right: grid(2);
+    padding-left: grid(2);
+  }
+
+  .answer-text {
+    @extend %sans-regular;
+    font-size: 1.1rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .list-label {
+    @extend %sans-regular-italic;
+    padding-bottom: grid(2);
+
+    &.q10 {
+      padding-top: grid(4);
+    }
+  }
+
+  .list-container {
+    padding: 0 grid(6) grid(2) grid(6);
+  }
+
+  .list-item {
+    @extend %sans-regular;
+    font-size: 1.1rem;
+    padding-bottom: grid(2);
+  }
+
+  .italics {
+    @extend %sans-regular-italic;
+  }
+
+  .arrow-icon {
+    padding-right: grid(1);
+
+    &.down {
+      position: relative;
+      top: grid(1);
+    }
+    &.up {
+      position: relative;
+      top: -grid(1);
     }
 
-    .question {
-        @extend %slab-bold;
-        font-size: 1.2rem;
-        padding: $space-3 $space-2 $space-2 $space-2;
-        line-height: 1.5rem;
-        text-align: left;
+    svg {
+      height: 14px;
+      width: 21px;
+      fill: $color-dark-primary;
+      stroke: $color-dark-primary;
     }
-
-    .answer-container {
-        padding-right: $space-2;
-        padding-left: $space-2;
-    }
-
-    .answer-text {
-        @extend %sans-regular;
-        font-size: 1.1rem;
-        padding-bottom: 1.2rem;
-    }
-
-    .list-label {
-        @extend %sans-regular-italic;
-        padding-bottom: $space-2;
-
-        &.q10 {
-            padding-top: $space-4;
-        }
-    }
-
-    .list-container {
-        padding: 0 $space-6 $space-2 $space-6;
-    }
-
-    .list-item {
-        @extend %sans-regular;
-        font-size: 1.1rem;
-        padding-bottom: $space-2;
-    }
-
-    .italics {
-        @extend %sans-regular-italic;
-    }
-
-    .arrow-icon {
-        padding-right: $space-1;
-
-        &.down {
-            position: relative;
-            top: $space-1;
-        }
-        &.up {
-            position: relative;
-            top: -$space-1;
-        }
-
-        svg {
-            height: 14px;
-            width: 21px;
-            fill: $color-dark-primary;
-            stroke: $color-dark-primary;
-        }
-    }
+  }
 }

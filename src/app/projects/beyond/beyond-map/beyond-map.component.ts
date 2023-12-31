@@ -14,7 +14,7 @@ import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
 import { Subject } from 'rxjs';
 import * as topojson from 'topojson-client';
 import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
-import { BeyondService } from '../services/beyond.service';
+import { BeyondService } from '../beyond.service';
 
 @Component({
   selector: 'app-beyond-map',
@@ -35,7 +35,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   viewPlaceNames = true;
   mapZoom = zoom().scaleExtent([1, 10]);
   mapPath: any;
-  private destroy$ = new Subject();
+  unsubscribe: Subject<void> = new Subject();
 
   constructor(private beyondService: BeyondService) {}
 
@@ -105,7 +105,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     const allTracts = topojson.feature(
       this.beyondService.tractsTopojson,
-      this.beyondService.tractsTopojson.objects.PA_CensusTracts_2010
+      this.beyondService.tractsTopojson.objects.tracts
     );
 
     this.projection.scale(1).translate([0, 0]);
@@ -180,7 +180,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   makeCities() {
     const cities = topojson.feature(
       this.beyondService.citiesTopojson,
-      this.beyondService.citiesTopojson.objects.PA_Cities
+      this.beyondService.citiesTopojson.objects.cities
     );
 
     this.map
@@ -198,6 +198,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
       .enter()
       .append('text')
       .attr('class', 'city-label')
+      .style('cursor', 'default')
       .attr('transform', (d) => {
         return 'translate(' + this.projection(d.geometry.coordinates) + ')';
       })
@@ -379,6 +380,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
       })
       .style('fill', function () {
         if (zoomedInForText) return 'black';
+        return null;
       });
 
     howText.text(() => {
@@ -391,6 +393,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
 
     placeNamesText.style('fill', function () {
       if (zoomedInForText) return 'black';
+      return null;
     });
 
     resetBox.attr('pointer-events', function () {
@@ -457,7 +460,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

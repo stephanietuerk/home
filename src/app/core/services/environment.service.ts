@@ -11,6 +11,7 @@ export class EnvironmentService {
   origin: string;
   environments = environmentConstants;
   currentEnvironment: EnvironmentSettings;
+  environment = environmentConstants;
   localStrings: string[] = ['localhost'];
   productionStrings: string[] = ['personal-site-c3c69', 'stephanietuerk'];
   errorMessage: 'Cannot determine environment';
@@ -48,6 +49,7 @@ export class EnvironmentService {
       return Environment.production;
     } else {
       console.error(this.errorMessage);
+      return null;
     }
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Project } from 'src/app/core/models/project.model';
-import { EnvironmentService } from 'src/app/core/services/environment.service';
 import { PROJECTS } from '../../core/constants/projects.constants';
 
 @Component({
@@ -13,20 +12,15 @@ import { PROJECTS } from '../../core/constants/projects.constants';
 })
 export class ProjectsTableComponent implements OnInit {
   sections: any;
-  projects: Project[];
-  state: { [index: string]: boolean };
-
-  constructor(private environmentService: EnvironmentService) {}
+  projects = PROJECTS;
+  expanded: { [index: string]: boolean };
 
   ngOnInit(): void {
-    this.projects = PROJECTS.filter(
-      (x) => x.show[this.environmentService.getEnvironment()]
-    );
     this.initializeState();
   }
 
   initializeState(): void {
-    this.state = this.projects.reduce((state, project) => {
+    this.expanded = this.projects.reduce((state, project) => {
       state[project.id] = false;
       return state;
     }, {});
@@ -38,10 +32,10 @@ export class ProjectsTableComponent implements OnInit {
   }
 
   toggleDescription(projectId): void {
-    this.state[projectId] = !this.state[projectId];
+    this.expanded[projectId] = !this.expanded[projectId];
   }
 
   getIcon(projectId): string {
-    return this.state[projectId] ? 'row-arrow-up' : 'row-arrow-down';
+    return this.expanded[projectId] ? 'row-arrow-up' : 'row-arrow-down';
   }
 }

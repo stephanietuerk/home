@@ -1,0 +1,200 @@
+<div class="schools-filters-encapsulation-container">
+  <h3 class="container-title">Refine displayed jobs</h3>
+  <div class="selectors-container">
+    <div class="search-sort-container">
+      <div class="search-feature">
+        <h4 class="selection-label">Search institutions</h4>
+        <div class="search-input-container">
+          <input
+            #searchInput
+            type="text"
+            tabindex="0"
+            placeholder="Enter a search term"
+            class="search-input"
+          />
+          <button
+            class="clear-search-button"
+            (click)="clearSearch()"
+            *ngIf="(data.state$ | async).searchTerms.length > 0"
+          >
+            <span class="material-symbols-outlined icon clear">clear</span>
+          </button>
+        </div>
+      </div>
+      <div class="sort-container"
+        ><h4 class="selection-label">Sort charts by</h4>
+        <mat-button-toggle-group
+          class="sort-selection"
+          aria-label="Sort charts by"
+          [value]="(data.state$ | async).sortOrder"
+          (change)="data.updateSortOrder($event.value)"
+        >
+          <mat-button-toggle
+            *ngFor="let option of data.sortOptions; let i = index"
+            class="sort-option"
+            [value]="option.value"
+            >{{option.label}}<span
+              class="material-symbols-outlined arrow-icon down"
+              *ngIf="option.value === SchoolSort.desc"
+              >south</span
+            ><span
+              class="material-symbols-outlined arrow-icon up"
+              *ngIf="option.value === SchoolSort.asc"
+              >north</span
+            >
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+
+    <div class="filters-container">
+      <h4 class="selection-label">Show jobs for the following</h4>
+      <div class="filters-row">
+        <app-combobox class="fields-combobox">
+          <app-combobox-label>
+            <span class="dropdown-label label-item">Field</span>
+          </app-combobox-label>
+          <app-textbox [displaySelected]="true">
+            <span class="material-symbols-outlined expand-more" boxIcon>
+              expand_more
+            </span>
+          </app-textbox>
+          <app-listbox
+            [isMultiSelect]="true"
+            [selectedOptionsCountLabel]="{ singular: 'field', plural: 'fields' }"
+            (valueChanges)="data.updateState($event, SchoolStateProperty.field)"
+          >
+            <app-select-all-listbox-option>
+              Select all
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-select-all-listbox-option>
+            <app-listbox-option
+              *ngFor="let option of data.fieldOptions"
+              [selected]="(data.state$ | async).field.includes(option.name.full)"
+              >{{ option.name.full }}
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-listbox-option>
+          </app-listbox>
+        </app-combobox>
+        <app-combobox class="tenure-combobox">
+          <app-combobox-label>
+            <span class="dropdown-label label-item">Tenure status</span>
+          </app-combobox-label>
+          <app-textbox [displaySelected]="true">
+            <span class="material-symbols-outlined expand-more" boxIcon>
+              expand_more
+            </span>
+          </app-textbox>
+          <app-listbox
+            [isMultiSelect]="true"
+            [selectedOptionsCountLabel]="{ singular: 'status', plural: 'statuses' }"
+            (valueChanges)="data.updateState($event, SchoolStateProperty.tenure)"
+          >
+            <app-select-all-listbox-option>
+              Select all
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-select-all-listbox-option>
+            <app-listbox-option
+              *ngFor="let option of data.tenureOptions"
+              [selected]="(data.state$ | async).tenure.includes(option.label)"
+              >{{ option.label }}
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-listbox-option>
+          </app-listbox>
+        </app-combobox>
+        <app-combobox class="rank-combobox">
+          <app-combobox-label>
+            <span class="dropdown-label label-item">Job rank</span>
+          </app-combobox-label>
+          <app-textbox [displaySelected]="true">
+            <span class="material-symbols-outlined expand-more" boxIcon>
+              expand_more
+            </span>
+          </app-textbox>
+          <app-listbox
+            [isMultiSelect]="true"
+            [selectedOptionsCountLabel]="{ singular: 'rank', plural: 'ranks' }"
+            (valueChanges)="data.updateState($event, SchoolStateProperty.rank)"
+          >
+            <app-select-all-listbox-option>
+              Select all
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-select-all-listbox-option>
+            <app-listbox-option
+              *ngFor="let option of data.rankOptions"
+              [selected]="(data.state$ | async).rank.includes(option.label)"
+              >{{ option.label }}
+              <span
+                class="material-symbols-outlined icon checkbox"
+                selectedIcon
+              >
+                check_box
+              </span>
+              <span
+                unselectedIcon
+                class="material-symbols-outlined icon checkbox"
+              >
+                check_box_outline_blank
+              </span>
+            </app-listbox-option>
+          </app-listbox>
+        </app-combobox>
+      </div>
+    </div>
+  </div>
+</div>

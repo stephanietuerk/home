@@ -1,0 +1,31 @@
+<ng-container *ngIf="yearsRange$ | async as yearsRange">
+  <h2 class="section-header">Explore by Job Characteristics</h2>
+  <p class="description"
+    >The charts below answer questions about the number of jobs or the share of
+    jobs, and how those values changed over time. The charts are initialized to
+    look at the percentage of jobs, among all tenure-track jobs, for the fields
+    with the highest share of jobs in {{yearsRange[1]}}. The chart on the right
+    shows the extent to which this year's value is higher or lower than the
+    average value for that field across all years.</p
+  >
+  <p class="description">
+    You can change the charts by using use the interfaces in the data selections
+    bar to select fields, tenure statuses, and job ranks according to your
+    interests. You can also use those interfaces to switch between count and
+    percentage data, and to modify the years shown in the charts. Above the
+    right-hand change over time chart, you can select whether you want to
+    compare the current year's values to their respective averages across all
+    years, or to the values from the first year in the selected time range.
+  </p>
+  <app-explore-selections [yearsRange]="yearsRange"></app-explore-selections>
+  <div class="charts-container">
+    <app-explore-across-time-chart
+      *ngIf="exploreDataService.acrossTimeData$ | async"
+      class="time-range-chart-component"
+    ></app-explore-across-time-chart>
+    <app-explore-change-chart
+      *ngIf="exploreDataService.changeData$ | async"
+      class="change-chart-component"
+    ></app-explore-change-chart>
+  </div>
+</ng-container>

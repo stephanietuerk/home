@@ -3,10 +3,9 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import firebase from 'firebase/compat/app';
+import { Timestamp } from '@angular/fire/firestore';
 import { Comment } from 'src/app/core/models/blog/comment.model';
 import { EnvironmentService } from 'src/app/core/services/environment.service';
-import Timestamp = firebase.firestore.Timestamp;
 
 export interface comment {
   userName: string;

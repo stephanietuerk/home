@@ -1,28 +1,34 @@
-@import 'vars', 'placeholders', 'functions';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
 
 :host {
-    @extend %content-component-host;
-    background: get($colors, 'grays.light-4');
+  @extend %content-component-host;
+  background: linear-gradient(
+    180deg,
+    get($colors, 'grays.light-4'),
+    get($colors, 'grays.light-3')
+  );
 }
 
 .blog-navbar {
-    @extend %content-component-navbar;
+  @extend %content-component-navbar;
 }
 
 .blog-container {
-    @extend %content-component-container;
-    @extend %flex-column;
-    align-self: center;
-    max-width: 840px;
-    padding-top: $space-2;
-    padding-bottom: $space-8;
+  @extend %content-component-container;
+  @extend %flex-column;
+  align-self: center;
+  max-width: 840px;
+  padding-top: grid(2);
+  padding-bottom: grid(8);
 }
 
 .header-item {
-    align-self: center;
+  align-self: center;
 }
 
 .date {
-    @extend %subtitle2;
-    padding-bottom: $space-2;
+  @extend %subtitle2;
+  padding-bottom: grid(2);
 }

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PipesModule } from '../core/pipes/pipes.module';
 import { CommentsService } from '../core/services/comments.service';
 import { SharedModule } from '../shared/shared.module';
 import { BlogRoutingModule } from './blog-routing.module';
@@ -12,12 +11,6 @@ import { QuestionComponent } from './leaving/question/question.component';
 @NgModule({
   declarations: [BlogComponent, LeavingComponent, QuestionComponent],
   providers: [CommentsService],
-  imports: [
-    CommonModule,
-    BlogRoutingModule,
-    SharedModule,
-    PipesModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, BlogRoutingModule, SharedModule, FormsModule],
 })
 export class BlogModule {}

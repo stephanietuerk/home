@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
 
   scrollToTop(event: any): void {
     const element = event.target.parentNode.parentNode;
-    console.log(element);
     element.scrollTo({ top: 0, behavior: 'smooth' });
   }
 

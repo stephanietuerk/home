@@ -1,308 +1,581 @@
-@import 'vars', 'functions';
+@use 'vars' as *;
+@use 'functions' as *;
 
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
 %ligatures {
-    font-variant-ligatures: common-ligatures;
-    -moz-font-feature-settings: 'liga', 'clig';
-    -webkit-font-feature-settings: 'liga', 'clig';
-    font-feature-settings: 'liga', 'clig';
+  font-variant-ligatures: common-ligatures;
+  -moz-font-feature-settings: 'liga', 'clig';
+  -webkit-font-feature-settings: 'liga', 'clig';
+  font-feature-settings: 'liga', 'clig';
 }
 
 %small-caps {
-    font-variant-caps: small-caps;
-    -moz-font-feature-settings: 'smcp';
-    -webkit-font-feature-settings: 'smcp';
-    font-feature-settings: 'smcp';
+  font-variant-caps: small-caps;
+  -moz-font-feature-settings: 'smcp';
+  -webkit-font-feature-settings: 'smcp';
+  font-feature-settings: 'smcp';
 }
 
 %slab {
-    font-family: ff-nuvo-mono-web-pro, sans-serif;
+  font-family: ff-nuvo-mono-web-pro, sans-serif;
 }
 
 %slab-regular {
-    @extend %ligatures;
-    @extend %slab;
-    font-weight: 400;
-    font-style: normal;
+  @extend %ligatures;
+  @extend %slab;
+  font-weight: 400;
+  font-style: normal;
 }
 
 %slab-regular-italic {
-    @extend %slab-regular;
-    font-style: italic;
+  @extend %slab-regular;
+  font-style: italic;
 }
 
 %slab-medium {
-    @extend %slab-regular;
-    font-weight: 500;
+  @extend %slab-regular;
+  font-weight: 500;
 }
 
 %slab-bold {
-    @extend %slab-regular;
-    font-weight: 700;
+  @extend %slab-regular;
+  font-weight: 700;
 }
 
 %slab-extrabold {
-    @extend %slab-regular;
-    font-weight: 800;
+  @extend %slab-regular;
+  font-weight: 800;
 }
 
 %slab-black {
-    @extend %slab-regular;
-    font-weight: 900;
+  @extend %slab-regular;
+  font-weight: 900;
 }
 
 %sans-regular {
-    @extend %ligatures;
-    font-family: ff-tisa-sans-web-pro, sans-serif;
-    font-weight: 400;
+  @extend %ligatures;
+  font-family: ff-tisa-sans-web-pro, sans-serif;
+  font-weight: 400;
 }
 
 %sans-light {
-    @extend %sans-regular;
-    font-weight: 300;
+  @extend %sans-regular;
+  font-weight: 300;
 }
 
 %sans-regular-italic {
-    @extend %sans-regular;
-    font-style: italic;
+  @extend %sans-regular;
+  font-style: italic;
 }
 
 %sans-medium {
-    @extend %sans-regular;
-    font-weight: 500;
+  @extend %sans-regular;
+  font-weight: 500;
 }
 
 %sans-bold {
-    @extend %sans-regular;
-    font-weight: 700;
+  @extend %sans-regular;
+  font-weight: 700;
 }
 
 %sans-extrabold {
-    @extend %sans-regular;
-    font-weight: 800;
+  @extend %sans-regular;
+  font-weight: 800;
 }
 
 %sans-black {
-    @extend %sans-regular;
-    font-weight: 900;
+  @extend %sans-regular;
+  font-weight: 900;
 }
 
 %h1 {
-    @extend %slab-bold;
-    font-size: 2rem;
+  @extend %slab;
+  font-size: 6rem;
+  letter-spacing: -1.5px;
+  font-weight: 300;
 }
 
 %h2 {
-    @extend %slab-medium;
-    font-size: 2.375rem;
+  @extend %slab;
+  font-size: 3.75rem;
+  letter-spacing: -0.5px;
+  font-weight: 300;
 }
 
 %h3 {
-    @extend %slab-regular;
-    font-size: 1.5rem;
+  @extend %slab-regular;
+  font-size: 3rem;
 }
 
 %h4 {
-    @extend %slab-bold;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
+  @extend %slab-regular;
+  font-size: 2.215rem;
+  letter-spacing: -0.25px;
 }
 
 %h5 {
-    @extend %slab-extrabold;
-    @extend %small-caps;
+  @extend %slab-regular;
+  font-size: 1.5rem;
+}
+
+%h6 {
+  @extend %slab-medium;
+  font-size: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+%small-caps-slab-bold {
+  @extend %slab-extrabold;
+  @extend %small-caps;
 }
 
 %subtitle1 {
-    @extend %sans-regular;
-    font-size: 1.2rem;
-    letter-spacing: 0.15px;
+  @extend %sans-regular;
+  font-size: 1rem;
+  letter-spacing: 0.15px;
 }
 
 %subtitle2 {
-    @extend %sans-medium;
-    font-size: 1rem;
-    letter-spacing: 0.1px;
+  @extend %sans-medium;
+  font-size: 0.875rem;
+  letter-spacing: 0.1px;
 }
 
 %body1 {
-    @extend %sans-regular;
-    font-size: 1.1rem;
-    line-height: 1.6rem;
-    letter-spacing: 0.5px;
+  @extend %sans-regular;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.5px;
 }
 
 %body2 {
-    @extend %sans-regular;
-    font-size: 0.95rem;
-    letter-spacing: 0.25px;
+  @extend %sans-regular;
+  font-size: 0.95rem;
+  letter-spacing: 0.25px;
 }
 
 %button {
-    @extend %slab-medium;
-    @extend %button-styles;
-    font-size: 0.875rem;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
+  @extend %slab-medium;
+  @extend %button-styles;
+  font-size: 0.875rem;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
 }
 
 %caption {
-    @extend %sans-regular;
-    font-size: 0.75rem;
-    letter-spacing: 0.4px;
+  @extend %sans-regular;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
 }
 
 %overline {
-    @extend %sans-medium;
-    @extend %small-caps;
-    font-size: 1.1rem;
-    line-height: 1.1rem;
-    letter-spacing: 2px;
+  @extend %sans-medium;
+  @extend %small-caps;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  letter-spacing: 2px;
 }
 
 %small-caps-overline {
-    @extend %sans-regular;
-    @extend %small-caps;
-    letter-spacing: 0.13em;
-    font-size: 1.1rem;
-    line-height: 1.1rem;
+  @extend %sans-regular;
+  @extend %small-caps;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  letter-spacing: 0.13em;
 }
 
 %instructions {
-    @extend %sans-light;
-    letter-spacing: 0.5px;
-    font-size: 1rem;
-    line-height: 1.3rem;
+  @extend %sans-light;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+  line-height: 1.3rem;
 }
 
 %button-styles {
-    color: $color-highlight;
-    border-bottom: 1px solid $color-highlight;
+  color: $color-highlight;
+  border-bottom: 1px solid $color-highlight;
 }
 
 %button-behavior {
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        color: $color-highlight;
-        font-weight: 700;
-    }
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $color-highlight;
+    font-weight: 700;
+  }
 }
 
 %section-header {
-    @extend %h2;
-    color: $color-highlight;
-    padding-bottom: 0.25rem;
+  @extend %h4;
+  color: $color-highlight;
+  padding-bottom: 0.25rem;
 }
 
 %flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 %nav-link {
-    @extend %slab-medium;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+  @extend %slab-medium;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-    &:hover {
-        color: $color-highlight;
-    }
+  &:hover {
+    color: $color-highlight;
+  }
 
-    &:active {
-        color: $color-highlight;
-    }
+  &:active {
+    color: $color-highlight;
+  }
 
-    &:visited {
-    }
+  &:visited {
+  }
 }
 
 %ie-scrollbar-styles {
-    -ms-scrollbar-face-color: $color-scrollbar-ie;
-    scrollbar-face-color: $color-scrollbar-ie;
-    -ms-scrollbar-highlight-color: $color-scrollbar-ie;
-    scrollbar-highlight-color: $color-scrollbar-ie;
-    -ms-scrollbar-shadow-color: $color-scrollbar-ie;
-    scrollbar-shadow-color: $color-scrollbar-ie;
-    -ms-scrollbar-darkshadow-color: $color-scrollbar-ie;
-    scrollbar-darkshadow-color: $color-scrollbar-ie;
-    -ms-scrollbar-track-color: #edf1f4;
-    scrollbar-track-color: #edf1f4;
-    -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
-    scrollbar-3dlight-color: $color-scrollbar-ie;
-    -ms-scrollbar-arrow-color: get($colors, 'grays.light-1');
-    scrollbar-arrow-color: get($colors, 'grays.light-1');
-    scrollbar-color: $color-scrollbar-ie #fff;
+  -ms-scrollbar-face-color: $color-scrollbar-ie;
+  scrollbar-face-color: $color-scrollbar-ie;
+  -ms-scrollbar-highlight-color: $color-scrollbar-ie;
+  scrollbar-highlight-color: $color-scrollbar-ie;
+  -ms-scrollbar-shadow-color: $color-scrollbar-ie;
+  scrollbar-shadow-color: $color-scrollbar-ie;
+  -ms-scrollbar-darkshadow-color: $color-scrollbar-ie;
+  scrollbar-darkshadow-color: $color-scrollbar-ie;
+  -ms-scrollbar-track-color: #edf1f4;
+  scrollbar-track-color: #edf1f4;
+  -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
+  scrollbar-3dlight-color: $color-scrollbar-ie;
+  -ms-scrollbar-arrow-color: get($colors, 'grays.light-1');
+  scrollbar-arrow-color: get($colors, 'grays.light-1');
+  scrollbar-color: $color-scrollbar-ie #fff;
 }
 
 /* ---- ACCESSIBILITY ---- */
 %visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  left: -30000px;
+  white-space: nowrap;
+  padding: 0;
+  border: 0;
 }
 
 %focus-ring-style {
-    outline: 3px solid $color-focus-ring;
-    outline-offset: 1px;
+  outline: 3px solid $color-focus-ring;
+  outline-offset: 1px;
 }
 
 %hidden-input-element {
-    @extend %visuallyhidden;
+  @extend %visuallyhidden;
 
-    &.focus-visible + label {
-        @extend %focus-ring-style;
-    }
+  &.focus-visible + label {
+    @extend %focus-ring-style;
+  }
 }
 
 /* ---- COMPONENTS ---- */
 %navbar {
-    min-height: $project-navbar-height;
-    flex-shrink: 0;
-    background: rgba(white, 0.9);
-    padding: 0 1.5rem 0.5rem 1.5rem;
+  min-height: $project-navbar-height;
+  flex-shrink: 0;
+  background: rgba(white, 0.9);
+  padding: 0 1.5rem 0.5rem 1.5rem;
 }
 
 %content-component-host {
-    @extend %flex-column;
-    height: 100%;
-    min-height: $body-height-min;
-    overflow-y: auto;
+  @extend %flex-column;
+  height: 100%;
+  min-height: $body-height-min;
+  overflow-y: auto;
 }
 
 %content-component-navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 12px);
+  z-index: 2000;
 }
 
 %content-component-container {
-    height: 100%;
-    margin-top: $project-navbar-height;
+  height: 100%;
+  margin-top: $project-navbar-height;
 }
 
 %comment-button {
-    @extend %slab-bold;
-    border: 2px solid $color-highlight;
-    color: $color-highlight;
-    background: $highlight-light;
-    transition: all 0.2s;
+  @extend %slab-bold;
+  border: 2px solid $color-highlight;
+  color: $color-highlight;
+  background: $color-light-gray-lightest;
+  transition: all 0.2s;
 
-    &:hover {
-        cursor: pointer;
-        @extend %slab-extrabold;
-        background: white;
+  &:hover {
+    cursor: pointer;
+    @extend %slab-extrabold;
+    background: white;
+  }
+
+  &:disabled {
+    background: $color-light-gray-lightest;
+    color: rgba($color-highlight, 0.5);
+    border: 2px solid $color-light-gray-lightest;
+  }
+}
+
+/* ---- MATERIAL COMPONENTS ---- */
+%mat-form-field-outline {
+  &.mat-focused .mat-form-field-outline-thick {
+    color: $color-dark-primary;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  .mat-form-field-flex {
+    margin-top: 0;
+
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-end {
+      background: white;
+    }
+  }
+
+  .mat-form-field-outline {
+    top: 0;
+  }
+
+  .mat-form-field-infix {
+    padding: $mat-form-field-vertical-padding $mat-form-field-horizontal-padding;
+    width: initial;
+    border-width: 0;
+  }
+
+  .mat-form-field-label-wrapper {
+    top: 0;
+    padding: 0;
+  }
+}
+
+%mat-select-no-arrow {
+  .mat-select-trigger {
+    position: initial;
+    width: 100%;
+  }
+
+  .mat-select-value {
+    max-width: initial;
+    width: 100%;
+  }
+
+  .mat-select-arrow-wrapper {
+    display: none;
+  }
+}
+
+%mat-select-placeholder {
+  .mat-select-placeholder {
+    @extend %mat-placeholder;
+  }
+}
+
+%mat-input-placeholder {
+  &::-webkit-input-placeholder {
+    color: $mat-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: $mat-placeholder-color;
+  }
+}
+
+%mat-overlay-panel-open-bottom {
+  margin-top: 30px;
+  min-width: calc(100% + 16px) !important;
+
+  &.mat-select-panel:not([class*='mat-elevation-z']) {
+    box-shadow: $drop-shadow-light;
+  }
+}
+
+%mat-placeholder {
+  color: $mat-placeholder-color;
+}
+
+%mat-option {
+  padding: grid(2);
+  line-height: 1.5;
+  height: initial;
+}
+
+%combobox-basic-styles {
+  .combobox-component {
+    .combobox-textbox {
+      background: white;
+      border: 1px solid $color-light-gray-light;
+      padding: grid(3);
+      // color: colors.$muted-blue-700;
     }
 
-    &:disabled {
-        background: $highlight-light;
-        color: rgba($color-highlight, 0.5);
-        border: 2px solid $highlight-light;
+    .textbox-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .material-symbols-outlined {
+        transform: scale(1.5);
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48;
+      }
     }
+
+    .textbox-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .combobox-listbox.open {
+      background: white;
+      border-right: 1px solid $color-light-gray-light;
+      border-bottom: 1px solid $color-light-gray-light;
+      border-left: 1px solid $color-light-gray-light;
+      border-radius: 2px;
+    }
+  }
+}
+
+/* ---- DEFAULT COMBOBOX STYLING ---- */
+%combobox-styles {
+  $border-radius: grid(1);
+  $open-border-color: $color-light-gray-dark;
+
+  .combobox-component {
+    .combobox-label {
+      // @extend %typography-ui-label-sm-regular;
+      // color: colors.$blue-800;
+      padding-bottom: grid(1);
+    }
+
+    .combobox-textbox {
+      background: white;
+      border: 1px solid $color-light-gray-light;
+      border-radius: $border-radius;
+      padding: grid(3);
+      // color: colors.$muted-blue-700;
+      transition: all 100ms ease-in-out;
+
+      &:hover {
+        border-color: $open-border-color;
+
+        .textbox-icon .material-symbols-outlined {
+          color: $color-dark-primary;
+        }
+      }
+
+      &.open {
+        border-left-color: $open-border-color;
+        border-top-color: $open-border-color;
+        border-right-color: $open-border-color;
+        border-bottom-color: $color-light-gray-light;
+        border-radius: $border-radius $border-radius 0 0;
+
+        .textbox-icon .material-symbols-outlined {
+          color: $color-dark-primary;
+        }
+      }
+    }
+
+    .textbox-label {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 500px; // required for ellipsis to work; maybe take this off later
+    }
+
+    .textbox-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .material-symbols-outlined {
+        transform: scale(1.5);
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48;
+      }
+    }
+
+    .textbox-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .combobox-listbox.open {
+      background: white;
+      border-right: 1px solid $open-border-color;
+      border-bottom: 1px solid $open-border-color;
+      border-left: 1px solid $open-border-color;
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+
+    .listbox-label {
+      // @extend %typography-ui-label-sm-regular;
+      padding: grid(2) grid(3) grid(1) grid(3);
+      // color: colors.$blue-700;
+      font-weight: 500;
+    }
+
+    .listbox-option {
+      // @extend %typography-ui-label-sm-regular;
+      // color: colors.$muted-blue-700;
+
+      &:hover:not(.disabled):not(.selected) {
+        background: $color-light-gray-lightest;
+        // color: colors.$blue-800;
+      }
+
+      &:hover.multi {
+        background: $color-light-gray-lightest;
+      }
+
+      &.current:not(.disabled) {
+        // color: colors.$blue-800;
+
+        &.multi {
+          background: $color-light-gray-lightest;
+        }
+
+        &:not(.selected) {
+          background: $color-light-gray-lightest;
+        }
+      }
+
+      &.selected:not(.multi) {
+        background: $color-light-gray-light;
+        // color: colors.$blue-800;
+        font-weight: 500;
+      }
+
+      &.selected.multi {
+        // color: colors.$muted-blue-800;
+      }
+
+      &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .option-label {
+        padding: grid(3);
+      }
+    }
+  }
 }

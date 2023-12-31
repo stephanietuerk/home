@@ -1,0 +1,15 @@
+<form>
+  <fieldset>
+    <div class="options-container">
+      <app-checkbox-input
+        *ngFor="let option of options; let i = index"
+        class="checkbox-input-component"
+        [ngClass]="conditionalClasses(option, i)"
+        [option]="option"
+        [group]="group"
+        [isStyledCheckbox]="isStyledCheckbox"
+        (selection)="onSelect()"
+      ></app-checkbox-input>
+    </div>
+  </fieldset>
+</form>
