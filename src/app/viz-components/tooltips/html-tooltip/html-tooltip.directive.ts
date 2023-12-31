@@ -53,9 +53,9 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     private overlay: Overlay,
     private overlayPositionBuilder: OverlayPositionBuilder,
     private utilities: UtilitiesService,
-    @Inject(DATA_MARKS) private dataMarks: DataMarks,
+    @Optional() @Inject(DATA_MARKS) private dataMarks: DataMarks,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Optional() @Inject(DOCUMENT) document: any
+    @Optional() @Inject(DOCUMENT) document: Document
   ) {
     this._document = document;
   }
@@ -178,7 +178,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
     this.overlayRef = this.overlay.create({
       ...this.config.size,
       panelClass: this.panelClass,
-      scrollStrategy: this.overlay.scrollStrategies.close(),
+      scrollStrategy: this.overlay.scrollStrategies.close({ threshold: 4 }),
       positionStrategy: this.positionStrategy,
       hasBackdrop: this.config.hasBackdrop,
       backdropClass: 'vic-html-tooltip-backdrop',
