@@ -34,3 +34,5 @@ export const artHistoryFormatSpecifications: ArtHistoryFormatSpecifications = {
     },
   },
 };
+
+export const currentDataYears = [2011, 2023];

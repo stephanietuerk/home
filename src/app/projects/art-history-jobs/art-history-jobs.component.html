@@ -1,9 +1,5 @@
 <div class="project-container">
-  <div
-    class="top-matter-container section"
-    *ngIf="mainDataService.dataYears"
-    #intro
-  >
+  <div class="top-matter-container section" #intro>
     <p class="description">
       In the field of Art History, the
       <a
@@ -29,9 +25,8 @@
       and faculty alike.
     </p>
     <p class="description"
-      >This interface allows users to explore {{ mainDataService.dataYears[1] -
-      mainDataService.dataYears[0] + 1}} years of data, from {{
-      mainDataService.dataYears[0] }} to {{ mainDataService.dataYears[1] }},
+      >This interface allows users to explore {{ dataYears[1] - dataYears[0] +
+      1}} years of data, from {{ dataYears[0] }} to {{ dataYears[1] }},
       aggregated by scraping jobs posted on the Academic Jobs Wiki. Users can
       view changes in the total number of jobs over time as well as explore jobs
       by field, tenure status, job rank, and institution.</p

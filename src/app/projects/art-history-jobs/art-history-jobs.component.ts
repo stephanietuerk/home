@@ -16,6 +16,7 @@ import { MessageService } from 'src/app/shared/components/messages/message.servi
 import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
 import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { ArtHistoryDataService } from './art-history-data.service';
+import { currentDataYears } from './art-history-jobs.constants';
 import { ExploreDataService } from './explore/explore-data.service';
 
 enum Section {
@@ -39,6 +40,7 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
   jobCharacteristics: ElementRef;
   @ViewChild('schools', { read: ElementRef }) schools: ElementRef;
   @ViewChild('methods', { read: ElementRef }) methods: ElementRef;
+  dataYears = currentDataYears;
   scrollEl: HTMLElement;
   currentSection: keyof typeof Section = 'intro';
 
