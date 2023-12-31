@@ -10,7 +10,7 @@ import { GEOGRAPHIES, GeographiesComponent } from './geographies.component';
   selector: '[vicGeographiesInputEffects]',
 })
 export class GeographiesInputEventDirective<
-  T extends GeographiesComponent = GeographiesComponent
+  T extends GeographiesComponent = GeographiesComponent,
 > extends InputEventDirective {
   @Input('vicGeographiesInputEventEffects')
   effects: InputEventEffect<GeographiesInputEventDirective<T>>[];

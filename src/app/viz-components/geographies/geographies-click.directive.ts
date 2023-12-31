@@ -31,7 +31,7 @@ export type GeographiesEventDirective =
   selector: '[vicGeographiesClickEffects]',
 })
 export class GeographiesClickDirective<
-  T extends GeographiesComponent = GeographiesComponent
+  T extends GeographiesComponent = GeographiesComponent,
 > extends ClickDirective {
   @Input('vicGeographiesClickEffects')
   effects: EventEffect<GeographiesClickDirective<T>>[];
