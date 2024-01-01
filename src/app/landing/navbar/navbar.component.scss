@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: grid(2);
 }
 
 .my-name {
@@ -20,12 +21,20 @@
     font-size: 1.7rem;
     top: 5px;
   }
+  @media screen and (max-width: 519px) {
+    font-size: 1.5rem;
+  }
 }
 
 .nav-item-container {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
+  gap: grid(6);
+
+  @media screen and (max-width: 519px) {
+    gap: grid(4);
+  }
 }
 
 .nav-item {
@@ -33,12 +42,7 @@
   @extend %button-behavior;
   font-size: 1rem;
 
-  &:not(:last-of-type) {
-    margin-right: grid(6);
-  }
-
   @include breakpoint-max(600px) {
     font-size: 0.8rem;
-    margin-right: 1rem;
   }
 }

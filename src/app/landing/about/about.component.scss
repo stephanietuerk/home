@@ -24,6 +24,14 @@
       text-align: justify;
     }
   }
+
+  @include breakpoint(mobile-device) {
+    // @extend %body2;
+    // @extend %sans-regular;
+    font-size: 0.95rem;
+    letter-spacing: 0.25px;
+    line-height: 1.4;
+  }
 }
 
 .read-more {

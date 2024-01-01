@@ -65,6 +65,10 @@ $table-width: 900px;
       text-align: left;
       padding-top: grid(2);
 
+      @include breakpoint(mobile-device) {
+        font-size: 0.9rem;
+      }
+
       &.view {
         @extend %small-caps;
       }
