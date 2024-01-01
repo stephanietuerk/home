@@ -29,16 +29,18 @@ $min-height: 300px;
   @extend %flex-column;
   align-items: center;
   padding: grid(2) grid(6) grid(1) grid(6);
+  gap: grid(28);
 
   @include breakpoint(mobile-device) {
     padding: grid(1) 2 grid(4) grid(4) grid(4);
+    gap: grid(14);
   }
 
   * {
     max-width: 1000px;
   }
 
-  *:not(:last-child) {
-    padding-bottom: 7rem;
+  .about-component {
+    padding-top: grid(6);
   }
 }
