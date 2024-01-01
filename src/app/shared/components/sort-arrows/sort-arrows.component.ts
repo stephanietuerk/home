@@ -7,9 +7,6 @@ import { SortDirection } from 'src/app/core/enums/sort.enum';
   styleUrls: ['./sort-arrows.component.scss'],
 })
 export class SortArrowsComponent {
-  @Input() sortDirection: SortDirection | null | undefined;
-
-  getSort(): SortDirection | '' {
-    return this.sortDirection ?? '';
-  }
+  @Input() current: SortDirection;
+  @Input() firstSort: SortDirection;
 }

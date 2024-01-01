@@ -242,6 +242,11 @@
     font-size: 0.9rem;
     border: 1px solid $color-light-gray-light;
     flex-grow: 1;
+    overflow: visible;
+
+    &:hover {
+      border: 1px solid $color-light-gray-dark;
+    }
 
     .arrow-icon {
       transform: scale(0.55);
@@ -269,6 +274,10 @@
       &:not(:last-child) {
         border-right: 1px solid $color-light-gray-light;
       }
+
+      &.sort-option.cdk-keyboard-focused {
+        @extend %focus-ring-style;
+      }
     }
 
     .mat-button-toggle-checked {
@@ -279,10 +288,6 @@
 
     .mat-button-toggle-button {
       flex-grow: 1;
-    }
-
-    &:hover {
-      border: 1px solid $color-light-gray-dark;
     }
   }
 }

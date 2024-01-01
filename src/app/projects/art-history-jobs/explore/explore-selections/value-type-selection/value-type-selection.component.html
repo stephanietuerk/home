@@ -1,10 +1,11 @@
 <ng-container *ngIf="data.selections$ | async as selections">
   <div class="radio-input-group" *ngFor="let valueType of valueTypeOptions">
     <input
-      class="cdk-visually-hidden"
+      class="cdk-visually-hidden hidden-radio-input"
       type="radio"
       [attr.id]="valueType.value"
       name="valueType"
+      (keydown.space)="updateValueType(valueType.value)"
     />
     <label
       class="radio-input-label fields button-style"

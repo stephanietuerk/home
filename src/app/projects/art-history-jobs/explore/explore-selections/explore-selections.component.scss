@@ -77,6 +77,10 @@ $panel-opacity: 0.9;
     display: flex;
     padding: grid(4) grid(2) grid(4) 0;
     width: 100%;
+
+    &:focus.cdk-keyboard-focused {
+      background: honeydew;
+    }
   }
 
   .selection-container {
@@ -146,6 +150,10 @@ $panel-opacity: 0.9;
   }
 
   .close-button {
+    display: flex;
+  }
+
+  .close-button-icon {
     display: block;
     cursor: pointer;
     color: $color-highlight;

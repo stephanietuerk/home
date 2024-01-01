@@ -5,11 +5,14 @@
   >
     <div *ngFor="let option of options" [ngClass]="['option', variable]">
       <input
-        class="cdk-visually-hidden"
+        #hiddenInput
+        class="cdk-visually-hidden hidden-input"
         [attr.type]="inputType"
         [attr.id]="option.value"
         [attr.name]="inputType === 'radio' ? variable : null"
         [attr.checked]="inputType === 'checkbox' && selections[selectionsVariable].includes(option[valueAccessor]) ? true : null"
+        (keydown.enter)="inputType === 'checkbox' ? updateVariableValues(option[valueAccessor], inputType, selections[selectionsVariable]) : null"
+        (keydown.space)="inputType === 'radio' ? updateVariableValues(option[valueAccessor], inputType, selections[selectionsVariable]) : null"
       />
       <label
         [ngClass]="[inputType + '-input-label', 'label', variable]"

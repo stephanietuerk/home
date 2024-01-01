@@ -36,3 +36,4 @@ export const artHistoryFormatSpecifications: ArtHistoryFormatSpecifications = {
 };
 
 export const currentDataYears = [2011, 2023];
+export const lastScrapeDate = 'December 29, 2023';

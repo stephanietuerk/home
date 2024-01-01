@@ -1,4 +1,10 @@
-<div class="arrows-container" [ngClass]="getSort()">
-    <span class="arrow up">&#11205;</span>
-    <span class="arrow down">&#11206;</span>
+<div class="arrows-container" [ngClass]="current">
+  <span
+    *ngIf="current === 'asc' || !current && firstSort === 'asc'; else downArrow"
+    class="material-symbols-outlined arrow up"
+    >north</span
+  >
+  <ng-template #downArrow>
+    <span class="material-symbols-outlined arrow down">south</span>
+  </ng-template>
 </div>

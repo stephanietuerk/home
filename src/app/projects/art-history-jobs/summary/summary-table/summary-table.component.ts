@@ -2,11 +2,16 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { Sort, SortDirection } from 'src/app/core/enums/sort.enum';
-import { TableHeader } from 'src/app/shared/components/table/table.model';
+import {
+  TableHeader,
+  TableSort,
+} from 'src/app/shared/components/table/table.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
 @Component({
@@ -15,23 +20,55 @@ import { ArtHistoryFieldsService } from '../../art-history-fields.service';
   styleUrls: ['./summary-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SummaryTableComponent {
+export class SummaryTableComponent implements OnChanges {
   @Output() newSort = new EventEmitter<void>();
   @Input() headers: TableHeader[];
   @Input() rows: any[];
-  @Input() firstSort: SortDirection = Sort.desc;
 
   constructor(private fieldsService: ArtHistoryFieldsService) {}
 
-  getHeaderClasses(header: TableHeader): string[] {
-    const classes = [header.align];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['headers']) {
+      this.initHeaders();
+    }
+  }
+
+  initHeaders(): void {
+    this.headers.forEach((header) => {
+      this.setHeaderClasses(header);
+      this.setHeaderAriaLabel(header);
+    });
+  }
+
+  setHeaderClasses(header: TableHeader): void {
+    header.classes = [header.align];
     if (header.sort.canSort) {
-      classes.push('sortable');
+      header.classes.push('sortable');
     }
     if (header.sort.direction) {
-      classes.push('sorted');
+      header.classes.push('sorted');
     }
-    return classes;
+  }
+
+  setHeaderAriaLabel(header: TableHeader): void {
+    if (header.sort.canSort) {
+      const sortLabel = this.getFullSortLabel(header.sort.direction);
+      header.ariaLabeL = `${header.display}${
+        header.sort.direction ? ', sorted by ' + sortLabel + ' values' : ''
+      }. Click to sort by ${this.getFullSortLabel(
+        this.getNextSortDirection(header.sort)
+      )} values.`;
+    }
+  }
+
+  getNextSortDirection(sort: TableSort): SortDirection {
+    if (!sort.direction) {
+      return sort.firstSort;
+    } else if (sort.direction === Sort.asc) {
+      return Sort.desc;
+    } else {
+      return Sort.asc;
+    }
   }
 
   getTextColor(field: string): string {
@@ -41,24 +78,34 @@ export class SummaryTableComponent {
   handleHeaderClick(header: TableHeader): void {
     if (header.sort.canSort) {
       this.setHeaderSortDirection(header.id);
+      this.initHeaders();
       this.newSort.emit();
     }
   }
 
   setHeaderSortDirection(headerId: string): void {
-    const secondSort = this.firstSort === Sort.asc ? Sort.desc : Sort.asc;
     this.headers.forEach((header) => {
       if (header.id === headerId) {
         if (!header.sort.direction) {
-          header.sort.direction = this.firstSort;
-        } else if (header.sort.direction === this.firstSort) {
-          header.sort.direction = secondSort;
+          header.sort.direction = header.sort.firstSort;
+        } else if (header.sort.direction === header.sort.firstSort) {
+          header.sort.direction = this.getSecondSortDirection(
+            header.sort.firstSort
+          );
         } else {
-          header.sort.direction = this.firstSort;
+          header.sort.direction = header.sort.firstSort;
         }
       } else {
         header.sort.direction = null;
       }
     });
+  }
+
+  getSecondSortDirection(firstSort: SortDirection): SortDirection {
+    return firstSort === Sort.asc ? Sort.desc : Sort.asc;
+  }
+
+  getFullSortLabel(sort: SortDirection): string {
+    return sort === Sort.asc ? 'ascending' : 'descending';
   }
 }

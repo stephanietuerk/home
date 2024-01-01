@@ -124,7 +124,7 @@
         .num-schools {
           color: $color-highlight;
         }
-        .mat-icon {
+        .material-symbols-outlined {
           color: $color-highlight;
         }
       }
@@ -154,7 +154,7 @@
         .num-schools {
           color: white;
         }
-        .mat-icon {
+        .material-symbols-outlined {
           color: white;
         }
       }
@@ -182,6 +182,10 @@
 
     .expand-icon {
       transition: all 0.2s ease-in-out;
+      position: relative;
+      top: 2px;
+      transform-origin: center center;
+
       &.expanded {
         transform: rotate(180deg);
       }

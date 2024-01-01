@@ -1,3 +1,4 @@
+import { A11yModule } from '@angular/cdk/a11y';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { ComboboxModule } from 'src/app/shared/components/combobox/combobox.module';
 import { FormComponentsModule } from 'src/app/shared/components/form-components/form-components.module';
+import { FocusOnInitDirective } from 'src/app/shared/directives/focus-on-init.directive';
 import { SubstringHighlightDirective } from 'src/app/shared/directives/substring-highlight.directive';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -104,6 +106,8 @@ import { SummaryComponent } from './summary/summary.component';
     RankReadoutPipe,
     JobIsInFiltersPipe,
     UniqueValuesPipe,
+    FocusOnInitDirective,
+    A11yModule,
   ],
 })
 export class ArtHistoryJobsModule {}

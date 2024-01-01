@@ -7,9 +7,12 @@ export class TableHeader {
   formatter?: (value: any) => string;
   id: string;
   sort: TableSort;
+  ariaLabeL?: string;
+  classes?: string[];
 }
 
 export class TableSort {
   canSort: boolean;
-  direction?: SortDirection | null;
+  direction: SortDirection | null;
+  firstSort: SortDirection;
 }

@@ -72,6 +72,9 @@
         <div
           [ngSwitch]="dropdownContent.content"
           class="selection-interface-container"
+          [tabIndex]="0"
+          cdkTrapFocus
+          [cdkTrapFocusAutoCapture]="true"
         >
           <ng-container *ngSwitchCase="'fields'">
             <ng-container *ngTemplateOutlet="fieldsDd"></ng-container>
@@ -246,12 +249,8 @@
   </ng-template>
 
   <ng-template #closeButton>
-    <div class="close-button-container">
-      <span
-        class="close-button material-symbols-outlined"
-        (click)="toggleOpenContent(null)"
-        >close</span
-      >
-    </div>
+    <button class="close-button" (click)="toggleOpenContent(null)">
+      <span class="close-button-icon material-symbols-outlined">close</span>
+    </button>
   </ng-template>
 </ng-container>

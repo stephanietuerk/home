@@ -1,11 +1,16 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
+  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import { Observable, distinctUntilChanged, map } from 'rxjs';
@@ -24,10 +29,11 @@ import { FilterType, VariableOption } from '../explore-selections.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class VariableSingleMultiSelectionComponent<T extends VariableOption>
-  implements OnChanges, OnInit
+  implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
   @Input() variable: EntityCategory;
   @Input() options: T[];
+  @ViewChildren('hiddenInput') hiddenInputs: ElementRef<HTMLInputElement>[];
   selectionsUseVariable: string;
   selectionsVariable: string;
   inputUsesIcon: boolean;
@@ -35,7 +41,10 @@ export class VariableSingleMultiSelectionComponent<T extends VariableOption>
   JobProperty = JobProperty;
   valueAccessor: 'value' | 'label';
 
-  constructor(public data: ExploreDataService) {}
+  constructor(
+    public data: ExploreDataService,
+    private focusMonitor: FocusMonitor
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['variable'] && this.variable) {
@@ -55,6 +64,18 @@ export class VariableSingleMultiSelectionComponent<T extends VariableOption>
         return variableUse === FilterType.filter ? 'radio' : 'checkbox';
       })
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.hiddenInputs.forEach((input) => {
+      this.focusMonitor.monitor(input.nativeElement);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.hiddenInputs.forEach((input) => {
+      this.focusMonitor.stopMonitoring(input);
+    });
   }
 
   updateVariableValues(

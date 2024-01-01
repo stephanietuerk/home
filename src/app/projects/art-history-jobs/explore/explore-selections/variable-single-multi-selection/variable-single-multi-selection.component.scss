@@ -18,6 +18,10 @@
     }
   }
 
+  .hidden-input:focus.cdk-keyboard-focused + .label {
+    @extend %focus-ring-style;
+  }
+
   .option.field {
     .label {
       border: 1px solid $color-highlight;
