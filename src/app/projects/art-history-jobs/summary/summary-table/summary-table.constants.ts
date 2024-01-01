@@ -11,6 +11,7 @@ export const tableHeaders: TableHeader[] = [
     sort: {
       canSort: true,
       direction: null,
+      firstSort: 'asc',
     },
   },
   {
@@ -23,6 +24,7 @@ export const tableHeaders: TableHeader[] = [
     sort: {
       canSort: true,
       direction: 'desc',
+      firstSort: 'desc',
     },
   },
   {
@@ -35,6 +37,7 @@ export const tableHeaders: TableHeader[] = [
     sort: {
       canSort: true,
       direction: null,
+      firstSort: 'desc',
     },
   },
 ];

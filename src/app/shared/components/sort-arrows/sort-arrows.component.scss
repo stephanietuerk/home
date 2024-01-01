@@ -8,7 +8,6 @@
   $arrow-color-unselected: color.scale($arrow-color, $lightness: 75%);
 
   display: flex;
-  flex-direction: column;
 
   .arrow {
     line-height: 0.6;
@@ -17,11 +16,13 @@
 
   &.asc {
     .arrow.up {
+      font-weight: 700;
       color: $arrow-color;
     }
   }
   &.desc {
     .arrow.down {
+      font-weight: 700;
       color: $arrow-color;
     }
   }

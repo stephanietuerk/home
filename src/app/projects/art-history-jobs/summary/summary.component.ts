@@ -130,6 +130,17 @@ export class SummaryComponent implements OnInit {
         b[sortHeader.id]
       )
     );
+    if (sortHeader.display === 'Field') {
+      if (sortHeader.sort.direction === Sort.asc) {
+        const allIndex = data.findIndex((x) => x.field === 'All');
+        const all = data.splice(allIndex, 1);
+        data.unshift(all[0]);
+      } else {
+        const allIndex = data.findIndex((x) => x.field === 'All');
+        const all = data.splice(allIndex, 1);
+        data.push(all[0]);
+      }
+    }
   }
 
   getChartSort(data: JobTableDatum[]): ChartSort {

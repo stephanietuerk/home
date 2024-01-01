@@ -44,8 +44,10 @@
             </mat-panel-title>
             <mat-panel-description>
               <p class="num-schools">{{country.jobsBySchool.length}} schools</p>
-              <mat-icon class="expand-icon" [class.expanded]="panelIsOpen[i]"
-                >expand_more</mat-icon
+              <span
+                class="material-symbols-outlined expand-icon"
+                [class.expanded]="panelIsOpen[i]"
+                >expand_more</span
               >
             </mat-panel-description>
           </mat-expansion-panel-header>

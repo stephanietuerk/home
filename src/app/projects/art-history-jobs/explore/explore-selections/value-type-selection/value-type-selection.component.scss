@@ -7,6 +7,10 @@
   flex-grow: 1;
   width: 50%;
 
+  .hidden-radio-input:focus + .radio-input-label {
+    @extend %focus-ring-style;
+  }
+
   &:first-of-type {
     .radio-input-label {
       border-top-left-radius: grid(1);
