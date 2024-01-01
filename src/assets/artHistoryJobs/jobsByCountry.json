@@ -17918,7 +17918,17 @@
           { "year": "2020", "jobs": [] },
           { "year": "2021", "jobs": [] },
           { "year": "2022", "jobs": [] },
-          { "year": "2023", "jobs": [] }
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1569",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof, associate_prof"],
+                "field": ["Architecture"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -18622,7 +18632,17 @@
             ]
           },
           { "year": "2022", "jobs": [] },
-          { "year": "2023", "jobs": [] }
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1568",
+                "tenure": "Tenure track",
+                "rank": ["full_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
         ]
       },
       {
@@ -21229,7 +21249,7 @@
               {
                 "id": "1567",
                 "tenure": "Tenure track",
-                "rank": ["associate_prof, full_prof"],
+                "rank": ["full_prof"],
                 "field": ["North American Art"]
               }
             ]
@@ -24670,38 +24690,6 @@
                   "Global / Non-Western Art",
                   "Modern / Contemporary Art"
                 ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "country": "1568",
-    "jobsBySchool": [
-      {
-        "school": "University of Pittsburgh",
-        "jobsByYear": [
-          { "year": "2011", "jobs": [] },
-          { "year": "2012", "jobs": [] },
-          { "year": "2013", "jobs": [] },
-          { "year": "2014", "jobs": [] },
-          { "year": "2015", "jobs": [] },
-          { "year": "2016", "jobs": [] },
-          { "year": "2017", "jobs": [] },
-          { "year": "2018", "jobs": [] },
-          { "year": "2019", "jobs": [] },
-          { "year": "2020", "jobs": [] },
-          { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] },
-          {
-            "year": "2023",
-            "jobs": [
-              {
-                "tenure": "Tenure track",
-                "rank": ["full_prof"],
-                "field": ["General / Open"]
               }
             ]
           }
