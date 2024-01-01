@@ -119,7 +119,7 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
     this.messages.createGlobalMessage([
       'Hello!',
       'It looks like you are viewing this project on a mobile device.',
-      "This site will work on mobile, but the layout is not optimal for exploring lots of data. Additionally, since this is a side project, I'm choosing not to spent the time to get all features to 100% on a mobile device.",
+      "This site will work on mobile, but the layout is not optimal for exploring lots of data. Additionally, since this is a side project, I'm choosing not to spend time to get all features to 100% on a mobile device.",
       'For a better experience, please view this site on a desktop/laptop.',
     ]);
   }
