@@ -1,0 +1,58 @@
+@use 'sass:color';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+
+.change-chart-toggle {
+  .radio-input-group {
+    flex-grow: 1;
+    width: 50%;
+
+    .hidden-radio-input.cdk-keyboard-focused:focus + .radio-input-label {
+      @extend %focus-ring-style;
+    }
+
+    &:first-of-type {
+      .radio-input-label {
+        border-top-left-radius: grid(1);
+        border-bottom-left-radius: grid(1);
+      }
+    }
+
+    &:last-of-type {
+      .radio-input-label {
+        border-top-right-radius: grid(1);
+        border-bottom-right-radius: grid(1);
+      }
+    }
+  }
+
+  .radio-input-label {
+    @extend %slab-medium;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+    border: 1px solid $color-highlight;
+    padding: grid(2) grid(2) 6px grid(2);
+    cursor: pointer;
+  }
+
+  .radio-input-label.selected {
+    border: 1px solid $color-highlight;
+    background-color: $color-highlight;
+    color: white;
+  }
+
+  .radio-input-label:not(.selected) {
+    border: 1px solid $color-highlight;
+    background-color: white;
+    color: $color-highlight;
+  }
+
+  .radio-input-label:not(.selected):hover {
+    background: $color-light-gray-light;
+  }
+}

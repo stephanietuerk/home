@@ -1,3 +1,4 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import {
   Component,
   ElementRef,
@@ -91,7 +92,7 @@ export class ExploreChangeChartComponent implements OnInit {
   constructor(
     public exploreDataService: ExploreDataService,
     private fieldsService: ArtHistoryFieldsService,
-    private elRef: ElementRef
+    private focusMonitor: FocusMonitor
   ) {}
 
   ngOnInit(): void {
@@ -226,15 +227,6 @@ export class ExploreChangeChartComponent implements OnInit {
       disaggregation: components.disaggregation,
       years: `${firstYear}\u2013${selections.years.end}`,
     };
-  }
-
-  toggleChangeIsAverage(currentValue: boolean, button: 'avg' | 'year'): void {
-    const changeIsAverage = button === 'avg' ? true : false;
-    if (changeIsAverage !== currentValue) {
-      this.exploreDataService.updateSelections({
-        changeIsAverage,
-      });
-    }
   }
 
   updateTooltipForNewOutput(data: BarsEventOutput): void {

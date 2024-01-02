@@ -7,41 +7,11 @@
       >Show change between
       <span class="end-year">{{selections.years.end}}</span> and</p
     >
-    <div class="change-chart-toggle">
-      <input
-        class="cdk-visually-hidden hidden-radio-input"
-        type="radio"
-        id="change-chart-avg-option"
-        name="change-chart-compare-against"
-        (keydown.space)="toggleChangeIsAverage(selections.changeIsAverage, 'avg')"
-      />
-      <label
-        class="radio-input-label change-chart-toggle-label avg button-style label"
-        for="change-chart-avg-option"
-        [class.selected]="selections.changeIsAverage"
-        (click)="toggleChangeIsAverage(selections.changeIsAverage, 'avg')"
-      >
-        <span
-          >{{selections.years.start}}&ndash;{{selections.years.end}}&nbsp;</span
-        >
-        <span>average</span></label
-      >
-      <input
-        class="cdk-visually-hidden hidden-radio-input"
-        type="radio"
-        id="change-chart-first-year-option"
-        name="change-chart-compare-against"
-        (keydown.space)="toggleChangeIsAverage(selections.changeIsAverage, 'year')"
-      />
-      <label
-        class="radio-input-label change-chart-toggle-label first-year button-style label"
-        for="change-chart-first-year-option"
-        [class.selected]="!selections.changeIsAverage"
-        (click)="toggleChangeIsAverage(selections.changeIsAverage, 'year')"
-      >
-        {{selections.years.start}}</label
-      >
-    </div>
+    <app-change-chart-toggle
+      [currentValue]="selections.changeIsAverage"
+      [startYear]="selections.years.start"
+      [endYear]="selections.years.end"
+    ></app-change-chart-toggle>
     <p class="chart-title" [style.padding-left.px]="margin.left"
       >Change{{vm.title.valueTypePercent}} in {{vm.title.valueTypeCount}} {{
       vm.title.fields }}
