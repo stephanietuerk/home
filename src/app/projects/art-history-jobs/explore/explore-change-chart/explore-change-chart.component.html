@@ -13,6 +13,7 @@
         type="radio"
         id="change-chart-avg-option"
         name="change-chart-compare-against"
+        (keydown.space)="toggleChangeIsAverage(selections.changeIsAverage, 'avg')"
       />
       <label
         class="radio-input-label change-chart-toggle-label avg button-style label"
@@ -30,6 +31,7 @@
         type="radio"
         id="change-chart-first-year-option"
         name="change-chart-compare-against"
+        (keydown.space)="toggleChangeIsAverage(selections.changeIsAverage, 'year')"
       />
       <label
         class="radio-input-label change-chart-toggle-label first-year button-style label"

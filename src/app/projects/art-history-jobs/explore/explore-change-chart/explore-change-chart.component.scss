@@ -21,14 +21,14 @@
     display: flex;
     padding: 0 grid(3) grid(8) grid(3);
     cursor: pointer;
-
-    .hidden-radio-input:focus + .radio-input-label {
-      @extend %focus-ring-style;
-    }
   }
 
   .radio-input-group {
     display: inline-flex;
+
+    .hidden-radio-input:focus + .radio-input-label {
+      @extend %focus-ring-style;
+    }
   }
 
   .radio-input-label {

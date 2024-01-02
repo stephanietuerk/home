@@ -1,6 +1,7 @@
 <ng-container *ngIf="data.selections$ | async as selections">
   <div class="radio-input-group" *ngFor="let use of variableUseOptions">
     <input
+      #hiddenInput
       class="cdk-visually-hidden hidden-radio-input"
       type="radio"
       [attr.id]="variable + '-' + use.value"
@@ -8,7 +9,7 @@
       (keydown.space)="updateVariableUse(use.value)"
     />
     <label
-      class="radio-input-label fields button-style"
+      class="radio-input-label button-style"
       [attr.for]="use.value"
       [class.selected]="selections[selectionsVariable] === use.value"
       (click)="updateVariableUse(use.value)"
