@@ -46,7 +46,7 @@
     "@angular/language-service": "^16.2.12",
     "@types/d3": "^7.4.2",
     "@types/geojson": "^7946.0.12",
-    "@types/jasmine": "^4.3.1",
+    "@types/jasmine": "^5.1.4",
     "@types/jasminewd2": "^2.0.9",
     "@types/lodash-es": "^4.17.10",
     "@types/node": "^16.11.2",
