@@ -5264,8 +5264,7 @@
                 "rank": ["unknown"],
                 "field": [
                   "African / African Diaspora Art",
-                  "Latin American Art",
-                  "African / African Diaspora Art"
+                  "Latin American Art"
                 ]
               },
               {
@@ -17924,7 +17923,7 @@
               {
                 "id": "1569",
                 "tenure": "Tenure track",
-                "rank": ["assistant_prof, associate_prof"],
+                "rank": ["assistant_prof"],
                 "field": ["Architecture"]
               }
             ]
@@ -18247,7 +18246,6 @@
                 "tenure": "Tenure track",
                 "rank": ["associate_prof, full_prof"],
                 "field": [
-                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art",
                   "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
                 ]
               }
@@ -20155,8 +20153,7 @@
                 "field": [
                   "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art",
                   "Byzantine / Medieval Art",
-                  "Ancient Art",
-                  "Early Modern / Renaissance / Eighteenth & Nineteenth Century Art"
+                  "Ancient Art"
                 ]
               }
             ]
