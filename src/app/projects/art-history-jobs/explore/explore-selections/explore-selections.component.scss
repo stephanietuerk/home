@@ -164,14 +164,13 @@ $panel-opacity: 0.9;
     }
   }
 
-  .variable-use-selection-component {
+  .variable-use-selection-component,
+  .value-type-selection-component {
     display: flex;
-    padding-bottom: grid(3);
     max-width: 600px;
   }
 
-  .selection-interface.data-type {
-    display: flex;
-    max-width: 600px;
+  .variable-use-selection-component {
+    padding-bottom: grid(3);
   }
 }

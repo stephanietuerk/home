@@ -35,6 +35,7 @@ import { ArtHistoryJobsComponent } from './art-history-jobs.component';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
 import { ExploreAcrossTimeChartComponent } from './explore/explore-across-time-chart/explore-across-time-chart.component';
 import { ChangeBarsComponent } from './explore/explore-change-chart/change-bars/change-bars.component';
+import { ChangeChartToggleComponent } from './explore/explore-change-chart/change-chart-toggle/change-chart-toggle.component';
 import { ChangeChartComponent } from './explore/explore-change-chart/change-chart/change-chart.component';
 import { ChangeYAxisComponent } from './explore/explore-change-chart/change-y-axis/change-y-axis.component';
 import { ExploreChangeChartComponent } from './explore/explore-change-chart/explore-change-chart.component';
@@ -108,6 +109,7 @@ import { SummaryComponent } from './summary/summary.component';
     UniqueValuesPipe,
     FocusOnInitDirective,
     A11yModule,
+    ChangeChartToggleComponent,
   ],
 })
 export class ArtHistoryJobsModule {}

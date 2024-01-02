@@ -1,0 +1,39 @@
+<div class="change-chart-toggle">
+  <div class="radio-input-group">
+    <input
+      #hiddenInput
+      class="cdk-visually-hidden hidden-radio-input"
+      type="radio"
+      id="change-chart-avg-option"
+      name="change-chart-compare-against"
+      (keydown.space)="toggleChangeIsAverage('avg')"
+    />
+    <label
+      class="radio-input-label change-chart-toggle-label avg button-style label"
+      for="change-chart-avg-option"
+      [class.selected]="currentValue"
+      (click)="toggleChangeIsAverage('avg')"
+    >
+      <span>{{startYear}}&ndash;{{endYear}}&nbsp;</span>
+      <span>average</span></label
+    >
+  </div>
+  <div class="radio-input-group">
+    <input
+      #hiddenInput
+      class="cdk-visually-hidden hidden-radio-input"
+      type="radio"
+      id="change-chart-first-year-option"
+      name="change-chart-compare-against"
+      (keydown.space)="toggleChangeIsAverage('year')"
+    />
+    <label
+      class="radio-input-label change-chart-toggle-label first-year button-style label"
+      for="change-chart-first-year-option"
+      [class.selected]="!currentValue"
+      (click)="toggleChangeIsAverage('year')"
+    >
+      {{startYear}}</label
+    >
+  </div>
+</div>

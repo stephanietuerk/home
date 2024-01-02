@@ -21,56 +21,6 @@
     display: flex;
     padding: 0 grid(3) grid(8) grid(3);
     cursor: pointer;
-
-    .hidden-radio-input:focus + .radio-input-label {
-      @extend %focus-ring-style;
-    }
-  }
-
-  .radio-input-group {
-    display: inline-flex;
-  }
-
-  .radio-input-label {
-    @extend %slab-medium;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.85rem;
-    border: 1px solid $color-highlight;
-    padding: grid(2) grid(2) 6px grid(2);
-    flex-basis: 50%;
-    flex-grow: 1;
-    flex-wrap: wrap;
-
-    &:first-of-type {
-      border-radius: grid(1) 0 0 grid(1);
-    }
-
-    &:last-of-type {
-      border-radius: 0 grid(1) grid(1) 0;
-    }
-
-    span {
-      white-space: nowrap;
-    }
-  }
-
-  .radio-input-label.selected {
-    border: 1px solid $color-highlight;
-    background-color: $color-highlight;
-    color: white;
-  }
-
-  .radio-input-label:not(.selected) {
-    border: 1px solid $color-highlight;
-    background-color: white;
-    color: $color-highlight;
-  }
-
-  .radio-input-label:not(.selected):hover {
-    background: $color-light-gray-light;
   }
 
   .chart-title {
