@@ -203,6 +203,10 @@ export class ExploreDataService extends Unsubscribe {
           aggregatedData.forEach((x) => {
             this.setPercentValueOnDatum(x, lineDef, data, categoriesAccessor);
           });
+        } else {
+          aggregatedData.forEach((x) => {
+            x.percent = undefined;
+          });
         }
         return aggregatedData;
       })
