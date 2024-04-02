@@ -114,6 +114,7 @@ $table-width: 900px;
   }
 
   .asterisk {
+    @extend %caption;
     align-self: flex-start;
     margin-top: grid(2);
     font-weight: 300;
