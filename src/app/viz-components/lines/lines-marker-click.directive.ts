@@ -34,6 +34,7 @@ type LinesEventDirective =
  */
 @Directive({
   selector: '[vicLinesMarkerClickEffects]',
+  standalone: true,
 })
 export class LinesMarkerClickDirective<
   T extends LinesComponent = LinesComponent,

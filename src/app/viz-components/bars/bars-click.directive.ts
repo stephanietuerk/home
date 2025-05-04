@@ -28,6 +28,7 @@ type BarsEventDirective =
 
 @Directive({
   selector: '[vicBarsClickEffects]',
+  standalone: true,
 })
 export class BarsClickDirective<
   T extends BarsComponent = BarsComponent,

@@ -1,4 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -17,16 +18,22 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { VicXQuantitativeAxisModule } from 'src/app/viz-components/axes/x-quantitative/x-quantitative-axis.module';
 import { BarsHoverMoveEmitTooltipData } from 'src/app/viz-components/bars/bars-hover-move-effects';
 import { BarsHoverMoveDirective } from 'src/app/viz-components/bars/bars-hover-move.directive';
 import { BarsEventOutput } from 'src/app/viz-components/bars/bars-tooltip-data';
+import { VicBarsModule } from 'src/app/viz-components/bars/bars.module';
 import { VicRoundUpToIntervalDomainPaddingConfig } from 'src/app/viz-components/data-marks/data-dimension.config';
 import { EventEffect } from 'src/app/viz-components/events/effect';
 import {
   VicHtmlTooltipConfig,
   VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
+import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
+import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
+import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
 import { JobDatum } from '../../art-history-data.model';
+import { D3FormatPipe } from '../../art-history-fields.pipe';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ArtHistoryUtilities } from '../../art-history.utilities';
@@ -36,6 +43,9 @@ import {
   ExploreSelections,
   ValueType,
 } from '../explore-selections/explore-selections.model';
+import { ChangeBarsComponent } from './change-bars/change-bars.component';
+import { ChangeChartToggleComponent } from './change-chart-toggle/change-chart-toggle.component';
+import { ChangeChartComponent } from './change-chart/change-chart.component';
 import {
   ChangeChartConfig,
   ChangeChartXAxisConfig,
@@ -61,6 +71,19 @@ interface ViewModel {
 }
 @Component({
   selector: 'app-explore-change-chart',
+  standalone: true,
+  imports: [
+    CommonModule,
+    VicXyBackgroundModule,
+    VicXyChartModule,
+    VicXQuantitativeAxisModule,
+    VicHtmlTooltipModule,
+    VicBarsModule,
+    D3FormatPipe,
+    ChangeChartComponent,
+    ChangeBarsComponent,
+    ChangeChartToggleComponent,
+  ],
   templateUrl: './explore-change-chart.component.html',
   styleUrls: ['./explore-change-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,

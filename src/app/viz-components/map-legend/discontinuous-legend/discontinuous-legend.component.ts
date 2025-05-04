@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges } from '@angular/core';
 import { MapLegendContent } from '../map-legend-content';
 
@@ -6,6 +7,8 @@ import { MapLegendContent } from '../map-legend-content';
  */
 @Component({
   selector: 'vic-discontinuous-legend',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './discontinuous-legend.component.html',
   styleUrls: ['./discontinuous-legend.component.scss'],
 })

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -18,6 +19,8 @@ import { FlipService } from './flip.service';
 
 @Component({
   selector: 'app-flip',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './flip.component.html',
   styleUrls: ['./flip.component.scss'],
   providers: [FlipService],

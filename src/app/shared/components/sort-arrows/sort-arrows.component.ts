@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { SortDirection } from 'src/app/core/enums/sort.enum';
 
 @Component({
   selector: 'app-sort-arrows',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './sort-arrows.component.html',
   styleUrls: ['./sort-arrows.component.scss'],
 })

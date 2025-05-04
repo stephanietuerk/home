@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -37,6 +39,8 @@ import {
 
 @Component({
   selector: 'app-beyond-bar',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './beyond-bar.component.html',
   styleUrls: ['./beyond-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -137,8 +141,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
   }
 
   updateBarIndex(t) {
-    const barWidth = (d) => this.width.index;
-    const barX = (d) => 0;
+    const barWidth = () => this.width.index;
+    const barX = () => 0;
     const selection = this.svgIndex.selectAll('.bar.index');
     this.updateBar(barWidth, barX, selection, t);
   }

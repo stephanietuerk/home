@@ -7,9 +7,9 @@ import { Message } from '../message/message.directive';
 
 @Component({
   selector: 'app-global-message',
-  templateUrl: './global-message.component.html',
   standalone: true,
   imports: [MatIconModule, NgFor, A11yModule, NgIf, CloseButtonComponent],
+  templateUrl: './global-message.component.html',
   styleUrls: ['./global-message.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })

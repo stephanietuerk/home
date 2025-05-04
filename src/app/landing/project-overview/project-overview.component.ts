@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
 
 @Component({
   selector: 'app-project-overview',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './project-overview.component.html',
   styleUrls: ['./project-overview.component.scss'],
 })

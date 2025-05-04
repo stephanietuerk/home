@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   AngularFirestore,
@@ -10,6 +11,8 @@ import { EnvironmentService } from 'src/app/core/services/environment.service';
 
 @Component({
   selector: 'app-comments',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
   animations: [animations.slide('create-comment-component')],

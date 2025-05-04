@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -45,6 +46,8 @@ export const GEOGRAPHIES = new InjectionToken<GeographiesComponent>(
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-data-marks-geographies]',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './geographies.component.html',
   styleUrls: ['./geographies.component.scss'],
   encapsulation: ViewEncapsulation.None,

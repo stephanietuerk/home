@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LandingRoutingModule } from './landing-routing.module';
@@ -10,11 +8,19 @@ import { ProjectOverviewComponent } from './project-overview/project-overview.co
 import { ProjectsTableComponent } from './projects-table/projects-table.component';
 
 @NgModule({
-  imports: [CommonModule, LandingRoutingModule, SharedModule],
-  declarations: [
-    LandingComponent,
-    NavbarComponent,
+  imports: [
     AboutComponent,
+    LandingRoutingModule,
+    NavbarComponent,
+    LandingComponent,
+    ProjectsTableComponent,
+    ProjectOverviewComponent,
+    ContactComponent,
+  ],
+  exports: [
+    AboutComponent,
+    NavbarComponent,
+    LandingComponent,
     ProjectsTableComponent,
     ProjectOverviewComponent,
     ContactComponent,

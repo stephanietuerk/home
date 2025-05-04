@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -9,12 +10,16 @@ import {
   ControlContainer,
   FormControl,
   FormGroupDirective,
+  ReactiveFormsModule,
 } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-select-with-filtering',
+  standalone: true,
+  imports: [CommonModule, MatAutocompleteModule, ReactiveFormsModule],
   templateUrl: './form-select-with-filtering.component.html',
   styleUrls: [
     '../form-select/form-select.component.scss',

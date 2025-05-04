@@ -21,6 +21,8 @@ export interface YearsSelection {
 
 @Component({
   selector: 'app-years-selection',
+  standalone: true,
+  imports: [],
   templateUrl: './years-selection.component.html',
   styleUrls: [
     '../../../styles/art-history-jobs.scss',
@@ -83,9 +85,10 @@ export class YearsSelectionComponent extends Unsubscribe implements OnInit {
         { 'aria-label': 'upper year handle' },
       ],
       pips: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         mode: 'steps' as any,
         density: 0,
-        filter: (value: number, type: number) => {
+        filter: (value: number) => {
           if ((value * 10) % 10 === 0) {
             return 2;
           } else {

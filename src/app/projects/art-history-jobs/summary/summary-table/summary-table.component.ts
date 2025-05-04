@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -8,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Sort, SortDirection } from 'src/app/core/enums/sort.enum';
+import { SortArrowsComponent } from 'src/app/shared/components/sort-arrows/sort-arrows.component';
 import {
   TableHeader,
   TableSort,
@@ -16,6 +19,8 @@ import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
 @Component({
   selector: 'app-summary-table',
+  standalone: true,
+  imports: [CommonModule, SortArrowsComponent],
   templateUrl: './summary-table.component.html',
   styleUrls: ['./summary-table.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { mixinQuantitativeAxis } from '../quantitative/quantitative-axis';
 import { XyAxis } from '../xy-axis';
@@ -41,6 +42,8 @@ const YQuantitativeAxis = mixinYAxis(mixinQuantitativeAxis(XyAxis));
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-y-quantitative-axis]',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: '../y/y-axis.html',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['side', 'config'],

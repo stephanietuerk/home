@@ -1,11 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { combineLatest, filter, takeUntil } from 'rxjs';
 import { VicAttributeDataDimensionConfig } from '../geographies/geographies.config';
 import { MapChartComponent } from '../map-chart/map-chart.component';
 import { Unsubscribe } from '../shared/unsubscribe.class';
+import { ContinuousLegendComponent } from './continuous-legend/continuous-legend.component';
+import { DiscontinuousLegendComponent } from './discontinuous-legend/discontinuous-legend.component';
 
 @Component({
   selector: 'vic-map-legend',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ContinuousLegendComponent,
+    DiscontinuousLegendComponent,
+  ],
   templateUrl: './map-legend.component.html',
   styleUrls: ['./map-legend.component.scss'],
 })

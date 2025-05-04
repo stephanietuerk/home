@@ -23,6 +23,7 @@ export type GeographiesHoverOutput = VicGeographiesTooltipOutput &
 
 @Directive({
   selector: '[vicGeographiesHoverEffects]',
+  standalone: true,
 })
 export class GeographiesHoverDirective<
   T extends GeographiesComponent = GeographiesComponent,

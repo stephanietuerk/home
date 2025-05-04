@@ -12,6 +12,7 @@ import { VicGroupedBarsConfig } from './grouped-bars.config';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-data-marks-grouped-bars]',
+  standalone: true,
   templateUrl: '../bars/bars.component.html',
   styleUrls: ['./grouped-bars.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -20,6 +21,7 @@ import { VicGroupedBarsConfig } from './grouped-bars.config';
 })
 export class GroupedBarsComponent extends BarsComponent {
   @Input() override config: VicGroupedBarsConfig;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   groupScale: any;
 
   override setValueIndicies(): void {
@@ -84,10 +86,12 @@ export class GroupedBarsComponent extends BarsComponent {
   }
 
   override getBarWidthOrdinal(i: number): number {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (this.groupScale as any).bandwidth();
   }
 
   override getBarHeightOrdinal(i: number): number {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (this.groupScale as any).bandwidth();
   }
 }

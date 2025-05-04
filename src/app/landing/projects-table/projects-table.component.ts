@@ -1,10 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Project } from 'src/app/core/models/project.model';
 import { PROJECTS } from '../../core/constants/projects.constants';
+import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon.component';
+import { ProjectOverviewComponent } from '../project-overview/project-overview.component';
 
 @Component({
   selector: 'app-projects-table',
+  standalone: true,
+  imports: [CommonModule, ProjectOverviewComponent, SvgIconComponent],
   templateUrl: './projects-table.component.html',
   styleUrls: ['./projects-table.component.scss'],
   encapsulation: ViewEncapsulation.None,

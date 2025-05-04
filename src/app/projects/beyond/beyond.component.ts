@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { range } from 'd3';
+import { BeyondBarComponent } from './beyond-bar/beyond-bar.component';
+import { BeyondMapComponent } from './beyond-map/beyond-map.component';
 import {
   BEYOND_DEMOTYPES,
   BEYOND_DEMOYEARS,
@@ -14,6 +17,8 @@ import {
 } from './models/beyond-enums.model';
 @Component({
   selector: 'app-beyond',
+  standalone: true,
+  imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
   templateUrl: './beyond.component.html',
   styleUrls: ['./beyond.component.scss'],
   encapsulation: ViewEncapsulation.None,

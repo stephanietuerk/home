@@ -8,6 +8,7 @@ import { LINES, LinesComponent } from './lines.component';
 
 @Directive({
   selector: '[vicLinesInputEffects]',
+  standalone: true,
 })
 export class LinesInputEventDirective<
   T extends LinesComponent = LinesComponent,

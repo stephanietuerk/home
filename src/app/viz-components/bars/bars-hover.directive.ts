@@ -17,6 +17,7 @@ import { BARS, BarsComponent } from './bars.component';
 
 @Directive({
   selector: '[vicBarsHoverEffects]',
+  standalone: true,
 })
 export class BarsHoverDirective<
   T extends BarsComponent = BarsComponent,

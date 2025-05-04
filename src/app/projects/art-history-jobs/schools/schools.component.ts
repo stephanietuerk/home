@@ -1,9 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { take } from 'rxjs';
+import { SubstringHighlightDirective } from '../../../shared/directives/substring-highlight.directive';
+import { ColorForFieldPipe } from '../art-history-fields.pipe';
+import { SchoolChartComponent } from './school-chart/school-chart.component';
+import { SchoolFiltersComponent } from './school-filters/school-filters.component';
 import { SchoolsDataService } from './schools-data.service';
 
 @Component({
   selector: 'app-schools',
+  standalone: true,
+  imports: [
+    CommonModule,
+    SchoolFiltersComponent,
+    MatExpansionModule,
+    SchoolChartComponent,
+    SubstringHighlightDirective,
+    ColorForFieldPipe,
+  ],
   templateUrl: './schools.component.html',
   styleUrls: ['./schools.component.scss'],
   encapsulation: ViewEncapsulation.None,

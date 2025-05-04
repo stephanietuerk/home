@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
+import { QuestionComponent } from './question/question.component';
 
 @Component({
   selector: 'app-leaving',
+  standalone: true,
+  imports: [CommonModule, QuestionComponent],
   templateUrl: './leaving.component.html',
   styleUrls: ['./leaving.component.scss'],
   encapsulation: ViewEncapsulation.None,

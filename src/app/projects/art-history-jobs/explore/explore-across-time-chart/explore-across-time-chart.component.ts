@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { timeYear } from 'd3-time';
 import { isEqual } from 'lodash-es';
@@ -12,6 +14,8 @@ import {
 } from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
+import { VicXQuantitativeAxisModule } from 'src/app/viz-components/axes/x-quantitative/x-quantitative-axis.module';
+import { VicYQuantitativeAxisModule } from 'src/app/viz-components/axes/y-quantitative-axis/y-quantitative-axis.module';
 import { EventEffect } from 'src/app/viz-components/events/effect';
 import {
   LinesHoverMoveDefaultStyles,
@@ -19,10 +23,14 @@ import {
 } from 'src/app/viz-components/lines/lines-hover-move-effects';
 import { LinesHoverMoveDirective } from 'src/app/viz-components/lines/lines-hover-move.directive';
 import { LinesEventOutput } from 'src/app/viz-components/lines/lines-tooltip-data';
+import { VicLinesModule } from 'src/app/viz-components/lines/lines.module';
 import {
   VicHtmlTooltipConfig,
   VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
+import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
+import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
+import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
@@ -51,6 +59,16 @@ interface ViewModel {
 
 @Component({
   selector: 'app-explore-across-time-chart',
+  standalone: true,
+  imports: [
+    CommonModule,
+    VicHtmlTooltipModule,
+    VicXyChartModule,
+    VicXyBackgroundModule,
+    VicLinesModule,
+    VicXQuantitativeAxisModule,
+    VicYQuantitativeAxisModule,
+  ],
   templateUrl: './explore-across-time-chart.component.html',
   styleUrls: ['./explore-across-time-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,

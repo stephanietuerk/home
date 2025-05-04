@@ -1,10 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Sort, SortDirection } from 'src/app/core/enums/sort.enum';
 import { SortService } from 'src/app/core/services/sort.service';
+import { SortArrowsComponent } from '../sort-arrows/sort-arrows.component';
 import { TableHeader, TableSort } from './table.model';
 
 @Component({
   selector: 'app-table',
+  standalone: true,
+  imports: [CommonModule, SortArrowsComponent],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })

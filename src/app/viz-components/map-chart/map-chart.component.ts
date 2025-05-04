@@ -28,6 +28,7 @@ import { VicAttributeDataDimensionConfig } from '../geographies/geographies.conf
  */
 @Component({
   selector: 'vic-map-chart',
+  standalone: true,
   templateUrl: '../chart/chart.component.html',
   styleUrls: ['../chart/chart.component.scss'],
   providers: [{ provide: CHART, useExisting: ChartComponent }],

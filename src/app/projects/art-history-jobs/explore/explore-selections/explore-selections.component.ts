@@ -1,3 +1,5 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,6 +23,10 @@ import {
   variableUseOptions,
 } from './explore-selections.constants';
 import { FilterType } from './explore-selections.model';
+import { ValueTypeSelectionComponent } from './value-type-selection/value-type-selection.component';
+import { VariableSingleMultiSelectionComponent } from './variable-single-multi-selection/variable-single-multi-selection.component';
+import { VariableUseSelectionComponent } from './variable-use-selection/variable-use-selection.component';
+import { YearsSelectionComponent } from './years-selection/years-selection.component';
 
 interface DropdownContent {
   isOpen: boolean;
@@ -37,6 +43,15 @@ export enum ExploreSelection {
 
 @Component({
   selector: 'app-explore-selections',
+  standalone: true,
+  imports: [
+    CommonModule,
+    A11yModule,
+    VariableUseSelectionComponent,
+    VariableSingleMultiSelectionComponent,
+    ValueTypeSelectionComponent,
+    YearsSelectionComponent,
+  ],
   templateUrl: './explore-selections.component.html',
   styleUrls: ['./explore-selections.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -28,6 +28,7 @@ type LinesEventDirective =
 
 @Directive({
   selector: '[vicLinesChartClickEffects]',
+  standalone: true,
 })
 export class LinesClickDirective<
   T extends LinesComponent = LinesComponent,

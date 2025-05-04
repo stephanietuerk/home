@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms';
 import { Comment } from 'src/app/core/models/blog/comment.model';
 import { EnvironmentService } from 'src/app/core/services/environment.service';
 
@@ -14,6 +16,8 @@ export interface comment {
 
 @Component({
   selector: 'app-create-comment',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-comment.component.html',
   styleUrls: ['./create-comment.component.scss'],
 })

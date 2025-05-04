@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GeographiesClickDirective } from './geographies-click.directive';
 import { GeographiesHoverMoveDirective } from './geographies-hover-move.directive';
@@ -7,14 +6,13 @@ import { GeographiesInputEventDirective } from './geographies-input-event.direct
 import { GeographiesComponent } from './geographies.component';
 
 @NgModule({
-  declarations: [
+  imports: [
     GeographiesComponent,
     GeographiesHoverMoveDirective,
     GeographiesHoverDirective,
     GeographiesInputEventDirective,
     GeographiesClickDirective,
   ],
-  imports: [CommonModule],
   exports: [
     GeographiesComponent,
     GeographiesHoverMoveDirective,

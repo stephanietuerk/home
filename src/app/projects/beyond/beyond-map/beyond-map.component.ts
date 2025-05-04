@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -18,6 +20,8 @@ import { BeyondService } from '../beyond.service';
 
 @Component({
   selector: 'app-beyond-map',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './beyond-map.component.html',
   styleUrls: ['./beyond-map.component.scss'],
   encapsulation: ViewEncapsulation.None,

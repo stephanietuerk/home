@@ -8,6 +8,7 @@ import { GEOGRAPHIES, GeographiesComponent } from './geographies.component';
 
 @Directive({
   selector: '[vicGeographiesInputEffects]',
+  standalone: true,
 })
 export class GeographiesInputEventDirective<
   T extends GeographiesComponent = GeographiesComponent,

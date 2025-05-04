@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -6,9 +7,11 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { SearchUtilities } from 'src/app/core/utilities/search.util';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
+import { ComboboxModule } from '../../../../shared/components/combobox/combobox.module';
 import {
   SchoolSort,
   SchoolStateProperty,
@@ -17,6 +20,8 @@ import {
 
 @Component({
   selector: 'app-school-filters',
+  standalone: true,
+  imports: [CommonModule, MatButtonToggleModule, ComboboxModule],
   templateUrl: './school-filters.component.html',
   styleUrls: ['./school-filters.component.scss'],
   encapsulation: ViewEncapsulation.None,

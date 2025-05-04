@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -17,7 +17,11 @@ import { OverlayService } from 'src/app/shared/components/overlay/overlay.servic
 import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { ArtHistoryDataService } from './art-history-data.service';
 import { currentDataYears } from './art-history-jobs.constants';
+import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
 import { ExploreDataService } from './explore/explore-data.service';
+import { ExploreComponent } from './explore/explore.component';
+import { SchoolsComponent } from './schools/schools.component';
+import { SummaryComponent } from './summary/summary.component';
 
 enum Section {
   intro = 'intro',
@@ -29,6 +33,14 @@ enum Section {
 
 @Component({
   selector: 'app-art-history-jobs',
+  standalone: true,
+  imports: [
+    CommonModule,
+    SummaryComponent,
+    ExploreComponent,
+    SchoolsComponent,
+    DataAcquisitionComponent,
+  ],
   templateUrl: './art-history-jobs.component.html',
   styleUrls: ['./art-history-jobs.component.scss'],
   providers: [ExploreDataService, MessageService, OverlayService],

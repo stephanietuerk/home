@@ -1,10 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Project } from '../core/models/project.model';
 import { getProjectFromURL } from '../core/utilities/route.utils';
+import { ContentNavbarComponent } from '../shared/components/content-navbar/content-navbar.component';
 
 @Component({
   selector: 'app-blog',
+  standalone: true,
+  imports: [CommonModule, RouterModule, ContentNavbarComponent],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
 })

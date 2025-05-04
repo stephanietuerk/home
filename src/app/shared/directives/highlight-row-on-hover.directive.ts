@@ -7,6 +7,7 @@ import {
 
 @Directive({
   selector: '[appHighlightRowOnHover]',
+  standalone: true,
 })
 export class HighlightRowOnHoverDirective {
   constructor(private el: ElementRef) {}

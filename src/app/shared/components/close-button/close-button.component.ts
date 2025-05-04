@@ -3,10 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-close-button',
+  standalone: true,
+  imports: [NgIf],
   templateUrl: './close-button.component.html',
   styleUrls: ['./close-button.component.scss'],
-  imports: [NgIf],
-  standalone: true,
 })
 export class CloseButtonComponent {
   @Output() closeEvent: EventEmitter<void> = new EventEmitter();

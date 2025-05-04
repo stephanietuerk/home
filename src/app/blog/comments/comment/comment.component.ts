@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   AngularFirestore,
@@ -7,9 +8,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { Comment } from 'src/app/core/models/blog/comment.model';
+import { CreateCommentComponent } from '../create-comment/create-comment.component';
 
 @Component({
   selector: 'app-comment',
+  standalone: true,
+  imports: [CommonModule, CreateCommentComponent],
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
   animations: [animations.slide('create-comment-component')],

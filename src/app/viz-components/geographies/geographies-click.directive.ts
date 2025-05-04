@@ -29,6 +29,7 @@ export type GeographiesEventDirective =
 
 @Directive({
   selector: '[vicGeographiesClickEffects]',
+  standalone: true,
 })
 export class GeographiesClickDirective<
   T extends GeographiesComponent = GeographiesComponent,

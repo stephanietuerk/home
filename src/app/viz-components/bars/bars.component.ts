@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -38,6 +39,8 @@ export const BARS = new InjectionToken<BarsComponent>('BarsComponent');
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-data-marks-bars]',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './bars.component.html',
   styleUrls: ['./bars.component.scss'],
   encapsulation: ViewEncapsulation.None,

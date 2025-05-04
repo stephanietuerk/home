@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InputOption } from '../input-option.model';
+import { RadioInputComponent } from '../radio-input/radio-input.component';
 
 @Component({
   selector: 'app-radio-group',
+  standalone: true,
+  imports: [CommonModule, RadioInputComponent],
   templateUrl: './radio-group.component.html',
   styleUrls: [],
 })

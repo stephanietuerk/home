@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
 import { ContentNavbarComponent } from './components/content-navbar/content-navbar.component';
@@ -12,38 +10,36 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { TableComponent } from './components/table/table.component';
 import { HighlightRowOnHoverDirective } from './directives/highlight-row-on-hover.directive';
 import { HoverClassOnSiblingsDirective } from './directives/hover-class-on-siblings.directive';
-import { PipesModule } from './pipes/pipes.module';
 import { StylesDisplayComponent } from './styles-display/styles-display.component';
 
 @NgModule({
-  declarations: [
-    SvgDefinitionsComponent,
-    SvgIconComponent,
+  imports: [
+    CheckboxGroupComponent,
+    CheckboxInputComponent,
+    ContentNavbarComponent,
     HighlightRowOnHoverDirective,
     HoverClassOnSiblingsDirective,
-    ContentNavbarComponent,
-    StylesDisplayComponent,
     RadioGroupComponent,
     RadioInputComponent,
-    TableComponent,
     SortArrowsComponent,
-    CheckboxInputComponent,
-    CheckboxGroupComponent,
+    StylesDisplayComponent,
+    SvgDefinitionsComponent,
+    SvgIconComponent,
+    TableComponent,
   ],
-  imports: [CommonModule, RouterModule, PipesModule],
   exports: [
-    SvgDefinitionsComponent,
-    SvgIconComponent,
+    CheckboxGroupComponent,
+    CheckboxInputComponent,
+    ContentNavbarComponent,
     HighlightRowOnHoverDirective,
     HoverClassOnSiblingsDirective,
-    ContentNavbarComponent,
-    StylesDisplayComponent,
     RadioGroupComponent,
-    TableComponent,
-    SortArrowsComponent,
-    CheckboxInputComponent,
     RadioInputComponent,
-    CheckboxGroupComponent,
+    SortArrowsComponent,
+    StylesDisplayComponent,
+    SvgDefinitionsComponent,
+    SvgIconComponent,
+    TableComponent,
   ],
 })
 export class SharedModule {}

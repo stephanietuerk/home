@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { scaleLinear } from 'd3';
 import { MapLegendContent } from '../map-legend-content';
@@ -7,6 +8,8 @@ import { MapLegendContent } from '../map-legend-content';
  */
 @Component({
   selector: 'vic-continuous-legend',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './continuous-legend.component.html',
   styleUrls: ['./continuous-legend.component.scss'],
 })

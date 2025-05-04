@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -69,6 +70,8 @@ export interface ChartScaling {
  */
 @Component({
   selector: 'vic-chart',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
   providers: [{ provide: CHART, useExisting: ChartComponent }],

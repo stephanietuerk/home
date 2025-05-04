@@ -1,14 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {
   VicHtmlTooltipConfig,
   VicHtmlTooltipOffsetFromOriginPosition,
 } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
+import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
 import { JobsBySchoolDatum } from '../../art-history-data.model';
+import { ColorForFieldPipe } from '../../art-history-fields.pipe';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
 @Component({
   selector: 'app-job-chart',
+  standalone: true,
+  imports: [CommonModule, VicHtmlTooltipModule, ColorForFieldPipe],
   templateUrl: './job-chart.component.html',
   styleUrls: ['./job-chart.component.scss'],
 })

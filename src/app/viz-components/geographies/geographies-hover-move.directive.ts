@@ -13,6 +13,7 @@ import { GEOGRAPHIES, GeographiesComponent } from './geographies.component';
 
 @Directive({
   selector: '[vicGeographiesHoverMoveEffects]',
+  standalone: true,
 })
 export class GeographiesHoverMoveDirective extends HoverMoveDirective {
   @Input('vicGeographiesHoverMoveEffects')

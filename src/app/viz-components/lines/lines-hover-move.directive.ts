@@ -12,6 +12,7 @@ import { LINES, LinesComponent } from './lines.component';
 
 @Directive({
   selector: '[vicLinesHoverMoveEffects]',
+  standalone: true,
 })
 export class LinesHoverMoveDirective<
   T extends LinesComponent = LinesComponent,

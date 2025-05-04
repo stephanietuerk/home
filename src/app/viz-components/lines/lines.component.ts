@@ -53,6 +53,7 @@ export const LINES = new InjectionToken<LinesComponent>('LinesComponent');
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-data-marks-lines]',
+  standalone: true,
   templateUrl: './lines.component.html',
   styleUrls: ['./lines.component.scss'],
   encapsulation: ViewEncapsulation.None,

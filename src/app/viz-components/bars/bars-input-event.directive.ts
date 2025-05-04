@@ -8,6 +8,7 @@ import { BARS, BarsComponent } from './bars.component';
 
 @Directive({
   selector: '[vicBarsInputEventEffects]',
+  standalone: true,
 })
 export class BarsInputEventDirective<
   T extends BarsComponent = BarsComponent,

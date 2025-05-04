@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { max } from 'd3';
 import { cloneDeep } from 'lodash-es';
@@ -11,11 +12,13 @@ import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import { artHistoryFields } from '../art-history-fields.constants';
 import { ArtHistoryFieldsService } from '../art-history-fields.service';
+import { SummaryChartComponent } from './summary-chart/summary-chart.component';
 import {
   SummaryChartConfig,
   SummaryChartXAxisConfig,
   SummaryChartYAxisConfig,
 } from './summary-chart/summary-chart.model';
+import { SummaryTableComponent } from './summary-table/summary-table.component';
 import { tableHeaders } from './summary-table/summary-table.constants';
 
 interface ViewModel {
@@ -34,6 +37,8 @@ type SortFunction = (series: any) => number[];
 
 @Component({
   selector: 'app-summary',
+  standalone: true,
+  imports: [CommonModule, SummaryChartComponent, SummaryTableComponent],
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss'],
 })

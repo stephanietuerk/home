@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { OrdinalAxisMixin } from '../ordinal/ordinal-axis';
 import { mixinXAxis } from '../x/x-axis';
@@ -41,6 +42,8 @@ const XOrdinalAxis = mixinXAxis(OrdinalAxisMixin(XyAxis));
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[vic-x-ordinal-axis]',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: '../x/x-axis.html',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['side', 'config'],
