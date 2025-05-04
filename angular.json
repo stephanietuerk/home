@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "stephanietuerk:build"
+            "buildTarget": "stephanietuerk:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "stephanietuerk:build:production"
+              "buildTarget": "stephanietuerk:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "stephanietuerk:build"
+            "buildTarget": "stephanietuerk:build"
           }
         },
         "test": {
