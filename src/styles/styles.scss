@@ -5,6 +5,23 @@
 
 @include cdk.a11y-visually-hidden();
 
+@font-face {
+  font-family: 'Recursive';
+  src: url('../assets/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf');
+  font-weight: 300 1000; // For variable fonts
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('../assets/fonts/Mulish-VariableFont_wght.ttf');
+  font-weight: 300 1000; // For variable fonts
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -16,7 +33,7 @@
     font-size: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
-    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    font-family: 'Mulish', sans-serif;
   }
 
   body,

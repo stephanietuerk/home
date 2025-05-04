@@ -18,12 +18,35 @@
 }
 
 %slab {
-  font-family: ff-nuvo-mono-web-pro, sans-serif;
+  font-family: 'Recursive', sans-serif;
+  font-variation-settings: 
+    "wght" 400, 
+    "CASL" 0.3, 
+    "MONO" 0.3, 
+    "slnt" 0;
+}
+
+%slab-expressive {
+  @extend %slab;
+  font-variation-settings: 
+    "wght" 500, 
+    "CASL" 0.3, 
+    "MONO" 0.3, 
+    "slnt" 0;
+}
+
+%slab-standard {
+  @extend %slab;
+  font-variation-settings: 
+    "wght" 400, 
+    "CASL" 0, 
+    "MONO" 0.5, 
+    "slnt" 0;
 }
 
 %slab-regular {
   @extend %ligatures;
-  @extend %slab;
+  @extend %slab-standard;
   font-weight: 400;
   font-style: normal;
 }
@@ -55,8 +78,8 @@
 
 %sans-regular {
   @extend %ligatures;
-  font-family: ff-tisa-sans-web-pro, sans-serif;
-  font-weight: 400;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
 }
 
 %sans-light {
@@ -90,37 +113,37 @@
 }
 
 %h1 {
-  @extend %slab;
+  @extend %slab-expressive;
   font-size: 6rem;
   letter-spacing: -1.5px;
   font-weight: 300;
 }
 
 %h2 {
-  @extend %slab;
+  @extend %slab-expressive;
   font-size: 3.75rem;
   letter-spacing: -0.5px;
   font-weight: 300;
 }
 
 %h3 {
-  @extend %slab-regular;
+  @extend %slab-expressive;
   font-size: 3rem;
 }
 
 %h4 {
-  @extend %slab-regular;
+  @extend %slab-expressive;
   font-size: 2.215rem;
   letter-spacing: -0.25px;
 }
 
 %h5 {
-  @extend %slab-regular;
+  @extend %slab-expressive;
   font-size: 1.5rem;
 }
 
 %h6 {
-  @extend %slab-medium;
+  @extend %slab-expressive;
   font-size: 1.25rem;
   letter-spacing: 0.15px;
 }
