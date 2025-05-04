@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { VicXQuantitativeAxisModule, VicYQuantitativeAxisModule } from '@hsi/viz-components';
 import { isEqual } from 'lodash-es';
 import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
@@ -23,6 +22,8 @@ import {
 import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
 import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
 import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
+import { VicXQuantitativeAxisModule } from '../../../../viz-components/axes/x-quantitative/x-quantitative-axis.module';
+import { VicYQuantitativeAxisModule } from '../../../../viz-components/axes/y-quantitative-axis/y-quantitative-axis.module';
 import { SummaryChartConfig } from './summary-chart.model';
 
 class SummaryChartTooltipData implements StackedAreaEventOutput {
