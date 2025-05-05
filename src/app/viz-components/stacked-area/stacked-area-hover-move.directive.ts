@@ -12,7 +12,8 @@ import {
 import { STACKED_AREA, StackedAreaComponent } from './stacked-area.component';
 
 @Directive({
-  selector: '[vicStackedAreaHoverMoveEffects]',
+    selector: '[vicStackedAreaHoverMoveEffects]',
+    standalone: false
 })
 export class StackedAreaHoverMoveDirective extends HoverMoveDirective {
   @Input('vicStackedAreaHoverMoveEffects')

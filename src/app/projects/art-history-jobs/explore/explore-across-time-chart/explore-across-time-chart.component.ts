@@ -58,20 +58,19 @@ interface ViewModel {
 }
 
 @Component({
-  selector: 'app-explore-across-time-chart',
-  standalone: true,
-  imports: [
-    CommonModule,
-    VicHtmlTooltipModule,
-    VicXyChartModule,
-    VicXyBackgroundModule,
-    VicLinesModule,
-    VicXQuantitativeAxisModule,
-    VicYQuantitativeAxisModule,
-  ],
-  templateUrl: './explore-across-time-chart.component.html',
-  styleUrls: ['./explore-across-time-chart.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-explore-across-time-chart',
+    imports: [
+        CommonModule,
+        VicHtmlTooltipModule,
+        VicXyChartModule,
+        VicXyBackgroundModule,
+        VicLinesModule,
+        VicXQuantitativeAxisModule,
+        VicYQuantitativeAxisModule,
+    ],
+    templateUrl: './explore-across-time-chart.component.html',
+    styleUrls: ['./explore-across-time-chart.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ExploreAcrossTimeChartComponent implements OnInit {
   vm$: Observable<ViewModel>;

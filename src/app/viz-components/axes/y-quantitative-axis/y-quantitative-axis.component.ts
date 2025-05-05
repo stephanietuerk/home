@@ -40,12 +40,11 @@ const YQuantitativeAxis = mixinYAxis(mixinQuantitativeAxis(XyAxis));
  * </vic-xy-chart>
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[vic-y-quantitative-axis]',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: '../y/y-axis.html',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['side', 'config'],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[vic-y-quantitative-axis]',
+    imports: [CommonModule],
+    templateUrl: '../y/y-axis.html',
+    // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+    inputs: ['side', 'config']
 })
 export class YQuantitativeAxisComponent extends YQuantitativeAxis {}

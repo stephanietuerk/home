@@ -18,12 +18,11 @@ import { ExploreDataService } from '../../explore-data.service';
 import { variableUseOptions } from '../explore-selections.constants';
 
 @Component({
-  selector: 'app-variable-use-selection',
-  standalone: true,
-  imports: [CommonModule, CategoryLabelPipe],
-  templateUrl: './variable-use-selection.component.html',
-  styleUrls: ['./variable-use-selection.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-variable-use-selection',
+    imports: [CommonModule, CategoryLabelPipe],
+    templateUrl: './variable-use-selection.component.html',
+    styleUrls: ['./variable-use-selection.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VariableUseSelectionComponent
   implements OnChanges, AfterViewInit, OnDestroy

@@ -18,12 +18,11 @@ import {
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
 @Component({
-  selector: 'app-summary-table',
-  standalone: true,
-  imports: [CommonModule, SortArrowsComponent],
-  templateUrl: './summary-table.component.html',
-  styleUrls: ['./summary-table.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-summary-table',
+    imports: [CommonModule, SortArrowsComponent],
+    templateUrl: './summary-table.component.html',
+    styleUrls: ['./summary-table.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SummaryTableComponent implements OnChanges {
   @Output() newSort = new EventEmitter<void>();

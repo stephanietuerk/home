@@ -37,19 +37,18 @@ import { VicBarsConfig, VicBarsTooltipData } from './bars.config';
 
 export const BARS = new InjectionToken<BarsComponent>('BarsComponent');
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[vic-data-marks-bars]',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './bars.component.html',
-  styleUrls: ['./bars.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    { provide: DATA_MARKS, useExisting: BarsComponent },
-    { provide: BARS, useExisting: BarsComponent },
-    { provide: ChartComponent, useExisting: XyChartComponent },
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[vic-data-marks-bars]',
+    imports: [CommonModule],
+    templateUrl: './bars.component.html',
+    styleUrls: ['./bars.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        { provide: DATA_MARKS, useExisting: BarsComponent },
+        { provide: BARS, useExisting: BarsComponent },
+        { provide: ChartComponent, useExisting: XyChartComponent },
+    ]
 })
 export class BarsComponent
   extends XyDataMarksBase

@@ -11,15 +11,16 @@ import { ListboxOptionComponent } from '../listbox-option/listbox-option.compone
 import { ListboxComponent } from '../listbox/listbox.component';
 
 @Component({
-  selector: 'app-select-all-listbox-option',
-  templateUrl: '../listbox-option/listbox-option.component.html',
-  styleUrls: ['../listbox-option/listbox-option.component.scss'],
-  providers: [
-    {
-      provide: ListboxOptionComponent,
-      useExisting: forwardRef(() => SelectAllListboxOptionComponent),
-    },
-  ],
+    selector: 'app-select-all-listbox-option',
+    templateUrl: '../listbox-option/listbox-option.component.html',
+    styleUrls: ['../listbox-option/listbox-option.component.scss'],
+    providers: [
+        {
+            provide: ListboxOptionComponent,
+            useExisting: forwardRef(() => SelectAllListboxOptionComponent),
+        },
+    ],
+    standalone: false
 })
 export class SelectAllListboxOptionComponent<T>
   extends ListboxOptionComponent<T>

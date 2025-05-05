@@ -8,12 +8,11 @@ import { getProjectFromURL } from '../core/utilities/route.utils';
 import { ContentNavbarComponent } from '../shared/components/content-navbar/content-navbar.component';
 
 @Component({
-  selector: 'app-project',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, ContentNavbarComponent],
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss'],
-  hostDirectives: [CdkScrollable],
+    selector: 'app-project',
+    imports: [CommonModule, RouterOutlet, ContentNavbarComponent],
+    templateUrl: './project.component.html',
+    styleUrls: ['./project.component.scss'],
+    hostDirectives: [CdkScrollable]
 })
 export class ProjectComponent implements OnInit {
   project: Project;

@@ -11,11 +11,10 @@ import { ColorForFieldPipe } from '../../art-history-fields.pipe';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
 @Component({
-  selector: 'app-job-chart',
-  standalone: true,
-  imports: [CommonModule, VicHtmlTooltipModule, ColorForFieldPipe],
-  templateUrl: './job-chart.component.html',
-  styleUrls: ['./job-chart.component.scss'],
+    selector: 'app-job-chart',
+    imports: [CommonModule, VicHtmlTooltipModule, ColorForFieldPipe],
+    templateUrl: './job-chart.component.html',
+    styleUrls: ['./job-chart.component.scss']
 })
 export class JobChartComponent {
   @Input() job: JobsBySchoolDatum;

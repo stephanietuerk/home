@@ -38,12 +38,11 @@ import {
 } from '../models/beyond-enums.model';
 
 @Component({
-  selector: 'app-beyond-bar',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './beyond-bar.component.html',
-  styleUrls: ['./beyond-bar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-beyond-bar',
+    imports: [CommonModule],
+    templateUrl: './beyond-bar.component.html',
+    styleUrls: ['./beyond-bar.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BeyondBarComponent implements OnInit, OnChanges {
   @Input() electionYear: string;

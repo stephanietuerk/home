@@ -56,13 +56,14 @@ export type ListboxValue<T> =
 export type SelectedOptionsCountLabel = { singular: string; plural: string };
 
 @Component({
-  selector: 'app-listbox',
-  templateUrl: './listbox.component.html',
-  providers: [ListboxFilteringService, ListboxScrollService],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'combobox-listbox-component',
-  },
+    selector: 'app-listbox',
+    templateUrl: './listbox.component.html',
+    providers: [ListboxFilteringService, ListboxScrollService],
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        class: 'combobox-listbox-component',
+    },
+    standalone: false
 })
 export class ListboxComponent<T>
   extends Unsubscribe

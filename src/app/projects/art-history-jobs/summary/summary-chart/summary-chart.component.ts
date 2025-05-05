@@ -38,30 +38,29 @@ class SummaryChartTooltipData implements StackedAreaEventOutput {
 }
 
 @Component({
-  selector: 'app-summary-chart',
-  standalone: true,
-  imports: [
-    CommonModule,
-    VicHtmlTooltipModule,
-    VicStackedAreaModule,
-    VicXyChartModule,
-    VicXyBackgroundModule,
-    VicXQuantitativeAxisModule,
-    VicYQuantitativeAxisModule,
-  ],
-  templateUrl: './summary-chart.component.html',
-  styleUrls: ['./summary-chart.component.scss'],
-  providers: [
-    {
-      provide: DATA_MARKS,
-      useExisting: SummaryChartComponent,
-    },
-    {
-      provide: STACKED_AREA,
-      useExisting: SummaryChartComponent,
-    },
-  ],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-summary-chart',
+    imports: [
+        CommonModule,
+        VicHtmlTooltipModule,
+        VicStackedAreaModule,
+        VicXyChartModule,
+        VicXyBackgroundModule,
+        VicXQuantitativeAxisModule,
+        VicYQuantitativeAxisModule,
+    ],
+    templateUrl: './summary-chart.component.html',
+    styleUrls: ['./summary-chart.component.scss'],
+    providers: [
+        {
+            provide: DATA_MARKS,
+            useExisting: SummaryChartComponent,
+        },
+        {
+            provide: STACKED_AREA,
+            useExisting: SummaryChartComponent,
+        },
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class SummaryChartComponent {
   @Input() dataMarksConfig: SummaryChartConfig;

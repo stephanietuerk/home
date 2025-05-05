@@ -19,13 +19,14 @@ import { DATA_MARKS } from '../data-marks/data-marks.token';
 import { VicStackDatum, VicStackedBarsConfig } from './stacked-bars.config';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[vic-data-marks-stacked-bars]',
-  templateUrl: '../bars/bars.component.html',
-  styleUrls: ['./stacked-bars.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: DATA_MARKS, useExisting: StackedBarsComponent }],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[vic-data-marks-stacked-bars]',
+    templateUrl: '../bars/bars.component.html',
+    styleUrls: ['./stacked-bars.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{ provide: DATA_MARKS, useExisting: StackedBarsComponent }],
+    standalone: false
 })
 export class StackedBarsComponent extends BarsComponent {
   @Input() override config: VicStackedBarsConfig;

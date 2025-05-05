@@ -9,19 +9,18 @@ import { SchoolFiltersComponent } from './school-filters/school-filters.componen
 import { SchoolsDataService } from './schools-data.service';
 
 @Component({
-  selector: 'app-schools',
-  standalone: true,
-  imports: [
-    CommonModule,
-    SchoolFiltersComponent,
-    MatExpansionModule,
-    SchoolChartComponent,
-    SubstringHighlightDirective,
-    ColorForFieldPipe,
-  ],
-  templateUrl: './schools.component.html',
-  styleUrls: ['./schools.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-schools',
+    imports: [
+        CommonModule,
+        SchoolFiltersComponent,
+        MatExpansionModule,
+        SchoolChartComponent,
+        SubstringHighlightDirective,
+        ColorForFieldPipe,
+    ],
+    templateUrl: './schools.component.html',
+    styleUrls: ['./schools.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SchoolsComponent implements OnInit {
   panelIsOpen: boolean[] = [true];

@@ -6,7 +6,8 @@ import { InputEventDirective } from '../events/input-event.directive';
 import { StackedAreaComponent, STACKED_AREA } from './stacked-area.component';
 
 @Directive({
-  selector: '[vicLinesInputEffects]',
+    selector: '[vicLinesInputEffects]',
+    standalone: false
 })
 export class StackedAreaInputEventDirective extends InputEventDirective {
   @Input('vicStackedAreaInputEffects')

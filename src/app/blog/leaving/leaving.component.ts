@@ -4,12 +4,11 @@ import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
 import { QuestionComponent } from './question/question.component';
 
 @Component({
-  selector: 'app-leaving',
-  standalone: true,
-  imports: [CommonModule, QuestionComponent],
-  templateUrl: './leaving.component.html',
-  styleUrls: ['./leaving.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-leaving',
+    imports: [CommonModule, QuestionComponent],
+    templateUrl: './leaving.component.html',
+    styleUrls: ['./leaving.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class LeavingComponent implements OnInit {
   whatQuestion: any;

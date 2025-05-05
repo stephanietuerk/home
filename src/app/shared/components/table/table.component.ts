@@ -6,11 +6,10 @@ import { SortArrowsComponent } from '../sort-arrows/sort-arrows.component';
 import { TableHeader, TableSort } from './table.model';
 
 @Component({
-  selector: 'app-table',
-  standalone: true,
-  imports: [CommonModule, SortArrowsComponent],
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+    selector: 'app-table',
+    imports: [CommonModule, SortArrowsComponent],
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
   @Input() headers: TableHeader[];

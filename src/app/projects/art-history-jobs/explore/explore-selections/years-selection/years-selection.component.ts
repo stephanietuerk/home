@@ -20,21 +20,20 @@ export interface YearsSelection {
 }
 
 @Component({
-  selector: 'app-years-selection',
-  standalone: true,
-  imports: [],
-  templateUrl: './years-selection.component.html',
-  styleUrls: [
-    '../../../styles/art-history-jobs.scss',
-    './years-selection.component.scss',
-  ],
-  encapsulation: ViewEncapsulation.None,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
+    selector: 'app-years-selection',
+    imports: [],
+    templateUrl: './years-selection.component.html',
+    styleUrls: [
+        '../../../styles/art-history-jobs.scss',
+        './years-selection.component.scss',
+    ],
+    encapsulation: ViewEncapsulation.None,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ]
 })
 export class YearsSelectionComponent extends Unsubscribe implements OnInit {
   @ViewChild('slider', { static: true }) slider: ElementRef;

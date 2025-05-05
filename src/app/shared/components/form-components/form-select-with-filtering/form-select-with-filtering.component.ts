@@ -17,21 +17,20 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-form-select-with-filtering',
-  standalone: true,
-  imports: [CommonModule, MatAutocompleteModule, ReactiveFormsModule],
-  templateUrl: './form-select-with-filtering.component.html',
-  styleUrls: [
-    '../form-select/form-select.component.scss',
-    './form-select-with-filtering.component.scss',
-  ],
-  encapsulation: ViewEncapsulation.None,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
+    selector: 'app-form-select-with-filtering',
+    imports: [CommonModule, MatAutocompleteModule, ReactiveFormsModule],
+    templateUrl: './form-select-with-filtering.component.html',
+    styleUrls: [
+        '../form-select/form-select.component.scss',
+        './form-select-with-filtering.component.scss',
+    ],
+    encapsulation: ViewEncapsulation.None,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ]
 })
 export class FormSelectWithFilteringComponent implements OnChanges {
   @Input() control: FormControl<string>;

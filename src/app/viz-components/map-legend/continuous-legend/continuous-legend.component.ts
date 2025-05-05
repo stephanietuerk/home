@@ -7,11 +7,10 @@ import { MapLegendContent } from '../map-legend-content';
  * @internal
  */
 @Component({
-  selector: 'vic-continuous-legend',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './continuous-legend.component.html',
-  styleUrls: ['./continuous-legend.component.scss'],
+    selector: 'vic-continuous-legend',
+    imports: [CommonModule],
+    templateUrl: './continuous-legend.component.html',
+    styleUrls: ['./continuous-legend.component.scss']
 })
 export class ContinuousLegendComponent
   extends MapLegendContent

@@ -2,7 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
-@import '~nouislider/dist/nouislider.min.css';
+@import 'nouislider/dist/nouislider.min.css';
 
 .noUi-art-history {
   &.noUi-target {

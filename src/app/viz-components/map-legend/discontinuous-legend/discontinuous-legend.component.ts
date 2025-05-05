@@ -6,11 +6,10 @@ import { MapLegendContent } from '../map-legend-content';
  * @internal
  */
 @Component({
-  selector: 'vic-discontinuous-legend',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './discontinuous-legend.component.html',
-  styleUrls: ['./discontinuous-legend.component.scss'],
+    selector: 'vic-discontinuous-legend',
+    imports: [CommonModule],
+    templateUrl: './discontinuous-legend.component.html',
+    styleUrls: ['./discontinuous-legend.component.scss']
 })
 export class DiscontinuousLegendComponent
   extends MapLegendContent

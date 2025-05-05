@@ -42,11 +42,12 @@ export interface XyChartScales {
 }
 
 @Component({
-  selector: 'vic-xy-chart',
-  templateUrl: '../chart/chart.component.html',
-  styleUrls: ['../chart/chart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: CHART, useExisting: XyChartComponent }],
+    selector: 'vic-xy-chart',
+    templateUrl: '../chart/chart.component.html',
+    styleUrls: ['../chart/chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{ provide: CHART, useExisting: XyChartComponent }],
+    standalone: false
 })
 export class XyChartComponent extends ChartComponent implements Chart, OnInit {
   private scales: BehaviorSubject<XyChartScales> = new BehaviorSubject(null);

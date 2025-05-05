@@ -4,11 +4,10 @@ import { InputOption } from '../input-option.model';
 import { RadioInputComponent } from '../radio-input/radio-input.component';
 
 @Component({
-  selector: 'app-radio-group',
-  standalone: true,
-  imports: [CommonModule, RadioInputComponent],
-  templateUrl: './radio-group.component.html',
-  styleUrls: [],
+    selector: 'app-radio-group',
+    imports: [CommonModule, RadioInputComponent],
+    templateUrl: './radio-group.component.html',
+    styleUrls: []
 })
 export class RadioGroupComponent implements OnInit {
   @Input() options: InputOption[];

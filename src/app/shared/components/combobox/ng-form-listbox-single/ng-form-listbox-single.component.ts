@@ -8,13 +8,14 @@ import {
 } from '../listbox/listbox.component';
 
 @Component({
-  selector: 'app-ng-form-listbox-single',
-  templateUrl: '../listbox/listbox.component.html',
-  providers: [ListboxFilteringService, ListboxScrollService],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'combobox-listbox-component',
-  },
+    selector: 'app-ng-form-listbox-single',
+    templateUrl: '../listbox/listbox.component.html',
+    providers: [ListboxFilteringService, ListboxScrollService],
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        class: 'combobox-listbox-component',
+    },
+    standalone: false
 })
 export class NgFormListboxSingleComponent<T> extends ListboxComponent<T> {
   @Input() control: FormControl<SingleSelectListboxValue<T>>;

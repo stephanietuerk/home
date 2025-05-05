@@ -23,9 +23,10 @@ export interface ListboxOptionPropertyChange<T> {
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'app-listbox-option',
-  templateUrl: './listbox-option.component.html',
-  styleUrls: ['./listbox-option.component.scss'],
+    selector: 'app-listbox-option',
+    templateUrl: './listbox-option.component.html',
+    styleUrls: ['./listbox-option.component.scss'],
+    standalone: false
 })
 export class ListboxOptionComponent<T>
   extends Unsubscribe

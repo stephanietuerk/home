@@ -11,16 +11,17 @@ import { SelectionOption } from '../form-radio-input/form-radio-input.model';
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'app-form-checkbox-input',
-  templateUrl: './form-checkbox-input.component.html',
-  styleUrls: ['./form-checkbox-input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
+    selector: 'app-form-checkbox-input',
+    templateUrl: './form-checkbox-input.component.html',
+    styleUrls: ['./form-checkbox-input.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ],
+    standalone: false
 })
 export class FormCheckboxInputComponent extends Unsubscribe implements OnInit {
   _uniqueId = ++nextUniqueId;

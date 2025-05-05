@@ -14,12 +14,11 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'app-checkbox-input',
-  standalone: true,
-  imports: [CommonModule, FormatForIdPipe, SvgIconComponent],
-  templateUrl: './checkbox-input.component.html',
-  styleUrls: ['./checkbox-input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-checkbox-input',
+    imports: [CommonModule, FormatForIdPipe, SvgIconComponent],
+    templateUrl: './checkbox-input.component.html',
+    styleUrls: ['./checkbox-input.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CheckboxInputComponent implements OnInit {
   private _uniqueId = `st-${++nextUniqueId}`;

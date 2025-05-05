@@ -3,10 +3,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-combobox-example',
-  templateUrl: './combobox-example.component.html',
-  styleUrls: ['./combobox-example.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-combobox-example',
+    templateUrl: './combobox-example.component.html',
+    styleUrls: ['./combobox-example.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ComboboxExampleComponent {
   options = [

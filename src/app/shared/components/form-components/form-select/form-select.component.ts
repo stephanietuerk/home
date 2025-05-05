@@ -13,16 +13,17 @@ import {
 import { NOOP_VALUE_ACCESSOR } from '../forms.constants';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './form-select.component.html',
-  styleUrls: ['./form-select.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
+    selector: 'app-select',
+    templateUrl: './form-select.component.html',
+    styleUrls: ['./form-select.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ],
+    standalone: false
 })
 export class FormSelectComponent {
   @Input() formControlName: string;

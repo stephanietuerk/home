@@ -48,20 +48,19 @@ type BarValueLabelSelection = Selection<
 >;
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'app-change-bars',
-  standalone: true,
-  imports: [CommonModule, VicXQuantitativeAxisModule],
-  templateUrl: './change-bars.component.html',
-  styleUrls: ['./change-bars.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  providers: [
-    { provide: DATA_MARKS, useExisting: ChangeBarsComponent },
-    { provide: BARS, useExisting: ChangeBarsComponent },
-    { provide: ChartComponent, useExisting: ChangeChartComponent },
-    { provide: XyChartComponent, useExisting: ChangeChartComponent },
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'app-change-bars',
+    imports: [CommonModule, VicXQuantitativeAxisModule],
+    templateUrl: './change-bars.component.html',
+    styleUrls: ['./change-bars.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        { provide: DATA_MARKS, useExisting: ChangeBarsComponent },
+        { provide: BARS, useExisting: ChangeBarsComponent },
+        { provide: ChartComponent, useExisting: ChangeChartComponent },
+        { provide: XyChartComponent, useExisting: ChangeChartComponent },
+    ]
 })
 export class ChangeBarsComponent
   extends BarsComponent

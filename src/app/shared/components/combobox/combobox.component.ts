@@ -17,11 +17,12 @@ import { ComboboxLabelComponent } from './combobox-label/combobox-label.componen
 import { ComboboxService } from './combobox.service';
 
 @Component({
-  selector: 'app-combobox',
-  templateUrl: './combobox.component.html',
-  styleUrls: ['./combobox.component.scss'],
-  providers: [ComboboxService],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-combobox',
+    templateUrl: './combobox.component.html',
+    styleUrls: ['./combobox.component.scss'],
+    providers: [ComboboxService],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ComboboxComponent
   extends Unsubscribe

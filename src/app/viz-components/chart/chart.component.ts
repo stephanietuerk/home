@@ -69,12 +69,11 @@ export interface ChartScaling {
  *  and scaled svg element in the DOM. USeful for adding elements that require access to chart scales.
  */
 @Component({
-  selector: 'vic-chart',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss'],
-  providers: [{ provide: CHART, useExisting: ChartComponent }],
+    selector: 'vic-chart',
+    imports: [CommonModule],
+    templateUrl: './chart.component.html',
+    styleUrls: ['./chart.component.scss'],
+    providers: [{ provide: CHART, useExisting: ChartComponent }]
 })
 export class ChartComponent implements Chart, OnInit, OnChanges, OnDestroy {
   @ViewChild('div', { static: true }) divRef: ElementRef<HTMLDivElement>;

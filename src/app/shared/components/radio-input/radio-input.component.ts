@@ -14,12 +14,11 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'app-radio-input',
-  standalone: true,
-  imports: [CommonModule, SvgIconComponent, FormatForIdPipe],
-  templateUrl: './radio-input.component.html',
-  styleUrls: ['./radio-input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-radio-input',
+    imports: [CommonModule, SvgIconComponent, FormatForIdPipe],
+    templateUrl: './radio-input.component.html',
+    styleUrls: ['./radio-input.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class RadioInputComponent implements OnInit {
   private _uniqueId = `${++nextUniqueId}`;

@@ -44,25 +44,24 @@ export const GEOGRAPHIES = new InjectionToken<GeographiesComponent>(
   'GeographiesComponent'
 );
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[vic-data-marks-geographies]',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './geographies.component.html',
-  styleUrls: ['./geographies.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    { provide: DATA_MARKS, useExisting: GeographiesComponent },
-    {
-      provide: GEOGRAPHIES,
-      useExisting: GeographiesComponent,
-    },
-    {
-      provide: ChartComponent,
-      useExisting: MapChartComponent,
-    },
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[vic-data-marks-geographies]',
+    imports: [CommonModule],
+    templateUrl: './geographies.component.html',
+    styleUrls: ['./geographies.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        { provide: DATA_MARKS, useExisting: GeographiesComponent },
+        {
+            provide: GEOGRAPHIES,
+            useExisting: GeographiesComponent,
+        },
+        {
+            provide: ChartComponent,
+            useExisting: MapChartComponent,
+        },
+    ]
 })
 export class GeographiesComponent
   extends MapDataMarksBase

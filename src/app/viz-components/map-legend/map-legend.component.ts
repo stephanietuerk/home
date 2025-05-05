@@ -8,15 +8,14 @@ import { ContinuousLegendComponent } from './continuous-legend/continuous-legend
 import { DiscontinuousLegendComponent } from './discontinuous-legend/discontinuous-legend.component';
 
 @Component({
-  selector: 'vic-map-legend',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ContinuousLegendComponent,
-    DiscontinuousLegendComponent,
-  ],
-  templateUrl: './map-legend.component.html',
-  styleUrls: ['./map-legend.component.scss'],
+    selector: 'vic-map-legend',
+    imports: [
+        CommonModule,
+        ContinuousLegendComponent,
+        DiscontinuousLegendComponent,
+    ],
+    templateUrl: './map-legend.component.html',
+    styleUrls: ['./map-legend.component.scss']
 })
 export class MapLegendComponent extends Unsubscribe implements OnInit {
   @Input() width: number;

@@ -34,8 +34,9 @@ import {
 const defaultPanelClass = 'vic-html-tooltip-overlay';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'vic-html-tooltip',
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: 'vic-html-tooltip',
+    standalone: false
 })
 export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   @Input() template: TemplateRef<unknown>;

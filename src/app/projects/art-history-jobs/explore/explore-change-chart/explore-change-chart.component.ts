@@ -70,23 +70,22 @@ interface ViewModel {
   categoryLabel: string;
 }
 @Component({
-  selector: 'app-explore-change-chart',
-  standalone: true,
-  imports: [
-    CommonModule,
-    VicXyBackgroundModule,
-    VicXyChartModule,
-    VicXQuantitativeAxisModule,
-    VicHtmlTooltipModule,
-    VicBarsModule,
-    D3FormatPipe,
-    ChangeChartComponent,
-    ChangeBarsComponent,
-    ChangeChartToggleComponent,
-  ],
-  templateUrl: './explore-change-chart.component.html',
-  styleUrls: ['./explore-change-chart.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-explore-change-chart',
+    imports: [
+        CommonModule,
+        VicXyBackgroundModule,
+        VicXyChartModule,
+        VicXQuantitativeAxisModule,
+        VicHtmlTooltipModule,
+        VicBarsModule,
+        D3FormatPipe,
+        ChangeChartComponent,
+        ChangeBarsComponent,
+        ChangeChartToggleComponent,
+    ],
+    templateUrl: './explore-change-chart.component.html',
+    styleUrls: ['./explore-change-chart.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ExploreChangeChartComponent implements OnInit {
   @ViewChild('changeChart') changeChart: ElementRef<Element>;

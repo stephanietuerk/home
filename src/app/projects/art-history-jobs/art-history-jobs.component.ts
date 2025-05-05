@@ -32,18 +32,17 @@ enum Section {
 }
 
 @Component({
-  selector: 'app-art-history-jobs',
-  standalone: true,
-  imports: [
-    CommonModule,
-    SummaryComponent,
-    ExploreComponent,
-    SchoolsComponent,
-    DataAcquisitionComponent,
-  ],
-  templateUrl: './art-history-jobs.component.html',
-  styleUrls: ['./art-history-jobs.component.scss'],
-  providers: [ExploreDataService, MessageService, OverlayService],
+    selector: 'app-art-history-jobs',
+    imports: [
+        CommonModule,
+        SummaryComponent,
+        ExploreComponent,
+        SchoolsComponent,
+        DataAcquisitionComponent,
+    ],
+    templateUrl: './art-history-jobs.component.html',
+    styleUrls: ['./art-history-jobs.component.scss'],
+    providers: [ExploreDataService, MessageService, OverlayService]
 })
 export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
   @ViewChild('intro') intro: ElementRef;

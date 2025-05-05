@@ -32,15 +32,16 @@ export const STACKED_AREA = new InjectionToken<StackedAreaComponent>(
 );
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[vic-data-marks-stacked-area]',
-  templateUrl: './stacked-area.component.html',
-  styleUrls: ['./stacked-area.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    { provide: DATA_MARKS, useExisting: StackedAreaComponent },
-    { provide: STACKED_AREA, useExisting: StackedAreaComponent },
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[vic-data-marks-stacked-area]',
+    templateUrl: './stacked-area.component.html',
+    styleUrls: ['./stacked-area.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        { provide: DATA_MARKS, useExisting: StackedAreaComponent },
+        { provide: STACKED_AREA, useExisting: StackedAreaComponent },
+    ],
+    standalone: false
 })
 export class StackedAreaComponent
   extends XyDataMarksBase

@@ -16,12 +16,11 @@ import {
   ElectionYear,
 } from './models/beyond-enums.model';
 @Component({
-  selector: 'app-beyond',
-  standalone: true,
-  imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
-  templateUrl: './beyond.component.html',
-  styleUrls: ['./beyond.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-beyond',
+    imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
+    templateUrl: './beyond.component.html',
+    styleUrls: ['./beyond.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BeyondComponent implements OnInit {
   electionYear: string;

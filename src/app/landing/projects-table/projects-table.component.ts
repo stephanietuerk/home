@@ -8,18 +8,17 @@ import { HighlightRowOnHoverDirective } from '../../shared/directives/highlight-
 import { ProjectOverviewComponent } from '../project-overview/project-overview.component';
 
 @Component({
-  selector: 'app-projects-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ProjectOverviewComponent,
-    SvgIconComponent,
-    HighlightRowOnHoverDirective,
-  ],
-  templateUrl: './projects-table.component.html',
-  styleUrls: ['./projects-table.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  animations: [animations.slide('project-overview-component')],
+    selector: 'app-projects-table',
+    imports: [
+        CommonModule,
+        ProjectOverviewComponent,
+        SvgIconComponent,
+        HighlightRowOnHoverDirective,
+    ],
+    templateUrl: './projects-table.component.html',
+    styleUrls: ['./projects-table.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations: [animations.slide('project-overview-component')]
 })
 export class ProjectsTableComponent implements OnInit {
   sections: any;

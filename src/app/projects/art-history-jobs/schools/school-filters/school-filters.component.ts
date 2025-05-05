@@ -19,12 +19,11 @@ import {
 } from '../schools-data.service';
 
 @Component({
-  selector: 'app-school-filters',
-  standalone: true,
-  imports: [CommonModule, MatButtonToggleModule, ComboboxModule],
-  templateUrl: './school-filters.component.html',
-  styleUrls: ['./school-filters.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-school-filters',
+    imports: [CommonModule, MatButtonToggleModule, ComboboxModule],
+    templateUrl: './school-filters.component.html',
+    styleUrls: ['./school-filters.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SchoolFiltersComponent
   extends Unsubscribe

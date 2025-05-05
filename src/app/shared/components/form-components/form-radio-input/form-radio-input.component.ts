@@ -20,16 +20,17 @@ import { SelectionOption } from './form-radio-input.model';
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'app-form-radio-input',
-  templateUrl: './form-radio-input.component.html',
-  styleUrls: ['./form-radio-input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
+    selector: 'app-form-radio-input',
+    templateUrl: './form-radio-input.component.html',
+    styleUrls: ['./form-radio-input.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ],
+    standalone: false
 })
 export class FormRadioInputComponent
   extends Unsubscribe

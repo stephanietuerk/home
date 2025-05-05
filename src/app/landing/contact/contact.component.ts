@@ -3,11 +3,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon.component';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [CommonModule, SvgIconComponent],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-contact',
+    imports: [CommonModule, SvgIconComponent],
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ContactComponent {}

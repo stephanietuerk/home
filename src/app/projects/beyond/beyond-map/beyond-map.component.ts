@@ -19,12 +19,11 @@ import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
 import { BeyondService } from '../beyond.service';
 
 @Component({
-  selector: 'app-beyond-map',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './beyond-map.component.html',
-  styleUrls: ['./beyond-map.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-beyond-map',
+    imports: [CommonModule],
+    templateUrl: './beyond-map.component.html',
+    styleUrls: ['./beyond-map.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   @Input() electionYear: string;

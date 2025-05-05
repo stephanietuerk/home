@@ -20,13 +20,12 @@ import { ExploreDataService } from '../../explore-data.service';
 import { FilterType, VariableOption } from '../explore-selections.model';
 
 @Component({
-  selector: 'app-variable-single-multi-selection',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './variable-single-multi-selection.component.html',
-  styleUrls: ['./variable-single-multi-selection.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-variable-single-multi-selection',
+    imports: [CommonModule],
+    templateUrl: './variable-single-multi-selection.component.html',
+    styleUrls: ['./variable-single-multi-selection.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class VariableSingleMultiSelectionComponent<T extends VariableOption>
   implements OnChanges, OnInit, AfterViewInit, OnDestroy

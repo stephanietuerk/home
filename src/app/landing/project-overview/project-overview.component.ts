@@ -4,11 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
 
 @Component({
-  selector: 'app-project-overview',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './project-overview.component.html',
-  styleUrls: ['./project-overview.component.scss'],
+    selector: 'app-project-overview',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './project-overview.component.html',
+    styleUrls: ['./project-overview.component.scss']
 })
 export class ProjectOverviewComponent {
   @Input() project: Project;

@@ -4,11 +4,10 @@ import { CheckboxInputComponent } from '../checkbox-input/checkbox-input.compone
 import { InputOption } from '../input-option.model';
 
 @Component({
-  selector: 'app-checkbox-group',
-  standalone: true,
-  imports: [CommonModule, CheckboxInputComponent],
-  templateUrl: './checkbox-group.component.html',
-  styleUrls: ['./checkbox-group.component.scss'],
+    selector: 'app-checkbox-group',
+    imports: [CommonModule, CheckboxInputComponent],
+    templateUrl: './checkbox-group.component.html',
+    styleUrls: ['./checkbox-group.component.scss']
 })
 export class CheckboxGroupComponent implements OnInit {
   @Input() options: InputOption[];

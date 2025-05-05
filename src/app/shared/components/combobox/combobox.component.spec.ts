@@ -7,10 +7,11 @@ import { ComboboxService } from './combobox.service';
 import { ComboboxMainServiceStub } from './testing/main.service.stub';
 
 @Component({
-  selector: 'app-test-cmp',
-  template: `<app-combobox
+    selector: 'app-test-cmp',
+    template: `<app-combobox
     ><app-combobox-label></app-combobox-label
   ></app-combobox>`,
+    standalone: false
 })
 class TestWrapperComponent {}
 
