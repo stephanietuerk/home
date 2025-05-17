@@ -1,5 +1,6 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 .schools-encapsulation-container {
@@ -91,7 +92,7 @@
   }
 
   .school-name {
-    @extend %slab-medium;
+    @extend %slab-expressive-medium;
     font-size: 0.9rem;
     line-height: 1;
     padding-bottom: grid(1);

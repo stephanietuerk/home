@@ -1,13 +1,14 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 :host {
   @extend %content-component-host;
   background: linear-gradient(
     180deg,
-    get($colors, 'grays.light-4'),
-    get($colors, 'grays.light-3')
+    $color-light-gray-lightest,
+    $color-light-gray-light
   );
 }
 
@@ -29,6 +30,6 @@
 }
 
 .date {
-  @extend %subtitle2;
+  @include label-xs;
   padding-bottom: grid(2);
 }

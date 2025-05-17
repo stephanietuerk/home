@@ -26,6 +26,7 @@
         <mat-button-toggle-group
           class="sort-selection"
           aria-label="Sort charts by"
+          [hideSingleSelectionIndicator]="true"
           [value]="(data.state$ | async).sortOrder"
           (change)="data.updateSortOrder($event.value)"
         >
@@ -33,7 +34,8 @@
             *ngFor="let option of data.sortOptions; let i = index"
             class="sort-option"
             [value]="option.value"
-            >{{option.label}}<span
+            >{{ option.label
+            }}<span
               class="material-symbols-outlined arrow-icon down"
               *ngIf="option.value === SchoolSort.desc"
               >south</span
@@ -61,7 +63,10 @@
           </app-textbox>
           <app-listbox
             [isMultiSelect]="true"
-            [selectedOptionsCountLabel]="{ singular: 'field', plural: 'fields' }"
+            [selectedOptionsCountLabel]="{
+              singular: 'field',
+              plural: 'fields',
+            }"
             (valueChanges)="data.updateState($event, SchoolStateProperty.field)"
           >
             <app-select-all-listbox-option>
@@ -81,7 +86,9 @@
             </app-select-all-listbox-option>
             <app-listbox-option
               *ngFor="let option of data.fieldOptions"
-              [selected]="(data.state$ | async).field.includes(option.name.full)"
+              [selected]="
+                (data.state$ | async).field.includes(option.name.full)
+              "
               >{{ option.name.full }}
               <span
                 class="material-symbols-outlined icon checkbox"
@@ -109,8 +116,13 @@
           </app-textbox>
           <app-listbox
             [isMultiSelect]="true"
-            [selectedOptionsCountLabel]="{ singular: 'status', plural: 'statuses' }"
-            (valueChanges)="data.updateState($event, SchoolStateProperty.tenure)"
+            [selectedOptionsCountLabel]="{
+              singular: 'status',
+              plural: 'statuses',
+            }"
+            (valueChanges)="
+              data.updateState($event, SchoolStateProperty.tenure)
+            "
           >
             <app-select-all-listbox-option>
               Select all

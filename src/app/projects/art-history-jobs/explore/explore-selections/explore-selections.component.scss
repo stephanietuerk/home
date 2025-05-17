@@ -4,7 +4,7 @@
 @use 'functions' as *;
 
 %input-element-label {
-  @extend %slab-medium;
+  @extend %slab-expressive-medium;
   display: flex;
   font-size: 0.85rem;
   color: $color-highlight;
@@ -45,7 +45,7 @@ $panel-opacity: 0.9;
   .selection-title {
     display: flex;
     align-items: center;
-    @extend %slab-medium;
+    @extend %slab-expressive-medium;
     font-size: 1.15rem;
     color: $color-highlight;
     border-bottom: 2px solid transparent;

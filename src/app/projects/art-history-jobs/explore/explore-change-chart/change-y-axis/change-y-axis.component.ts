@@ -18,6 +18,7 @@ export class ChangeYAxisComponent extends YOrdinalAxisComponent {
     super(chart);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   override setAxis(axisFunction: any): void {
     super.setAxis(axisFunction);
     this.axis.tickPadding(0);

@@ -2,7 +2,6 @@
 @use 'placeholders' as *;
 
 .comment-input {
-  @extend %sans-regular;
   display: block;
   background: $color-light-gray-lightest;
   padding: 0.375rem 0.75rem;

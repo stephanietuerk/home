@@ -9,22 +9,14 @@
 
   .contact-title {
     @extend %section-header;
+    text-align: center;
+    padding-bottom: grid(6);
   }
 
   .contact-container {
     @extend %flex-column;
     align-items: center;
-    padding-bottom: grid(3);
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-  }
-
-  .contact-container {
-    @extend %flex-column;
-    align-items: center;
-    padding-bottom: grid(3);
+    padding-bottom: grid(6);
 
     .contact-text {
       @extend %body1;

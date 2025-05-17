@@ -1,4 +1,12 @@
 <nav class="nav-container">
-    <a class="return-button" [routerLink]="['/main']"> &larr; return to main site </a>
-    <h1 class="project-name">{{ title }}</h1>
+  <a
+    class="return-button"
+    [routerLink]="['/main']"
+    (pointerenter)="hovered = true"
+    (pointerleave)="hovered = false"
+  >
+    <app-project-arrow class="arrow" [hovered]="hovered"></app-project-arrow>
+    <span class="return-text">return to main site</span>
+  </a>
+  <h1 class="project-name">{{ title }}</h1>
 </nav>

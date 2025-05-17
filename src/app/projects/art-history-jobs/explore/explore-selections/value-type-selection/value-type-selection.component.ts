@@ -14,11 +14,11 @@ import { valueTypeOptions } from '../explore-selections.constants';
 import { ValueType } from '../explore-selections.model';
 
 @Component({
-    selector: 'app-value-type-selection',
-    imports: [CommonModule],
-    templateUrl: './value-type-selection.component.html',
-    styleUrls: ['./value-type-selection.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-value-type-selection',
+  imports: [CommonModule],
+  templateUrl: './value-type-selection.component.html',
+  styleUrls: ['./value-type-selection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ValueTypeSelectionComponent implements AfterViewInit, OnDestroy {
   @ViewChildren('hiddenInput') hiddenInputs: QueryList<

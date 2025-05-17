@@ -1,0 +1,24 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+@use 'functions' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-header {
+  @extend %section-header;
+  text-align: center;
+}
+
+.instruction-text {
+  text-align: center;
+}
+
+.projects-table-component {
+  padding-top: grid(8);
+  display: block;
+}

@@ -1,0 +1,53 @@
+$transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+:host {
+  display: block;
+}
+
+.arrow-shaft {
+  transition: transform $transition;
+}
+
+.arrow-head {
+  transition: transform $transition 0.03s;
+}
+
+.icon:not(.compact) .arrow-shaft {
+  transform: scaleY(1);
+}
+
+.icon:not(.compact) .arrow-head {
+  transform: translateY(0);
+}
+
+.icon.expanded:not(.compact) .arrow-shaft {
+  transform-origin: bottom;
+}
+
+.icon.collapsed:not(.compact) .arrow-shaft {
+  transform-origin: top;
+}
+
+.icon.hovered.collapsed:not(.compact) .arrow-shaft,
+.icon.hovered.expanded:not(.compact) .arrow-shaft {
+  transform: scaleY(1.3);
+}
+
+.icon.hovered.collapsed:not(.compact) .arrow-head {
+  transform: translateY(8px);
+}
+
+.icon.hovered.expanded:not(.compact) .arrow-head {
+  transform: translateY(-10px);
+}
+
+.icon.compact {
+  transition: transform $transition;
+}
+
+.icon.hovered.collapsed.compact .arrow-head {
+  transform: translateY(2px);
+}
+.icon.hovered.expanded.compact .arrow-head {
+  transform: translateY(-2px);
+}

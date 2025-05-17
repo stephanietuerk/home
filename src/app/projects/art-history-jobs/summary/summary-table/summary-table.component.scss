@@ -1,5 +1,6 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 .table-component {
@@ -66,14 +67,14 @@
 
   .body {
     .cell.data {
-      @extend %slab-medium;
+      @extend %slab-expressive-medium;
       font-size: 0.85rem;
       padding: grid(2) grid(2) 6px grid(2);
       color: var(--color);
       border-bottom: 1px solid $color-light-gray-light;
 
       &.row-header {
-        @extend %slab-extrabold;
+        @extend %slab-expressive-extrabold;
       }
 
       &.right {

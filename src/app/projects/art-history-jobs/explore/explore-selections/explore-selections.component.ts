@@ -42,21 +42,21 @@ export enum ExploreSelection {
 }
 
 @Component({
-    selector: 'app-explore-selections',
-    imports: [
-        CommonModule,
-        A11yModule,
-        VariableUseSelectionComponent,
-        VariableSingleMultiSelectionComponent,
-        ValueTypeSelectionComponent,
-        YearsSelectionComponent,
-    ],
-    templateUrl: './explore-selections.component.html',
-    styleUrls: ['./explore-selections.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [animations.slide('selection-interface-container')],
-    providers: [OverlayService]
+  selector: 'app-explore-selections',
+  imports: [
+    CommonModule,
+    A11yModule,
+    VariableUseSelectionComponent,
+    VariableSingleMultiSelectionComponent,
+    ValueTypeSelectionComponent,
+    YearsSelectionComponent,
+  ],
+  templateUrl: './explore-selections.component.html',
+  styleUrls: ['./explore-selections.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [animations.slide('selection-interface-container')],
+  providers: [OverlayService],
 })
 export class ExploreSelectionsComponent
   extends Unsubscribe

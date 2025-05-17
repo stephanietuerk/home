@@ -13,11 +13,11 @@ import {
 import { ExploreDataService } from '../../explore-data.service';
 
 @Component({
-    selector: 'app-change-chart-toggle',
-    imports: [CommonModule],
-    templateUrl: './change-chart-toggle.component.html',
-    styleUrls: ['./change-chart-toggle.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-change-chart-toggle',
+  imports: [CommonModule],
+  templateUrl: './change-chart-toggle.component.html',
+  styleUrls: ['./change-chart-toggle.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangeChartToggleComponent implements AfterViewInit, OnDestroy {
   @Input() currentValue: boolean;

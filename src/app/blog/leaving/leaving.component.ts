@@ -4,16 +4,20 @@ import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
 import { QuestionComponent } from './question/question.component';
 
 @Component({
-    selector: 'app-leaving',
-    imports: [CommonModule, QuestionComponent],
-    templateUrl: './leaving.component.html',
-    styleUrls: ['./leaving.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-leaving',
+  imports: [CommonModule, QuestionComponent],
+  templateUrl: './leaving.component.html',
+  styleUrls: ['./leaving.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LeavingComponent implements OnInit {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   whatQuestion: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   whoQuestion: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   meQuestions: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   youQuestions: any;
   state: { [index: string]: boolean };
 

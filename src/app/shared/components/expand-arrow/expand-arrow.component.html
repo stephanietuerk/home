@@ -1,0 +1,71 @@
+@if (!expanded) {
+  <svg
+    class="icon collapsed"
+    viewBox="0 0 61 32"
+    [class.hovered]="hovered"
+    [class.compact]="compact"
+  >
+    <path
+      class="arrow-leader"
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-linejoin="miter"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="2.9091"
+      d="M0 2.909h46.545"
+    />
+    <path
+      class="arrow-shaft"
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-linejoin="miter"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="2.9091"
+      d="M46.545 2.909v22.982"
+    />
+    <path
+      class="arrow-head"
+      stroke="currentColor"
+      fill="currentColor"
+      d="M34.618 16.291l2.036-2.036 9.891 10.473 9.891-10.473 2.036 2.036-11.927 12.8z"
+    />
+  </svg>
+}
+
+@if (expanded) {
+  <svg
+    class="icon expanded"
+    viewBox="0 0 61 32"
+    [class.hovered]="hovered"
+    [class.compact]="compact"
+  >
+    <path
+      class="arrow-leader"
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-linejoin="miter"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="2.9091"
+      d="M0 29.091h46.545"
+    ></path>
+    <path
+      class="arrow-shaft"
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-linejoin="miter"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="2.9091"
+      d="M46.545 29.091v-22.982"
+    ></path>
+    <path
+      class="arrow-head"
+      stroke="currentColor"
+      fill="currentColor"
+      d="M58.473 15.709l-2.036 2.036-9.891-10.473-9.891 10.473-2.036-2.036 11.927-12.8z"
+    ></path>
+  </svg>
+}

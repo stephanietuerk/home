@@ -1,10 +1,10 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 .selection-section-label {
-  @extend %sans-bold;
-  @extend %small-caps;
+  @include label-medium-caps-prominent;
   color: $color-highlight;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
@@ -36,7 +36,7 @@
   }
 
   .radio-input-label {
-    @extend %slab-regular;
+    @extend %slab-expressive-regular;
     font-size: 0.85rem;
     letter-spacing: 0.05rem;
     padding: grid(2) grid(4) grid(1) grid(4);

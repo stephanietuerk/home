@@ -3,36 +3,56 @@
     <p *ngFor="let text of project.description" class="info-text">{{ text }}</p>
   </div>
   <div class="text-links-container">
-    <ng-container *ngFor="let link of project.links">
-      <a
-        *ngIf="link.url"
-        class="project-link"
-        [href]="'http://' + link.url"
-        target="_blank"
-        rel="noopener"
-        >View {{ link.name.toLowerCase() }} &rarr;</a
-      >
-      <a
-        *ngIf="link.routerLink"
-        class="project-link"
-        [routerLink]="[link.routerLink]"
-        >View {{ link.name.toLowerCase() }} &rarr;</a
-      >
-    </ng-container>
+    @for (link of project.links; track $index) {
+      @if (link.url) {
+        <a
+          class="project-link"
+          [href]="'http://' + link.url"
+          target="_blank"
+          rel="noopener"
+          (pointerenter)="setHovered(link.name, true)"
+          (pointerleave)="setHovered(link.name, false)"
+          >View {{ link.name.toLowerCase() }}
+          <app-project-arrow
+            class="project-arrow"
+            [hovered]="hovered[getSanitizedKey(link.name)]"
+          ></app-project-arrow>
+        </a>
+      }
+      @if (link.routerLink) {
+        <a
+          class="project-link"
+          [routerLink]="[link.routerLink]"
+          (pointerenter)="setHovered(link.name, true)"
+          (pointerleave)="setHovered(link.name, false)"
+          >View {{ link.name.toLowerCase()
+          }}<app-project-arrow
+            class="project-arrow"
+            [hovered]="hovered[getSanitizedKey(link.name)]"
+          ></app-project-arrow
+        ></a>
+      }
+    }
   </div>
-  <div class="screenshots-container" *ngIf="project.images">
-    <a
-      *ngFor="let image of project.images; index as i"
-      class="project-link image"
-      [href]="'http://' + project.links[0].url"
-      target="_blank"
-      rel="noopener"
-    >
-      <img
-        [src]="image.path"
-        [alt]="'screenshot ' + i + ' of ' + project.title + ': ' + image.altText"
-        class="project-image"
-      />
-    </a>
-  </div>
+  @if (project.images) {
+    <div class="images-container" [class.multi]="project.images.length > 1">
+      @for (image of project.images; track $index) {
+        <div class="image-container">
+          <img
+            [style.--num-images]="project.images.length"
+            class="project-image"
+            [src]="image.path"
+            [alt]="
+              'screenshot ' +
+              $index +
+              ' of ' +
+              project.title +
+              ': ' +
+              image.altText
+            "
+          />
+        </div>
+      }
+    </div>
+  }
 </div>

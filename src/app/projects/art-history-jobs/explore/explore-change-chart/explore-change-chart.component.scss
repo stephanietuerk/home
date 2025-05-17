@@ -10,7 +10,7 @@
     line-height: 1.2;
 
     .end-year {
-      @extend %slab-bold;
+      @extend %slab-expressive-bold;
       font-style: normal;
       color: $color-highlight;
       font-size: 0.9rem;
@@ -56,7 +56,7 @@
   }
 
   .tooltip-label {
-    @extend %slab-regular;
+    @extend %slab-expressive-regular;
     display: flex;
     flex-direction: column;
     line-height: 1rem;

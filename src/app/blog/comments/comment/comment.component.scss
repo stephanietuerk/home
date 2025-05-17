@@ -1,8 +1,9 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
-$frame-color: get($colors, 'grays.light-2');
+$frame-color: $color-light-gray-medium;
 
 :host {
   box-shadow: $drop-shadow-lightest;
@@ -14,20 +15,19 @@ $frame-color: get($colors, 'grays.light-2');
 }
 
 .from {
-  @extend %small-caps;
-  @extend %sans-regular;
+  @include label-small-caps;
   font-size: 1rem;
   letter-spacing: 0.1rem;
 }
 
 .name {
-  @extend %slab-bold;
+  @extend %slab-expressive-bold;
   font-size: 1.15rem;
   padding-bottom: 0.125rem;
 }
 
 .date {
-  @extend %sans-regular-italic;
+  font-style: italic;
   padding-bottom: 0.25rem;
 }
 

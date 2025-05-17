@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { SECTIONS } from '../../core/constants/sections.constants';
 
 @Component({
-    selector: 'app-navbar',
-    imports: [CommonModule],
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+  selector: 'app-navbar',
+  imports: [CommonModule],
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   sections: string[];

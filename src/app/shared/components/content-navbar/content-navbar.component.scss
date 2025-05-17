@@ -12,24 +12,41 @@
 .nav-container {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  grid-column-gap: 0.25rem;
+  grid-column-gap: grid(1);
   width: 100%;
 
   .return-button {
-    @extend %slab-bold;
+    @extend %slab-expressive-bold;
+    cursor: pointer;
+    display: flex;
     font-size: 1rem;
     line-height: 1rem;
-    cursor: pointer;
-    padding-top: 0.5rem;
+    padding-top: grid(2);
+    transition: all 0.2s ease-in-out;
 
     @include breakpoint-max(600px) {
       font-size: 0.8rem;
     }
+
+    &:hover {
+      color: $color-highlight;
+    }
+  }
+
+  .return-text {
+    padding-left: grid(3);
+  }
+
+  .arrow {
+    rotate: 180deg;
+    transform-origin: center;
+    position: relative;
+    top: -12px;
   }
 
   .project-name {
     @extend %h5;
-    padding-top: 0.5rem;
+    padding-top: grid(2);
     text-align: center;
     @include breakpoint-max(600px) {
       font-size: 1rem;

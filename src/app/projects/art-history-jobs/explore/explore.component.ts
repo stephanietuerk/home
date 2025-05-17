@@ -12,15 +12,15 @@ import { ExploreSelectionsComponent } from './explore-selections/explore-selecti
 import { ExploreSelections } from './explore-selections/explore-selections.model';
 
 @Component({
-    selector: 'app-explore',
-    imports: [
-        CommonModule,
-        ExploreSelectionsComponent,
-        ExploreAcrossTimeChartComponent,
-        ExploreChangeChartComponent,
-    ],
-    templateUrl: './explore.component.html',
-    styleUrls: ['./explore.component.scss']
+  selector: 'app-explore',
+  imports: [
+    CommonModule,
+    ExploreSelectionsComponent,
+    ExploreAcrossTimeChartComponent,
+    ExploreChangeChartComponent,
+  ],
+  templateUrl: './explore.component.html',
+  styleUrls: ['./explore.component.scss'],
 })
 export class ExploreComponent implements OnInit {
   selections: BehaviorSubject<ExploreSelections> = new BehaviorSubject(null);

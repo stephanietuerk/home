@@ -1,185 +1,185 @@
 @use 'vars' as *;
 @use 'functions' as *;
+@use 'typography' as *;
 
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
-%ligatures {
-  font-variant-ligatures: common-ligatures;
-  -moz-font-feature-settings: 'liga', 'clig';
-  -webkit-font-feature-settings: 'liga', 'clig';
-  font-feature-settings: 'liga', 'clig';
-}
 
-%small-caps {
-  font-variant-caps: small-caps;
-  -moz-font-feature-settings: 'smcp';
-  -webkit-font-feature-settings: 'smcp';
-  font-feature-settings: 'smcp';
-}
+// %small-caps {
+//   font-variant-caps: small-caps;
+//   -moz-font-feature-settings: 'smcp';
+//   -webkit-font-feature-settings: 'smcp';
+//   font-feature-settings: 'smcp';
+// }
 
-%slab {
-  font-family: 'Recursive', sans-serif;
-  font-variation-settings: 
-    "wght" 400, 
-    "CASL" 0.3, 
-    "MONO" 0.3, 
-    "slnt" 0;
-}
+// %slab-expressive-medium {
+//   @extend %slab-expressive-medium;
+//   font-variation-settings:
+//     'wght' 500,
+//     'CASL' 0.3,
+//     'MONO' 0.7,
+//     'slnt' 0;
+// }
 
-%slab-expressive {
-  @extend %slab;
-  font-variation-settings: 
-    "wght" 500, 
-    "CASL" 0.3, 
-    "MONO" 0.3, 
-    "slnt" 0;
-}
+// %slab-standard-medium {
+//   @extend %slab;
+//   font-variation-settings:
+//     'wght' 500,
+//     'CASL' 0,
+//     'MONO' 1,
+//     'slnt' 0;
+// }
 
-%slab-standard {
-  @extend %slab;
-  font-variation-settings: 
-    "wght" 500, 
-    "CASL" 0, 
-    "MONO" 1, 
-    "slnt" 0;
-}
+// %slab-regular {
+//   @extend %slab;
+//   font-variation-settings:
+//     'wght' 400,
+//     'CASL' 0,
+//     'MONO' 1,
+//     'slnt' 0;
+// }
 
-%slab-regular {
-  @extend %ligatures;
-  @extend %slab-standard;
-  font-weight: 400;
-  font-style: normal;
-}
+// %slab-regular-italic {
+//   @extend %slab-regular;
+//   font-style: italic;
+// }
 
-%slab-regular-italic {
-  @extend %slab-regular;
-  font-style: italic;
-}
+// %slab-medium {
+//   @extend %slab-regular;
+//   font-weight: 500;
+// }
 
-%slab-medium {
-  @extend %slab-regular;
-  font-weight: 500;
-}
+// %slab-bold {
+//   @extend %slab-regular;
+//   font-weight: 700;
+// }
 
-%slab-bold {
-  @extend %slab-regular;
-  font-weight: 700;
-}
+// %slab-extrabold {
+//   @extend %slab-regular;
+//   font-weight: 800;
+// }
 
-%slab-extrabold {
-  @extend %slab-regular;
-  font-weight: 800;
-}
+// %slab-black {
+//   @extend %slab-regular;
+//   font-weight: 900;
+// }
 
-%slab-black {
-  @extend %slab-regular;
-  font-weight: 900;
-}
+// %sans-regular {
+//   @extend %ligatures;
+//   font-family: 'IBM Plex Sans', sans-serif;
+//   font-weight: 400;
+// }
 
-%sans-regular {
-  @extend %ligatures;
-  font-family: 'Mulish', sans-serif;
-  font-weight: 500;
-}
+// %sans-light {
+//   @extend %sans-regular;
+//   font-weight: 300;
+// }
 
-%sans-light {
-  @extend %sans-regular;
-  font-weight: 300;
-}
+// %sans-regular-italic {
+//   @extend %sans-regular;
+//   font-style: italic;
+// }
 
-%sans-regular-italic {
-  @extend %sans-regular;
-  font-style: italic;
-}
+// %sans-medium {
+//   @extend %sans-regular;
+//   font-weight: 500;
+// }
 
-%sans-medium {
-  @extend %sans-regular;
-  font-weight: 500;
-}
+// %sans-bold {
+//   @extend %sans-regular;
+//   font-weight: 700;
+// }
 
-%sans-bold {
-  @extend %sans-regular;
-  font-weight: 700;
-}
+// %sans-extrabold {
+//   @extend %sans-regular;
+//   font-weight: 800;
+// }
 
-%sans-extrabold {
-  @extend %sans-regular;
-  font-weight: 800;
-}
-
-%sans-black {
-  @extend %sans-regular;
-  font-weight: 900;
-}
+// %sans-black {
+//   @extend %sans-regular;
+//   font-weight: 900;
+// }
 
 %h1 {
-  @extend %slab-expressive;
-  font-size: 6rem;
-  letter-spacing: -1.5px;
-  font-weight: 300;
+  @include display-large;
+  // @extend %slab-expressive;
+  // font-size: 6rem;
+  // letter-spacing: -1.5px;
+  // font-weight: 300;
 }
 
 %h2 {
-  @extend %slab-expressive;
-  font-size: 3.75rem;
-  letter-spacing: -0.5px;
-  font-weight: 300;
+  @include display-medium;
+  // @extend %slab-expressive;
+  // font-size: 3.75rem;
+  // letter-spacing: -0.5px;
+  // font-weight: 300;
 }
 
 %h3 {
-  @extend %slab-expressive;
-  font-size: 3rem;
+  @include display-small;
+  // @extend %slab-expressive;
+  // font-size: 3rem;
 }
 
 %h4 {
-  @extend %slab-expressive;
-  font-size: 2.215rem;
-  letter-spacing: -0.25px;
+  @include headline-medium;
+  // @extend %slab-expressive;
+  // font-size: 2.215rem;
+  // letter-spacing: -0.25px;
 }
 
 %h5 {
-  @extend %slab-expressive;
-  font-size: 1.5rem;
+  @include title-large;
+  // @extend %slab-expressive;
+  // font-size: 1.5rem;
 }
 
 %h6 {
-  @extend %slab-expressive;
-  font-size: 1.25rem;
-  letter-spacing: 0.15px;
+  @include title-medium;
+  // @extend %slab-expressive;
+  // font-size: 1.25rem;
+  // letter-spacing: 0.15px;
 }
 
 %small-caps-slab-bold {
-  @extend %slab-extrabold;
-  @extend %small-caps;
+  @include label-medium-caps-prominent;
+  // @extend %slab-extrabold;
+  // @extend %small-caps;
 }
 
 %subtitle1 {
-  @extend %sans-regular;
-  font-size: 1rem;
-  letter-spacing: 0.15px;
+  @include label-medium;
+  // @extend %sans-regular;
+  // font-size: 1rem;
+  // letter-spacing: 0.15px;
 }
 
 %subtitle2 {
-  @extend %sans-medium;
-  font-size: 0.875rem;
-  letter-spacing: 0.1px;
+  @include label-small;
+  // @extend %sans-medium;
+  // font-size: 0.875rem;
+  // letter-spacing: 0.1px;
 }
 
 %body1 {
-  @extend %sans-regular;
-  font-size: 1.1rem;
-  line-height: 1.6rem;
-  letter-spacing: 0.5px;
+  @include body-medium;
+  // @extend %sans-regular;
+  // font-size: 1.1rem;
+  // line-height: 1.6rem;
+  // letter-spacing: 0.5px;
 }
 
 %body2 {
-  @extend %sans-regular;
-  font-size: 0.95rem;
-  letter-spacing: 0.25px;
+  @include body-xs;
+  // @extend %sans-regular;
+  // font-size: 0.95rem;
+  // letter-spacing: 0.25px;
 }
 
 %button {
-  @extend %slab-medium;
+  @extend %slab-standard-medium;
+  // @extend %slab-medium;
   @extend %button-styles;
   font-size: 0.875rem;
   letter-spacing: 1.25px;
@@ -187,32 +187,35 @@
 }
 
 %caption {
-  @extend %sans-regular;
-  font-size: 0.75rem;
-  letter-spacing: 0.4px;
+  @include label-2xs;
+  // @extend %sans-regular;
+  // font-size: 0.75rem;
+  // letter-spacing: 0.4px;
 }
 
 %overline {
-  @extend %sans-medium;
-  @extend %small-caps;
-  font-size: 1.1rem;
-  line-height: 1.1rem;
-  letter-spacing: 2px;
+  @include label-large-caps;
+  // @extend %sans-medium;
+  // @extend %small-caps;
+  // font-size: 1.1rem;
+  // line-height: 1.1rem;
+  // letter-spacing: 2px;
 }
 
 %small-caps-overline {
-  @extend %sans-regular;
-  @extend %small-caps;
-  font-size: 1.1rem;
-  line-height: 1.1rem;
-  letter-spacing: 0.13em;
+  @include label-large-caps;
+  // @extend %sans-regular;
+  // @extend %small-caps;
+  // font-size: 1.1rem;
+  // line-height: 1.1rem;
+  // letter-spacing: 0.13em;
 }
 
 %instructions {
   @extend %sans-light;
-  letter-spacing: 0.5px;
-  font-size: 1rem;
-  line-height: 1.3rem;
+  // letter-spacing: 0.5px;
+  // font-size: 1rem;
+  // line-height: 1.3rem;
 }
 
 %button-styles {
@@ -229,9 +232,8 @@
 }
 
 %section-header {
-  @extend %h4;
+  @include headline-medium;
   color: $color-highlight;
-  padding-bottom: 0.25rem;
 }
 
 %flex-column {
@@ -240,7 +242,7 @@
 }
 
 %nav-link {
-  @extend %slab-medium;
+  @extend %slab-expressive-medium;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -270,8 +272,8 @@
   scrollbar-track-color: #edf1f4;
   -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
   scrollbar-3dlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-arrow-color: get($colors, 'grays.light-1');
-  scrollbar-arrow-color: get($colors, 'grays.light-1');
+  -ms-scrollbar-arrow-color: $color-light-gray-dark;
+  scrollbar-arrow-color: $color-light-gray-dark;
   scrollbar-color: $color-scrollbar-ie #fff;
 }
 
@@ -331,7 +333,7 @@
 }
 
 %comment-button {
-  @extend %slab-bold;
+  @extend %slab-expressive-bold;
   border: 2px solid $color-highlight;
   color: $color-highlight;
   background: $color-light-gray-lightest;
@@ -339,7 +341,7 @@
 
   &:hover {
     cursor: pointer;
-    @extend %slab-extrabold;
+    @extend %slab-expressive-extrabold;
     background: white;
   }
 

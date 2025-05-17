@@ -4,11 +4,11 @@ import { SvgIconComponent } from '../../../shared/components/svg-icon/svg-icon.c
 import { LeavingQuestion } from '../leaving,model';
 
 @Component({
-    selector: 'app-question',
-    imports: [CommonModule, SvgIconComponent],
-    templateUrl: './question.component.html',
-    styleUrls: ['./question.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-question',
+  imports: [CommonModule, SvgIconComponent],
+  templateUrl: './question.component.html',
+  styleUrls: ['./question.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuestionComponent {
   @Input() question: LeavingQuestion;

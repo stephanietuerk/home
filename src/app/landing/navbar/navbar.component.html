@@ -7,6 +7,10 @@
     (keydown.enter)="scrollToSection($event, section)"
     tabindex="0"
   >
-    {{ section }}
+    @if (section === 'projects') {
+      project log
+    } @else {
+      {{ section }}
+    }
   </a>
 </nav>

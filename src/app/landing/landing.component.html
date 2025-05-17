@@ -1,9 +1,10 @@
 <app-navbar class="navbar" id="landing-navbar"></app-navbar>
 <div class="landing-container" id="landing-container">
   <app-about [id]="sections.about + '-id'" class="about-component"></app-about>
-  <app-projects-table
-    [id]="sections.projects + '-id'"
-    class="projects-table-component"
-  ></app-projects-table>
-  <app-contact [id]="sections.contact + '-id'"></app-contact>
+  <app-projects [id]="sections.projects + '-id'" class="projects-component">
+  </app-projects>
+  <app-contact
+    [id]="sections.contact + '-id'"
+    class="contact-component"
+  ></app-contact>
 </div>

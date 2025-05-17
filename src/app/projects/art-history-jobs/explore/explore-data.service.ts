@@ -400,7 +400,9 @@ export class ExploreDataService extends Unsubscribe {
     if (userUpdate[variableUse] === FilterType.filter) {
       changedValues =
         variable === JobProperty.field
-          ? [current.fieldValues[0]] ?? [options[0].label]
+          ? current.fieldValues[0]
+            ? [current.fieldValues[0]]
+            : [options[0].label]
           : [options[0].label];
     } else {
       changedValues = this.getNewSelectionWhenSwitchingToDisaggregate(
@@ -460,8 +462,8 @@ export class ExploreDataService extends Unsubscribe {
         x === JobProperty.field
           ? fieldValueOptions
           : x === JobProperty.tenure
-          ? tenureValueOptions
-          : rankValueOptions;
+            ? tenureValueOptions
+            : rankValueOptions;
       acc[`${x}Values`] = [otherOptions[0].label];
       acc[`${x}Use`] = FilterType.filter;
       return acc;

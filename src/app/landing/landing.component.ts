@@ -5,19 +5,19 @@ import { SECTIONS } from '../core/constants/sections.constants';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProjectsTableComponent } from './projects-table/projects-table.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
-    selector: 'app-landing',
-    imports: [
-        CommonModule,
-        NavbarComponent,
-        AboutComponent,
-        ProjectsTableComponent,
-        ContactComponent,
-    ],
-    templateUrl: './landing.component.html',
-    styleUrls: ['./landing.component.scss']
+  selector: 'app-landing',
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    AboutComponent,
+    ProjectsComponent,
+    ContactComponent,
+  ],
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
   projects = PROJECTS;
