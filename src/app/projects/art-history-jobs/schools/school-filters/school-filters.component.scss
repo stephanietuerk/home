@@ -11,12 +11,14 @@
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
+    padding-bottom: grid(2);
   }
 
   .selectors-container {
     display: flex;
     background: $color-light-gray-lightest;
-    padding: grid(2);
+    padding: grid(3);
+    border-radius: grid(1);
 
     @media screen and (max-width: 1079px) {
       flex-direction: column-reverse;
@@ -230,7 +232,7 @@
 
     .selection-label {
       white-space: nowrap;
-      padding-right: grid(4);
+      padding-right: grid(3);
       font-size: 0.9rem;
     }
   }

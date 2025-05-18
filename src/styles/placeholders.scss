@@ -5,181 +5,52 @@
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
 
-// %small-caps {
-//   font-variant-caps: small-caps;
-//   -moz-font-feature-settings: 'smcp';
-//   -webkit-font-feature-settings: 'smcp';
-//   font-feature-settings: 'smcp';
-// }
-
-// %slab-expressive-medium {
-//   @extend %slab-expressive-medium;
-//   font-variation-settings:
-//     'wght' 500,
-//     'CASL' 0.3,
-//     'MONO' 0.7,
-//     'slnt' 0;
-// }
-
-// %slab-standard-medium {
-//   @extend %slab;
-//   font-variation-settings:
-//     'wght' 500,
-//     'CASL' 0,
-//     'MONO' 1,
-//     'slnt' 0;
-// }
-
-// %slab-regular {
-//   @extend %slab;
-//   font-variation-settings:
-//     'wght' 400,
-//     'CASL' 0,
-//     'MONO' 1,
-//     'slnt' 0;
-// }
-
-// %slab-regular-italic {
-//   @extend %slab-regular;
-//   font-style: italic;
-// }
-
-// %slab-medium {
-//   @extend %slab-regular;
-//   font-weight: 500;
-// }
-
-// %slab-bold {
-//   @extend %slab-regular;
-//   font-weight: 700;
-// }
-
-// %slab-extrabold {
-//   @extend %slab-regular;
-//   font-weight: 800;
-// }
-
-// %slab-black {
-//   @extend %slab-regular;
-//   font-weight: 900;
-// }
-
-// %sans-regular {
-//   @extend %ligatures;
-//   font-family: 'IBM Plex Sans', sans-serif;
-//   font-weight: 400;
-// }
-
-// %sans-light {
-//   @extend %sans-regular;
-//   font-weight: 300;
-// }
-
-// %sans-regular-italic {
-//   @extend %sans-regular;
-//   font-style: italic;
-// }
-
-// %sans-medium {
-//   @extend %sans-regular;
-//   font-weight: 500;
-// }
-
-// %sans-bold {
-//   @extend %sans-regular;
-//   font-weight: 700;
-// }
-
-// %sans-extrabold {
-//   @extend %sans-regular;
-//   font-weight: 800;
-// }
-
-// %sans-black {
-//   @extend %sans-regular;
-//   font-weight: 900;
-// }
-
 %h1 {
   @include display-large;
-  // @extend %slab-expressive;
-  // font-size: 6rem;
-  // letter-spacing: -1.5px;
-  // font-weight: 300;
 }
 
 %h2 {
   @include display-medium;
-  // @extend %slab-expressive;
-  // font-size: 3.75rem;
-  // letter-spacing: -0.5px;
-  // font-weight: 300;
 }
 
 %h3 {
   @include display-small;
-  // @extend %slab-expressive;
-  // font-size: 3rem;
 }
 
 %h4 {
   @include headline-medium;
-  // @extend %slab-expressive;
-  // font-size: 2.215rem;
-  // letter-spacing: -0.25px;
 }
 
 %h5 {
   @include title-large;
-  // @extend %slab-expressive;
-  // font-size: 1.5rem;
 }
 
 %h6 {
   @include title-medium;
-  // @extend %slab-expressive;
-  // font-size: 1.25rem;
-  // letter-spacing: 0.15px;
 }
 
 %small-caps-slab-bold {
   @include label-medium-caps-prominent;
-  // @extend %slab-extrabold;
-  // @extend %small-caps;
 }
 
 %subtitle1 {
   @include label-medium;
-  // @extend %sans-regular;
-  // font-size: 1rem;
-  // letter-spacing: 0.15px;
 }
 
 %subtitle2 {
   @include label-small;
-  // @extend %sans-medium;
-  // font-size: 0.875rem;
-  // letter-spacing: 0.1px;
 }
 
 %body1 {
   @include body-medium;
-  // @extend %sans-regular;
-  // font-size: 1.1rem;
-  // line-height: 1.6rem;
-  // letter-spacing: 0.5px;
 }
 
 %body2 {
   @include body-xs;
-  // @extend %sans-regular;
-  // font-size: 0.95rem;
-  // letter-spacing: 0.25px;
 }
 
 %button {
   @extend %slab-standard-medium;
-  // @extend %slab-medium;
   @extend %button-styles;
   font-size: 0.875rem;
   letter-spacing: 1.25px;
@@ -188,34 +59,18 @@
 
 %caption {
   @include label-2xs;
-  // @extend %sans-regular;
-  // font-size: 0.75rem;
-  // letter-spacing: 0.4px;
 }
 
 %overline {
   @include label-large-caps;
-  // @extend %sans-medium;
-  // @extend %small-caps;
-  // font-size: 1.1rem;
-  // line-height: 1.1rem;
-  // letter-spacing: 2px;
 }
 
 %small-caps-overline {
   @include label-large-caps;
-  // @extend %sans-regular;
-  // @extend %small-caps;
-  // font-size: 1.1rem;
-  // line-height: 1.1rem;
-  // letter-spacing: 0.13em;
 }
 
 %instructions {
   @extend %sans-light;
-  // letter-spacing: 0.5px;
-  // font-size: 1rem;
-  // line-height: 1.3rem;
 }
 
 %button-styles {
@@ -314,22 +169,31 @@
 }
 
 %content-component-host {
-  @extend %flex-column;
-  height: 100%;
-  min-height: $body-height-min;
   overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 %content-component-navbar {
   position: fixed;
   top: 0;
-  width: calc(100% - 12px);
   z-index: 2000;
+  width: 100%;
+  min-height: $content-navbar-height;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 %content-component-container {
-  height: 100%;
-  margin-top: $project-navbar-height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $content-navbar-height;
+  padding-top: grid(12);
+  padding-bottom: grid(12);
 }
 
 %comment-button {

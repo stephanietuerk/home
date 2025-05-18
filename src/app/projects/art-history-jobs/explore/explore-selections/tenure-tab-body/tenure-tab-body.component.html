@@ -1,0 +1,42 @@
+@if (dataService.selections$ | async; as selected) {
+  <div class="selection-container">
+    <div class="selection-instructions"
+      ><p class="instruction-label">Select a viewing mode</p
+      ><p class="instruction-text"
+        >Select
+        <span class="label-ref-text">compare across tenure statuses</span> to
+        view data for multiple tenure statuses. This limits you to a single
+        selection for both field and rank, for clarity.</p
+      >
+      <p class="instruction-text"
+        >Select
+        <span class="label-ref-text">explore within a tenure status</span> to
+        examine data across either field or rank within that tenure status.</p
+      >
+      <p class="instruction-text">
+        When switching modes, other selections will adjust automatically as
+        needed, resetting to "All" as a default.</p
+      ></div
+    >
+    <app-variable-use-selection
+      [variable]="JobProperty.tenure"
+      class="variable-use-selection-component"
+    ></app-variable-use-selection>
+    <div class="selection-instructions">
+      <p class="instruction-label"
+        >Select
+        <span *ngIf="selected.tenureUse === FilterType.disaggregate"
+          >tenure statuses</span
+        ><span *ngIf="selected.tenureUse === FilterType.filter"
+          >a tenure status</span
+        >
+        to view in the charts below</p
+      >
+    </div>
+    <app-variable-single-multi-selection
+      class="selection-interface"
+      [variable]="JobProperty.tenure"
+      [options]="tenureValueOptions"
+    ></app-variable-single-multi-selection>
+  </div>
+}

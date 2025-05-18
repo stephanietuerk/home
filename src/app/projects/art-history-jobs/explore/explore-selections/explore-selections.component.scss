@@ -2,16 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
-
-%input-element-label {
-  @extend %slab-expressive-medium;
-  display: flex;
-  font-size: 0.85rem;
-  color: $color-highlight;
-}
-
-$svg-icon-color: $color-dark-primary;
-$panel-opacity: 0.9;
+@use 'typography' as *;
 
 .explore-selections-container {
   display: flex;
@@ -24,33 +15,48 @@ $panel-opacity: 0.9;
     font-size: 0.9rem;
   }
 
-  &.open {
-    border-bottom: 1px solid white;
-  }
-
-  .navbar {
-    padding-top: grid(3);
-    padding-left: grid(4);
-    background: rgba($color-light-gray-lightest, $panel-opacity);
-  }
-
-  .links-container {
+  .tab-list {
     display: flex;
-    justify-content: space-between;
-    max-width: 700px;
-    align-items: flex-end;
-    gap: grid(2);
+    justify-content: space-evenly;
+    margin-bottom: grid(2);
   }
 
-  .selection-title {
-    display: flex;
-    align-items: center;
-    @extend %slab-expressive-medium;
-    font-size: 1.15rem;
-    color: $color-highlight;
+  .tab-label-container {
+    flex-grow: 1;
+    padding: grid(2) grid(2) grid(1) grid(2);
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.25s ease-in-out;
-    padding-bottom: grid(1);
+    cursor: pointer;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &:hover {
+      border-bottom: 2px solid rgba($color-dark-primary, 0.6);
+
+      &:not(.active) {
+        .tab-label {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &.active {
+      border-bottom: 2px solid $color-highlight;
+
+      .tab-label {
+        @include label-large-prominent;
+        opacity: 1;
+        color: $color-highlight;
+      }
+    }
+  }
+
+  .tab-label {
+    @include label-large;
+    opacity: 0.6;
+    transition: all 0.2s;
 
     @media screen and (max-width: 760px) {
       font-size: 1rem;
@@ -59,118 +65,11 @@ $panel-opacity: 0.9;
     @media screen and (max-width: 500px) {
       font-size: 0.875rem;
     }
-
-    &:hover {
-      border-bottom: 2px solid $color-highlight;
-    }
-
-    &.open {
-      border-bottom: 2px solid $color-highlight;
-    }
-
-    .material-symbols-outlined {
-      margin-left: 2px;
-    }
   }
 
-  .selection-interface-container {
-    display: flex;
-    padding: grid(4) grid(2) grid(4) 0;
-    width: 100%;
-
-    &:focus.cdk-keyboard-focused {
-      background: honeydew;
-    }
-  }
-
-  .selection-container {
-    flex-grow: 1;
-    padding-right: grid(2);
-    &.tenure-values,
-    &.rank-values {
-      padding-top: grid(4);
-    }
-  }
-
-  .selection-instructions {
-    line-height: 1.2;
-    max-width: 600px;
-    padding-bottom: grid(1);
-
-    .main {
-      @extend %subtitle2;
-    }
-
-    .filter-use-name {
-      font-style: normal;
-      font-weight: 500;
-    }
-
-    .secondary {
-      @extend %sans-regular;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 0.875rem;
-
-      &:not(:last-child) {
-        padding-bottom: grid(1);
-      }
-    }
-  }
-
-  .time-range-slider-component {
-    display: block;
-    padding: 0 grid(4);
-    max-width: 500px;
-  }
-
-  .selection-interface.field-values {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    grid-auto-rows: 1fr;
-    gap: grid(2);
-    align-items: stretch;
-    align-content: stretch;
-  }
-
-  .selection-interface.tenure-values,
-  .selection-interface.rank-values {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-flow: column;
-    row-gap: grid(1);
-  }
-
-  .selection-interface.tenure-values {
-    grid-template-rows: repeat(2, 1fr);
-  }
-
-  .selection-interface.rank-values {
-    grid-template-rows: repeat(5, 1fr);
-  }
-
-  .close-button {
-    display: flex;
-  }
-
-  .close-button-icon {
-    display: block;
-    cursor: pointer;
-    color: $color-highlight;
-    transform: scale(1.2);
-
-    &:hover {
-      font-weight: 700;
-    }
-  }
-
-  .variable-use-selection-component,
-  .value-type-selection-component {
-    display: flex;
-    max-width: 600px;
-  }
-
-  .variable-use-selection-component {
-    padding-bottom: grid(3);
+  .tabs-body {
+    background: $color-light-gray-lightest;
+    padding: grid(4);
+    border-radius: grid(1);
   }
 }

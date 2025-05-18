@@ -38,29 +38,29 @@ class SummaryChartTooltipData implements StackedAreaEventOutput {
 }
 
 @Component({
-    selector: 'app-summary-chart',
-    imports: [
-        CommonModule,
-        VicHtmlTooltipModule,
-        VicStackedAreaModule,
-        VicXyChartModule,
-        VicXyBackgroundModule,
-        VicXQuantitativeAxisModule,
-        VicYQuantitativeAxisModule,
-    ],
-    templateUrl: './summary-chart.component.html',
-    styleUrls: ['./summary-chart.component.scss'],
-    providers: [
-        {
-            provide: DATA_MARKS,
-            useExisting: SummaryChartComponent,
-        },
-        {
-            provide: STACKED_AREA,
-            useExisting: SummaryChartComponent,
-        },
-    ],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-summary-chart',
+  imports: [
+    CommonModule,
+    VicHtmlTooltipModule,
+    VicStackedAreaModule,
+    VicXyChartModule,
+    VicXyBackgroundModule,
+    VicXQuantitativeAxisModule,
+    VicYQuantitativeAxisModule,
+  ],
+  templateUrl: './summary-chart.component.html',
+  styleUrls: ['./summary-chart.component.scss'],
+  providers: [
+    {
+      provide: DATA_MARKS,
+      useExisting: SummaryChartComponent,
+    },
+    {
+      provide: STACKED_AREA,
+      useExisting: SummaryChartComponent,
+    },
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SummaryChartComponent {
   @Input() dataMarksConfig: SummaryChartConfig;
@@ -109,7 +109,7 @@ export class SummaryChartComponent {
       config.size.height =
         data.svgHeight - this.margin.top - this.margin.bottom;
       config.position.offsetX = data.positionX;
-      config.position.offsetY = data.svgHeight - this.margin.bottom;
+      config.position.offsetY = 0;
       // config.position.offsetY = -this.margin.bottom;
       config.show = true;
     } else {

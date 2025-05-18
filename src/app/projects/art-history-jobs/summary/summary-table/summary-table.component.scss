@@ -20,16 +20,8 @@
       padding-right: grid(2);
     }
 
-    .header.cell:last-child {
-      .header-text {
-        font-size: 0.8rem;
-        position: relative;
-        bottom: 1px;
-      }
-    }
-
     .header-contents {
-      @extend %sans-regular;
+      @extend %sans-medium;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
       font-size: 0.7rem;
@@ -67,20 +59,15 @@
 
   .body {
     .cell.data {
-      @extend %slab-expressive-medium;
+      @extend %slab-expressive-bold;
       font-size: 0.85rem;
       padding: grid(2) grid(2) 6px grid(2);
       color: var(--color);
       border-bottom: 1px solid $color-light-gray-light;
 
-      &.row-header {
-        @extend %slab-expressive-extrabold;
-      }
-
       &.right {
-        @extend %sans-regular;
+        @extend %sans-semibold;
         font-size: 0.95rem;
-        transform: translate(0, -2px);
         line-height: 1;
         text-align: right;
       }

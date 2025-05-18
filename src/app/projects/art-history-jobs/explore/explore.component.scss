@@ -10,13 +10,27 @@
 
 .section-header {
   @extend %h5;
+  font-size: 1.53rem;
   text-align: center;
-  padding-bottom: grid(4);
+  padding-bottom: grid(6);
+}
+
+.description {
+  max-width: var(--max-text-width);
+  line-height: 1.5;
+  align-self: center;
+  width: 100%;
+  padding-bottom: grid(6);
+}
+
+.interactive-section {
+  padding: grid(4);
+  margin-top: grid(4);
 }
 
 .charts-container {
   display: flex;
-  padding-top: grid(8);
+  padding-top: grid(12);
 
   @media screen and (max-width: 760px) {
     flex-direction: column;
@@ -43,12 +57,4 @@
   flex-basis: $chart-width;
   flex-shrink: 1;
   min-width: $chart-width;
-}
-
-.description {
-  max-width: 600px;
-  line-height: 1.5;
-  padding-bottom: grid(6);
-  align-self: center;
-  width: 100%;
 }

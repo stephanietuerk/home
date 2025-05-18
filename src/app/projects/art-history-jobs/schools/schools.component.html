@@ -1,5 +1,4 @@
 <div class="schools-encapsulation-container">
-  <h2 class="section-header">Explore by Institution</h2>
   <p class="description"
     >The charts below show jobs by institution across years in the dataset.
     Institutions are displayed by country, and sorted by default by the total
@@ -13,74 +12,73 @@
   <app-school-filters class="filters-component"></app-school-filters>
   <p class="legend-label">Displayed fields</p>
   <div class="legend">
-    <div
-      class="legend-item"
-      *ngFor="let field of (dataService.state$ | async).field"
-    >
-      <div
-        class="legend-color"
-        [style.background]="field | appColorForField"
-      ></div>
-      <p class="legend-text">{{field}}</p>
-    </div>
-  </div>
-  <ng-container *ngIf="dataService.dataBySchool$ | async as countries">
-    <div class="charts-container" *ngIf="countries.length > 0; else noSchools">
-      <div
-        class="country-container"
-        *ngFor="let country of dataService.dataBySchool$ | async; let i = index"
-      >
-        <mat-expansion-panel
-          *ngIf="country.jobsBySchool.length > 0"
-          hideToggle
-          [expanded]="panelIsOpen[i]"
-          (opened)="panelIsOpen[i] = true"
-          (closed)="panelIsOpen[i] = false"
-          class="mat-elevation-z0 country-expansion-panel"
-        >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h3 class="country-name">{{ country.country }}</h3>
-            </mat-panel-title>
-            <mat-panel-description>
-              <p class="num-schools">{{country.jobsBySchool.length}} schools</p>
-              <span
-                class="material-symbols-outlined expand-icon"
-                [class.expanded]="panelIsOpen[i]"
-                >expand_more</span
-              >
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <ng-template matExpansionPanelContent>
-            <div
-              class="all-schools-container"
-              [style.--chart-width]="16 * numYears + 'px'"
-            >
-              <div
-                class="school-container"
-                *ngFor="let school of country.jobsBySchool; let i = index"
-              >
-                <h4
-                  class="school-name"
-                  [appSubstringHighlight]="(dataService.state$ | async).searchTerms"
-                  [string]="school.school"
-                ></h4>
-                <app-school-chart
-                  class="school-chart"
-                  [jobsByYear]="school.jobsByYear"
-                  [years]="dataService.yearRange"
-                  [isFirstColumn]="i % 5 === 0"
-                ></app-school-chart>
-              </div>
-            </div>
-          </ng-template>
-        </mat-expansion-panel>
+    @for (field of (dataService.state$ | async).field; track $index) {
+      <div class="legend-item">
+        <div
+          class="legend-color"
+          [style.background]="field | appColorForField"
+        ></div>
+        <p class="legend-text">{{ field }}</p>
       </div>
-    </div>
-    <ng-template #noSchools
-      ><p class="no-schools-text"
-        >No schools match search/filter criteria.</p
-      ></ng-template
-    >
-  </ng-container>
+    }
+  </div>
+  @if (dataService.dataBySchool$ | async; as countries) {
+    @if (countries.length > 0) {
+      <div class="charts-container">
+        @for (country of dataService.dataBySchool$ | async; track $index) {
+          @if (country.jobsBySchool.length > 0) {
+            <mat-expansion-panel
+              hideToggle
+              [expanded]="panelIsOpen[$index]"
+              (opened)="panelIsOpen[$index] = true"
+              (closed)="panelIsOpen[$index] = false"
+              class="mat-elevation-z0 country-expansion-panel"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h3 class="country-name">{{ country.country }}</h3>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <p class="num-schools"
+                    >{{ country.jobsBySchool.length }} schools</p
+                  >
+                  <span
+                    class="material-symbols-outlined expand-icon"
+                    [class.expanded]="panelIsOpen[$index]"
+                    >expand_more</span
+                  >
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
+                <div
+                  class="all-schools-container"
+                  [style.--chart-width]="16 * numYears + 'px'"
+                >
+                  @for (school of country.jobsBySchool; track $index) {
+                    <div class="school-container">
+                      <h4
+                        class="school-name"
+                        [appSubstringHighlight]="
+                          (dataService.state$ | async).searchTerms
+                        "
+                        [string]="school.school"
+                      ></h4>
+                      <app-school-chart
+                        class="school-chart"
+                        [jobsByYear]="school.jobsByYear"
+                        [years]="dataService.yearRange"
+                        [isFirstColumn]="$index % 5 === 0"
+                      ></app-school-chart>
+                    </div>
+                  }
+                </div>
+              </ng-template>
+            </mat-expansion-panel>
+          }
+        }
+      </div>
+    } @else {
+      <p class="no-schools-text">No schools match search/filter criteria.</p>
+    }
+  }
 </div>

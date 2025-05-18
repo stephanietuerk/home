@@ -1,17 +1,18 @@
 import { Platform } from '@angular/cdk/platform';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
-  Inject,
+  inject,
   OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
-import { fromEvent, takeUntil } from 'rxjs';
-import {
-  navbarHeight,
-  projectNavbarId,
-} from 'src/app/core/constants/dom.constants';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
+import { projectNavbarHeight } from 'src/app/core/constants/dom.constants';
 import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
 import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
@@ -23,7 +24,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { SummaryComponent } from './summary/summary.component';
 
-enum Section {
+enum ArtHistorySection {
   intro = 'intro',
   summary = 'summary',
   jobCharacteristics = 'jobCharacteristics',
@@ -32,19 +33,22 @@ enum Section {
 }
 
 @Component({
-    selector: 'app-art-history-jobs',
-    imports: [
-        CommonModule,
-        SummaryComponent,
-        ExploreComponent,
-        SchoolsComponent,
-        DataAcquisitionComponent,
-    ],
-    templateUrl: './art-history-jobs.component.html',
-    styleUrls: ['./art-history-jobs.component.scss'],
-    providers: [ExploreDataService, MessageService, OverlayService]
+  selector: 'app-art-history-jobs',
+  imports: [
+    CommonModule,
+    SummaryComponent,
+    ExploreComponent,
+    SchoolsComponent,
+    DataAcquisitionComponent,
+  ],
+  templateUrl: './art-history-jobs.component.html',
+  styleUrls: ['./art-history-jobs.component.scss'],
+  providers: [ExploreDataService, MessageService, OverlayService],
 })
-export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
+export class ArtHistoryJobsComponent
+  extends Unsubscribe
+  implements OnInit, AfterViewInit
+{
   @ViewChild('intro') intro: ElementRef;
   @ViewChild('summary', { read: ElementRef }) summary: ElementRef;
   @ViewChild('jobCharacteristics', { read: ElementRef })
@@ -52,15 +56,16 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
   @ViewChild('schools', { read: ElementRef }) schools: ElementRef;
   @ViewChild('methods', { read: ElementRef }) methods: ElementRef;
   dataYears = currentDataYears;
-  scrollEl: HTMLElement;
-  currentSection: keyof typeof Section = 'intro';
+  currentSectionName = signal<keyof typeof ArtHistorySection>('intro');
+  private destroyRef = inject(DestroyRef);
+  sections: { name: keyof typeof ArtHistorySection; el: HTMLElement }[] = [];
+  sectionNames = Object.keys(ArtHistorySection);
 
   constructor(
     public mainDataService: ArtHistoryDataService,
     public exploreDataService: ExploreDataService,
     private platform: Platform,
-    private messages: MessageService,
-    @Inject(DOCUMENT) private document: Document
+    private messages: MessageService
   ) {
     super();
   }
@@ -69,61 +74,73 @@ export class ArtHistoryJobsComponent extends Unsubscribe implements OnInit {
     this.mainDataService.init().then(() => {
       this.exploreDataService.init();
     });
-    this.setScrollListener();
     if (this.platform.IOS || this.platform.ANDROID) {
       this.displayMobileMessage();
     }
   }
 
-  setScrollListener(): void {
-    this.scrollEl = this.document.querySelector(
-      `#${projectNavbarId}`
-    ).parentElement;
+  ngAfterViewInit(): void {
+    this.sections = Object.keys(ArtHistorySection).map((section) => {
+      return {
+        name: section as keyof typeof ArtHistorySection,
+        el: this[section].nativeElement,
+      };
+    });
+    this.setScrollListener();
+  }
 
-    fromEvent(this.scrollEl, 'scrollend')
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((event) => {
-        this.handleScrollEnd(event);
+  setScrollListener(): void {
+    fromEvent(window, 'scrollend')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.setActiveSection();
       });
   }
 
-  handleScrollEnd(event: Event): void {
-    const scrollEl = event.target as HTMLElement;
-    const scrollPosition = scrollEl.scrollTop;
-    const sections = Object.keys(Section) as (keyof typeof Section)[];
-    const sectionOffsets = sections.map(
-      (section) => this[section].nativeElement.offsetTop - 20 - navbarHeight
-    );
-    const currentSectionIndex = sectionOffsets.findIndex(
-      (offset) => offset > scrollPosition
-    );
-    if (currentSectionIndex === -1) {
-      this.currentSection = sections[sections.length - 1];
-    } else if (currentSectionIndex === 0) {
-      this.currentSection = sections[0];
-    } else {
-      this.currentSection = sections[currentSectionIndex - 1];
-    }
+  setActiveSection(): void {
+    this.currentSectionName.set(this.findActiveSection());
+    console.log('currentSectionName', this.currentSectionName());
   }
 
-  scrollTo(element: keyof typeof Section): void {
-    const sectionOffsetTop = this[element].nativeElement.offsetTop;
-    const offsetTop = sectionOffsetTop - 20 - navbarHeight;
-    this.scrollEl.scrollTo({ behavior: 'smooth', top: offsetTop });
+  private findActiveSection(): keyof typeof ArtHistorySection | null {
+    const scrollPosition = window.scrollY;
+    for (let i = this.sections.length - 1; i >= 0; i--) {
+      const heading = this.sections[i];
+      if (heading.el.offsetTop <= scrollPosition + projectNavbarHeight + 20) {
+        return heading.name;
+      }
+    }
+    return this.sections[0].name || null;
   }
 
   jumpToNext(): void {
-    const sections = Object.keys(Section) as (keyof typeof Section)[];
-    const currentSectionIndex = sections.indexOf(this.currentSection);
-    const nextSection = sections[currentSectionIndex + 1];
-    this.scrollTo(nextSection);
+    const currentSectionIndex = this.sections.findIndex(
+      (x) => x.name === this.currentSectionName()
+    );
+    const nextSection = this.sections[currentSectionIndex + 1];
+    // handle fast clicking
+    if (nextSection) {
+      this.scrollTo(nextSection.name);
+    }
   }
 
   jumpToPrevious(): void {
-    const sections = Object.keys(Section) as (keyof typeof Section)[];
-    const currentSectionIndex = sections.indexOf(this.currentSection);
-    const previousSection = sections[currentSectionIndex - 1];
-    this.scrollTo(previousSection);
+    const currentSectionIndex = this.sections.findIndex(
+      (x) => x.name === this.currentSectionName()
+    );
+    const previousSection = this.sections[currentSectionIndex - 1];
+    // handle fast clicking
+    if (previousSection) {
+      this.scrollTo(previousSection.name);
+    }
+  }
+
+  scrollTo(section: keyof typeof ArtHistorySection): void {
+    const sectionOffsetTop = this.sections.find((x) => x.name === section).el
+      .offsetTop;
+    const offsetTop = sectionOffsetTop - projectNavbarHeight + 60; // account for top padding of section and offset
+    window.scrollTo({ behavior: 'smooth', top: offsetTop });
+    this.currentSectionName.set(section);
   }
 
   displayMobileMessage(): void {

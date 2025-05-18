@@ -11,6 +11,14 @@ import {
   VariableUseOption,
 } from './explore-selections.model';
 
+export enum ExploreSelection {
+  fields = 'fields',
+  tenure = 'tenure',
+  rank = 'rank',
+  dataType = 'dataType',
+  timeRange = 'timeRange',
+}
+
 export const valueTypeOptions: ValueTypeOption[] = [
   { label: 'Count', value: ValueType.count },
   { label: 'Percent', value: ValueType.percent },
@@ -18,23 +26,23 @@ export const valueTypeOptions: ValueTypeOption[] = [
 
 export const variableUseOptions: VariableUseOption[] = [
   {
-    label: 'Explore within a ',
-    value: FilterType.filter,
-  },
-  {
     label: 'Compare across ',
     value: FilterType.disaggregate,
+  },
+  {
+    label: 'Explore within a ',
+    value: FilterType.filter,
   },
 ];
 
 export const fieldUseOptions: VariableUseOption[] = [
   {
-    label: 'Explore within a field',
-    value: FilterType.filter,
-  },
-  {
     label: 'Compare across fields',
     value: FilterType.disaggregate,
+  },
+  {
+    label: 'Explore within a field',
+    value: FilterType.filter,
   },
 ];
 
@@ -51,3 +59,14 @@ export const rankValueOptions: VariableOption[] = [
   { label: 'All', value: 'all' },
   ...rankOptions,
 ];
+
+export const exploreSelections = {
+  label: 'Refine displayed data',
+  selections: [
+    { label: 'Fields', value: ExploreSelection.fields },
+    { label: 'Tenure', value: ExploreSelection.tenure },
+    { label: 'Rank', value: ExploreSelection.rank },
+    { label: 'Value type', value: ExploreSelection.dataType },
+    { label: 'Time range', value: ExploreSelection.timeRange },
+  ],
+};

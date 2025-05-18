@@ -1,16 +1,15 @@
 @use 'sass:color';
 @use 'functions' as *;
 
-
 $highlights: (
   // 208 deg
   'blue': #0088ff,
   'blue-light': #b2dbff,
-  'yellow': #eeff00,
+  'yellow': #eeff00
 );
 $darks: (
   // 232 deg
-  'blue': #2a3058,
+  'blue': #2a3058
 );
 $grays: (
   // 190 deg
@@ -18,7 +17,7 @@ $grays: (
   'light-2': #d3ddde,
   'light-3': #e4eaeb,
   'light-4': #f5f7f7,
-  'dark-1': #6d7c81,
+  'dark-1': #6d7c81
 );
 
 $color-highlight: #0088ff;
@@ -62,6 +61,7 @@ $content-component-padding: 0px grid(1) 0 grid(4) grid(1) 0;
 
 $navbar-height: 48px;
 $project-navbar-height: $navbar-height;
+$content-navbar-height: $project-navbar-height + 12px;
 $color-focus-ring: color.adjust($color-scrollbar, $lightness: 20%);
 $body-height-min: 300px;
 

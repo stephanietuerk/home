@@ -34,9 +34,8 @@ import {
 const defaultPanelClass = 'vic-html-tooltip-overlay';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: 'vic-html-tooltip',
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'vic-html-tooltip',
 })
 export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   @Input() template: TemplateRef<unknown>;
@@ -176,6 +175,7 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
   createOverlay(): void {
     this.setPanelClasses();
     this.setPositionStrategy();
+    console.log('positionStrategy', this.positionStrategy);
     this.overlayRef = this.overlay.create({
       ...this.config.size,
       panelClass: this.panelClass,
@@ -241,12 +241,15 @@ export class HtmlTooltipDirective implements OnInit, OnChanges, OnDestroy {
       height: _window.document.body.clientHeight,
     };
     const originDims = origin.getBoundingClientRect();
+    console.log('originDims', originDims);
     this.positionStrategy = this.overlayPositionBuilder
       .global()
-      .bottom(`${viewport.height - originDims.top - position.offsetY}px`)
-      .centerHorizontally(
-        `${-2 * (viewport.width / 2 - originDims.left - position.offsetX)}px`
-      );
+      .left(`${originDims.left + position.offsetX}px`)
+      .top(`${originDims.top + position.offsetY}px`);
+    // .bottom(`${viewport.height - originDims.top - position.offsetY}px`)
+    // .centerHorizontally(
+    //   `${-2 * (viewport.width / 2 - originDims.left - position.offsetX)}px`
+    // );
   }
 
   setPanelClasses(): void {

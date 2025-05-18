@@ -1,0 +1,58 @@
+@use 'sass:color';
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+@use 'typography' as *;
+
+.selection-container {
+  flex-grow: 1;
+  padding-right: grid(2);
+}
+
+.selection-instructions {
+  line-height: 1.2;
+  max-width: 600px;
+}
+
+.instruction-label {
+  @extend %subtitle2;
+  @extend %slab-standard-semibold;
+  padding-bottom: grid(2);
+}
+
+.instruction-text {
+  @extend %sans-regular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.875rem;
+  padding-bottom: grid(2);
+}
+
+.label-ref-text {
+  @extend %sans-semibold;
+}
+
+.variable-use-selection-component {
+  margin-bottom: grid(4);
+}
+
+.filter-use-name {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.time-range-slider-component {
+  display: block;
+  padding: 0 grid(4);
+  max-width: 500px;
+}
+
+.variable-use-selection-component,
+.value-type-selection-component {
+  display: flex;
+  max-width: 600px;
+}
+
+.variable-use-selection-component {
+  padding-bottom: grid(3);
+}
