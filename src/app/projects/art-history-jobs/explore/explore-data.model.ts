@@ -18,10 +18,7 @@ export interface ExploreChangeChartData {
   categories: EntityCategory;
 }
 
-export type EntityCategory =
-  | JobProperty.field
-  | JobProperty.tenure
-  | JobProperty.rank;
+export type EntityCategory = 'field' | 'rank' | 'tenure';
 
 export interface ExploreChangeDatum extends JobDatum {
   [JobProperty.year]: never;

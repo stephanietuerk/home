@@ -1,41 +1,50 @@
 <table class="table-component">
   <thead class="head">
     <tr class="header row">
-      <th class="header cell" scope="col" *ngFor="let header of headers">
-        <button
-          class="header-contents"
-          [attr.aria-label]="header.ariaLabeL"
-          [ngClass]="header.classes"
-          (click)="handleHeaderClick(header)"
-        >
-          <span class="header-text">{{ header.display }}</span>
-          <app-sort-arrows
-            *ngIf="header.sort.canSort"
-            [current]="header.sort.direction"
-            [firstSort]="header.sort.firstSort"
-            class="sort-arrows"
-          ></app-sort-arrows>
-        </button>
-      </th>
+      @for (header of headers; track header) {
+        <th class="header cell" scope="col">
+          <button
+            class="header-contents"
+            [attr.aria-label]="header.ariaLabeL"
+            [class.sortable]="header.sort.canSort"
+            [class.sorted]="!!header.sort.direction"
+            [ngClass]="header.align"
+            (click)="updateSort(header)"
+          >
+            <span class="header-text">{{ header.display }}</span>
+            @if (header.sort.canSort) {
+              <app-sort-arrows
+                [current]="header.sort.direction"
+                [firstSort]="header.sort.firstSort"
+                class="sort-arrows"
+              ></app-sort-arrows>
+            }
+          </button>
+        </th>
+      }
     </tr>
   </thead>
   <tbody class="body">
-    <tr
-      *ngFor="let row of rows; let rowIndex = index"
-      class="data row"
-      [style.--color]="getTextColor(row[headers[0].id])"
-    >
-      <th scope="row" class="data cell row-header" [ngClass]="headers[0].align"
-        >{{ row[headers[0].id] }}</th
-      >
-      <ng-container *ngFor="let header of headers.slice(1)">
-        <td *ngIf="!header.formatter" class="data cell" [ngClass]="header.align"
-          >{{ row[header.id] }}</td
+    @for (row of rows; track $index) {
+      <tr class="data row" [style.--color]="getTextColor(row[headers[0].id])">
+        <th
+          scope="row"
+          class="data cell row-header"
+          [ngClass]="headers[0].align"
+          >{{ row[headers[0].id] }}</th
         >
-        <td *ngIf="header.formatter" class="data cell" [ngClass]="header.align">
-          {{ header.formatter(row[header.id]) }}
-        </td>
-      </ng-container>
-    </tr>
+        @for (header of headers.slice(1); track $index) {
+          @if (header.formatter) {
+            <td class="data cell" [ngClass]="header.align">
+              {{ header.formatter(row[header.id]) }}
+            </td>
+          } @else {
+            <td class="data cell" [ngClass]="header.align">{{
+              row[header.id]
+            }}</td>
+          }
+        }
+      </tr>
+    }
   </tbody>
 </table>

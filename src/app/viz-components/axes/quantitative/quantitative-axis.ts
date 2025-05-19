@@ -1,4 +1,4 @@
-import { AxisTimeInterval, format, timeFormat } from 'd3';
+import { AxisTimeInterval, format, utcFormat } from 'd3';
 import { AbstractConstructor } from '../../core/common-behaviors/constructor';
 import { XyAxis } from '../xy-axis';
 
@@ -33,7 +33,7 @@ export function mixinQuantitativeAxis<T extends AbstractConstructor<XyAxis>>(
     ): void {
       this.axis.tickValues(this.config.tickValues);
       this.axis.tickFormat((d) => {
-        const formatter = d instanceof Date ? timeFormat : format;
+        const formatter = d instanceof Date ? utcFormat : format;
         return typeof tickFormat === 'function'
           ? tickFormat(d)
           : formatter(tickFormat)(d);
@@ -48,7 +48,7 @@ export function mixinQuantitativeAxis<T extends AbstractConstructor<XyAxis>>(
       const validNumTicks = this.getNumTicks();
       this.axis.ticks(validNumTicks);
       this.axis.tickFormat((d) => {
-        const formatter = d instanceof Date ? timeFormat : format;
+        const formatter = d instanceof Date ? utcFormat : format;
         return typeof tickFormat === 'function'
           ? tickFormat(d)
           : formatter(tickFormat)(d);

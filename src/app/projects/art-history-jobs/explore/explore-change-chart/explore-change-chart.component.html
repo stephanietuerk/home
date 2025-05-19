@@ -5,7 +5,7 @@
   >
     <p class="instruction"
       >Show change between
-      <span class="end-year">{{selections.years.end}}</span> and</p
+      <span class="end-year">{{ selections.years.end }}</span> and</p
     >
     <app-change-chart-toggle
       [currentValue]="selections.changeIsAverage"
@@ -13,23 +13,21 @@
       [endYear]="selections.years.end"
     ></app-change-chart-toggle>
     <p class="chart-title" [style.padding-left.px]="margin.left"
-      >Change{{vm.title.valueTypePercent}} in {{vm.title.valueTypeCount}} {{
-      vm.title.fields }}
-      <span class="tenure-rank">{{vm.title.tenureAndRank}}</span> jobs
-      {{vm.title.disaggregation}}, {{vm.title.years}}</p
+      >Change{{ vm.title.valueTypePercent }} in {{ vm.title.valueTypeCount }}
+      {{ vm.title.fields }}
+      <span class="tenure-rank">{{ vm.title.tenureAndRank }}</span> jobs
+      {{ vm.title.disaggregation }}, {{ vm.title.years }}</p
     >
     <app-change-chart
       #changeChart
       class="chart-component"
-      [margin]="margin"
-      [height]="vm.height"
-      [width]="width"
-      [scaleChartWithContainerWidth]="{ width: true, height: false }"
+      [config]="vm.chartConfig"
     >
       <ng-container svg-elements>
         <app-change-bars
           [config]="vm.dataMarksConfig"
-          [vicBarsHoverMoveEffects]="hoverEffects"
+          [barHeight]="vm.barHeight"
+          [vicBarsHoverMoveActions]="hoverActions"
           (vicBarsHoverMoveOutput)="updateTooltipForNewOutput($event)"
         >
           <svg:g
@@ -38,7 +36,7 @@
             side="top"
             [config]="vm.xAxisConfig"
           ></svg:g>
-          <vic-html-tooltip
+          <!-- <vic-html-tooltip
             *ngIf="(tooltipConfig$ | async)?.show"
             [config]="tooltipConfig$ | async"
             [template]="htmlTooltip"
@@ -56,24 +54,31 @@
                 <div class="values-container">
                   <div class="secondary-values-container">
                     <p class="tooltip-label start-value"
-                      ><span class="value-label"
-                        >{{selections.changeIsAverage ? 'Avg. value' :
-                        selections.years.start + ' value' }}</span
-                      >{{ tooltipData.datum.startValue |
-                      appD3FormatPipe:vm.dataMarksConfig.quantitative.valueFormat
+                      ><span class="value-label">{{
+                        selections.changeIsAverage
+                          ? 'Avg. value'
+                          : selections.years.start + ' value'
+                      }}</span
+                      >{{
+                        tooltipData.datum.startValue
+                          | appD3FormatPipe
+                            : vm.dataMarksConfig.quantitative.valueFormat
                       }}</p
                     >
                     <p class="tooltip-label end-value"
-                      ><span class="value-label"
-                        >{{selections.years.end + ' value'}}</span
-                      >{{ tooltipData.datum.endValue |
-                      appD3FormatPipe:vm.dataMarksConfig.quantitative.valueFormat
+                      ><span class="value-label">{{
+                        selections.years.end + ' value'
+                      }}</span
+                      >{{
+                        tooltipData.datum.endValue
+                          | appD3FormatPipe
+                            : vm.dataMarksConfig.quantitative.valueFormat
                       }}</p
                     >
                   </div>
                   <p class="tooltip-label change"
-                    ><span class="value-label">Change</span>{{
-                    tooltipData.quantitative }}</p
+                    ><span class="value-label">Change</span
+                    >{{ tooltipData.quantitative }}</p
                   >
                 </div></div
               ><svg
@@ -91,7 +96,7 @@
                 </g>
               </svg>
             </div>
-          </ng-template>
+          </ng-template> -->
         </app-change-bars>
       </ng-container>
     </app-change-chart>

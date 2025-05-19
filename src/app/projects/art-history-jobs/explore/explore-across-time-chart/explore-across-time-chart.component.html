@@ -1,10 +1,60 @@
 <div *ngIf="vm$ | async as vm" class="across-chart-container">
   <p class="chart-title" [style.padding-left.px]="margin.left"
-    >{{ vm.title.valueType }} of {{vm.title.fields}}
-    <span class="tenure-rank">{{vm.title.tenureAndRank}}</span> jobs
-    {{vm.title.disaggregation}}</p
+    >{{ vm.title.valueType }} of {{ vm.title.fields }}
+    <span class="tenure-rank">{{ vm.title.tenureAndRank }}</span> jobs
+    {{ vm.title.disaggregation }}</p
   >
-  <vic-xy-chart
+  <vic-xy-chart [config]="vm.chartConfig" #tooltipOrigin>
+    <ng-container svg-elements>
+      <svg:g vic-xy-background></svg:g>
+      <svg:g
+        vic-primary-marks-lines
+        [config]="vm.dataMarksConfig"
+        [vicLinesHoverMoveActions]="hoverActions"
+        (vicLinesHoverMoveOutput)="updateTooltipForNewOutput($event)"
+      >
+        <vic-html-tooltip
+          [config]="tooltipConfig$ | async"
+          [template]="htmlTooltip"
+        ></vic-html-tooltip>
+      </svg:g>
+      <svg:g vic-x-quantitative-axis [config]="vm.xAxisConfig"></svg:g>
+      <svg:g vic-y-quantitative-axis [config]="vm.yAxisConfig"></svg:g>
+    </ng-container>
+  </vic-xy-chart>
+  <ng-template #htmlTooltip>
+    <!-- <div *ngIf="tooltipData$ | async as tooltipData">
+      <div [style.--color]="tooltipData.color" class="tooltip-container">
+        <p class="tooltip-label category">
+          <span class="value-label">{{ vm.lineCategoryLabel }}</span
+          >{{ tooltipData.category }}
+        </p>
+        <div class="values-container">
+          <p class="tooltip-label x"
+            ><span class="value-label">Year</span>{{ tooltipData.x }}</p
+          >
+          <p class="tooltip-label y">
+            <span class="value-label"
+              ><span *ngIf="vm.dataType !== 'count'"
+                ><span class="percent-sign">%</span> of </span
+              >jobs</span
+            >{{ tooltipData.y }}
+          </p>
+        </div> </div
+      ><svg
+        width="100%"
+        height="12"
+        [style.--width]="'20px'"
+        class="svg-triangle"
+      >
+        <g class="svg-g">
+          <path class="triangle-path" d="M 0,0 10,12 20,0" fill="white"></path>
+        </g>
+      </svg>
+    </div> -->
+  </ng-template>
+
+  <!-- <vic-xy-chart
     [margin]="margin"
     [height]="height"
     [width]="width"
@@ -26,7 +76,7 @@
       <svg:g
         vic-data-marks-lines
         [config]="vm.dataMarksConfig"
-        [vicLinesHoverMoveEffects]="hoverEffects"
+        [vicLinesHoverMoveActions]="hoverEffects"
         (vicLinesHoverMoveOutput)="updateTooltipForNewOutput($event)"
       >
         <vic-html-tooltip
@@ -36,40 +86,6 @@
         ></vic-html-tooltip>
       </svg:g>
     </ng-container>
-    <ng-template #htmlTooltip>
-      <div *ngIf="tooltipData$ | async as tooltipData">
-        <div [style.--color]="tooltipData.color" class="tooltip-container">
-          <p class="tooltip-label category">
-            <span class="value-label">{{ vm.lineCategoryLabel }}</span>{{
-            tooltipData.category }}
-          </p>
-          <div class="values-container">
-            <p class="tooltip-label x"
-              ><span class="value-label">Year</span>{{ tooltipData.x }}</p
-            >
-            <p class="tooltip-label y">
-              <span class="value-label"
-                ><span *ngIf="vm.dataType !== 'count'"
-                  ><span class="percent-sign">%</span> of </span
-                >jobs</span
-              >{{ tooltipData.y }}
-            </p>
-          </div> </div
-        ><svg
-          width="100%"
-          height="12"
-          [style.--width]="'20px'"
-          class="svg-triangle"
-        >
-          <g class="svg-g">
-            <path
-              class="triangle-path"
-              d="M 0,0 10,12 20,0"
-              fill="white"
-            ></path>
-          </g>
-        </svg>
-      </div>
-    </ng-template>
-  </vic-xy-chart>
+    
+  </vic-xy-chart> -->
 </div>

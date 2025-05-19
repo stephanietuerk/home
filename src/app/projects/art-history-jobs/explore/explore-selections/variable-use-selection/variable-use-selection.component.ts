@@ -47,7 +47,6 @@ export class VariableUseSelectionComponent
 
   ngAfterViewInit(): void {
     this.hiddenInputs.forEach((input) => {
-      console.log('input var use', input);
       this.focus.monitor(input);
     });
   }

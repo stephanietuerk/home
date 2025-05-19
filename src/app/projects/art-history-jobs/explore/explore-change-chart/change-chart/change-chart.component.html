@@ -2,8 +2,8 @@
 <div
   #div
   class="vic-chart-container"
-  [style.maxWidth.px]="width"
-  [style.maxHeight.px]="height"
+  [style.maxWidth.px]="config.width"
+  [style.maxHeight.px]="config.height"
 >
   <ng-content select="[svg-elements]"></ng-content>
 </div>

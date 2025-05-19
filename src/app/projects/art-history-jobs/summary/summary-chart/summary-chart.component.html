@@ -1,54 +1,64 @@
-<vic-xy-chart
-  class="xy-chart-component"
-  [scaleChartWithContainerWidth]="{ width: true, height: false }"
-  [margin]="margin"
-  [height]="height"
-  [width]="width"
->
-  <ng-container svg-elements>
-    <svg:g vic-xy-background [color]="chartBackgroundColor"></svg:g>
-    <svg:g vic-x-quantitative-axis side="bottom" [config]="xAxisConfig"></svg:g>
-    <svg:g vic-y-quantitative-axis side="left" [config]="yAxisConfig"></svg:g>
-    <svg:g
-      vic-data-marks-stacked-area
-      [config]="dataMarksConfig"
-      [vicStackedAreaHoverMoveEffects]="hoverEffects"
-      (vicStackedAreaHoverMoveOutput)="updateTooltipForNewOutput($event)"
-    >
-      <vic-html-tooltip
-        *ngIf="(tooltipConfig$ | async)?.show"
-        [config]="tooltipConfig$ | async"
-        [template]="htmlTooltip"
-      ></vic-html-tooltip>
-    </svg:g>
-  </ng-container>
+@if (vm$ | async; as vm) {
+  <vic-xy-chart [config]="vm.chartConfig">
+    <ng-container svg-elements>
+      <svg:g vic-xy-background></svg:g>
+      <svg:g
+        vic-primary-marks-stacked-area
+        [config]="vm.dataConfig"
+        [vicStackedAreaHoverMoveActions]="hoverAndMoveActions"
+        (vicStackedAreaHoverMoveOutput)="updateTooltipForNewOutput($event)"
+      >
+        <vic-html-tooltip
+          [config]="tooltipConfig$ | async"
+          [template]="htmlTooltip"
+        ></vic-html-tooltip>
+      </svg:g>
+      <svg:g>
+        <line
+          *ngIf="tooltipData$ | async as tooltipData"
+          class="tooltip-line"
+          [attr.x1]="tooltipData.positionX"
+          [attr.x2]="tooltipData.positionX"
+          [attr.y1]="tooltipData.hoveredAreaTop"
+          [attr.y2]="tooltipData.hoveredAreaBottom"
+        ></line>
+      </svg:g>
+      <svg:g vic-x-quantitative-axis [config]="vm.xAxisConfig"></svg:g>
+      <svg:g vic-y-quantitative-axis [config]="vm.yAxisConfig"></svg:g>
+    </ng-container>
+  </vic-xy-chart>
+
   <ng-template #htmlTooltip>
     <div
       *ngIf="tooltipData$ | async as tooltipData"
       class="summary-chart-tooltip"
+      [style.height.px]="
+        tooltipData.svgHeight -
+        vm.chartConfig.margin.top -
+        vm.chartConfig.margin.bottom
+      "
     >
       <div class="tooltip-line"></div>
       <div class="tooltip-container" *ngIf="tooltipData.data">
         <div class="year-row">
-          <p class="tooltip-label x">{{ tooltipData.data[0].x }}</p>
+          <p class="tooltip-label x">{{ tooltipData.data[0].values.x }}</p>
           <p
-            ><span class="total-label">total:</span> {{ tooltipData.total
-            }}.0</p
+            ><span class="total-label">total:</span>
+            {{ tooltipData | appGetTotalFromData: 'count' }}.0</p
           >
         </div>
-        <div
-          *ngFor="let data of tooltipData.data"
-          class="tooltip-field-value-row"
-        >
-          <p class="tooltip-label category" [style.color]="data.color"
-            >{{ data.category }}</p
-          >
-          <div class="values-container">
-            <p class="tooltip-label y">{{ data.y }}</p>
+        @for (datum of tooltipData.data; track $index) {
+          <div class="tooltip-field-value-row">
+            <p class="tooltip-label category" [style.color]="datum.color">{{
+              datum.values.color
+            }}</p>
+            <div class="values-container">
+              <p class="tooltip-label y">{{ datum.values.y }}</p>
+            </div>
           </div>
-        </div>
+        }
       </div>
       <div class="tooltip-line"></div>
     </div>
   </ng-template>
-</vic-xy-chart>
+}

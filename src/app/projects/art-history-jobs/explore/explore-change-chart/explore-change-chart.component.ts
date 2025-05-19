@@ -17,23 +17,35 @@ import {
   shareReplay,
   withLatestFrom,
 } from 'rxjs/operators';
-import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { VicXQuantitativeAxisModule } from 'src/app/viz-components/axes/x-quantitative/x-quantitative-axis.module';
-import { BarsHoverMoveEmitTooltipData } from 'src/app/viz-components/bars/bars-hover-move-effects';
-import { BarsHoverMoveDirective } from 'src/app/viz-components/bars/bars-hover-move.directive';
-import { BarsEventOutput } from 'src/app/viz-components/bars/bars-tooltip-data';
-import { VicBarsModule } from 'src/app/viz-components/bars/bars.module';
-import { VicRoundUpToIntervalDomainPaddingConfig } from 'src/app/viz-components/data-marks/data-dimension.config';
-import { EventEffect } from 'src/app/viz-components/events/effect';
 import {
-  VicHtmlTooltipConfig,
-  VicHtmlTooltipOffsetFromOriginPosition,
-} from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
-import { VicHtmlTooltipModule } from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.module';
-import { VicXyBackgroundModule } from 'src/app/viz-components/xy-background/xy-background.module';
-import { VicXyChartModule } from 'src/app/viz-components/xy-chart/xy-chart.module';
+  VicXQuantitativeAxisConfig,
+  VicXQuantitativeAxisConfigBuilder,
+  VicXyAxisModule,
+  VicYOrdinalAxisConfig,
+  VicYOrdinalAxisConfigBuilder,
+} from '../../../../viz-components-new/axes';
+import {
+  BarsConfig,
+  BarsEventOutput,
+  BarsHoverMoveDirective,
+  BarsHoverMoveEmitTooltipData,
+  VicBarsConfigBuilder,
+  VicBarsModule,
+} from '../../../../viz-components-new/bars';
+import {
+  ChartConfig,
+  VicChartConfigBuilder,
+  VicChartModule,
+} from '../../../../viz-components-new/charts';
+import { ElementSpacing } from '../../../../viz-components-new/core';
+import { HoverMoveAction } from '../../../../viz-components-new/events/action';
+import {
+  HtmlTooltipConfig,
+  VicHtmlTooltipConfigBuilder,
+  VicHtmlTooltipModule,
+} from '../../../../viz-components-new/tooltips';
+import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background';
 import { JobDatum } from '../../art-history-data.model';
-import { D3FormatPipe } from '../../art-history-fields.pipe';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
 import { ArtHistoryUtilities } from '../../art-history.utilities';
@@ -46,11 +58,7 @@ import {
 import { ChangeBarsComponent } from './change-bars/change-bars.component';
 import { ChangeChartToggleComponent } from './change-chart-toggle/change-chart-toggle.component';
 import { ChangeChartComponent } from './change-chart/change-chart.component';
-import {
-  ChangeChartConfig,
-  ChangeChartXAxisConfig,
-  ChangeChartYAxisConfig,
-} from './explore-change-chart.model';
+import { ChangeChartXAxisConfig } from './explore-change-chart.model';
 
 interface ChangeChartTitle {
   valueTypePercent: string;
@@ -62,26 +70,33 @@ interface ChangeChartTitle {
 }
 
 interface ViewModel {
-  dataMarksConfig: ChangeChartConfig;
-  xAxisConfig: ChangeChartXAxisConfig;
-  yAxisConfig: ChangeChartXAxisConfig;
-  height: number;
+  chartConfig: ChartConfig;
+  dataMarksConfig: BarsConfig<JobDatum, string>;
+  xAxisConfig: VicXQuantitativeAxisConfig<number>;
+  yAxisConfig: VicYOrdinalAxisConfig<string>;
   title: ChangeChartTitle;
   categoryLabel: string;
+  barHeight: number;
 }
 @Component({
   selector: 'app-explore-change-chart',
   imports: [
     CommonModule,
-    VicXyBackgroundModule,
-    VicXyChartModule,
-    VicXQuantitativeAxisModule,
-    VicHtmlTooltipModule,
+    VicChartModule,
     VicBarsModule,
-    D3FormatPipe,
+    VicXyBackgroundModule,
+    VicXyAxisModule,
+    VicHtmlTooltipModule,
     ChangeChartComponent,
     ChangeBarsComponent,
     ChangeChartToggleComponent,
+  ],
+  providers: [
+    VicChartConfigBuilder,
+    VicBarsConfigBuilder,
+    VicXQuantitativeAxisConfigBuilder,
+    VicYOrdinalAxisConfigBuilder,
+    VicHtmlTooltipConfigBuilder,
   ],
   templateUrl: './explore-change-chart.component.html',
   styleUrls: ['./explore-change-chart.component.scss'],
@@ -99,22 +114,25 @@ export class ExploreChangeChartComponent implements OnInit {
     left: 12,
   };
   barHeight = 36;
-  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
-    new BehaviorSubject<VicHtmlTooltipConfig>(
-      new VicHtmlTooltipConfig({ show: false })
-    );
+  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
+    new BehaviorSubject<HtmlTooltipConfig>(null);
   tooltipConfig$ = this.tooltipConfig.asObservable();
-  tooltipData: BehaviorSubject<BarsEventOutput> =
-    new BehaviorSubject<BarsEventOutput>(null);
+  tooltipData: BehaviorSubject<BarsEventOutput<JobDatum, string>> =
+    new BehaviorSubject<BarsEventOutput<JobDatum, string>>(null);
   tooltipData$ = this.tooltipData.asObservable();
-  hoverEffects: EventEffect<BarsHoverMoveDirective>[] = [
+  hoverActions: HoverMoveAction<BarsHoverMoveDirective<JobDatum, string>>[] = [
     new BarsHoverMoveEmitTooltipData(),
   ];
 
   constructor(
     public exploreDataService: ExploreDataService,
     private fieldsService: ArtHistoryFieldsService,
-    private focusMonitor: FocusMonitor
+    private focusMonitor: FocusMonitor,
+    private bars: VicBarsConfigBuilder<JobDatum, string>,
+    private chart: VicChartConfigBuilder,
+    private xQuantitativeAxis: VicXQuantitativeAxisConfigBuilder<number>,
+    private yOrdinalAxis: VicYOrdinalAxisConfigBuilder<string>,
+    private tooltip: VicHtmlTooltipConfigBuilder
   ) {}
 
   ngOnInit(): void {
@@ -126,7 +144,14 @@ export class ExploreChangeChartComponent implements OnInit {
       ),
       filter(([data, selections]) => !!data && !!selections),
       map(([data, selections, entityCategory]) => {
+        const height = this.getChartHeight(data);
         const vm = {
+          chartConfig: this.chart
+            .margin(this.margin)
+            .width(this.width)
+            .height(height)
+            .resize({ width: true, height: false })
+            .getConfig(),
           dataMarksConfig: this.getDataMarksConfig(
             data,
             entityCategory,
@@ -134,9 +159,9 @@ export class ExploreChangeChartComponent implements OnInit {
           ),
           xAxisConfig: this.getXAxisConfig(selections.valueType),
           yAxisConfig: this.getYAxisConfig(),
-          height: this.setChartHeight(data),
           title: this.getTitle(entityCategory, selections),
           categoryLabel: ArtHistoryUtilities.getCategoryLabel(entityCategory),
+          barHeight: data.length > 6 ? 24 : 36,
         };
         return vm;
       }),
@@ -147,46 +172,46 @@ export class ExploreChangeChartComponent implements OnInit {
 
   getDataMarksConfig(
     data: JobDatum[],
-    entityCategory: EntityCategory,
+    entityCategory: 'field' | 'rank' | 'tenure',
     selections: ExploreSelections
-  ): ChangeChartConfig {
-    this.barHeight = data.length > 6 ? 24 : 36;
-    const config = new ChangeChartConfig();
-    config.data = data;
-    config.ordinal.valueAccessor = (d) => d[entityCategory];
-    config.quantitative.valueAccessor = (d) => d[selections.valueType];
-    config.quantitative.valueFormat = this.getQuantitativeValueFormat(
-      selections.valueType,
-      selections.changeIsAverage
-    );
-    config.category.valueAccessor = (d) => d[entityCategory];
-    config.category.colorScale = this.getColorScale(data, entityCategory);
-    config.categoryLabelsAboveBars = true;
-    config.barHeight = this.barHeight;
-    config.quantitative.domainPadding =
-      new VicRoundUpToIntervalDomainPaddingConfig();
-    if (selections.valueType === ValueType.percent) {
-      config.quantitative.domainPadding.interval = () => 0.2;
-    } else {
-      config.quantitative.domainPadding.interval = () => 5;
-    }
-    return config;
-  }
-
-  getColorScale(
-    data: JobDatum[],
-    entityCategory: EntityCategory
-  ): (x: any) => any {
-    if (entityCategory === 'field') {
-      return (d) => this.fieldsService.getColorForField(d);
-    } else {
-      const color = this.fieldsService.getColorForField(data[0].field);
-      return (d) => color;
-    }
-  }
-
-  getQuantitativeDomain(valueType: keyof typeof ValueType): any {
-    return valueType === 'percent' ? [0, 1] : undefined;
+  ): BarsConfig<JobDatum, string> {
+    return this.bars
+      .data(data)
+      .horizontal((bars) =>
+        bars
+          .x((x) =>
+            x
+              .valueAccessor((d) => d[selections.valueType])
+              .formatSpecifier(
+                this.getQuantitativeValueFormat(
+                  selections.valueType,
+                  selections.changeIsAverage
+                )
+              )
+              .domainPaddingRoundUpToInterval(() =>
+                selections.valueType === ValueType.percent ? 0.2 : 5
+              )
+          )
+          .y((y) =>
+            y
+              .valueAccessor((d) => d[entityCategory] as string)
+              .paddingInner(0.15)
+          )
+      )
+      .color((color) =>
+        color
+          .valueAccessor((d) => d[entityCategory] as string)
+          .scale((category) => {
+            if (entityCategory === 'field') {
+              return this.fieldsService.getColorForField(category);
+            } else {
+              return this.fieldsService.getColorForField(data[0].field);
+            }
+          })
+      )
+      .backgrounds((backgrounds) => backgrounds.events(true))
+      .labels((labels) => labels.display(true))
+      .getConfig();
   }
 
   getQuantitativeValueFormat(
@@ -206,7 +231,7 @@ export class ExploreChangeChartComponent implements OnInit {
     return artHistoryFormatSpecifications.explore.chart.tick[valueType];
   }
 
-  setChartHeight(data: JobDatum[]): number {
+  getChartHeight(data: JobDatum[]): number {
     return (
       data.length * this.barHeight +
       this.margin.top +
@@ -215,15 +240,31 @@ export class ExploreChangeChartComponent implements OnInit {
     );
   }
 
-  getXAxisConfig(valueType: keyof typeof ValueType): ChangeChartXAxisConfig {
-    const config = new ChangeChartXAxisConfig();
-    config.tickFormat = this.getQuantitativeTickFormat(valueType);
+  getXAxisConfig(
+    valueType: keyof typeof ValueType
+  ): VicXQuantitativeAxisConfig<number> {
+    const config = this.xQuantitativeAxis
+      .ticks((ticks) => ticks.format(this.getQuantitativeTickFormat(valueType)))
+      .getConfig();
     return config;
   }
 
-  getYAxisConfig(): ChangeChartYAxisConfig {
-    const config = new ChangeChartYAxisConfig();
-    config.wrap.wrapWidth = this.margin.left;
+  getYAxisConfig(): VicYOrdinalAxisConfig<string> {
+    const config = this.yOrdinalAxis
+      .ticks(
+        (ticks) => ticks.size(0)
+        // .sizeOuter(0)
+        // .fontSize(14)
+        // .wrap((wrap) =>
+        //   wrap
+        //     .maintainXPosition(true)
+        //     .maintainYPosition(true)
+        //     .width(this.margin.left)
+        //     .lineHeight(0.9)
+        // )
+      )
+      .baseline((baseline) => baseline.display(false))
+      .getConfig();
     return config;
   }
 
@@ -251,29 +292,28 @@ export class ExploreChangeChartComponent implements OnInit {
     };
   }
 
-  updateTooltipForNewOutput(data: BarsEventOutput): void {
+  updateTooltipForNewOutput(data: BarsEventOutput<JobDatum, string>): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig(data);
   }
 
-  updateTooltipData(data: BarsEventOutput): void {
+  updateTooltipData(data: BarsEventOutput<JobDatum, string>): void {
     this.tooltipData.next(data);
   }
 
-  updateTooltipConfig(data: BarsEventOutput): void {
-    const config = new VicHtmlTooltipConfig();
-    config.panelClass = 'explore-change-tooltip';
-    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
-    if (data) {
-      config.origin = data.elRef;
-      config.size.minWidth = 200;
-      config.position.offsetX = data.positionX;
-      config.position.offsetY = data.positionY - 2;
-      config.show = true;
-    } else {
-      config.show = false;
-      config.origin = undefined;
-    }
+  updateTooltipConfig(data: BarsEventOutput<JobDatum, string>): void {
+    const config = this.tooltip
+      .barsPosition(data?.origin, [
+        {
+          offsetX: data?.positionX,
+          offsetY: data ? data.positionY - 12 : undefined,
+        },
+      ])
+      .panelClass('explore-change-tooltip')
+      .show(!!data)
+      .size((size) => size.minWidth(200))
+      .getConfig();
+
     this.tooltipConfig.next(config);
   }
 }

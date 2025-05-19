@@ -2,22 +2,28 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper,
+.cdk-overlay-pane.vic-html-tooltip-overlay {
+  pointer-events: none;
+}
+
 .summary-chart-tooltip {
   pointer-events: none;
   display: flex;
   flex-direction: column;
   max-width: 340px;
-  height: 100%;
 
   .tooltip-line {
     position: relative;
     border-left: 2px dashed $color-light-gray-medium;
-    height: 100%;
     align-self: center;
+    flex-grow: 1;
   }
 
   .tooltip-container {
     padding: grid(2);
+    flex-grow: 0;
   }
 
   .top-space,

@@ -11,19 +11,19 @@ import {
 } from '@angular/core';
 import { select } from 'd3';
 import { Selection } from 'd3-selection';
-import { VicXQuantitativeAxisModule } from 'src/app/viz-components/axes/x-quantitative/x-quantitative-axis.module';
+import { VicXyAxisModule } from '../../../../../viz-components-new/axes';
 import {
+  BarDatum,
   BARS,
   BarsComponent,
-} from 'src/app/viz-components/bars/bars.component';
-import { ChartComponent } from 'src/app/viz-components/chart/chart.component';
-import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
+} from '../../../../../viz-components-new/bars';
 import {
+  ChartComponent,
   XyChartComponent,
   XyContentScale,
-} from 'src/app/viz-components/xy-chart/xy-chart.component';
+} from '../../../../../viz-components-new/charts';
+import { VIC_PRIMARY_MARKS } from '../../../../../viz-components-new/marks';
 import { ChangeChartComponent } from '../change-chart/change-chart.component';
-import { ChangeChartConfig } from '../explore-change-chart.model';
 
 type BarContainerSelection = Selection<
   HTMLDivElement,
@@ -37,182 +37,174 @@ type BarCategoryLabelSelection = Selection<
   HTMLDivElement,
   number
 >;
-type BarSvgGSelection = Selection<SVGGElement, number, SVGSVGElement, number>;
-type BarGSelection = Selection<SVGGElement, number, SVGGElement, number>;
-type BarSelection = Selection<SVGRectElement, number, SVGGElement, number>;
-type BarValueLabelSelection = Selection<
-  SVGTextElement,
-  number,
-  SVGGElement,
-  number
->;
+
+type BarsElement = 'div' | 'g' | 'bar' | 'label' | 'background';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-change-bars',
-  imports: [CommonModule, VicXQuantitativeAxisModule],
+  imports: [CommonModule, VicXyAxisModule],
   templateUrl: './change-bars.component.html',
   styleUrls: ['./change-bars.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [
-    { provide: DATA_MARKS, useExisting: ChangeBarsComponent },
+    { provide: VIC_PRIMARY_MARKS, useExisting: ChangeBarsComponent },
     { provide: BARS, useExisting: ChangeBarsComponent },
     { provide: ChartComponent, useExisting: ChangeChartComponent },
     { provide: XyChartComponent, useExisting: ChangeChartComponent },
   ],
 })
-export class ChangeBarsComponent
-  extends BarsComponent
+export class ChangeBarsComponent<Datum>
+  extends BarsComponent<Datum, string>
   implements OnInit, OnChanges
 {
-  @Input() override config: ChangeChartConfig;
+  @Input() barHeight: number;
   @ViewChild('barsContainer', { static: true })
   barsContainerRef: ElementRef<HTMLDivElement>;
-  barContainerSel: BarContainerSelection;
-  barCategoryLabelSel: BarCategoryLabelSelection;
-  barSvgGSel: BarSvgGSelection;
-  barGSel: BarGSelection;
-  barSel: BarSelection;
-  barValueLabelSel: BarValueLabelSelection;
+  barDivs: BarContainerSelection;
+  barLabelPs: BarCategoryLabelSelection;
   maxBarLabelWidth = 40;
+  override requiredScales = [XyContentScale.x];
 
   constructor() {
     super();
   }
 
-  override setRequiredChartScales(): void {
-    this.requiredScales = [XyContentScale.x];
+  override get class(): Record<BarsElement, string> {
+    return {
+      div: this.config.marksClass + '-div',
+      g: this.config.marksClass + '-group',
+      bar: this.config.marksClass + '-bar',
+      label: this.config.marksClass + '-label',
+      background: this.config.marksClass + '-background',
+    };
   }
 
   override updateBarElements(): void {
-    const bars = select(this.barsContainerRef.nativeElement).selectAll('svg');
-    const labels = bars.selectAll('text');
-    this.bars.next(bars);
-    this.barLabels.next(labels);
-  }
-
-  override getOrdinalScale(): any {
-    return null;
+    const barEventElementsSelector = this.config.backgrounds?.events
+      ? `.${this.class.bar}, .${this.class.background}`
+      : `.${this.class.bar}`;
+    const bars = select(this.barsContainerRef.nativeElement).selectAll<
+      SVGRectElement,
+      number
+    >(barEventElementsSelector);
+    const labels = select(this.barsContainerRef.nativeElement).selectAll<
+      SVGTextElement,
+      number
+    >(`.${this.class.label}`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.bars.next(bars as any);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.labels.next(labels as any);
   }
 
   override drawBars(transitionDuration: number): void {
-    const t = select(this.barsContainerRef.nativeElement)
-      .transition()
-      .duration(transitionDuration);
-    this.barContainerSel = select(this.barsContainerRef.nativeElement)
-      .selectAll<HTMLDivElement, number[]>('.bar-container')
-      .data(this.values.indicies, this.barsKeyFunction)
-      .join((enter) => enter.append('div'))
-      .style('--chart-margin-left', `${this.chart.margin.left}px`)
-      .attr('class', () =>
-        this.config.categoryLabelsAboveBars
-          ? 'bar-container column'
-          : 'bar-container row'
+    this.barDivs = select(this.barsContainerRef.nativeElement)
+      .selectAll<HTMLDivElement, number>(`.${this.class.div}`)
+      .data<number>(this.config.valueIndices, this.config.barsKeyFunction)
+      .join((enter) =>
+        enter
+          .append('div')
+          // TODO: put "column" on as class
+          .attr('class', (i) =>
+            `${this.class.div} ${this.config.datumClass(this.config.data[i], i)}`.trim()
+          )
+          .style('--chart-margin-left', `${this.chart.config.margin.left}px`)
       );
-    this.barCategoryLabelSel = this.barContainerSel
-      .selectAll<HTMLParagraphElement, number[]>('.bar-category-label')
+
+    this.barLabelPs = this.barDivs
+      .selectAll<HTMLParagraphElement, number>('.bar-category-label')
       .data((i) => [i])
       .join(
         (enter) =>
           enter
             .append('p')
             .attr('class', 'bar-category-label')
-            .text((i) => this.values[this.config.dimensions.ordinal][i]),
-        (update) =>
-          update.text((i) => this.values[this.config.dimensions.ordinal][i]),
+            .text((i) => this.config.ordinal.values[i]),
+        (update) => update.text((i) => this.config.ordinal.values[i]),
         (exit) => exit.remove()
       );
-    const svg = this.barContainerSel
-      .selectAll<SVGSVGElement, number[]>('.vic-chart-svg')
+
+    const barSvgs = this.barDivs
+      .selectAll<SVGSVGElement, number>('.vic-chart-svg')
       .data((i) => [i])
       .join(
         (enter) =>
           enter
             .append('svg')
             .attr('class', 'vic-chart-svg')
-            .attr(
-              'category',
-              (i) => this.values[this.config.dimensions.ordinal][i]
-            )
+            .attr('category', (i) => this.config.ordinal.values[i])
             .style('mix-blend-mode', this.config.mixBlendMode)
             .attr('width', () => {
               const width =
                 this.ranges.x[1] -
                 this.ranges.x[0] +
-                this.chart.margin.left +
-                this.chart.margin.right;
+                this.chart.config.margin.left +
+                this.chart.config.margin.right;
               return width;
             })
-            .attr('height', this.config.barHeight),
+            .attr('height', this.barHeight),
         (update) =>
           update
-            .attr(
-              'category',
-              (i) => this.values[this.config.dimensions.ordinal][i]
-            )
+            .attr('category', (i) => this.config.ordinal.values[i])
             .attr('width', () => {
               const width =
                 this.ranges.x[1] -
                 this.ranges.x[0] +
-                this.chart.margin.left +
-                this.chart.margin.right;
+                this.chart.config.margin.left +
+                this.chart.config.margin.right;
               return width;
             })
-            .attr('height', this.config.barHeight),
+            .attr('height', this.barHeight),
         (exit) => exit.remove()
       );
-    this.barSvgGSel = svg
-      .selectAll<SVGSVGElement, number[]>('.vic-chart-svg-g')
-      .data((i) => [i])
-      .join('g')
-      .attr('class', 'vic-chart-svg-g');
-    this.barSvgGSel
-      .selectAll('.background-bar')
-      .data((i) => [i])
-      .join('rect')
-      .attr('class', 'background-bar')
-      .attr('width', this.getBackgroundBarWidth())
-      .attr('height', this.config.barHeight)
-      .attr(
-        'x',
-        this.config.categoryLabelsAboveBars ? this.chart.margin.left : 0
-      )
-      .attr('fill', 'whitesmoke');
-    this.barGSel = this.barSvgGSel
-      .selectAll<SVGGElement, number[]>('.bar-g')
-      .data((i) => [i])
-      .join('g')
-      .attr('class', 'bar-g');
-    this.transformBarGroup(this.barGSel);
-    this.barSel = this.barGSel
-      .selectAll<SVGRectElement, number[]>('.data-bar')
+
+    this.barGroups = barSvgs
+      .selectAll<SVGSVGElement, number>(`.${this.class.g}`)
       .data((i) => [i])
       .join(
         (enter) =>
           enter
-            .append('rect')
-            .attr('class', 'data-bar')
-            .attr('width', (i) => this.getBarWidth(i))
-            .attr('height', this.config.barHeight)
-            .attr('fill', (i) =>
-              this.config.patternPredicates
-                ? this.getBarPattern(i)
-                : this.getBarColor(i)
+            .append('g')
+            .attr('class', this.class.g)
+            .attr('transform', (i) =>
+              this.getBarGroupTransform(this.getBarDatumFromIndex(i))
             ),
         (update) =>
           update
-            .transition(t)
-            .attr('width', (i) => this.getBarWidth(i))
-            .attr('height', this.config.barHeight)
-            .attr('fill', (i) =>
-              this.config.patternPredicates
-                ? this.getBarPattern(i)
-                : this.getBarColor(i)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .transition()
+            .duration(transitionDuration)
+            .attr('transform', (i) =>
+              this.getBarGroupTransform(this.getBarDatumFromIndex(i))
             ),
         (exit) => exit.remove()
       );
-    this.barGSel
+
+    this.barGroups
+      .selectAll<SVGRectElement, BarDatum<string>>(`.${this.class.bar}`)
+      .data<BarDatum<string>>((i) => [this.getBarDatumFromIndex(i)])
+      .join(
+        (enter) =>
+          enter
+            .append('rect')
+            .attr('class', this.class.bar)
+            .property('key', (d) => d.ordinal)
+            .attr('width', (d) => this.getBarWidth(d))
+            .attr('height', this.getBarHeight())
+            .attr('fill', (d) => this.getBarFill(d)),
+        (update) =>
+          update
+            .transition()
+            .duration(transitionDuration)
+            .attr('width', (d) => this.getBarWidth(d))
+            .attr('height', this.getBarHeight())
+            .attr('fill', (d) => this.getBarFill(d)),
+        (exit) => exit.remove()
+      );
+
+    this.barGroups
       .selectAll<SVGLineElement, number[]>('.zero-axis')
       .data((i) => [i])
       .join(
@@ -221,185 +213,135 @@ export class ChangeBarsComponent
             .append('line')
             .attr('class', 'zero-axis')
             .attr('y1', 0)
-            .attr('y2', this.config.barHeight)
+            .attr('y2', this.getBarHeight())
             .attr('x1', (i) => this.getZeroAxisX(i))
             .attr('x2', (i) => this.getZeroAxisX(i)),
         (update) =>
           update
-            .transition(t)
+            .transition()
+            .duration(transitionDuration)
             .attr('y1', 0)
-            .attr('y2', this.config.barHeight)
+            .attr('y2', this.getBarHeight())
             .attr('x1', (i) => this.getZeroAxisX(i))
             .attr('x2', (i) => this.getZeroAxisX(i)),
         (exit) => exit.remove()
       );
   }
 
-  transformBarGroup(selection: any): any {
-    return selection.attr('transform', (i: number) => {
-      const x = this.getBarX(i);
-      return `translate(${x},${0})`;
-    });
-  }
-
-  getBarProperties(selection: any): any {
-    return selection
-      .attr('width', (i: number) => this.getBarWidth(i as number))
-      .attr('height', (i: number) => this.getBarHeight(i as number))
-      .attr('fill', (i: number) =>
-        this.config.patternPredicates
-          ? this.getBarPattern(i as number)
-          : this.getBarColor(i as number)
-      );
-  }
-
-  override drawBarLabels(transitionDuration: number): void {
-    const t = select(this.barsContainerRef.nativeElement)
-      .transition()
-      .duration(transitionDuration);
-    this.barValueLabelSel = this.barGSel
-      .selectAll<SVGTextElement, number[]>('.data-value-label')
-      .data((i) => [i])
+  override drawBackgrounds(transitionDuration: number): void {
+    this.barGroups
+      .selectAll<SVGRectElement, number>(`.${this.class.background}`)
+      .data<BarDatum<string>>((i) => [this.getBarDatumFromIndex(i)])
       .join(
         (enter) =>
           enter
-            .append('text')
-            .attr('class', 'data-value-label')
-            .attr('x', (i) => this.getBarLabelInsideOutsideX(i))
-            .attr('y', (i) => this.config.barHeight / 2)
-            .style('fill', (i) =>
-              this.positionLabelInsideBar(
-                i,
-                this.values[this.config.dimensions.quantitative][i] >= 0
-              )
-                ? 'white'
-                : this.getBarLabelColor(i)
-            )
-            .style('display', this.config.labels.display ? null : 'none')
-            .style('alignment-baseline', 'middle')
-            .text((i) => this.getBarLabelText(i))
-            .attr('text-anchor', (i) => this.getLabelTextAnchor(i)),
+            .append('rect')
+            .attr('class', this.class.background)
+            .attr('fill', this.config.backgrounds.color)
+            .attr('transform', (d) => this.getBackgroundTransform(d))
+            .attr('width', this.getBackgroundWidth())
+            .attr('height', this.getBackgroundBarHeight()),
         (update) =>
           update
-            .transition(t)
-            .attr('x', (i) => this.getBarLabelInsideOutsideX(i))
-            .attr('y', (i) => this.config.barHeight / 2)
-            .style('fill', (i) =>
-              this.positionLabelInsideBar(
-                i,
-                this.values[this.config.dimensions.quantitative][i] >= 0
-              )
-                ? 'white'
-                : this.getBarLabelColor(i)
-            )
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .transition()
+            .duration(transitionDuration)
+            .attr('transform', (d) => this.getBackgroundTransform(d))
+            .attr('width', this.getBackgroundWidth())
+            .attr('height', this.getBackgroundBarHeight()),
+        (exit) => exit.remove()
+      )
+      .lower();
+  }
+
+  override drawLabels(transitionDuration: number): void {
+    this.barGroups
+      .selectAll<SVGTextElement, BarDatum<string>>(`.${this.class.label}`)
+      .data<BarDatum<string>>((i: number) => [
+        {
+          index: i,
+          quantitative: this.config.quantitative.values[i],
+          ordinal: this.config.ordinal.values[i],
+          color: this.config.color.values[i],
+        },
+      ])
+      .join(
+        (enter) =>
+          enter
+            .append<SVGTextElement>('text')
+            .attr('class', this.class.label)
             .style('display', this.config.labels.display ? null : 'none')
-            .style('alignment-baseline', 'middle')
-            .text((i) => this.getBarLabelText(i))
-            .attr('text-anchor', (i) => this.getLabelTextAnchor(i)),
+            .text((d) => this.getLabelText(d))
+            .style('visiblity', 'hidden')
+            .call((selection) => {
+              selection.each((d, i, nodes) => {
+                const bbox = nodes[i].getBBox();
+                select<SVGTextElement, BarDatum<string>>(nodes[i])
+                  .style('fill', (d) => this.getLabelColor(d, bbox))
+                  .attr('text-anchor', (d) => this.getLabelTextAnchor(d, bbox))
+                  .attr('dominant-baseline', (d) =>
+                    this.getLabelDominantBaseline(d, bbox)
+                  )
+                  .attr('x', this.getLabelX(d, bbox))
+                  .attr('y', this.getLabelY())
+                  .attr('visibility', 'visible');
+              });
+            }),
+        (update) =>
+          update
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .transition()
+            .duration(transitionDuration)
+            .text((d) => this.getLabelText(d))
+            .style('visiblity', 'hidden')
+            .call((selection) => {
+              selection.each((d, i, nodes) => {
+                const bbox = nodes[i].getBBox();
+                select<SVGTextElement, BarDatum<string>>(nodes[i])
+                  .style('fill', (d) => this.getLabelColor(d, bbox))
+                  .attr('text-anchor', (d) => this.getLabelTextAnchor(d, bbox))
+                  .attr('dominant-baseline', (d) =>
+                    this.getLabelDominantBaseline(d, bbox)
+                  )
+                  .attr('x', this.getLabelX(d, bbox))
+                  .attr('y', this.getLabelY())
+                  .attr('visibility', 'visible');
+              });
+            }),
         (exit) => exit.remove()
       );
   }
 
-  getLabelTextAnchor(i: number): 'start' | 'end' {
-    const value = this.values[this.config.dimensions.quantitative][i];
-    if (value === null) {
-      return 'start';
-    }
-    const isPositiveValue = value >= 0;
-    const labelOutside = this.getBarLabelFitsOutsideBar(i, isPositiveValue);
-    if (isPositiveValue) {
-      return labelOutside ? 'start' : 'end';
-    } else {
-      return labelOutside ? 'end' : 'start';
-    }
+  override getBarGroupTransform(datum: BarDatum<string>): string {
+    const x = this.getBarX(datum);
+    return `translate(${x},0)`;
   }
 
-  getBackgroundBarX(i: number): number {
-    const isPositiveValue =
-      this.values[this.config.dimensions.quantitative][i] >= 0;
-    if (isPositiveValue) {
-      return -1 * this.scales.x(0) + this.ranges.x[0];
-    } else {
-      return (
-        this.getBarWidthQuantitative(i) - (this.scales.x(0) - this.ranges.x[0])
-      );
-    }
+  override getLabelY(): number {
+    return this.barHeight / 2;
+  }
+
+  override getBackgroundBarHeight(): number {
+    return this.barHeight;
+  }
+
+  override getBarHeight(): number {
+    return this.barHeight;
   }
 
   getZeroAxisX(i: number): number {
-    const isPositiveValue =
-      this.values[this.config.dimensions.quantitative][i] >= 0;
+    const isPositiveValue = this.config.quantitative.values[i] >= 0;
     if (isPositiveValue) {
       return 0;
     } else {
-      return this.getBarWidthQuantitative(i);
+      return this.getBarDimensionQuantitative(
+        this.getBarDatumFromIndex(i),
+        'x'
+      );
     }
   }
 
   getBackgroundBarWidth(): number {
     return this.ranges.x[1] - this.ranges.x[0];
-  }
-
-  override getBarLabelX(i: number): number {
-    const isPositiveValue =
-      this.values[this.config.dimensions.quantitative][i] >= 0;
-    if (isPositiveValue) {
-      let barEnd = this.getBarWidthQuantitative(i);
-      if (!barEnd || isNaN(barEnd)) {
-        barEnd = 0;
-      }
-      return barEnd + this.config.labels.offset;
-    } else {
-      return -1 * this.config.labels.offset;
-    }
-  }
-
-  positionLabelInsideBar(i: number, isPositiveValue: boolean): boolean {
-    // TODO: future feature - create maxBarLabelWidth dynamically based on length of d3 formatted data label
-    return (
-      !this.getBarLabelFitsOutsideBar(i, isPositiveValue) &&
-      this.getBarLabelFitsInsideBar(i, isPositiveValue)
-    );
-  }
-
-  getBarLabelFitsOutsideBar(i: number, isPositiveValue: boolean): boolean {
-    const widthOutsideBar = isPositiveValue
-      ? this.ranges.x[1] - this.scales.x(this.values.x[i])
-      : this.scales.x(this.values.x[i]) - this.ranges.x[0];
-    return widthOutsideBar > this.maxBarLabelWidth;
-  }
-
-  getBarLabelFitsInsideBar(i: number, isPositiveValue: boolean): boolean {
-    const widthInsideBar = isPositiveValue
-      ? this.scales.x(this.values.x[i]) - this.scales.x(0)
-      : this.scales.x(0) - this.scales.x(this.values.x[i]);
-    return widthInsideBar >= this.maxBarLabelWidth;
-  }
-
-  getBarLabelInsideOutsideX(i: number): number {
-    const value = this.values[this.config.dimensions.quantitative][i];
-    if (value === null) {
-      return this.config.labels.offset;
-    }
-    const isPositiveValue = value >= 0;
-    return this.positionLabelInsideBar(i, isPositiveValue)
-      ? this.getBarLabelInsideX(i, isPositiveValue)
-      : this.getBarLabelOutsideX(i, isPositiveValue);
-  }
-
-  getBarLabelInsideX(i: number, isPositiveValue: boolean): number {
-    const positiveDataLabelOffset = 12;
-    const origin = this.getBarLabelX(i);
-    return isPositiveValue ? origin - positiveDataLabelOffset : -1 * origin;
-  }
-
-  getBarLabelOutsideX(i: number, isPositiveValue: boolean): number {
-    if (this.getBarLabelFitsOutsideBar(i, isPositiveValue)) {
-      return this.getBarLabelX(i);
-    } else {
-      return isPositiveValue
-        ? -this.config.labels.offset
-        : this.getBarWidthQuantitative(i) + this.config.labels.offset;
-    }
   }
 }

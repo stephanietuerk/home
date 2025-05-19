@@ -15,7 +15,6 @@ import { fromEvent } from 'rxjs';
 import { projectNavbarHeight } from 'src/app/core/constants/dom.constants';
 import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
-import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { ArtHistoryDataService } from './art-history-data.service';
 import { currentDataYears } from './art-history-jobs.constants';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
@@ -45,10 +44,7 @@ enum ArtHistorySection {
   styleUrls: ['./art-history-jobs.component.scss'],
   providers: [ExploreDataService, MessageService, OverlayService],
 })
-export class ArtHistoryJobsComponent
-  extends Unsubscribe
-  implements OnInit, AfterViewInit
-{
+export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
   @ViewChild('intro') intro: ElementRef;
   @ViewChild('summary', { read: ElementRef }) summary: ElementRef;
   @ViewChild('jobCharacteristics', { read: ElementRef })
@@ -66,9 +62,7 @@ export class ArtHistoryJobsComponent
     public exploreDataService: ExploreDataService,
     private platform: Platform,
     private messages: MessageService
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.mainDataService.init().then(() => {

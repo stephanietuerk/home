@@ -1,4 +1,4 @@
-import { format, timeFormat } from 'd3';
+import { format, utcFormat } from 'd3';
 
 export type VicFormatSpecifier = string | ((x: unknown) => string);
 
@@ -33,7 +33,7 @@ export function formatValue(
   } else if (value === null || value === undefined) {
     return '';
   } else if (formatSpecifier && typeof formatSpecifier === 'string') {
-    const formatter = value instanceof Date ? timeFormat : format;
+    const formatter = value instanceof Date ? utcFormat : format;
     return formatter(formatSpecifier)(value);
   } else {
     return value.toString();

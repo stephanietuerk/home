@@ -9,7 +9,6 @@ import {
   take,
   withLatestFrom,
 } from 'rxjs/operators';
-import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { JobDatum, JobProperty, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import {
@@ -30,7 +29,7 @@ import {
 } from './explore-selections/explore-selections.model';
 
 @Injectable()
-export class ExploreDataService extends Unsubscribe {
+export class ExploreDataService {
   defaultSelections: ExploreSelections = {
     valueType: ValueType.percent,
     years: {
@@ -53,9 +52,7 @@ export class ExploreDataService extends Unsubscribe {
   changeData$: Observable<ExploreChangeDatum[]>;
   entityCategory$: Observable<EntityCategory>;
 
-  constructor(private artHistoryData: ArtHistoryDataService) {
-    super();
-  }
+  constructor(private artHistoryData: ArtHistoryDataService) {}
 
   init(): void {
     this.initDefaultSelections();

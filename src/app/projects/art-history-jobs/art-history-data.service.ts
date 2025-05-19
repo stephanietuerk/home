@@ -13,8 +13,6 @@ export class ArtHistoryDataService {
   data$: Observable<JobDatum[]>;
   dataBySchool$: Observable<JobsByCountry[]>;
   dataYears: [number, number];
-  private dataLoaded = false;
-  private schoolsDataLoaded = false;
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +24,7 @@ export class ArtHistoryDataService {
   }
 
   setData(): void {
-    if (!this.dataLoaded) {
+    if (!this.data$) {
       this.data$ = this.http
         .get('assets/artHistoryJobs/aggregated_data.csv', {
           responseType: 'text',
@@ -35,26 +33,24 @@ export class ArtHistoryDataService {
           map((data) => this.parseData(data)),
           shareReplay(1)
         );
-      this.dataLoaded = true;
     }
   }
 
   setDataBySchools(): void {
-    if (!this.schoolsDataLoaded) {
+    if (!this.dataBySchool$) {
       this.dataBySchool$ = this.http
         .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
         .pipe(
           map((data) => this.parseDataBySchools(data)),
           shareReplay(1)
         );
-      this.schoolsDataLoaded = true;
     }
   }
 
   parseData(data): JobDatum[] {
     return csvParse(data).map((x) => {
       return {
-        year: new Date(`${x['year']}-01-01T00:00:00`),
+        year: new Date(Date.UTC(+x['year'], 0, 1)),
         field: x['field'] === 'all' ? 'All' : x['field'],
         tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
         rank: ArtHistoryUtilities.transformRankMulti(x['rank']),
