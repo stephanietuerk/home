@@ -58,7 +58,6 @@ import {
 import { ChangeBarsComponent } from './change-bars/change-bars.component';
 import { ChangeChartToggleComponent } from './change-chart-toggle/change-chart-toggle.component';
 import { ChangeChartComponent } from './change-chart/change-chart.component';
-import { ChangeChartXAxisConfig } from './explore-change-chart.model';
 
 interface ChangeChartTitle {
   valueTypePercent: string;
@@ -105,7 +104,6 @@ interface ViewModel {
 export class ExploreChangeChartComponent implements OnInit {
   @ViewChild('changeChart') changeChart: ElementRef<Element>;
   vm$: Observable<ViewModel>;
-  xAxisConfig$: Observable<ChangeChartXAxisConfig>;
   width = 800;
   margin: ElementSpacing = {
     top: 24,
