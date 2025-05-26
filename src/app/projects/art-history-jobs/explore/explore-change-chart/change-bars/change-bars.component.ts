@@ -106,11 +106,9 @@ export class ChangeBarsComponent<Datum>
       .join((enter) =>
         enter
           .append('div')
-          // TODO: put "column" on as class
           .attr('class', (i) =>
-            `${this.class.div} ${this.config.datumClass(this.config.data[i], i)}`.trim()
+            `${this.class.div} ${this.config.datumClass(this.config.data[i], i)} column`.trim()
           )
-          .style('--chart-margin-left', `${this.chart.config.margin.left}px`)
       );
 
     this.barLabelPs = this.barDivs
@@ -121,6 +119,7 @@ export class ChangeBarsComponent<Datum>
           enter
             .append('p')
             .attr('class', 'bar-category-label')
+            .style('margin-left', `${this.chart.config.margin.left}px`)
             .text((i) => this.config.ordinal.values[i]),
         (update) => update.text((i) => this.config.ordinal.values[i]),
         (exit) => exit.remove()

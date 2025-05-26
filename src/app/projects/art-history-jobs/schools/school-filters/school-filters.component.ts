@@ -12,6 +12,7 @@ import { debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { SearchUtilities } from 'src/app/core/utilities/search.util';
 import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { ComboboxModule } from '../../../../shared/components/combobox/combobox.module';
+import { SvgIconComponent } from '../../../../shared/components/svg-icon/svg-icon.component';
 import {
   SchoolSort,
   SchoolStateProperty,
@@ -19,11 +20,16 @@ import {
 } from '../schools-data.service';
 
 @Component({
-    selector: 'app-school-filters',
-    imports: [CommonModule, MatButtonToggleModule, ComboboxModule],
-    templateUrl: './school-filters.component.html',
-    styleUrls: ['./school-filters.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-school-filters',
+  imports: [
+    CommonModule,
+    MatButtonToggleModule,
+    ComboboxModule,
+    SvgIconComponent,
+  ],
+  templateUrl: './school-filters.component.html',
+  styleUrls: ['./school-filters.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SchoolFiltersComponent
   extends Unsubscribe

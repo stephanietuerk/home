@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select } from 'd3';
 import { map } from 'rxjs';
-import { YOrdinalAxisComponent } from 'src/app/viz-components/axes/y-ordinal/y-ordinal-axis.component';
-import { XyChartComponent } from 'src/app/viz-components/xy-chart/xy-chart.component';
+import { YOrdinalAxisComponent } from 'src/app/viz-components-new/axes/y-ordinal/y-ordinal-axis.component';
+import { XyChartComponent } from 'src/app/viz-components-new/xy-chart/xy-chart.component';
 
 @Component({
   selector: 'app-change-y-axis',

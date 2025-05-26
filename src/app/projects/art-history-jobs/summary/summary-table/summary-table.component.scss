@@ -7,10 +7,6 @@
   text-align: left;
   border-collapse: collapse;
 
-  .sort-arrows {
-    padding-left: grid(1);
-  }
-
   .head {
     .header.cell {
       border-bottom: 1px solid $color-dark-gray;
@@ -29,6 +25,12 @@
       align-items: center;
 
       .arrows-container {
+        .arrow {
+          position: relative;
+          right: -2px;
+          transform: scale(0.8);
+        }
+
         &.desc {
           .arrow.down {
             color: $color-highlight;
@@ -39,10 +41,6 @@
           .arrow.up {
             color: $color-highlight;
           }
-        }
-
-        .arrow {
-          font-size: 0.7rem;
         }
       }
 

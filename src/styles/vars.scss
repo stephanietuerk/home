@@ -80,7 +80,6 @@ $mat-placeholder-color: rgba(0, 0, 0, 0.42);
 
 /* ---- POPUP MESSAGES ---- */
 %message-close-button-styles {
-  // @extend %typography-ui-label-sm-regular;
   display: flex;
   align-items: center;
   background: transparent;
@@ -97,11 +96,5 @@ $mat-placeholder-color: rgba(0, 0, 0, 0.42);
     .button-label {
       text-decoration: underline;
     }
-  }
-
-  .material-symbols-outlined {
-    transform: scale(0.75);
-    position: relative;
-    left: 2px;
   }
 }

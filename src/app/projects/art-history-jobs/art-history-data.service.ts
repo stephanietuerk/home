@@ -50,7 +50,7 @@ export class ArtHistoryDataService {
   parseData(data): JobDatum[] {
     return csvParse(data).map((x) => {
       return {
-        year: new Date(Date.UTC(+x['year'], 0, 1)),
+        year: new Date(Date.UTC(+x['year'], 0, 2)), // TODO: Fix needing the second day in order for the year to be correct
         field: x['field'] === 'all' ? 'All' : x['field'],
         tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
         rank: ArtHistoryUtilities.transformRankMulti(x['rank']),

@@ -75,6 +75,9 @@ export class SchoolsDataService {
   constructor(public dataService: ArtHistoryDataService) {}
 
   init(): void {
+    if (this.dataBySchool$) {
+      return;
+    }
     const data$ = this.dataService.dataBySchool$.pipe(filter((x) => !!x));
     const filterSelections$ = this.state$.pipe(
       map((state) => {

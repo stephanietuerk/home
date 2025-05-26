@@ -11,7 +11,7 @@
   }
 
   .tenure-rank {
-    font-weight: 500;
+    @extend %sans-medium;
     color: $color-highlight;
   }
 
@@ -27,8 +27,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 300px;
-  width: 200px;
+  max-width: 260px;
 
   $tt-background-color: rgba(white, 0.95);
   $tt-outline-color: $color-light-gray-medium;

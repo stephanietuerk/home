@@ -116,6 +116,7 @@
     .search-input-container {
       display: flex;
       align-items: center;
+      position: relative;
     }
 
     .search-input {
@@ -156,9 +157,9 @@
     }
 
     .clear-search-button {
-      position: relative;
-      right: 34px;
-      top: 2px;
+      position: absolute;
+      right: grid(2);
+      top: 9px;
       color: $color-dark-primary;
     }
   }
@@ -210,16 +211,6 @@
         padding: grid(2);
         line-height: 1;
       }
-    }
-
-    .material-symbols-outlined.checkbox {
-      transform: scale(0.75);
-      font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48;
-      color: $color-dark-primary;
     }
   }
 

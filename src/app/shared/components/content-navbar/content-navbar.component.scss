@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'mixins' as *;
+@use 'typography' as *;
 
 :host {
   @extend %navbar;
@@ -19,6 +20,7 @@
     @extend %slab-expressive-bold;
     cursor: pointer;
     display: flex;
+    align-items: center;
     font-size: 1rem;
     line-height: 1rem;
     padding-top: grid(2);
@@ -40,16 +42,32 @@
   .arrow {
     rotate: 180deg;
     transform-origin: center;
-    position: relative;
-    top: -12px;
   }
 
   .project-name {
-    @extend %h5;
+    @include title-large;
     padding-top: grid(2);
     text-align: center;
+
+    @include breakpoint-max(900px) {
+      font-variation-settings:
+        'wght' 600,
+        'CASL' $expressive-casual,
+        'MONO' $expressive-monospace,
+        'slnt' $expressive-slant;
+      font-size: 1.33rem;
+      letter-spacing: 0.01rem;
+      line-height: 1.5rem;
+    }
+
     @include breakpoint-max(600px) {
+      font-variation-settings:
+        'wght' 700,
+        'CASL' $expressive-casual,
+        'MONO' $expressive-monospace,
+        'slnt' $expressive-slant;
       font-size: 1rem;
+      line-height: 1.2;
     }
   }
 }

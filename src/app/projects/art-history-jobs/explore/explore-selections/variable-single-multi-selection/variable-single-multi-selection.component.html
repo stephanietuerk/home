@@ -51,38 +51,42 @@
         "
       >
         @if (inputUsesIcon) {
-          <span
-            *ngIf="
-              inputType === 'radio' &&
-              selections[selectionsVariable].includes(option[valueAccessor])
-            "
-            class="material-symbols-outlined"
-            >radio_button_checked</span
-          >
-          <span
-            *ngIf="
-              inputType === 'radio' &&
-              !selections[selectionsVariable].includes(option[valueAccessor])
-            "
-            class="material-symbols-outlined"
-            >radio_button_unchecked</span
-          >
-          <span
-            *ngIf="
-              inputType === 'checkbox' &&
-              selections[selectionsVariable].includes(option[valueAccessor])
-            "
-            class="material-symbols-outlined"
-            >check_box</span
-          >
-          <span
-            *ngIf="
-              inputType === 'checkbox' &&
-              !selections[selectionsVariable].includes(option[valueAccessor])
-            "
-            class="material-symbols-outlined"
-            >check_box_outline_blank</span
-          >
+          @if (
+            inputType === 'radio' &&
+            selections[selectionsVariable].includes(option[valueAccessor])
+          ) {
+            <app-svg-icon
+              name="radio-button-checked"
+              class="icon radio checked"
+            ></app-svg-icon>
+          }
+          @if (
+            inputType === 'radio' &&
+            !selections[selectionsVariable].includes(option[valueAccessor])
+          ) {
+            <app-svg-icon
+              name="radio-button-unchecked"
+              class="icon radio unchecked"
+            ></app-svg-icon>
+          }
+          @if (
+            inputType === 'checkbox' &&
+            selections[selectionsVariable].includes(option[valueAccessor])
+          ) {
+            <app-svg-icon
+              name="check-box"
+              class="icon checkbox selected"
+            ></app-svg-icon>
+          }
+          @if (
+            inputType === 'checkbox' &&
+            !selections[selectionsVariable].includes(option[valueAccessor])
+          ) {
+            <app-svg-icon
+              name="check-box-outline-blank"
+              class="icon checkbox unselected"
+            ></app-svg-icon>
+          }
         }
         {{ option.label }}</label
       >

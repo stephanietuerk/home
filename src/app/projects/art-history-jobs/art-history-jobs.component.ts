@@ -14,7 +14,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
 import { projectNavbarHeight } from 'src/app/core/constants/dom.constants';
 import { MessageService } from 'src/app/shared/components/messages/message.service';
-import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
+import { OverlayService } from '../../shared/components/overlay/overlay.service';
+import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon.component';
 import { ArtHistoryDataService } from './art-history-data.service';
 import { currentDataYears } from './art-history-jobs.constants';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
@@ -39,6 +40,7 @@ enum ArtHistorySection {
     ExploreComponent,
     SchoolsComponent,
     DataAcquisitionComponent,
+    SvgIconComponent,
   ],
   templateUrl: './art-history-jobs.component.html',
   styleUrls: ['./art-history-jobs.component.scss'],
@@ -93,7 +95,6 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
 
   setActiveSection(): void {
     this.currentSectionName.set(this.findActiveSection());
-    console.log('currentSectionName', this.currentSectionName());
   }
 
   private findActiveSection(): keyof typeof ArtHistorySection | null {

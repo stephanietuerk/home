@@ -30,12 +30,7 @@
           [vicBarsHoverMoveActions]="hoverActions"
           (vicBarsHoverMoveOutput)="updateTooltipForNewOutput($event)"
         >
-          <svg:g
-            vic-x-quantitative-axis
-            axis
-            side="top"
-            [config]="vm.xAxisConfig"
-          ></svg:g>
+          <svg:g vic-x-quantitative-axis axis [config]="vm.xAxisConfig"></svg:g>
           <!-- <vic-html-tooltip
             *ngIf="(tooltipConfig$ | async)?.show"
             [config]="tooltipConfig$ | async"

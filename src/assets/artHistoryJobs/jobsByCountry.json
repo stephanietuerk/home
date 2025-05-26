@@ -9313,6 +9313,34 @@
         ]
       },
       {
+        "school": "Montana State University, Billings",
+        "jobsByYear": [
+          { "year": "2011", "jobs": [] },
+          { "year": "2012", "jobs": [] },
+          { "year": "2013", "jobs": [] },
+          { "year": "2014", "jobs": [] },
+          { "year": "2015", "jobs": [] },
+          { "year": "2016", "jobs": [] },
+          { "year": "2017", "jobs": [] },
+          { "year": "2018", "jobs": [] },
+          { "year": "2019", "jobs": [] },
+          { "year": "2020", "jobs": [] },
+          { "year": "2021", "jobs": [] },
+          { "year": "2022", "jobs": [] },
+          {
+            "year": "2023",
+            "jobs": [
+              {
+                "id": "1546",
+                "tenure": "Tenure track",
+                "rank": ["assistant_prof"],
+                "field": ["General / Open"]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "school": "Montclair State University",
         "jobsByYear": [
           { "year": "2011", "jobs": [] },
@@ -25111,39 +25139,6 @@
             ]
           },
           { "year": "2023", "jobs": [] }
-        ]
-      }
-    ]
-  },
-  {
-    "country": "United States",
-    "jobsBySchool": [
-      {
-        "school": "Montana State University, Billings",
-        "jobsByYear": [
-          { "year": "2011", "jobs": [] },
-          { "year": "2012", "jobs": [] },
-          { "year": "2013", "jobs": [] },
-          { "year": "2014", "jobs": [] },
-          { "year": "2015", "jobs": [] },
-          { "year": "2016", "jobs": [] },
-          { "year": "2017", "jobs": [] },
-          { "year": "2018", "jobs": [] },
-          { "year": "2019", "jobs": [] },
-          { "year": "2020", "jobs": [] },
-          { "year": "2021", "jobs": [] },
-          { "year": "2022", "jobs": [] },
-          {
-            "year": "2023",
-            "jobs": [
-              {
-                "id": "1546",
-                "tenure": "Tenure track",
-                "rank": ["assistant_prof"],
-                "field": ["General / Open"]
-              }
-            ]
-          }
         ]
       }
     ]

@@ -21,7 +21,7 @@
     stroke-width: 2;
   }
 
-  .bar-container {
+  .vic-bars-div {
     display: flex;
     padding-bottom: grid(2);
 
@@ -30,15 +30,15 @@
       letter-spacing: 0.1px;
     }
 
-    &.row {
-      align-items: center;
+    //   &.row {
+    //     align-items: center;
 
-      .bar-category-label {
-        text-align: right;
-        padding-right: grid(1);
-        width: var(--chart-margin-left);
-      }
-    }
+    //     .bar-category-label {
+    //       text-align: right;
+    //       padding-right: grid(1);
+    //       width: var(--chart-margin-left);
+    //     }
+    //   }
 
     &.column {
       flex-direction: column;
@@ -46,11 +46,6 @@
       .bar-category-label {
         text-align: left;
         padding-bottom: grid(1);
-        margin-left: var(--chart-margin-left);
-      }
-
-      .vic-chart-svg {
-        // margin-left: var(--chart-margin-left);
       }
     }
   }

@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'leaving-academia-faq',
     title: 'Leaving Academia FAQ',
-    type: ProjectType.blogPost,
+    type: ProjectType.writing,
     year: 2021,
     description: [
       "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",

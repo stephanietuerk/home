@@ -76,10 +76,10 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
   @ViewChild('div', { static: true }) divRef: ElementRef<HTMLDivElement>;
   @ViewChild('svg', { static: true }) svgRef: ElementRef<SVGSVGElement>;
   protected multiples: ['one', 'two'];
-  private _height: BehaviorSubject<number> = new BehaviorSubject(null);
-  height$ = this._height.asObservable();
-  private _margin: BehaviorSubject<ElementSpacing> = new BehaviorSubject(null);
-  margin$ = this._margin.asObservable();
+  private height: BehaviorSubject<number> = new BehaviorSubject(null);
+  height$ = this.height.asObservable();
+  private margin: BehaviorSubject<ElementSpacing> = new BehaviorSubject(null);
+  margin$ = this.margin.asObservable();
   ranges$: Observable<Ranges>;
   svgDimensions$: Observable<Dimensions>;
   protected destroyRef = inject(DestroyRef);
@@ -88,7 +88,7 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
     if (
       NgOnChangesUtilities.inputObjectChangedNotFirstTime(changes, 'config')
     ) {
-      this.initFromConfig();
+      this.updateFromConfig();
     }
   }
 
@@ -97,9 +97,12 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
   }
 
   initFromConfig(): void {
-    this._height.next(this.config.height);
-    this._margin.next(this.config.margin);
     this.createDimensionObservables();
+  }
+
+  updateFromConfig(): void {
+    this.height.next(this.config.height);
+    this.margin.next(this.config.margin);
   }
 
   createDimensionObservables() {

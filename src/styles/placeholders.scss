@@ -315,15 +315,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-
-      .material-symbols-outlined {
-        transform: scale(1.5);
-        font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48;
-      }
     }
 
     .textbox-icon.open {
@@ -362,10 +353,6 @@
 
       &:hover {
         border-color: $open-border-color;
-
-        .textbox-icon .material-symbols-outlined {
-          color: $color-dark-primary;
-        }
       }
 
       &.open {
@@ -374,10 +361,6 @@
         border-right-color: $open-border-color;
         border-bottom-color: $color-light-gray-light;
         border-radius: $border-radius $border-radius 0 0;
-
-        .textbox-icon .material-symbols-outlined {
-          color: $color-dark-primary;
-        }
       }
     }
 
@@ -393,13 +376,9 @@
       flex-direction: column;
       justify-content: center;
 
-      .material-symbols-outlined {
-        transform: scale(1.5);
-        font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48;
+      app-svg-icon.expand-icon {
+        transform: scale(1.55);
+        rotate: 90deg;
       }
     }
 

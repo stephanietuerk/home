@@ -14,7 +14,7 @@
     .label {
       border: 1px solid var(--color);
       border-radius: grid(1);
-      padding: grid(2);
+      padding: grid(1);
       line-height: 1.1;
       font-size: 0.85rem;
       height: 100%;
@@ -22,7 +22,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-bottom: 6px;
+      padding-bottom: 2px;
       line-height: 1.2;
       cursor: pointer;
       transition: all 0.2s ease;

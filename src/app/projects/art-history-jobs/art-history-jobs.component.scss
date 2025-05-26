@@ -69,12 +69,6 @@
   &:hover {
     text-decoration: underline;
   }
-
-  .material-symbols-outlined {
-    transform: scale(0.8);
-    position: relative;
-    top: 4px;
-  }
 }
 
 .description {
@@ -85,6 +79,13 @@
 
   &:not(:last-child) {
     padding-bottom: grid(6);
+  }
+
+  .open-in-new {
+    transform: scale(0.85);
+    position: relative;
+    top: -3px;
+    margin-left: grid(0.5);
   }
 }
 
@@ -128,7 +129,7 @@
     padding-bottom: grid(2);
   }
 
-  .material-symbols-outlined {
+  .scroll-arrows {
     align-self: flex-end;
     transform: scale(1.5);
     line-height: 0.5;

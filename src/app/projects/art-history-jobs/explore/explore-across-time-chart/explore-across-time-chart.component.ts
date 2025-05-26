@@ -87,7 +87,7 @@ interface ViewModel {
 export class ExploreAcrossTimeChartComponent implements OnInit {
   vm$: Observable<ViewModel>;
   width = 800;
-  height = 500;
+  height = 600;
   margin: ElementSpacing = {
     top: 4,
     right: 36,
@@ -130,6 +130,7 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
             .margin(this.margin)
             .width(this.width)
             .height(this.height)
+            .resize({ width: true, height: true })
             .getConfig(),
           dataMarksConfig: this.getDataMarksConfig(
             data,
@@ -196,19 +197,6 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
       .lineLabelsFormat((label) => this.getCategoryLabel(label, entityCategory))
       .pointMarkers((markers) => markers.display(true))
       .getConfig();
-    // const config = new ExploreTimeRangeChartConfig();
-    // config.data = data;
-    // config.y.valueAccessor = (d: any) => d[valueType];
-    // config.y.valueFormat =
-    //   artHistoryFormatSpecifications.explore.chart.value[valueType];
-    // config.category.valueAccessor = (d: any) => d[entityCategory];
-    // config.category.colorScale = this.getColorScale(entityCategory, data);
-    // config.labels.display = entityCategory !== 'field';
-    // if (entityCategory !== 'field') {
-    //   config.labels.format = (d: any) =>
-    //     this.getCategoryLabel(d, entityCategory);
-    // }
-    // return config;
   }
 
   private getXAxisConfig(): VicXQuantitativeAxisConfig<Date> {
@@ -230,6 +218,18 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
       .getConfig();
   }
 
+  getCategoryLabel(value: string, category: string): string {
+    if (category === 'Field' || category === 'fields') {
+      return value;
+    } else if (category === 'Tenure status' || category === 'isTt') {
+      return tenureValueOptions.find((x) => x.label === value).label;
+    } else if (category === 'Rank' || category === 'rank') {
+      return rankValueOptions.find((x) => x.label === value).label;
+    } else {
+      return value;
+    }
+  }
+
   updateTooltipForNewOutput(data: LinesEventOutput<JobDatum>): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig();
@@ -247,23 +247,11 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
       .linesPosition([
         {
           offsetX: data?.positionX,
-          offsetY: data ? data.positionY - 16 : 0,
+          offsetY: data ? data.positionY - 4 : 0,
         },
       ])
       .size((size) => size.minWidth(200))
       .getConfig();
     this.tooltipConfig.next(config);
-  }
-
-  getCategoryLabel(value: string, category: string): string {
-    if (category === 'Field' || category === 'fields') {
-      return value;
-    } else if (category === 'Tenure status' || category === 'isTt') {
-      return tenureValueOptions.find((x) => x.label === value).label;
-    } else if (category === 'Rank' || category === 'rank') {
-      return rankValueOptions.find((x) => x.label === value).label;
-    } else {
-      return value;
-    }
   }
 }

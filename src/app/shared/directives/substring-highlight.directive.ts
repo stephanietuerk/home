@@ -6,6 +6,7 @@ import {
   NgZone,
   OnChanges,
   Renderer2,
+  SimpleChanges,
 } from '@angular/core';
 import { range } from 'lodash-es';
 
@@ -27,6 +28,7 @@ export class SubstringHighlightDirective implements OnChanges {
   @Input('appSubstringHighlight') highlightTerms: string[];
   @Input() string: string;
   isInitialized = false;
+  hasHighlights = false;
   mainSpan: HTMLSpanElement;
 
   constructor(
@@ -35,13 +37,15 @@ export class SubstringHighlightDirective implements OnChanges {
     private zone: NgZone
   ) {}
 
-  ngOnChanges(): void {
-    if (this.elementRef.nativeElement && this.highlightTerms) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.elementRef.nativeElement && changes['highlightTerms']) {
       if (!this.isInitialized) {
         this.initialize();
       }
       if (this.shouldHighlight()) {
         this.highlightText();
+      } else if (this.hasHighlights) {
+        this.removeHighlight();
       }
     }
   }
@@ -63,6 +67,7 @@ export class SubstringHighlightDirective implements OnChanges {
   highlightText(): void {
     const segments = this.getHighlightedTextSegments();
     this.createSpansFromSegments(segments);
+    this.hasHighlights = true;
   }
 
   getHighlightedTextSegments(): TextSegmentDef[] {
@@ -156,5 +161,14 @@ export class SubstringHighlightDirective implements OnChanges {
     Array.from(this.mainSpan.children).forEach((child) => {
       this.renderer.removeChild(this.mainSpan, child);
     });
+  }
+
+  removeHighlight(): void {
+    Array.from(this.mainSpan.children).forEach((child) => {
+      if (child.classList.contains('highlight')) {
+        this.renderer.removeClass(child, 'highlight');
+      }
+    });
+    this.hasHighlights = false;
   }
 }

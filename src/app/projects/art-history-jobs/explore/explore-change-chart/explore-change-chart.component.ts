@@ -1,4 +1,3 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -21,7 +20,6 @@ import {
   VicXQuantitativeAxisConfig,
   VicXQuantitativeAxisConfigBuilder,
   VicXyAxisModule,
-  VicYOrdinalAxisConfig,
   VicYOrdinalAxisConfigBuilder,
 } from '../../../../viz-components-new/axes';
 import {
@@ -72,7 +70,6 @@ interface ViewModel {
   chartConfig: ChartConfig;
   dataMarksConfig: BarsConfig<JobDatum, string>;
   xAxisConfig: VicXQuantitativeAxisConfig<number>;
-  yAxisConfig: VicYOrdinalAxisConfig<string>;
   title: ChangeChartTitle;
   categoryLabel: string;
   barHeight: number;
@@ -125,7 +122,6 @@ export class ExploreChangeChartComponent implements OnInit {
   constructor(
     public exploreDataService: ExploreDataService,
     private fieldsService: ArtHistoryFieldsService,
-    private focusMonitor: FocusMonitor,
     private bars: VicBarsConfigBuilder<JobDatum, string>,
     private chart: VicChartConfigBuilder,
     private xQuantitativeAxis: VicXQuantitativeAxisConfigBuilder<number>,
@@ -148,7 +144,7 @@ export class ExploreChangeChartComponent implements OnInit {
             .margin(this.margin)
             .width(this.width)
             .height(height)
-            .resize({ width: true, height: false })
+            .resize({ width: true, height: true })
             .getConfig(),
           dataMarksConfig: this.getDataMarksConfig(
             data,
@@ -156,7 +152,6 @@ export class ExploreChangeChartComponent implements OnInit {
             selections
           ),
           xAxisConfig: this.getXAxisConfig(selections.valueType),
-          yAxisConfig: this.getYAxisConfig(),
           title: this.getTitle(entityCategory, selections),
           categoryLabel: ArtHistoryUtilities.getCategoryLabel(entityCategory),
           barHeight: data.length > 6 ? 24 : 36,
@@ -242,26 +237,10 @@ export class ExploreChangeChartComponent implements OnInit {
     valueType: keyof typeof ValueType
   ): VicXQuantitativeAxisConfig<number> {
     const config = this.xQuantitativeAxis
-      .ticks((ticks) => ticks.format(this.getQuantitativeTickFormat(valueType)))
-      .getConfig();
-    return config;
-  }
-
-  getYAxisConfig(): VicYOrdinalAxisConfig<string> {
-    const config = this.yOrdinalAxis
-      .ticks(
-        (ticks) => ticks.size(0)
-        // .sizeOuter(0)
-        // .fontSize(14)
-        // .wrap((wrap) =>
-        //   wrap
-        //     .maintainXPosition(true)
-        //     .maintainYPosition(true)
-        //     .width(this.margin.left)
-        //     .lineHeight(0.9)
-        // )
+      .side('top')
+      .ticks((ticks) =>
+        ticks.format(this.getQuantitativeTickFormat(valueType)).count(5)
       )
-      .baseline((baseline) => baseline.display(false))
       .getConfig();
     return config;
   }

@@ -12,7 +12,7 @@
   <app-school-filters class="filters-component"></app-school-filters>
   <p class="legend-label">Displayed fields</p>
   <div class="legend">
-    @for (field of (dataService.state$ | async).field; track $index) {
+    @for (field of (dataService.state$ | async).field; track field) {
       <div class="legend-item">
         <div
           class="legend-color"
@@ -25,7 +25,10 @@
   @if (dataService.dataBySchool$ | async; as countries) {
     @if (countries.length > 0) {
       <div class="charts-container">
-        @for (country of dataService.dataBySchool$ | async; track $index) {
+        @for (
+          country of dataService.dataBySchool$ | async;
+          track country.country
+        ) {
           @if (country.jobsBySchool.length > 0) {
             <mat-expansion-panel
               hideToggle
@@ -42,11 +45,11 @@
                   <p class="num-schools"
                     >{{ country.jobsBySchool.length }} schools</p
                   >
-                  <span
-                    class="material-symbols-outlined expand-icon"
+                  <app-svg-icon
+                    name="chevron-right"
+                    class="expand-icon"
                     [class.expanded]="panelIsOpen[$index]"
-                    >expand_more</span
-                  >
+                  ></app-svg-icon>
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
@@ -54,7 +57,7 @@
                   class="all-schools-container"
                   [style.--chart-width]="16 * numYears + 'px'"
                 >
-                  @for (school of country.jobsBySchool; track $index) {
+                  @for (school of country.jobsBySchool; track school.school) {
                     <div class="school-container">
                       <h4
                         class="school-name"

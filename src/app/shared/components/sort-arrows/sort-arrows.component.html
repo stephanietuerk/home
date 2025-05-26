@@ -1,10 +1,15 @@
 <div class="arrows-container" [ngClass]="current">
-  <span
-    *ngIf="current === 'asc' || !current && firstSort === 'asc'; else downArrow"
-    class="material-symbols-outlined arrow up"
-    >north</span
-  >
-  <ng-template #downArrow>
-    <span class="material-symbols-outlined arrow down">south</span>
-  </ng-template>
+  @if (current === 'asc' || (!current && firstSort === 'asc')) {
+    <app-svg-icon
+      name="arrow-upward-narrow"
+      class="arrow up"
+      width="16"
+    ></app-svg-icon>
+  } @else {
+    <app-svg-icon
+      name="arrow-downward-narrow"
+      class="arrow down"
+      width="16"
+    ></app-svg-icon>
+  }
 </div>

@@ -1,33 +1,57 @@
-<div class="job-rect">
-  <div
-    *ngFor="let field of job.field"
-    class="field-rect"
-    [style.--color]="field | appColorForField"
-    [attr.aria-label]="'field is ' + field"
-  ></div>
-  <vic-html-tooltip
-    *ngIf="(tooltipConfig$ | async)?.show"
-    [config]="tooltipConfig$ | async"
-    [template]="htmlTooltip"
-  ></vic-html-tooltip>
+<div
+  class="job-rect"
+  (pointerenter)="showTooltip = true"
+  (pointerleave)="showTooltip = false"
+  cdkOverlayOrigin
+  #origin="cdkOverlayOrigin"
+>
+  @for (field of job.field; track field) {
+    <div
+      class="field-rect"
+      [style.--color]="field | appColorForField"
+      [attr.aria-label]="'field is ' + field"
+    ></div>
+  }
 </div>
-<ng-template #htmlTooltip
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="showTooltip"
+  [cdkConnectedOverlayPositions]="[
+    {
+      originX: 'center',
+      originY: 'bottom',
+      overlayX: 'center',
+      overlayY: 'bottom',
+      offsetY: -14,
+    },
+  ]"
+  (detach)="showTooltip = false"
   ><div class="job-tooltip-container"
     ><div class="tooltip">
-      <p class="year">{{year}}</p>
-      <p
-        *ngFor="let field of job.field; let isLast = last"
-        class="field"
-        [class.last]="isLast"
-        [style.--color]="field | appColorForField"
-        >{{field}}</p
+      <p class="year">{{ year }}</p>
+      @for (field of job.field; track field) {
+        <p
+          class="field"
+          [class.last]="$last"
+          [style.--color]="field | appColorForField"
+          >{{ field }}</p
+        >
+      }
+      <div class="tenure characteristic"
+        ><p class="label">tenure status</p
+        ><p class="value">{{ job.tenure }}</p></div
       >
-      <p class="tenure"><span class="value">{{job.tenure}}</span></p>
-      <div class="rank"
+      <div class="rank characteristic"
         ><p class="label">rank</p
-        ><p *ngFor="let rank of job.rank; let isLast = last" class="value"
-          >{{rank}}<span *ngIf="!isLast">,</span></p
-        ></div
+        ><p class="value">
+          @for (rank of job.rank; track $index) {
+            <span>{{ rank }}</span>
+            @if (!$last) {
+              <span>, </span>
+            }
+          }
+        </p></div
       ></div
     ><svg
       width="100%"

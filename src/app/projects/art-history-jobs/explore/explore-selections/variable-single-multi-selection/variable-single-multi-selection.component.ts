@@ -14,6 +14,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Observable, distinctUntilChanged, map } from 'rxjs';
+import { SvgIconComponent } from '../../../../../shared/components/svg-icon/svg-icon.component';
 import { JobProperty } from '../../../art-history-data.model';
 import { EntityCategory } from '../../explore-data.model';
 import { ExploreDataService } from '../../explore-data.service';
@@ -21,7 +22,7 @@ import { FilterType, VariableOption } from '../explore-selections.model';
 
 @Component({
   selector: 'app-variable-single-multi-selection',
-  imports: [CommonModule],
+  imports: [CommonModule, SvgIconComponent],
   templateUrl: './variable-single-multi-selection.component.html',
   styleUrls: ['./variable-single-multi-selection.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
