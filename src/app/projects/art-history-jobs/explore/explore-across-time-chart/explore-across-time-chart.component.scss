@@ -3,6 +3,9 @@
 @use 'functions' as *;
 
 .across-chart-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   .chart-title {
     text-transform: uppercase;
     letter-spacing: 0.1rem;

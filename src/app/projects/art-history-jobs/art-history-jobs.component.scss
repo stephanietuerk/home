@@ -3,10 +3,12 @@
 @use 'functions' as *;
 
 :host {
-  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 grid(4);
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   font-variation-settings: 'wght' 450;
   --max-text-width: 720px;
 
@@ -20,11 +22,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-}
-
-.section-component {
-  width: 100%;
 }
 
 .top-matter {
@@ -87,6 +84,19 @@
     top: -3px;
     margin-left: grid(0.5);
   }
+}
+
+.section.summary {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.summary-width-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .scroll-to-container {

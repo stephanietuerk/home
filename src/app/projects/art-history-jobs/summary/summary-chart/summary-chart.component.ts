@@ -74,18 +74,13 @@ interface ViewModel {
 export class SummaryChartComponent implements OnInit {
   vm$: Observable<ViewModel>;
   width = 712;
-  height = 652;
-  margin: ElementSpacing = { top: 4, right: 0, bottom: 36, left: 24 };
+  height = 680;
+  margin: ElementSpacing = { top: 8, right: 0, bottom: 36, left: 24 };
   tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
     new BehaviorSubject<HtmlTooltipConfig>(null);
   tooltipConfig$ = this.tooltipConfig
     .asObservable()
     .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
-  // tooltipData: BehaviorSubject<SummaryChartTooltipData> =
-  //   new BehaviorSubject<SummaryChartTooltipData>(null);
-  // tooltipData$ = this.tooltipData
-  //   .asObservable()
-  //   .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
   tooltipData: BehaviorSubject<StackedAreaEventOutput<JobDatum, string>> =
     new BehaviorSubject<StackedAreaEventOutput<JobDatum, string>>(null);
   tooltipData$ = this.tooltipData.asObservable();

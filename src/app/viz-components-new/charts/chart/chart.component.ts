@@ -23,7 +23,6 @@ import {
   merge,
   of,
   shareReplay,
-  startWith,
 } from 'rxjs';
 import { NgOnChangesUtilities } from '../../core/ng-utilities/ng-on-changes';
 import { Dimensions, ElementSpacing } from '../../core/types/layout';
@@ -93,6 +92,7 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.updateFromConfig();
     this.initFromConfig();
   }
 
@@ -107,21 +107,18 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
 
   createDimensionObservables() {
     const divWidth$ = this.getDivWidthObservable();
-    const height$ = this.height$.pipe(startWith(this.config.height));
-    const margin$ = this.margin$.pipe(
-      startWith(this.config.margin),
-      distinctUntilChanged((a, b) => isEqual(a, b)),
-      shareReplay(1)
-    );
 
-    this.svgDimensions$ = combineLatest([divWidth$, height$]).pipe(
+    this.svgDimensions$ = combineLatest([divWidth$, this.height$]).pipe(
       filter(([divWidth, height]) => divWidth > 0 && height > 0),
       map(([divWidth]) => this.getSvgDimensionsFromDivWidth(divWidth)),
-      distinctUntilChanged((a, b) => isEqual(a, b)),
+      distinctUntilChanged(
+        (a, b) =>
+          Math.abs(a.width - b.width) < 1 && Math.abs(a.height - b.height) < 1
+      ),
       shareReplay(1)
     );
 
-    this.ranges$ = combineLatest([this.svgDimensions$, margin$]).pipe(
+    this.ranges$ = combineLatest([this.svgDimensions$, this.margin$]).pipe(
       map(([dimensions]) => this.getRangesFromSvgDimensions(dimensions)),
       distinctUntilChanged((a, b) => isEqual(a, b)),
       shareReplay(1)
@@ -140,7 +137,9 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
     const resize$ = this.observeElementWidth(this.divRef.nativeElement);
     // ensure that there is always a subscription to divWidthResize$ so that it emits
     resize$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
-    return merge(initialWidth$, resize$).pipe(distinctUntilChanged());
+    return merge(initialWidth$, resize$).pipe(
+      distinctUntilChanged((a, b) => Math.abs(a - b) < 0.3)
+    );
   }
 
   private observeElementWidth(element: HTMLElement): Observable<number> {
@@ -157,8 +156,8 @@ export class ChartComponent implements Chart, OnInit, OnChanges {
   }
 
   getSvgDimensionsFromDivWidth(divWidth: number) {
-    const width = this.getSvgWidthFromDivWidth(divWidth);
-    const height = this.getSvgHeightFromWidth(width);
+    const width = Math.round(this.getSvgWidthFromDivWidth(divWidth));
+    const height = Math.round(this.getSvgHeightFromWidth(width));
     return { width, height };
   }
 

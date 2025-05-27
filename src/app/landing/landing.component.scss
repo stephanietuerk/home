@@ -9,15 +9,20 @@ $min-height: 300px;
   @extend %flex-column;
   height: 100%;
   min-height: $min-height;
-  overflow-y: auto;
   scrollbar-gutter: stable;
 }
 
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .navbar {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   flex-shrink: 0;
+  z-index: 1000;
 
   @include breakpoint(mobile-device) {
     padding-right: grid(4);
@@ -28,7 +33,7 @@ $min-height: 300px;
 .landing-container {
   @extend %flex-column;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 752px;
   padding-top: grid(16);
   gap: grid(28);
   padding-bottom: grid(16);
@@ -37,4 +42,8 @@ $min-height: 300px;
     padding: grid(1) 2 grid(4) grid(4) grid(4);
     gap: grid(14);
   }
+}
+
+.section {
+  margin: 0 grid(4);
 }

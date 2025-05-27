@@ -3,15 +3,14 @@
   Fractions of jobs within a year reflect assignment of some jobs to more than
   one field.
 </p>
-<div
-  *ngIf="summaryService.sortedTableData$ | async as tableData"
-  class="charts-container"
->
-  <app-summary-chart class="chart-component"></app-summary-chart>
-  <app-summary-table
-    class="table-component"
-    [headers]="tableHeaders"
-    [rows]="tableData"
-    (activeSort)="handleTableSort($event)"
-  ></app-summary-table>
-</div>
+@if (summaryService.sortedTableData$ | async; as tableData) {
+  <div class="charts-container">
+    <app-summary-chart class="chart-component"></app-summary-chart>
+    <app-summary-table
+      class="table-component"
+      [headers]="tableHeaders"
+      [rows]="tableData"
+      (activeSort)="handleTableSort($event)"
+    ></app-summary-table>
+  </div>
+}

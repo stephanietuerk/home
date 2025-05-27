@@ -47,14 +47,6 @@
     background: $color-light-gray-lightest;
   }
 
-  .table-row.body.index:hover.expanded {
-    .table-cell {
-    }
-  }
-
-  .table-row.body.index {
-  }
-
   .table-cell.header {
     @include label-xs-caps;
     @extend %sans-medium;
@@ -75,7 +67,7 @@
   .table-cell.body {
     @include label-medium;
     text-align: left;
-    padding: grid(6) 0;
+    padding: grid(6) grid(4) grid(6) grid(0);
 
     @include breakpoint(mobile-device) {
       font-size: 0.9rem;

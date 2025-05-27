@@ -12,9 +12,17 @@
     [class.vic-chart-viewbox]="config.resize.useViewbox"
     [class.vic-chart-resize-width]="config.resize.width"
     [class.vic-chart-resize-height]="config.resize.height"
-    [attr.width]="config.resize.useViewbox ? null : (svgDimensions$ | async).width"
-    [attr.height]="config.resize.useViewbox ? null : (svgDimensions$ | async).height"
-    [attr.viewBox]="config.resize.useViewbox ? '0 0 ' + config.width + ' ' + config.height : null"
+    [attr.width]="
+      config.resize.useViewbox ? null : (svgDimensions$ | async).width
+    "
+    [attr.height]="
+      config.resize.useViewbox ? null : (svgDimensions$ | async).height
+    "
+    [attr.viewBox]="
+      config.resize.useViewbox
+        ? '0 0 ' + config.width + ' ' + config.height
+        : null
+    "
   >
     <defs>
       <ng-container *ngTemplateOutlet="svgDefs"></ng-container>
