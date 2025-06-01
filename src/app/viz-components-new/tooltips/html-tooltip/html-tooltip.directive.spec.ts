@@ -2,9 +2,9 @@
 import { Overlay, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { ViewContainerRef } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NgOnChangesUtilities } from '@hsi/app-dev-kit';
 import { Subject } from 'rxjs';
 import { ChartComponent } from '../../charts';
+import { NgOnChangesUtilities } from '../../core/ng-utilities/ng-on-changes';
 import { ChartComponentStub } from '../../testing/stubs/chart.component.stub';
 import { MainServiceStub } from '../../testing/stubs/services/main.service.stub';
 import { VicHtmlTooltipConfigBuilder } from './config/html-tooltip-builder';
@@ -158,11 +158,7 @@ describe('HtmlTooltipDirective', () => {
       directive.getPositionStrategy();
       expect(
         directive.config.position.getPositionStrategy
-      ).toHaveBeenCalledOnceWith(
-        'element' as any,
-        'builder' as any,
-        'document' as any
-      );
+      ).toHaveBeenCalledOnceWith('element' as any, 'builder' as any);
     });
   });
 

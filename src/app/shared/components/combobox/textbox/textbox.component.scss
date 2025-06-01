@@ -1,0 +1,30 @@
+.textbox-container {
+  display: var(--textbox-display);
+  justify-content: var(--textbox-justify-content);
+  align-items: var(--textbox-align-items);
+  background: var(--textbox-background);
+  border: var(--combobox-border-width) solid var(--combobox-border-color);
+  padding: var(--textbox-padding);
+  border-radius: var(--combobox-border-radius);
+  transition: border var(--textbox-transition-duration) ease-in-out;
+}
+
+.textbox-container.open {
+  border-bottom: var(--textbox-border-bottom-open);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.textbox-label {
+  text-overflow: var(--textbox-label-text-overflow);
+  white-space: var(--textbox-label-white-space);
+  overflow: var(--textbox-label-overflow);
+  // required for ellipsis to work
+  max-width: var(--textbox-label-max-width);
+}
+
+.textbox-icon {
+  display: var(--textbox-icon-display);
+  flex-direction: var(--textbox-icon-flex-direction);
+  justify-content: var(--textbox-icon-justify-content);
+}

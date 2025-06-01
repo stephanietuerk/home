@@ -1,5 +1,8 @@
-.option-container {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.listbox-option-container {
+  display: var(--listbox-option-container-display);
+  flex-direction: var(--listbox-option-container-flex-direction);
+  align-items: var(--listbox-option-container-align-items);
+  cursor: var(--listbox-option-cursor);
+  padding: var(--listbox-option-container-padding);
+  gap: var(--listbox-option-container-gap);
 }

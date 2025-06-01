@@ -1,0 +1,32 @@
+.editable-textbox-container {
+  display: var(--textbox-display);
+  justify-content: var(--textbox-justify-content);
+  align-items: var(--textbox-align-items);
+  background: var(--textbox-background);
+  border: var(--combobox-border-width) solid var(--combobox-border-color);
+  padding: var(--editable-textbox-padding);
+  border-radius: var(--combobox-border-radius);
+  transition: border var(--textbox-transition-duration) ease-in-out;
+}
+
+.editable-textbox-container.open {
+  border-bottom: var(--textbox-border-bottom-open);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.editable-textbox-input {
+  border: var(--editable-textbox-input-border);
+  border-bottom: var(--editable-textbox-input-border-bottom);
+  width: var(--editable-textbox-input-width);
+  padding: var(--editable-textbox-input-padding);
+  border-radius: var(--editable-textbox-input-border-radius);
+}
+
+.editable-textbox-input:hover,
+.editable-textbox-input:focus {
+  border: var(--editable-textbox-input-hover-border);
+  border-bottom: var(--editable-textbox-input-hover-border-bottom);
+  background: var(--editable-textbox-input-hover-background);
+  outline: var(--editable-textbox-input-hover-outline);
+}

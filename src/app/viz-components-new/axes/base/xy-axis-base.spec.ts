@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { XyChartComponent } from '@hsi/viz-components';
+import { XyChartComponent } from '../../charts/xy-chart/xy-chart.component';
 import { XyAxisStub } from '../../testing/stubs/xy-axis.stub';
 import { Ticks } from '../ticks/ticks';
 import { VicXOrdinalAxisConfigBuilder } from '../x-ordinal/x-ordinal-axis-builder';

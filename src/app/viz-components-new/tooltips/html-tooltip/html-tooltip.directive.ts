@@ -7,11 +7,9 @@ import {
   PositionStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   Directive,
   EventEmitter,
-  Inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -42,8 +40,7 @@ export class HtmlTooltipDirective implements OnChanges, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,
     private overlayPositionBuilder: OverlayPositionBuilder,
-    private chart: ChartComponent,
-    @Inject(DOCUMENT) private document: Document
+    private chart: ChartComponent
   ) {}
 
   init(): void {

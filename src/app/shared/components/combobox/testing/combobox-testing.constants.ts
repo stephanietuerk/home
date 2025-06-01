@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { BehaviorSubject } from 'rxjs';
+
+export const scss = `
 .combobox-textbox {
   background: white;
   border: 1px solid blue;
@@ -52,13 +56,30 @@
 }
 
 .listbox-option.current:not(.selected) {
-  background: blanchedalmond;
+  background: yellow;
 }
 
 .listbox-option.selected {
-  background: blanchedalmond;
+  background: cyan;
 }
 
 .combobox-value {
   padding-top: 16px;
+}
+`;
+
+export class ComboboxBaseTestComponent {
+  options = [
+    { displayName: 'Apples', id: 'appl' },
+    { displayName: 'Bananas', id: 'bana' },
+    { displayName: 'Coconuts', id: 'coco' },
+    { displayName: 'Durians', id: 'duri' },
+    { displayName: 'Elderberries', id: 'elde' },
+  ];
+  value = new BehaviorSubject<any>(null);
+  value$ = this.value.asObservable();
+
+  onSelection(event: any): void {
+    this.value.next(event);
+  }
 }

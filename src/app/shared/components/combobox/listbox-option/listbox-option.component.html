@@ -1,12 +1,11 @@
 <ng-template #option>
-  <div class="option-container">
-    <ng-container *ngIf="isSelected()">
+  <div class="listbox-option-container">
+    @if (isSelected()) {
       <ng-container *ngTemplateOutlet="selectedIcon"></ng-container>
-    </ng-container>
-    <ng-container *ngIf="!isSelected()">
+    } @else {
       <ng-container *ngTemplateOutlet="unselectedIcon"></ng-container>
-    </ng-container>
-    <div #label class="option-label" [attr.aria-label]="ariaLabel"
+    }
+    <div #label class="listbox-option-label" [attr.aria-label]="ariaLabel"
       ><ng-content></ng-content
     ></div>
   </div>

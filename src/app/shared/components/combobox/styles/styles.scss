@@ -1,0 +1,121 @@
+@use '../../core/styles/sass-utils' as sass-utils;
+@use '../../core/styles/functions' as *;
+
+$combobox: (
+  'background': var(--color-primary-100, white),
+  'border-width': 1px,
+  'border-color': var(--color-muted-primary-40, gray),
+  'max-width': none,
+  'border-radius': grid(2),
+);
+
+$textbox: (
+  'display': flex,
+  'justify-content': space-between,
+  'align-items': center,
+  'background': var(--color-primary-100, white),
+  'border-bottom-open': 1px solid var(--color-muted-primary-80, gray),
+  'padding': grid(3),
+  'label': (
+    'text-overflow': ellipsis,
+    'white-space': nowrap,
+    'overflow': hidden,
+    'max-width': calc(var(--combobox-max-width) - grid(4)),
+  ),
+  'icon': (
+    'display': flex,
+    'flex-direction': column,
+    'justify-content': center,
+  ),
+  'transition-duration': 150ms,
+);
+
+$editable-textbox: (
+  'padding': grid(2),
+  'input': (
+    'border': none,
+    'border-bottom': 1px solid transparent,
+    'border-radius': 0,
+    'width': 100%,
+    'padding': grid(1) grid(2),
+    'hover': (
+      'border': 0,
+      'border-bottom': 1px solid var(--color-muted-primary-70, gray),
+      'background': var(--color-muted-primary-98, #f2f2f2),
+      'outline': none,
+    ),
+  ),
+);
+
+$listbox: (
+  'z-index': 100,
+  'max-height': 300px,
+  'background': var(--color-primary-100, white),
+  'padding-top': grid(1),
+  'padding-right': grid(1),
+  'padding-bottom': grid(1),
+  'padding-left': grid(1),
+);
+
+$listbox-option: (
+  'hover': (
+    'background': var(--color-muted-primary-95, #f2f2f2),
+    'border-radius': 0,
+  ),
+  'selected': (
+    'background': var(--color-muted-primary-90, lightgray),
+    'border-radius': 0,
+  ),
+  'disabled': (
+    'color': var(--color-muted-primary-80, lightgray),
+  ),
+  'current': (
+    'background': var(--color-muted-primary-40, darkgray),
+    'color': var(--color-primary-100, white),
+    'border-radius': 0,
+  ),
+  'label': (
+    'padding': grid(3),
+  ),
+  'cursor': pointer,
+  'margin-right': grid(1),
+  'container': (
+    'display': flex,
+    'flex-direction': row,
+    'align-items': center,
+    'padding': grid(2),
+    'gap': grid(2),
+  ),
+);
+
+$listbox-label: (
+  'font-size': 0.9em,
+  'font-weight': var(--font-weight-semibold, 600),
+  'text-transform': uppercase,
+  'padding': grid(1) var(--listbox-option-container-padding),
+  'margin-right': var(--listbox-option-margin-right),
+);
+
+html {
+  @include sass-utils.map-scss-vars-into-css-vars($combobox, 'combobox');
+  @include sass-utils.map-scss-vars-into-css-vars($textbox, 'textbox');
+  @include sass-utils.map-scss-vars-into-css-vars(
+    $editable-textbox,
+    'editable-textbox'
+  );
+  @include sass-utils.map-scss-vars-into-css-vars($listbox, 'listbox');
+  @include sass-utils.map-scss-vars-into-css-vars(
+    $listbox-label,
+    'listbox-label'
+  );
+  @include sass-utils.map-scss-vars-into-css-vars(
+    $listbox-option,
+    'listbox-option'
+  );
+}
+
+.combobox {
+  display: block;
+  position: relative;
+  max-width: var(--combobox-max-width);
+}

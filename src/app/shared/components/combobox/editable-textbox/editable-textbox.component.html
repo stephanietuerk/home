@@ -1,11 +1,11 @@
 <div
-  class="textbox-container"
+  class="editable-textbox-container"
   [class.open]="service.isOpen$ | async"
   #textInputTemplate
 >
   <input
     #box
-    class="combobox-textbox"
+    class="editable-textbox-input"
     [attr.type]="inputType"
     role="combobox"
     tabindex="0"
@@ -14,18 +14,30 @@
     (blur)="handleBlur($event)"
     (keydown)="handleKeydown($event)"
     autocomplete="off"
-    [attr.aria-labelledby]="service.comboboxLabelId"
+    [attr.aria-label]="
+      (service.label$ | async) === null
+        ? ariaLabel || placeholder || service.isMultiSelect
+          ? 'Search and select options'
+          : 'Search and select an option'
+        : null
+    "
+    [attr.aria-labelledby]="
+      (service.label$ | async) !== null ? service.comboboxLabelId : null
+    "
     [attr.aria-activedescendant]="service.activeDescendant$ | async"
     [attr.aria-expanded]="service.isOpen$ | async"
-    [attr.aria-autocomplete]="autocomplete"
+    [attr.aria-autocomplete]="service.autoComplete"
     [attr.aria-controls]="service.id + '-listbox'"
     aria-haspopup="listbox"
-    data-cy="measure-table-search-input"
+    data-cy="editable-textbox-input"
     [placeholder]="placeholder"
-    [ngModel]="value"
+    [ngModel]="value$ | async"
     (ngModelChange)="onInputChange($event)"
   />
-  <div class="textbox-icon" [class.open]="service.isOpen$ | async">
+  <div
+    class="textbox-icon editable-textbox-icon"
+    [class.open]="service.isOpen$ | async"
+  >
     <ng-content select="[boxIcon]"></ng-content
   ></div>
 </div>
