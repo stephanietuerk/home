@@ -1,12 +1,9 @@
 /* eslint-disable no-var */
-import { Injectable, SimpleChanges } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 import { get, isEqual } from 'lodash-es';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UtilitiesService {
-  objectOnNgChangesChangedNotFirstTime(
+export class NgChangesUtils {
+  static objectOnNgChangesChangedNotFirstTime(
     changes: SimpleChanges,
     object: string,
     property?: string
@@ -18,7 +15,7 @@ export class UtilitiesService {
     );
   }
 
-  objectOnNgChangesChanged(
+  static objectOnNgChangesChanged(
     changes: SimpleChanges,
     objectName: string,
     property?: string
@@ -30,27 +27,23 @@ export class UtilitiesService {
     );
   }
 
-  getPreviousValue(
+  private static getPreviousValue(
     changes: SimpleChanges,
     objectName: string,
     property?: string
-  ): any {
+  ): unknown {
     return property
       ? get(changes[objectName].previousValue, property)
       : changes[objectName].previousValue;
   }
 
-  getCurrentValue(
+  private static getCurrentValue(
     changes: SimpleChanges,
     objectName: string,
     property?: string
-  ): any {
+  ): unknown {
     return property
       ? get(changes[objectName].currentValue, property)
       : changes[objectName].currentValue;
-  }
-
-  isDate(x: any): boolean {
-    return Object.prototype.toString.call(x) === '[object Date]' && !isNaN(x);
   }
 }

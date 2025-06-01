@@ -1,22 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Sort, SortDirection } from 'src/app/core/enums/sort.enum';
-import { SortService } from 'src/app/core/services/sort.service';
+import { SortUtils } from '../../../core/utilities/sort.utils';
 import { SortArrowsComponent } from '../sort-arrows/sort-arrows.component';
 import { TableHeader, TableSort } from './table.model';
 
 @Component({
-    selector: 'app-table',
-    imports: [CommonModule, SortArrowsComponent],
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss']
+  selector: 'app-table',
+  imports: [CommonModule, SortArrowsComponent],
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
   @Input() headers: TableHeader[];
   @Input() rows: any[];
   @Input() firstSort: SortDirection = Sort.desc;
-
-  constructor(public sortService: SortService) {}
 
   ngOnInit(): void {
     this.initSort();
@@ -71,7 +69,7 @@ export class TableComponent implements OnInit {
   sortRows(sort: TableSort, dataProperty: string): void {
     if (sort.direction) {
       this.rows.sort((a, b) =>
-        this.sortService.valueCompare(
+        SortUtils.valueCompare(
           sort.direction === Sort.asc,
           a[dataProperty],
           b[dataProperty]

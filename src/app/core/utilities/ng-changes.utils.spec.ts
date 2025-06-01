@@ -1,22 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SimpleChange } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { UtilitiesService } from './utilities.service';
+import { NgChangesUtils } from './ng-changes.utils';
 
 describe('UtilitiesService', () => {
-  let service: UtilitiesService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(UtilitiesService);
-  });
-
   describe('objectChangedNotFirstTime()', () => {
     let objectChangedSpy: jasmine.Spy;
     let changes: any;
     let objectName: string;
     beforeEach(() => {
       objectChangedSpy = spyOn(
-        service,
+        NgChangesUtils,
         'objectOnNgChangesChanged'
       ).and.returnValue(true);
       objectName = 'test';
@@ -28,7 +21,7 @@ describe('UtilitiesService', () => {
     describe('if testObject has changes', () => {
       describe('if it is not the first change', () => {
         it('returns true if objectChanges returns true', () => {
-          const result = service.objectOnNgChangesChangedNotFirstTime(
+          const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
             changes,
             objectName
           );
@@ -37,7 +30,7 @@ describe('UtilitiesService', () => {
 
         it('returns false if objectChanged returns false', () => {
           objectChangedSpy.and.returnValue(false);
-          const result = service.objectOnNgChangesChangedNotFirstTime(
+          const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
             changes,
             objectName
           );
@@ -49,7 +42,7 @@ describe('UtilitiesService', () => {
         changes = {
           [objectName]: new SimpleChange('', '', true),
         };
-        const result = service.objectOnNgChangesChangedNotFirstTime(
+        const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
           changes,
           objectName
         );
@@ -59,7 +52,7 @@ describe('UtilitiesService', () => {
 
     it('returns false if changes does not have property for input string', () => {
       changes = { wrong: new SimpleChange('', '', false) };
-      const result = service.objectOnNgChangesChangedNotFirstTime(
+      const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
         changes,
         objectName
       );
@@ -73,8 +66,8 @@ describe('UtilitiesService', () => {
     let prevSpy: jasmine.Spy;
     let currSpy: jasmine.Spy;
     beforeEach(() => {
-      prevSpy = spyOn(service, 'getPreviousValue');
-      currSpy = spyOn(service, 'getCurrentValue');
+      prevSpy = spyOn(NgChangesUtils as any, 'getPreviousValue');
+      currSpy = spyOn(NgChangesUtils as any, 'getCurrentValue');
       objectName = 'test';
       changes = {
         [objectName]: new SimpleChange('', '', false),
@@ -83,13 +76,13 @@ describe('UtilitiesService', () => {
 
     it('calls getPreviousValue with changes, objectName, and property', () => {
       const property = 'testProperty';
-      service.objectOnNgChangesChanged(changes, objectName, property);
+      NgChangesUtils.objectOnNgChangesChanged(changes, objectName, property);
       expect(prevSpy).toHaveBeenCalledWith(changes, objectName, property);
     });
 
     it('calls getCurrentValue with changes, objectName, and property', () => {
       const property = 'testProperty';
-      service.objectOnNgChangesChanged(changes, objectName, property);
+      NgChangesUtils.objectOnNgChangesChanged(changes, objectName, property);
       expect(currSpy).toHaveBeenCalledWith(changes, objectName, property);
     });
 
@@ -97,7 +90,7 @@ describe('UtilitiesService', () => {
       it('returns true if previous testObject value does not equal current testObject value -- deep check', () => {
         prevSpy.and.returnValue({ test: 'test' });
         currSpy.and.returnValue({ test: 'test2' });
-        const result = service.objectOnNgChangesChangedNotFirstTime(
+        const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
           changes,
           objectName
         );
@@ -107,7 +100,7 @@ describe('UtilitiesService', () => {
       it('returns false if previous testObject equals current testObject value -- deep check', () => {
         prevSpy.and.returnValue({ test: 'test' });
         currSpy.and.returnValue({ test: 'test' });
-        const result = service.objectOnNgChangesChangedNotFirstTime(
+        const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
           changes,
           objectName
         );
@@ -117,7 +110,7 @@ describe('UtilitiesService', () => {
 
     it('returns false if changes does not have property for input string', () => {
       changes = { wrong: new SimpleChange('', '', false) };
-      const result = service.objectOnNgChangesChangedNotFirstTime(
+      const result = NgChangesUtils.objectOnNgChangesChangedNotFirstTime(
         changes,
         objectName
       );

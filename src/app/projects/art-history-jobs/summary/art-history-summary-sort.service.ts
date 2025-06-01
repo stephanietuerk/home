@@ -3,7 +3,7 @@ import { max } from 'd3';
 import { cloneDeep } from 'lodash-es';
 import { BehaviorSubject, combineLatest, filter, map, Observable } from 'rxjs';
 import { Sort } from '../../../core/enums/sort.enum';
-import { SortService } from '../../../core/services/sort.service';
+import { SortUtils } from '../../../core/utilities/sort.utils';
 import { TableHeader } from '../../../shared/components/table/table.model';
 import { JobDatum, JobTableDatum } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
@@ -23,10 +23,7 @@ export class ArtHistorySummaryService {
   orderedFields$ = this.orderedFields.asObservable();
   tableHeaders: TableHeader[] = tableHeaders;
 
-  constructor(
-    private dataService: ArtHistoryDataService,
-    private sortService: SortService
-  ) {}
+  constructor(private dataService: ArtHistoryDataService) {}
 
   initData(): void {
     if (!this.jobsData$) {
@@ -85,7 +82,7 @@ export class ArtHistorySummaryService {
     activeSort: ActiveTableSort
   ): JobTableDatum[] {
     const sorted = cloneDeep(data).sort((a, b) =>
-      this.sortService.valueCompare(
+      SortUtils.valueCompare(
         activeSort.sort.direction === Sort.asc,
         a[activeSort.id],
         b[activeSort.id]

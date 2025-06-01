@@ -1,10 +1,5 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class SortService {
-  valueCompare(sortAscending: boolean, a: any, b: any): number {
+export class SortUtils {
+  static valueCompare(sortAscending: boolean, a: unknown, b: unknown): number {
     // sort comparator that works with nulls and values of different types
     let valueA = a;
     let valueB = b;
