@@ -25,13 +25,5 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAnalytics(() => getAnalytics()),
     provideAnimations(),
-    // { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
-    // { provide: TitleStrategy, useClass: CustomTitleStrategy },
-    // provideAppInitializer(() => {
-    //   const initializerFn = ((env: EnvironmentService) => {
-    //     return () => env.init();
-    //   })(inject(EnvironmentService));
-    //   return initializerFn();
-    // }),
   ],
 };

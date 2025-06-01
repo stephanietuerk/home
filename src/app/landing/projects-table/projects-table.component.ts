@@ -14,7 +14,6 @@ import { ProjectOverviewComponent } from '../project-overview/project-overview.c
   animations: [animations.slide('project-overview-component')],
 })
 export class ProjectsTableComponent implements OnInit {
-  sections: any;
   projects = PROJECTS;
   expanded: { [index: string]: boolean } = {};
   hovered: { [index: string]: boolean } = {};

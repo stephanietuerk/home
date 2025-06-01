@@ -11,13 +11,12 @@ import { ExpandArrowComponent } from '../../shared/components/expand-arrow/expan
   encapsulation: ViewEncapsulation.None,
 })
 export class AboutComponent implements OnInit {
-  sections: any;
+  sections = SECTIONS;
   expanded = false;
   toggleText: string;
   hovered = false;
 
   ngOnInit() {
-    this.sections = SECTIONS;
     this.setToggleText();
   }
 

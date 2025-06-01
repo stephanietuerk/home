@@ -11,7 +11,6 @@ import { SECTIONS } from '../../core/constants/sections.constants';
 export class NavbarComponent {
   @Output() scrollTo = new EventEmitter<SECTIONS | 'top'>();
   sectionValues = Object.values(SECTIONS);
-  scrollToId: any;
 
   scrollToTop(): void {
     this.scrollTo.emit('top');

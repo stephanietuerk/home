@@ -10,6 +10,7 @@ import { ArtHistoryUtilities } from './art-history.utilities';
   providedIn: 'root',
 })
 export class ArtHistoryDataService {
+  private _initPromise?: Promise<void>;
   data$: Observable<JobDatum[]>;
   dataBySchool$: Observable<JobsByCountry[]>;
   dataYears: [number, number];
@@ -17,10 +18,15 @@ export class ArtHistoryDataService {
   constructor(private http: HttpClient) {}
 
   async init(): Promise<void> {
-    this.setData();
-    this.setDataBySchools();
-    const data = await firstValueFrom(this.data$);
-    this.dataYears = this.getDataYears(data);
+    if (!this._initPromise) {
+      this._initPromise = (async () => {
+        this.setData();
+        this.setDataBySchools();
+        const data = await firstValueFrom(this.data$);
+        this.dataYears = this.getDataYears(data);
+      })();
+    }
+    return this._initPromise;
   }
 
   setData(): void {
