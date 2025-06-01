@@ -13,6 +13,7 @@ import { TableHeader, TableSort } from './table.model';
 })
 export class TableComponent implements OnInit {
   @Input() headers: TableHeader[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() rows: any[];
   @Input() firstSort: SortDirection = Sort.desc;
 

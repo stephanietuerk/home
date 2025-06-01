@@ -34,6 +34,7 @@ const chartHeight = 400;
 const chartWidth = 600;
 const data = ContinentPopulationNumYearData;
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-test-axis-labels',
   template: `
     <vic-xy-chart [config]="chartConfig">

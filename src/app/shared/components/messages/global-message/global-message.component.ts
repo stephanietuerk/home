@@ -6,11 +6,11 @@ import { CloseButtonComponent } from '../../close-button/close-button.component'
 import { Message } from '../message/message.directive';
 
 @Component({
-    selector: 'app-global-message',
-    imports: [MatIconModule, NgFor, A11yModule, NgIf, CloseButtonComponent],
-    templateUrl: './global-message.component.html',
-    styleUrls: ['./global-message.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-global-message',
+  imports: [MatIconModule, NgFor, A11yModule, NgIf, CloseButtonComponent],
+  templateUrl: './global-message.component.html',
+  styleUrls: ['./global-message.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class GlobalMessageComponent extends Message {
   /**

@@ -1,7 +1,7 @@
 import { FormatForIdPipe } from './format-for-id.pipe';
 
 describe('FormatForIdPipe', () => {
-  let pipe: FormatForIdPipe<any>;
+  let pipe: FormatForIdPipe<unknown>;
 
   beforeEach(() => {
     pipe = new FormatForIdPipe();

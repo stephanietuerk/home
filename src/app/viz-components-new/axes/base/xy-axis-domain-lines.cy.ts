@@ -31,6 +31,7 @@ const chartWidth = 600;
 const data = ContinentPopulationNumYearData;
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'vic-test-zero-axis-lines',
   template: `
     <vic-xy-chart [config]="chartConfig">

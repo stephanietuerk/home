@@ -20,9 +20,8 @@ import {
 } from '../combobox.service';
 
 @Component({
-    selector: 'app-textbox',
-    templateUrl: './textbox.component.html',
-    standalone: false
+  selector: 'app-textbox',
+  templateUrl: './textbox.component.html',
 })
 export class TextboxComponent
   extends Unsubscribe
