@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BeyondService } from './beyond.service';
 
@@ -7,10 +6,8 @@ import { BeyondService } from './beyond.service';
 export class BeyondResolver {
   constructor(private service: BeyondService) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<any> | Promise<any> | any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  resolve(): Observable<any> | Promise<any> | any {
     return this.service.getBeyondData();
   }
 }

@@ -15,6 +15,7 @@ import { InputEventDirective } from '../../events/input-event.directive';
 import { STACKED_BARS, StackedBarsComponent } from '../stacked-bars.component';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[vicStackedBarsInputEventActions]',
 })
 export class StackedBarsInputEventDirective<

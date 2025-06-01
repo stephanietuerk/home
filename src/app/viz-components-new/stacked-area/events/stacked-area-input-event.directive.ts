@@ -15,6 +15,7 @@ import { InputEventDirective } from '../../events/input-event.directive';
 import { STACKED_AREA, StackedAreaComponent } from '../stacked-area.component';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[vicStackedAreaInputActions]',
 })
 export class StackedAreaInputEventDirective<

@@ -4,15 +4,13 @@ import { ListboxScrollService } from '../listbox-scroll/listbox-scroll.service';
 import { ListboxComponent } from '../listbox/listbox.component';
 
 @Component({
-    selector: 'app-multi-scroll-group-listbox',
-    templateUrl: './multi-scroll-group-listbox.component.html',
-    providers: [ListboxFilteringService, ListboxScrollService],
-    styleUrls: ['./multi-scroll-group-listbox.component.scss'],
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'combobox-listbox-component',
-    },
-    standalone: false
+  selector: 'app-multi-scroll-group-listbox',
+  templateUrl: './multi-scroll-group-listbox.component.html',
+  providers: [ListboxFilteringService, ListboxScrollService],
+  styleUrls: ['./multi-scroll-group-listbox.component.scss'],
+  host: {
+    class: 'combobox-listbox-component',
+  },
 })
 export class MultiFiltersListboxComponent<T> extends ListboxComponent<T> {
   /**

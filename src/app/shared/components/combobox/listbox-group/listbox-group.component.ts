@@ -11,9 +11,8 @@ import { ListboxLabelComponent } from '../listbox-label/listbox-label.component'
 import { ListboxOptionComponent } from '../listbox-option/listbox-option.component';
 
 @Component({
-    selector: 'app-listbox-group',
-    template: `<ng-content></ng-content>`,
-    standalone: false
+  selector: 'app-listbox-group',
+  template: `<ng-content></ng-content>`,
 })
 export class ListboxGroupComponent<T> implements AfterContentInit {
   @ContentChild(ListboxLabelComponent)

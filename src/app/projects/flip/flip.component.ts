@@ -18,12 +18,12 @@ import { Party } from './flip.model';
 import { FlipService } from './flip.service';
 
 @Component({
-    selector: 'app-flip',
-    imports: [CommonModule],
-    templateUrl: './flip.component.html',
-    styleUrls: ['./flip.component.scss'],
-    providers: [FlipService],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-flip',
+  imports: [CommonModule],
+  templateUrl: './flip.component.html',
+  styleUrls: ['./flip.component.scss'],
+  providers: [FlipService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FlipComponent implements OnInit {
   @ViewChild('intro', { static: true }) introElRef: ElementRef;
@@ -580,9 +580,9 @@ export class FlipComponent implements OnInit {
       .attr('class', 'congress-square')
       .attr('width', squareSize - 1)
       .attr('height', squareSize - 1)
-      .attr('cellnum', (d, i, nodes) => numSquares - i)
-      .attr('x', (d, i, nodes) => squareSize * (i % cols))
-      .attr('y', (d, i, nodes) => squareSize * Math.floor(i / cols))
+      .attr('cellnum', (d, i) => numSquares - i)
+      .attr('x', (d, i) => squareSize * (i % cols))
+      .attr('y', (d, i) => squareSize * Math.floor(i / cols))
       .style('fill', FLIPCOLORS.initialColor)
       .style('stroke', 'ffffff')
       .style('stroke-width', 1)
@@ -622,7 +622,7 @@ export class FlipComponent implements OnInit {
 
   makeBar(datum, i, nodes) {
     const visContainer = document.getElementById(this.divId.replace('#', ''));
-    const bar = new FlipBar(datum, nodes[i], visContainer, this.flipService);
+    new FlipBar(datum, nodes[i], visContainer, this.flipService);
   }
 
   resetVis() {

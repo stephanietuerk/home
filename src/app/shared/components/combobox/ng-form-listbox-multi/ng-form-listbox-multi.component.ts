@@ -5,14 +5,12 @@ import { ListboxScrollService } from '../listbox-scroll/listbox-scroll.service';
 import { ListboxComponent } from '../listbox/listbox.component';
 
 @Component({
-    selector: 'app-ng-form-listbox-multi',
-    templateUrl: '../listbox/listbox.component.html',
-    providers: [ListboxFilteringService, ListboxScrollService],
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'combobox-listbox-component',
-    },
-    standalone: false
+  selector: 'app-ng-form-listbox-multi',
+  templateUrl: '../listbox/listbox.component.html',
+  providers: [ListboxFilteringService, ListboxScrollService],
+  host: {
+    class: 'combobox-listbox-component',
+  },
 })
 export class NgFormListboxMultiComponent<T>
   extends ListboxComponent<T>

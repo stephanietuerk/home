@@ -16,20 +16,24 @@ import {
   ElectionYear,
 } from './models/beyond-enums.model';
 @Component({
-    selector: 'app-beyond',
-    imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
-    templateUrl: './beyond.component.html',
-    styleUrls: ['./beyond.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-beyond',
+  imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
+  templateUrl: './beyond.component.html',
+  styleUrls: ['./beyond.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BeyondComponent implements OnInit {
   electionYear: string;
   electionType: string;
   demoType: string;
   demoYear: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   demoTypeLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   demoYearLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   electionTypeLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   electionYearLabels: any[];
   legendValues: string[];
 

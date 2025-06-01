@@ -26,6 +26,7 @@ import { LinesInputEventDirective } from './lines-input-event.directive';
  * Directive output ('vicLinesMarkerClickOutput') emits a LinesEmittedOutput object.
  */
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[vicLinesMarkerClickActions]',
 })
 export class LinesMarkerClickDirective<

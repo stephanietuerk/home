@@ -15,6 +15,7 @@ import {
 } from '../stacked-bars.component';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[vicStackedBarsHoverMoveActions]',
 })
 export class StackedBarsHoverMoveDirective<

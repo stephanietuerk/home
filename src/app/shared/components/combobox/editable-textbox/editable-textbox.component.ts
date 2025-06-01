@@ -20,10 +20,9 @@ import {
 import { TextboxComponent } from '../textbox/textbox.component';
 
 @Component({
-    selector: 'app-editable-textbox',
-    templateUrl: './editable-textbox.component.html',
-    styleUrls: ['./editable-textbox.component.scss'],
-    standalone: false
+  selector: 'app-editable-textbox',
+  templateUrl: './editable-textbox.component.html',
+  styleUrls: ['./editable-textbox.component.scss'],
 })
 export class EditableTextboxComponent
   extends TextboxComponent

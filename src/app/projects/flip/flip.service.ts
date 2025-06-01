@@ -26,7 +26,9 @@ export interface MapGeometryProperties extends GeoJsonProperties {
 export class FlipService {
   elId = '#flip-the-district';
   flipTopojson: PaCongressionalMapTopology;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   flipData: any = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   districtsData: any;
   stateData: StateVotes;
 

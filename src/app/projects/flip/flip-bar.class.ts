@@ -11,6 +11,7 @@ export class FlipBar {
   visContainer: HTMLElement;
   cutD: number;
   cutOther: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   svg: any;
   isDragged = false;
   draggedData: DistrictVotes;

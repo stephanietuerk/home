@@ -48,6 +48,7 @@ export class BeyondService {
   elId = '#beyond-vis';
   tractsTopojson: Topology<PaCensusTractsMapObjects>;
   citiesTopojson: Topology<PaCitiesMapObjects>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tractData: any;
   _state: BeyondState = new BeyondState();
   state$: BehaviorSubject<BeyondState> = new BehaviorSubject(null);
@@ -91,6 +92,7 @@ export class BeyondService {
     }, {} as TractObject);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   makeTractDatum(obj: any): TractDatum {
     const datum = new TractDatum();
 

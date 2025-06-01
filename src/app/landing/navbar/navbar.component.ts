@@ -16,7 +16,7 @@ export class NavbarComponent {
     this.scrollTo.emit('top');
   }
 
-  scrollToSection(event: any, section: SECTIONS): void {
+  scrollToSection(event: Event, section: SECTIONS): void {
     this.scrollTo.emit(section);
   }
 }

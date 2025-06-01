@@ -4,10 +4,9 @@ import { OptionAction } from '../combobox.service';
 import { EditableTextboxComponent } from '../editable-textbox/editable-textbox.component';
 
 @Component({
-    selector: 'app-ng-form-editable-textbox',
-    templateUrl: './ng-form-editable-textbox.component.html',
-    styleUrls: ['./ng-form-editable-textbox.component.scss'],
-    standalone: false
+  selector: 'app-ng-form-editable-textbox',
+  templateUrl: './ng-form-editable-textbox.component.html',
+  styleUrls: ['./ng-form-editable-textbox.component.scss'],
 })
 export class NgFormEditableTextboxComponent
   extends EditableTextboxComponent
