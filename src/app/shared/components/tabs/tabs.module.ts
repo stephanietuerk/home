@@ -6,7 +6,6 @@ import { TabLabelComponent } from './tab-label.component';
 import { TabsComponent } from './tabs.component';
 
 @NgModule({
-  declarations: [],
   imports: [
     TabsComponent,
     TabLabelComponent,

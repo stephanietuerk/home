@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { FormatForIdPipe } from '../../pipes/format-for-id/format-for-id.pipe';
 import { InputOption } from '../input-option.model';
-import { SvgIconOldComponent } from '../svg-icon-old/svg-icon-old.component';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 let nextUniqueId = 0;
 
 @Component({
   selector: 'app-checkbox-input',
-  imports: [CommonModule, FormatForIdPipe, SvgIconOldComponent],
+  imports: [CommonModule, FormatForIdPipe, SvgIconComponent],
   templateUrl: './checkbox-input.component.html',
   styleUrls: ['./checkbox-input.component.scss'],
   encapsulation: ViewEncapsulation.None,

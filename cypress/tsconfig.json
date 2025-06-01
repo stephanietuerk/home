@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "es6",
+    "lib": ["ES2016", "dom"],
+    "types": ["cypress", "node", "cypress-real-events", "local-cypress"],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["**/*.ts", "index.d.ts", "**./*.cy.ts"]
+}

@@ -11,7 +11,7 @@ describe('SafePipe', () => {
     domSanitizerStub = new DomSanitizerStub();
 
     TestBed.configureTestingModule({
-      declarations: [SafePipe],
+      imports: [SafePipe],
       providers: [
         SafePipe,
         { provide: DomSanitizer, useValue: domSanitizerStub },

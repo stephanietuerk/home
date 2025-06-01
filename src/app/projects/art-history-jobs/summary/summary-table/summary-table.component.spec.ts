@@ -7,7 +7,7 @@ describe('SummaryTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SummaryTableComponent],
+      imports: [SummaryTableComponent],
     }).compileComponents();
   });
 

@@ -8,7 +8,7 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CheckboxInputComponent, FormatForIdPipe],
+      imports: [CheckboxInputComponent, FormatForIdPipe],
       providers: [FormatForIdPipe],
     }).compileComponents();
   });
