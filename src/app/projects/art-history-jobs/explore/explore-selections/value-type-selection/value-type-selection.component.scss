@@ -2,6 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .radio-input-group {
   flex-grow: 1;
@@ -52,5 +53,5 @@
 }
 
 .radio-input-label:not(.selected):hover {
-  background: $color-light-gray-light;
+  background: colors.$tertiary-95;
 }

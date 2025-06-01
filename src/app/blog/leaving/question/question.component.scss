@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 $leaving-highlight: $color-highlight;
 
@@ -23,7 +24,7 @@ $leaving-highlight: $color-highlight;
 
     &.collapse:hover {
       cursor: pointer;
-      background: $color-light-gray-lightest;
+      background: colors.$tertiary-97;
       border-left: 1px solid $leaving-highlight;
       border-bottom: 1px solid $leaving-highlight;
 

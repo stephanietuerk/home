@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .schools-encapsulation-container {
   flex-grow: 1;
@@ -16,7 +17,7 @@
 
   .description {
     max-width: 600px;
-    line-height: 1.5;
+    line-height: 1.65;
     padding-bottom: grid(6);
     align-self: center;
     width: 100%;
@@ -100,7 +101,7 @@
         .mat-content {
           .country-name,
           .num-schools {
-            @extend %sans-semibold;
+            @extend %sans-medium;
           }
 
           .country-name {
@@ -127,10 +128,10 @@
       }
 
       &:hover {
-        background-color: $color-light-gray-lightest;
+        background-color: colors.$tertiary-97;
 
         &:not(.mat-expanded) {
-          background-color: $color-light-gray-lightest;
+          background-color: colors.$tertiary-97;
           border-bottom: 1px solid $color-highlight;
         }
 

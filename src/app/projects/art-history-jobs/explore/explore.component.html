@@ -19,14 +19,16 @@
   <div class="interactive-section">
     <app-explore-selections></app-explore-selections>
     <div class="charts-container">
-      <app-explore-across-time-chart
-        *ngIf="exploreDataService.acrossTimeData$ | async"
-        class="time-range-chart-component"
-      ></app-explore-across-time-chart>
-      <app-explore-change-chart
-        *ngIf="exploreDataService.changeData$ | async"
-        class="change-chart-component"
-      ></app-explore-change-chart>
+      @if (exploreDataService.acrossTimeData$ | async) {
+        <app-explore-across-time-chart
+          class="time-range-chart-component"
+        ></app-explore-across-time-chart>
+      }
+      @if (exploreDataService.changeData$ | async) {
+        <app-explore-change-chart
+          class="change-chart-component"
+        ></app-explore-change-chart>
+      }
     </div>
   </div>
 </ng-container>

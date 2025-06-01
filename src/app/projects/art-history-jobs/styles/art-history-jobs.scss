@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .selection-section-label {
   @include label-medium-caps-prominent;
@@ -62,7 +63,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: $color-light-gray-lightest;
+          background-color: colors.$tertiary-97;
           color: $color-highlight;
         }
       }

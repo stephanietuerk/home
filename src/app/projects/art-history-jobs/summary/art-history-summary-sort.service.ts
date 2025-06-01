@@ -59,7 +59,7 @@ export class ArtHistorySummaryService {
   }
 
   getTableData(data: JobDatum[]): JobTableDatum[] {
-    const currentYear = max(data.map((x) => x.year.getFullYear()));
+    const currentYear = max(data.map((x) => x.year.getUTCFullYear()));
     const filteredData = data.filter(
       (x) => x.tenure === 'All' && x.rank[0] === 'All'
     );
@@ -69,7 +69,7 @@ export class ArtHistorySummaryService {
       const avg =
         fieldData.reduce((acc, cur) => acc + cur.count, 0) / fieldData.length;
       const currentValue = fieldData.find(
-        (x) => x.year.getFullYear() === currentYear
+        (x) => x.year.getUTCFullYear() === currentYear
       ).count;
       return {
         field,

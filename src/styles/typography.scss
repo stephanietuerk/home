@@ -12,7 +12,7 @@
 
 %sans {
   @extend %ligatures;
-  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: 'Red Hat Text', system-ui, sans-serif;
 }
 
 $expressive-slant: 0;
@@ -114,32 +114,32 @@ $standard-monospace: 1;
 
 %sans-light {
   @extend %sans;
-  font-variation-settings: 'wght' 300;
+  font-variation-settings: 'wght' 400;
 }
 
 %sans-regular {
   @extend %sans;
-  font-variation-settings: 'wght' 400;
+  font-variation-settings: 'wght' 500;
 }
 
 %sans-medium {
   @extend %sans;
-  font-variation-settings: 'wght' 500;
+  font-variation-settings: 'wght' 600;
 }
 
 %sans-semibold {
   @extend %sans;
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: 'wght' 700;
 }
 
 %sans-bold {
   @extend %sans;
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' 800;
 }
 
 %sans-extrabold {
   @extend %sans;
-  font-variation-settings: 'wght' 800;
+  font-variation-settings: 'wght' 900;
 }
 
 @mixin display-large {
@@ -216,15 +216,13 @@ $standard-monospace: 1;
   @extend %sans-regular;
   font-size: 1.17rem;
   letter-spacing: 0.015rem;
-  // line-height: 1.25rem;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 @mixin body-small {
   @extend %sans-regular;
   font-size: 1rem;
   letter-spacing: 0.025rem;
-  // line-height: 1rem;
   line-height: 1.5;
 }
 

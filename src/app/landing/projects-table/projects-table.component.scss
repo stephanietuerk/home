@@ -3,6 +3,7 @@
 @use 'typography' as *;
 @use 'mixins' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .table-container {
   max-width: 1020px;
@@ -44,7 +45,7 @@
   }
 
   .table-row.body.index:hover:not(.expanded) {
-    background: $color-light-gray-lightest;
+    background: colors.$tertiary-97;
   }
 
   .table-cell.header {

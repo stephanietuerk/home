@@ -136,7 +136,7 @@ class TestLinesComponent<Datum, QuantAxisType extends number | Date> {
   }
 
   getYearFromStringDate(dateString: string): number {
-    return new Date(dateString).getFullYear();
+    return new Date(dateString).getUTCFullYear();
   }
 }
 
@@ -719,7 +719,7 @@ describe('displays tooltips for correct data per hover position', () => {
         cy.get('.vic-html-tooltip-overlay p')
           .eq(1)
           .then(($el) => {
-            expect(+$el.text()).to.equal(dateData[i].year.getFullYear());
+            expect(+$el.text()).to.equal(dateData[i].year.getUTCFullYear());
           });
         cy.get('.vic-html-tooltip-overlay p')
           .eq(2)

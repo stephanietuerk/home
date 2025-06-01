@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 @mixin text-link($text-color, $highlight-color, $underline-style) {
   text-decoration: none;
@@ -38,7 +39,7 @@
 
 @mixin padded-scrollbar($padding) {
   &::-webkit-scrollbar-track {
-    background-color: $color-light-gray-lightest;
+    background-color: colors.$tertiary-97;
   }
 
   &::-webkit-scrollbar-thumb {

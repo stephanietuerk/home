@@ -122,5 +122,5 @@ export const continentPopulationDateYearData: ContinentPopulationDateYearDatum[]
 export const ContinentPopulationNumYearData: ContinentPopulationNumYearDatum[] =
   continentPopulationDateYearData.map((d) => ({
     ...d,
-    year: d.year.getFullYear(),
+    year: d.year.getUTCFullYear(),
   }));

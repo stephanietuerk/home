@@ -3,6 +3,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 .explore-selections-container {
   display: flex;
@@ -33,11 +34,11 @@
     }
 
     &:hover {
-      border-bottom: 2px solid rgba($color-dark-primary, 0.6);
+      border-bottom: 2px solid colors.$tertiary-80;
 
       &:not(.active) {
         .tab-label {
-          opacity: 0.8;
+          color: colors.$tertiary-60;
         }
       }
     }
@@ -55,7 +56,7 @@
 
   .tab-label {
     @include label-large;
-    opacity: 0.6;
+    color: colors.$tertiary-70;
     transition: all 0.2s;
 
     @media screen and (max-width: 760px) {
@@ -68,7 +69,7 @@
   }
 
   .tabs-body {
-    background: $color-light-gray-lightest;
+    background: colors.$tertiary-97;
     padding: grid(4);
     border-radius: grid(1);
   }

@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
@@ -200,7 +201,7 @@
   @extend %slab-expressive-bold;
   border: 2px solid $color-highlight;
   color: $color-highlight;
-  background: $color-light-gray-lightest;
+  background: colors.$tertiary-97;
   transition: all 0.2s;
 
   &:hover {
@@ -210,9 +211,9 @@
   }
 
   &:disabled {
-    background: $color-light-gray-lightest;
+    background: colors.$tertiary-97;
     color: rgba($color-highlight, 0.5);
-    border: 2px solid $color-light-gray-lightest;
+    border: 2px solid colors.$tertiary-97;
   }
 }
 
@@ -406,23 +407,23 @@
       // color: colors.$muted-blue-700;
 
       &:hover:not(.disabled):not(.selected) {
-        background: $color-light-gray-lightest;
+        background: colors.$tertiary-97;
         // color: colors.$blue-800;
       }
 
       &:hover.multi {
-        background: $color-light-gray-lightest;
+        background: colors.$tertiary-97;
       }
 
       &.current:not(.disabled) {
         // color: colors.$blue-800;
 
         &.multi {
-          background: $color-light-gray-lightest;
+          background: colors.$tertiary-97;
         }
 
         &:not(.selected) {
-          background: $color-light-gray-lightest;
+          background: colors.$tertiary-97;
         }
       }
 

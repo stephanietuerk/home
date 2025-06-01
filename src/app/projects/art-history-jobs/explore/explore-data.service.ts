@@ -75,7 +75,7 @@ export class ExploreDataService {
       .subscribe((data) => {
         const recentYearData = data.filter(
           (x) =>
-            x.year.getFullYear() === this.defaultSelections.years.end &&
+            x.year.getUTCFullYear() === this.defaultSelections.years.end &&
             x.rank.includes(this.defaultSelections.rankValues[0]) &&
             x.tenure === this.defaultSelections.tenureValues[0]
         );
@@ -138,7 +138,7 @@ export class ExploreDataService {
       const end = timeRangeChartData.find(
         (x) =>
           x[entityCategory] === lineType &&
-          x.year.getFullYear() === selections.years.end
+          x.year.getUTCFullYear() === selections.years.end
       );
       const endValue = end[selections.valueType];
       const newDatum = {} as ExploreChangeDatum;
@@ -159,7 +159,7 @@ export class ExploreDataService {
         compareValue = timeRangeChartData.find(
           (x) =>
             x[entityCategory] === lineType &&
-            x.year.getFullYear() === selections.years.start
+            x.year.getUTCFullYear() === selections.years.start
         )[selections.valueType];
       }
       newDatum.startValue = compareValue;
@@ -231,8 +231,8 @@ export class ExploreDataService {
   ): JobDatum[] {
     return data.filter(
       (x) =>
-        x.year.getFullYear() >= selections.years.start &&
-        x.year.getFullYear() <= selections.years.end
+        x.year.getUTCFullYear() >= selections.years.start &&
+        x.year.getUTCFullYear() <= selections.years.end
     );
   }
 
@@ -255,11 +255,11 @@ export class ExploreDataService {
     def: LineDef
   ) {
     const uniqueYears = [
-      ...new Set(filteredData.map((x) => x.year.getFullYear())),
+      ...new Set(filteredData.map((x) => x.year.getUTCFullYear())),
     ];
     data = uniqueYears.map((year) => {
       const dataForYear = filteredData.filter(
-        (x) => x.year.getFullYear() === year
+        (x) => x.year.getUTCFullYear() === year
       );
       const datumForYear = dataForYear[0];
       if (dataForYear.length > 1) {
@@ -298,7 +298,7 @@ export class ExploreDataService {
   ): void {
     let allDatum;
     const dataForYear = allData.filter(
-      (d) => d.year.getFullYear() === x.year.getFullYear()
+      (d) => d.year.getUTCFullYear() === x.year.getUTCFullYear()
     );
     if (categoriesAccessor === JobProperty.tenure) {
       allDatum = dataForYear.filter(

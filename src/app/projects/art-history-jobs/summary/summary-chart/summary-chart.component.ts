@@ -73,7 +73,7 @@ interface ViewModel {
 })
 export class SummaryChartComponent implements OnInit {
   vm$: Observable<ViewModel>;
-  width = 712;
+  width = 700;
   height = 680;
   margin: ElementSpacing = { top: 8, right: 0, bottom: 36, left: 24 };
   tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =

@@ -39,7 +39,7 @@ export class ExploreComponent implements OnInit {
   }
 
   getYearsRange(data: JobDatum[]): [number, number] {
-    const years = [...new Set(data.map((d) => d.year.getFullYear()))];
+    const years = [...new Set(data.map((d) => d.year.getUTCFullYear()))];
     return [min(years), max(years)];
   }
 }

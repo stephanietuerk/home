@@ -1,5 +1,6 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'colors';
 
 .title {
   @extend %slab-expressive-bold;
@@ -18,7 +19,7 @@
 .comment-input {
   @extend %sans-regular;
   display: block;
-  background: $color-light-gray-lightest;
+  background: colors.$tertiary-97;
   padding: 0.375rem 0.75rem;
   border: none;
   border-bottom: 1px solid $color-dark-primary;

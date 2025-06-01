@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .selection-container {
   .selection-interface {
@@ -38,16 +39,16 @@
 
     .label:not(.selected) {
       @extend %slab-expressive-semibold;
-      border: 1px solid $color-light-gray-medium;
+      border: 1px solid colors.$tertiary-90;
       background-color: white;
-      color: $color-dark-gray;
+      color: colors.$tertiary-60;
     }
 
     .label:not(.selected):hover {
       @extend %slab-expressive-extrabold;
-      background: $color-light-gray-light;
+      background: colors.$tertiary-95;
       color: var(--color);
-      border: 1px solid $color-light-gray-dark;
+      border: 1px solid colors.$tertiary-80;
     }
   }
 }

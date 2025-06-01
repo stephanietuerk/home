@@ -1,3 +1,4 @@
+@forward 'themes';
 @use '@angular/cdk';
 @use 'vars' as *;
 @use 'placeholders' as *;
@@ -9,20 +10,25 @@
   font-family: 'Recursive';
   src: url('../assets/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf');
   font-weight: 300 1000; // For variable fonts
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'IBM Plex Sans';
-  src: url('../assets/fonts/IBMPlexSans-VariableFont_wdth,wght.ttf');
-  font-weight: 300 1000; // For variable fonts
-  font-style: italic;
+  font-family: 'Red Hat Text';
+  src: url('../assets/fonts/RedHatText-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: 300 900; // For variable fonts
+  font-style: normal;
   font-display: swap;
 }
 
 @include cdk.a11y-visually-hidden();
-@include css-reset('IBM Plex Sans', $color-dark-primary);
+@include css-reset('Red Hat Text', $color-dark-primary);
+
+body {
+  @include body-small;
+}
 
 ::-webkit-scrollbar {
   width: $vertical-scrollbar-thickness;

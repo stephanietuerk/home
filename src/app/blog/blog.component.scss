@@ -2,12 +2,13 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 :host {
   @extend %content-component-host;
   background: linear-gradient(
     180deg,
-    $color-light-gray-lightest,
+    colors.$tertiary-97,
     $color-light-gray-light
   );
 }
