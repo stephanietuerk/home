@@ -21,6 +21,7 @@ export interface ChartSort {
   categoryOrder: string[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SortFunction = (series: any) => number[];
 
 @Component({

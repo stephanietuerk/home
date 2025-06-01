@@ -38,11 +38,11 @@ import {
 } from '../models/beyond-enums.model';
 
 @Component({
-    selector: 'app-beyond-bar',
-    imports: [CommonModule],
-    templateUrl: './beyond-bar.component.html',
-    styleUrls: ['./beyond-bar.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-beyond-bar',
+  imports: [CommonModule],
+  templateUrl: './beyond-bar.component.html',
+  styleUrls: ['./beyond-bar.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BeyondBarComponent implements OnInit, OnChanges {
   @Input() electionYear: string;
@@ -299,8 +299,8 @@ export class BeyondBarComponent implements OnInit, OnChanges {
         wrapUp: true,
       });
 
-    const barWidth = (d) => this.width.index;
-    const barX = (d) => 0;
+    const barWidth = () => this.width.index;
+    const barX = () => 0;
     this.makeBar(this.barIndex, barWidth, barX, 'bar index');
     this.makeBrush();
   }

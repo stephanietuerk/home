@@ -19,11 +19,11 @@ import { BEYOND_COLORS, BEYOND_SCALES } from '../beyond.constants';
 import { BeyondService } from '../beyond.service';
 
 @Component({
-    selector: 'app-beyond-map',
-    imports: [CommonModule],
-    templateUrl: './beyond-map.component.html',
-    styleUrls: ['./beyond-map.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-beyond-map',
+  imports: [CommonModule],
+  templateUrl: './beyond-map.component.html',
+  styleUrls: ['./beyond-map.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   @Input() electionYear: string;
@@ -231,7 +231,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   makeMapInterface() {
-    const exploreText = this.svg
+    this.svg
       .append('text')
       .attr('id', 'beyond-explore-text')
       .attr('class', 'map-text')
@@ -239,7 +239,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
       .attr('y', 45)
       .text('zoom and move map to explore');
 
-    const howText = this.svg
+    this.svg
       .append('text')
       .attr('id', 'beyond-how-text')
       .attr('class', 'map-text-sm')
@@ -261,7 +261,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
         }
       });
 
-    const placeNamesBox = this.svg
+    this.svg
       .append('rect')
       .attr('class', 'click-overlay')
       .attr('id', 'beyond-placenames-box')
@@ -278,7 +278,7 @@ export class BeyondMapComponent implements OnInit, OnChanges, OnDestroy {
         select(event.currentTarget).style('cursor', 'default');
       });
 
-    const resetTextBox = this.svg
+    this.svg
       .append('rect')
       .attr('class', 'click-overlay-variable')
       .attr('id', 'beyond-reset-box')

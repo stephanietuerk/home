@@ -23,11 +23,6 @@ import { TenureTabBodyComponent } from './tenure-tab-body/tenure-tab-body.compon
 import { TimeRangeTabBodyComponent } from './time-range-tab-body/time-range-tab-body.component';
 import { ValueTypeTabBodyComponent } from './value-type-tab-body/value-type-tab-body.component';
 
-interface DropdownContent {
-  isOpen: boolean;
-  content: keyof typeof ExploreSelection | null;
-}
-
 @Component({
   selector: 'app-explore-selections',
   imports: [
