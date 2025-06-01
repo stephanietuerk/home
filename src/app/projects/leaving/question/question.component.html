@@ -1,19 +1,27 @@
 <div class="card" [id]="question.id">
-  <ng-container *ngIf="!toggle">
+  @if (toggle) {
+    <button
+      class="question-container collapsable"
+      [class.expanded]="expanded"
+      [class.collapsed]="!expanded"
+      (click)="toggleQuestion()"
+      (pointerenter)="hovered = true"
+      (pointerleave)="hovered = false"
+    >
+      <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
+      <app-expand-arrow
+        class="arrow-icon"
+        [class.expanded]="expanded"
+        [class.collapsed]="!expanded"
+        [expanded]="expanded"
+        [hovered]="hovered"
+      ></app-expand-arrow>
+    </button>
+  } @else {
     <div class="question-container">
       <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
     </div>
-  </ng-container>
-  <ng-container *ngIf="toggle">
-    <button class="question-container collapse" (click)="toggleQuestion()">
-      <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
-      <app-svg-icon
-        class="arrow-icon"
-        [ngClass]="{ up: expanded, down: !expanded }"
-        [name]="expanded ? 'row-arrow-up' : 'row-arrow-down'"
-      ></app-svg-icon>
-    </button>
-  </ng-container>
+  }
   <div
     *ngIf="((toggle && expanded) || !toggle) && !textIsHtml()"
     class="answer-container"

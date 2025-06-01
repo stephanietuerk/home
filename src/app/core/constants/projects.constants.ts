@@ -2,7 +2,6 @@ import { Project, ProjectType } from './../models/project.model';
 import {
   artHistoryJobsPath,
   beyondPath,
-  blogPath,
   flipPath,
   leavingPath,
   projectsPath,
@@ -52,7 +51,7 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'Post',
-        routerLink: `${blogPath}/${leavingPath}`,
+        routerLink: `${projectsPath}/${leavingPath}`,
       },
     ],
     allowComments: false,

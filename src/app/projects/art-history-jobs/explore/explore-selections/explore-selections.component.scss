@@ -34,11 +34,11 @@
     }
 
     &:hover {
-      border-bottom: 2px solid colors.$tertiary-80;
+      border-bottom: 2px solid colors.$tertiary-70;
 
       &:not(.active) {
         .tab-label {
-          color: colors.$tertiary-60;
+          color: colors.$tertiary-50;
         }
       }
     }
@@ -47,16 +47,15 @@
       border-bottom: 2px solid $color-highlight;
 
       .tab-label {
-        @include label-large-prominent;
-        opacity: 1;
         color: $color-highlight;
+        @extend %slab-standard-semibold;
       }
     }
   }
 
   .tab-label {
     @include label-large;
-    color: colors.$tertiary-70;
+    color: colors.$tertiary-60;
     transition: all 0.2s;
 
     @media screen and (max-width: 760px) {

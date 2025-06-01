@@ -12,19 +12,15 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.description {
-  // padding-bottom: grid(4);
-}
-
 .info-text {
   @include body-small;
   padding-bottom: grid(6);
+  line-height: 1.65;
 }
 
 .text-links-container {
   display: inline-flex;
   gap: grid(6);
-  padding-bottom: grid(6);
 }
 
 .project-link {
@@ -49,7 +45,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: grid(4);
+  padding-top: grid(10);
   gap: grid(6);
 }
 
@@ -58,8 +54,6 @@
 }
 
 .image-container {
-  // background: white;
-  // align-self: stretch;
   align-items: center;
   flex-basis: calc(100% / #{var(--num-images)});
   max-width: calc(900px / 2 - 2.75rem);

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ExpandArrowComponent } from '../../shared/components/expand-arrow/expand-arrow.component';
 import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
 import { QuestionComponent } from './question/question.component';
 
 @Component({
   selector: 'app-leaving',
-  imports: [CommonModule, QuestionComponent],
+  imports: [CommonModule, QuestionComponent, ExpandArrowComponent],
   templateUrl: './leaving.component.html',
   styleUrls: ['./leaving.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -20,6 +21,7 @@ export class LeavingComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   youQuestions: any;
   state: { [index: string]: boolean };
+  hovered = false;
 
   ngOnInit(): void {
     this.whatQuestion = LEAVING_OVERVIEW[0];

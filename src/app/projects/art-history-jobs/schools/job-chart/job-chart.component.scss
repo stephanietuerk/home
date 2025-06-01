@@ -51,6 +51,8 @@
     }
 
     .field {
+      @extend %slab-standard-semibold;
+      font-size: 0.95rem;
       color: var(--color, dodgerblue);
       font-weight: 500;
       padding-bottom: grid(1);

@@ -4,44 +4,40 @@
 @use 'functions' as *;
 @use 'colors';
 
-$leaving-highlight: $color-highlight;
+$mauve-hue-light: #e9e4f5;
+$mauve-hue-lightest: #f7f6f8;
+$lime-2: #a2ff29;
 
 .card {
   @extend %flex-column;
-  background: white;
-  margin-bottom: grid(4);
-  padding: grid(3) grid(6);
-  box-shadow: $drop-shadow-lightest;
+  margin-bottom: grid(5);
+  width: 800px;
 
   .question-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-left: 1px solid $color-dark-primary;
-    border-bottom: 1px solid $color-dark-primary;
-    margin: grid(2) 0 grid(3) 0;
+    margin: 0 0 grid(1) 0;
     padding-left: grid(1);
+    transition: all 0.25s ease-in-out;
 
-    &.collapse:hover {
+    &.collapsed {
+      background: var(--color-purple-background);
+    }
+
+    &.collapsable:hover {
       cursor: pointer;
-      background: colors.$tertiary-97;
-      border-left: 1px solid $leaving-highlight;
-      border-bottom: 1px solid $leaving-highlight;
-
-      .question {
-        color: $leaving-highlight;
-        font-weight: 800;
-      }
-
-      .arrow-icon svg {
-        fill: $leaving-highlight;
-        stroke: $leaving-highlight;
-      }
+      background: var(--color-purple-hover);
     }
   }
 
   .question {
     @include title-medium;
+    font-variation-settings:
+      'wght' 600,
+      'CASL' 0.5,
+      'MONO' 0,
+      'slnt' -5;
     font-size: 1.2rem;
     padding: grid(3) grid(2) grid(2) grid(2);
     line-height: 1.5rem;
@@ -49,13 +45,18 @@ $leaving-highlight: $color-highlight;
   }
 
   .answer-container {
-    padding-right: grid(2);
-    padding-left: grid(2);
+    @include body-small;
+    padding: grid(6);
+    border: 1px solid var(--color-lime);
   }
 
   .answer-text {
-    font-size: 1.1rem;
-    padding-bottom: 1.2rem;
+    @include body-small;
+    line-height: 1.65;
+
+    &:not(:last-child) {
+      padding-bottom: grid(6);
+    }
   }
 
   .list-label {
@@ -68,11 +69,11 @@ $leaving-highlight: $color-highlight;
   }
 
   .list-container {
+    @include body-small;
     padding: 0 grid(6) grid(2) grid(6);
   }
 
   .list-item {
-    font-size: 1.1rem;
     padding-bottom: grid(2);
   }
 
@@ -81,12 +82,15 @@ $leaving-highlight: $color-highlight;
   }
 
   .arrow-icon {
-    padding-right: grid(1);
+    padding: 0 grid(2);
+    position: relative;
+    top: grid(1.5);
 
     &.down {
       position: relative;
       top: grid(1);
     }
+
     &.up {
       position: relative;
       top: -grid(1);

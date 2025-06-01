@@ -42,21 +42,9 @@ export const APP_ROUTES: Routes = [
           ),
       },
       {
-        path: '**',
-        redirectTo: '/main',
-        pathMatch: 'full',
-      },
-    ],
-  },
-  {
-    path: 'blog',
-    loadComponent: () =>
-      import('./blog/blog.component').then((c) => c.BlogComponent),
-    children: [
-      {
         path: leavingPath,
         loadComponent: () =>
-          import('./blog/leaving/leaving.component').then(
+          import('./projects/leaving/leaving.component').then(
             (c) => c.LeavingComponent
           ),
       },

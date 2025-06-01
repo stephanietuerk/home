@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { SvgIconComponent } from '../../../shared/components/svg-icon/svg-icon.component';
+import { ExpandArrowComponent } from '../../../shared/components/expand-arrow/expand-arrow.component';
 import { LeavingQuestion } from '../leaving,model';
 
 @Component({
   selector: 'app-question',
-  imports: [CommonModule, SvgIconComponent],
+  imports: [CommonModule, ExpandArrowComponent],
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -14,6 +14,7 @@ export class QuestionComponent {
   @Input() question: LeavingQuestion;
   @Input() toggle: boolean;
   expanded = false;
+  hovered = false;
 
   toggleQuestion(): void {
     this.expanded = !this.expanded;

@@ -50,6 +50,8 @@
   }
 
   .tooltip-label.category {
+    @extend %slab-standard-semibold;
+    font-size: 0.95rem;
     line-height: 1.1;
     font-weight: 600;
     color: var(--color);

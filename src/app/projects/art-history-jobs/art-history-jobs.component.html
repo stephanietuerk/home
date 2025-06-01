@@ -99,38 +99,40 @@
   <app-data-acquisition class="section-component"></app-data-acquisition
 ></div>
 <div class="scroll-to-container">
-  <button
-    class="scroll-to-next-section previous"
-    [attr.aria-hidden]="
-      currentSectionName() === this.sectionNames[0] ? true : false
-    "
-    [style.visibility]="
-      currentSectionName() === this.sectionNames[0] ? 'hidden' : null
-    "
-    (click)="jumpToPrevious()"
-    ><app-svg-icon
-      class="scroll-arrows"
-      name="keyboard-double-arrow-up"
-    ></app-svg-icon
-    ><p class="scroll-to-next-label">Jump to previous section</p></button
-  >
-  <button
-    class="scroll-to-next-section next"
-    [attr.aria-hidden]="
-      currentSectionName() === this.sectionNames[this.sections.length - 1]
-        ? true
-        : false
-    "
-    [style.visibility]="
-      currentSectionName() === this.sectionNames[this.sections.length - 1]
-        ? 'hidden'
-        : null
-    "
-    (click)="jumpToNext()"
-    ><p class="scroll-to-next-label">Jump to next section</p>
-    <app-svg-icon
-      class="scroll-arrows"
-      name="keyboard-double-arrow-down"
-    ></app-svg-icon
-  ></button>
+  @if (currentSectionName$ | async; as currentSectionName) {
+    <button
+      class="scroll-to-next-section previous"
+      [attr.aria-hidden]="
+        currentSectionName === this.sectionNames[0] ? true : false
+      "
+      [style.visibility]="
+        currentSectionName === this.sectionNames[0] ? 'hidden' : null
+      "
+      (click)="jumpToPrevious()"
+      ><app-svg-icon
+        class="scroll-arrows"
+        name="keyboard-double-arrow-up"
+      ></app-svg-icon
+      ><p class="scroll-to-next-label">Jump to previous section</p></button
+    >
+    <button
+      class="scroll-to-next-section next"
+      [attr.aria-hidden]="
+        currentSectionName === this.sectionNames[this.sections.length - 1]
+          ? true
+          : false
+      "
+      [style.visibility]="
+        currentSectionName === this.sectionNames[this.sections.length - 1]
+          ? 'hidden'
+          : null
+      "
+      (click)="jumpToNext()"
+      ><p class="scroll-to-next-label">Jump to next section</p>
+      <app-svg-icon
+        class="scroll-arrows"
+        name="keyboard-double-arrow-down"
+      ></app-svg-icon
+    ></button>
+  }
 </div>

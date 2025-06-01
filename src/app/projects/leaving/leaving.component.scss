@@ -1,0 +1,81 @@
+@use 'vars' as *;
+@use 'placeholders' as *;
+@use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
+
+$leaving-highlight: $color-highlight;
+
+.faq-container {
+  --max-section-width: 800px;
+  --color-lime: #a2ff29;
+  --color-purple-hover: #e9e4f5;
+  --color-purple-background: #f7f6f8;
+  --color-purple-text: #bdb2da;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-section-width);
+  padding: grid(1) 0 6rem 0;
+
+  .header-item {
+    align-self: center;
+  }
+
+  .date {
+    @extend %subtitle2;
+    padding-bottom: grid(4);
+  }
+
+  .instruction {
+    @include label-xs-prominent;
+  }
+
+  .category-label {
+    @include label-small-caps-prominent;
+    color: var(--color-purple-text);
+    align-self: center;
+    margin-bottom: grid(5);
+    margin-top: grid(5);
+    padding-bottom: grid(1);
+    border-bottom: 1px solid var(--color-purple-hover);
+  }
+
+  .comment-instructions {
+    font-size: 1.1rem;
+    padding: grid(4) 0 grid(1) 0;
+  }
+
+  app-question {
+    display: block;
+    padding-bottom: grid(4);
+
+    &:first-of-type {
+      padding-top: grid(3);
+    }
+  }
+
+  .arrow-icon {
+    padding-left: grid(2);
+    position: relative;
+    top: grid(1);
+
+    &.down {
+      position: relative;
+      top: grid(1);
+    }
+
+    &.up {
+      position: relative;
+      top: -grid(1);
+    }
+
+    svg {
+      height: 14px;
+      width: 21px;
+      fill: $color-dark-primary;
+      stroke: $color-dark-primary;
+    }
+  }
+}

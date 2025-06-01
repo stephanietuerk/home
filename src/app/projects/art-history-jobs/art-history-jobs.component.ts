@@ -7,11 +7,10 @@ import {
   ElementRef,
   inject,
   OnInit,
-  signal,
   ViewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent } from 'rxjs';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 import { projectNavbarHeight } from 'src/app/core/constants/dom.constants';
 import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { OverlayService } from '../../shared/components/overlay/overlay.service';
@@ -54,7 +53,10 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
   @ViewChild('schools', { read: ElementRef }) schools: ElementRef;
   @ViewChild('methods', { read: ElementRef }) methods: ElementRef;
   dataYears = currentDataYears;
-  currentSectionName = signal<keyof typeof ArtHistorySection>('intro');
+  currentSectionName = new BehaviorSubject<keyof typeof ArtHistorySection>(
+    'intro'
+  );
+  currentSectionName$ = this.currentSectionName.asObservable();
   private destroyRef = inject(DestroyRef);
   sections: { name: keyof typeof ArtHistorySection; el: HTMLElement }[] = [];
   sectionNames = Object.keys(ArtHistorySection);
@@ -94,7 +96,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
   }
 
   setActiveSection(): void {
-    this.currentSectionName.set(this.findActiveSection());
+    this.currentSectionName.next(this.findActiveSection());
   }
 
   private findActiveSection(): keyof typeof ArtHistorySection | null {
@@ -110,7 +112,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
 
   jumpToNext(): void {
     const currentSectionIndex = this.sections.findIndex(
-      (x) => x.name === this.currentSectionName()
+      (x) => x.name === this.currentSectionName.value
     );
     const nextSection = this.sections[currentSectionIndex + 1];
     // handle fast clicking
@@ -121,7 +123,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
 
   jumpToPrevious(): void {
     const currentSectionIndex = this.sections.findIndex(
-      (x) => x.name === this.currentSectionName()
+      (x) => x.name === this.currentSectionName.value
     );
     const previousSection = this.sections[currentSectionIndex - 1];
     // handle fast clicking
@@ -135,7 +137,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
       .offsetTop;
     const offsetTop = sectionOffsetTop - projectNavbarHeight + 60; // account for top padding of section and offset
     window.scrollTo({ behavior: 'smooth', top: offsetTop });
-    this.currentSectionName.set(section);
+    this.currentSectionName.next(section);
   }
 
   displayMobileMessage(): void {
