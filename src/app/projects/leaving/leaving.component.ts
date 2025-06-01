@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ExpandArrowComponent } from '../../shared/components/expand-arrow/expand-arrow.component';
 import { LEAVING_ME, LEAVING_OVERVIEW, LEAVING_YOU } from './leaving.constants';
 import { QuestionComponent } from './question/question.component';
 
 @Component({
   selector: 'app-leaving',
-  imports: [CommonModule, QuestionComponent, ExpandArrowComponent],
+  imports: [CommonModule, QuestionComponent],
   templateUrl: './leaving.component.html',
   styleUrls: ['./leaving.component.scss'],
   encapsulation: ViewEncapsulation.None,
