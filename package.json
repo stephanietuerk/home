@@ -28,6 +28,7 @@
     "lodash-es": "^4.17.21",
     "nouislider": "^15.7.1",
     "papaparse": "^5.4.1",
+    "polylabel": "^2.0.1",
     "rxfire": "^6.0.4",
     "rxjs": "~7.8.2",
     "topojson-client": "^3.1.0",
