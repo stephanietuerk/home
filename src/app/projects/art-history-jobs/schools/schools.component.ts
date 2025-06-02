@@ -33,7 +33,6 @@ export class SchoolsComponent implements OnInit {
   constructor(public dataService: SchoolsDataService) {}
 
   ngOnInit(): void {
-    this.dataService.init();
     this.dataService.dataBySchool$.pipe(take(1)).subscribe(() => {
       this.numYears = this.dataService.yearRange.length;
     });

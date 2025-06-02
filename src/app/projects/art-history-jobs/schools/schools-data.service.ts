@@ -75,6 +75,7 @@ export class SchoolsDataService {
   constructor(public dataService: ArtHistoryDataService) {}
 
   init(): void {
+    console.log('Initializing SchoolsDataService', this.state.getValue());
     if (this.dataBySchool$) {
       return;
     }
@@ -241,6 +242,9 @@ export class SchoolsDataService {
     selection: string[],
     property: keyof typeof SchoolStateProperty
   ): void {
+    console.log(
+      `Updating state for ${property} with selection: ${selection.join(', ')}`
+    );
     const current = this.state.getValue();
     const updated = { ...current, [property]: selection };
     this.state.next(updated);

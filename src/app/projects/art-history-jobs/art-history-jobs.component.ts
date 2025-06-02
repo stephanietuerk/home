@@ -20,6 +20,7 @@ import { currentDataYears } from './art-history-jobs.constants';
 import { DataAcquisitionComponent } from './data-acquisition/data-acquisition.component';
 import { ExploreDataService } from './explore/explore-data.service';
 import { ExploreComponent } from './explore/explore.component';
+import { SchoolsDataService } from './schools/schools-data.service';
 import { SchoolsComponent } from './schools/schools.component';
 import { SummaryComponent } from './summary/summary.component';
 
@@ -64,6 +65,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
   constructor(
     public mainDataService: ArtHistoryDataService,
     public exploreDataService: ExploreDataService,
+    private schoolsDataService: SchoolsDataService,
     private platform: Platform,
     private messages: MessageService
   ) {}
@@ -72,6 +74,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
     this.mainDataService.init().then(() => {
       this.exploreDataService.init();
     });
+    this.schoolsDataService.init();
     if (this.platform.IOS || this.platform.ANDROID) {
       this.displayMobileMessage();
     }

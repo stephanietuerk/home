@@ -2,15 +2,15 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
-  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { debounceTime, fromEvent, takeUntil } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 import { SearchUtilities } from 'src/app/core/utilities/search.util';
-import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { ComboboxModule } from '../../../../shared/components/combobox/combobox.module';
 import { SvgIconComponent } from '../../../../shared/components/svg-icon/svg-icon.component';
 import {
@@ -31,21 +31,15 @@ import {
   styleUrls: ['./school-filters.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SchoolFiltersComponent
-  extends Unsubscribe
-  implements OnInit, AfterViewInit
-{
+export class SchoolFiltersComponent implements AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef;
   SchoolStateProperty = SchoolStateProperty;
   SchoolSort = SchoolSort;
 
-  constructor(public data: SchoolsDataService) {
-    super();
-  }
-
-  ngOnInit(): void {
-    this.data.init();
-  }
+  constructor(
+    public data: SchoolsDataService,
+    private destroyRef: DestroyRef
+  ) {}
 
   ngAfterViewInit(): void {
     this.setSearchInput();
@@ -53,7 +47,7 @@ export class SchoolFiltersComponent
 
   setSearchInput() {
     fromEvent(this.searchInput.nativeElement, 'input')
-      .pipe(takeUntil(this.unsubscribe), debounceTime(100))
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100))
       .subscribe((event: Event) => {
         const value = (event.target as HTMLInputElement).value;
         const terms = SearchUtilities.getCleanedSearchTerms(value);
