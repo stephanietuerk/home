@@ -1,23 +1,30 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'typography' as *;
+
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper,
+.cdk-overlay-pane.vic-html-tooltip-overlay {
+  pointer-events: none;
+}
 
 .summary-chart-tooltip {
   pointer-events: none;
   display: flex;
   flex-direction: column;
   max-width: 340px;
-  height: 100%;
 
   .tooltip-line {
     position: relative;
     border-left: 2px dashed $color-light-gray-medium;
-    height: 100%;
     align-self: center;
+    flex-grow: 1;
   }
 
   .tooltip-container {
     padding: grid(2);
+    flex-grow: 0;
   }
 
   .top-space,
@@ -50,10 +57,20 @@
     font-size: 0.8rem;
   }
 
-  .tooltip-label.y,
+  .tooltip-label.x {
+    @extend %slab-standard-medium;
+  }
+
+  .tooltip-label.y {
+    @extend %sans-regular;
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
   .tooltip-label.category {
-    @extend %body2;
-    line-height: 1.1;
+    @extend %slab-standard-medium;
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
   .tooltip-field-value-row {

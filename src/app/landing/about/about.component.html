@@ -1,42 +1,67 @@
-<h2 class="about-title">about</h2>
-<p class="about-text">
-  I design and develop applications that transform data into information. This
-  work is informed by my education and experience as an architect, engineer, and
-  historian.
-</p>
-<button class="read-more" (click)="toggleMore()">{{ toggleText }}</button>
-<ng-container *ngIf="expanded">
-  <p class="about-text">
-    Currently, I lead design and frontend development practices at Mathematica,
-    a quantitative public-policy research firm. (formerly known as Mathematica
-    Policy Research, no relation to Wolfram). Historically, Mathematica has
-    synthesized very very large datasets into large datasets for its clients,
-    and delivered work via long reports with tables and perhaps charts in the
-    appendices. In 2020, I joined a small web development team at the company as
-    the first person to focus on design, and have since focused on building the
-    company's capacity to deliver professional-quality web applications that
-    allow clients to explore the results of the company's data analytics work in
-    an interactive format.
+<div class="about-component-encapsulation-container">
+  <h2 class="section-header">about</h2>
+  <p class="about-text overview">
+    I design and build systems, primarily in code, that turn complex data into
+    useful and intelligible tools. I love working at the intersection of
+    structure, meaning, and interaction, and translating between quantitative
+    data, language, and visual representation. This work draws on my training as
+    an architect, historian, and engineer.
   </p>
-  <p class="about-text">
-    Before entering the world of data visualization in mid-2017, I spent many
-    years in the field of architecture (M.Arch and PhD in History, Theory, and
-    Criticism of Architecture), and before that, majored in both Civil
-    Engineering and Urban Studies as an undergrad. Although data visualization
-    may seem like a departure from that path, in my mind it is much more a
-    synthesis of it. Data visualization, to me, involves drawing together
-    evidence to make an argument in the same way that a historian makes an
-    argument from primary sources, and it allows me to combine my design and
-    analytic sensibilities in a single endeavor that is fundamentally concerned
-    with making information public. I also enjoy that it places me in close
-    proximity to practices that seek to build quantitative understandings of the
-    world, a subject that I have very much enjoyed thinking critically about
-    since taking two very influential courses on the history of measurement,
-    statistics, and probability in society as a PhD student.
-  </p>
-  <p class="about-text">
-    My non-work hobbies include running, rock climbing, international travel,
-    watching mostly non-American films, and cooking mostly non-American food :).
-    I am based in Cambridge/Somerville, MA.
-  </p>
-</ng-container>
+  <button
+    class="expand-button"
+    [class.expanded]="expanded"
+    (click)="toggleMore()"
+    (pointerenter)="hovered = true"
+    (pointerleave)="hovered = false"
+    >{{ toggleText }}
+    <app-expand-arrow
+      class="arrow-icon"
+      [class.expanded]="expanded"
+      [class.collapsed]="!expanded"
+      [expanded]="expanded"
+      [hovered]="hovered"
+      [compact]="true"
+    ></app-expand-arrow>
+  </button>
+  @if (expanded) {
+    <div class="expanded-content">
+      <p class="about-text">
+        Currently, I lead design and frontend development on high-complexity,
+        data-heavy public-sector applications at Mathematica, a quantitative
+        public policy research firm. I joined in 2019 as the company’s first
+        design-focused hire on the web team. Since then I’ve grown and led the
+        design practice, served as the frontend lead for our most demanding
+        web-based deliverables, and mentored both designers and engineers.
+      </p>
+      <p class="about-text">My work includes:</p>
+      <ul class="about-text list">
+        <li class="list-item"
+          >Architecting frontend systems that model and handle structurally
+          complex, semantically rich, and intricate data with clarity and
+          precision</li
+        >
+        <li class="list-item"
+          >Designing data visualization and UI component libraries that balance
+          developer experience, accessibility, and architectural flexibility</li
+        >
+        <li class="list-item"
+          >Owning the end-to-end experience and delivery of high-stakes
+          deliverables—shaping structure, flows, language, and visual hierarchy
+          from early-stage client conversations through product launch and
+          ongoing enhancements.</li
+        >
+      </ul>
+      <p class="about-text">
+        Before moving into data visualization and interface work in 2017, I
+        spent many years in the field of architecture (M.Arch and PhD in the
+        History, Theory, and Criticism of Architecture and Art). My current work
+        designing interfaces, systems, and developer tools builds on that
+        background in both method and focus. I approach system and interface
+        design as a continuation of longstanding lines of inquiry: how to
+        construct meaning from complexity, how to organize evidence for an
+        audience, and how to make that meaning legible through the development
+        of consistent and coherent systems of design.
+      </p>
+    </div>
+  }
+</div>

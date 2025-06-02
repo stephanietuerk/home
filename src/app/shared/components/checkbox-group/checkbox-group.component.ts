@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CheckboxInputComponent } from '../checkbox-input/checkbox-input.component';
 import { InputOption } from '../input-option.model';
 
 @Component({
   selector: 'app-checkbox-group',
+  imports: [CommonModule, CheckboxInputComponent],
   templateUrl: './checkbox-group.component.html',
   styleUrls: ['./checkbox-group.component.scss'],
 })

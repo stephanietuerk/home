@@ -1,20 +1,16 @@
-<h2 class="section-header">All jobs by field, 2011&ndash;2023</h2>
 <p class="description">
   Hover over the chart to see counts of jobs by fields for individual years.
   Fractions of jobs within a year reflect assignment of some jobs to more than
   one field.
 </p>
-<div *ngIf="vm$ | async as vm" class="charts-container">
-  <app-summary-chart
-    class="chart-component"
-    [dataMarksConfig]="vm.chartConfig"
-    [xAxisConfig]="vm.xAxisConfig"
-    [yAxisConfig]="vm.yAxisConfig"
-  ></app-summary-chart>
-  <app-summary-table
-    class="table-component"
-    [headers]="tableHeaders"
-    [rows]="vm.tableData"
-    (newSort)="handleTableSort()"
-  ></app-summary-table>
-</div>
+@if (summaryService.sortedTableData$ | async; as tableData) {
+  <div class="charts-container">
+    <app-summary-chart class="chart-component"></app-summary-chart>
+    <app-summary-table
+      class="table-component"
+      [headers]="tableHeaders"
+      [rows]="tableData"
+      (activeSort)="handleTableSort($event)"
+    ></app-summary-table>
+  </div>
+}

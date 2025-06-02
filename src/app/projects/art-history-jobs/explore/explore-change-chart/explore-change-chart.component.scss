@@ -10,8 +10,7 @@
     line-height: 1.2;
 
     .end-year {
-      @extend %slab-bold;
-      font-style: normal;
+      @extend %slab-expressive-semibold;
       color: $color-highlight;
       font-size: 0.9rem;
     }
@@ -32,7 +31,7 @@
   }
 
   .tenure-rank {
-    font-weight: 500;
+    @extend %sans-medium;
     color: $color-highlight;
   }
 }
@@ -56,7 +55,7 @@
   }
 
   .tooltip-label {
-    @extend %slab-regular;
+    @extend %slab-expressive-regular;
     display: flex;
     flex-direction: column;
     line-height: 1rem;

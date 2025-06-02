@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { range } from 'd3';
+import { BeyondBarComponent } from './beyond-bar/beyond-bar.component';
+import { BeyondMapComponent } from './beyond-map/beyond-map.component';
 import {
   BEYOND_DEMOTYPES,
   BEYOND_DEMOYEARS,
@@ -14,6 +17,7 @@ import {
 } from './models/beyond-enums.model';
 @Component({
   selector: 'app-beyond',
+  imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
   templateUrl: './beyond.component.html',
   styleUrls: ['./beyond.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -23,9 +27,13 @@ export class BeyondComponent implements OnInit {
   electionType: string;
   demoType: string;
   demoYear: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   demoTypeLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   demoYearLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   electionTypeLabels: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   electionYearLabels: any[];
   legendValues: string[];
 

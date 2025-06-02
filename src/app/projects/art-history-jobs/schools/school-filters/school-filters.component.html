@@ -1,200 +1,225 @@
 <div class="schools-filters-encapsulation-container">
-  <h3 class="container-title">Refine displayed jobs</h3>
-  <div class="selectors-container">
-    <div class="search-sort-container">
-      <div class="search-feature">
-        <h4 class="selection-label">Search institutions</h4>
-        <div class="search-input-container">
-          <input
-            #searchInput
-            type="text"
-            tabindex="0"
-            placeholder="Enter a search term"
-            class="search-input"
-          />
-          <button
-            class="clear-search-button"
-            (click)="clearSearch()"
-            *ngIf="(data.state$ | async).searchTerms.length > 0"
+  @if (data.state$ | async; as state) {
+    <h3 class="container-title">Refine displayed jobs</h3>
+    <div class="selectors-container">
+      <div class="search-sort-container">
+        <div class="search-feature">
+          <h4 class="selection-label">Search institutions</h4>
+          <div class="search-input-container">
+            <input
+              #searchInput
+              id="search-input"
+              type="text"
+              tabindex="0"
+              placeholder="Enter a search term"
+              class="search-input"
+              autocomplete="off"
+            />
+
+            @if (state.searchTerms.length > 0) {
+              <button class="clear-search-button" (click)="clearSearch()">
+                <app-svg-icon name="close" class="icon clear"></app-svg-icon>
+              </button>
+            }
+          </div>
+        </div>
+        <div class="sort-container"
+          ><h4 class="selection-label">Sort charts by</h4>
+          <mat-button-toggle-group
+            class="sort-selection"
+            aria-label="Sort charts by"
+            [hideSingleSelectionIndicator]="true"
+            [value]="(data.state$ | async).sortOrder"
+            (change)="data.updateSortOrder($event.value)"
           >
-            <span class="material-symbols-outlined icon clear">clear</span>
-          </button>
+            @for (option of data.sortOptions; track $index) {
+              <mat-button-toggle class="sort-option" [value]="option.value"
+                >{{ option.label }}
+                @if (option.value === SchoolSort.desc) {
+                  <app-svg-icon
+                    name="arrow-downward-narrow"
+                    class="arrow-icon down"
+                  ></app-svg-icon>
+                }
+                @if (option.value === SchoolSort.asc) {
+                  <app-svg-icon
+                    name="arrow-upward-narrow"
+                    class="arrow-icon up"
+                  ></app-svg-icon>
+                }
+              </mat-button-toggle>
+            }
+          </mat-button-toggle-group>
         </div>
       </div>
-      <div class="sort-container"
-        ><h4 class="selection-label">Sort charts by</h4>
-        <mat-button-toggle-group
-          class="sort-selection"
-          aria-label="Sort charts by"
-          [value]="(data.state$ | async).sortOrder"
-          (change)="data.updateSortOrder($event.value)"
-        >
-          <mat-button-toggle
-            *ngFor="let option of data.sortOptions; let i = index"
-            class="sort-option"
-            [value]="option.value"
-            >{{option.label}}<span
-              class="material-symbols-outlined arrow-icon down"
-              *ngIf="option.value === SchoolSort.desc"
-              >south</span
-            ><span
-              class="material-symbols-outlined arrow-icon up"
-              *ngIf="option.value === SchoolSort.asc"
-              >north</span
-            >
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </div>
 
-    <div class="filters-container">
-      <h4 class="selection-label">Show jobs for the following</h4>
-      <div class="filters-row">
-        <app-combobox class="fields-combobox">
-          <app-combobox-label>
-            <span class="dropdown-label label-item">Field</span>
-          </app-combobox-label>
-          <app-textbox [displaySelected]="true">
-            <span class="material-symbols-outlined expand-more" boxIcon>
-              expand_more
-            </span>
-          </app-textbox>
-          <app-listbox
-            [isMultiSelect]="true"
-            [selectedOptionsCountLabel]="{ singular: 'field', plural: 'fields' }"
-            (valueChanges)="data.updateState($event, SchoolStateProperty.field)"
-          >
-            <app-select-all-listbox-option>
-              Select all
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
+      <div class="filters-container">
+        <h4 class="selection-label">Show jobs for the following</h4>
+        <div class="filters-row">
+          @if (data.fieldOptions && state.field) {
+            <app-combobox class="fields-combobox">
+              <app-combobox-label>
+                <span class="dropdown-label label-item">Field</span>
+              </app-combobox-label>
+              <app-textbox
+                [selectedCountLabel]="{
+                  singular: 'field',
+                  plural: 'fields',
+                }"
               >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
+                <app-svg-icon
+                  name="chevron-right"
+                  class="expand-icon"
+                  boxIcon
+                ></app-svg-icon>
+              </app-textbox>
+              <app-listbox
+                [isMultiSelect]="true"
+                (valueChanges)="
+                  data.updateState($event, SchoolStateProperty.field)
+                "
               >
-                check_box_outline_blank
-              </span>
-            </app-select-all-listbox-option>
-            <app-listbox-option
-              *ngFor="let option of data.fieldOptions"
-              [selected]="(data.state$ | async).field.includes(option.name.full)"
-              >{{ option.name.full }}
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
+                <app-select-all-listbox-option>
+                  Select all
+                  <app-svg-icon
+                    selectedIcon
+                    name="check-box"
+                    class="icon checkbox selected"
+                  ></app-svg-icon>
+                  <app-svg-icon
+                    unselectedIcon
+                    name="check-box-outline-blank"
+                    class="icon checkbox unselected"
+                  ></app-svg-icon>
+                </app-select-all-listbox-option>
+                @for (option of data.fieldOptions; track option.name.full) {
+                  <app-listbox-option
+                    [selected]="state.field.includes(option.name.full)"
+                    >{{ option.name.full }}
+                    <app-svg-icon
+                      selectedIcon
+                      name="check-box"
+                      class="icon checkbox selected"
+                    ></app-svg-icon>
+                    <app-svg-icon
+                      unselectedIcon
+                      name="check-box-outline-blank"
+                      class="icon checkbox unselected"
+                    ></app-svg-icon>
+                  </app-listbox-option>
+                }
+              </app-listbox>
+            </app-combobox>
+          }
+          @if (data.tenureOptions && state.tenure) {
+            <app-combobox class="tenure-combobox">
+              <app-combobox-label>
+                <span class="dropdown-label label-item">Tenure status</span>
+              </app-combobox-label>
+              <app-textbox
+                [selectedCountLabel]="{
+                  singular: 'status',
+                  plural: 'statuses',
+                }"
               >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
+                <app-svg-icon
+                  name="chevron-right"
+                  class="expand-icon"
+                  boxIcon
+                ></app-svg-icon>
+              </app-textbox>
+              <app-listbox
+                [isMultiSelect]="true"
+                (valueChanges)="
+                  data.updateState($event, SchoolStateProperty.tenure)
+                "
               >
-                check_box_outline_blank
-              </span>
-            </app-listbox-option>
-          </app-listbox>
-        </app-combobox>
-        <app-combobox class="tenure-combobox">
-          <app-combobox-label>
-            <span class="dropdown-label label-item">Tenure status</span>
-          </app-combobox-label>
-          <app-textbox [displaySelected]="true">
-            <span class="material-symbols-outlined expand-more" boxIcon>
-              expand_more
-            </span>
-          </app-textbox>
-          <app-listbox
-            [isMultiSelect]="true"
-            [selectedOptionsCountLabel]="{ singular: 'status', plural: 'statuses' }"
-            (valueChanges)="data.updateState($event, SchoolStateProperty.tenure)"
-          >
-            <app-select-all-listbox-option>
-              Select all
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
+                <app-select-all-listbox-option>
+                  Select all
+                  <app-svg-icon
+                    selectedIcon
+                    name="check-box"
+                    class="icon checkbox selected"
+                  ></app-svg-icon>
+                  <app-svg-icon
+                    unselectedIcon
+                    name="check-box-outline-blank"
+                    class="icon checkbox unselected"
+                  ></app-svg-icon>
+                </app-select-all-listbox-option>
+                @for (option of data.tenureOptions; track option.value) {
+                  <app-listbox-option
+                    [selected]="state.tenure.includes(option.label)"
+                    >{{ option.label }}
+                    <app-svg-icon
+                      selectedIcon
+                      name="check-box"
+                      class="icon checkbox selected"
+                    ></app-svg-icon>
+                    <app-svg-icon
+                      unselectedIcon
+                      name="check-box-outline-blank"
+                      class="icon checkbox unselected"
+                    ></app-svg-icon>
+                  </app-listbox-option>
+                }
+              </app-listbox>
+            </app-combobox>
+          }
+          @if (data.rankOptions && state.rank) {
+            <app-combobox class="rank-combobox">
+              <app-combobox-label>
+                <span class="dropdown-label label-item">Job rank</span>
+              </app-combobox-label>
+              <app-textbox
+                [selectedCountLabel]="{ singular: 'rank', plural: 'ranks' }"
               >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
+                <app-svg-icon
+                  name="chevron-right"
+                  class="expand-icon"
+                  boxIcon
+                ></app-svg-icon>
+              </app-textbox>
+              <app-listbox
+                [isMultiSelect]="true"
+                (valueChanges)="
+                  data.updateState($event, SchoolStateProperty.rank)
+                "
               >
-                check_box_outline_blank
-              </span>
-            </app-select-all-listbox-option>
-            <app-listbox-option
-              *ngFor="let option of data.tenureOptions"
-              [selected]="(data.state$ | async).tenure.includes(option.label)"
-              >{{ option.label }}
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
-              >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
-              >
-                check_box_outline_blank
-              </span>
-            </app-listbox-option>
-          </app-listbox>
-        </app-combobox>
-        <app-combobox class="rank-combobox">
-          <app-combobox-label>
-            <span class="dropdown-label label-item">Job rank</span>
-          </app-combobox-label>
-          <app-textbox [displaySelected]="true">
-            <span class="material-symbols-outlined expand-more" boxIcon>
-              expand_more
-            </span>
-          </app-textbox>
-          <app-listbox
-            [isMultiSelect]="true"
-            [selectedOptionsCountLabel]="{ singular: 'rank', plural: 'ranks' }"
-            (valueChanges)="data.updateState($event, SchoolStateProperty.rank)"
-          >
-            <app-select-all-listbox-option>
-              Select all
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
-              >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
-              >
-                check_box_outline_blank
-              </span>
-            </app-select-all-listbox-option>
-            <app-listbox-option
-              *ngFor="let option of data.rankOptions"
-              [selected]="(data.state$ | async).rank.includes(option.label)"
-              >{{ option.label }}
-              <span
-                class="material-symbols-outlined icon checkbox"
-                selectedIcon
-              >
-                check_box
-              </span>
-              <span
-                unselectedIcon
-                class="material-symbols-outlined icon checkbox"
-              >
-                check_box_outline_blank
-              </span>
-            </app-listbox-option>
-          </app-listbox>
-        </app-combobox>
+                <app-select-all-listbox-option>
+                  Select all
+                  <app-svg-icon
+                    selectedIcon
+                    name="check-box"
+                    class="icon checkbox selected"
+                  ></app-svg-icon>
+                  <app-svg-icon
+                    unselectedIcon
+                    name="check-box-outline-blank"
+                    class="icon checkbox unselected"
+                  ></app-svg-icon>
+                </app-select-all-listbox-option>
+                @for (option of data.rankOptions; track option.value) {
+                  <app-listbox-option
+                    [selected]="state.rank.includes(option.label)"
+                    >{{ option.label }}
+                    <app-svg-icon
+                      selectedIcon
+                      name="check-box"
+                      class="icon checkbox selected"
+                    ></app-svg-icon>
+                    <app-svg-icon
+                      unselectedIcon
+                      name="check-box-outline-blank"
+                      class="icon checkbox unselected"
+                    ></app-svg-icon>
+                  </app-listbox-option>
+                }
+              </app-listbox>
+            </app-combobox>
+          }
+        </div>
       </div>
     </div>
-  </div>
+  }
 </div>

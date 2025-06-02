@@ -3,6 +3,9 @@
 @use 'functions' as *;
 
 .across-chart-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   .chart-title {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -11,7 +14,7 @@
   }
 
   .tenure-rank {
-    font-weight: 500;
+    @extend %sans-medium;
     color: $color-highlight;
   }
 
@@ -27,8 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 300px;
-  width: 200px;
+  max-width: 260px;
 
   $tt-background-color: rgba(white, 0.95);
   $tt-outline-color: $color-light-gray-medium;
@@ -41,13 +43,15 @@
   }
 
   .tooltip-label {
-    @extend %slab-regular;
+    @extend %slab-expressive-regular;
     display: flex;
     flex-direction: column;
     line-height: 1rem;
   }
 
   .tooltip-label.category {
+    @extend %slab-standard-semibold;
+    font-size: 0.95rem;
     line-height: 1.1;
     font-weight: 600;
     color: var(--color);

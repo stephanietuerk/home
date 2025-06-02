@@ -1,42 +1,43 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  TemplateRef,
-  ViewChild,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
 import { animations } from 'src/app/core/constants/animations.constants';
 import { OverlayService } from 'src/app/shared/components/overlay/overlay.service';
-import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
-import { JobProperty } from '../../art-history-data.model';
+import { TabBodyComponent } from '../../../../shared/components/tabs/tab-body.component';
+import { TabItemComponent } from '../../../../shared/components/tabs/tab-item.component';
+import { TabLabelComponent } from '../../../../shared/components/tabs/tab-label.component';
+import { TabsComponent } from '../../../../shared/components/tabs/tabs.component';
 import { ExploreDataService } from '../explore-data.service';
 import {
-  fieldValueOptions,
-  rankValueOptions,
-  tenureValueOptions,
-  variableUseOptions,
+  ExploreSelection,
+  exploreSelections,
 } from './explore-selections.constants';
-import { FilterType } from './explore-selections.model';
-
-interface DropdownContent {
-  isOpen: boolean;
-  content: keyof typeof ExploreSelection | null;
-}
-
-export enum ExploreSelection {
-  fields = 'fields',
-  dataType = 'dataType',
-  timeRange = 'timeRange',
-  tenure = 'tenure',
-  rank = 'rank',
-}
+import { FieldsTabBodyComponent } from './fields-tab-body/fields-tab-body.component';
+import { RankTabBodyComponent } from './rank-tab-body/rank-tab-body.component';
+import { TenureTabBodyComponent } from './tenure-tab-body/tenure-tab-body.component';
+import { TimeRangeTabBodyComponent } from './time-range-tab-body/time-range-tab-body.component';
+import { ValueTypeTabBodyComponent } from './value-type-tab-body/value-type-tab-body.component';
 
 @Component({
   selector: 'app-explore-selections',
+  imports: [
+    CommonModule,
+    A11yModule,
+    TabsComponent,
+    TabItemComponent,
+    TabLabelComponent,
+    TabBodyComponent,
+    FieldsTabBodyComponent,
+    TenureTabBodyComponent,
+    RankTabBodyComponent,
+    ValueTypeTabBodyComponent,
+    TimeRangeTabBodyComponent,
+  ],
   templateUrl: './explore-selections.component.html',
   styleUrls: ['./explore-selections.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -44,65 +45,13 @@ export enum ExploreSelection {
   animations: [animations.slide('selection-interface-container')],
   providers: [OverlayService],
 })
-export class ExploreSelectionsComponent
-  extends Unsubscribe
-  implements OnDestroy
-{
-  @Input() yearsRange: [number, number];
-  @ViewChild('fieldsDd') fieldsDropdown: TemplateRef<HTMLDivElement>;
-  @ViewChild('dataTypeDd') dataTypeDropdown: TemplateRef<HTMLDivElement>;
-  @ViewChild('timeRangeDd') timeRangeDropdown: TemplateRef<HTMLDivElement>;
-  @ViewChild('tenureDd') tenureDropdown: TemplateRef<HTMLDivElement>;
-  @ViewChild('rankDd') rankDropdown: TemplateRef<HTMLDivElement>;
-  @ViewChild('ddOrigin') dropdownOrigin: ElementRef<HTMLButtonElement>;
-  filterUseOptions = variableUseOptions;
-  fieldValueOptions = fieldValueOptions;
-  tenureValueOptions = tenureValueOptions;
-  rankValueOptions = rankValueOptions;
-  dropdownContent: BehaviorSubject<DropdownContent> =
-    new BehaviorSubject<DropdownContent>({
-      isOpen: false,
-      content: null,
-    });
-  dropdownContent$ = this.dropdownContent.asObservable();
-  backdropClickSubscription: Subscription;
-  JobProperty = JobProperty;
-  FilterType = FilterType;
+export class ExploreSelectionsComponent {
+  exploreSelections = exploreSelections;
+  displayedTab = signal<ExploreSelection>(ExploreSelection.fields);
 
-  constructor(public dataService: ExploreDataService) {
-    super();
-  }
+  constructor(public dataService: ExploreDataService) {}
 
-  toggleOpenContent(
-    selected: 'fields' | 'dataType' | 'timeRange' | 'tenure' | 'rank' | null
-  ): void {
-    if (
-      selected === null ||
-      this.dropdownContent.getValue().content === selected
-    ) {
-      this.resetDropdownContent();
-    } else {
-      this.dropdownContent.next({
-        isOpen: true,
-        content: selected,
-      });
-    }
-  }
-
-  closeDropdown(event: MouseEvent): void {
-    if (
-      !(event.target as HTMLElement).parentElement.classList.contains(
-        'links-container'
-      )
-    ) {
-      this.resetDropdownContent();
-    }
-  }
-
-  resetDropdownContent(): void {
-    this.dropdownContent.next({
-      isOpen: false,
-      content: null,
-    });
+  handleTabChange(value: ExploreSelection): void {
+    this.displayedTab.set(value);
   }
 }

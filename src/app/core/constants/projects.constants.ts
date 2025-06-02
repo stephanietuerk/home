@@ -2,7 +2,6 @@ import { Project, ProjectType } from './../models/project.model';
 import {
   artHistoryJobsPath,
   beyondPath,
-  blogPath,
   flipPath,
   leavingPath,
   projectsPath,
@@ -15,7 +14,7 @@ export const PROJECTS: Project[] = [
     type: ProjectType.dataViz,
     year: '2020—2023',
     description: [
-      'This is set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023, based on data I scraped from the Academic Jobs Wiki. Data scraping/cleaning were done with Python and some TypeScript.',
+      'This is a set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023. I created the dataset myself by scraping the Academic Jobs Wiki site, which has traditionally been the most centralized clearninghouse for job postings in the field. The dataset encompases 12 years of job postings and over 1300 jobs.',
       'I first worked with this data in 2020, and built the visualizations in an Observable notebook at that time. Wanting to provide more ways to look at the data and a better user experience, I revamped the project in 2023 and significantly expanded the interface, creating a standalone project hosted on this site, using a standard frontend stack.',
     ],
     images: [
@@ -44,7 +43,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'leaving-academia-faq',
     title: 'Leaving Academia FAQ',
-    type: ProjectType.blogPost,
+    type: ProjectType.writing,
     year: 2021,
     description: [
       "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
@@ -52,7 +51,7 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'Post',
-        routerLink: `${blogPath}/${leavingPath}`,
+        routerLink: `${projectsPath}/${leavingPath}`,
       },
     ],
     allowComments: false,
@@ -90,8 +89,8 @@ export const PROJECTS: Project[] = [
     type: ProjectType.website,
     year: 2020,
     description: [
-      'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture. The campaign took off but was dispersed across various media -- letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
-      'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. Additional content was added throughout the summer.',
+      'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture, following a highly criticized response to the George Floyd murder. The campaign took off but was dispersed across various media—letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
+      'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. (No CMS or CSS framework was used because I love hand-crafting. :)) Additional content was added throughout the summer.',
       'Note: This site was originally deployed through the now-discontinued free tier of Heroku hosting, and is unavailable until a new hosting solution is found.',
     ],
     images: [

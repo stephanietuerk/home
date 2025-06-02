@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -8,20 +10,27 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Sort, SortDirection } from 'src/app/core/enums/sort.enum';
+import { SortArrowsComponent } from 'src/app/shared/components/sort-arrows/sort-arrows.component';
 import {
   TableHeader,
   TableSort,
 } from 'src/app/shared/components/table/table.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 
+export interface ActiveTableSort {
+  id: string;
+  sort: TableSort;
+}
+
 @Component({
   selector: 'app-summary-table',
+  imports: [CommonModule, SortArrowsComponent],
   templateUrl: './summary-table.component.html',
   styleUrls: ['./summary-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class SummaryTableComponent implements OnChanges {
-  @Output() newSort = new EventEmitter<void>();
+  @Output() activeSort = new EventEmitter<ActiveTableSort>(null);
   @Input() headers: TableHeader[];
   @Input() rows: any[];
 
@@ -35,19 +44,8 @@ export class SummaryTableComponent implements OnChanges {
 
   initHeaders(): void {
     this.headers.forEach((header) => {
-      this.setHeaderClasses(header);
       this.setHeaderAriaLabel(header);
     });
-  }
-
-  setHeaderClasses(header: TableHeader): void {
-    header.classes = [header.align];
-    if (header.sort.canSort) {
-      header.classes.push('sortable');
-    }
-    if (header.sort.direction) {
-      header.classes.push('sorted');
-    }
   }
 
   setHeaderAriaLabel(header: TableHeader): void {
@@ -75,11 +73,15 @@ export class SummaryTableComponent implements OnChanges {
     return this.fieldsService.getColorForField(field);
   }
 
-  handleHeaderClick(header: TableHeader): void {
+  updateSort(header: TableHeader): void {
     if (header.sort.canSort) {
       this.setHeaderSortDirection(header.id);
       this.initHeaders();
-      this.newSort.emit();
+      const activeSortHeader = this.headers.find((h) => h.id === header.id);
+      this.activeSort.emit({
+        id: activeSortHeader.id,
+        sort: activeSortHeader.sort,
+      });
     }
   }
 

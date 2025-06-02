@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SortDirection } from 'src/app/core/enums/sort.enum';
 
 export class TableHeader {

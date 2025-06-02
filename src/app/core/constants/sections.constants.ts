@@ -1,5 +1,5 @@
-export const SECTIONS = {
-  about: 'about',
-  projects: 'projects',
-  contact: 'contact',
-};
+export enum SECTIONS {
+  ABOUT = 'about',
+  PROJECTS = 'projects',
+  CONTACT = 'contact',
+}

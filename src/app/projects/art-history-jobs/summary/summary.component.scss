@@ -5,46 +5,55 @@
 :host {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.section-header {
-  @extend %h5;
-  text-align: center;
-  padding-bottom: grid(2);
+.description {
+  max-width: var(--max-text-width);
+  line-height: 1.65;
+  align-self: center;
+  width: 100%;
+
+  &:not(:last-child) {
+    padding-bottom: grid(2);
+  }
 }
 
 .charts-container {
   display: flex;
+  justify-content: center;
   padding-top: grid(4);
   gap: grid(14);
 
   @media screen and (max-width: 1000px) {
     gap: grid(8);
   }
+
   @media screen and (max-width: 840px) {
     flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    .chart-component {
+      width: 100%;
+      padding-right: grid(6);
+    }
   }
 }
 
 .chart-component {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  flex-shrink: 1;
   flex-grow: 1;
-  min-width: 340px;
+  min-width: 0;
+  position: relative;
+  top: grid(4);
 }
 
 .table-component {
-  flex-basis: 400px;
+  flex-basis: 380px;
   flex-shrink: 0;
-}
-
-.description {
-  max-width: 600px;
-  line-height: 1.5;
-  align-self: center;
-  width: 100%;
-
-  &:not(:last-child) {
-    padding-bottom: grid(6);
-  }
 }

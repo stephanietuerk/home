@@ -7,7 +7,7 @@ describe('SortArrowsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SortArrowsComponent],
+      imports: [SortArrowsComponent],
     }).compileComponents();
   });
 

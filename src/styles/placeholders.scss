@@ -1,162 +1,57 @@
 @use 'vars' as *;
 @use 'functions' as *;
+@use 'typography' as *;
+@use 'colors';
 
 /* ---- TYPOGRAPHY ---- */
 /* ---- Primatives ---- */
-%ligatures {
-  font-variant-ligatures: common-ligatures;
-  -moz-font-feature-settings: 'liga', 'clig';
-  -webkit-font-feature-settings: 'liga', 'clig';
-  font-feature-settings: 'liga', 'clig';
-}
-
-%small-caps {
-  font-variant-caps: small-caps;
-  -moz-font-feature-settings: 'smcp';
-  -webkit-font-feature-settings: 'smcp';
-  font-feature-settings: 'smcp';
-}
-
-%slab {
-  font-family: ff-nuvo-mono-web-pro, sans-serif;
-}
-
-%slab-regular {
-  @extend %ligatures;
-  @extend %slab;
-  font-weight: 400;
-  font-style: normal;
-}
-
-%slab-regular-italic {
-  @extend %slab-regular;
-  font-style: italic;
-}
-
-%slab-medium {
-  @extend %slab-regular;
-  font-weight: 500;
-}
-
-%slab-bold {
-  @extend %slab-regular;
-  font-weight: 700;
-}
-
-%slab-extrabold {
-  @extend %slab-regular;
-  font-weight: 800;
-}
-
-%slab-black {
-  @extend %slab-regular;
-  font-weight: 900;
-}
-
-%sans-regular {
-  @extend %ligatures;
-  font-family: ff-tisa-sans-web-pro, sans-serif;
-  font-weight: 400;
-}
-
-%sans-light {
-  @extend %sans-regular;
-  font-weight: 300;
-}
-
-%sans-regular-italic {
-  @extend %sans-regular;
-  font-style: italic;
-}
-
-%sans-medium {
-  @extend %sans-regular;
-  font-weight: 500;
-}
-
-%sans-bold {
-  @extend %sans-regular;
-  font-weight: 700;
-}
-
-%sans-extrabold {
-  @extend %sans-regular;
-  font-weight: 800;
-}
-
-%sans-black {
-  @extend %sans-regular;
-  font-weight: 900;
-}
 
 %h1 {
-  @extend %slab;
-  font-size: 6rem;
-  letter-spacing: -1.5px;
-  font-weight: 300;
+  @include display-large;
 }
 
 %h2 {
-  @extend %slab;
-  font-size: 3.75rem;
-  letter-spacing: -0.5px;
-  font-weight: 300;
+  @include display-medium;
 }
 
 %h3 {
-  @extend %slab-regular;
-  font-size: 3rem;
+  @include display-small;
 }
 
 %h4 {
-  @extend %slab-regular;
-  font-size: 2.215rem;
-  letter-spacing: -0.25px;
+  @include headline-medium;
 }
 
 %h5 {
-  @extend %slab-regular;
-  font-size: 1.5rem;
+  @include title-large;
 }
 
 %h6 {
-  @extend %slab-medium;
-  font-size: 1.25rem;
-  letter-spacing: 0.15px;
+  @include title-medium;
 }
 
 %small-caps-slab-bold {
-  @extend %slab-extrabold;
-  @extend %small-caps;
+  @include label-medium-caps-prominent;
 }
 
 %subtitle1 {
-  @extend %sans-regular;
-  font-size: 1rem;
-  letter-spacing: 0.15px;
+  @include label-medium;
 }
 
 %subtitle2 {
-  @extend %sans-medium;
-  font-size: 0.875rem;
-  letter-spacing: 0.1px;
+  @include label-small;
 }
 
 %body1 {
-  @extend %sans-regular;
-  font-size: 1.1rem;
-  line-height: 1.6rem;
-  letter-spacing: 0.5px;
+  @include body-medium;
 }
 
 %body2 {
-  @extend %sans-regular;
-  font-size: 0.95rem;
-  letter-spacing: 0.25px;
+  @include body-xs;
 }
 
 %button {
-  @extend %slab-medium;
+  @extend %slab-standard-medium;
   @extend %button-styles;
   font-size: 0.875rem;
   letter-spacing: 1.25px;
@@ -164,32 +59,19 @@
 }
 
 %caption {
-  @extend %sans-regular;
-  font-size: 0.75rem;
-  letter-spacing: 0.4px;
+  @include label-2xs;
 }
 
 %overline {
-  @extend %sans-medium;
-  @extend %small-caps;
-  font-size: 1.1rem;
-  line-height: 1.1rem;
-  letter-spacing: 2px;
+  @include label-large-caps;
 }
 
 %small-caps-overline {
-  @extend %sans-regular;
-  @extend %small-caps;
-  font-size: 1.1rem;
-  line-height: 1.1rem;
-  letter-spacing: 0.13em;
+  @include label-large-caps;
 }
 
 %instructions {
   @extend %sans-light;
-  letter-spacing: 0.5px;
-  font-size: 1rem;
-  line-height: 1.3rem;
 }
 
 %button-styles {
@@ -206,9 +88,8 @@
 }
 
 %section-header {
-  @extend %h4;
+  @include headline-medium;
   color: $color-highlight;
-  padding-bottom: 0.25rem;
 }
 
 %flex-column {
@@ -217,7 +98,7 @@
 }
 
 %nav-link {
-  @extend %slab-medium;
+  @extend %slab-expressive-medium;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -247,8 +128,8 @@
   scrollbar-track-color: #edf1f4;
   -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
   scrollbar-3dlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-arrow-color: get($colors, 'grays.light-1');
-  scrollbar-arrow-color: get($colors, 'grays.light-1');
+  -ms-scrollbar-arrow-color: $color-light-gray-dark;
+  scrollbar-arrow-color: $color-light-gray-dark;
   scrollbar-color: $color-scrollbar-ie #fff;
 }
 
@@ -289,41 +170,50 @@
 }
 
 %content-component-host {
-  @extend %flex-column;
-  height: 100%;
-  min-height: $body-height-min;
   overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 %content-component-navbar {
   position: fixed;
   top: 0;
-  width: calc(100% - 12px);
   z-index: 2000;
+  width: 100%;
+  min-height: $content-navbar-height;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 %content-component-container {
-  height: 100%;
-  margin-top: $project-navbar-height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $content-navbar-height;
+  padding-top: grid(12);
+  padding-bottom: grid(12);
 }
 
 %comment-button {
-  @extend %slab-bold;
+  @extend %slab-expressive-bold;
   border: 2px solid $color-highlight;
   color: $color-highlight;
-  background: $color-light-gray-lightest;
+  background: colors.$tertiary-97;
   transition: all 0.2s;
 
   &:hover {
     cursor: pointer;
-    @extend %slab-extrabold;
+    @extend %slab-expressive-extrabold;
     background: white;
   }
 
   &:disabled {
-    background: $color-light-gray-lightest;
+    background: colors.$tertiary-97;
     color: rgba($color-highlight, 0.5);
-    border: 2px solid $color-light-gray-lightest;
+    border: 2px solid colors.$tertiary-97;
   }
 }
 
@@ -426,15 +316,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-
-      .material-symbols-outlined {
-        transform: scale(1.5);
-        font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48;
-      }
     }
 
     .textbox-icon.open {
@@ -473,10 +354,6 @@
 
       &:hover {
         border-color: $open-border-color;
-
-        .textbox-icon .material-symbols-outlined {
-          color: $color-dark-primary;
-        }
       }
 
       &.open {
@@ -485,10 +362,6 @@
         border-right-color: $open-border-color;
         border-bottom-color: $color-light-gray-light;
         border-radius: $border-radius $border-radius 0 0;
-
-        .textbox-icon .material-symbols-outlined {
-          color: $color-dark-primary;
-        }
       }
     }
 
@@ -504,13 +377,9 @@
       flex-direction: column;
       justify-content: center;
 
-      .material-symbols-outlined {
-        transform: scale(1.5);
-        font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48;
+      app-svg-icon.expand-icon {
+        transform: scale(1.55);
+        rotate: 90deg;
       }
     }
 
@@ -538,23 +407,23 @@
       // color: colors.$muted-blue-700;
 
       &:hover:not(.disabled):not(.selected) {
-        background: $color-light-gray-lightest;
+        background: colors.$tertiary-97;
         // color: colors.$blue-800;
       }
 
       &:hover.multi {
-        background: $color-light-gray-lightest;
+        background: colors.$tertiary-97;
       }
 
       &.current:not(.disabled) {
         // color: colors.$blue-800;
 
         &.multi {
-          background: $color-light-gray-lightest;
+          background: colors.$tertiary-97;
         }
 
         &:not(.selected) {
-          background: $color-light-gray-lightest;
+          background: colors.$tertiary-97;
         }
       }
 

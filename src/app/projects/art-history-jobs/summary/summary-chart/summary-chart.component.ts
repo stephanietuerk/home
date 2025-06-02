@@ -1,104 +1,244 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { isEqual } from 'lodash-es';
-import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  distinctUntilChanged,
+  map,
+  Observable,
+} from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
-import { ElementSpacing } from 'src/app/core/models/charts.model';
-import { VicAxisConfig } from 'src/app/viz-components/axes/axis.config';
-import { DATA_MARKS } from 'src/app/viz-components/data-marks/data-marks.token';
-import { EventEffect } from 'src/app/viz-components/events/effect';
-import { StackedAreaHoverMoveEmitTooltipData } from 'src/app/viz-components/stacked-area/stacked-area-hover-move-effects';
-import { StackedAreaHoverMoveDirective } from 'src/app/viz-components/stacked-area/stacked-area-hover-move.directive';
 import {
-  StackedAreaEventDatum,
+  VicXQuantitativeAxisConfig,
+  VicXQuantitativeAxisConfigBuilder,
+  VicYQuantitativeAxisConfig,
+  VicYQuantitativeAxisConfigBuilder,
+} from '../../../../viz-components-new/axes';
+import { VicXyAxisModule } from '../../../../viz-components-new/axes/xy-axis.module';
+import { ChartConfig } from '../../../../viz-components-new/charts';
+import { VicChartModule } from '../../../../viz-components-new/charts/chart.module';
+import { VicChartConfigBuilder } from '../../../../viz-components-new/charts/chart/config/chart-builder';
+import { ElementSpacing } from '../../../../viz-components-new/core/types/layout';
+import { HoverMoveAction } from '../../../../viz-components-new/events';
+import {
+  StackedAreaConfig,
   StackedAreaEventOutput,
-} from 'src/app/viz-components/stacked-area/stacked-area-tooltip-data';
-import { STACKED_AREA } from 'src/app/viz-components/stacked-area/stacked-area.component';
+  StackedAreaHoverMoveDirective,
+  StackedAreaHoverMoveEmitTooltipData,
+  VicStackedAreaConfigBuilder,
+} from '../../../../viz-components-new/stacked-area';
+import { VicStackedAreaModule } from '../../../../viz-components-new/stacked-area/stacked-area.module';
 import {
-  VicHtmlTooltipConfig,
-  VicHtmlTooltipOffsetFromOriginPosition,
-} from 'src/app/viz-components/tooltips/html-tooltip/html-tooltip.config';
-import { SummaryChartConfig } from './summary-chart.model';
+  HtmlTooltipConfig,
+  VicHtmlTooltipConfigBuilder,
+} from '../../../../viz-components-new/tooltips';
+import { VicHtmlTooltipModule } from '../../../../viz-components-new/tooltips/html-tooltip/html-tooltip.module';
+import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background/xy-background.module';
+import { JobDatum, JobTableDatum } from '../../art-history-data.model';
+import { ArtHistoryFieldsService } from '../../art-history-fields.service';
+import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
+import { ArtHistorySummaryService } from '../art-history-summary-sort.service';
+import { ChartSort } from '../summary.component';
+import { GetTotalFromDataPipe } from './get-total-from-data.pipe';
 
-class SummaryChartTooltipData implements StackedAreaEventOutput {
-  total: number;
-  data: StackedAreaEventDatum[];
-  positionX: number;
-  svgHeight?: number;
-
-  constructor(data: StackedAreaEventOutput) {
-    Object.assign(this, data);
-  }
+interface ViewModel {
+  chartConfig: ChartConfig;
+  dataConfig: StackedAreaConfig<JobDatum, string>;
+  xAxisConfig: VicXQuantitativeAxisConfig<Date>;
+  yAxisConfig: VicYQuantitativeAxisConfig<number>;
 }
 
 @Component({
   selector: 'app-summary-chart',
+  imports: [
+    CommonModule,
+    VicChartModule,
+    VicStackedAreaModule,
+    VicXyBackgroundModule,
+    VicXyAxisModule,
+    VicHtmlTooltipModule,
+    GetTotalFromDataPipe,
+  ],
   templateUrl: './summary-chart.component.html',
   styleUrls: ['./summary-chart.component.scss'],
   providers: [
-    {
-      provide: DATA_MARKS,
-      useExisting: SummaryChartComponent,
-    },
-    {
-      provide: STACKED_AREA,
-      useExisting: SummaryChartComponent,
-    },
+    VicChartConfigBuilder,
+    VicStackedAreaConfigBuilder,
+    VicXQuantitativeAxisConfigBuilder,
+    VicYQuantitativeAxisConfigBuilder,
+    VicHtmlTooltipConfigBuilder,
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class SummaryChartComponent {
-  @Input() dataMarksConfig: SummaryChartConfig;
-  @Input() xAxisConfig: VicAxisConfig;
-  @Input() yAxisConfig: VicAxisConfig;
-  width = 712;
-  height = 652;
-  margin: ElementSpacing = { top: 4, right: 0, bottom: 36, left: 24 };
-  tooltipConfig: BehaviorSubject<VicHtmlTooltipConfig> =
-    new BehaviorSubject<VicHtmlTooltipConfig>(
-      new VicHtmlTooltipConfig({ show: false })
-    );
+export class SummaryChartComponent implements OnInit {
+  vm$: Observable<ViewModel>;
+  width = 700;
+  height = 680;
+  margin: ElementSpacing = { top: 8, right: 0, bottom: 36, left: 24 };
+  tooltipConfig: BehaviorSubject<HtmlTooltipConfig> =
+    new BehaviorSubject<HtmlTooltipConfig>(null);
   tooltipConfig$ = this.tooltipConfig
     .asObservable()
     .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
-  tooltipData: BehaviorSubject<SummaryChartTooltipData> =
-    new BehaviorSubject<SummaryChartTooltipData>(null);
-  tooltipData$ = this.tooltipData
-    .asObservable()
-    .pipe(distinctUntilChanged((a, b) => isEqual(a, b)));
-  hoverEffects: EventEffect<StackedAreaHoverMoveDirective>[] = [
-    new StackedAreaHoverMoveEmitTooltipData(),
-  ];
+  tooltipData: BehaviorSubject<StackedAreaEventOutput<JobDatum, string>> =
+    new BehaviorSubject<StackedAreaEventOutput<JobDatum, string>>(null);
+  tooltipData$ = this.tooltipData.asObservable();
+  hoverAndMoveActions: HoverMoveAction<
+    StackedAreaHoverMoveDirective<JobDatum, string>
+  >[] = [new StackedAreaHoverMoveEmitTooltipData()];
   chartBackgroundColor = grayLightest;
 
-  updateTooltipForNewOutput(data: StackedAreaEventOutput): void {
+  constructor(
+    private summaryService: ArtHistorySummaryService,
+    private chart: VicChartConfigBuilder,
+    private stackedArea: VicStackedAreaConfigBuilder<JobDatum, string>,
+    private xAxisQuantitative: VicXQuantitativeAxisConfigBuilder<Date>,
+    private yAxisQuantitative: VicYQuantitativeAxisConfigBuilder<number>,
+    private tooltip: VicHtmlTooltipConfigBuilder,
+    private fieldsService: ArtHistoryFieldsService
+  ) {}
+
+  ngOnInit(): void {
+    this.setViewModel();
+  }
+
+  setViewModel(): void {
+    this.vm$ = combineLatest([
+      this.summaryService.jobsData$,
+      this.summaryService.sortedTableData$,
+    ]).pipe(
+      map(([data, sortedTableData]) => {
+        const chartData = this.getChartData(data);
+        const chartSort = this.getChartSort(sortedTableData);
+        return this.getViewModel(chartData, chartSort);
+      })
+    );
+  }
+
+  getChartData(data: JobDatum[]): JobDatum[] {
+    const filteredData = data.filter(
+      (x) => x.tenure === 'All' && x.rank[0] === 'All' && x.field !== 'All'
+    );
+    return filteredData;
+  }
+
+  getChartSort(tableData: JobTableDatum[]): ChartSort {
+    const func = this.getStackSortFunction(tableData);
+    const order = this.getKeyOrder(tableData);
+    return {
+      function: func,
+      categoryOrder: order,
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getStackSortFunction(data: JobTableDatum[]): (series: any) => number[] {
+    const orderedFields = this.getOrderedFields(data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (series: any): number[] => {
+      let n = series.length;
+      const o = new Array(n);
+      const fields = orderedFields;
+      while (--n >= 0) {
+        o[fields.indexOf(series[n].key)] = n;
+      }
+      return o;
+    };
+  }
+
+  getOrderedFields(rows: JobTableDatum[]): string[] {
+    return rows
+      .map((x) => x.field)
+      .filter((x) => x !== 'All')
+      .reverse();
+  }
+
+  getKeyOrder(rows: JobTableDatum[]): string[] {
+    return rows.map((x) => x.field).filter((x) => x !== 'All');
+  }
+
+  getViewModel(data: JobDatum[], chartSort: ChartSort): ViewModel {
+    const chartConfig = this.chart
+      .margin(this.margin)
+      .width(this.width)
+      .height(this.height)
+      .resize({ width: true, height: false })
+      .getConfig();
+
+    const xAxisConfig = this.xAxisQuantitative
+      .ticks((ticks) =>
+        ticks.format(artHistoryFormatSpecifications.summary.chart.tick.year)
+      )
+      .getConfig();
+
+    const yAxisConfig = this.yAxisQuantitative
+      .ticks((ticks) =>
+        ticks
+          .format(artHistoryFormatSpecifications.summary.chart.tick.count)
+          .count(5)
+      )
+      .baseline((baseline) => baseline.display(false))
+      .getConfig();
+
+    const dataConfig = this.stackedArea
+      .data(data)
+      .xDate((dimension) =>
+        dimension
+          .valueAccessor((d) => d.year)
+          .formatSpecifier(
+            artHistoryFormatSpecifications.summary.chart.value.year
+          )
+      )
+      .y((dimension) =>
+        dimension
+          .valueAccessor((d) => d.count)
+          .formatSpecifier(
+            artHistoryFormatSpecifications.summary.chart.value.count
+          )
+      )
+      .color((dimension) =>
+        dimension
+          .valueAccessor((d) => d.field)
+          .scale((d) => this.fieldsService.getColorForField(d))
+      )
+      .stackOrder(chartSort.function)
+      .categoricalOrder(chartSort.categoryOrder)
+      .getConfig();
+
+    return {
+      chartConfig,
+      dataConfig,
+      xAxisConfig,
+      yAxisConfig,
+    };
+  }
+
+  updateTooltipForNewOutput(
+    data: StackedAreaEventOutput<JobDatum, string>
+  ): void {
     this.updateTooltipData(data);
     this.updateTooltipConfig(data);
   }
 
-  updateTooltipData(data: StackedAreaEventOutput): void {
-    const tooltipData = new SummaryChartTooltipData(data);
-    tooltipData.total = data
-      ? Math.round(tooltipData.data.reduce((acc, curr) => acc + +curr.y, 0))
-      : null;
-    this.tooltipData.next(tooltipData);
+  updateTooltipData(data: StackedAreaEventOutput<JobDatum, string>): void {
+    this.tooltipData.next(data);
   }
 
-  updateTooltipConfig(data: StackedAreaEventOutput): void {
-    const config = new VicHtmlTooltipConfig();
-    config.panelClass = 'summary-chart-tooltip';
-    config.position = new VicHtmlTooltipOffsetFromOriginPosition();
-    config.position.tooltipOriginY = 'bottom';
-    if (data) {
-      config.size.minWidth = 200;
-      config.size.height =
-        data.svgHeight - this.margin.top - this.margin.bottom;
-      config.position.offsetX = data.positionX;
-      config.position.offsetY = data.svgHeight - this.margin.bottom;
-      // config.position.offsetY = -this.margin.bottom;
-      config.show = true;
-    } else {
-      config.show = false;
-    }
+  updateTooltipConfig(data: StackedAreaEventOutput<JobDatum, string>): void {
+    const config = this.tooltip
+      .panelClass('summary-chart-tooltip')
+      .size((size) => size.minWidth(130))
+      .offsetFromOriginPosition((position) => {
+        if (!data) {
+          return null;
+        }
+        return position
+          .offsetX(data.positionX - 340 / 2)
+          .offsetY(this.margin.top);
+      })
+      .show(!!data)
+      .getConfig();
     this.tooltipConfig.next(config);
   }
 }

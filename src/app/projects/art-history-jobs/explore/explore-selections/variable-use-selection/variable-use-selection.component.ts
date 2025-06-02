@@ -19,7 +19,6 @@ import { variableUseOptions } from '../explore-selections.constants';
 
 @Component({
   selector: 'app-variable-use-selection',
-  standalone: true,
   imports: [CommonModule, CategoryLabelPipe],
   templateUrl: './variable-use-selection.component.html',
   styleUrls: ['./variable-use-selection.component.scss'],
@@ -48,7 +47,6 @@ export class VariableUseSelectionComponent
 
   ngAfterViewInit(): void {
     this.hiddenInputs.forEach((input) => {
-      console.log('input var use', input);
       this.focus.monitor(input);
     });
   }

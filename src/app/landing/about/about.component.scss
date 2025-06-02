@@ -1,40 +1,92 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'mixins' as *;
 @use 'functions' as *;
+@use 'colors';
 
-:host {
-  @extend %flex-column;
+.about-component-encapsulation-container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
 
-.about-title {
-  @extend %section-header;
-}
-
-.about-text {
-  @extend %body1;
-  text-align: justify;
-  max-width: 800px;
-  padding-bottom: grid(3);
-
-  &:first-of-type {
+  .section-header {
+    @extend %section-header;
+    color: $color-highlight;
     text-align: center;
+    margin-bottom: grid(8);
+  }
+
+  .about-text {
+    @include body-medium;
+    margin-bottom: grid(6);
+
     @include breakpoint(mobile-device) {
-      text-align: justify;
+      font-size: 0.95rem;
+      letter-spacing: 0.25px;
+      line-height: 1.4;
+      margin-bottom: grid(4);
     }
   }
 
-  @include breakpoint(mobile-device) {
-    // @extend %body2;
-    // @extend %sans-regular;
-    font-size: 0.95rem;
-    letter-spacing: 0.25px;
-    line-height: 1.4;
+  .list {
+    padding-left: grid(6);
+    margin: 0 0 grid(8) 0;
+    list-style-type: disc;
   }
-}
 
-.read-more {
-  @extend %button;
-  @extend %button-behavior;
+  .list-item {
+    margin-bottom: grid(2);
+  }
+
+  .expand-button {
+    @include label-small;
+    display: flex;
+    align-items: center;
+    padding: grid(2);
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-highlight;
+      background-color: colors.$tertiary-97;
+
+      .arrow-icon svg {
+        fill: $color-highlight;
+        stroke: $color-highlight;
+      }
+    }
+
+    &.expanded {
+      margin-bottom: grid(4);
+    }
+  }
+
+  .expanded-content {
+    margin-top: grid(4);
+    padding-top: grid(8);
+    border-top: 1px solid colors.$tertiary-90;
+  }
+
+  .arrow-icon {
+    padding-left: grid(2);
+    position: relative;
+
+    &.collapsed {
+      top: grid(1);
+    }
+
+    &.expanded {
+      top: -#{grid(0.5)};
+    }
+
+    svg {
+      overflow: visible;
+      display: block;
+      width: grid(5);
+      fill: $color-dark-primary;
+      stroke: $color-dark-primary;
+    }
+  }
 }

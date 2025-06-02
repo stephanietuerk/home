@@ -1,5 +1,6 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'colors';
 
 :host {
   @extend %content-component-host;
@@ -11,4 +12,9 @@
 
 .project-container {
   @extend %content-component-container;
+
+  &.leaving-academia-faq {
+    // background: linear-gradient(180deg, #f7ece9, #eae4f0);
+    // background: #f7ece9;
+  }
 }

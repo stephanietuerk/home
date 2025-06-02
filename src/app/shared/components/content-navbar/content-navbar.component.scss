@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'mixins' as *;
+@use 'typography' as *;
 
 :host {
   @extend %navbar;
@@ -12,27 +13,61 @@
 .nav-container {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  grid-column-gap: 0.25rem;
+  grid-column-gap: grid(1);
   width: 100%;
 
   .return-button {
-    @extend %slab-bold;
+    @extend %slab-expressive-bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     line-height: 1rem;
-    cursor: pointer;
-    padding-top: 0.5rem;
+    padding-top: grid(2);
+    transition: all 0.2s ease-in-out;
 
     @include breakpoint-max(600px) {
       font-size: 0.8rem;
     }
+
+    &:hover {
+      color: $color-highlight;
+    }
+  }
+
+  .return-text {
+    padding-left: grid(3);
+  }
+
+  .arrow {
+    rotate: 180deg;
+    transform-origin: center;
   }
 
   .project-name {
-    @extend %h5;
-    padding-top: 0.5rem;
+    @include title-large;
+    padding-top: grid(2);
     text-align: center;
+
+    @include breakpoint-max(900px) {
+      font-variation-settings:
+        'wght' 600,
+        'CASL' $expressive-casual,
+        'MONO' $expressive-monospace,
+        'slnt' $expressive-slant;
+      font-size: 1.33rem;
+      letter-spacing: 0.01rem;
+      line-height: 1.5rem;
+    }
+
     @include breakpoint-max(600px) {
+      font-variation-settings:
+        'wght' 700,
+        'CASL' $expressive-casual,
+        'MONO' $expressive-monospace,
+        'slnt' $expressive-slant;
       font-size: 1rem;
+      line-height: 1.2;
     }
   }
 }

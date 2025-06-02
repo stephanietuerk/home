@@ -2,7 +2,7 @@
   <div class="axis-container">
     <svg
       [attr.width]="(chart.svgDimensions$ | async).width + 1"
-      [attr.height]="chart.margin.top + 1"
+      [attr.height]="chart.config.margin.top + 1"
       class="axis-svg"
     >
       <ng-content select="[axis]"></ng-content>

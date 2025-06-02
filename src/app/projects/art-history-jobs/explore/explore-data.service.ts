@@ -9,7 +9,6 @@ import {
   take,
   withLatestFrom,
 } from 'rxjs/operators';
-import { Unsubscribe } from 'src/app/viz-components/shared/unsubscribe.class';
 import { JobDatum, JobProperty, LineDef } from '../art-history-data.model';
 import { ArtHistoryDataService } from '../art-history-data.service';
 import {
@@ -30,7 +29,7 @@ import {
 } from './explore-selections/explore-selections.model';
 
 @Injectable()
-export class ExploreDataService extends Unsubscribe {
+export class ExploreDataService {
   defaultSelections: ExploreSelections = {
     valueType: ValueType.percent,
     years: {
@@ -53,9 +52,7 @@ export class ExploreDataService extends Unsubscribe {
   changeData$: Observable<ExploreChangeDatum[]>;
   entityCategory$: Observable<EntityCategory>;
 
-  constructor(private artHistoryData: ArtHistoryDataService) {
-    super();
-  }
+  constructor(private artHistoryData: ArtHistoryDataService) {}
 
   init(): void {
     this.initDefaultSelections();
@@ -78,7 +75,7 @@ export class ExploreDataService extends Unsubscribe {
       .subscribe((data) => {
         const recentYearData = data.filter(
           (x) =>
-            x.year.getFullYear() === this.defaultSelections.years.end &&
+            x.year.getUTCFullYear() === this.defaultSelections.years.end &&
             x.rank.includes(this.defaultSelections.rankValues[0]) &&
             x.tenure === this.defaultSelections.tenureValues[0]
         );
@@ -141,7 +138,7 @@ export class ExploreDataService extends Unsubscribe {
       const end = timeRangeChartData.find(
         (x) =>
           x[entityCategory] === lineType &&
-          x.year.getFullYear() === selections.years.end
+          x.year.getUTCFullYear() === selections.years.end
       );
       const endValue = end[selections.valueType];
       const newDatum = {} as ExploreChangeDatum;
@@ -162,7 +159,7 @@ export class ExploreDataService extends Unsubscribe {
         compareValue = timeRangeChartData.find(
           (x) =>
             x[entityCategory] === lineType &&
-            x.year.getFullYear() === selections.years.start
+            x.year.getUTCFullYear() === selections.years.start
         )[selections.valueType];
       }
       newDatum.startValue = compareValue;
@@ -234,8 +231,8 @@ export class ExploreDataService extends Unsubscribe {
   ): JobDatum[] {
     return data.filter(
       (x) =>
-        x.year.getFullYear() >= selections.years.start &&
-        x.year.getFullYear() <= selections.years.end
+        x.year.getUTCFullYear() >= selections.years.start &&
+        x.year.getUTCFullYear() <= selections.years.end
     );
   }
 
@@ -258,11 +255,11 @@ export class ExploreDataService extends Unsubscribe {
     def: LineDef
   ) {
     const uniqueYears = [
-      ...new Set(filteredData.map((x) => x.year.getFullYear())),
+      ...new Set(filteredData.map((x) => x.year.getUTCFullYear())),
     ];
     data = uniqueYears.map((year) => {
       const dataForYear = filteredData.filter(
-        (x) => x.year.getFullYear() === year
+        (x) => x.year.getUTCFullYear() === year
       );
       const datumForYear = dataForYear[0];
       if (dataForYear.length > 1) {
@@ -301,7 +298,7 @@ export class ExploreDataService extends Unsubscribe {
   ): void {
     let allDatum;
     const dataForYear = allData.filter(
-      (d) => d.year.getFullYear() === x.year.getFullYear()
+      (d) => d.year.getUTCFullYear() === x.year.getUTCFullYear()
     );
     if (categoriesAccessor === JobProperty.tenure) {
       allDatum = dataForYear.filter(
@@ -400,7 +397,9 @@ export class ExploreDataService extends Unsubscribe {
     if (userUpdate[variableUse] === FilterType.filter) {
       changedValues =
         variable === JobProperty.field
-          ? [current.fieldValues[0]] ?? [options[0].label]
+          ? current.fieldValues[0]
+            ? [current.fieldValues[0]]
+            : [options[0].label]
           : [options[0].label];
     } else {
       changedValues = this.getNewSelectionWhenSwitchingToDisaggregate(
@@ -460,8 +459,8 @@ export class ExploreDataService extends Unsubscribe {
         x === JobProperty.field
           ? fieldValueOptions
           : x === JobProperty.tenure
-          ? tenureValueOptions
-          : rankValueOptions;
+            ? tenureValueOptions
+            : rankValueOptions;
       acc[`${x}Values`] = [otherOptions[0].label];
       acc[`${x}Use`] = FilterType.filter;
       return acc;

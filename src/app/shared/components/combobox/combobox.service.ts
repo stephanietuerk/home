@@ -1,26 +1,37 @@
 import { Platform } from '@angular/cdk/platform';
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable, QueryList } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
   Subject,
+  combineLatest,
   distinctUntilChanged,
+  map,
+  merge,
+  mergeAll,
   of,
+  shareReplay,
+  startWith,
+  switchMap,
 } from 'rxjs';
 import { ComboboxLabelComponent } from './combobox-label/combobox-label.component';
+import { ListboxGroupComponent } from './listbox-group/listbox-group.component';
+import {
+  ListboxOptionComponent,
+  ListboxOptionPropertyChange,
+} from './listbox-option/listbox-option.component';
+import { SelectAllListboxOptionComponent } from './select-all-listbox-option/select-all-listbox-option.component';
 
 let nextUniqueId = 0;
 
-export enum VisualFocus {
-  textbox = 'textbox',
-  listbox = 'listbox',
+export enum FocusTextbox {
+  default = 'default',
+  includeMobile = 'includeMobile',
 }
-
-export type VisualFocusType = keyof typeof VisualFocus;
 
 export interface KeyboardEventWithAutocomplete {
   event: KeyboardEvent;
-  autocomplete: AutocompleteType;
+  autoComplete: AutoComplete;
   inputHasText: boolean;
 }
 
@@ -68,61 +79,60 @@ export enum TextboxAction {
   type = 'type',
 }
 
-export enum Autocomplete {
+export enum AutoComplete {
   none = 'none',
   list = 'list',
   both = 'both',
   inline = 'inline',
 }
 
-export type AutocompleteType = keyof typeof Autocomplete;
-
-export type OptionActionType = keyof typeof OptionAction | string;
-export type ListboxActionType = keyof typeof ListboxAction;
-export type TextboxActionType = keyof typeof TextboxAction;
-
-export type ComboboxActionType =
-  | OptionActionType
-  | ListboxActionType
-  | TextboxActionType;
+export type ComboboxAction = OptionAction | ListboxAction | TextboxAction;
 
 @Injectable()
 export class ComboboxService {
   id = `combobox-${nextUniqueId++}`;
+  scrollContainerId = `${this.id}-scroll-container`;
   comboboxLabelId = `${this.id}-label`;
+  autoComplete: AutoComplete = AutoComplete.none;
+  hasEditableTextbox = false;
+  ignoreBlur = false;
+  isMultiSelect = false;
+  nullActiveIdOnClose = false;
+  scrollWhenOpened = false;
+  shouldAutoSelectOnListboxClose = false;
+  activeDescendant$: Observable<string>;
+  allOptions: ListboxOptionComponent[];
+  allOptions$: Observable<ListboxOptionComponent[]>;
+  destroy$ = new Subject<void>();
+  groups$: Observable<ListboxGroupComponent[]>;
+  optionPropertyChanges$: Observable<ListboxOptionPropertyChange>;
+  private focusTextbox: Subject<FocusTextbox> = new Subject<FocusTextbox>();
+  focusTextbox$ = this.focusTextbox.asObservable();
+  private isKeyboardEvent = new BehaviorSubject(false);
+  isKeyboardEvent$ = this.isKeyboardEvent.asObservable();
+  private _isOpen: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isOpen$ = this._isOpen.asObservable().pipe(distinctUntilChanged());
   private label: BehaviorSubject<ComboboxLabelComponent> = new BehaviorSubject(
     null
   );
   label$ = this.label.asObservable();
-  scrollWhenOpened = false;
-  comboboxElRef: ElementRef;
-  private _visualFocus: BehaviorSubject<VisualFocusType> =
-    new BehaviorSubject<VisualFocusType>(VisualFocus.textbox);
-  visualFocus$ = this._visualFocus.asObservable();
-  private optionAction: Subject<OptionActionType> = new Subject();
+  private optionAction: Subject<OptionAction | string> = new Subject();
   optionAction$ = this.optionAction.asObservable();
-  private blurEvent: Subject<void> = new Subject();
-  blurEvent$ = this.blurEvent.asObservable();
-  private _isOpen: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  isOpen$ = this._isOpen.asObservable().pipe(distinctUntilChanged());
-  private boxLabel: BehaviorSubject<string> = new BehaviorSubject(null);
-  boxLabel$ = this.boxLabel.asObservable();
-  private optionChanges: Subject<void> = new Subject();
-  optionChanges$ = this.optionChanges.asObservable();
-  activeDescendant$: Observable<string>;
-  ignoreBlur = false;
-  displayValue = true;
-  isMultiSelect = false;
-  autocomplete: AutocompleteType = Autocomplete.none;
+  private projectedContentIsInDOM: BehaviorSubject<boolean> =
+    new BehaviorSubject(false);
+  projectedContentIsInDOM$ = this.projectedContentIsInDOM.asObservable();
+  private selectedOptionsToEmit: BehaviorSubject<ListboxOptionComponent[]> =
+    new BehaviorSubject([]);
+  selectedOptionsToEmit$ = this.selectedOptionsToEmit.asObservable();
+  private textboxBlur: Subject<void> = new Subject();
+  textboxBlur$ = this.textboxBlur.asObservable();
+  private touched: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  touched$ = this.touched.asObservable();
 
   constructor(private platform: Platform) {}
 
   get isOpen(): boolean {
     return this._isOpen.value;
-  }
-
-  get visualFocus(): VisualFocusType {
-    return this._visualFocus.value;
   }
 
   initActiveDescendant(source$?: Observable<string>): void {
@@ -131,10 +141,6 @@ export class ComboboxService {
     } else {
       this.activeDescendant$ = of(null);
     }
-  }
-
-  setComboboxElRef(comboboxElRef: ElementRef): void {
-    this.comboboxElRef = comboboxElRef;
   }
 
   setLabel(label: ComboboxLabelComponent): void {
@@ -153,27 +159,108 @@ export class ComboboxService {
     this._isOpen.next(!this._isOpen.value);
   }
 
-  updateBoxLabel(label: string): void {
-    this.boxLabel.next(label);
+  setProjectedContentIsInDOM(): void {
+    this.projectedContentIsInDOM.next(true);
   }
 
-  emitBlurEvent(): void {
-    this.blurEvent.next();
+  emitTextboxBlur(): void {
+    this.textboxBlur.next();
   }
 
-  emitOptionChanges(): void {
-    this.optionChanges.next();
+  setTouched(): void {
+    this.touched.next(true);
   }
 
-  setVisualFocus(focus: VisualFocusType): void {
-    this._visualFocus.next(focus);
+  emitTextboxFocus(focus: FocusTextbox = FocusTextbox.default): void {
+    this.focusTextbox.next(focus);
   }
 
-  emitOptionAction(action: OptionActionType): void {
+  emitOptionAction(action: OptionAction | string): void {
     this.optionAction.next(action);
   }
 
   isMobile(): boolean {
     return this.platform.ANDROID || this.platform.IOS;
+  }
+
+  setProjectedContent(
+    groups: QueryList<ListboxGroupComponent>,
+    options: QueryList<ListboxOptionComponent>
+  ): void {
+    this.setGroups(groups);
+    this.setAllOptions(groups, options);
+
+    this.optionPropertyChanges$ = this.allOptions$.pipe(
+      switchMap((options) =>
+        merge(options.map((o) => o.externalPropertyChanges$))
+      ),
+      mergeAll()
+    );
+  }
+
+  setGroups(groups: QueryList<ListboxGroupComponent>): void {
+    this.groups$ = groups.changes.pipe(
+      startWith(''),
+      map(() => groups.toArray())
+    );
+  }
+
+  setAllOptions(
+    groups: QueryList<ListboxGroupComponent>,
+    options: QueryList<ListboxOptionComponent>
+  ): void {
+    // will not track changes to properties, just if the list of options changes
+    if (groups.length > 0) {
+      this.allOptions$ = this.groups$.pipe(
+        switchMap((groups) =>
+          combineLatest(groups.map((group) => group.options$))
+        ),
+        map((optionArrays) => optionArrays.flat()),
+        shareReplay(1)
+      );
+    } else {
+      this.allOptions$ = options.changes.pipe(
+        startWith(''),
+        map(() => options.toArray()),
+        shareReplay(1)
+      );
+    }
+  }
+
+  setSelectedOptionsToEmit(selected: ListboxOptionComponent[]): void {
+    this.selectedOptionsToEmit.next(selected);
+  }
+
+  getSelectedOptions(
+    options: ListboxOptionComponent[]
+  ): ListboxOptionComponent[] {
+    return options?.filter(
+      (option) => !this.isSelectAllListboxOption(option) && option.isSelected()
+    );
+  }
+
+  isSelectAllListboxOption(
+    option: ListboxOptionComponent
+  ): option is SelectAllListboxOptionComponent {
+    return option instanceof SelectAllListboxOptionComponent;
+  }
+
+  setIsKeyboardEvent(isKeyboardEvent: boolean): void {
+    this.isKeyboardEvent.next(isKeyboardEvent);
+  }
+
+  destroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+
+    this.focusTextbox.complete();
+    this.isKeyboardEvent.complete();
+    this._isOpen.complete();
+    this.label.complete();
+    this.optionAction.complete();
+    this.projectedContentIsInDOM.complete();
+    this.selectedOptionsToEmit.complete();
+    this.textboxBlur.complete();
+    this.touched.complete();
   }
 }

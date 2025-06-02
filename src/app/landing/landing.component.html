@@ -1,9 +1,25 @@
-<app-navbar class="navbar" id="landing-navbar"></app-navbar>
-<div class="landing-container" id="landing-container">
-  <app-about [id]="sections.about + '-id'" class="about-component"></app-about>
-  <app-projects-table
-    [id]="sections.projects + '-id'"
-    class="projects-table-component"
-  ></app-projects-table>
-  <app-contact [id]="sections.contact + '-id'"></app-contact>
+<div class="page">
+  <app-navbar
+    class="navbar"
+    id="landing-navbar"
+    (scrollTo)="scrollToSection($event)"
+  ></app-navbar>
+  <div class="landing-container" id="landing-container">
+    <app-about
+      #about
+      [id]="sections.ABOUT + '-id'"
+      class="about-component section"
+    ></app-about>
+    <app-projects
+      #projects
+      [id]="sections.PROJECTS + '-id'"
+      class="projects-component section"
+    >
+    </app-projects>
+    <app-contact
+      #contact
+      [id]="sections.CONTACT + '-id'"
+      class="contact-component section"
+    ></app-contact>
+  </div>
 </div>

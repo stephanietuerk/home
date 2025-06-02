@@ -7,11 +7,9 @@ import { Message } from '../message/message.directive';
 
 @Component({
   selector: 'app-connected-message',
-  templateUrl: './connected-message.component.html',
-  standalone: true,
   imports: [MatIconModule, NgFor, A11yModule, NgIf, CloseButtonComponent],
+  templateUrl: './connected-message.component.html',
   styleUrls: ['./connected-message.component.scss'],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[style.minWidth]': 'minWidth',
     class: 'connected-message-component',

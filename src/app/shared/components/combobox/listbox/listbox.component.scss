@@ -1,0 +1,67 @@
+:host {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: var(--listbox-z-index);
+  background: var(--listbox-background);
+  border-bottom-left-radius: var(--combobox-border-radius);
+  border-bottom-right-radius: var(--combobox-border-radius);
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.listbox {
+  padding-top: var(--listbox-padding-top);
+  background: var(--listbox-background);
+  border-left: var(--combobox-border-width) solid var(--combobox-border-color);
+  border-right: var(--combobox-border-width) solid var(--combobox-border-color);
+  border-bottom: var(--combobox-border-width) solid var(--combobox-border-color);
+  border-bottom-left-radius: var(--combobox-border-radius);
+  border-bottom-right-radius: var(--combobox-border-radius);
+  max-height: var(--listbox-max-height);
+  overflow-y: auto;
+}
+
+.listbox:not(.open) {
+  display: none;
+}
+
+.listbox-option {
+  display: block;
+  cursor: pointer;
+  margin-left: var(--listbox-padding-left);
+  margin-right: var(--listbox-padding-right);
+}
+
+.listbox-option:not(.grouped-option):last-child,
+.listbox-group-container:last-child .listbox-option:last-child,
+.listbox-option.current.keyboard-current:not(.grouped-option):last-child,
+.listbox-group-container:last-child
+  .listbox-option.current.keyboard-current:last-child {
+  margin-bottom: var(--listbox-padding-bottom);
+  border-bottom-left-radius: var(--combobox-border-radius);
+  border-bottom-right-radius: var(--combobox-border-radius);
+}
+
+.listbox-option:hover {
+  background: var(--listbox-option-hover-background);
+  border-radius: var(--listbox-option-hover-border-radius);
+}
+
+.listbox-option.selected {
+  background: var(--listbox-option-selected-background);
+  border-radius: var(--listbox-option-selected-border-radius);
+}
+
+.listbox-option.disabled {
+  color: var(--listbox-option-disabled-color);
+}
+
+.listbox-option.current.keyboard-current {
+  background: var(--listbox-option-current-background);
+  color: var(--listbox-option-current-color);
+  border-radius: var(--listbox-option-current-border-radius);
+}

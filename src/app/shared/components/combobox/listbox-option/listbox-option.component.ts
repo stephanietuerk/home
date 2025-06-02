@@ -1,41 +1,38 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
   Input,
   OnChanges,
-  OnDestroy,
   SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Unsubscribe } from 'src/app/shared/unsubscribe.directive';
 import { ComboboxService } from '../combobox.service';
 
-export interface ListboxOptionPropertyChange<T> {
+export interface ListboxOptionPropertyChange {
   property: 'selected' | 'disabled';
   value: boolean;
   comboboxId: string;
-  optionId: number;
-  optionValue: T | string;
+  id: number;
+  optionValue: string | number | boolean;
 }
 
 let nextUniqueId = 0;
 
 @Component({
   selector: 'app-listbox-option',
+  imports: [CommonModule],
   templateUrl: './listbox-option.component.html',
   styleUrls: ['./listbox-option.component.scss'],
 })
-export class ListboxOptionComponent<T>
-  extends Unsubscribe
-  implements OnChanges, OnDestroy
-{
-  @ViewChild('label')
-  label: ElementRef<HTMLDivElement>;
-  @ViewChild('option') optionContent: TemplateRef<unknown>;
+export class ListboxOptionComponent implements OnChanges {
+  @ViewChild('label') label: ElementRef<HTMLDivElement>;
+  @ViewChild('option') template: TemplateRef<unknown>;
   @Input() boxDisplayLabel: string;
-  @Input() value: T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() value: any;
   /** Whether the option is selected.
    * If this property is changed during this component's lifecycle, no new value will be emitted from the listbox.
    * Box label and select all button will respond to changes.
@@ -55,34 +52,55 @@ export class ListboxOptionComponent<T>
   selected$ = this._selected.asObservable();
   private _disabled: BehaviorSubject<boolean> = new BehaviorSubject(false);
   disabled$ = this._disabled.asObservable();
-  private changes: BehaviorSubject<ListboxOptionPropertyChange<T>> =
-    new BehaviorSubject(undefined);
-  changes$ = this.changes.asObservable();
+  private externalPropertyChanges: BehaviorSubject<ListboxOptionPropertyChange> =
+    new BehaviorSubject(null);
+  externalPropertyChanges$ = this.externalPropertyChanges.asObservable();
 
-  constructor(protected service: ComboboxService) {
-    super();
+  constructor(protected service: ComboboxService) {}
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get valueToEmit(): any | string {
+    return this.value || this.label?.nativeElement?.innerText.trim();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['disabled']) {
       this.updateDisabled(this.disabled);
-      this.changes.next(this.getPropertyChange('disabled'));
+
+      if (!this.isFirstChangeAndValueIsFalse(changes, 'disabled')) {
+        this.externalPropertyChanges.next(this.getPropertyChange('disabled'));
+      }
     }
+
     if (changes['selected']) {
-      this.updateSelected(this.selected);
-      this.changes.next(this.getPropertyChange('selected'));
+      if (changes['selected'].isFirstChange()) {
+        this.updateSelected(this.selected);
+        if (this.selected) {
+          this.externalPropertyChanges.next(this.getPropertyChange('selected'));
+        }
+      } else if (!this.disabled && this.selected !== this._selected.value) {
+        this.updateSelected(this.selected);
+        this.externalPropertyChanges.next(this.getPropertyChange('selected'));
+      }
     }
+  }
+
+  isFirstChangeAndValueIsFalse(
+    change: SimpleChanges,
+    property: 'selected' | 'disabled'
+  ): boolean {
+    return change[property].isFirstChange() && !this[property];
   }
 
   getPropertyChange(
     property: 'selected' | 'disabled'
-  ): ListboxOptionPropertyChange<T> {
+  ): ListboxOptionPropertyChange {
     return {
       property,
       value: this[property],
       comboboxId: this.service.id,
-      optionId: this.id,
-      optionValue: this.value || this.label?.nativeElement?.innerText,
+      id: this.id,
+      optionValue: this.valueToEmit,
     };
   }
 

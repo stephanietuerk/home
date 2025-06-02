@@ -35,26 +35,26 @@ describe('SubstringHighlightDirective', () => {
       });
       it('calls initialize if isInitialized is false', () => {
         directive.isInitialized = false;
-        directive.ngOnChanges();
+        directive.ngOnChanges({ highlightTerms: ['hi'] } as any);
         expect(directive.initialize).toHaveBeenCalledTimes(1);
       });
       it('does not call initialize if isInitialized is true', () => {
         directive.isInitialized = true;
-        directive.ngOnChanges();
+        directive.ngOnChanges({ highlightTerms: ['hi'] } as any);
         expect(directive.initialize).not.toHaveBeenCalled();
       });
       it('calls shouldHighlight', () => {
-        directive.ngOnChanges();
+        directive.ngOnChanges({ highlightTerms: ['hi'] } as any);
         expect(directive.shouldHighlight).toHaveBeenCalledTimes(1);
       });
       it('calls highlightText if shouldHighlight returns true', () => {
         shouldHighlightSpy.and.returnValue(true);
-        directive.ngOnChanges();
+        directive.ngOnChanges({ highlightTerms: ['hi'] } as any);
         expect(directive.highlightText).toHaveBeenCalledTimes(1);
       });
       it('does not call highlightText if shouldHighlight returns false', () => {
         shouldHighlightSpy.and.returnValue(false);
-        directive.ngOnChanges();
+        directive.ngOnChanges({ highlightTerms: ['hi'] } as any);
         expect(directive.highlightText).not.toHaveBeenCalled();
       });
     });

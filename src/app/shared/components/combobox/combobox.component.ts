@@ -1,33 +1,31 @@
 import { Platform } from '@angular/cdk/platform';
-import { DOCUMENT } from '@angular/common';
+import { AsyncPipe, CommonModule, DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
   ContentChild,
+  DestroyRef,
   ElementRef,
   Inject,
   NgZone,
+  OnDestroy,
   OnInit,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { filter, fromEvent, merge, takeUntil } from 'rxjs';
-import { Unsubscribe } from '../../unsubscribe.directive';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, fromEvent, merge, withLatestFrom } from 'rxjs';
 import { ComboboxLabelComponent } from './combobox-label/combobox-label.component';
-import { ComboboxService } from './combobox.service';
+import { ComboboxService, FocusTextbox } from './combobox.service';
 
 @Component({
   selector: 'app-combobox',
-  templateUrl: './combobox.component.html',
-  styleUrls: ['./combobox.component.scss'],
+  imports: [CommonModule, AsyncPipe],
   providers: [ComboboxService],
+  templateUrl: './combobox.component.html',
+  styleUrls: ['./styles/styles.scss'],
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'combobox' },
 })
-export class ComboboxComponent
-  extends Unsubscribe
-  implements OnInit, AfterViewInit
-{
-  @ViewChild('comboboxComponent') comboboxElRef: ElementRef;
+export class ComboboxComponent implements OnInit, OnDestroy {
   @ContentChild(ComboboxLabelComponent) labelComponent: ComboboxLabelComponent;
 
   constructor(
@@ -35,17 +33,16 @@ export class ComboboxComponent
     public platform: Platform,
     private zone: NgZone,
     @Inject(DOCUMENT) private document: Document,
-    private elRef: ElementRef
-  ) {
-    super();
-  }
+    private elRef: ElementRef,
+    private destroyRef: DestroyRef
+  ) {}
 
   ngOnInit(): void {
     this.handleOutsideClick();
   }
 
-  ngAfterViewInit(): void {
-    this.service.setComboboxElRef(this.comboboxElRef);
+  ngOnDestroy(): void {
+    this.service.destroy();
   }
 
   handleOutsideClick(): void {
@@ -59,13 +56,18 @@ export class ComboboxComponent
         fromEvent(this.document, 'mousedown', { capture: true })
       )
         .pipe(
-          takeUntil(this.unsubscribe),
+          takeUntilDestroyed(this.destroyRef),
+          withLatestFrom(this.service.isOpen$),
           filter(
-            (event) => !event.composedPath().includes(this.elRef.nativeElement)
+            ([event, isOpen]) =>
+              isOpen && !event.composedPath().includes(this.elRef.nativeElement)
           )
         )
         .subscribe(() => {
-          this.service.emitBlurEvent();
+          if (this.platform.IOS || this.platform.ANDROID) {
+            this.service.emitTextboxFocus(FocusTextbox.includeMobile);
+          }
+          this.service.emitTextboxBlur();
         });
     });
   }

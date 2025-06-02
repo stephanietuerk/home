@@ -1,4 +1,3 @@
-<h2 class="section-header">Data Acquisition and Cleaning</h2>
 <p class="description">
   I gathered data using the wikia python library that provides an interface on
   top of the Wikia API. Many thanks to Ryan Heuser whose Colab notebook for
@@ -9,9 +8,10 @@
     href="https://github.com/stephanietuerk/art-history-jobs/blob/main/data-processor/README.md"
     target="_blank"
     class="external-link"
-    >in the data cleaning Github repo<span class="material-symbols-outlined"
-      >open_in_new</span
-    ></a
+    >in the data cleaning Github repo<app-svg-icon
+      name="open-in-new"
+      class="open-in-new icon"
+    ></app-svg-icon></a
   >, along with code and data.
 </p>
 <p class="description">
@@ -48,15 +48,15 @@
   then let me know so that I can re-run the data scraping and processing
   scripts.
 </p>
-<p class="description">This data was last scraped on {{lastScrapeDate}}.</p>
+<p class="description">This data was last scraped on {{ lastScrapeDate }}.</p>
 <h3 class="section-subheader">Field Imputation</h3>
 <p class="description">
   Across all years for which jobs are listed in the Academic Wiki, there are
-  likely over 60 different field names listed for jobs. Given that the highest
-  number of jobs for any one year was not even three times this number of
-  fields, I decided to consolidate categories to create more coherence in the
-  data. For partially the same reason, I leaned towards letting fields have
-  historical continuity in name, which does make the radical difference between
+  over 60 different field names listed for jobs. Given that the highest number
+  of jobs for any one year was not even three times this number of fields, I
+  decided to consolidate categories to create more coherence in the data. In
+  part the same reason, I leaned towards letting fields have historical
+  continuity. A side of effect of this is that the radical difference between
   jobs for North American Art in 2023 (almost entirely focused on indigenous
   art) and those from 2011 invisible in the data. Needless to say, other
   completely defensible decisions around field creation could have been made
@@ -75,6 +75,6 @@
 <p class="description">
   Generally speaking, I urge you to think critically about how groupings, small
   numbers, the fact that not all jobs in the field are posted to the Wiki,
-  incomplete descriptions, and other factors mean this data a good, but
-  certainly not perfect, representation of the art history job market.
+  incomplete descriptions, and other factors lead to this data being a good, but
+  imperfect, representation of the art history job market.
 </p>

@@ -3,6 +3,6 @@
   class="project-navbar"
   [title]="project.title"
 ></app-content-navbar>
-<div class="project-container" id="project-container">
+<div class="project-container" id="project-container" [ngClass]="project.id">
   <router-outlet></router-outlet>
 </div>

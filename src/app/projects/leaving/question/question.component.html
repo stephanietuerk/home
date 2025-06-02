@@ -1,0 +1,209 @@
+<div class="card" [id]="question.id">
+  @if (toggle) {
+    <button
+      class="question-container collapsable"
+      [class.expanded]="expanded"
+      [class.collapsed]="!expanded"
+      (click)="toggleQuestion()"
+      (pointerenter)="hovered = true"
+      (pointerleave)="hovered = false"
+    >
+      <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
+      <app-expand-arrow
+        class="arrow-icon"
+        [class.expanded]="expanded"
+        [class.collapsed]="!expanded"
+        [expanded]="expanded"
+        [hovered]="hovered"
+      ></app-expand-arrow>
+    </button>
+  } @else {
+    <div class="question-container">
+      <ng-container *ngTemplateOutlet="questionDisplay"></ng-container>
+    </div>
+  }
+  <div
+    *ngIf="((toggle && expanded) || !toggle) && !textIsHtml()"
+    class="answer-container"
+  >
+    <p *ngFor="let answer of question.a" class="answer-text">{{ answer }}</p>
+  </div>
+  <div
+    *ngIf="((toggle && expanded) || !toggle) && textIsHtml()"
+    class="answer-container"
+    [ngSwitch]="question.id"
+  >
+    <ng-container *ngSwitchCase="'where-to-start'">
+      <ng-container *ngTemplateOutlet="q7Template"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'tldr'">
+      <ng-container *ngTemplateOutlet="q10Template"></ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #questionDisplay>
+  <h4 class="question">{{ question.q }}</h4>
+</ng-template>
+
+<ng-template #q7Template>
+  <p class="answer-text">
+    There are some things I would never tell people to do—for example, "you
+    absolutely should (or shouldn't) leave academia"—but there is one thing that
+    I tell everyone to do without hesitation and with a lot of conviction:
+  </p>
+  <p
+    class="answer-text"
+    style="text-align: center; font-weight: 500; text-transform: uppercase"
+  >
+    Talk to anyone you can talk to.
+  </p>
+  <p class="answer-text">
+    I would recommend starting by asking everyone you know if they know anyone
+    who was in a remotely similar situation/field as yours who has left academia
+    and ask if they could put you in touch. Do not turn down any offered
+    connection / conversation down. Maybe you are like, "I'm a comp lit person
+    and my friend offered to put me in touch with their friend who left academia
+    with a CS PhD and now is at Google—that's not going to be applicable!"
+    Wrong, talk to that person. If someone offers a conversation with someone in
+    an industry you are completely opposed to working in, take them up on their
+    offer.
+  </p>
+  <p class="answer-text">
+    Why do I think this is so important?
+    <span style="font-weight: 700">
+      My experience is that it is extremely difficult to understand the
+      landscape of jobs, roles, and organizations outside of academia from
+      within it.
+    </span>
+    And if you don't know that things exist, you can't want to do them, apply to
+    them, be knowledgeable enough to have a successful interview, and so forth.
+  </p>
+  <p class="answer-text">
+    If you don't know what you would ask in these kinds of conversations, here
+    are some ideas.
+  </p>
+  <p class="list-label">For people who left a similar situation as yours:</p>
+  <ul class="list-container">
+    <li class="list-item">How did you get interested in your current field?</li>
+    <li class="list-item"
+      >How did you get your first job in your current field?</li
+    >
+    <li class="list-item"
+      >What was the most important thing you did in terms of finding new
+      opportunities?</li
+    >
+    <li class="list-item"
+      >What was the biggest surprise for you in leaving academia to do something
+      else?</li
+    >
+  </ul>
+  <p class="list-label">For everyone:</p>
+  <ul class="list-container">
+    <li class="list-item">
+      Can you give me a high-level overview of the landscape of your
+      field/industry? (i.e. a specific non-profit sector, a sector of tech, tech
+      at large, consulting, federal government, think-tanks, etc.) What is the
+      job market like in it?
+    </li>
+    <li class="list-item">
+      Generally, what roles are in your organization? Are there roles that would
+      be a good fit (i.e. they would hire me, I would find it engaging) for
+      someone like me if I had a bit of additional training and experience that
+      I could realistically get in the next year or two? [Describe what you
+      think you are good at, any special skills that may be relevant, and what
+      you think you may be good at with training/experience.]
+    </li>
+    <li class="list-item"
+      >Which of these roles are roles that exist across your field/industry?</li
+    >
+    <li class="list-item">
+      Are there any growth/new areas in your industry where there is a lot of
+      demand for employees but no formal educational path to hire from?
+      <span class="italics"
+        >(Note: I would never advocate going into a job strictly based on
+        demand, but I think this is useful information to know, as these are
+        areas where people may be more likely to hire someone who is "generally
+        smart.")</span
+      >
+    </li>
+    <li class="list-item"
+      >What do you like about your industry? What do you like about your
+      particular job?</li
+    >
+    <li class="list-item"
+      >What is the worst part of your industry? What is the worst part of your
+      job?</li
+    >
+    <li class="list-item">
+      Do you know anyone who you think it would be helpful for me to talk with
+      further? (i.e. someone with similar experiences, interests, or background
+      to mine)
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #q10Template>
+  <p class="list-label q10">Things to do:</p>
+  <ul class="list-container">
+    <li class="list-item">
+      Prioritize your own happiness and well-being, and get real about what will
+      really make you happy in the future.
+    </li>
+    <li class="list-item">
+      To the greatest extent possible, free yourself from any professional
+      expectations you have for yourself or that you imagine others may have of
+      you. This is not the time to care about what your academic peers and
+      mentors may think of you.
+    </li>
+    <li class="list-item">
+      Be extremely open minded about what the future may hold for you. Keep as
+      many options open as possible.
+    </li>
+    <li class="list-item">
+      Make a list of things that would make you happy in a job and let that
+      guide your search.
+    </li>
+    <li class="list-item">
+      Talk to everyone you can, and take advantage of every resource you can. It
+      is very hard to know much about the landscape of jobs outside of academia
+      from within it, so you will need to do research. Learning that something
+      is wrong for you is just as valuable as learning that something is
+      appealing.
+    </li>
+    <li class="list-item">
+      Don't set out to shift into a field/profession simply because there are
+      jobs. Do look for opportunities to gain exposure to new skills that will
+      bring value to any job.
+    </li>
+    <li class="list-item">
+      Don't let fear of failure hold you back from applying to things or
+      interviewing. You will learn a lot from going through the process, even if
+      it doesn't result in a job.
+    </li>
+  </ul>
+  <p class="list-label q10">Things to keep in mind:</p>
+  <ul class="list-container">
+    <li class="list-item">
+      Getting your first job in a non-scholarly role is by far the biggest
+      challenge. After you have some experience, you can much more easily find a
+      new position, and even shift into a quite different role. What you do next
+      may be great, or it may be a stepping stone to something else a year
+      later.
+    </li>
+    <li class="list-item">
+      Statistically your odds of getting a job outside of academia are much,
+      much, much higher than getting one inside. You will eventually find
+      something.
+    </li>
+    <li class="list-item">
+      Most work environments outside of academia are far more supportive,
+      nurturing, and reasonable than academic environments.
+    </li>
+    <li class="list-item">
+      You are a capable, curious person, and will bring value to the world no
+      matter what you do next. I know that sounds cheesy, but it is true, and
+      easy to forget.
+    </li>
+  </ul>
+</ng-template>

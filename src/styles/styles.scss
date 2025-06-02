@@ -1,84 +1,54 @@
+@forward 'themes';
 @use '@angular/cdk';
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
+@use 'reset' as *;
 @import '@angular/cdk/overlay-prebuilt.css';
 
+@font-face {
+  font-family: 'Recursive';
+  src: url('../assets/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf');
+  font-weight: 300 1000; // For variable fonts
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('../assets/fonts/RedHatText-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: 300 900; // For variable fonts
+  font-style: normal;
+  font-display: swap;
+}
+
 @include cdk.a11y-visually-hidden();
+@include css-reset('Red Hat Text', $color-dark-primary);
 
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-
-  html,
-  body {
-    height: 100vh;
-    box-sizing: border-box;
-    font-size: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    font-family: 'ff-tisa-sans-web-pro', sans-serif;
-  }
-
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ol,
-  ul,
-  a,
-  button {
-    margin: 0;
-    padding: 0;
-    font-weight: normal;
-    color: $color-dark-primary;
-  }
-
-  a {
-    @extend %nav-link;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  button {
-    border: 0;
-    background: none;
-    cursor: pointer;
-  }
-
-  fieldset {
-    border: none;
-    padding: 0;
-    margin: 0;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-block-start: 0;
-    padding-block-end: 0;
-    min-inline-size: 0px;
-  }
-
-  legend {
-    padding: 0;
-    margin: 0;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    border: none;
-  }
+html {
+  --color-muted-primary-0: var(--color-tertiary-0);
+  --color-muted-primary-5: var(--color-tertiary-5);
+  --color-muted-primary-10: var(--color-tertiary-10);
+  --color-muted-primary-15: var(--color-tertiary-15);
+  --color-muted-primary-20: var(--color-tertiary-20);
+  --color-muted-primary-25: var(--color-tertiary-25);
+  --color-muted-primary-30: var(--color-tertiary-30);
+  --color-muted-primary-35: var(--color-tertiary-35);
+  --color-muted-primary-40: var(--color-tertiary-40);
+  --color-muted-primary-50: var(--color-tertiary-50);
+  --color-muted-primary-60: var(--color-tertiary-60);
+  --color-muted-primary-70: var(--color-tertiary-70);
+  --color-muted-primary-80: var(--color-tertiary-80);
+  --color-muted-primary-90: var(--color-tertiary-90);
+  --color-muted-primary-95: var(--color-tertiary-95);
+  --color-muted-primary-98: var(--color-tertiary-98);
+  --color-muted-primary-99: var(--color-tertiary-99);
+  --color-muted-primary-100: var(--color-tertiary-100);
 }
 
-app-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-app-about {
-  padding: $content-component-padding;
+body {
+  @include body-small;
 }
 
 ::-webkit-scrollbar {

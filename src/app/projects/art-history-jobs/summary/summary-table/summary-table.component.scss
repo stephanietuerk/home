@@ -1,14 +1,11 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 .table-component {
   text-align: left;
   border-collapse: collapse;
-
-  .sort-arrows {
-    padding-left: grid(1);
-  }
 
   .head {
     .header.cell {
@@ -19,16 +16,8 @@
       padding-right: grid(2);
     }
 
-    .header.cell:last-child {
-      .header-text {
-        font-size: 0.8rem;
-        position: relative;
-        bottom: 1px;
-      }
-    }
-
     .header-contents {
-      @extend %sans-regular;
+      @extend %sans-medium;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
       font-size: 0.7rem;
@@ -36,6 +25,12 @@
       align-items: center;
 
       .arrows-container {
+        .arrow {
+          position: relative;
+          right: -2px;
+          transform: scale(0.8);
+        }
+
         &.desc {
           .arrow.down {
             color: $color-highlight;
@@ -46,10 +41,6 @@
           .arrow.up {
             color: $color-highlight;
           }
-        }
-
-        .arrow {
-          font-size: 0.7rem;
         }
       }
 
@@ -66,20 +57,16 @@
 
   .body {
     .cell.data {
-      @extend %slab-medium;
+      @include label-xs-prominent;
       font-size: 0.85rem;
+      line-height: 1.2;
       padding: grid(2) grid(2) 6px grid(2);
       color: var(--color);
       border-bottom: 1px solid $color-light-gray-light;
 
-      &.row-header {
-        @extend %slab-extrabold;
-      }
-
       &.right {
-        @extend %sans-regular;
+        @extend %sans-medium;
         font-size: 0.95rem;
-        transform: translate(0, -2px);
         line-height: 1;
         text-align: right;
       }

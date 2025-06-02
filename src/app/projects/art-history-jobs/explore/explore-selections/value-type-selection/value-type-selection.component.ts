@@ -15,7 +15,6 @@ import { ValueType } from '../explore-selections.model';
 
 @Component({
   selector: 'app-value-type-selection',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './value-type-selection.component.html',
   styleUrls: ['./value-type-selection.component.scss'],

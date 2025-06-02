@@ -1,0 +1,10 @@
+@use 'functions' as *;
+
+:host {
+  display: block;
+}
+
+.denominator-text {
+  padding-top: grid(3);
+  padding-bottom: 0;
+}

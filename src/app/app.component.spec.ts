@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { EnvironmentService } from './core/services/environment.service';
 import { MainServiceStub } from './testing/stubs/main-service.stub';
@@ -12,14 +11,13 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     mainServiceStub = new MainServiceStub();
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [AppComponent],
       providers: [
         {
           provide: EnvironmentService,
           useValue: mainServiceStub.environmentServiceStub,
         },
       ],
-      declarations: [AppComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

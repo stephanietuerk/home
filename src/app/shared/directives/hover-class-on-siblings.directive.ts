@@ -2,6 +2,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appHoverClassOnSiblings]',
+  standalone: true,
 })
 export class HoverClassOnSiblingsDirective {
   nonHoverClass = 'not-hovered';

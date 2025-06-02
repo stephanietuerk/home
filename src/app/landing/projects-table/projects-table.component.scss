@@ -1,31 +1,16 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'mixins' as *;
 @use 'functions' as *;
+@use 'colors';
 
-$table-width: 900px;
+.table-container {
+  max-width: 1020px;
+  padding-top: grid(4);
 
-.table-component-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .projects-title {
-    @extend %section-header;
-  }
-
-  .instruction-text {
-    @extend %instructions;
-    padding-bottom: grid(1);
-  }
-
-  .table-container {
-    max-width: 900px;
-    padding: 0 grid(6);
-
-    @include breakpoint(mobile-device) {
-      padding: 0;
-    }
+  @include breakpoint(mobile-device) {
+    padding: 0;
   }
 
   .projects-table {
@@ -37,87 +22,108 @@ $table-width: 900px;
       max-width: 1000px;
       width: initial;
     }
+  }
 
-    .table-cell.header {
-      @extend %sans-medium;
-      @extend %small-caps;
-      font-size: 1.1rem;
-      letter-spacing: 0.13em;
-      text-align: left;
+  .table-row {
+    transition: background-color 0.2s ease-in-out;
+
+    &:not(.open) {
+      border-bottom: 1px solid $color-highlight-light;
     }
 
-    .table-row {
-      &:not(.open) {
-        border-bottom: 1px solid $color-highlight-light;
-      }
-      &.open {
-        border-bottom: 1px solid white;
-      }
+    &.expanded {
+      border-bottom: 1px solid transparent;
+    }
+  }
 
-      &.body {
-        height: grid(16);
-      }
+  .table-row.body.index {
+    cursor: pointer;
+  }
+
+  .table-row.body.index:hover {
+    color: $color-highlight;
+  }
+
+  .table-row.body.index:hover:not(.expanded) {
+    background: colors.$tertiary-97;
+  }
+
+  .table-cell.header {
+    @include label-xs-caps;
+    @extend %sans-medium;
+    font-variation-settings:
+      'wght' 700,
+      'MONO' 0,
+      'CASL' 0,
+      'slnt' 0;
+    letter-spacing: 0.06em;
+    text-align: left;
+    padding-bottom: grid(1);
+
+    &.year {
+      text-align: right;
+    }
+  }
+
+  .table-cell.body {
+    @include label-medium;
+    text-align: left;
+    padding: grid(6) grid(4) grid(6) grid(0);
+
+    @include breakpoint(mobile-device) {
+      font-size: 0.9rem;
     }
 
-    .table-cell.body {
-      @extend %slab-medium;
-      font-size: 1rem;
-      text-align: left;
-      padding-top: grid(2);
-
-      @include breakpoint(mobile-device) {
-        font-size: 0.9rem;
-      }
-
-      &.view {
-        @extend %small-caps;
-      }
-
-      &.description {
-        width: 100%;
-      }
+    &.view {
+      @include label-medium-caps;
     }
 
-    .table-cell {
-      &:not(:last-of-type) {
-        padding-right: grid(5);
-      }
-
-      &.year {
-        text-align: right;
-      }
+    &.description {
+      width: 100%;
     }
 
-    .arrow-icon {
-      &.down {
-        position: relative;
-        top: grid(1);
-      }
-      &.up {
-        position: relative;
-        top: -#{grid(1)};
-      }
-
-      svg {
-        height: grid(4);
-        width: grid(5);
-        fill: $color-dark-primary;
-        stroke: $color-dark-primary;
-      }
+    &.year {
+      text-align: right;
     }
 
-    .project-overview-component {
-      display: block;
-      padding-top: grid(2);
-      padding-bottom: grid(4);
+    &.more {
+      padding-left: grid(2);
     }
   }
 
   .asterisk {
-    @extend %caption;
-    align-self: flex-start;
-    margin-top: grid(2);
-    font-weight: 300;
-    font-size: 0.9rem;
+    position: relative;
+    top: -6px;
+    padding-left: grid(0.5);
   }
+
+  .arrow-icon {
+    position: relative;
+
+    &.collapsed {
+      top: grid(1);
+    }
+
+    &.expanded {
+      top: -#{grid(0.5)};
+    }
+
+    svg {
+      overflow: visible;
+      display: block;
+      width: grid(5);
+    }
+  }
+
+  .project-overview-component {
+    display: block;
+    padding-top: grid(2);
+    padding-bottom: grid(4);
+  }
+}
+
+.asterisk-text {
+  @include body-small;
+  align-self: flex-start;
+  padding-top: grid(3);
 }

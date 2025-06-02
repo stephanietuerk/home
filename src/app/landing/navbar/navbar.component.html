@@ -1,12 +1,16 @@
-<h1 class="my-name" (click)="scrollToTop($event)">Stephanie Tuerk</h1>
+<h1 class="my-name" (click)="scrollToTop()">Stephanie Tuerk</h1>
 <nav class="nav-item-container">
   <a
-    *ngFor="let section of sections"
+    *ngFor="let section of sectionValues"
     class="nav-item"
     (click)="scrollToSection($event, section)"
     (keydown.enter)="scrollToSection($event, section)"
     tabindex="0"
   >
-    {{ section }}
+    @if (section === 'projects') {
+      project log
+    } @else {
+      {{ section }}
+    }
   </a>
 </nav>

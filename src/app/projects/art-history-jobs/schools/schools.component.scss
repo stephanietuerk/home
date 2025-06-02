@@ -1,11 +1,20 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .schools-encapsulation-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
+
+  --combobox-border-radius: 4px;
+  --combobox-border-color: var(--color-tertiary-90);
+  --combobox-border-color-hover: var(--color-tertiary-80);
+  --listbox-option-selected-background: var(--color-tertiary-97);
+  --listbox-option-hover-background: var(--color-tertiary-95);
 
   .section-header {
     @extend %h5;
@@ -15,7 +24,7 @@
 
   .description {
     max-width: 600px;
-    line-height: 1.5;
+    line-height: 1.65;
     padding-bottom: grid(6);
     align-self: center;
     width: 100%;
@@ -70,73 +79,54 @@
   .charts-container {
     display: flex;
     flex-direction: column;
-    padding-top: grid(4);
+    padding-top: grid(8);
+    margin: 0 grid(4);
   }
 
-  .all-schools-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--chart-width), 1fr));
-    grid-auto-rows: 1fr;
-    row-gap: grid(10);
-    column-gap: grid(6);
-    padding-bottom: grid(4);
-  }
-
-  .school-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: var(--chart-width);
-    justify-self: center;
-  }
-
-  .school-name {
-    @extend %slab-medium;
-    font-size: 0.9rem;
-    line-height: 1;
-    padding-bottom: grid(1);
-    height: grid(6);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    .highlight {
-      background-color: $color-search-highlight;
-    }
-  }
-
-  .no-schools-text {
-    @extend %sans-medium;
-    padding: grid(6) grid(4);
-  }
-
+  // seems like this extra class is needed for specificity?
   .mat-expansion-panel.country-expansion-panel {
     --mat-expansion-container-shape: 0px;
     overflow: visible;
     width: 100%;
-
-    &.mat-expanded {
-      .mat-content {
-        .country-name {
-          color: $color-highlight;
-          font-weight: 500;
-        }
-        .num-schools {
-          color: $color-highlight;
-        }
-        .material-symbols-outlined {
-          color: $color-highlight;
-        }
-      }
-    }
+    border-bottom: none !important;
 
     .mat-expansion-panel-header {
       --mat-focus-indicator-border-width: 0px;
       border-radius: 0px;
-      flex-shrink: 1;
       padding: 0;
+      transition: background-color 0.25s ease-in-out;
+      transition: border-bottom-color 0.25s ease-in-out;
 
-      &:not(.mat-expanded) {
+      .country-name,
+      .num-schools {
+        transition: color 0.25s ease-in-out;
+      }
+
+      &.mat-expanded {
+        height: 48px; // match closed style (48px is angular default)
+
+        .mat-content {
+          .country-name,
+          .num-schools {
+            @extend %sans-medium;
+          }
+
+          .country-name {
+            color: $color-highlight;
+            font-weight: 500;
+          }
+
+          .num-schools {
+            color: $color-highlight;
+          }
+
+          .expand-icon {
+            color: $color-highlight;
+          }
+        }
+      }
+
+      &:not(.mat-expanded):not(:hover) {
         border-bottom: 1px solid $color-light-gray-dark;
       }
 
@@ -145,29 +135,42 @@
       }
 
       &:hover {
+        background-color: colors.$tertiary-97;
+
+        &:not(.mat-expanded) {
+          background-color: colors.$tertiary-97;
+          border-bottom: 1px solid $color-highlight;
+        }
+
+        .expand-icon {
+          color: $color-highlight;
+        }
+
         .mat-content {
-          background: $color-highlight;
-          color: white;
+          background-color: inherit;
         }
 
         .country-name,
         .num-schools {
-          color: white;
-        }
-        .material-symbols-outlined {
-          color: white;
+          color: $color-highlight;
         }
       }
     }
 
+    // a span that wraps United States +  491 Schools arrow
     .mat-content {
       margin: 0;
       padding: grid(1) grid(1) grid(1) grid(2);
       background-color: white;
-      transition: background 0.2s ease-in-out;
+      transition: background-color 0.2s ease-in-out;
+      transition: border-bottom 0.2s ease-in-out;
     }
 
+    // wraps "United States"
     .mat-expansion-panel-header-title {
+      transition: background-color 0.2s ease-in-out;
+      transition: border-bottom 0.2s ease-in-out;
+
       .country-name {
         @extend %sans-regular;
         font-size: 1rem;
@@ -175,26 +178,30 @@
       }
     }
 
+    // wraps "491 Schools"
     .mat-expansion-panel-header-description {
       flex-grow: 0;
       margin-right: 0;
     }
 
     .expand-icon {
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
+      transition: color 0.2s ease-in-out;
+      transform: scale(1.3) rotate(90deg);
       position: relative;
       top: 2px;
       transform-origin: center center;
 
       &.expanded {
-        transform: rotate(180deg);
+        transform: scale(1.3) rotate(270deg);
       }
     }
 
     .mat-expansion-panel-content {
-      border-bottom: 1px solid $color-dark-gray;
+      // border-bottom: 1px solid $color-dark-gray;
       padding: 0 grid(2);
       background-color: white;
+      overflow: hidden;
     }
 
     .mat-expansion-panel-body {
@@ -216,5 +223,42 @@
       white-space: nowrap;
       padding-right: grid(4);
     }
+  }
+
+  .all-schools-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--chart-width), 1fr));
+    grid-auto-rows: 1fr;
+    row-gap: grid(10);
+    column-gap: grid(6);
+    padding-bottom: grid(4);
+  }
+
+  .school-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: var(--chart-width);
+    justify-self: center;
+  }
+
+  .school-name {
+    @extend %slab-expressive-medium;
+    font-size: 0.9rem;
+    line-height: 1;
+    padding-bottom: grid(1);
+    height: grid(6);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .highlight {
+      background-color: $color-search-highlight;
+    }
+  }
+
+  .no-schools-text {
+    @extend %sans-medium;
+    padding: grid(6) grid(4);
   }
 }

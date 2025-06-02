@@ -14,7 +14,6 @@ import { ExploreDataService } from '../../explore-data.service';
 
 @Component({
   selector: 'app-change-chart-toggle',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './change-chart-toggle.component.html',
   styleUrls: ['./change-chart-toggle.component.scss'],

@@ -92,19 +92,19 @@ export const BEYOND_COLORS = {
 
 export const BEYOND_SCALES = {
   vote: {
-    r: scaleLinear()
+    r: scaleLinear<string, string>()
       .domain([0, 1])
-      .range(['#f8e5e6', '#dd0035'] as any),
-    d: scaleLinear()
+      .range(['#f8e5e6', '#dd0035']),
+    d: scaleLinear<string, string>()
       .domain([-1, 0])
-      .range(['#3c5bff', '#d2e4ff'] as any),
+      .range(['#3c5bff', '#d2e4ff']),
   },
   change: {
-    r: scaleLinear()
+    r: scaleLinear<string, string>()
       .domain([0, 0.5])
-      .range(['#f8e5e6', '#dd0035'] as any),
-    d: scaleLinear()
+      .range(['#f8e5e6', '#dd0035']),
+    d: scaleLinear<string, string>()
       .domain([-0.5, 0])
-      .range(['#3c5bff', '#e6f0ff'] as any),
+      .range(['#3c5bff', '#e6f0ff']),
   },
 };

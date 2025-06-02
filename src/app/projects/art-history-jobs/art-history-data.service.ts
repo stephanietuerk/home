@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { csvParse } from 'd3';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { JobDatum, JobsByCountry } from './art-history-data.model';
 import { ArtHistoryUtilities } from './art-history.utilities';
@@ -10,47 +10,53 @@ import { ArtHistoryUtilities } from './art-history.utilities';
   providedIn: 'root',
 })
 export class ArtHistoryDataService {
+  private _initPromise?: Promise<void>;
   data$: Observable<JobDatum[]>;
   dataBySchool$: Observable<JobsByCountry[]>;
   dataYears: [number, number];
 
   constructor(private http: HttpClient) {}
 
-  init(): Promise<void> {
-    return new Promise((resolve) => {
-      this.setData();
-      this.setDataBySchools();
-      this.data$.subscribe((data) => {
+  async init(): Promise<void> {
+    if (!this._initPromise) {
+      this._initPromise = (async () => {
+        this.setData();
+        this.setDataBySchools();
+        const data = await firstValueFrom(this.data$);
         this.dataYears = this.getDataYears(data);
-        resolve();
-      });
-    });
+      })();
+    }
+    return this._initPromise;
   }
 
   setData(): void {
-    this.data$ = this.http
-      .get('assets/artHistoryJobs/aggregated_data.csv', {
-        responseType: 'text',
-      })
-      .pipe(
-        map((data) => this.parseData(data)),
-        shareReplay(1)
-      );
+    if (!this.data$) {
+      this.data$ = this.http
+        .get('assets/artHistoryJobs/aggregated_data.csv', {
+          responseType: 'text',
+        })
+        .pipe(
+          map((data) => this.parseData(data)),
+          shareReplay(1)
+        );
+    }
   }
 
   setDataBySchools(): void {
-    this.dataBySchool$ = this.http
-      .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
-      .pipe(
-        map((data) => this.parseDataBySchools(data)),
-        shareReplay(1)
-      );
+    if (!this.dataBySchool$) {
+      this.dataBySchool$ = this.http
+        .get<JobsByCountry[]>('assets/artHistoryJobs/jobsByCountry.json')
+        .pipe(
+          map((data) => this.parseDataBySchools(data)),
+          shareReplay(1)
+        );
+    }
   }
 
   parseData(data): JobDatum[] {
     return csvParse(data).map((x) => {
       return {
-        year: new Date(`${x['year']}-01-01T00:00:00`),
+        year: new Date(Date.UTC(+x['year'], 0, 1)), // TODO: Fix needing the second day in order for the year to be correct
         field: x['field'] === 'all' ? 'All' : x['field'],
         tenure: ArtHistoryUtilities.transformIsTt(x['is_tt']),
         rank: ArtHistoryUtilities.transformRankMulti(x['rank']),
@@ -85,13 +91,9 @@ export class ArtHistoryDataService {
   }
 
   getDataYears(data: JobDatum[]): [number, number] {
-    const years = [];
-    data.forEach((x) => {
-      if (!years.includes(x.year.getFullYear())) {
-        years.push(x.year.getFullYear());
-      }
-    });
-    years.sort((a, b) => a - b);
+    const years = Array.from(
+      new Set(data.map((x) => x.year.getUTCFullYear()))
+    ).sort((a, b) => a - b);
     return [years[0], years[years.length - 1]];
   }
 }
