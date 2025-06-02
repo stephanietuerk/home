@@ -64,5 +64,6 @@ export class SchoolFiltersComponent
   clearSearch() {
     this.searchInput.nativeElement.value = '';
     this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+    this.data.updateState([], SchoolStateProperty.searchTerms);
   }
 }

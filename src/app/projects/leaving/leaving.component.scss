@@ -32,8 +32,9 @@ $leaving-highlight: $color-highlight;
     @include label-xs-prominent;
   }
 
-  .category-label {
+  .section-label {
     @include label-small-caps-prominent;
+    letter-spacing: 0.05em;
     color: var(--color-purple-text);
     align-self: center;
     margin-bottom: grid(5);

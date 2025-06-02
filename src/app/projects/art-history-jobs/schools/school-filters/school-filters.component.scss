@@ -125,7 +125,7 @@
       font-size: 1rem;
       height: 42px;
       padding: grid(1) grid(2);
-      border: 1px solid $color-light-gray-light;
+      border: 1px solid colors.$tertiary-90;
       border-radius: grid(1);
       flex-grow: 1;
 
@@ -133,23 +133,23 @@
         @extend %sans-light;
         font-size: 1rem;
         flex-grow: 1;
-        color: $color-dark-gray;
+        color: colors.$tertiary-70;
         font-style: italic;
         opacity: 1;
       }
 
       &:focus {
-        border: 1px solid $color-dark-primary;
+        border: 1px solid colors.$tertiary-80;
         outline: none;
 
         &::placeholder {
-          color: $color-dark-gray;
+          color: colors.$tertiary-60;
         }
       }
 
       &:hover {
         outline: none;
-        border: 1px solid $color-light-gray-dark;
+        border: 1px solid colors.$tertiary-80;
 
         &::placeholder {
           color: $color-dark-gray;
@@ -160,8 +160,8 @@
     .clear-search-button {
       position: absolute;
       right: grid(2);
-      top: 9px;
-      color: $color-dark-primary;
+      top: 7px;
+      color: colors.$tertiary-40;
     }
   }
 
@@ -171,38 +171,46 @@
     @extend %combobox-styles;
     min-width: 220px;
 
-    .combobox-component {
-      .combobox-label {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: grid(1);
-        line-height: 1;
+    .combobox-label {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: grid(1);
+      line-height: 1;
 
-        .dropdown-label {
-          // @extend %typography-ui-label-sm-semibold;
-          padding-right: grid(2);
-          @extend %sans-regular;
-          text-transform: uppercase;
-          letter-spacing: 0.1rem;
-          font-size: 0.8rem;
-        }
-
-        .available-count {
-          text-align: right;
-        }
-
-        .count-num {
-          // @extend %typography-ui-label-sm-semibold;
-        }
+      .dropdown-label {
+        // @extend %typography-ui-label-sm-semibold;
+        padding-right: grid(2);
+        @extend %sans-regular;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 0.8rem;
       }
 
-      .combobox-textbox {
-        padding: grid(2);
-
-        .textbox-label {
-          line-height: 1.2;
-        }
+      .available-count {
+        text-align: right;
       }
+    }
+
+    .combobox-textbox {
+      padding: grid(2);
+
+      .textbox-label {
+        line-height: 1.2;
+      }
+    }
+
+    .textbox-icon {
+      transition: all 100ms ease-in-out;
+      transform-origin: 14px 12px;
+
+      &.open {
+        rotate: 90deg;
+      }
+    }
+
+    .expand-icon {
+      position: relative;
+      left: grid(1);
     }
 
     .option-container {

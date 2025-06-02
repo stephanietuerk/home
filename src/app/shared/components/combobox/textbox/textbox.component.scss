@@ -7,6 +7,12 @@
   padding: var(--textbox-padding);
   border-radius: var(--combobox-border-radius);
   transition: border var(--textbox-transition-duration) ease-in-out;
+
+  &:hover {
+    border: var(--combobox-border-width) solid
+      var(--combobox-border-color-hover);
+    cursor: var(--combobox-cursor-hover);
+  }
 }
 
 .textbox-container.open {

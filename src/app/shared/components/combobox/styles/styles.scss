@@ -5,6 +5,8 @@ $combobox: (
   'background': var(--color-primary-100, white),
   'border-width': 1px,
   'border-color': var(--color-muted-primary-40, gray),
+  'border-color-hover': var(--color-muted-primary-30, darkgray),
+  'cursor-hover': pointer,
   'max-width': none,
   'border-radius': grid(2),
 );
@@ -96,6 +98,12 @@ $listbox-label: (
   'margin-right': var(--listbox-option-margin-right),
 );
 
+.combobox {
+  display: block;
+  position: relative;
+  max-width: var(--combobox-max-width);
+}
+
 html {
   @include sass-utils.map-scss-vars-into-css-vars($combobox, 'combobox');
   @include sass-utils.map-scss-vars-into-css-vars($textbox, 'textbox');
@@ -112,10 +120,4 @@ html {
     $listbox-option,
     'listbox-option'
   );
-}
-
-.combobox {
-  display: block;
-  position: relative;
-  max-width: var(--combobox-max-width);
 }

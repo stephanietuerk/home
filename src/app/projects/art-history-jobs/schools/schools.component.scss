@@ -9,6 +9,12 @@
   display: flex;
   flex-direction: column;
 
+  --combobox-border-radius: 4px;
+  --combobox-border-color: var(--color-tertiary-90);
+  --combobox-border-color-hover: var(--color-tertiary-80);
+  --listbox-option-selected-background: var(--color-tertiary-97);
+  --listbox-option-hover-background: var(--color-tertiary-95);
+
   .section-header {
     @extend %h5;
     text-align: center;
