@@ -27,6 +27,11 @@
       line-height: 1.4;
       margin-bottom: grid(4);
     }
+
+    &.self-effacing-note {
+      @include body-small;
+      // color: colors.$tertiary-80;
+    }
   }
 
   .list {
