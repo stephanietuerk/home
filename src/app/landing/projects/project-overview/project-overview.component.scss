@@ -34,6 +34,17 @@
   &:not(:last-child) {
     margin-right: grid(8);
   }
+
+  &.disabled {
+    pointer-events: none;
+    color: colors.$tertiary-70;
+  }
+}
+
+.disabled-label {
+  font-size: 0.92rem;
+  color: colors.$tertiary-70;
+  padding-left: grid(2);
 }
 
 .project-link:hover {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { PROJECTS } from '../core/constants/projects.constants';
 import { SECTIONS } from '../core/constants/sections.constants';
+import { PROJECTS } from '../projects/projects.constants';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';

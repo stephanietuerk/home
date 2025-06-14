@@ -7,31 +7,43 @@
       @if (link.url) {
         <a
           class="project-link"
+          [class.disabled]="link.disabled"
           [href]="'http://' + link.url"
           target="_blank"
           rel="noopener"
           (pointerenter)="setHovered(link.name, true)"
           (pointerleave)="setHovered(link.name, false)"
           >View {{ link.name.toLowerCase() }}
-          <app-project-arrow
-            class="project-arrow"
-            [hovered]="hovered[getSanitizedKey(link.name)]"
-          ></app-project-arrow>
+          <ng-container *ngTemplateOutlet="arrow"></ng-container>
+          <ng-container *ngTemplateOutlet="disabled"></ng-container>
         </a>
       }
       @if (link.routerLink) {
         <a
           class="project-link"
+          [class.disabled]="link.disabled"
           [routerLink]="[link.routerLink]"
           (pointerenter)="setHovered(link.name, true)"
           (pointerleave)="setHovered(link.name, false)"
           >View {{ link.name.toLowerCase()
-          }}<app-project-arrow
-            class="project-arrow"
-            [hovered]="hovered[getSanitizedKey(link.name)]"
-          ></app-project-arrow
-        ></a>
+          }}<ng-container *ngTemplateOutlet="arrow"></ng-container>
+          <ng-container *ngTemplateOutlet="disabled"></ng-container>
+        </a>
       }
+      <ng-template #arrow>
+        <app-project-arrow
+          class="project-arrow"
+          [class.disabled]="link.disabled"
+          [hovered]="
+            link.disabled ? false : hovered[getSanitizedKey(link.name)]
+          "
+        ></app-project-arrow>
+      </ng-template>
+      <ng-template #disabled>
+        @if (link.disabled) {
+          <span class="disabled-label">(disabled)</span>
+        }
+      </ng-template>
     }
   </div>
   @if (project.images) {

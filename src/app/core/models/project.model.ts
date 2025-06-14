@@ -34,6 +34,7 @@ export class Link {
   url?: string;
   routerLink?: string;
   name: string;
+  disabled?: boolean;
 }
 
 export enum ProjectType {

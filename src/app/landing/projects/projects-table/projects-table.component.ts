@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { animations } from 'src/app/core/constants/animations.constants';
-import { PROJECTS } from '../../core/constants/projects.constants';
-import { ExpandArrowComponent } from '../../shared/components/expand-arrow/expand-arrow.component';
+import { PROJECTS } from '../../../projects/projects.constants';
+import { ExpandArrowComponent } from '../../../shared/components/expand-arrow/expand-arrow.component';
 import { ProjectOverviewComponent } from '../project-overview/project-overview.component';
 
 @Component({

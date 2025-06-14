@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
-import { ProjectArrowComponent } from '../../shared/components/project-arrow/project-arrow.component';
+import { ProjectArrowComponent } from '../../../shared/components/project-arrow/project-arrow.component';
 
 @Component({
   selector: 'app-project-overview',

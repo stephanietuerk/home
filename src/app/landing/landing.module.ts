@@ -4,8 +4,8 @@ import { ContactComponent } from './contact/contact.component';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProjectOverviewComponent } from './project-overview/project-overview.component';
-import { ProjectsTableComponent } from './projects-table/projects-table.component';
+import { ProjectOverviewComponent } from './projects/project-overview/project-overview.component';
+import { ProjectsTableComponent } from './projects/projects-table/projects-table.component';
 
 @NgModule({
   imports: [
