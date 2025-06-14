@@ -3,6 +3,7 @@
 @use 'functions' as *;
 
 $beyond-mono: 'Roboto Mono';
+$max-width: 720px;
 
 :host {
   --max-section-width: 1240px;
@@ -16,6 +17,7 @@ $beyond-mono: 'Roboto Mono';
   --color-button-active: #999999;
   --color-zoombox-text: #bbb;
   --color-title: #666666;
+  --mobile-warning-max-width: 720px;
 
   margin: 0 auto;
   padding: 0 grid(4);
@@ -44,7 +46,7 @@ $beyond-mono: 'Roboto Mono';
 }
 
 .description {
-  max-width: 720px;
+  max-width: $max-width;
   line-height: 1.65;
   align-self: flex-start;
 
