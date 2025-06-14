@@ -4,10 +4,6 @@
 @use 'functions' as *;
 @use 'colors';
 
-$mauve-hue-light: #e9e4f5;
-$mauve-hue-lightest: #f7f6f8;
-$lime-2: #a2ff29;
-
 .card {
   @extend %flex-column;
   margin-bottom: grid(5);
@@ -34,10 +30,10 @@ $lime-2: #a2ff29;
   .question {
     @include title-medium;
     font-variation-settings:
-      'wght' 600,
+      'wght' 500,
       'CASL' 0.5,
       'MONO' 0,
-      'slnt' -5;
+      'slnt' 0;
     font-size: 1.2rem;
     padding: grid(3) grid(2) grid(2) grid(2);
     line-height: 1.5rem;
