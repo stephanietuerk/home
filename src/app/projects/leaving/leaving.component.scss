@@ -12,24 +12,17 @@ $leaving-highlight: $color-highlight;
   --color-purple-hover: #e9e4f5;
   --color-purple-background: #f7f6f8;
   --color-purple-text: #8c74c7;
+  margin: 0 auto;
+  padding: 0 grid(4);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 100%; // ensures that wide constainers shrink with browser window
   max-width: var(--max-section-width);
-  padding: grid(1) 0 6rem 0;
-
-  .header-item {
-    align-self: center;
-  }
-
-  .date {
-    @extend %subtitle2;
-    padding-bottom: grid(4);
-  }
 
   .instruction {
     @include label-xs-prominent;
+    align-self: center;
   }
 
   .section-label {
@@ -48,12 +41,20 @@ $leaving-highlight: $color-highlight;
     padding: grid(4) 0 grid(1) 0;
   }
 
-  app-question {
-    display: block;
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 100%;
     padding-bottom: grid(4);
 
     &:first-of-type {
       padding-top: grid(3);
+    }
+
+    @media screen and (max-width: 1080px) {
+      padding-right: 8%;
+      padding-left: 8%;
     }
   }
 

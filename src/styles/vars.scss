@@ -40,6 +40,9 @@ $subtle-drop-shadow:
 $subtler-drop-shadow:
   0 1px 3px rgba($color-dark-primary, 0.06),
   0 1px 2px rgba($color-dark-primary, 0.212);
+$drop-shadow-wide:
+  0 2px 6px rgba($color-dark-primary, 0.12),
+  0 2px 4px rgba($color-dark-primary, 0.24);
 $drop-shadow-light:
   0 1px 3px rgba($color-dark-primary, 0.12),
   0 1px 2px rgba($color-dark-primary, 0.24);

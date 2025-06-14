@@ -1,0 +1,14 @@
+@if (display) {
+  <div class="container" #container>
+    @for (text of messageText; track $index) {
+      <p class="mobile-warning-text">
+        {{ text }}
+      </p>
+    }
+    @if (fadeout) {
+      <p class="mobile-warning-text fadeout">
+        This message will fade in a few seconds.
+      </p>
+    }
+  </div>
+}

@@ -55,19 +55,19 @@
         @content;
       }
     } @else if $point == small-screen {
-      @media screen and (min-width: $viewport-width-xs + 1) and (max-width: $viewport-width-sm) {
+      @media screen and (min-width: ($viewport-width-xs + 1)) and (max-width: $viewport-width-sm) {
         @content;
       }
     } @else if $point == medium-screen {
-      @media screen and (min-width: $viewport-width-sm + 1) and (max-width: $viewport-width-md) {
+      @media screen and (min-width: ($viewport-width-sm + 1)) and (max-width: $viewport-width-md) {
         @content;
       }
     } @else if $point == large-screen {
-      @media screen and (min-width: $viewport-width-md + 1) and (max-width: $viewport-width-lg) {
+      @media screen and (min-width: #{ $viewport-width-md + 1 }) and (max-width: $viewport-width-lg) {
         @content;
       }
     } @else if $point == extra-large-screen {
-      @media screen and (min-width: $viewport-width-lg + 1) and (max-width: $viewport-width-xl) {
+      @media screen and (min-width: #{ $viewport-width-lg + 1 }) and (max-width: $viewport-width-xl) {
         @content;
       }
     } @else if $point == xssmlxl-screen {

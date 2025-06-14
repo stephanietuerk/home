@@ -12,6 +12,7 @@ import { geoAlbers, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { interpolateNumber } from 'src/app/core/utilities/number.utils';
 import * as topojson from 'topojson-client';
+import { MobileWarningComponent } from '../../shared/components/mobile-warning/mobile-warning.component';
 import { FlipBar } from './flip-bar.class';
 import { FLIPBARLAYOUT, FLIPCOLORS } from './flip.constants';
 import { Party } from './flip.model';
@@ -19,7 +20,7 @@ import { FlipService } from './flip.service';
 
 @Component({
   selector: 'app-flip',
-  imports: [CommonModule],
+  imports: [CommonModule, MobileWarningComponent],
   templateUrl: './flip.component.html',
   styleUrls: ['./flip.component.scss'],
   providers: [FlipService],

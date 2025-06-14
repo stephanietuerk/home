@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -65,9 +64,7 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
   constructor(
     public mainDataService: ArtHistoryDataService,
     public exploreDataService: ExploreDataService,
-    private schoolsDataService: SchoolsDataService,
-    private platform: Platform,
-    private messages: MessageService
+    private schoolsDataService: SchoolsDataService
   ) {}
 
   ngOnInit(): void {
@@ -75,9 +72,6 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
       this.exploreDataService.init();
     });
     this.schoolsDataService.init();
-    if (this.platform.IOS || this.platform.ANDROID) {
-      this.displayMobileMessage();
-    }
   }
 
   ngAfterViewInit(): void {
@@ -141,14 +135,5 @@ export class ArtHistoryJobsComponent implements OnInit, AfterViewInit {
     const offsetTop = sectionOffsetTop - projectNavbarHeight + 60; // account for top padding of section and offset
     window.scrollTo({ behavior: 'smooth', top: offsetTop });
     this.currentSectionName.next(section);
-  }
-
-  displayMobileMessage(): void {
-    this.messages.createGlobalMessage([
-      'Hello!',
-      'It looks like you are viewing this project on a mobile device.',
-      "This site will work on mobile, but the layout is not optimal for exploring lots of data. Additionally, since this is a side project, I'm choosing not to spend time to get all features to 100% on a mobile device.",
-      'For a better experience, please view this site on a desktop/laptop.',
-    ]);
   }
 }

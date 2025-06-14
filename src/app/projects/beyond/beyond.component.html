@@ -1,6 +1,7 @@
-<div id="beyond-intro" class="beyond-intro">
-  <p class="project-description">"Demography is destiny." Or is it?</p>
-  <p class="project-description">
+<app-mobile-warning [warningWidth]="960"></app-mobile-warning>
+<div id="beyond-intro" class="section intro">
+  <p class="description">"Demography is destiny." Or is it?</p>
+  <p class="description">
     The 2016 Presidential election called into question long-held narratives
     about how demographic change in the United States would effect election
     outcomes. Almost immediately after the election, the idea that America's
@@ -8,7 +9,7 @@
     claims that a previously overlooked "silent majority" had delivered a
     Republican victory.
   </p>
-  <p class="project-description">
+  <p class="description">
     That the national conversation about American demography could change so
     much more quickly than the facts of who lives in the United States suggests
     that the question of how demographic characteristics do or not map onto
@@ -26,7 +27,7 @@
     presented as county-wide averages, and that were the subject of much debate
     in the fall of 2016.
   </p>
-  <p class="project-description">
+  <p class="description">
     Users can interact with the visualization in a number of ways to understand
     both geographic and demographic trends in 2016 and 2012 elections, as well
     as change between those years. Census tract-level election results displayed
@@ -39,7 +40,7 @@
     identified, and then located in the map once selected on the right-hand side
     of the chart.
   </p>
-  <p class="project-description">
+  <p class="description">
     Although the data used in this visualization is readily available, the
     discrepancy between boundaries of voting districts — established and
     administered by state and local authorities — and those of census tracts —
@@ -54,9 +55,9 @@
     Census Bureau's American Community Survey. Pennsylvania precint-level
     election results are available from Open Elections.
   </p>
-  <p class="project-description">[Spring 2017]</p>
+  <p class="description">[Spring 2017]</p>
 </div>
-<div id="beyond-the-county-line" class="beyond-div">
+<div id="beyond-the-county-line" class="section data">
   <app-beyond-map
     [electionYear]="electionYear"
     [electionType]="electionType"
@@ -65,9 +66,9 @@
     <span class="map-title race"
       >{{ getTitleElement('election', 'type') }}:
     </span>
-    <span class="map-title year"
-      >{{ getTitleElement('election', 'year') }}</span
-    >
+    <span class="map-title year">{{
+      getTitleElement('election', 'year')
+    }}</span>
   </p>
   <div class="legend-container">
     <p class="legend-text party dem">Democrat</p>

@@ -1,11 +1,11 @@
-import { Project, ProjectType } from './../models/project.model';
 import {
   artHistoryJobsPath,
   beyondPath,
   flipPath,
   leavingPath,
   projectsPath,
-} from './routing.constants';
+} from '../core/constants/routing.constants';
+import { Project, ProjectType } from '../core/models/project.model';
 
 export const PROJECTS: Project[] = [
   {
@@ -108,6 +108,7 @@ export const PROJECTS: Project[] = [
       {
         name: ProjectType.website,
         url: 'www.severncommunityagainstracism.com',
+        disabled: true,
       },
     ],
   },

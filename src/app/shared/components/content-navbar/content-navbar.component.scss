@@ -4,6 +4,11 @@
 @use 'mixins' as *;
 @use 'typography' as *;
 
+$breakpoint-1: 690px;
+$breakpoint-2: 620px;
+$breakpoint-3: 519px;
+$breakpoint-4: 400px;
+
 :host {
   @extend %navbar;
   display: flex;
@@ -12,62 +17,42 @@
 
 .nav-container {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  grid-column-gap: grid(1);
+  grid-template-columns: minmax(auto, 1fr) 2fr minmax(auto, 1fr);
   width: 100%;
+}
 
-  .return-button {
-    @extend %slab-expressive-bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    line-height: 1rem;
-    padding-top: grid(2);
-    transition: all 0.2s ease-in-out;
+.project-name {
+  @include title-large;
+  padding-top: grid(2);
+  text-align: center;
+  align-self: end;
+  font-size: clamp(1rem, 2vw + 0.75rem, 1.83rem);
+  position: relative;
+  top: 1px;
+}
 
-    @include breakpoint-max(600px) {
-      font-size: 0.8rem;
-    }
+.return-button {
+  @extend %slab-expressive-bold;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  line-height: 1rem;
+  padding-top: grid(2);
+  padding-right: grid(1);
+  transition: all 0.2s ease-in-out;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
 
-    &:hover {
-      color: $color-highlight;
-    }
+  &:hover {
+    color: $color-highlight;
   }
+}
 
-  .return-text {
-    padding-left: grid(3);
-  }
+.return-text {
+  padding-left: grid(3);
+}
 
-  .arrow {
-    rotate: 180deg;
-    transform-origin: center;
-  }
-
-  .project-name {
-    @include title-large;
-    padding-top: grid(2);
-    text-align: center;
-
-    @include breakpoint-max(900px) {
-      font-variation-settings:
-        'wght' 600,
-        'CASL' $expressive-casual,
-        'MONO' $expressive-monospace,
-        'slnt' $expressive-slant;
-      font-size: 1.33rem;
-      letter-spacing: 0.01rem;
-      line-height: 1.5rem;
-    }
-
-    @include breakpoint-max(600px) {
-      font-variation-settings:
-        'wght' 700,
-        'CASL' $expressive-casual,
-        'MONO' $expressive-monospace,
-        'slnt' $expressive-slant;
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-  }
+.arrow {
+  rotate: 180deg;
+  transform-origin: center;
 }

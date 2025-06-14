@@ -6,8 +6,8 @@
 
 .card {
   @extend %flex-column;
+  width: 100%;
   margin-bottom: grid(5);
-  width: 800px;
 
   .question-container {
     display: flex;
@@ -36,18 +36,19 @@
       'slnt' 0;
     font-size: 1.2rem;
     padding: grid(3) grid(2) grid(2) grid(2);
-    line-height: 1.5rem;
+    line-height: 1.4rem;
     text-align: left;
   }
 
   .answer-container {
     @include body-small;
-    padding: grid(6);
+    padding: grid(8) grid(8);
     border: 1px solid var(--color-lime);
   }
 
   .answer-text {
     @include body-small;
+    font-size: clamp(0.95rem, 1vw + 0.5rem, 1rem);
     line-height: 1.65;
 
     &:not(:last-child) {

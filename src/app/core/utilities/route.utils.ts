@@ -1,4 +1,4 @@
-import { PROJECTS } from '../constants/projects.constants';
+import { PROJECTS } from '../../projects/projects.constants';
 import { Project } from '../models/project.model';
 
 export function getLastPathFragmentFromURL(url: string): string {

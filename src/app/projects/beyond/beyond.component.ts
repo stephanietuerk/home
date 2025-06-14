@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { range } from 'd3';
+import { MobileWarningComponent } from '../../shared/components/mobile-warning/mobile-warning.component';
 import { BeyondBarComponent } from './beyond-bar/beyond-bar.component';
 import { BeyondMapComponent } from './beyond-map/beyond-map.component';
 import {
@@ -17,10 +18,15 @@ import {
 } from './models/beyond-enums.model';
 @Component({
   selector: 'app-beyond',
-  imports: [CommonModule, BeyondMapComponent, BeyondBarComponent],
+  imports: [
+    CommonModule,
+    BeyondMapComponent,
+    BeyondBarComponent,
+    MobileWarningComponent,
+  ],
   templateUrl: './beyond.component.html',
   styleUrls: ['./beyond.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class BeyondComponent implements OnInit {
   electionYear: string;

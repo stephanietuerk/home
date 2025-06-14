@@ -1,0 +1,52 @@
+@use 'vars' as *;
+@use 'colors';
+@use 'functions' as *;
+@use 'typography' as *;
+
+.container {
+  @include body-medium;
+  position: fixed;
+  top: var(--mobile-warning-top, 6rem);
+  left: var(--mobile-warning-left, 1rem);
+  right: var(--mobile-warning-right, 1rem);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: var(--mobile-warning-bg, colors.$tertiary-97);
+  border: 1px solid var(--mobile-warning-bg-border, colors.$tertiary-90);
+  font-size: 0.9rem;
+  box-shadow: $drop-shadow-wide;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--mobile-warning-min-height, 0rem);
+  max-width: var(--mobile-warning-max-width, 100%);
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.mobile-warning-text {
+  @include body-small;
+  max-width: var(--mobile-warning-max-text-width, 720px);
+}
+
+.mobile-warning-text:first-of-type {
+  @include label-medium-prominent;
+  margin-bottom: grid(5);
+}
+
+.mobile-warning-text {
+  margin-bottom: grid(2);
+}
+
+.mobile-warning-text:last-of-type {
+  margin-bottom: grid(1);
+}
+
+.mobile-warning-text.fadeout {
+  @include body-2xs;
+}
