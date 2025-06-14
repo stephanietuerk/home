@@ -2,6 +2,9 @@
 @use 'placeholders' as *;
 @use 'mixins' as *;
 @use 'functions' as *;
+@use 'typography' as *;
+
+$top-padding: grid(1);
 
 :host {
   @extend %navbar;
@@ -12,37 +15,31 @@
 }
 
 .my-name {
-  @extend %h4;
+  flex-grow: 0;
   cursor: pointer;
-  padding-top: 6px;
+  @include headline-medium;
+  line-height: 1.1;
+  padding-top: $top-padding;
   position: relative;
-  top: 3px;
-  @include breakpoint-max(600px) {
-    font-size: 1.7rem;
-    top: 5px;
-  }
-  @media screen and (max-width: 519px) {
-    font-size: 1.5rem;
-  }
+  top: 1px;
+
+  font-size: clamp(1.3rem, 4vw, 2.33rem);
 }
 
 .nav-item-container {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
   gap: grid(6);
-
-  @media screen and (max-width: 519px) {
-    gap: grid(4);
-  }
+  $padding-top: $top-padding;
+  gap: clamp(grid(4), 2vw, grid(6));
 }
 
 .nav-item {
   @extend %nav-link;
   @extend %button-behavior;
   font-size: 1rem;
-
-  @include breakpoint-max(600px) {
-    font-size: 0.8rem;
-  }
+  flex-shrink: 0;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
 }

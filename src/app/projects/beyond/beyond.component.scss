@@ -1,35 +1,64 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
+@use 'functions' as *;
 
-$rColor: #f4003d;
-$dColor: #2437ff;
-$dMapColor: #394bff;
-$initialColor: #cccccc;
 $beyond-mono: 'Roboto Mono';
-$button-fill: #bbbbbb;
-$button-hover: #aaaaaa;
-$button-active: #999999;
-$zoombox-text-color: #bbb;
-$dark-gray: #666666;
 
-.beyond-intro {
-  @extend %flex-column;
-  max-width: 740px;
+:host {
+  --max-section-width: 1240px;
+  --max-text-width: 720px;
+  --color-r: #f4003d;
+  --color-d: #2437ff;
+  --color-d-map: #394bff;
+  --color-initial: #cccccc;
+  --color-button-background: #bbbbbb;
+  --color-button-hover: #aaaaaa;
+  --color-button-active: #999999;
+  --color-zoombox-text: #bbb;
+  --color-title: #666666;
+
   margin: 0 auto;
+  padding: 0 grid(4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; // ensures that wide constainers shrink with browser window
+  max-width: var(--max-section-width);
 
-  p {
-    @extend %sans-regular;
-    padding-top: 1rem;
-    text-align: justify;
-    color: rgba($color-dark-primary, 0.85);
-
-    &:last-of-type {
-      padding-bottom: 1rem;
-    }
+  @media screen and (max-width: 1080px) {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
-.beyond-div {
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+
+  @media screen and (max-width: 1080px) {
+    padding-right: 8%;
+    padding-left: 8%;
+  }
+}
+
+.description {
+  max-width: 720px;
+  line-height: 1.65;
+  align-self: flex-start;
+
+  &:not(:last-child) {
+    padding-bottom: grid(6);
+  }
+}
+
+.section.intro {
+  width: initial;
+  padding-bottom: 1rem;
+}
+
+.section.data {
   @extend %flex-column;
   font-family: 'Roboto';
   align-items: center;
@@ -53,8 +82,8 @@ $dark-gray: #666666;
       font-family: $beyond-mono;
       font-size: 14px;
       padding: 6px 10px;
-      border: 1px solid $button-active;
-      color: $button-active;
+      border: 1px solid var(--color-button-active);
+      color: var(--color-button-active);
       width: 120px;
 
       &.selected {
@@ -105,7 +134,7 @@ $dark-gray: #666666;
     font-family: $beyond-mono;
     font-size: 14px;
     font-weight: 700;
-    color: $dark-gray;
+    color: var(--color-title);
 
     &.subtitle {
       font-size: 12px;
@@ -156,7 +185,7 @@ $dark-gray: #666666;
 
   .legend-text {
     font-family: $beyond-mono;
-    color: $button-active;
+    color: var(--color-button-active);
     font-size: 12px;
 
     &.party {
