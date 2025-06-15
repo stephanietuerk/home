@@ -13,7 +13,8 @@ $button-active: #999999;
 $zoombox-text-color: #bbb;
 
 .beyond-map {
-  @extend %flex-column;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto';
   align-items: center;
 

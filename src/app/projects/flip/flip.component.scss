@@ -57,7 +57,8 @@ $max-width: 720px;
   }
 
   .section.main {
-    @extend %flex-column;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     background: white;
     font-family: 'Roboto';

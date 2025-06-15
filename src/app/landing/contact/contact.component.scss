@@ -6,7 +6,8 @@
 @use 'typography' as *;
 
 .component-container {
-  @extend %flex-column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 
   .contact-title {
@@ -16,7 +17,8 @@
   }
 
   .contact-container {
-    @extend %flex-column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     padding-bottom: grid(6);
 

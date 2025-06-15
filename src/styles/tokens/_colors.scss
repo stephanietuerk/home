@@ -67,7 +67,3 @@ $site-colors: (
   'highlight': $highlight,
   'text': $text,
 );
-
-html {
-  @include map-to-vars.map-scss-vars-into-css-vars($site-colors, 'color');
-}
