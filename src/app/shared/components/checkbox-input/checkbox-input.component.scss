@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 $icon-dimension: 16px;
 
@@ -27,8 +28,8 @@ $icon-dimension: 16px;
       margin-right: grid(1);
 
       path {
-        stroke: $color-highlight;
-        fill: $color-highlight;
+        stroke: colors.$highlight-default;
+        fill: colors.$highlight-default;
         stroke-width: 0.1;
       }
     }

@@ -3,6 +3,7 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .change-chart-toggle {
   .radio-input-group {
@@ -36,24 +37,24 @@
     justify-content: center;
     text-align: center;
     font-size: 0.85rem;
-    border: 1px solid $color-highlight;
+    border: 1px solid colors.$highlight-default;
     padding: grid(2) grid(2) 6px grid(2);
     cursor: pointer;
   }
 
   .radio-input-label.selected {
-    border: 1px solid $color-highlight;
-    background-color: $color-highlight;
+    border: 1px solid colors.$highlight-default;
+    background-color: colors.$highlight-default;
     color: white;
   }
 
   .radio-input-label:not(.selected) {
-    border: 1px solid $color-highlight;
+    border: 1px solid colors.$highlight-default;
     background-color: white;
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 
   .radio-input-label:not(.selected):hover {
-    background: $color-light-gray-light;
+    background: colors.$neutral-95;
   }
 }

@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .variable-single-multi-selection-container {
   display: contents;
@@ -9,11 +10,10 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: $color-dark-primary;
     line-height: 1.2;
 
     .icon {
-      color: $color-highlight;
+      color: colors.$highlight-default;
       padding-right: grid(1);
       transform: scale(0.9);
     }

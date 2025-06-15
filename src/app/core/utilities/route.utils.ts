@@ -7,5 +7,8 @@ export function getLastPathFragmentFromURL(url: string): string {
 }
 
 export function getProjectFromURL(url: string): Project {
-  return PROJECTS.find((x) => x.links.map((x) => x.routerLink).includes(url));
+  console.log('getProjectFromURL', url);
+  const id = url.split('/')[2];
+  console.log('getProjectFromURL id', id);
+  return PROJECTS.find((x) => x.id === id);
 }

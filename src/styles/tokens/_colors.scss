@@ -1,0 +1,69 @@
+@use '../utils/map-to-vars';
+
+$primary: (
+  0: #000000,
+  5: #001129,
+  10: #001b3c,
+  15: #00264e,
+  20: #003061,
+  25: #003b75,
+  30: #004689,
+  35: #00529e,
+  40: #005eb3,
+  50: #0076df,
+  60: #3491ff,
+  70: #76acff,
+  80: #a8c8ff,
+  90: #d5e3ff,
+  95: #ecf1ff,
+  98: #f9f9ff,
+  99: #fdfbff,
+  100: #ffffff,
+);
+
+$neutral: (
+  0: #000000,
+  5: #0e1212,
+  10: #191c1d,
+  15: #232627,
+  20: #2e3131,
+  25: #393c3c,
+  30: #444748,
+  35: #505353,
+  40: #5c5f5f,
+  50: #747878,
+  60: #8e9191,
+  70: #a9acac,
+  80: #c4c7c7,
+  90: #e1e3e3,
+  95: #eff1f1,
+  // 97: original row hover color
+  97: #f5f7f7,
+  98: #f8fafa,
+  99: #fbfdfd,
+  100: #ffffff,
+);
+
+$alt-neutral: (
+  55: #6d7c81,
+  75: #c3d0d2,
+  85: #d3ddde,
+  88: #e4eaeb,
+);
+
+$highlight: (
+  'default': #0088ff,
+  'light': #b2dbff,
+  'search': #eeff00,
+);
+
+$site-colors: (
+  'primary': $primary,
+  'neutral': $neutral,
+  'highlight': $highlight,
+  'text': #2a3058,
+);
+
+html {
+  @include map-to-vars.map-scss-vars-into-css-vars($site-colors, 'color');
+}

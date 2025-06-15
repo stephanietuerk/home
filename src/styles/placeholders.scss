@@ -75,21 +75,21 @@
 }
 
 %button-styles {
-  color: $color-highlight;
-  border-bottom: 1px solid $color-highlight;
+  color: colors.$highlight-default;
+  border-bottom: 1px solid colors.$highlight-default;
 }
 
 %button-behavior {
   transition: all 0.2s ease-in-out;
   &:hover {
-    color: $color-highlight;
+    color: colors.$highlight-default;
     font-weight: 700;
   }
 }
 
 %section-header {
   @include headline-medium;
-  color: $color-highlight;
+  color: colors.$highlight-default;
 }
 
 %flex-column {
@@ -104,11 +104,11 @@
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 
   &:active {
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 
   &:visited {
@@ -149,7 +149,7 @@
 }
 
 %focus-ring-style {
-  outline: 2px solid $color-dark-primary;
+  outline: 2px solid colors.$text;
   outline-offset: 1px;
 }
 
@@ -163,45 +163,45 @@
 
 /* ---- COMPONENTS ---- */
 %navbar {
-  min-height: $project-navbar-height;
+  min-height: $app-navbar-height;
   flex-shrink: 0;
   background: rgba(white, 0.9);
   padding: 0 1.5rem 0.5rem 1.5rem;
 }
 
-%content-component-host {
+%project-host {
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
 
-%content-component-navbar {
+%project-navbar {
   position: fixed;
   top: 0;
   z-index: 2000;
   width: 100%;
-  min-height: $content-navbar-height;
+  min-height: $project-navbar-height;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.9) 80%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(var(--color-project-bg, #ffffff), 0.9) 0%,
+    rgba(var(--color-project-bg, #ffffff), 0.9) 80%,
+    rgba(var(--color-project-bg, #ffffff), 0) 100%
   );
 }
 
-%content-component-container {
+%project-container-centered-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: $content-navbar-height;
-  padding-top: grid(12);
+  padding-top: $project-navbar-height + 48px;
   padding-bottom: grid(12);
+  background-color: var(--color-project-bg, white);
 }
 
 %comment-button {
   @extend %slab-expressive-bold;
-  border: 2px solid $color-highlight;
-  color: $color-highlight;
-  background: colors.$tertiary-97;
+  border: 2px solid colors.$highlight-default;
+  color: colors.$highlight-default;
+  background: colors.$neutral-97;
   transition: all 0.2s;
 
   &:hover {
@@ -211,16 +211,16 @@
   }
 
   &:disabled {
-    background: colors.$tertiary-97;
-    color: rgba($color-highlight, 0.5);
-    border: 2px solid colors.$tertiary-97;
+    background: colors.$neutral-97;
+    color: rgba(colors.$highlight-default, 0.5);
+    border: 2px solid colors.$neutral-97;
   }
 }
 
 /* ---- MATERIAL COMPONENTS ---- */
 %mat-form-field-outline {
   &.mat-focused .mat-form-field-outline-thick {
-    color: $color-dark-primary;
+    color: colors.$text;
   }
 
   .mat-form-field-wrapper {
@@ -407,23 +407,23 @@
       // color: colors.$muted-blue-700;
 
       &:hover:not(.disabled):not(.selected) {
-        background: colors.$tertiary-97;
+        background: colors.$neutral-97;
         // color: colors.$blue-800;
       }
 
       &:hover.multi {
-        background: colors.$tertiary-97;
+        background: colors.$neutral-97;
       }
 
       &.current:not(.disabled) {
         // color: colors.$blue-800;
 
         &.multi {
-          background: colors.$tertiary-97;
+          background: colors.$neutral-97;
         }
 
         &:not(.selected) {
-          background: colors.$tertiary-97;
+          background: colors.$neutral-97;
         }
       }
 

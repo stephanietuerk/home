@@ -1,15 +1,36 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'colors';
+@use 'functions' as *;
+@use 'mixins' as *;
+@use 'sass:color';
 
 :host {
-  @extend %content-component-host;
+  @extend %project-host;
+}
+
+.styles-container {
+  display: contents;
+
+  &.federal-data-platform {
+    --color-project-bg: #{colors.$neutral-98};
+  }
 }
 
 .project-navbar {
-  @extend %content-component-navbar;
+  @extend %project-navbar;
+
+  &.case-study {
+    $color: #f8fafa; //neutral-98
+    background: linear-gradient(
+      to bottom,
+      rgba($color, 0.9) 0%,
+      rgba($color, 0.9) 80%,
+      rgba($color, 0) 100%
+    );
+  }
 }
 
 .project-container {
-  @extend %content-component-container;
+  @extend %project-container-centered-column;
 }

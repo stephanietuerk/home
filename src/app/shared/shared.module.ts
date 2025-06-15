@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { ProjectNavbarComponent } from '../projects/project-navbar/project-navbar.component';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
-import { ContentNavbarComponent } from './components/content-navbar/content-navbar.component';
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 import { RadioInputComponent } from './components/radio-input/radio-input.component';
 import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.component';
@@ -16,7 +16,7 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
   imports: [
     CheckboxGroupComponent,
     CheckboxInputComponent,
-    ContentNavbarComponent,
+    ProjectNavbarComponent,
     HighlightRowOnHoverDirective,
     HoverClassOnSiblingsDirective,
     RadioGroupComponent,
@@ -30,7 +30,7 @@ import { StylesDisplayComponent } from './styles-display/styles-display.componen
   exports: [
     CheckboxGroupComponent,
     CheckboxInputComponent,
-    ContentNavbarComponent,
+    ProjectNavbarComponent,
     HighlightRowOnHoverDirective,
     HoverClassOnSiblingsDirective,
     RadioGroupComponent,

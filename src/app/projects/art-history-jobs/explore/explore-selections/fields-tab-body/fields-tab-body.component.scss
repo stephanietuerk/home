@@ -39,16 +39,16 @@
 
     .label:not(.selected) {
       @extend %slab-expressive-semibold;
-      border: 1px solid colors.$tertiary-90;
+      border: 1px solid colors.$neutral-90;
       background-color: white;
-      color: colors.$tertiary-60;
+      color: colors.$neutral-60;
     }
 
     .label:not(.selected):hover {
       @extend %slab-expressive-extrabold;
-      background: colors.$tertiary-95;
+      background: colors.$neutral-95;
       color: var(--color);
-      border: 1px solid colors.$tertiary-80;
+      border: 1px solid colors.$neutral-80;
     }
   }
 }

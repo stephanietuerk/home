@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 :host {
   display: flex;
@@ -24,7 +25,7 @@
 
 .external-link {
   @extend %sans-regular;
-  color: $color-highlight;
+  color: colors.$highlight-default;
 
   &:hover {
     text-decoration: underline;

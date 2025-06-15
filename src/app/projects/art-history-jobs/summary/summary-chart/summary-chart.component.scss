@@ -49,7 +49,7 @@
   .year-row {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $color-dark-primary;
+    border-bottom: 1px solid colors.$text;
   }
 
   .total-label {

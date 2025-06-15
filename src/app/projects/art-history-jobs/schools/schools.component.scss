@@ -11,10 +11,10 @@
   width: 100%;
 
   --combobox-border-radius: 4px;
-  --combobox-border-color: var(--color-tertiary-90);
-  --combobox-border-color-hover: var(--color-tertiary-80);
-  --listbox-option-selected-background: var(--color-tertiary-97);
-  --listbox-option-hover-background: var(--color-tertiary-95);
+  --combobox-border-color: var(--color-neutral-90);
+  --combobox-border-color-hover: var(--color-neutral-80);
+  --listbox-option-selected-background: var(--color-neutral-97);
+  --listbox-option-hover-background: var(--color-neutral-95);
 
   .section-header {
     @extend %h5;
@@ -112,16 +112,16 @@
           }
 
           .country-name {
-            color: $color-highlight;
+            color: colors.$highlight-default;
             font-weight: 500;
           }
 
           .num-schools {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
 
           .expand-icon {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
         }
       }
@@ -135,15 +135,15 @@
       }
 
       &:hover {
-        background-color: colors.$tertiary-97;
+        background-color: colors.$neutral-97;
 
         &:not(.mat-expanded) {
-          background-color: colors.$tertiary-97;
-          border-bottom: 1px solid $color-highlight;
+          background-color: colors.$neutral-97;
+          border-bottom: 1px solid colors.$highlight-default;
         }
 
         .expand-icon {
-          color: $color-highlight;
+          color: colors.$highlight-default;
         }
 
         .mat-content {
@@ -152,7 +152,7 @@
 
         .country-name,
         .num-schools {
-          color: $color-highlight;
+          color: colors.$highlight-default;
         }
       }
     }
@@ -253,7 +253,7 @@
     justify-content: flex-end;
 
     .highlight {
-      background-color: $color-search-highlight;
+      background-color: colors.$highlight-search;
     }
   }
 

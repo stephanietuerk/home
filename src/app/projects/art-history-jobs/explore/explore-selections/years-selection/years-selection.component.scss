@@ -2,6 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 @import 'nouislider/dist/nouislider.min.css';
 
 .noUi-art-history {
@@ -21,7 +22,7 @@
   }
 
   .noUi-connect {
-    background: $color-highlight;
+    background: colors.$highlight-default;
   }
 
   .noUi-handle {

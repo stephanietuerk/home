@@ -1,0 +1,60 @@
+@use 'functions' as *;
+@use 'typography' as *;
+@use 'colors';
+
+:host {
+  width: 100%; // ensures that wide constainers shrink with browser window
+  min-height: 100vh;
+
+  --grid-col-width: 148px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns:
+    1fr 48px repeat(9, 148px) calc(48px)
+    1fr;
+  margin-bottom: grid(8);
+}
+
+.section-title {
+  @include label-small;
+  @extend %sans-medium;
+  grid-column: 3 / 8;
+  border-bottom: 1px solid colors.$neutral-20;
+  margin-bottom: grid(4);
+  padding-bottom: grid(2);
+  margin-right: grid(2);
+}
+
+.description {
+  grid-column: 3 / 8;
+  margin-bottom: grid(5);
+  line-height: 1.65;
+  margin-right: grid(2);
+}
+
+.caption-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-top: 1px solid colors.$neutral-80;
+  grid-column: 8 / 9;
+  margin: grid(3) grid(4) 0 grid(2);
+}
+
+.gutter-image-caption {
+  @include body-2xs;
+  margin-top: grid(2);
+}
+
+.gutter-item {
+  grid-column: 9 / 12;
+  height: 0;
+  overflow-y: visible;
+}
+
+.gutter-image {
+  height: auto;
+  border: 1px solid colors.$neutral-95;
+}

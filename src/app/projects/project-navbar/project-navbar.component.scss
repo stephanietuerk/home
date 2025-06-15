@@ -3,6 +3,7 @@
 @use 'functions' as *;
 @use 'mixins' as *;
 @use 'typography' as *;
+@use 'colors';
 
 $breakpoint-1: 690px;
 $breakpoint-2: 620px;
@@ -44,7 +45,7 @@ $breakpoint-4: 400px;
   font-size: clamp(0.8rem, 1.2vw, 1rem);
 
   &:hover {
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 }
 

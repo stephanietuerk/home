@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 :host {
   --max-section-width: 1240px;
@@ -57,7 +58,7 @@
 .link-to-section {
   @extend %sans-regular;
   cursor: pointer;
-  color: $color-highlight;
+  color: colors.$highlight-default;
   font-size: 1rem;
   font-variation-settings: 'wght' 450;
 
@@ -68,7 +69,7 @@
 
 .external-link {
   @extend %sans-regular;
-  color: $color-highlight;
+  color: colors.$highlight-default;
   font-variation-settings: 'wght' 450;
 
   &:hover {

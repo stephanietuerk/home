@@ -1,15 +1,41 @@
 import {
-  artHistoryJobsPath,
-  beyondPath,
-  flipPath,
-  leavingPath,
+  artHistoryJobsId,
+  beyondId,
+  composableVizId,
+  covidTestingId,
+  federalDataPlatformId,
+  flipId,
+  leavingId,
   projectsPath,
 } from '../core/constants/routing.constants';
 import { Project, ProjectType } from '../core/models/project.model';
 
 export const PROJECTS: Project[] = [
   {
-    id: 'art-history-jobs',
+    id: federalDataPlatformId,
+    title: 'Federal Healthcare Data Platform',
+    type: ProjectType.caseStudy,
+    year: '2023—2025',
+    description: [],
+    images: [],
+    links: [
+      {
+        name: 'Case study',
+        routerLink: `${projectsPath}/${federalDataPlatformId}`,
+      },
+    ],
+  },
+  {
+    id: composableVizId,
+    title: 'Composable Data Visualization Components Library',
+    type: ProjectType.caseStudy,
+    year: '2022—2025',
+    description: [],
+    images: [],
+    links: [],
+  },
+  {
+    id: artHistoryJobsId,
     title: 'Art History Jobs, 2011—2023',
     type: ProjectType.dataViz,
     year: '2020—2023',
@@ -32,7 +58,7 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'interactive project (2023)',
-        routerLink: `${projectsPath}/${artHistoryJobsPath}`,
+        routerLink: `${projectsPath}/${artHistoryJobsId}`,
       },
       {
         name: 'notebook (2020)',
@@ -41,7 +67,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: 'leaving-academia-faq',
+    id: leavingId,
     title: 'Leaving Academia FAQ',
     type: ProjectType.writing,
     year: 2021,
@@ -51,7 +77,7 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'Post',
-        routerLink: `${projectsPath}/${leavingPath}`,
+        routerLink: `${projectsPath}/${leavingId}`,
       },
     ],
     allowComments: false,
@@ -60,7 +86,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    id: 'covid-school-testing',
+    id: covidTestingId,
     title: 'COVID School Testing Tool',
     type: ProjectType.dataViz,
     year: 2021,
@@ -143,7 +169,7 @@ export const PROJECTS: Project[] = [
     professional: true,
   },
   {
-    id: 'beyond-the-county-line',
+    id: beyondId,
     title: 'Beyond the County Line',
     type: ProjectType.dataViz,
     year: 2017,
@@ -165,12 +191,12 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'visualization',
-        routerLink: `${projectsPath}/${beyondPath}`,
+        routerLink: `${projectsPath}/${beyondId}`,
       },
     ],
   },
   {
-    id: 'flip-the-district',
+    id: flipId,
     title: 'Flip the District',
     type: ProjectType.dataViz,
     year: 2017,
@@ -190,7 +216,7 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'visualization',
-        routerLink: `${projectsPath}/${flipPath}`,
+        routerLink: `${projectsPath}/${flipId}`,
       },
     ],
   },

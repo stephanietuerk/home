@@ -4,7 +4,7 @@
 @use 'colors';
 @use 'typography' as *;
 
-$leaving-highlight: $color-highlight;
+$leaving-highlight: colors.$highlight-default;
 
 .faq-container {
   --max-section-width: 800px;
@@ -76,8 +76,8 @@ $leaving-highlight: $color-highlight;
     svg {
       height: 14px;
       width: 21px;
-      fill: $color-dark-primary;
-      stroke: $color-dark-primary;
+      fill: colors.$text;
+      stroke: colors.$text;
     }
   }
 }

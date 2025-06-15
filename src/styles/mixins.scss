@@ -39,7 +39,7 @@
 
 @mixin padded-scrollbar($padding) {
   &::-webkit-scrollbar-track {
-    background-color: colors.$tertiary-97;
+    background-color: colors.$neutral-97;
   }
 
   &::-webkit-scrollbar-thumb {

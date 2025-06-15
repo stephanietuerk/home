@@ -4,7 +4,7 @@
 @use 'functions' as *;
 
 .arrows-container {
-  $arrow-color: $color-dark-primary;
+  $arrow-color: colors.$text;
   $arrow-color-unselected: color.scale($arrow-color, $lightness: 75%);
 
   display: flex;

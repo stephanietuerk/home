@@ -17,7 +17,7 @@
 
   .selectors-container {
     display: flex;
-    background: colors.$tertiary-97;
+    background: colors.$neutral-97;
     padding: grid(3);
     border-radius: grid(1);
 
@@ -125,7 +125,7 @@
       font-size: 1rem;
       height: 42px;
       padding: grid(1) grid(2);
-      border: 1px solid colors.$tertiary-90;
+      border: 1px solid colors.$neutral-90;
       border-radius: grid(1);
       flex-grow: 1;
 
@@ -133,23 +133,23 @@
         @extend %sans-light;
         font-size: 1rem;
         flex-grow: 1;
-        color: colors.$tertiary-70;
+        color: colors.$neutral-70;
         font-style: italic;
         opacity: 1;
       }
 
       &:focus {
-        border: 1px solid colors.$tertiary-80;
+        border: 1px solid colors.$neutral-80;
         outline: none;
 
         &::placeholder {
-          color: colors.$tertiary-60;
+          color: colors.$neutral-60;
         }
       }
 
       &:hover {
         outline: none;
-        border: 1px solid colors.$tertiary-80;
+        border: 1px solid colors.$neutral-80;
 
         &::placeholder {
           color: $color-dark-gray;
@@ -161,7 +161,7 @@
       position: absolute;
       right: grid(2);
       top: 7px;
-      color: colors.$tertiary-40;
+      color: colors.$neutral-40;
     }
   }
 
@@ -285,8 +285,8 @@
     }
 
     .mat-button-toggle-checked {
-      background: rgba($color-dark-primary, 0.5);
-      background: $color-highlight;
+      background: rgba(colors.$text, 0.5);
+      background: colors.$highlight-default;
       color: white;
     }
 

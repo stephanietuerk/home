@@ -2,6 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .change-chart-container {
   .instruction {
@@ -11,7 +12,7 @@
 
     .end-year {
       @extend %slab-expressive-semibold;
-      color: $color-highlight;
+      color: colors.$highlight-default;
       font-size: 0.9rem;
     }
   }
@@ -32,7 +33,7 @@
 
   .tenure-rank {
     @extend %sans-medium;
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 }
 
@@ -65,11 +66,11 @@
     line-height: 1.1;
     font-weight: 600;
     color: var(--color);
-    border-bottom: 1px solid $color-dark-primary;
+    border-bottom: 1px solid colors.$text;
     padding-bottom: grid(1);
 
     .value-label {
-      color: $color-dark-primary;
+      color: colors.$text;
     }
   }
 

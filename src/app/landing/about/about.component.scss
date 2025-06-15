@@ -12,7 +12,7 @@
 
   .section-header {
     @extend %section-header;
-    color: $color-highlight;
+    color: colors.$highlight-default;
     text-align: center;
     margin-bottom: grid(8);
   }
@@ -47,12 +47,12 @@
     transition: background-color 0.25s ease-in-out;
 
     &:hover {
-      color: $color-highlight;
-      background-color: colors.$tertiary-97;
+      color: colors.$highlight-default;
+      background-color: colors.$neutral-97;
 
       .arrow-icon svg {
-        fill: $color-highlight;
-        stroke: $color-highlight;
+        fill: colors.$highlight-default;
+        stroke: colors.$highlight-default;
       }
     }
 
@@ -64,7 +64,7 @@
   .expanded-content {
     margin-top: grid(4);
     padding-top: grid(8);
-    border-top: 1px solid colors.$tertiary-90;
+    border-top: 1px solid colors.$neutral-90;
   }
 
   .arrow-icon {
@@ -83,8 +83,8 @@
       overflow: visible;
       display: block;
       width: grid(5);
-      fill: $color-dark-primary;
-      stroke: $color-dark-primary;
+      fill: colors.$text;
+      stroke: colors.$text;
     }
   }
 }

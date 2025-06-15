@@ -1,9 +1,10 @@
-@forward 'themes';
+@forward 'tokens';
 @use '@angular/cdk';
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'reset' as *;
+@use 'colors';
 @import '@angular/cdk/overlay-prebuilt.css';
 
 @font-face {
@@ -24,27 +25,28 @@
 }
 
 @include cdk.a11y-visually-hidden();
-@include css-reset('Red Hat Text', $color-dark-primary);
+@include css-reset('Red Hat Text', colors.$text);
 
+// need this for combobox
 html {
-  --color-muted-primary-0: var(--color-tertiary-0);
-  --color-muted-primary-5: var(--color-tertiary-5);
-  --color-muted-primary-10: var(--color-tertiary-10);
-  --color-muted-primary-15: var(--color-tertiary-15);
-  --color-muted-primary-20: var(--color-tertiary-20);
-  --color-muted-primary-25: var(--color-tertiary-25);
-  --color-muted-primary-30: var(--color-tertiary-30);
-  --color-muted-primary-35: var(--color-tertiary-35);
-  --color-muted-primary-40: var(--color-tertiary-40);
-  --color-muted-primary-50: var(--color-tertiary-50);
-  --color-muted-primary-60: var(--color-tertiary-60);
-  --color-muted-primary-70: var(--color-tertiary-70);
-  --color-muted-primary-80: var(--color-tertiary-80);
-  --color-muted-primary-90: var(--color-tertiary-90);
-  --color-muted-primary-95: var(--color-tertiary-95);
-  --color-muted-primary-98: var(--color-tertiary-98);
-  --color-muted-primary-99: var(--color-tertiary-99);
-  --color-muted-primary-100: var(--color-tertiary-100);
+  --color-muted-primary-0: var(--color-neutral-0);
+  --color-muted-primary-5: var(--color-neutral-5);
+  --color-muted-primary-10: var(--color-neutral-10);
+  --color-muted-primary-15: var(--color-neutral-15);
+  --color-muted-primary-20: var(--color-neutral-20);
+  --color-muted-primary-25: var(--color-neutral-25);
+  --color-muted-primary-30: var(--color-neutral-30);
+  --color-muted-primary-35: var(--color-neutral-35);
+  --color-muted-primary-40: var(--color-neutral-40);
+  --color-muted-primary-50: var(--color-neutral-50);
+  --color-muted-primary-60: var(--color-neutral-60);
+  --color-muted-primary-70: var(--color-neutral-70);
+  --color-muted-primary-80: var(--color-neutral-80);
+  --color-muted-primary-90: var(--color-neutral-90);
+  --color-muted-primary-95: var(--color-neutral-95);
+  --color-muted-primary-98: var(--color-neutral-98);
+  --color-muted-primary-99: var(--color-neutral-99);
+  --color-muted-primary-100: var(--color-neutral-100);
 }
 
 body {
