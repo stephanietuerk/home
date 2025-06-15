@@ -127,7 +127,7 @@
       }
 
       &:not(.mat-expanded):not(:hover) {
-        border-bottom: 1px solid $color-light-gray-dark;
+        border-bottom: 1px solid colors.$alt-neutral-75;
       }
 
       &.cdk-keyboard-focused {
@@ -198,7 +198,7 @@
     }
 
     .mat-expansion-panel-content {
-      // border-bottom: 1px solid $color-dark-gray;
+      // border-bottom: 1px solid colors.$alt-neutral-5;
       padding: 0 grid(2);
       background-color: white;
       overflow: hidden;

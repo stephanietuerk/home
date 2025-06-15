@@ -49,7 +49,7 @@
     padding: $cell-vertical-padding $cell-side-padding;
 
     &.header {
-      border-bottom: 1px solid $color-light-gray-dark;
+      border-bottom: 1px solid colors.$alt-neutral-75;
     }
 
     &.data {
@@ -58,7 +58,7 @@
   }
 
   .tbody .row .cell {
-    border-bottom: 1px solid $color-light-gray-medium;
+    border-bottom: 1px solid colors.$alt-neutral-85;
   }
 
   .left {

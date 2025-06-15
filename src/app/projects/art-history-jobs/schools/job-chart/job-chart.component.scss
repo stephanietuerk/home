@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 .job-rect {
   width: 100%;
@@ -17,7 +18,7 @@
 }
 
 .job-tooltip-container {
-  $tt-outline-color: $color-light-gray-medium;
+  $tt-outline-color: colors.$alt-neutral-85;
   $tt-background-color: rgba(white, 0.95);
   max-width: 340px;
 
@@ -60,7 +61,7 @@
 
       &.last {
         padding-bottom: grid(2);
-        border-bottom: 1px solid $color-dark-gray;
+        border-bottom: 1px solid colors.$alt-neutral-55;
       }
     }
   }

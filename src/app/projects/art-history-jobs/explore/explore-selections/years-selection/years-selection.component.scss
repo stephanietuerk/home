@@ -55,14 +55,14 @@
       font-size: 0.8rem;
       line-height: 1.2rem;
       top: -4px;
-      color: $color-light-gray-dark;
+      color: colors.$alt-neutral-75;
       display: none;
     }
 
     .noUi-marker {
       height: 8px;
       width: 1px;
-      background: $color-light-gray-dark;
+      background: colors.$alt-neutral-75;
     }
   }
 }

@@ -46,6 +46,7 @@ $neutral: (
 
 $alt-neutral: (
   55: #6d7c81,
+  65: #98a6a9,
   75: #c3d0d2,
   85: #d3ddde,
   88: #e4eaeb,
@@ -60,6 +61,7 @@ $highlight: (
 $site-colors: (
   'primary': $primary,
   'neutral': $neutral,
+  'alt-neutral': $alt-neutral,
   'highlight': $highlight,
   'text': #2a3058,
 );

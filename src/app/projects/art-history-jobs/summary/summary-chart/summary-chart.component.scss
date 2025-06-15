@@ -17,7 +17,7 @@
 
   .tooltip-line {
     position: relative;
-    border-left: 2px dashed $color-light-gray-medium;
+    border-left: 2px dashed colors.$alt-neutral-85;
     align-self: center;
     flex-grow: 1;
   }
@@ -35,13 +35,13 @@
 
   .left-space {
     flex-basis: 50%;
-    border-right: 2px dotted $color-light-gray-light;
+    border-right: 2px dotted colors.$alt-neutral-88;
     mix-blend-mode: difference;
   }
 
   .tooltip-container {
     background: rgba(white, 0.93);
-    border: 1px solid $color-light-gray-light;
+    border: 1px solid colors.$alt-neutral-88;
     padding: grid(2);
     border-radius: grid(1);
   }
@@ -78,7 +78,7 @@
     justify-content: space-between;
     padding-bottom: 2px;
     padding-top: 2px;
-    border-bottom: 1px solid $color-light-gray-light;
+    border-bottom: 1px solid colors.$alt-neutral-88;
   }
 
   .values-container {

@@ -128,8 +128,8 @@
   scrollbar-track-color: #edf1f4;
   -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
   scrollbar-3dlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-arrow-color: $color-light-gray-dark;
-  scrollbar-arrow-color: $color-light-gray-dark;
+  -ms-scrollbar-arrow-color: colors.$alt-neutral-75;
+  scrollbar-arrow-color: colors.$alt-neutral-75;
   scrollbar-color: $color-scrollbar-ie #fff;
 }
 
@@ -307,7 +307,7 @@
   .combobox-component {
     .combobox-textbox {
       background: white;
-      border: 1px solid $color-light-gray-light;
+      border: 1px solid colors.$alt-neutral-88;
       padding: grid(3);
       // color: colors.$muted-blue-700;
     }
@@ -324,9 +324,9 @@
 
     .combobox-listbox.open {
       background: white;
-      border-right: 1px solid $color-light-gray-light;
-      border-bottom: 1px solid $color-light-gray-light;
-      border-left: 1px solid $color-light-gray-light;
+      border-right: 1px solid colors.$alt-neutral-88;
+      border-bottom: 1px solid colors.$alt-neutral-88;
+      border-left: 1px solid colors.$alt-neutral-88;
       border-radius: 2px;
     }
   }
@@ -335,7 +335,7 @@
 /* ---- DEFAULT COMBOBOX STYLING ---- */
 %combobox-styles {
   $border-radius: grid(1);
-  $open-border-color: $color-light-gray-dark;
+  $open-border-color: colors.$alt-neutral-75;
 
   .combobox-component {
     .combobox-label {
@@ -346,7 +346,7 @@
 
     .combobox-textbox {
       background: white;
-      border: 1px solid $color-light-gray-light;
+      border: 1px solid colors.$alt-neutral-88;
       border-radius: $border-radius;
       padding: grid(3);
       // color: colors.$muted-blue-700;
@@ -360,7 +360,7 @@
         border-left-color: $open-border-color;
         border-top-color: $open-border-color;
         border-right-color: $open-border-color;
-        border-bottom-color: $color-light-gray-light;
+        border-bottom-color: colors.$alt-neutral-88;
         border-radius: $border-radius $border-radius 0 0;
       }
     }
@@ -428,7 +428,7 @@
       }
 
       &.selected:not(.multi) {
-        background: $color-light-gray-light;
+        background: colors.$alt-neutral-88;
         // color: colors.$blue-800;
         font-weight: 500;
       }
