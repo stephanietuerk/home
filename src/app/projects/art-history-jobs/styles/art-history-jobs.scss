@@ -37,7 +37,7 @@
   }
 
   .radio-input-label {
-    @extend %slab-expressive-regular;
+    @include font-mono-expressive-regular;
     font-size: 0.85rem;
     letter-spacing: 0.05rem;
     padding: grid(2) grid(4) grid(1) grid(4);

@@ -50,7 +50,7 @@
 
   .table-cell.header {
     @include label-xs-caps;
-    @extend %sans-medium;
+    @include font-sans-medium;
     font-variation-settings:
       'wght' 700,
       'MONO' 0,

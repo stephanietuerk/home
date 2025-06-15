@@ -24,7 +24,7 @@
 }
 
 .project-link {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   color: colors.$highlight-default;
   display: inline-flex;
   align-items: center;
@@ -48,7 +48,7 @@
 }
 
 .project-link:hover {
-  @extend %slab-expressive-bold;
+  @include font-mono-expressive-bold;
   text-decoration: underline;
 }
 

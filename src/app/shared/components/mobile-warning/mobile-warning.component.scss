@@ -14,7 +14,7 @@
   background: var(--mobile-warning-bg, colors.$neutral-97);
   border: 1px solid var(--mobile-warning-bg-border, colors.$neutral-90);
   font-size: 0.9rem;
-  box-shadow: $drop-shadow-wide;
+  box-shadow: var(--shadow-md-spread);
   z-index: 2000;
   display: flex;
   flex-direction: column;

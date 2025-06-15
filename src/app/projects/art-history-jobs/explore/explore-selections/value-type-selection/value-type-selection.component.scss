@@ -3,6 +3,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .radio-input-group {
   flex-grow: 1;
@@ -28,7 +29,7 @@
 }
 
 .radio-input-label {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   height: 100%;
   display: flex;
   align-items: center;

@@ -3,75 +3,12 @@
 @use 'typography' as *;
 @use 'colors';
 
-/* ---- TYPOGRAPHY ---- */
-/* ---- Primatives ---- */
-
-%h1 {
-  @include display-large;
-}
-
-%h2 {
-  @include display-medium;
-}
-
-%h3 {
-  @include display-small;
-}
-
-%h4 {
-  @include headline-medium;
-}
-
-%h5 {
-  @include title-large;
-}
-
-%h6 {
-  @include title-medium;
-}
-
-%small-caps-slab-bold {
-  @include label-medium-caps-prominent;
-}
-
-%subtitle1 {
-  @include label-medium;
-}
-
-%subtitle2 {
-  @include label-small;
-}
-
-%body1 {
-  @include body-medium;
-}
-
-%body2 {
-  @include body-xs;
-}
-
 %button {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   @extend %button-styles;
   font-size: 0.875rem;
   letter-spacing: 1.25px;
   text-transform: uppercase;
-}
-
-%caption {
-  @include label-2xs;
-}
-
-%overline {
-  @include label-large-caps;
-}
-
-%small-caps-overline {
-  @include label-large-caps;
-}
-
-%instructions {
-  @extend %sans-light;
 }
 
 %button-styles {
@@ -98,7 +35,7 @@
 }
 
 %nav-link {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -198,7 +135,7 @@
 }
 
 %comment-button {
-  @extend %slab-expressive-bold;
+  @include font-mono-expressive-bold;
   border: 2px solid colors.$highlight-default;
   color: colors.$highlight-default;
   background: colors.$neutral-97;
@@ -206,7 +143,7 @@
 
   &:hover {
     cursor: pointer;
-    @extend %slab-expressive-extrabold;
+    @include font-mono-expressive-extrabold;
     background: white;
   }
 
@@ -289,7 +226,7 @@
   min-width: calc(100% + 16px) !important;
 
   &.mat-select-panel:not([class*='mat-elevation-z']) {
-    box-shadow: $drop-shadow-light;
+    box-shadow: var(--shadow-sm-ultra-soft);
   }
 }
 

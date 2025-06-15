@@ -3,15 +3,16 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .change-chart-container {
   .instruction {
     padding: 0 grid(3) grid(1) grid(3);
-    @extend %subtitle2;
+    @include label-small;
     line-height: 1.2;
 
     .end-year {
-      @extend %slab-expressive-semibold;
+      @include font-mono-expressive-semibold;
       color: colors.$highlight-default;
       font-size: 0.9rem;
     }
@@ -32,7 +33,7 @@
   }
 
   .tenure-rank {
-    @extend %sans-medium;
+    @include font-sans-medium;
     color: colors.$highlight-default;
   }
 }
@@ -56,7 +57,7 @@
   }
 
   .tooltip-label {
-    @extend %slab-expressive-regular;
+    @include font-mono-expressive-regular;
     display: flex;
     flex-direction: column;
     line-height: 1rem;
@@ -75,7 +76,7 @@
   }
 
   .value-label {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     font-size: 0.7rem;
     line-height: 1rem;

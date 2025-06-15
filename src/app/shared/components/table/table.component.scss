@@ -1,6 +1,8 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 .table-component {
   $cell-side-padding: grid(3);
@@ -12,7 +14,7 @@
     display: flex;
     align-items: center;
     padding: 0;
-    @extend %small-caps-overline;
+    @include large-label-caps;
     text-transform: uppercase;
 
     &.left {
@@ -25,11 +27,11 @@
     }
 
     &:not(.sorted) {
-      @extend %sans-medium;
+      @include font-sans-medium;
     }
 
     &.sorted {
-      @extend %sans-bold;
+      @include font-sans-bold;
     }
 
     &.sortable {
@@ -53,7 +55,7 @@
     }
 
     &.data {
-      @extend %sans-medium;
+      @include font-sans-medium;
     }
   }
 

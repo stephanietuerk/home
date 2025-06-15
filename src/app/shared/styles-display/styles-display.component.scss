@@ -1,47 +1,47 @@
 @use 'vars' as *;
-@use 'placeholders' as *;
+@use 'typography' as *;
 @use 'functions' as *;
 
 .h1-placeholder {
-  @extend %h1;
+  @include display-large;
 }
 .h2-placeholder {
-  @extend %h2;
+  @include display-medium;
 }
 .h3-placeholder {
-  @extend %h3;
+  @include display-small;
 }
 .h4-placeholder {
-  @extend %h4;
+  @include headline-medium;
 }
 .h5-placeholder {
-  @extend %h5;
+  @include title-large;
 }
 
 .subtitle1-placeholder {
-  @extend %subtitle1;
+  @include label-medium;
 }
 .subtitle2-placeholder {
-  @extend %subtitle2;
+  @include label-small;
 }
 .body1-placeholder {
-  @extend %body1;
+  @include body-medium;
 }
 .body2-placeholder {
-  @extend %body2;
+  @include body-xs;
 }
 .button-placeholder {
   @extend %button;
 }
 .caption-placeholder {
-  @extend %caption;
+  @include label-2xs;
 }
 .overline-placeholder {
-  @extend %overline;
+  @include label-large-caps;
 }
 .small-caps-instructions {
-  @extend %small-caps-overline;
+  @include label-medium-caps;
 }
 .instructions {
-  @extend %instructions;
+  @include sans-light;
 }

@@ -15,13 +15,13 @@
 }
 
 .instruction-label {
-  @extend %subtitle2;
-  @extend %slab-standard-semibold;
+  @include label-small;
+  @include font-mono-standard-semibold;
   padding-bottom: grid(2);
 }
 
 .instruction-text {
-  @extend %sans-regular;
+  @include font-sans-regular;
   font-style: normal;
   font-weight: 300;
   font-size: 0.875rem;
@@ -29,7 +29,7 @@
 }
 
 .label-ref-text {
-  @extend %sans-medium;
+  @include font-sans-medium;
 }
 
 .variable-use-selection-component {

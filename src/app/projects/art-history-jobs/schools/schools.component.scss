@@ -17,7 +17,7 @@
   --listbox-option-hover-background: var(--color-neutral-95);
 
   .section-header {
-    @extend %h5;
+    @include title-large;
     text-align: center;
     padding-bottom: grid(4);
   }
@@ -71,7 +71,7 @@
   }
 
   .legend-text {
-    @extend %sans-light;
+    @include font-sans-light;
     font-size: 0.9rem;
     line-height: 1.2;
   }
@@ -108,7 +108,7 @@
         .mat-content {
           .country-name,
           .num-schools {
-            @extend %sans-medium;
+            @include font-sans-medium;
           }
 
           .country-name {
@@ -172,7 +172,7 @@
       transition: border-bottom 0.2s ease-in-out;
 
       .country-name {
-        @extend %sans-regular;
+        @include font-sans-regular;
         font-size: 1rem;
         line-height: 1.2;
       }
@@ -198,7 +198,7 @@
     }
 
     .mat-expansion-panel-content {
-      // border-bottom: 1px solid colors.$alt-neutral-5;
+      // border-bottom: 1px solid colors.$alt-neutral-55;
       padding: 0 grid(2);
       background-color: white;
       overflow: hidden;
@@ -243,7 +243,7 @@
   }
 
   .school-name {
-    @extend %slab-expressive-medium;
+    @include font-mono-expressive-medium;
     font-size: 0.9rem;
     line-height: 1;
     padding-bottom: grid(1);
@@ -258,7 +258,7 @@
   }
 
   .no-schools-text {
-    @extend %sans-medium;
+    @include font-sans-medium;
     padding: grid(6) grid(4);
   }
 }

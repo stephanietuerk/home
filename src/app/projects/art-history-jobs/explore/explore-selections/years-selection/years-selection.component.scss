@@ -30,7 +30,7 @@
     width: $size;
     height: $size;
     border-radius: 50%;
-    box-shadow: $drop-shadow-lightest;
+    box-shadow: var(--showdow-sm-ultra-soft);
     top: -4px;
     right: -10px;
 

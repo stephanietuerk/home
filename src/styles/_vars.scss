@@ -1,0 +1,46 @@
+@use 'sass:color';
+@use 'functions' as *;
+@use 'colors';
+
+$color-scrollbar: colors.$alt-neutral-65;
+$color-scrollbar-ie: $color-scrollbar;
+
+$vertical-scrollbar-thickness: grid(3);
+$horizontal-scrollbar-thickness: grid(3);
+$app-navbar-height: 48px;
+$project-navbar-height: 60px;
+$color-focus-ring: colors.$text;
+
+$viewport-width-xs: 576px;
+$viewport-width-sm: 768px;
+$viewport-width-md: 992px;
+$viewport-width-lg: 1200px;
+$viewport-width-xl: 1400px;
+
+$global-overlay-z-index: 1010;
+
+/* ----- MATERIAL COMPONENTS ----- */
+$mat-form-field-vertical-padding: grid(3);
+$mat-form-field-horizontal-padding: grid(2);
+$mat-placeholder-color: rgba(0, 0, 0, 0.42);
+
+/* ---- POPUP MESSAGES ---- */
+%message-close-button-styles {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: grid(1);
+
+  .button-label {
+    display: inline-block;
+    padding-left: grid(1);
+  }
+
+  &:hover {
+    background: colors.$highlight-light;
+
+    .button-label {
+      text-decoration: underline;
+    }
+  }
+}

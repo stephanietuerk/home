@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 .cdk-overlay-container,
 .cdk-global-overlay-wrapper,
@@ -53,22 +54,22 @@
   }
 
   .total-label {
-    @extend %overline;
+    @include label-large-caps;
     font-size: 0.8rem;
   }
 
   .tooltip-label.x {
-    @extend %slab-standard-medium;
+    @include font-mono-standard-medium;
   }
 
   .tooltip-label.y {
-    @extend %sans-regular;
+    @include font-sans-regular;
     font-size: 0.85rem;
     line-height: 1;
   }
 
   .tooltip-label.category {
-    @extend %slab-standard-medium;
+    @include font-mono-standard-medium;
     font-size: 0.8rem;
     line-height: 1.3;
   }

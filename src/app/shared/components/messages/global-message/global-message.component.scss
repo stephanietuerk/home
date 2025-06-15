@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .cdk-overlay-container {
   z-index: $global-overlay-z-index;
@@ -43,7 +44,7 @@
   }
 
   .title {
-    @extend %subtitle1;
+    @include label-medium;
   }
 
   .message {

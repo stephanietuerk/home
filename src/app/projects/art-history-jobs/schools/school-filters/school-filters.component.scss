@@ -2,13 +2,14 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .schools-filters-encapsulation-container {
   display: flex;
   flex-direction: column;
 
   .container-title {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
@@ -97,7 +98,7 @@
   }
 
   .selection-label {
-    @extend %subtitle2;
+    @include label-small;
     padding-bottom: grid(1);
     line-height: 1.2;
   }
@@ -121,7 +122,7 @@
     }
 
     .search-input {
-      @extend %sans-regular;
+      @include font-sans-regular;
       font-size: 1rem;
       height: 42px;
       padding: grid(1) grid(2);
@@ -130,7 +131,7 @@
       flex-grow: 1;
 
       &::placeholder {
-        @extend %sans-light;
+        @include font-sans-light;
         font-size: 1rem;
         flex-grow: 1;
         color: colors.$neutral-70;
@@ -152,7 +153,7 @@
         border: 1px solid colors.$neutral-80;
 
         &::placeholder {
-          color: colors.$alt-neutral-5;
+          color: colors.$alt-neutral-55;
         }
       }
     }
@@ -180,7 +181,7 @@
       .dropdown-label {
         // @extend %typography-ui-label-sm-semibold;
         padding-right: grid(2);
-        @extend %sans-regular;
+        @include font-sans-regular;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
         font-size: 0.8rem;

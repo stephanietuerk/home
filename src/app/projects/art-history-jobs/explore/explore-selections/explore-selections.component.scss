@@ -10,7 +10,7 @@
   flex-direction: column;
 
   .container-title {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
@@ -48,7 +48,7 @@
 
       .tab-label {
         color: colors.$highlight-default;
-        @extend %slab-standard-semibold;
+        @include font-mono-standard-semibold;
       }
     }
   }

@@ -30,7 +30,7 @@
   }
 
   .radio-input-label {
-    @extend %slab-expressive-medium;
+    @include font-mono-expressive-medium;
     height: 100%;
     display: flex;
     align-items: center;

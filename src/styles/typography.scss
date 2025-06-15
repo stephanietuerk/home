@@ -5,236 +5,203 @@
   font-feature-settings: 'liga', 'clig';
 }
 
-%slab {
+$standard-slnt: 0;
+$standard-casl: 0;
+$standard-mono: 1;
+$expressive-slnt: 0;
+$expressive-casl: 0.3;
+$expressive-mono: 1;
+
+@mixin font-mono-base {
   @extend %ligatures;
-  font-family: 'Recursive', system-ui, sans-serif;
+  font-family: var(--font-mono, 'Recursive'), system-ui, sans-serif;
 }
 
-%sans {
+@mixin font-sans-base {
   @extend %ligatures;
-  font-family: 'Red Hat Text', system-ui, sans-serif;
+  font-family: var(--font-sans, 'Red Hat Text'), system-ui, sans-serif;
 }
 
-$expressive-slant: 0;
-$standard-slant: 0;
-$expressive-casual: 0.3;
-$standard-casual: 0;
-$expressive-monospace: 1;
-$standard-monospace: 1;
-
-%slab-expressive-regular {
-  @extend %slab;
+@mixin font-mono($weight: 400) {
+  @include font-mono-base;
   font-variation-settings:
-    'wght' 400,
-    'CASL' $expressive-casual,
-    'MONO' $expressive-monospace,
-    'slnt' $expressive-slant;
+    'wght' $weight,
+    'CASL' var(--font-variation-casl, $standard-casl),
+    'MONO' var(--font-variation-mono, $standard-mono),
+    'slnt' var(--font-variation-slnt, $standard-slnt);
 }
 
-%slab-expressive-medium {
-  @extend %slab;
+@mixin font-sans($weight: 500) {
+  @include font-sans-base;
+  font-variation-settings: 'wght' $weight;
+}
+
+@mixin font-mono-expressive($weight: 400) {
+  @include font-mono-base;
   font-variation-settings:
-    'wght' 500,
-    'CASL' $expressive-casual,
-    'MONO' $expressive-monospace,
-    'slnt' $expressive-slant;
+    'wght' $weight,
+    'CASL' var(--font-variation-casl, $expressive-casl),
+    'MONO' var(--font-variation-mono, $expressive-mono),
+    'slnt' var(--font-variation-slnt, $expressive-slnt);
 }
 
-%slab-expressive-semibold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 600,
-    'CASL' $expressive-casual,
-    'MONO' $expressive-monospace,
-    'slnt' $expressive-slant;
+@mixin font-mono-expressive-regular {
+  @include font-mono-expressive(400);
 }
 
-%slab-expressive-bold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 700,
-    'CASL' $expressive-casual,
-    'MONO' $expressive-monospace,
-    'slnt' $expressive-slant;
+@mixin font-mono-expressive-medium {
+  @include font-mono-expressive(500);
 }
 
-%slab-expressive-extrabold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 800,
-    'CASL' $expressive-casual,
-    'MONO' $expressive-monospace,
-    'slnt' $expressive-slant;
+@mixin font-mono-expressive-semibold {
+  @include font-mono-expressive(600);
 }
 
-%slab-standard-regular {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 400,
-    'CASL' $standard-casual,
-    'MONO' $standard-monospace,
-    'slnt' $standard-slant;
+@mixin font-mono-expressive-bold {
+  @include font-mono-expressive(700);
 }
 
-%slab-standard-medium {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 500,
-    'CASL' $standard-casual,
-    'MONO' $standard-monospace,
-    'slnt' $standard-slant;
+@mixin font-mono-expressive-extrabold {
+  @include font-mono-expressive(800);
 }
 
-%slab-standard-semibold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 600,
-    'CASL' $standard-casual,
-    'MONO' $standard-monospace,
-    'slnt' $standard-slant;
+@mixin font-mono-standard-regular {
+  @include font-mono(400);
 }
 
-%slab-standard-bold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 700,
-    'CASL' $standard-casual,
-    'MONO' $standard-monospace,
-    'slnt' $standard-slant;
+@mixin font-mono-standard-medium {
+  @include font-mono(500);
 }
 
-%slab-standard-extrabold {
-  @extend %slab;
-  font-variation-settings:
-    'wght' 800,
-    'CASL' $standard-casual,
-    'MONO' $standard-monospace,
-    'slnt' $standard-slant;
+@mixin font-mono-standard-semibold {
+  @include font-mono(600);
 }
 
-%sans-light {
-  @extend %sans;
-  font-variation-settings: 'wght' 400;
+@mixin font-mono-standard-bold {
+  @include font-mono(700);
 }
 
-%sans-regular {
-  @extend %sans;
-  font-variation-settings: 'wght' 500;
+@mixin font-mono-standard-extrabold {
+  @include font-mono(800);
 }
 
-%sans-medium {
-  @extend %sans;
-  font-variation-settings: 'wght' 600;
+@mixin font-sans-light {
+  @include font-sans(400);
 }
 
-%sans-semibold {
-  @extend %sans;
-  font-variation-settings: 'wght' 700;
+@mixin font-sans-regular {
+  @include font-sans(500);
 }
 
-%sans-bold {
-  @extend %sans;
-  font-variation-settings: 'wght' 800;
+@mixin font-sans-medium {
+  @include font-sans(600);
 }
 
-%sans-extrabold {
-  @extend %sans;
-  font-variation-settings: 'wght' 900;
+@mixin font-sans-semibold {
+  @include font-sans(700);
+}
+
+@mixin font-sans-bold {
+  @include font-sans(800);
+}
+
+@mixin font-sans-extrabold {
+  @include font-sans(900);
 }
 
 @mixin display-large {
-  @extend %slab-expressive-regular;
+  @include font-mono-expressive-regular;
   font-size: 4.75rem;
   letter-spacing: -0.015rem;
   line-height: 4rem;
 }
 
 @mixin display-medium {
-  @extend %slab-expressive-regular;
+  @include font-mono-expressive-regular;
   font-size: 3.75rem;
   letter-spacing: 0;
   line-height: 3.25rem;
 }
 
 @mixin display-small {
-  @extend %slab-expressive-regular;
+  @include font-mono-expressive-regular;
   font-size: 3rem;
   letter-spacing: 0;
   line-height: 2.75rem;
 }
 
 @mixin headline-large {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 2.67rem;
   letter-spacing: 0;
   line-height: 2.5rem;
 }
 
 @mixin headline-medium {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 2.33rem;
   letter-spacing: 0;
   line-height: 2.25rem;
 }
 
 @mixin headline-small {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 2rem;
   letter-spacing: 0;
   line-height: 2rem;
 }
 
 @mixin title-large {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 1.83rem;
   letter-spacing: 0;
   line-height: 1.75rem;
 }
 
 @mixin title-medium {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 1.33rem;
   letter-spacing: 0.01rem;
   line-height: 1.5rem;
 }
 
 @mixin title-small {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   font-size: 1.17rem;
   letter-spacing: 0.007rem;
   line-height: 1.25rem;
 }
 
 @mixin body-large {
-  @extend %sans-regular;
+  @include font-sans;
   font-size: 1.33rem;
   letter-spacing: 0.03rem;
   line-height: 1.5;
 }
 
 @mixin body-medium {
-  @extend %sans-regular;
+  @include font-sans;
   font-size: 1.17rem;
   letter-spacing: 0.015rem;
   line-height: 1.65;
 }
 
 @mixin body-small {
-  @extend %sans-regular;
+  @include font-sans;
   font-size: 1rem;
   letter-spacing: 0.025rem;
   line-height: 1.5;
 }
 
 @mixin body-xs {
-  @extend %sans-regular;
+  @include font-sans;
   font-size: 0.92rem;
   letter-spacing: 0;
   line-height: 1rem;
 }
 
 @mixin body-2xs {
-  @extend %sans-regular;
+  @include font-sans;
   font-size: 0.83rem;
   letter-spacing: 0;
   line-height: 1rem;
@@ -242,7 +209,7 @@ $standard-monospace: 1;
 
 // Labels
 @mixin label-large {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   font-size: 1.17rem;
   letter-spacing: 0.015rem;
   line-height: 1.25rem;
@@ -250,7 +217,7 @@ $standard-monospace: 1;
 
 @mixin label-large-prominent {
   @include label-large;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-large-caps {
@@ -260,11 +227,11 @@ $standard-monospace: 1;
 
 @mixin label-large-caps-prominent {
   @include label-large-caps;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-medium {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   font-size: 1rem;
   letter-spacing: 0.03rem;
   line-height: 1rem;
@@ -272,7 +239,7 @@ $standard-monospace: 1;
 
 @mixin label-medium-prominent {
   @include label-medium;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-medium-caps {
@@ -282,11 +249,11 @@ $standard-monospace: 1;
 
 @mixin label-medium-caps-prominent {
   @include label-medium-caps;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-small {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   font-size: 0.92rem;
   letter-spacing: 0.03rem;
   line-height: 1rem;
@@ -294,7 +261,7 @@ $standard-monospace: 1;
 
 @mixin label-small-prominent {
   @include label-small;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-small-caps {
@@ -304,11 +271,11 @@ $standard-monospace: 1;
 
 @mixin label-small-caps-prominent {
   @include label-small-caps;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-xs {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   font-size: 0.83rem;
   letter-spacing: 0.015rem;
   line-height: 0.875rem;
@@ -316,7 +283,7 @@ $standard-monospace: 1;
 
 @mixin label-xs-prominent {
   @include label-xs;
-  @extend %slab-standard-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-xs-caps {
@@ -327,11 +294,11 @@ $standard-monospace: 1;
 
 @mixin label-xs-caps-prominent {
   @include label-xs-caps;
-  @extend %sans-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-2xs {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   font-size: 0.75rem;
   letter-spacing: 0.015rem;
   line-height: 0.75rem;
@@ -339,7 +306,7 @@ $standard-monospace: 1;
 
 @mixin label-2xs-prominent {
   @include label-2xs;
-  @extend %sans-bold;
+  @include font-mono-standard-bold;
 }
 
 @mixin label-2xs-caps {
@@ -350,5 +317,22 @@ $standard-monospace: 1;
 
 @mixin label-2xs-caps-prominent {
   @include label-2xs-caps;
-  @extend %sans-bold;
+  @include font-mono-standard-bold;
 }
+
+// TRANSLATIONS
+// h1: display-large
+// h2: display-medium
+// h3: display-small
+// h4: headline-medium
+// h5: title-large
+// h6: title-medium
+// small-caps-slab-bold: label-medium-caps-prominent
+// subtitle1: label-medium
+// subtitle2: label-small
+// body1: body-medium
+// body2: body-xs
+// caption: label-2xs
+// overline: label-large-caps
+// small-caps-overline: label-large-caps
+// instructions: sans light

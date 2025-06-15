@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 :host {
   --max-section-width: 1240px;
@@ -37,7 +38,7 @@
 }
 
 .section-header {
-  @extend %h5;
+  @include title-large;
   font-size: 1.53rem;
   text-align: center;
   margin-top: grid(18);
@@ -49,14 +50,14 @@
 }
 
 .section-subheader {
-  @extend %h6;
+  @include title-medium;
   text-align: center;
   padding-top: grid(4);
   padding-bottom: grid(6);
 }
 
 .link-to-section {
-  @extend %sans-regular;
+  @include font-sans-regular;
   cursor: pointer;
   color: colors.$highlight-default;
   font-size: 1rem;
@@ -68,7 +69,7 @@
 }
 
 .external-link {
-  @extend %sans-regular;
+  @include font-sans-regular;
   color: colors.$highlight-default;
   font-variation-settings: 'wght' 450;
 
@@ -125,7 +126,7 @@
 }
 
 .scroll-to-next-section {
-  @extend %sans-regular;
+  @include font-sans-regular;
   background-color: rgba(white, 0.8);
   border-radius: grid(1);
   padding: grid(1) 0 grid(1) grid(1);

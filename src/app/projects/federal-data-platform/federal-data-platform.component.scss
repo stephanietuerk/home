@@ -19,7 +19,7 @@
 
 .section-title {
   @include label-small;
-  @extend %sans-medium;
+  @include font-sans-medium;
   grid-column: 3 / 8;
   border-bottom: 1px solid colors.$neutral-20;
   margin-bottom: grid(4);

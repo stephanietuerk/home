@@ -58,12 +58,14 @@ $highlight: (
   'search': #eeff00,
 );
 
+$text: #2a3058;
+
 $site-colors: (
   'primary': $primary,
   'neutral': $neutral,
   'alt-neutral': $alt-neutral,
   'highlight': $highlight,
-  'text': #2a3058,
+  'text': $text,
 );
 
 html {

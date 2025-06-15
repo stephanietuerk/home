@@ -33,7 +33,7 @@ $breakpoint-4: 400px;
 }
 
 .return-button {
-  @extend %slab-expressive-bold;
+  @include font-mono-expressive-bold;
   cursor: pointer;
   align-self: center;
   display: flex;
