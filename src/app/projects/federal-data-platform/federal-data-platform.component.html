@@ -202,26 +202,28 @@
   <p class="left-col text"
     >A non-negotible requirement of the project was that data needed to be
     hosted on data.medicaid.gov as flat CSV files. Without access to a queryable
-    API, the frontend took on significant additional data manipulation and
-    derivation responsibilities. This included parsing, reshaping, and
-    filtering, though the most challenging was deriving cascading selection
-    options and validating existing downstream user selections when an upstream
-    selection changed.
+    API, the frontend took on significant data manipulation and derivation
+    responsibilities. This included parsing, reshaping, and filtering, though
+    the most challenging was deriving cascading selection options and validating
+    existing user selections in real time when a user changed a selection.
   </p>
   <p class="left-col text"
-    >Not only did the measures in our data have many different schemas, but
-    within measures, data was reported differently across eligibilty
-    populations, time periods, states, and data types (e.g. count / percent).
-    This variability in the data would have created a high likelihood that users
-    would encounter a "no data available for these selections" situation when
-    using the interface. Project leaders at Medicaid and our design team were
-    aligned on wanting to avoid these situations.
+    >Our data varied not only across measures, but also within them, with data
+    reported differently across eligibilty populations, time periods, states,
+    and data types (e.g. count / percent). This variability in the data would
+    have created a high likelihood that users would encounter a "no data
+    available for these selections" situation when using the interface. Project
+    leaders at Medicaid and our design team were aligned on wanting to avoid
+    these situations.
   </p>
   <p class="left-col text"
     >This requires the frontend to compute updated selection options that yield
-    valid data when the user makes a change. It also validates the user’s
-    existing selections and, when needed, automatically generates a new valid
-    selection that best approximates the previous one.</p
+    valid data when the user makes a change. The frontend also validates the
+    user’s existing selections and, when needed, automatically generates a new
+    valid selection that best approximates the previous one. This was enabled by
+    the app’s fully reactive architecture, which allowed selection logic, state
+    synchronization, and view updates to remain consistent and maintainable
+    across the platform.</p
   >
 </section>
 <section class="section">
