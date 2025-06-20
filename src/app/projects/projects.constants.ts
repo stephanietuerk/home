@@ -8,7 +8,7 @@ import {
   leavingId,
   projectsPath,
 } from '../core/constants/routing.constants';
-import { Project, ProjectType } from '../core/models/project.model';
+import { Project, ProjectType, Theme } from '../core/models/project.model';
 
 export const PROJECTS: Project[] = [
   {
@@ -24,6 +24,7 @@ export const PROJECTS: Project[] = [
         routerLink: `${projectsPath}/${federalDataPlatformId}`,
       },
     ],
+    theme: Theme.professional,
   },
   {
     id: composableVizId,
@@ -33,6 +34,7 @@ export const PROJECTS: Project[] = [
     description: [],
     images: [],
     links: [],
+    theme: Theme.professional,
   },
   {
     id: artHistoryJobsId,
@@ -65,6 +67,7 @@ export const PROJECTS: Project[] = [
         url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
       },
     ],
+    theme: Theme.designDev,
   },
   {
     id: leavingId,
@@ -84,6 +87,7 @@ export const PROJECTS: Project[] = [
     postConfig: {
       postedDate: new Date(2021, 5, 15),
     },
+    theme: Theme.personal,
   },
   {
     id: covidTestingId,
@@ -108,6 +112,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     professional: true,
+    theme: Theme.designDev,
   },
   {
     id: 'scsar',
@@ -137,6 +142,7 @@ export const PROJECTS: Project[] = [
         disabled: true,
       },
     ],
+    theme: Theme.designDev,
   },
   {
     id: 'dq-atlas',
@@ -167,6 +173,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     professional: true,
+    theme: Theme.designDev,
   },
   {
     id: beyondId,
@@ -194,6 +201,7 @@ export const PROJECTS: Project[] = [
         routerLink: `${projectsPath}/${beyondId}`,
       },
     ],
+    theme: Theme.designDev,
   },
   {
     id: flipId,
@@ -219,6 +227,7 @@ export const PROJECTS: Project[] = [
         routerLink: `${projectsPath}/${flipId}`,
       },
     ],
+    theme: Theme.designDev,
   },
 ];
 

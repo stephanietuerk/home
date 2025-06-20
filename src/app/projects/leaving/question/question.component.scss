@@ -19,12 +19,12 @@
     transition: all 0.25s ease-in-out;
 
     &.collapsed {
-      background: var(--color-purple-background);
+      background: var(--color-project-accent-bg);
     }
 
     &.collapsable:hover {
       cursor: pointer;
-      background: var(--color-purple-hover);
+      background: var(--color-project-accent-bg-hover);
     }
   }
 
@@ -44,7 +44,7 @@
   .answer-container {
     @include body-small;
     padding: grid(8) grid(8);
-    border: 1px solid var(--color-lime);
+    border: 1px solid var(--color-project-highlight);
   }
 
   .answer-text {

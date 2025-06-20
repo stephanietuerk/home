@@ -119,9 +119,9 @@
   min-height: $project-navbar-height;
   background: linear-gradient(
     to bottom,
-    rgba(var(--color-project-bg, #ffffff), 0.9) 0%,
-    rgba(var(--color-project-bg, #ffffff), 0.9) 80%,
-    rgba(var(--color-project-bg, #ffffff), 0) 100%
+    rgba(var(--color-bg-rgb), 0.9) 0%,
+    rgba(var(--color-bg-rgb), 0.9) 80%,
+    rgba(var(--color-bg-rgb), 0) 100%
   );
 }
 
@@ -131,7 +131,7 @@
   align-items: center;
   padding-top: $project-navbar-height + 48px;
   padding-bottom: grid(12);
-  background-color: var(--color-project-bg, white);
+  background-color: var(--color-bg, white);
 }
 
 %comment-button {

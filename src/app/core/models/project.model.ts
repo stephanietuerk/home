@@ -10,6 +10,7 @@ export class Project {
   allowComments?: boolean;
   professional?: boolean;
   postConfig?: Post;
+  theme: Theme;
 }
 
 export enum Environment {
@@ -43,4 +44,10 @@ export enum ProjectType {
   writing = 'Writing',
   webApp = 'Web application',
   website = 'Website',
+}
+
+export enum Theme {
+  professional = 'professional',
+  personal = 'personal',
+  designDev = 'design-dev',
 }

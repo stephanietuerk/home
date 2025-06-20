@@ -8,10 +8,6 @@ $leaving-highlight: colors.$highlight-default;
 
 .faq-container {
   --max-section-width: 800px;
-  --color-lime: #a2ff29;
-  --color-purple-hover: #e9e4f5;
-  --color-purple-background: #f7f6f8;
-  --color-purple-text: #8c74c7;
   margin: 0 auto;
   padding: 0 grid(4);
   display: flex;
@@ -28,12 +24,12 @@ $leaving-highlight: colors.$highlight-default;
   .section-label {
     @include label-small-caps-prominent;
     letter-spacing: 0.05em;
-    color: var(--color-purple-text);
+    color: var(--color-project-accent-text);
     align-self: center;
     margin-bottom: grid(5);
     margin-top: grid(5);
     padding-bottom: grid(1);
-    border-bottom: 1px solid var(--color-purple-hover);
+    border-bottom: 1px solid var(--color-project-accent-bg-hover);
   }
 
   .comment-instructions {

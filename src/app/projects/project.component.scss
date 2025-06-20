@@ -11,24 +11,10 @@
 
 .styles-container {
   display: contents;
-
-  &.federal-data-platform {
-    --color-project-bg: #{colors.$neutral-98};
-  }
 }
 
 .project-navbar {
   @extend %project-navbar;
-
-  &.case-study {
-    $color: #f8fafa; //neutral-98
-    background: linear-gradient(
-      to bottom,
-      rgba($color, 0.9) 0%,
-      rgba($color, 0.9) 80%,
-      rgba($color, 0) 100%
-    );
-  }
 }
 
 .project-container {

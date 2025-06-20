@@ -1,6 +1,10 @@
 <div
   class="styles-container"
-  [ngClass]="[project.id, project.type | formatForId]"
+  [ngClass]="[
+    project.id,
+    project.type | formatForId,
+    'theme--' + project.theme,
+  ]"
 >
   <app-project-navbar
     [attr.id]="navbarId"
