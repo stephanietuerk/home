@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     padding: 0;
-    @include large-label-caps;
+    @include label-large-caps;
     text-transform: uppercase;
 
     &.left {
