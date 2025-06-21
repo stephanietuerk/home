@@ -42,6 +42,7 @@ yarn-error.log
 testem.log
 /typings
 /.firebase/hosting.ZGlzdA.cache
+src/app/viz-components-new/
 
 # System Files
 .DS_Store

@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  CHART,
-  XyChartComponent,
-} from '../../../../../viz-components-new/charts';
+import { CHART, XyChartComponent } from '@hsi/viz-components';
 
 @Component({
   selector: 'app-change-chart',

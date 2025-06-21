@@ -35,6 +35,7 @@ export const PROJECTS: Project[] = [
         routerLink: `${projectsPath}/${federalDataPlatformId}`,
       },
     ],
+    professional: true,
     theme: Theme.professional,
   },
   // {

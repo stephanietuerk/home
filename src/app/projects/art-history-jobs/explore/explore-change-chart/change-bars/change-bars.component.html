@@ -1,12 +1,14 @@
 <div class="bars-styles-encapsulation-container">
-  <div class="axis-container">
-    <svg
-      [attr.width]="(chart.svgDimensions$ | async).width + 1"
-      [attr.height]="chart.config.margin.top + 1"
-      class="axis-svg"
-    >
-      <ng-content select="[axis]"></ng-content>
-    </svg>
-  </div>
+  @if (chart.svgDimensions$ | async; as svgDimensions) {
+    <div class="axis-container">
+      <svg
+        [attr.width]="svgDimensions.width + 1"
+        [attr.height]="chart.config.margin.top + 1"
+        class="axis-svg"
+      >
+        <ng-content select="[axis]"></ng-content>
+      </svg>
+    </div>
+  }
   <div class="bars-container" #barsContainer></div>
 </div>

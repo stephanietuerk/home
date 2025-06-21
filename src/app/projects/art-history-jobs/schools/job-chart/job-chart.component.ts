@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 import {
   VicHtmlTooltipConfigBuilder,
   VicHtmlTooltipModule,
-} from '../../../../viz-components-new/tooltips';
+} from '@hsi/viz-components';
 import { JobsBySchoolDatum } from '../../art-history-data.model';
 import { ColorForFieldPipe } from '../../art-history-fields.pipe';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
