@@ -1,5 +1,5 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { StackedAreaTooltipDatum } from '../../../../viz-components-new/stacked-area';
+import { StackedAreaTooltipDatum } from '@hsi/viz-components';
 import { JobDatum } from '../../art-history-data.model';
 
 @Pipe({

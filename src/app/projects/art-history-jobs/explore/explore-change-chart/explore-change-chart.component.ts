@@ -6,6 +6,27 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  BarsConfig,
+  BarsEventOutput,
+  BarsHoverMoveDirective,
+  BarsHoverMoveEmitTooltipData,
+  ChartConfig,
+  ElementSpacing,
+  HoverMoveAction,
+  HtmlTooltipConfig,
+  VicBarsConfigBuilder,
+  VicBarsModule,
+  VicChartConfigBuilder,
+  VicChartModule,
+  VicHtmlTooltipConfigBuilder,
+  VicHtmlTooltipModule,
+  VicXQuantitativeAxisConfig,
+  VicXQuantitativeAxisConfigBuilder,
+  VicXyAxisModule,
+  VicXyBackgroundModule,
+  VicYOrdinalAxisConfigBuilder,
+} from '@hsi/viz-components';
 import { isEqual } from 'lodash-es';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
@@ -16,33 +37,6 @@ import {
   shareReplay,
   withLatestFrom,
 } from 'rxjs/operators';
-import {
-  VicXQuantitativeAxisConfig,
-  VicXQuantitativeAxisConfigBuilder,
-  VicXyAxisModule,
-  VicYOrdinalAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
-import {
-  BarsConfig,
-  BarsEventOutput,
-  BarsHoverMoveDirective,
-  BarsHoverMoveEmitTooltipData,
-  VicBarsConfigBuilder,
-  VicBarsModule,
-} from '../../../../viz-components-new/bars';
-import {
-  ChartConfig,
-  VicChartConfigBuilder,
-  VicChartModule,
-} from '../../../../viz-components-new/charts';
-import { ElementSpacing } from '../../../../viz-components-new/core';
-import { HoverMoveAction } from '../../../../viz-components-new/events/action';
-import {
-  HtmlTooltipConfig,
-  VicHtmlTooltipConfigBuilder,
-  VicHtmlTooltipModule,
-} from '../../../../viz-components-new/tooltips';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
@@ -142,9 +136,9 @@ export class ExploreChangeChartComponent implements OnInit {
         const vm = {
           chartConfig: this.chart
             .margin(this.margin)
-            .width(this.width)
-            .height(height)
-            .resize({ width: true, height: true })
+            .maxWidth(this.width)
+            .maxHeight(height)
+            .scalingStrategy('responsive-width')
             .getConfig(),
           dataMarksConfig: this.getDataMarksConfig(
             data,

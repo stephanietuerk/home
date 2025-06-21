@@ -1,6 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  ChartConfig,
+  HoverMoveAction,
+  HtmlTooltipConfig,
+  LinesConfig,
+  LinesEventOutput,
+  LinesHoverMoveDefaultStyles,
+  LinesHoverMoveDirective,
+  LinesHoverMoveEmitTooltipData,
+  VicChartConfigBuilder,
+  VicChartModule,
+  VicHtmlTooltipConfigBuilder,
+  VicHtmlTooltipModule,
+  VicLinesConfigBuilder,
+  VicLinesModule,
+  VicXQuantitativeAxisConfig,
+  VicXQuantitativeAxisConfigBuilder,
+  VicXyAxisModule,
+  VicXyBackgroundModule,
+  VicYQuantitativeAxisConfig,
+  VicYQuantitativeAxisConfigBuilder,
+} from '@hsi/viz-components';
 import { isEqual } from 'lodash-es';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
@@ -13,34 +35,6 @@ import {
 } from 'rxjs/operators';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
 import { ElementSpacing } from 'src/app/core/models/charts.model';
-import {
-  VicXQuantitativeAxisConfig,
-  VicXQuantitativeAxisConfigBuilder,
-  VicXyAxisModule,
-  VicYQuantitativeAxisConfig,
-  VicYQuantitativeAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
-import {
-  ChartConfig,
-  VicChartConfigBuilder,
-  VicChartModule,
-} from '../../../../viz-components-new/charts';
-import { HoverMoveAction } from '../../../../viz-components-new/events';
-import {
-  LinesConfig,
-  LinesEventOutput,
-  LinesHoverMoveDefaultStyles,
-  LinesHoverMoveDirective,
-  LinesHoverMoveEmitTooltipData,
-  VicLinesConfigBuilder,
-  VicLinesModule,
-} from '../../../../viz-components-new/lines';
-import {
-  HtmlTooltipConfig,
-  VicHtmlTooltipConfigBuilder,
-  VicHtmlTooltipModule,
-} from '../../../../viz-components-new/tooltips';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
@@ -128,9 +122,9 @@ export class ExploreAcrossTimeChartComponent implements OnInit {
         return {
           chartConfig: this.chart
             .margin(this.margin)
-            .width(this.width)
-            .height(this.height)
-            .resize({ width: true, height: true })
+            .maxWidth(this.width)
+            .maxHeight(this.height)
+            .scalingStrategy('responsive-width')
             .getConfig(),
           dataMarksConfig: this.getDataMarksConfig(
             data,

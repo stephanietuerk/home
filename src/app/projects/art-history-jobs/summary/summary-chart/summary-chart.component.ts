@@ -1,5 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  ChartConfig,
+  ElementSpacing,
+  HoverMoveAction,
+  HtmlTooltipConfig,
+  StackedAreaConfig,
+  StackedAreaEventOutput,
+  StackedAreaHoverMoveDirective,
+  StackedAreaHoverMoveEmitTooltipData,
+  VicChartConfigBuilder,
+  VicChartModule,
+  VicHtmlTooltipConfigBuilder,
+  VicHtmlTooltipModule,
+  VicStackedAreaConfigBuilder,
+  VicStackedAreaModule,
+  VicXQuantitativeAxisConfig,
+  VicXQuantitativeAxisConfigBuilder,
+  VicXyAxisModule,
+  VicXyBackgroundModule,
+  VicYQuantitativeAxisConfig,
+  VicYQuantitativeAxisConfigBuilder,
+} from '@hsi/viz-components';
 import { isEqual } from 'lodash-es';
 import {
   BehaviorSubject,
@@ -9,32 +31,6 @@ import {
   Observable,
 } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
-import {
-  VicXQuantitativeAxisConfig,
-  VicXQuantitativeAxisConfigBuilder,
-  VicYQuantitativeAxisConfig,
-  VicYQuantitativeAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
-import { VicXyAxisModule } from '../../../../viz-components-new/axes/xy-axis.module';
-import { ChartConfig } from '../../../../viz-components-new/charts';
-import { VicChartModule } from '../../../../viz-components-new/charts/chart.module';
-import { VicChartConfigBuilder } from '../../../../viz-components-new/charts/chart/config/chart-builder';
-import { ElementSpacing } from '../../../../viz-components-new/core/types/layout';
-import { HoverMoveAction } from '../../../../viz-components-new/events';
-import {
-  StackedAreaConfig,
-  StackedAreaEventOutput,
-  StackedAreaHoverMoveDirective,
-  StackedAreaHoverMoveEmitTooltipData,
-  VicStackedAreaConfigBuilder,
-} from '../../../../viz-components-new/stacked-area';
-import { VicStackedAreaModule } from '../../../../viz-components-new/stacked-area/stacked-area.module';
-import {
-  HtmlTooltipConfig,
-  VicHtmlTooltipConfigBuilder,
-} from '../../../../viz-components-new/tooltips';
-import { VicHtmlTooltipModule } from '../../../../viz-components-new/tooltips/html-tooltip/html-tooltip.module';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background/xy-background.module';
 import { JobDatum, JobTableDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
@@ -161,9 +157,9 @@ export class SummaryChartComponent implements OnInit {
   getViewModel(data: JobDatum[], chartSort: ChartSort): ViewModel {
     const chartConfig = this.chart
       .margin(this.margin)
-      .width(this.width)
-      .height(this.height)
-      .resize({ width: true, height: false })
+      .maxWidth(this.width)
+      .maxHeight(this.height)
+      .scalingStrategy('responsive-width')
       .getConfig();
 
     const xAxisConfig = this.xAxisQuantitative
