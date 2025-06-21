@@ -1,7 +1,6 @@
 import {
   artHistoryJobsId,
   beyondId,
-  composableVizId,
   covidTestingId,
   federalDataPlatformId,
   flipId,
@@ -16,8 +15,20 @@ export const PROJECTS: Project[] = [
     title: 'Federal Healthcare Data Platform',
     type: ProjectType.caseStudy,
     year: '2023—2025',
-    description: [],
-    images: [],
+    description: [
+      'This case study documents the complete redesign and redevelopment of a federal healthcare data platform serving state Medicaid programs, researchers, and the public. Leading both product design and frontend development, I delivered the project in under 10 months despite significant technical constraints, including the requirement to work with flat CSV files rather than a queryable API.',
+      "The platform's success led to commissioning of a second product using the same codebase, which was delivered in 3.5 months. The case study includes detailed technical implementation, platform capabilities, and visual examples of key features like State Focus mode and the validation system.",
+    ],
+    images: [
+      {
+        path: 'assets/federal-data-platform/scorecard-main.png',
+        altText: 'A screen capture of the 2024 Medicaid and CHIP Scorecard',
+      },
+      {
+        path: 'assets/federal-data-platform/core-set-main.png',
+        altText: 'A screen capture of the 2024 Core Set Data Dashboard',
+      },
+    ],
     links: [
       {
         name: 'Case study',
@@ -26,16 +37,16 @@ export const PROJECTS: Project[] = [
     ],
     theme: Theme.professional,
   },
-  {
-    id: composableVizId,
-    title: 'Composable Data Visualization Components Library',
-    type: ProjectType.caseStudy,
-    year: '2022—2025',
-    description: [],
-    images: [],
-    links: [],
-    theme: Theme.professional,
-  },
+  // {
+  //   id: composableVizId,
+  //   title: 'Composable Data Visualization Components Library',
+  //   type: ProjectType.caseStudy,
+  //   year: '2022—2025',
+  //   description: [],
+  //   images: [],
+  //   links: [],
+  //   theme: Theme.professional,
+  // },
   {
     id: artHistoryJobsId,
     title: 'Art History Jobs, 2011—2023',
