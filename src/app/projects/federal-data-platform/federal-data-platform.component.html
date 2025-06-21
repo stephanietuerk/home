@@ -1,21 +1,19 @@
 <section class="section top-matter">
-  <p class="left-col label project-type">Case Study</p>
-  <h2 class="left-col readout project-title"
-    >Federal Heathcare Data Platform</h2
-  >
-  <p class="left-col readout role">Product / Design Lead + Frontend Lead</p>
-  <p class="left-col readout timeframe">Feb 2023–Present</p>
+  <p class="main label project-type">Case Study</p>
+  <h2 class="main readout project-title">Federal Heathcare Data Platform</h2>
+  <p class="main readout role">Product / Design Lead + Frontend Lead</p>
+  <p class="main readout timeframe">Feb 2023–Present</p>
 </section>
-<section class="section takeaway">
-  <p class="section-title">Overview</p>
-  <p class="left-col text takeaway"
+<section class="section overview">
+  <p class="main title">Overview</p>
+  <p class="main text"
     >The Medicaid and CHIP Scorecard and the Core Set Data Dashboard are
     public-facing data platforms that the federal Medicaid program supports to
     share state- and national-level data about health care utilization and
     outcomes, expenditures, and program administration with state Medicaid
     programs, researchers, and the public.</p
   >
-  <p class="left-col text takeaway"
+  <p class="main text"
     >I led the complete redesign and redevelopment of the the Scorecard product
     beginning in February 2023, overcoming significant tech stack
     <span #techStack></span> and timeline limitations to deliver in December
@@ -26,40 +24,38 @@
     same frontend code base with environment-based configuration and was
     released in January 2025, after 3.5 months of development.</p
   >
-  <div class="leader-line-container technical-overview"></div>
-  <aside class="right-col overflow-grid-vertical technical-overview">
-    <p class="right-col-label">Technical highlights</p>
-    <ul class="right-col-list">
-      <li class="right-col-list-item"
-        >60+ measures with 30+ different schemas</li
-      >
-      <li class="right-col-list-item"
+  <div class="leader-line overview technical-highlights"></div>
+  <aside class="annotation annotation-container overview technical-highlights">
+    <p class="title">Technical highlights</p>
+    <ul class="list">
+      <li class="list-item">60+ measures with 30+ different schemas</li>
+      <li class="list-item"
         >Data are flat files (CSVs) hosted on data.medicaid.gov</li
-      ><li class="right-col-list-item"
+      ><li class="list-item"
         >Frontend handles data parsing, validation, filtering, reshaping, and
         derivation of additional properties due to absence of queryable API</li
       >
-      <li class="right-col-list-item"
+      <li class="list-item"
         >Client-side custom RxJS architecture synchronizes validated URL state
         with user selections and cascading selection options that update based
         on data availability.
       </li>
-      <li class="right-col-list-item"
+      <li class="list-item"
         >Zero measure-specific logic across 60+ measures. Platform dynamically
         configures charts and filters from data to accommodate changing and
         expanding datasets.</li
       >
-      <li class="right-col-list-item"
+      <li class="list-item"
         >Fully meets Section 508 requirements (WCAG 2.1 Level AA).</li
       >
-      <li class="right-col-list-item"
+      <li class="list-item"
         >Complete platform redesign and development delivered in under 10
         months.</li
       >
     </ul>
   </aside>
-  <p class="left-col label sites">Visit current production sites</p>
-  <div class="left-col flex-row">
+  <p class="main label site-links">Visit current production sites</p>
+  <div class="main flex-row sites-links">
     <a
       href="https://www.medicaid.gov/state-overviews/scorecard/welcome"
       class="site-link"
@@ -76,7 +72,7 @@
       <img
         src="assets/federal-data-platform/scorecard_main_1.png"
         alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
-        class="site-image main"
+        class="site-image"
     /></a>
     <a
       href="https://www.medicaid.gov/medicaid/quality-of-care/core-set-data-dashboard/welcome"
@@ -94,18 +90,18 @@
       <img
         src="assets/federal-data-platform/coreset_main_1.png"
         alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
-        class="site-image main" /></a
+        class="site-image" /></a
   ></div>
 </section>
-<section class="section">
-  <p class="section-title">Project Background</p>
-  <p class="left-col text"
+<section class="section background">
+  <p class="main title">Project Background</p>
+  <p class="main text"
     >The Scorecard site was first released in 2018 and featured rudimentary data
     displays of a curated set of measures within the Medicaid.gov content
     management system. A number of organizations, including the National
     Association for Medicaid Directors,
     <a
-      class="link"
+      class="inline-link"
       target="_blank"
       href="https://syrtissolutions.com/cms-releases-medicaid-scorecard/"
       >noted the shortcomings</a
@@ -113,18 +109,16 @@
     of the data, and Medicaid itself had a strong desire to expand the Scorecard
     into a more robust and interactive product.</p
   >
-  <div class="leader-line-container old-scorecard"></div>
-  <aside class="right-col flex-col overflow-grid-vertical old-scorecard">
-    <p class="right-col-label old-scorecard"
-      >Measures in the original 2018 Scorecard</p
-    >
+  <div class="leader-line old-scorecard"></div>
+  <aside class="annotation flex-col annotation-container old-scorecard">
+    <p class="title old-scorecard">Measures in the original 2018 Scorecard</p>
     <img
       src="assets/federal-data-platform/scorecard_2018_2.png"
       alt="Screenshot of the 2018 Medicaid and CHIP Scorecard"
-      class="right-col-image"
+      class="annotation-image"
     />
   </aside>
-  <p class="left-col text"
+  <p class="main text"
     >A new, three-year development contract was awarded in 2021 to rebuild the
     site with these concerns in mind. In winter 2022-2023, with development
     progress stalled on that contract, Mathematica (my employer, which also has
@@ -133,7 +127,7 @@
     by the end of the original three-year development contract, i.e. in less
     than a year.</p
   >
-  <p class="left-col text"
+  <p class="main text"
     >Initially, I was brought on to lead frontend development of the site in
     February 2023. In this capacity, I very early on identified significant
     limitations of the design at that time—there was planned functionality that
@@ -143,30 +137,73 @@
     provided a coherent plan for development was the only way to deliver a
     product by end of year.</p
   >
-  <p class="left-col text"
+  <p class="main text"
     >From March through June of 2023, I led the redesign effort for the site
     along with two wonderful designers on my team at Mathematica, working
     closely with project leaders at Medicaid to discover and understand
-    requirements and validate our team's design proposals and solutions.</p
+    requirements and validate our team's design proposals and solutions. Our
+    design approach was driven by three objectives: maximizing usability and
+    comprehension for diverse user types, ensuring that the site's
+    politically-sensitive data maintained full context and precision, and
+    building an extensible foundation that could evolve with new measures and
+    user needs.</p
   >
+  <p class="main text"
+    >The redesign introduced a unified, searchable and filterable measure cards
+    interface that presents all 60+ healthcare measures in a scannable format,
+    allowing users browse measures and view their characteristic properties
+    before selecting one to explore in depth. On click, each measure card leads
+    to a consistent data exploration interface that intelligently adapts to what
+    the measure's data can support. A set of core selection interfaces are
+    always present, with available options determined by the measure's data
+    structure and current selections: data tabs (national-level data,
+    state-level data, measure information), time view toggle (point in time,
+    across time), and display modes (map, bar, line, table), plus additional
+    filtering options for demographics, value types, and other measure-specific
+    dimensions relevant to the data.</p
+  >
+  <div
+    class="main flex-row redesign-container"
+    [class.expanded]="newScreenshotsExpanded !== 'none'"
+    [class.left-first]="newScreenshotsExpanded === 'left-first'"
+    [class.right-first]="newScreenshotsExpanded === 'right-first'"
+  >
+    <div
+      class="redesign-image-container"
+      [class.expanded]="newScreenshotsExpanded !== 'none'"
+      (click)="updateNewScreeshotsExpanded('left')"
+    >
+      <img
+        src="assets/federal-data-platform/scorecard-new-main.png"
+        alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
+        class="site-image redesign" /></div
+    ><div
+      class="redesign-image-container"
+      [class.expanded]="newScreenshotsExpanded !== 'none'"
+      (click)="updateNewScreeshotsExpanded('right')"
+    >
+      <img
+        src="assets/federal-data-platform/scorecard-new-data-display.png"
+        alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
+        class="site-image redesign"
+    /></div>
+  </div>
 </section>
-<section class="section">
-  <p class="section-title">Technical Approach</p>
-  <p class="left-col text"
+<section class="section approach">
+  <p class="main title">Technical Approach</p>
+  <p class="main text"
     >Development began almost immediately alongside design work, with
     requirements evolving throughout the summer as the full complexity of the
     data was surfaced.
   </p>
-  <p class="left-col text"
-    >As design lead, I (along with the design team members) advocated for a
-    unified interface for selecting and displaying data that would support a
-    consistent mental model across measures. In parallel, I prioritized creating
-    a single frontend data model that mirrored the coherence of the interface
-    and could systematically handle a wide range of data structures, rather than
-    incorporating measure-specific logic into the frontend code. (After three
-    years of feature development, we still maintain this approach.)
+  <p class="main text"
+    >In parallel, I prioritized creating a single frontend data model that
+    mirrored the coherence of the user interface and could systematically handle
+    a wide range of data structures, rather than incorporating measure-specific
+    logic into the frontend code. (After three years of feature development, we
+    still maintain this approach.)
   </p>
-  <p class="left-col text"
+  <p class="main text"
     >This served two purposes. First, it was essential for user
     comprehension—without systematic behavior, users would struggle to interpret
     and compare data across the different measures in the platform. Introducing
@@ -181,25 +218,23 @@
     months—including external security and Section 508 reviews and stakeholder
     QA.</p
   >
-  <p class="left-col text"
-    >To manage frontend state, I implemented a custom RxJS reactive state
-    management service that synchronizes application state with URL parameters,
-    providing both a source of truth for the frontend codebase that propagated
-    changes throughout the site and the critical functionality (in a
+  <p class="main text"
+    >To manage frontend state, I implemented a custom reactive state management
+    service (using RxJS) that synchronizes application state with URL
+    parameters. FIX ME This service provides both a source of truth for the
+    frontend codebase that reactively updates data and views throughout the
+    propagates changes throughout the site and the critical functionality (in a
     public-policy context in particular) of allowing users to save and share
     views of specific data through the URL.</p
   >
 </section>
-<section class="section">
-  <p class="section-title">Technical Challenges</p>
-  <p class="left-col text"
+<section class="section challenge">
+  <p class="main title">Key Technical Challenge</p>
+  <p class="main text"
     >The technical complexity of the project came from two sources: strict
     platform constraints, and the inconsistent structure of the underlying data.
-    On top of this, because the data is public and politically sensitive, it
-    needed to be presented precisely and with its full context, without
-    suppressing nuance.</p
-  >
-  <p class="left-col text"
+  </p>
+  <p class="main text"
     >A non-negotible requirement of the project was that data needed to be
     hosted on data.medicaid.gov as flat CSV files. Without access to a queryable
     API, the frontend took on significant data manipulation and derivation
@@ -207,7 +242,17 @@
     the most challenging was deriving cascading selection options and validating
     existing user selections in real time when a user changed a selection.
   </p>
-  <p class="left-col text"
+  <div class="leader-line challenge diagram"></div>
+  <aside class="annotation annotation-container challenge diagram">
+    <app-mermaid-diagram
+      class="mermaid-diagram"
+      [diagram]="selectionDiagram"
+      [lineColor]="'#444748'"
+      [fontSize]="'14px'"
+      [fontFamily]="'Red Hat Text, sans-serif'"
+    ></app-mermaid-diagram
+  ></aside>
+  <p class="main text"
     >Our data varied not only across measures, but also within them, with data
     reported differently across eligibilty populations, time periods, states,
     and data types (e.g. count / percent). This variability in the data would
@@ -216,7 +261,7 @@
     leaders at Medicaid and our design team were aligned on wanting to avoid
     these situations.
   </p>
-  <p class="left-col text"
+  <p class="main text"
     >This requires the frontend to compute updated selection options that yield
     valid data when the user makes a change. The frontend also validates the
     user’s existing selections and, when needed, automatically generates a new
@@ -225,16 +270,51 @@
     synchronization, and view updates to remain consistent and maintainable
     across the platform.</p
   >
+  <div class="main challenges before-after-container flex-row">
+    <div class="before-after-image-container">
+      <p class="before-after-label">Before user selection</p>
+      <img
+        src="assets/federal-data-platform/scorecard-cascading-selections-before.png"
+        alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
+        class="site-image before-after-image"
+    /></div>
+    <app-project-arrow class="before-after-arrow"></app-project-arrow>
+    <div class="before-after-image-container">
+      <p class="before-after-label">After selection</p>
+      <img
+        src="assets/federal-data-platform/scorecard-cascading-selections-after-highlight.png"
+        alt="Screenshot of the 2024 Medicaid and CHIP Scorecard"
+        class="site-image before-after-image"
+      />
+    </div>
+  </div>
+  <div class="leader-line challenges before-after"></div>
+  <aside class="annotation annotation-container challenges before-after">
+    <p class="title">Update and validate cycle in context</p>
+    <p
+      >When users change their population and/or methodology selections, the
+      system automatically recalculates available state options (52→10) and
+      updates the current selection in the application state to maintain valid
+      selections.</p
+    ></aside
+  >
 </section>
 <section class="section">
-  <p class="section-title">Platform Capabilities</p>
-  <ul class="left-col list">
-    <li class="left-col list-item"
-      >Fully themeable interface via CSS variables</li
-    >
-    <li class="left-col-list-item"
+  <p class="main title">Platform Capabilities</p>
+  <ul class="main list">
+    <li class="main list-item">Fully themeable interface via CSS variables</li>
+    <li class="list-item"
       >Customizable exports of both data (CSV) and data visualizations (JPG)</li
+    >
+    <li class="list-item"
+      >Togglable "State Focus" mode that allows users to tailor entire site to
+      up to three user-selected states, indicated through theme color</li
+    >
+    <li class="list-item">Container-width responsive data visualizations</li>
+    <li class="list-item">Full functionality on mobile devices</li>
+    <li class="list-item"
+      >Click-to-freeze chart tooltips to facilitate progressive information
+      disclosure</li
     >
   </ul>
 </section>
-<section class="section"></section>

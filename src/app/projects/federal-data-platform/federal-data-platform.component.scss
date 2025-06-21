@@ -1,12 +1,21 @@
 @use 'functions' as *;
 @use 'typography' as *;
 @use 'colors';
+@use 'mixins' as *;
+
+$single-col-breakpoint: 900px;
 
 :host {
   width: 100%; // ensures that wide constainers shrink with browser window
   min-height: 100vh;
 
   --grid-col-width: 148px;
+  --mermaid-bg-color: #{colors.$neutral-90};
+  --mermaid-stroke-color: none;
+  --mermaid-primary-text-color: #{colors.$text};
+  --mermaid-edge-label-bg-color: #{colors.$neutral-98};
+  --mermaid-edge-label-color: #{colors.$text};
+  --mermaid-edge-path-color: #{colors.$neutral-30};
 }
 
 // UTILITY CLASSES
@@ -20,110 +29,91 @@
   flex-direction: row;
 }
 
-// POSITIONING
-.left-col {
+.section {
+  display: grid;
+  grid-template-columns: 1fr 48px repeat(9, minmax(0, 148px)) 48px 1fr;
+  margin-bottom: grid(12);
+}
+
+.section > .title {
+  @include label-small;
+  @include font-sans-medium;
+  border-bottom: 4px solid var(--color-project-highlight);
+  margin-bottom: grid(4);
+  padding-bottom: grid(4);
+}
+
+.main {
   grid-column: 3 / 8;
+
+  @include breakpoint-max(900px) {
+    grid-column: 3 / 12;
+  }
 
   &.text {
     margin-right: grid(1);
   }
 }
 
-.right-col {
-  grid-column: 9 / 12;
-}
-
-.gutter {
+.leader-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-top: 1px solid #b3bcbc; //neutral-75
   grid-column: 8 / 9;
+  margin: grid(3) grid(4) 0 grid(2);
+
+  @include breakpoint-max(900px) {
+    display: none;
+  }
 }
 
-.section {
-  display: grid;
-  grid-template-columns:
-    1fr 48px repeat(9, 148px) calc(48px)
-    1fr;
-  margin-bottom: grid(12);
+.annotation {
+  @include body-xs;
+  grid-column: 9 / 12;
+
+  @include breakpoint-max(900px) {
+    grid-column: 3 / 12;
+  }
 }
 
-.section-title {
-  @include label-small;
-  @include font-sans-medium;
-  grid-column: 3 / 8;
-  border-bottom: 4px solid colors.$highlight-search;
-  margin-bottom: grid(4);
-  padding-bottom: grid(4);
-}
-
-.overflow-grid-vertical {
+.annotation-container {
   overflow-y: visible;
   height: 0;
+
+  @include breakpoint-max(900px) {
+    height: initial;
+    overflow-y: initial;
+  }
+}
+
+.annotation > .title {
+  @include font-sans-medium;
+  margin-bottom: grid(2);
 }
 
 .text {
-  line-height: 1.5;
-
   &:not(:last-child) {
     margin-bottom: grid(7);
   }
 }
 
-.leader-line-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  border-top: 1px solid colors.$neutral-80;
-  grid-column: 8 / 9;
-  margin: grid(3) grid(4) 0 grid(2);
-}
-
-.technical-overview {
-  transform: translateY(25px);
-}
-
-.old-scorecard {
-  transform: translateY(1px);
-}
-
-.right-col.caption {
-  @include body-xs;
-  margin-bottom: grid(2);
-  text-align: left;
-}
-
-.right-col-label {
-  display: inline-block;
-  @include body-xs;
-  transform: translateY(4px);
-  margin-bottom: grid(3);
-}
-
-.right-col-list {
+.list {
   margin-block-start: 0;
   padding-inline-start: grid(5);
 }
 
-.right-col-list-item {
+.list-item {
   margin-bottom: grid(1);
 }
 
-.technical-overview {
-  @include body-xs;
-  line-height: 1.5;
-}
+.inline-link {
+  border-bottom: 1px dashed colors.$primary-20;
+  transition: all 0.3s ease-in-out;
 
-.gutter-item,
-.tech-stack {
-  grid-column: 9 / 12;
-  height: 0;
-  overflow-y: visible;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.right-col-image {
-  height: auto;
-  border: 1px solid colors.$neutral-95;
+  &:hover {
+    background: var(--color-project-highlight);
+  }
 }
 
 .project-type {
@@ -140,10 +130,37 @@
   line-height: 1.4;
 }
 
-.takeaway {
+// TECHNICAL HIGHLIGHTS - ANNOTATION
+.technical-highlights.leader-line,
+.technical-highlights.annotation-container {
+  transform: translateY(25px);
+
+  @include breakpoint-max(900px) {
+    transform: initial;
+    margin-bottom: grid(5);
+  }
 }
 
-.label.sites {
+// OLD SCORECARD - ANNOTATION
+
+.old-scorecard.leader-line,
+.old-scorecard.annotation-container {
+  transform: translateY(1px);
+
+  @include breakpoint-max(900px) {
+    transform: initial;
+    margin-bottom: grid(5);
+  }
+}
+
+.old-scorecard .annotation-image {
+  @include breakpoint-max(900px) {
+    max-width: 50%;
+  }
+}
+
+// SITE LINKS - MAIN
+.site-links.label {
   @include label-small;
   @include font-sans-medium;
   margin-bottom: grid(3);
@@ -159,9 +176,7 @@
   }
 
   &:hover {
-    background: colors.$highlight-search;
-    .site-link-title-container {
-    }
+    background: var(--color-project-highlight);
   }
 }
 
@@ -174,7 +189,6 @@
   display: inline-flex;
   align-items: center;
   margin-bottom: grid(3);
-  // border-bottom: 1px dashed colors.$primary-20;
   transition: all 0.2s ease-in-out;
 }
 
@@ -183,16 +197,116 @@
   margin-right: grid(2);
 }
 
-.highlight-divider {
-  background: colors.$highlight-search;
-  height: grid(1);
+// MERMAID DIAGRAM = ANNOTATION
+.diagram.leader-line,
+.diagram.annotation-container {
+  transform: translateY(72px);
+
+  @include breakpoint-max(900px) {
+    flex-direction: row;
+    transform: initial;
+    margin-bottom: grid(5);
+  }
 }
 
-.link {
-  border-bottom: 1px dashed colors.$primary-20;
-  transition: all 0.3s ease-in-out;
+.diagram .mermaid-diagram {
+  display: inline-block;
+  position: relative;
+  bottom: 96px;
+  transform-origin: top left;
+  width: 252px;
 
-  &:hover {
-    background: colors.$highlight-search;
+  @include breakpoint-max(900px) {
+    position: initial;
+    display: block;
+    bottom: 0;
+  }
+}
+
+// REDESIGN IMAGES - MAIN
+.redesign-container {
+  gap: grid(4);
+}
+
+.redesign-container.expanded {
+  flex-direction: column;
+
+  &.right-first {
+    flex-direction: column-reverse;
+  }
+}
+
+.redesign-image-container {
+  cursor: pointer;
+  position: relative;
+  flex-basis: 50%;
+
+  .site-image {
+    border: 1px solid colors.$neutral-90;
+    width: 100%;
+    position: relative;
+  }
+}
+
+.redesign-image-container::before {
+  content: 'Click image to expand';
+  pointer-events: none;
+  border-radius: 4px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #666;
+  font-size: 12px;
+  background: rgba(white, 0.9);
+  border: 1px solid colors.$neutral-90;
+  padding: grid(2);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.redesign-image-container:hover::before {
+  opacity: 1;
+}
+
+.redesign-image-container.expanded::before {
+  content: 'Click image to collapse';
+}
+
+// BEFORE/AFTER IMAGES - MAIN
+.before-after-container {
+  @include body-xs;
+  gap: grid(3);
+  background: colors.$neutral-95;
+  padding: grid(3);
+  border-radius: grid(1);
+  align-items: center;
+}
+
+.before-after-image {
+  width: 100%;
+  border: 1px solid colors.$neutral-80;
+  border-radius: grid(1);
+}
+
+.before-after-arrow {
+  align-self: center;
+  transform: scale(1.2);
+}
+
+.before-after.leader-line {
+  transform: translateY(36px);
+
+  @include breakpoint-max(900px) {
+    transform: initial;
+  }
+}
+
+.before-after.annotation-container {
+  transform: translateY(38px);
+
+  @include breakpoint-max(900px) {
+    transform: initial;
+    margin-top: grid(5);
   }
 }

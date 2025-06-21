@@ -7,8 +7,6 @@ export function getLastPathFragmentFromURL(url: string): string {
 }
 
 export function getProjectFromURL(url: string): Project {
-  console.log('getProjectFromURL', url);
   const id = url.split('/')[2];
-  console.log('getProjectFromURL id', id);
   return PROJECTS.find((x) => x.id === id);
 }

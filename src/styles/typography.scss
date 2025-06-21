@@ -197,14 +197,14 @@ $expressive-mono: 1;
   @include font-sans;
   font-size: 0.92rem;
   letter-spacing: 0;
-  line-height: 1rem;
+  line-height: 1.5;
 }
 
 @mixin body-2xs {
   @include font-sans;
   font-size: 0.83rem;
   letter-spacing: 0;
-  line-height: 1rem;
+  line-height: 1.5;
 }
 
 // Labels

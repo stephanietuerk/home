@@ -1,0 +1,29 @@
+.mermaid-container {
+  .node rect,
+  .node circle,
+  .node ellipse,
+  .node polygon {
+    fill: var(--mermaid-bg-color, #ccc) !important;
+    stroke: var(--mermaid-stroke-color, #999) !important;
+    stroke-width: var(--mermaid-stroke-width, 1px) !important;
+  }
+
+  .label span {
+    color: var(--mermaid-primary-text-color, #000) !important;
+  }
+
+  .label .edgeLabel p {
+    background-color: var(--mermaid-edge-label-bg-color, #f0f0f0) !important;
+  }
+
+  .edgeLabels {
+    .label p {
+      background-color: var(--mermaid-edge-label-bg-color, #f0f0f0) !important;
+      color: var(--mermaid-edge-label-color, #000) !important;
+    }
+  }
+
+  .edgePaths path {
+    stroke: var(--mermaid-edge-path-color, #000) !important;
+  }
+}
