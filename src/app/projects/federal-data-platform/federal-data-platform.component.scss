@@ -325,6 +325,10 @@ $annotation-image-max-width-narrow-screen: 420px;
   margin-bottom: grid(3);
 }
 
+.capabilities .list-item {
+  margin-bottom: grid(2);
+}
+
 .state-focus-image-container {
   transform: translateY(-50%);
 
