@@ -2,6 +2,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 @import 'nouislider/dist/nouislider.min.css';
 
 .noUi-art-history {
@@ -21,7 +22,7 @@
   }
 
   .noUi-connect {
-    background: $color-highlight;
+    background: colors.$highlight-default;
   }
 
   .noUi-handle {
@@ -29,7 +30,7 @@
     width: $size;
     height: $size;
     border-radius: 50%;
-    box-shadow: $drop-shadow-lightest;
+    box-shadow: var(--showdow-sm-ultra-soft);
     top: -4px;
     right: -10px;
 
@@ -54,14 +55,14 @@
       font-size: 0.8rem;
       line-height: 1.2rem;
       top: -4px;
-      color: $color-light-gray-dark;
+      color: colors.$alt-neutral-75;
       display: none;
     }
 
     .noUi-marker {
       height: 8px;
       width: 1px;
-      background: $color-light-gray-dark;
+      background: colors.$alt-neutral-75;
     }
   }
 }

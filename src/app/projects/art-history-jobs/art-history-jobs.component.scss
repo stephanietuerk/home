@@ -1,6 +1,8 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 :host {
   --max-section-width: 1240px;
@@ -36,28 +38,28 @@
 }
 
 .section-header {
-  @extend %h5;
+  @include title-large;
   font-size: 1.53rem;
   text-align: center;
   margin-top: grid(18);
   padding-top: grid(10);
   width: var(--max-text-width);
   max-width: 100%;
-  border-top: 6px solid $color-light-gray-light;
+  border-top: 6px solid colors.$alt-neutral-88;
   padding-bottom: grid(9);
 }
 
 .section-subheader {
-  @extend %h6;
+  @include title-medium;
   text-align: center;
   padding-top: grid(4);
   padding-bottom: grid(6);
 }
 
 .link-to-section {
-  @extend %sans-regular;
+  @include font-sans-regular;
   cursor: pointer;
-  color: $color-highlight;
+  color: colors.$highlight-default;
   font-size: 1rem;
   font-variation-settings: 'wght' 450;
 
@@ -67,8 +69,8 @@
 }
 
 .external-link {
-  @extend %sans-regular;
-  color: $color-highlight;
+  @include font-sans-regular;
+  color: colors.$highlight-default;
   font-variation-settings: 'wght' 450;
 
   &:hover {
@@ -124,7 +126,7 @@
 }
 
 .scroll-to-next-section {
-  @extend %sans-regular;
+  @include font-sans-regular;
   background-color: rgba(white, 0.8);
   border-radius: grid(1);
   padding: grid(1) 0 grid(1) grid(1);

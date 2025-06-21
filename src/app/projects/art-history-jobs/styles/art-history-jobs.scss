@@ -6,7 +6,7 @@
 
 .selection-section-label {
   @include label-medium-caps-prominent;
-  color: $color-highlight;
+  color: colors.$highlight-default;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
   font-size: 1.1rem;
@@ -33,18 +33,18 @@
 
   .radio-input-label.selected {
     color: white;
-    background-color: $color-highlight;
+    background-color: colors.$highlight-default;
   }
 
   .radio-input-label {
-    @extend %slab-expressive-regular;
+    @include font-mono-expressive-regular;
     font-size: 0.85rem;
     letter-spacing: 0.05rem;
     padding: grid(2) grid(4) grid(1) grid(4);
     display: flex;
     justify-content: center;
-    border: 1px solid $color-highlight;
-    color: $color-highlight;
+    border: 1px solid colors.$highlight-default;
+    color: colors.$highlight-default;
   }
 
   .radio-input-component:not(:first-child) {
@@ -63,8 +63,8 @@
         cursor: pointer;
 
         &:hover {
-          background-color: colors.$tertiary-97;
-          color: $color-highlight;
+          background-color: colors.$neutral-97;
+          color: colors.$highlight-default;
         }
       }
     }

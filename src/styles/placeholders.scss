@@ -3,93 +3,30 @@
 @use 'typography' as *;
 @use 'colors';
 
-/* ---- TYPOGRAPHY ---- */
-/* ---- Primatives ---- */
-
-%h1 {
-  @include display-large;
-}
-
-%h2 {
-  @include display-medium;
-}
-
-%h3 {
-  @include display-small;
-}
-
-%h4 {
-  @include headline-medium;
-}
-
-%h5 {
-  @include title-large;
-}
-
-%h6 {
-  @include title-medium;
-}
-
-%small-caps-slab-bold {
-  @include label-medium-caps-prominent;
-}
-
-%subtitle1 {
-  @include label-medium;
-}
-
-%subtitle2 {
-  @include label-small;
-}
-
-%body1 {
-  @include body-medium;
-}
-
-%body2 {
-  @include body-xs;
-}
-
 %button {
-  @extend %slab-standard-medium;
+  @include font-mono-standard-medium;
   @extend %button-styles;
   font-size: 0.875rem;
   letter-spacing: 1.25px;
   text-transform: uppercase;
 }
 
-%caption {
-  @include label-2xs;
-}
-
-%overline {
-  @include label-large-caps;
-}
-
-%small-caps-overline {
-  @include label-large-caps;
-}
-
-%instructions {
-  @extend %sans-light;
-}
-
 %button-styles {
-  color: $color-highlight;
-  border-bottom: 1px solid $color-highlight;
+  color: colors.$highlight-default;
+  border-bottom: 1px solid colors.$highlight-default;
 }
 
 %button-behavior {
   transition: all 0.2s ease-in-out;
   &:hover {
-    color: $color-highlight;
+    color: colors.$highlight-default;
     font-weight: 700;
   }
 }
 
 %section-header {
   @include headline-medium;
-  color: $color-highlight;
+  color: colors.$highlight-default;
 }
 
 %flex-column {
@@ -98,17 +35,17 @@
 }
 
 %nav-link {
-  @extend %slab-expressive-medium;
+  @include font-mono-expressive-medium;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 
   &:active {
-    color: $color-highlight;
+    color: colors.$highlight-default;
   }
 
   &:visited {
@@ -128,8 +65,8 @@
   scrollbar-track-color: #edf1f4;
   -ms-scrollbar-3dlight-color: $color-scrollbar-ie;
   scrollbar-3dlight-color: $color-scrollbar-ie;
-  -ms-scrollbar-arrow-color: $color-light-gray-dark;
-  scrollbar-arrow-color: $color-light-gray-dark;
+  -ms-scrollbar-arrow-color: colors.$alt-neutral-75;
+  scrollbar-arrow-color: colors.$alt-neutral-75;
   scrollbar-color: $color-scrollbar-ie #fff;
 }
 
@@ -149,7 +86,7 @@
 }
 
 %focus-ring-style {
-  outline: 2px solid $color-dark-primary;
+  outline: 2px solid colors.$text;
   outline-offset: 1px;
 }
 
@@ -163,64 +100,64 @@
 
 /* ---- COMPONENTS ---- */
 %navbar {
-  min-height: $project-navbar-height;
+  min-height: $app-navbar-height;
   flex-shrink: 0;
   background: rgba(white, 0.9);
   padding: 0 1.5rem 0.5rem 1.5rem;
 }
 
-%content-component-host {
+%project-host {
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
 
-%content-component-navbar {
+%project-navbar {
   position: fixed;
   top: 0;
   z-index: 2000;
   width: 100%;
-  min-height: $content-navbar-height;
+  min-height: $project-navbar-height;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.9) 80%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(var(--color-bg-rgb), 0.9) 0%,
+    rgba(var(--color-bg-rgb), 0.9) 80%,
+    rgba(var(--color-bg-rgb), 0) 100%
   );
 }
 
-%content-component-container {
+%project-container-centered-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: $content-navbar-height;
-  padding-top: grid(12);
+  padding-top: $project-navbar-height + 48px;
   padding-bottom: grid(12);
+  background-color: var(--color-bg, white);
 }
 
 %comment-button {
-  @extend %slab-expressive-bold;
-  border: 2px solid $color-highlight;
-  color: $color-highlight;
-  background: colors.$tertiary-97;
+  @include font-mono-expressive-bold;
+  border: 2px solid colors.$highlight-default;
+  color: colors.$highlight-default;
+  background: colors.$neutral-97;
   transition: all 0.2s;
 
   &:hover {
     cursor: pointer;
-    @extend %slab-expressive-extrabold;
+    @include font-mono-expressive-extrabold;
     background: white;
   }
 
   &:disabled {
-    background: colors.$tertiary-97;
-    color: rgba($color-highlight, 0.5);
-    border: 2px solid colors.$tertiary-97;
+    background: colors.$neutral-97;
+    color: rgba(colors.$highlight-default, 0.5);
+    border: 2px solid colors.$neutral-97;
   }
 }
 
 /* ---- MATERIAL COMPONENTS ---- */
 %mat-form-field-outline {
   &.mat-focused .mat-form-field-outline-thick {
-    color: $color-dark-primary;
+    color: colors.$text;
   }
 
   .mat-form-field-wrapper {
@@ -289,7 +226,7 @@
   min-width: calc(100% + 16px) !important;
 
   &.mat-select-panel:not([class*='mat-elevation-z']) {
-    box-shadow: $drop-shadow-light;
+    box-shadow: var(--shadow-sm-ultra-soft);
   }
 }
 
@@ -307,7 +244,7 @@
   .combobox-component {
     .combobox-textbox {
       background: white;
-      border: 1px solid $color-light-gray-light;
+      border: 1px solid colors.$alt-neutral-88;
       padding: grid(3);
       // color: colors.$muted-blue-700;
     }
@@ -324,9 +261,9 @@
 
     .combobox-listbox.open {
       background: white;
-      border-right: 1px solid $color-light-gray-light;
-      border-bottom: 1px solid $color-light-gray-light;
-      border-left: 1px solid $color-light-gray-light;
+      border-right: 1px solid colors.$alt-neutral-88;
+      border-bottom: 1px solid colors.$alt-neutral-88;
+      border-left: 1px solid colors.$alt-neutral-88;
       border-radius: 2px;
     }
   }
@@ -335,7 +272,7 @@
 /* ---- DEFAULT COMBOBOX STYLING ---- */
 %combobox-styles {
   $border-radius: grid(1);
-  $open-border-color: $color-light-gray-dark;
+  $open-border-color: colors.$alt-neutral-75;
 
   .combobox-component {
     .combobox-label {
@@ -346,7 +283,7 @@
 
     .combobox-textbox {
       background: white;
-      border: 1px solid $color-light-gray-light;
+      border: 1px solid colors.$alt-neutral-88;
       border-radius: $border-radius;
       padding: grid(3);
       // color: colors.$muted-blue-700;
@@ -360,7 +297,7 @@
         border-left-color: $open-border-color;
         border-top-color: $open-border-color;
         border-right-color: $open-border-color;
-        border-bottom-color: $color-light-gray-light;
+        border-bottom-color: colors.$alt-neutral-88;
         border-radius: $border-radius $border-radius 0 0;
       }
     }
@@ -407,28 +344,28 @@
       // color: colors.$muted-blue-700;
 
       &:hover:not(.disabled):not(.selected) {
-        background: colors.$tertiary-97;
+        background: colors.$neutral-97;
         // color: colors.$blue-800;
       }
 
       &:hover.multi {
-        background: colors.$tertiary-97;
+        background: colors.$neutral-97;
       }
 
       &.current:not(.disabled) {
         // color: colors.$blue-800;
 
         &.multi {
-          background: colors.$tertiary-97;
+          background: colors.$neutral-97;
         }
 
         &:not(.selected) {
-          background: colors.$tertiary-97;
+          background: colors.$neutral-97;
         }
       }
 
       &.selected:not(.multi) {
-        background: $color-light-gray-light;
+        background: colors.$alt-neutral-88;
         // color: colors.$blue-800;
         font-weight: 500;
       }

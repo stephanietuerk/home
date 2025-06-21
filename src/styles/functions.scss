@@ -1,4 +1,10 @@
+@use 'sass:color';
+
 @function grid($number) {
   $grid: 0.25rem;
   @return $number * $grid;
+}
+
+@function hex-to-rgb($hex) {
+  @return #{red($hex)}, #{green($hex)}, #{blue($hex)};
 }

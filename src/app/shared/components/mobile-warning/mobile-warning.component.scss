@@ -11,10 +11,10 @@
   right: var(--mobile-warning-right, 1rem);
   margin: 0 auto;
   padding: 1rem 2rem;
-  background: var(--mobile-warning-bg, colors.$tertiary-97);
-  border: 1px solid var(--mobile-warning-bg-border, colors.$tertiary-90);
+  background: var(--mobile-warning-bg, colors.$neutral-97);
+  border: 1px solid var(--mobile-warning-bg-border, colors.$neutral-90);
   font-size: 0.9rem;
-  box-shadow: $drop-shadow-wide;
+  box-shadow: var(--shadow-md-spread);
   z-index: 2000;
   display: flex;
   flex-direction: column;

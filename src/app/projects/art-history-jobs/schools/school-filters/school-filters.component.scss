@@ -2,13 +2,14 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .schools-filters-encapsulation-container {
   display: flex;
   flex-direction: column;
 
   .container-title {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
@@ -17,7 +18,7 @@
 
   .selectors-container {
     display: flex;
-    background: colors.$tertiary-97;
+    background: colors.$neutral-97;
     padding: grid(3);
     border-radius: grid(1);
 
@@ -40,7 +41,7 @@
 
       .search-sort-container {
         border-right: none;
-        border-top: 1px solid $color-light-gray-medium;
+        border-top: 1px solid colors.$alt-neutral-85;
         display: flex;
         flex-direction: row;
         padding-top: grid(2);
@@ -81,7 +82,7 @@
 
       .search-sort-container {
         padding-right: grid(4);
-        border-right: 1px solid $color-light-gray-medium;
+        border-right: 1px solid colors.$alt-neutral-85;
       }
     }
   }
@@ -97,7 +98,7 @@
   }
 
   .selection-label {
-    @extend %subtitle2;
+    @include label-small;
     padding-bottom: grid(1);
     line-height: 1.2;
   }
@@ -121,38 +122,38 @@
     }
 
     .search-input {
-      @extend %sans-regular;
+      @include font-sans-regular;
       font-size: 1rem;
       height: 42px;
       padding: grid(1) grid(2);
-      border: 1px solid colors.$tertiary-90;
+      border: 1px solid colors.$neutral-90;
       border-radius: grid(1);
       flex-grow: 1;
 
       &::placeholder {
-        @extend %sans-light;
+        @include font-sans-light;
         font-size: 1rem;
         flex-grow: 1;
-        color: colors.$tertiary-70;
+        color: colors.$neutral-70;
         font-style: italic;
         opacity: 1;
       }
 
       &:focus {
-        border: 1px solid colors.$tertiary-80;
+        border: 1px solid colors.$neutral-80;
         outline: none;
 
         &::placeholder {
-          color: colors.$tertiary-60;
+          color: colors.$neutral-60;
         }
       }
 
       &:hover {
         outline: none;
-        border: 1px solid colors.$tertiary-80;
+        border: 1px solid colors.$neutral-80;
 
         &::placeholder {
-          color: $color-dark-gray;
+          color: colors.$alt-neutral-55;
         }
       }
     }
@@ -161,7 +162,7 @@
       position: absolute;
       right: grid(2);
       top: 7px;
-      color: colors.$tertiary-40;
+      color: colors.$neutral-40;
     }
   }
 
@@ -180,7 +181,7 @@
       .dropdown-label {
         // @extend %typography-ui-label-sm-semibold;
         padding-right: grid(2);
-        @extend %sans-regular;
+        @include font-sans-regular;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
         font-size: 0.8rem;
@@ -244,12 +245,12 @@
   .sort-selection {
     display: flex;
     font-size: 0.9rem;
-    border: 1px solid $color-light-gray-light;
+    border: 1px solid colors.$alt-neutral-88;
     flex-grow: 1;
     overflow: visible;
 
     &:hover {
-      border: 1px solid $color-light-gray-dark;
+      border: 1px solid colors.$alt-neutral-75;
     }
 
     .arrow-icon {
@@ -276,7 +277,7 @@
       }
 
       &:not(:last-child) {
-        border-right: 1px solid $color-light-gray-light;
+        border-right: 1px solid colors.$alt-neutral-88;
       }
 
       &.sort-option.cdk-keyboard-focused {
@@ -285,8 +286,8 @@
     }
 
     .mat-button-toggle-checked {
-      background: rgba($color-dark-primary, 0.5);
-      background: $color-highlight;
+      background: rgba(colors.$text, 0.5);
+      background: colors.$highlight-default;
       color: white;
     }
 

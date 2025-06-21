@@ -61,7 +61,8 @@ $max-width: 720px;
 }
 
 .section.data {
-  @extend %flex-column;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto';
   align-items: center;
   padding-bottom: 64px;

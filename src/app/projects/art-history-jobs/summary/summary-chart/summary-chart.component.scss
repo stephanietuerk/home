@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 .cdk-overlay-container,
 .cdk-global-overlay-wrapper,
@@ -17,7 +18,7 @@
 
   .tooltip-line {
     position: relative;
-    border-left: 2px dashed $color-light-gray-medium;
+    border-left: 2px dashed colors.$alt-neutral-85;
     align-self: center;
     flex-grow: 1;
   }
@@ -35,13 +36,13 @@
 
   .left-space {
     flex-basis: 50%;
-    border-right: 2px dotted $color-light-gray-light;
+    border-right: 2px dotted colors.$alt-neutral-88;
     mix-blend-mode: difference;
   }
 
   .tooltip-container {
     background: rgba(white, 0.93);
-    border: 1px solid $color-light-gray-light;
+    border: 1px solid colors.$alt-neutral-88;
     padding: grid(2);
     border-radius: grid(1);
   }
@@ -49,26 +50,26 @@
   .year-row {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $color-dark-primary;
+    border-bottom: 1px solid colors.$text;
   }
 
   .total-label {
-    @extend %overline;
+    @include label-large-caps;
     font-size: 0.8rem;
   }
 
   .tooltip-label.x {
-    @extend %slab-standard-medium;
+    @include font-mono-standard-medium;
   }
 
   .tooltip-label.y {
-    @extend %sans-regular;
+    @include font-sans-regular;
     font-size: 0.85rem;
     line-height: 1;
   }
 
   .tooltip-label.category {
-    @extend %slab-standard-medium;
+    @include font-mono-standard-medium;
     font-size: 0.8rem;
     line-height: 1.3;
   }
@@ -78,7 +79,7 @@
     justify-content: space-between;
     padding-bottom: 2px;
     padding-top: 2px;
-    border-bottom: 1px solid $color-light-gray-light;
+    border-bottom: 1px solid colors.$alt-neutral-88;
   }
 
   .values-container {

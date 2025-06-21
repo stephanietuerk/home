@@ -1,6 +1,8 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 :host {
   display: flex;
@@ -9,7 +11,7 @@
 }
 
 .section-subheader {
-  @extend %h6;
+  @include title-medium;
   text-align: center;
   padding-top: grid(4);
   padding-bottom: grid(6);
@@ -23,8 +25,8 @@
 }
 
 .external-link {
-  @extend %sans-regular;
-  color: $color-highlight;
+  @include font-sans-regular;
+  color: colors.$highlight-default;
 
   &:hover {
     text-decoration: underline;

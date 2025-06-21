@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'typography' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .table-component {
   text-align: left;
@@ -9,7 +10,7 @@
 
   .head {
     .header.cell {
-      border-bottom: 1px solid $color-dark-gray;
+      border-bottom: 1px solid colors.$alt-neutral-55;
     }
 
     .header.cell:not(:last-child) {
@@ -17,7 +18,7 @@
     }
 
     .header-contents {
-      @extend %sans-medium;
+      @include font-sans-medium;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
       font-size: 0.7rem;
@@ -33,20 +34,20 @@
 
         &.desc {
           .arrow.down {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
         }
 
         &.asc {
           .arrow.up {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
         }
       }
 
       &.sorted {
-        @extend %sans-bold;
-        color: $color-highlight;
+        @include font-sans-bold;
+        color: colors.$highlight-default;
       }
     }
 
@@ -62,10 +63,10 @@
       line-height: 1.2;
       padding: grid(2) grid(2) 6px grid(2);
       color: var(--color);
-      border-bottom: 1px solid $color-light-gray-light;
+      border-bottom: 1px solid colors.$alt-neutral-88;
 
       &.right {
-        @extend %sans-medium;
+        @include font-sans-medium;
         font-size: 0.95rem;
         line-height: 1;
         text-align: right;

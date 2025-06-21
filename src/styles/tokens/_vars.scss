@@ -1,0 +1,13 @@
+@use 'colors';
+@use 'shadows';
+@use 'typography';
+@use '../utils/map-to-vars';
+
+html {
+  @include map-to-vars.map-scss-vars-into-css-vars(
+    colors.$site-colors,
+    'color'
+  );
+  @include map-to-vars.map-scss-vars-into-css-vars(shadows.$shadows, 'shadow');
+  @include map-to-vars.map-scss-vars-into-css-vars(typography.$font, 'font');
+}

@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'typography' as *;
 
 :host {
   flex-grow: 1;
@@ -10,7 +11,7 @@
 }
 
 .section-header {
-  @extend %h5;
+  @include title-large;
   font-size: 1.53rem;
   text-align: center;
   padding-bottom: grid(6);

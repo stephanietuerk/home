@@ -2,10 +2,11 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 .arrows-container {
-  $arrow-color: $color-dark-primary;
-  $arrow-color-unselected: color.scale($arrow-color, $lightness: 75%);
+  $arrow-color: colors.$text;
+  $arrow-color-unselected: colors.$neutral-70;
 
   display: flex;
 

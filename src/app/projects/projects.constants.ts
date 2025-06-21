@@ -1,15 +1,54 @@
 import {
-  artHistoryJobsPath,
-  beyondPath,
-  flipPath,
-  leavingPath,
+  artHistoryJobsId,
+  beyondId,
+  covidTestingId,
+  federalDataPlatformId,
+  flipId,
+  leavingId,
   projectsPath,
 } from '../core/constants/routing.constants';
-import { Project, ProjectType } from '../core/models/project.model';
+import { Project, ProjectType, Theme } from '../core/models/project.model';
 
 export const PROJECTS: Project[] = [
   {
-    id: 'art-history-jobs',
+    id: federalDataPlatformId,
+    title: 'Federal Healthcare Data Platform',
+    type: ProjectType.caseStudy,
+    year: '2023—2025',
+    description: [
+      'This case study documents the complete redesign and redevelopment of a federal healthcare data platform serving state Medicaid programs, researchers, and the public. Leading both product design and frontend development, I delivered the project in under 10 months despite significant technical constraints, including the requirement to work with flat CSV files rather than a queryable API.',
+      "The platform's success led to commissioning of a second product using the same codebase, which was delivered in 3.5 months. The case study includes detailed technical implementation, platform capabilities, and visual examples of key features like State Focus mode and the validation system.",
+    ],
+    images: [
+      {
+        path: 'assets/federal-data-platform/scorecard-main.png',
+        altText: 'A screen capture of the 2024 Medicaid and CHIP Scorecard',
+      },
+      {
+        path: 'assets/federal-data-platform/core-set-main.png',
+        altText: 'A screen capture of the 2024 Core Set Data Dashboard',
+      },
+    ],
+    links: [
+      {
+        name: 'Case study',
+        routerLink: `${projectsPath}/${federalDataPlatformId}`,
+      },
+    ],
+    theme: Theme.professional,
+  },
+  // {
+  //   id: composableVizId,
+  //   title: 'Composable Data Visualization Components Library',
+  //   type: ProjectType.caseStudy,
+  //   year: '2022—2025',
+  //   description: [],
+  //   images: [],
+  //   links: [],
+  //   theme: Theme.professional,
+  // },
+  {
+    id: artHistoryJobsId,
     title: 'Art History Jobs, 2011—2023',
     type: ProjectType.dataViz,
     year: '2020—2023',
@@ -32,16 +71,17 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'interactive project (2023)',
-        routerLink: `${projectsPath}/${artHistoryJobsPath}`,
+        routerLink: `${projectsPath}/${artHistoryJobsId}`,
       },
       {
         name: 'notebook (2020)',
         url: 'observablehq.com/@stephanietuerk/art-history-jobs-2011-2020',
       },
     ],
+    theme: Theme.designDev,
   },
   {
-    id: 'leaving-academia-faq',
+    id: leavingId,
     title: 'Leaving Academia FAQ',
     type: ProjectType.writing,
     year: 2021,
@@ -51,16 +91,17 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'Post',
-        routerLink: `${projectsPath}/${leavingPath}`,
+        routerLink: `${projectsPath}/${leavingId}`,
       },
     ],
     allowComments: false,
     postConfig: {
       postedDate: new Date(2021, 5, 15),
     },
+    theme: Theme.personal,
   },
   {
-    id: 'covid-school-testing',
+    id: covidTestingId,
     title: 'COVID School Testing Tool',
     type: ProjectType.dataViz,
     year: 2021,
@@ -82,6 +123,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     professional: true,
+    theme: Theme.designDev,
   },
   {
     id: 'scsar',
@@ -111,6 +153,7 @@ export const PROJECTS: Project[] = [
         disabled: true,
       },
     ],
+    theme: Theme.designDev,
   },
   {
     id: 'dq-atlas',
@@ -141,9 +184,10 @@ export const PROJECTS: Project[] = [
       },
     ],
     professional: true,
+    theme: Theme.designDev,
   },
   {
-    id: 'beyond-the-county-line',
+    id: beyondId,
     title: 'Beyond the County Line',
     type: ProjectType.dataViz,
     year: 2017,
@@ -165,12 +209,13 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'visualization',
-        routerLink: `${projectsPath}/${beyondPath}`,
+        routerLink: `${projectsPath}/${beyondId}`,
       },
     ],
+    theme: Theme.designDev,
   },
   {
-    id: 'flip-the-district',
+    id: flipId,
     title: 'Flip the District',
     type: ProjectType.dataViz,
     year: 2017,
@@ -190,9 +235,10 @@ export const PROJECTS: Project[] = [
     links: [
       {
         name: 'visualization',
-        routerLink: `${projectsPath}/${flipPath}`,
+        routerLink: `${projectsPath}/${flipId}`,
       },
     ],
+    theme: Theme.designDev,
   },
 ];
 

@@ -2,10 +2,11 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'colors';
+@use 'typography' as *;
 
 .bars-styles-encapsulation-container {
   .vic-background-bar {
-    fill: colors.$tertiary-97;
+    fill: colors.$neutral-97;
   }
 
   .data-value-label {
@@ -17,7 +18,7 @@
   }
 
   .zero-axis {
-    stroke: $color-dark-primary;
+    stroke: colors.$text;
     stroke-dasharray: 2 2;
     stroke-width: 2;
   }

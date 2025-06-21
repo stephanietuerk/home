@@ -1,11 +1,12 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
 
 :host {
   display: flex;
   flex-direction: column;
-  background-color: $color-dark-primary;
+  background-color: colors.$text;
   border-radius: grid(1);
   padding: grid(2);
   color: white;

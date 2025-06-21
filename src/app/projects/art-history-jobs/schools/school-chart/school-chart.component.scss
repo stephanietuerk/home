@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'colors';
+@use 'typography' as *;
 
 :host {
   display: flex;
@@ -11,13 +12,13 @@
 .chart {
   display: flex;
   height: 100%;
-  background: colors.$tertiary-97;
+  background: colors.$neutral-97;
 }
 
 .year {
   width: 16px;
   flex-shrink: 0;
-  border-bottom: 1px solid $color-light-gray-dark;
+  border-bottom: 1px solid colors.$alt-neutral-75;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -31,5 +32,5 @@
 .years-readout {
   display: flex;
   justify-content: space-between;
-  @extend %caption;
+  @include label-2xs;
 }

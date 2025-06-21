@@ -10,7 +10,7 @@
   flex-direction: column;
 
   .container-title {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.9rem;
@@ -34,28 +34,28 @@
     }
 
     &:hover {
-      border-bottom: 2px solid colors.$tertiary-70;
+      border-bottom: 2px solid colors.$neutral-70;
 
       &:not(.active) {
         .tab-label {
-          color: colors.$tertiary-50;
+          color: colors.$neutral-50;
         }
       }
     }
 
     &.active {
-      border-bottom: 2px solid $color-highlight;
+      border-bottom: 2px solid colors.$highlight-default;
 
       .tab-label {
-        color: $color-highlight;
-        @extend %slab-standard-semibold;
+        color: colors.$highlight-default;
+        @include font-mono-standard-semibold;
       }
     }
   }
 
   .tab-label {
     @include label-large;
-    color: colors.$tertiary-60;
+    color: colors.$neutral-60;
     transition: all 0.2s;
 
     @media screen and (max-width: 760px) {
@@ -68,7 +68,7 @@
   }
 
   .tabs-body {
-    background: colors.$tertiary-97;
+    background: colors.$neutral-97;
     padding: grid(4);
     border-radius: grid(1);
   }

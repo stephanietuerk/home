@@ -25,7 +25,8 @@
       "topojson-specification": [
         "node_modules/@types/topojson-specification/index.d.ts"
       ]
-    }
+    },
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

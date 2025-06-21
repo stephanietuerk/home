@@ -11,13 +11,13 @@
   width: 100%;
 
   --combobox-border-radius: 4px;
-  --combobox-border-color: var(--color-tertiary-90);
-  --combobox-border-color-hover: var(--color-tertiary-80);
-  --listbox-option-selected-background: var(--color-tertiary-97);
-  --listbox-option-hover-background: var(--color-tertiary-95);
+  --combobox-border-color: var(--color-neutral-90);
+  --combobox-border-color-hover: var(--color-neutral-80);
+  --listbox-option-selected-background: var(--color-neutral-97);
+  --listbox-option-hover-background: var(--color-neutral-95);
 
   .section-header {
-    @extend %h5;
+    @include title-large;
     text-align: center;
     padding-bottom: grid(4);
   }
@@ -71,7 +71,7 @@
   }
 
   .legend-text {
-    @extend %sans-light;
+    @include font-sans-light;
     font-size: 0.9rem;
     line-height: 1.2;
   }
@@ -108,26 +108,26 @@
         .mat-content {
           .country-name,
           .num-schools {
-            @extend %sans-medium;
+            @include font-sans-medium;
           }
 
           .country-name {
-            color: $color-highlight;
+            color: colors.$highlight-default;
             font-weight: 500;
           }
 
           .num-schools {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
 
           .expand-icon {
-            color: $color-highlight;
+            color: colors.$highlight-default;
           }
         }
       }
 
       &:not(.mat-expanded):not(:hover) {
-        border-bottom: 1px solid $color-light-gray-dark;
+        border-bottom: 1px solid colors.$alt-neutral-75;
       }
 
       &.cdk-keyboard-focused {
@@ -135,15 +135,15 @@
       }
 
       &:hover {
-        background-color: colors.$tertiary-97;
+        background-color: colors.$neutral-97;
 
         &:not(.mat-expanded) {
-          background-color: colors.$tertiary-97;
-          border-bottom: 1px solid $color-highlight;
+          background-color: colors.$neutral-97;
+          border-bottom: 1px solid colors.$highlight-default;
         }
 
         .expand-icon {
-          color: $color-highlight;
+          color: colors.$highlight-default;
         }
 
         .mat-content {
@@ -152,7 +152,7 @@
 
         .country-name,
         .num-schools {
-          color: $color-highlight;
+          color: colors.$highlight-default;
         }
       }
     }
@@ -172,7 +172,7 @@
       transition: border-bottom 0.2s ease-in-out;
 
       .country-name {
-        @extend %sans-regular;
+        @include font-sans-regular;
         font-size: 1rem;
         line-height: 1.2;
       }
@@ -198,7 +198,7 @@
     }
 
     .mat-expansion-panel-content {
-      // border-bottom: 1px solid $color-dark-gray;
+      // border-bottom: 1px solid colors.$alt-neutral-55;
       padding: 0 grid(2);
       background-color: white;
       overflow: hidden;
@@ -243,7 +243,7 @@
   }
 
   .school-name {
-    @extend %slab-expressive-medium;
+    @include font-mono-expressive-medium;
     font-size: 0.9rem;
     line-height: 1;
     padding-bottom: grid(1);
@@ -253,12 +253,12 @@
     justify-content: flex-end;
 
     .highlight {
-      background-color: $color-search-highlight;
+      background-color: colors.$highlight-search;
     }
   }
 
   .no-schools-text {
-    @extend %sans-medium;
+    @include font-sans-medium;
     padding: grid(6) grid(4);
   }
 }

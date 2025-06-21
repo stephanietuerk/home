@@ -1,4 +1,4 @@
-<div class="section top-matter" #intro>
+<section class="section top-matter" #intro>
   <p class="description">
     In the field of Art History, the
     <a
@@ -25,7 +25,7 @@
     alike.
   </p>
   <p class="description"
-    >This dataset for this project currently covers
+    >Thie dataset for this project currently covers
     {{ dataYears[1] - dataYears[0] + 1 }} years of data, from
     {{ dataYears[0] }} to {{ dataYears[1] }}, aggregated by scraping jobs posted
     on the Academic Jobs Wiki. Users can view changes in the total number of
@@ -79,25 +79,25 @@
     for aggregation and field imputation are available at the bottom of the
     page.
   </p>
-</div>
-<div #summary class="section summary">
+</section>
+<section #summary class="section summary">
   <div class="summary-width-container">
     <h2 class="section-header" #summary>All jobs by field, 2011&ndash;2023</h2>
     <app-summary class="section-component summary"></app-summary>
   </div>
-</div>
-<div #jobCharacteristics class="section explore">
+</section>
+<section #jobCharacteristics class="section explore">
   <h2 class="section-header">Explore by Job Characteristics</h2>
   <app-explore class="section-component explore"></app-explore>
-</div>
-<div #schools class="section schools">
+</section>
+<section #schools class="section schools">
   <h2 class="section-header" #schools>Explore by Institution</h2>
   <app-schools class="section-component schools"></app-schools
-></div>
-<div #methods class="section">
+></section>
+<section #methods class="section">
   <h2 class="section-header methods" #methods>Dataset Creation</h2>
   <app-data-acquisition class="section-component"></app-data-acquisition
-></div>
+></section>
 <div class="scroll-to-container">
   @if (currentSectionName$ | async; as currentSectionName) {
     <button

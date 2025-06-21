@@ -1,6 +1,8 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 .across-chart-container {
   display: flex;
@@ -14,8 +16,8 @@
   }
 
   .tenure-rank {
-    @extend %sans-medium;
-    color: $color-highlight;
+    @include font-sans-medium;
+    color: colors.$highlight-default;
   }
 
   .time-range-xy-chart {
@@ -33,7 +35,7 @@
   max-width: 260px;
 
   $tt-background-color: rgba(white, 0.95);
-  $tt-outline-color: $color-light-gray-medium;
+  $tt-outline-color: colors.$alt-neutral-85;
 
   .tooltip-container {
     background: $tt-background-color;
@@ -43,28 +45,28 @@
   }
 
   .tooltip-label {
-    @extend %slab-expressive-regular;
+    @include font-mono-expressive-regular;
     display: flex;
     flex-direction: column;
     line-height: 1rem;
   }
 
   .tooltip-label.category {
-    @extend %slab-standard-semibold;
+    @include font-mono-standard-semibold;
     font-size: 0.95rem;
     line-height: 1.1;
     font-weight: 600;
     color: var(--color);
-    border-bottom: 1px solid $color-dark-primary;
+    border-bottom: 1px solid colors.$text;
     padding-bottom: grid(1);
 
     .value-label {
-      color: $color-dark-primary;
+      color: colors.$text;
     }
   }
 
   .value-label {
-    @extend %sans-medium;
+    @include font-sans-medium;
     text-transform: uppercase;
     font-size: 0.7rem;
     line-height: 1rem;

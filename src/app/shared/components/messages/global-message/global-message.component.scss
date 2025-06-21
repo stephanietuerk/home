@@ -1,6 +1,8 @@
 @use 'vars' as *;
 @use 'placeholders' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 .cdk-overlay-container {
   z-index: $global-overlay-z-index;
@@ -12,7 +14,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgba($color-dark-primary, 0.25);
+  background-color: rgba(colors.$text, 0.25);
   color: white;
 
   .message-container {
@@ -21,7 +23,7 @@
     max-width: 700px;
     margin: 20vh 10% 10% 10%;
     padding: grid(4) grid(6);
-    background: $color-dark-primary;
+    background: colors.$text;
     color: white;
   }
 
@@ -31,7 +33,7 @@
     align-items: center;
     margin-bottom: grid(4);
     padding-bottom: grid(1);
-    border-bottom: 2px solid $color-highlight;
+    border-bottom: 2px solid colors.$highlight-default;
     color: white;
   }
 
@@ -42,7 +44,7 @@
   }
 
   .title {
-    @extend %subtitle1;
+    @include label-medium;
   }
 
   .message {

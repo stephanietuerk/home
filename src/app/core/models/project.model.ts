@@ -10,6 +10,7 @@ export class Project {
   allowComments?: boolean;
   professional?: boolean;
   postConfig?: Post;
+  theme: Theme;
 }
 
 export enum Environment {
@@ -38,12 +39,15 @@ export class Link {
 }
 
 export enum ProjectType {
+  caseStudy = 'Case study',
   dataViz = 'Interactive data visualization',
   writing = 'Writing',
-  list = 'Reference List',
   webApp = 'Web application',
   website = 'Website',
-  prototype = 'Prototype',
-  notebook = 'Notebook',
-  blogPost = 'Blog post',
+}
+
+export enum Theme {
+  professional = 'professional',
+  personal = 'personal',
+  designDev = 'design-dev',
 }

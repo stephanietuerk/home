@@ -2,9 +2,12 @@
 @use 'placeholders' as *;
 @use 'mixins' as *;
 @use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
 
 .component-container {
-  @extend %flex-column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 
   .contact-title {
@@ -14,12 +17,13 @@
   }
 
   .contact-container {
-    @extend %flex-column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     padding-bottom: grid(6);
 
     .contact-text {
-      @extend %body1;
+      @include body-medium;
     }
 
     .social-media-container {
@@ -32,11 +36,11 @@
     }
 
     .contact-type-text {
-      @extend %small-caps-overline;
+      @include label-large-caps;
     }
 
     .contact-text {
-      @extend %body1;
+      @include body-medium;
     }
 
     .social-media-container {

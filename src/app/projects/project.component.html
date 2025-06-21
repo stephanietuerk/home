@@ -1,8 +1,22 @@
-<app-content-navbar
-  [attr.id]="navbarId"
-  class="project-navbar"
-  [title]="project.title"
-></app-content-navbar>
-<div class="project-container" id="project-container" [ngClass]="project.id">
-  <router-outlet></router-outlet>
+<div
+  class="styles-container"
+  [ngClass]="[
+    project.id,
+    project.type | formatForId,
+    'theme--' + project.theme,
+  ]"
+>
+  <app-project-navbar
+    [attr.id]="navbarId"
+    [ngClass]="[project.id, project.type | formatForId]"
+    class="project-navbar"
+    [title]="project.title"
+  ></app-project-navbar>
+  <div
+    class="project-container"
+    id="project-container"
+    [ngClass]="[project.id, project.type | formatForId]"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>

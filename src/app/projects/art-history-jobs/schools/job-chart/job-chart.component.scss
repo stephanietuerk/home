@@ -2,6 +2,7 @@
 @use 'placeholders' as *;
 @use 'functions' as *;
 @use 'typography' as *;
+@use 'colors';
 
 .job-rect {
   width: 100%;
@@ -17,7 +18,7 @@
 }
 
 .job-tooltip-container {
-  $tt-outline-color: $color-light-gray-medium;
+  $tt-outline-color: colors.$alt-neutral-85;
   $tt-background-color: rgba(white, 0.95);
   max-width: 340px;
 
@@ -29,7 +30,7 @@
     line-height: 1;
 
     .year {
-      @extend %subtitle2;
+      @include label-small;
       padding-bottom: grid(2);
       padding-top: grid(2);
     }
@@ -41,7 +42,7 @@
     .characteristic .label {
       padding-top: grid(1);
       @include label-2xs-caps;
-      @extend %sans-light;
+      @include font-sans-light;
       font-size: 0.7rem;
     }
 
@@ -51,7 +52,7 @@
     }
 
     .field {
-      @extend %slab-standard-semibold;
+      @include font-mono-standard-semibold;
       font-size: 0.95rem;
       color: var(--color, dodgerblue);
       font-weight: 500;
@@ -60,7 +61,7 @@
 
       &.last {
         padding-bottom: grid(2);
-        border-bottom: 1px solid $color-dark-gray;
+        border-bottom: 1px solid colors.$alt-neutral-55;
       }
     }
   }
