@@ -11,18 +11,18 @@ import {
 } from '@angular/core';
 import { select } from 'd3';
 import { Selection } from 'd3-selection';
-import { VicXyAxisModule } from '../../../../../viz-components-new/axes';
+import { VicXyAxisModule } from '../../../../../shared/components/viz/axes';
 import {
   BarDatum,
   BARS,
   BarsComponent,
-} from '../../../../../viz-components-new/bars';
+} from '../../../../../shared/components/viz/bars';
 import {
   ChartComponent,
   XyChartComponent,
   XyContentScale,
-} from '../../../../../viz-components-new/charts';
-import { VIC_PRIMARY_MARKS } from '../../../../../viz-components-new/marks';
+} from '../../../../../shared/components/viz/charts';
+import { VIC_PRIMARY_MARKS } from '../../../../../shared/components/viz/marks';
 import { ChangeChartComponent } from '../change-chart/change-chart.component';
 
 type BarContainerSelection = Selection<

@@ -9,32 +9,34 @@ import {
   Observable,
 } from 'rxjs';
 import { grayLightest } from 'src/app/core/constants/colors.constants';
+import { ElementSpacing } from '../../../../core/models/charts.model';
 import {
   VicXQuantitativeAxisConfig,
   VicXQuantitativeAxisConfigBuilder,
+  VicXyAxisModule,
   VicYQuantitativeAxisConfig,
   VicYQuantitativeAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
-import { VicXyAxisModule } from '../../../../viz-components-new/axes/xy-axis.module';
-import { ChartConfig } from '../../../../viz-components-new/charts';
-import { VicChartModule } from '../../../../viz-components-new/charts/chart.module';
-import { VicChartConfigBuilder } from '../../../../viz-components-new/charts/chart/config/chart-builder';
-import { ElementSpacing } from '../../../../viz-components-new/core/types/layout';
-import { HoverMoveAction } from '../../../../viz-components-new/events';
+} from '../../../../shared/components/viz/axes';
+import {
+  ChartConfig,
+  VicChartConfigBuilder,
+  VicChartModule,
+} from '../../../../shared/components/viz/charts';
+import { HoverMoveAction } from '../../../../shared/components/viz/events';
 import {
   StackedAreaConfig,
   StackedAreaEventOutput,
   StackedAreaHoverMoveDirective,
   StackedAreaHoverMoveEmitTooltipData,
   VicStackedAreaConfigBuilder,
-} from '../../../../viz-components-new/stacked-area';
-import { VicStackedAreaModule } from '../../../../viz-components-new/stacked-area/stacked-area.module';
+  VicStackedAreaModule,
+} from '../../../../shared/components/viz/stacked-area';
 import {
   HtmlTooltipConfig,
   VicHtmlTooltipConfigBuilder,
-} from '../../../../viz-components-new/tooltips';
-import { VicHtmlTooltipModule } from '../../../../viz-components-new/tooltips/html-tooltip/html-tooltip.module';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background/xy-background.module';
+  VicHtmlTooltipModule,
+} from '../../../../shared/components/viz/tooltips';
+import { VicXyBackgroundModule } from '../../../../shared/components/viz/xy-background';
 import { JobDatum, JobTableDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';

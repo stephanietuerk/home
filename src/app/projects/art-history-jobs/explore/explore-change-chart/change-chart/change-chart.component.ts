@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   CHART,
   XyChartComponent,
-} from '../../../../../viz-components-new/charts';
+} from '../../../../../shared/components/viz/charts';
 
 @Component({
   selector: 'app-change-chart',

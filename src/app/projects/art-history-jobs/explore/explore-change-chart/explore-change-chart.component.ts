@@ -16,12 +16,13 @@ import {
   shareReplay,
   withLatestFrom,
 } from 'rxjs/operators';
+import { ElementSpacing } from '../../../../core/models/charts.model';
 import {
   VicXQuantitativeAxisConfig,
   VicXQuantitativeAxisConfigBuilder,
   VicXyAxisModule,
   VicYOrdinalAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
+} from '../../../../shared/components/viz/axes';
 import {
   BarsConfig,
   BarsEventOutput,
@@ -29,20 +30,19 @@ import {
   BarsHoverMoveEmitTooltipData,
   VicBarsConfigBuilder,
   VicBarsModule,
-} from '../../../../viz-components-new/bars';
+} from '../../../../shared/components/viz/bars';
 import {
   ChartConfig,
   VicChartConfigBuilder,
   VicChartModule,
-} from '../../../../viz-components-new/charts';
-import { ElementSpacing } from '../../../../viz-components-new/core';
-import { HoverMoveAction } from '../../../../viz-components-new/events/action';
+} from '../../../../shared/components/viz/charts';
+import { HoverMoveAction } from '../../../../shared/components/viz/events';
 import {
   HtmlTooltipConfig,
   VicHtmlTooltipConfigBuilder,
   VicHtmlTooltipModule,
-} from '../../../../viz-components-new/tooltips';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background';
+} from '../../../../shared/components/viz/tooltips';
+import { VicXyBackgroundModule } from '../../../../shared/components/viz/xy-background';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';

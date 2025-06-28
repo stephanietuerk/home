@@ -19,13 +19,13 @@ import {
   VicXyAxisModule,
   VicYQuantitativeAxisConfig,
   VicYQuantitativeAxisConfigBuilder,
-} from '../../../../viz-components-new/axes';
+} from '../../../../shared/components/viz/axes';
 import {
   ChartConfig,
   VicChartConfigBuilder,
   VicChartModule,
-} from '../../../../viz-components-new/charts';
-import { HoverMoveAction } from '../../../../viz-components-new/events';
+} from '../../../../shared/components/viz/charts';
+import { HoverMoveAction } from '../../../../shared/components/viz/events';
 import {
   LinesConfig,
   LinesEventOutput,
@@ -34,13 +34,13 @@ import {
   LinesHoverMoveEmitTooltipData,
   VicLinesConfigBuilder,
   VicLinesModule,
-} from '../../../../viz-components-new/lines';
+} from '../../../../shared/components/viz/lines';
 import {
   HtmlTooltipConfig,
   VicHtmlTooltipConfigBuilder,
   VicHtmlTooltipModule,
-} from '../../../../viz-components-new/tooltips';
-import { VicXyBackgroundModule } from '../../../../viz-components-new/xy-background';
+} from '../../../../shared/components/viz/tooltips';
+import { VicXyBackgroundModule } from '../../../../shared/components/viz/xy-background';
 import { JobDatum } from '../../art-history-data.model';
 import { ArtHistoryFieldsService } from '../../art-history-fields.service';
 import { artHistoryFormatSpecifications } from '../../art-history-jobs.constants';
