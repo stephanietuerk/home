@@ -34,13 +34,7 @@
     }
 
     &:hover {
-      border-bottom: 2px solid colors.$neutral-70;
-
-      &:not(.active) {
-        .tab-label {
-          color: colors.$neutral-50;
-        }
-      }
+      border-bottom: 2px solid colors.$text;
     }
 
     &.active {
@@ -55,7 +49,7 @@
 
   .tab-label {
     @include label-large;
-    color: colors.$neutral-60;
+    color: colors.$text;
     transition: all 0.2s;
 
     @media screen and (max-width: 760px) {
