@@ -1,1 +1,7 @@
-<div #mermaidDiv [innerHTML]="renderedDiagram" class="mermaid-container"></div>
+<div
+  #mermaidDiv
+  [innerHTML]="renderedDiagram"
+  class="mermaid-container"
+  [ngClass]="chartType"
+  [style.--mermaid-font-size]="fontSize"
+></div>

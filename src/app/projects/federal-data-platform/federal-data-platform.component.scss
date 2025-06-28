@@ -8,7 +8,6 @@ $annotation-image-max-width-narrow-screen: 420px;
 
 :host {
   width: 100%; // ensures that wide constainers shrink with browser window
-  min-height: 100vh;
 
   --grid-col-width: 148px;
   --mermaid-bg-color: #{colors.$neutral-90};
@@ -95,6 +94,9 @@ $annotation-image-max-width-narrow-screen: 420px;
 
 .old-scorecard .annotation-image,
 .state-focus .annotation-image {
+  border: 1px solid colors.$neutral-90;
+  border-radius: grid(1);
+
   @include breakpoint-max(900px) {
     max-width: $annotation-image-max-width-narrow-screen;
   }
@@ -256,7 +258,8 @@ $annotation-image-max-width-narrow-screen: 420px;
   }
 }
 
-.redesign-image-container::before {
+.redesign-image-container::before,
+.state-focus-image-container::before {
   content: 'Click image to expand';
   pointer-events: none;
   border-radius: 4px;
@@ -273,11 +276,13 @@ $annotation-image-max-width-narrow-screen: 420px;
   z-index: 10;
 }
 
-.redesign-image-container:hover::before {
+.redesign-image-container:hover::before,
+.state-focus-image-container:hover::before {
   opacity: 1;
 }
 
-.redesign-image-container.expanded::before {
+.redesign-image-container.expanded::before,
+.state-focus-image-container.expanded::before {
   content: 'Click image to collapse';
 }
 
@@ -331,6 +336,7 @@ $annotation-image-max-width-narrow-screen: 420px;
 
 .state-focus-image-container {
   transform: translateY(-50%);
+  background: var(--color-bg);
 
   .title {
     @include font-sans-medium;
@@ -340,5 +346,49 @@ $annotation-image-max-width-narrow-screen: 420px;
   @include breakpoint-max(900px) {
     transform: initial;
     margin-bottom: grid(5);
+  }
+}
+
+.state-focus.annotation-container.expanded {
+  grid-column: 6 / 12;
+  z-index: 2001;
+
+  .state-focus-image-container {
+    transform: translateY(-69%);
+    padding: grid(4);
+    border-radius: 4px;
+  }
+
+  .annotation-image {
+    border: 1px solid colors.$neutral-90;
+  }
+
+  @include breakpoint-max(900px) {
+    grid-column: 3 / 12;
+    z-index: initial;
+
+    .state-focus-image-container {
+      transform: initial;
+      padding: initial;
+      border-radius: initial;
+    }
+
+    .annotation-image {
+      border: none;
+      max-width: 100%;
+    }
+  }
+}
+
+.state-focus-image-container {
+  cursor: pointer;
+  position: relative;
+
+  &.title {
+    display: inline-block;
+  }
+
+  @include breakpoint-max(900px) {
+    width: fit-content;
   }
 }

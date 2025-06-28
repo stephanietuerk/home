@@ -46,7 +46,7 @@
       </ng-template>
     }
   </div>
-  @if (project.images) {
+  @if (project.images?.length > 0) {
     <div class="images-container" [class.multi]="project.images.length > 1">
       @for (image of project.images; track $index) {
         <div class="image-container">

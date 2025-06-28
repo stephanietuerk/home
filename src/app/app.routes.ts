@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {
   artHistoryJobsId,
   beyondId,
+  composableVizId,
   federalDataPlatformId,
   flipId,
   leavingId,
@@ -61,6 +62,14 @@ export const APP_ROUTES: Routes = [
           import(
             './projects/federal-data-platform/federal-data-platform.component'
           ).then((c) => c.FederalDataPlatformComponent),
+      },
+      {
+        path: composableVizId,
+        data: { project: PROJECTS.find((p) => p.id === composableVizId) },
+        loadComponent: () =>
+          import('./projects/data-viz-library/data-viz-library.component').then(
+            (c) => c.DataVizLibraryComponent
+          ),
       },
       {
         path: '**',

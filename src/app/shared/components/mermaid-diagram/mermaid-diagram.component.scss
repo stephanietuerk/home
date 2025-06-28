@@ -1,4 +1,4 @@
-.mermaid-container {
+.mermaid-container.flowchart {
   .node rect,
   .node circle,
   .node ellipse,
@@ -26,4 +26,62 @@
   .edgePaths path {
     stroke: var(--mermaid-edge-path-color, #000) !important;
   }
+}
+
+.mermaid-container.sequence-diagram {
+  // .actor-bottom,
+  // .actor-bottom + .actor-box {
+  //   display: none;
+  // }
+
+  // .actor-top {
+  //   fill: var(--mermaid-top-actor-fill-color, #fff4dd) !important;
+  //   stroke: var(
+  //     --mermaid-top-actor-stroke-color,
+  //     hsl(40.5882352941, 60%, 83.3333333333%)
+  //   ) !important;
+  // }
+
+  // .actor-top + .actor-box {
+  //   display: block;
+  // }
+
+  // .actor-line {
+  //   stroke: var(
+  //     --mermaid-actor-line-color,
+  //     hsl(40.5882352941, 60%, 83.3333333333%)
+  //   ) !important;
+  // }
+
+  // text {
+  //   font-size: var(--mermaid-font-size, 16px) !important;
+  // }
+
+  // .messageLine0 {
+  //   stroke: var(--mermaid-message-line-color, #000) !important;
+  // }
+
+  // .messageText {
+  //   fill: var(--mermaid-message-text-color, #000) !important;
+  // }
+
+  // .note {
+  //   fill: var(--mermaid-note-fill-color, #fff5ad) !important;
+  //   stroke: var(
+  //     --mermaid-note-stroke-color,
+  //     hsl(52.6829268293, 60%, 73.9215686275%)
+  //   ) !important;
+  // } // box
+
+  // .noteText {
+  // }
+
+  // #arrowhead path {
+  //   stroke: var(--mermaid-message-line-color, #000) !important;
+  //   fill: var(--mermaid-message-line-color, #000) !important;
+  // }
+
+  // svg > rect {
+  //   stroke: var(--color-neutral-90, #999) !important;
+  // }
 }
