@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,7 +14,7 @@ import mermaid from 'mermaid';
 
 @Component({
   selector: 'app-mermaid-diagram',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './mermaid-diagram.component.html',
   styleUrl: './mermaid-diagram.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,6 +25,7 @@ export class MermaidDiagramComponent implements OnInit, AfterViewInit {
   @Input() fontSize: string = '14px';
   @Input() fontFamily: string = 'Arial, sans-serif';
   @Input() lineColor: string = '#000';
+  @Input() chartType: 'flowchart' | 'sequence-diagram' | '' = '';
   @ViewChild('mermaidDiv', { static: true }) mermaidDiv!: ElementRef;
 
   renderedDiagram: SafeHtml = '';

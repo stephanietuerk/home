@@ -259,6 +259,7 @@
       [lineColor]="'#444748'"
       [fontSize]="'14px'"
       [fontFamily]="'Red Hat Text, sans-serif'"
+      chartType="flowchart"
     ></app-mermaid-diagram
   ></figure>
   <p class="main text"
@@ -319,13 +320,13 @@
   <p class="main list-title capabilities">Platform Architecture</p>
   <ul class="main list capabilities">
     <li class="main list-item"
-      >Two-way URL-centralized state synchronization enabling shareable,
-      bookmarkable data views for stakeholder collaboration</li
+      >Two-way URL x centralized app state synchronization enabling shareable,
+      bookmarkable data views</li
     >
     <li class="list-item"
       >Automatic state and URL validation with cascading dependency
-      resolution—e.g. changing methodology selections intelligently updates
-      available populations and time periods</li
+      resolution—e.g. changing population selections intelligently updates
+      available time periods, states, and data types</li
     >
     <li class="list-item"
       >Smart browser history management and graceful handling of invalid
@@ -340,8 +341,8 @@
   <p class="main list-title capabilities">User Experience and Accessibility</p>
   <ul class="main list capabilities">
     <li class="main list-item"
-      >"State Focus" mode that filters the entire platform to user-selected
-      states with visual indicators throughout</li
+      >"State Focus" mode that filters the entire platform to show only
+      user-selected states, with visual mode indicators throughout</li
     >
     <li class="list-item"
       >Mobile-optimized experience with collapsible selection panels and full
@@ -353,26 +354,34 @@
     >
     <li class="list-item"
       >Extensive contextual information through dedicated measure information
-      tabs</li
+      tabs.</li
     ></ul
   >
   <div class="leader-line state-focus"></div>
-  <figure class="annotation flex-col annotation-container state-focus">
-    <div class="state-focus-image-container">
+  <figure
+    class="annotation flex-col annotation-container state-focus"
+    [class.expanded]="imageExpand.imageIsExpanded()"
+  >
+    <div
+      class="state-focus-image-container"
+      [class.expanded]="imageExpand.imageIsExpanded()"
+      (click)="imageExpand.showImageModal()"
+    >
       <figcaption class="title state-focus"
         >Measures Overview in State Focus mode</figcaption
       >
       <img
         src="assets/federal-data-platform/scorecard-state-focus.png"
         alt="Screenshot of the Medicaid and CHIP Scorecard in State Focus mode"
-        class="annotation-image"
+        class="annotation-image state-focus"
+        [class.expanded]="imageExpand.imageIsExpanded()"
     /></div>
   </figure>
   <p class="main list-title capabilities">Data Visualization and Analysis</p>
   <ul class="main list capabilities">
-    <li class="main list-item"
-      >Responsive data visualizations with customizable exports (CSV and image
-      formats)</li
+    <li class="list-item"
+      >Container-width responsive data visualizations with customizable exports
+      (CSV and image formats)</li
     >
     <li class="list-item"
       >Sortable data tables providing alternative views of all visualization
@@ -387,8 +396,8 @@
       points</li
     >
     <li class="list-item"
-      >Three-tier data missingness classification system for transparent data
-      quality communication</li
+      >Three classifications of data missingness for transparent and
+      comprehensive information communication</li
     >
     <li class="list-item"
       >Click-to-freeze tooltips with progressive disclosure—users can expand for

@@ -1,0 +1,33 @@
+@use 'functions' as *;
+@use 'typography' as *;
+@use 'colors';
+@use 'mixins' as *;
+
+.code-block-encapsulation-container {
+  pre {
+    padding: var(--code-block-padding, grid(4));
+    border-radius: var(--code-block-border-radius, grid(2));
+    border: var(--code-block-border, none);
+    margin-block: 0;
+  }
+
+  code {
+    font-size: var(--code-block-font-size, 1rem);
+    font-family: var(--code-block-font-family, monospace);
+    font-variation-settings:
+      'wght' var(--code-block-font-weight, 400),
+      'CASL' var(--font-variation-casl, 0),
+      'MONO' var(--font-variation-mono, 1),
+      'slnt' var(--font-variation-slnt, 0);
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+  }
+}

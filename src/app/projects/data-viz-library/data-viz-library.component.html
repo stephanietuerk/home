@@ -1,1 +1,506 @@
-<p>viz-library works!</p>,
+<section class="section top-matter">
+  <p class="main label project-type">Case Study</p>
+  <h2 class="main readout project-title"
+    >Composable Data Visualization Components Library</h2
+  >
+  <p class="main readout role">Creator & Principal Developer</p>
+  <p class="main readout timeframe">2022–Present</p>
+</section>
+<section class="section overview">
+  <h3 class="main title">Overview</h3>
+  <p class="main text"
+    >As the creator and principal developer of a comprehensive data
+    visualization library, I designed and built a TypeScript-based solution that
+    bridges D3.js capabilities with Angular's reactive architecture. This
+    library transformed how our organization creates data visualization, whether
+    in a web application or static images. It allowed us to replace ad-hoc D3
+    implementations with a systematic, type-safe, and highly composable approach
+    that serves multiple project teams across the organization.</p
+  >
+</section>
+<section class="section motivation">
+  <h3 class="main title">Motivation</h3
+  ><p class="main text"
+    >My employer has been creating data visualizations likely since the 1970s as
+    part of its public policy research work. When I joined, the web development
+    team had built a D3-based "library" that provided basic chart functionality,
+    though it came with significant limitations. The existing solution was
+    undocumented, untyped, rigidly structured, and written in an imperative
+    style that didn't align with modern frontend development practices or our
+    design requirements, and was unopinionated about integration our team's
+    selected frontend framework, Angular.</p
+  >
+  <p class="main text"
+    >Working in an Angular-first technology environment meant that we could not
+    capitalize on visualization libraries written for other frameworks that may
+    have helped solve our needs at the time. This left our development team in a
+    difficult position. Projects requiring data visualization meant working
+    directly with D3, which posed a number of challenges:</p
+  ><ul class="list main">
+    <li class="list-item"
+      >Designers with D3 expertise could create sophisticated visualizations but
+      struggled with Angular integration and frontend development patterns</li
+    >
+    <li class="list-item"
+      >Full-stack developers were comfortable with Angular but lacked deep D3
+      knowledge</li
+    >
+    <li class="list-item"
+      >No standardized approach for integrating D3 with our Angular
+      applications</li
+    >
+    <li class="list-item"
+      >Code for common viz behavior that repeated across our work was written
+      anew on each project</li
+    >
+  </ul>
+  <p class="main text"
+    >The catalyst for the library came during a project requiring a
+    width-responsive map with state abbreviation labels centered on each state.
+    Using SVG <code>viewBox</code> scaling—the typical responsive approach—was
+    insufficient because <code>SVGTextElement</code> labels do not scale
+    appropriately with this technique. While we eventually solved the issue
+    through a <code>ResizeListener</code> and manual redraws, the implementation
+    was complex and poorly integrated with the Angular component lifecycle.
+    Although this was our team's first time delivering work requiring mobile
+    functionality, it was clear that as a growing team, this requirement would
+    become more frequent, highlighting the need for a systematic solution to
+    responsive data visualization.</p
+  >
+  <div class="leader-line label-scaling"></div>
+  <figure class="annotation flex-col annotation-container label-scaling">
+    <p class="title label-scaling"
+      >The challenges of scaling SVG with <code>viewBox</code></p
+    >
+    <img
+      src="assets/data-viz-lib/map-with-labels-928.png"
+      alt="A map of the United States with state abbreviations centered on each state."
+      class="annotation-image label-scaling-large"
+    />
+    <figcaption class="label-scaling image-caption-large"
+      >At 900px, <code>&lt;text&gt;</code> elements are proportional to the rest
+      of the figure</figcaption
+    >
+    <img
+      src="assets/data-viz-lib/map-with-labels-520.png"
+      alt="A map of the United States with state abbreviations centered on each state."
+      class="annotation-image label-scaling-small"
+    />
+    <figcaption class="label-scaling image-caption-small"
+      >At 500px, when scaled with <code>viewBox</code>, the proportions of
+      <code>&lt;text&gt;</code> elements are significantly
+      disproportionate</figcaption
+    >
+  </figure>
+  <p class="main text"
+    >To address these challenges, I created a library that has developed to have
+    four defining architectural principles:</p
+  ><ul class="list main architectural-principles">
+    <li class="list-item">Declarative Composition</li>
+    <li class="list-item">Global Reactive Scaling</li>
+    <li class="list-item">Modular Visual Dimension Configuration</li>
+    <li class="list-item">Type-Safe Builder API</li>
+  </ul>
+</section>
+<section class="section motivation">
+  <h3 class="main title">Declarative Composition</h3
+  ><p class="main text"
+    >The primary motivation for the library was to allow our developers to
+    quickly and confidently implement whatever visualization our data
+    visualization designers had designed. In a public policy context, often
+    visualizations require significantly more context than they may in other
+    domains. For example, visualizations may need to display benchmarks, summary
+    statistics, or information about data quality, and there may be the need for
+    complex tooltips, multiple pattern fills, and even complicated requirements
+    around value precision and formatting.</p
+  >
+  <p class="main text"
+    >Therefore, a chief concern in designing the library was expressiveness, and
+    developing an API that could handle the complexity of public policy
+    visualizations without asking developers to implement D3's imperative
+    patterns. The solution was a modern, declarative composition model where
+    developers build visualizations by combining components, each of which draws
+    a single type of "mark", whether an axis, dots, bars, etc.</p
+  >
+  <div class="main code-block-container">
+    <app-code-block
+      class="code-block composition-example"
+      [code]="codesnippets.exampleTemplate"
+      language="html"
+    ></app-code-block>
+  </div>
+  <div class="leader-line composed-chart"></div>
+  <figure class="annotation flex-col annotation-container composed-chart">
+    <figcaption class="title label-composed-chart"
+      >Rendered composed chart</figcaption
+    >
+    <img
+      src="assets/data-viz-lib/composed-chart.png"
+      alt="A horizontal bar chart showing meaningless example data with a vertical target line."
+      class="annotation-image composed-chart"
+    />
+  </figure>
+  <p class="main text"
+    >Part of this original intent was to allow developers create their own
+    components by extending underlying abstractions in the library to create
+    custom implementations that they could add to the composed chart—for
+    example, when some functionality felt too project-specific to ever appear in
+    a second situation. Although this is entirely possible, in practice teams
+    have preferred to request features be added to the library instead, with no
+    needs seeming unlikely to ever arise again. This has strengthened the
+    library's capabilities while also ensuring that developers can rely on
+    well-tested, maintained implementations.
+  </p>
+</section>
+<section class="section motivation">
+  <h3 class="main title">Global Reactive Scaling</h3>
+  <p class="main text"
+    >Along with declarative composition, the library's approach to redrawing
+    charts on container width changes was a foundational architectural decision.
+    In fact, these two strategies, while serving separate functions, are
+    inextricable from each other. Synchronized redrawing of all components in
+    the chart is made possible by a set of global scales, exposed as
+    Observables, on the required parent <code>ChartComponent</code> (or more
+    concretely, an <code>XyChartComponent</code> or a
+    <code>MapChartComponent</code> which have different types of scales) that
+    all child components subscribe to.
+  </p>
+  <p class="main text"
+    >Data visualization scales require both domain (input) and range (output) in
+    order to be instantiated. In the library, our
+    <code>ChartComponent</code> uses a <code>ResizeObserver</code> to monitor
+    the width of its container, and is responsible for updating the range of the
+    scales on width change. Each composed visualization must then have one child
+    component that we term a <code>PrimaryMarksComponent</code> which is
+    responsible for providing the domain for the global scales from its data /
+    configuration object.</p
+  >
+  <p class="main text"
+    >Other child components, known as <code>AuxMarksComponents</code> (auxiliary
+    components), also subscribe to the global scales and then render their marks
+    (svg elements) using those scales. When scales are updated, either by a
+    change in the domain (new data inputs from the consuming application) or the
+    range (chart width change), all child components are redrawn in unison in
+    response to the emission of a new scales value.
+  </p>
+  <div class="main chart-scaling-diagram-container">
+    <div class="chart-scaling labels-container">
+      <p class="chart-scaling sequence-diagram label init">Initialization</p>
+      <p class="chart-scaling sequence-diagram label draw"
+        >Draw chart on init</p
+      >
+      <p class="chart-scaling sequence-diagram label update"
+        >Draw chart on update</p
+      >
+    </div>
+    <app-mermaid-diagram
+      class="mermaid-diagram chart-scaling"
+      [diagram]="diagram"
+      [lineColor]="'#444748'"
+      [fontSize]="'14px'"
+      [fontFamily]="'Red Hat Text, sans-serif'"
+      chartType="sequence-diagram"
+    ></app-mermaid-diagram>
+  </div>
+  <div class="leader-line chart-scaling"></div>
+  <div class="annotation flex-col annotation-container chart-scaling">
+    <p class="text"
+      >The <code>PrimaryMarksComponent</code> and
+      <code>AuxMarksComponent</code> base classes encapsulate all reactive
+      scaling logic. Implmentations of these classes (e.g.
+      <code>BarsComponent</code>) thus only need to implement a
+      <code>drawMarks()</code> method that specifies rendering logic.
+    </p>
+    <p class="text"
+      >Likewise, the <code>ChartComponent</code> itself is extended by
+      scale-specific <code>XyChartComponent</code> and
+      <code>MapChartComponent</code>, which vary by the kinds of global scales
+      they expose.
+    </p>
+  </div>
+  <p class="main text"
+    >This architecture enables a combinatorial approach to chart construction
+    where chart containers and marks components can be freely composed without
+    code duplication. The global scaling logic ensures consistent reactive
+    redrawing on width or data changes, regardless of how components are
+    combined.
+  </p>
+</section>
+<section class="section motivation">
+  <h3 class="main title">Modular Visual Dimension Configuration</h3
+  ><p class="main text"
+    >The library maintains a strict separation of concerns between configuration
+    of components and rendering logic, with all data transformation, domain
+    creation, and scale creation (aside from the global chart scales) occurring
+    during a configuration process that creates immutable objects that are then
+    consumed by rendering components.
+  </p>
+  <div class="leader-line dimensions"></div>
+  <figure class="annotation flex-col annotation-container dimensions">
+    <p class="title dimensions"
+      >Same rendering component, different dimensions</p
+    >
+    <img
+      src="assets/data-viz-lib/dots-ordinal.png"
+      alt="A horizontally-oriented chart showing meaningless example data with two different colored dts per age group. Age groups are on the y-axis, and the x-axis is a number scale with percentages."
+      class="annotation-image dimensions dots-ordinal"
+    />
+    <figcaption class="caption label-dimensions-ordinal"
+      >The <code>DotsComponent</code> is configured with an
+      <code>OrdinalChartPositionDimension</code> to control y position, a
+      <code>NumberChartPositionDimension</code> to control x position, and an
+      <code>OrdinalVisualValueDimension</code> to control color.</figcaption
+    >
+    <img
+      src="assets/data-viz-lib/dots-quant.png"
+      alt="A square scatter plot showing meaningless example data with different colored and different sized dots."
+      class="annotation-image dimensions dots-quant"
+    />
+    <figcaption class="caption label-dimensions-quant"
+      >The same <code>DotsComponent</code> is configured with two
+      <code>NumberChartPositionDimension</code>s to control x and y positions,
+      an <code>OrdinalVisualValueDimension</code> to control color, and a
+      <code>NumberVisualValueDimension</code> to control dot radius.</figcaption
+    >
+  </figure>
+  <p class="main text">
+    The foundation of this configuration process is a set of "dimension" classes
+    (drawing on Wilkinson's Grammar of Graphics), which each calculate a domain
+    and create a scale to translate a data value—either continuous (<code
+      >number</code
+    >
+    or <code>Date</code>) or ordinal/categorical (<code>string</code>)—into a
+    visual property in the chart, such as position, size, fill color, etc. The
+    dimensions also handle data edge cases through domain validation,
+    zero-inclusion logic for numerical scales, and proper handling of missing or
+    invalid data.
+  </p>
+  <p class="main text">
+    The dimensions share a common interface and provide different
+    implementations of methods based on the input data type and user inputs.
+    This design enables flexible composition within chart configuration and
+    significantly reduces code duplication across visualization types / marks
+    components—each marks (rendering) component simply works with one scale for
+    each of its visual dimensions without having to provide conditional logic to
+    account for user configuration.
+  </p>
+</section>
+<section class="section motivation">
+  <h3 class="main title">Type-Safe Builder API</h3>
+  <p class="main text"
+    >Given that the motivation for the library was to help our
+    developers—whether designers who are comfortable with D3 but less
+    experienced with frontend development at large or full-stack developers with
+    little D3 experience—create visualizations more quickly and more robustly,
+    it was clear that the key to library adoption was providing an exceptional
+    developer experience.
+  </p>
+  <p class="main text"
+    >While the wide range of configuration options in the library allows the
+    library to be highly flexible, it created a liability from a developer
+    experience perspective as users would need to both discover and understand
+    all available options. The solution to this was to create builder
+    configuation classes for each Angular component that users provide via HTML.
+    These config classes provide autocomplete with a menu of methods as well as
+    inline documentation within the code editor. The fluent chaining of the
+    methods is familar for D3 users and semantic method names make the
+    configuration intent immediately clear.</p
+  >
+  <div class="leader-line autocomplete"></div>
+  <figure class="annotation flex-col annotation-container autocomplete">
+    <p class="title autocomplete"
+      >Builder pattern allows for inline discovery of configuration options</p
+    >
+    <img
+      src="assets/data-viz-lib/autocomplete.png"
+      alt="A screenshot showing a user configuring a chart, with a dropdown of method names to the right of the user's cursor."
+      class="annotation-image autocomplete"
+    />
+  </figure>
+  <caption class="main code-caption builder-config"
+    >Method chaining creates readable, self-documenting configuration
+    code</caption
+  >
+  <div class="main code-block-container">
+    <app-code-block
+      class="code-block builder-config"
+      [code]="codesnippets.builderExample"
+      language="typescript"
+    ></app-code-block
+  ></div>
+  <p class="main text"
+    >The library uses TypeScript generics to achieve compile-time type safety.
+    By providing the type of their data upon builder class instantiation, users
+    get end-to-end type guarantees. Not only does this prevent misconfigurations
+    by the user—for example, providing <code>'2020'</code> or
+    <code>2020</code> rather than <code>new Date('2020-01-01')</code>, but it
+    also allows data that is emitted from the library to the user (for example,
+    in response to pointer events) to be strongly typed as well.
+  </p>
+  <div class="leader-line type-safety"></div>
+  <figure class="annotation flex-col annotation-container type-safety">
+    <p class="title type-safety"
+      >Type safety catches data/dimension mismatches before runtime</p
+    >
+    <img
+      src="assets/data-viz-lib/type-safety.png"
+      alt="A screenshot of a TypeScript error message in VSCode and a red squiggly underneath a data value that has been used with a numeric dimension."
+      class="annotation-image type-safety"
+    />
+  </figure>
+  <p class="main text"
+    >This type safety extends throughout the library's internal architecture.
+    Dimension transformations, scale operations, and rendering logic all
+    maintain type guarantees, ensuring that type errors are impossible not just
+    at configuration time, but throughout the entire visualization pipeline.</p
+  >
+</section>
+<section class="section features">
+  <h3 class="main title">Library (+ Ecosystem) Features</h3>
+  <p class="main list-title features">Interaction Features</p>
+  <ul class="main list features">
+    <li class="list-item"
+      >Support for user-defined actions on <code>pointerenter</code>,
+      <code>pointermove</code>, <code>pointerleave</code>, <code>click</code>,
+      and on a user-supplied stream (for coordinating with events outside the
+      chart), with library-supplied standard actions</li
+    >
+    <li class="list-item"
+      >A tooltip system that exposes the event target's data (both raw and
+      formatted), allowing user to specify their own custom HTML and styling for
+      the tooltip, which is then properly positioned by the library</li
+    >
+  </ul>
+  <p class="main list-title features"
+    >Production-Ready Visualization Features</p
+  >
+  <ul class="main list features">
+    <li class="list-item"
+      >Support for user-defined pattern fills on all
+      <code>MarksComponents</code> whose marks accept fills</li
+    >
+    <li class="list-item"
+      >Chart background grids and axis labels with fine grained positioning
+      control, including for rotated y-axis labels</li
+    >
+    <li class="list-item"
+      >Configurable axis appearance and behavior when dimension has positive and
+      negative values / zero axis is not coindident with chart edge</li
+    >
+    <li class="list-item"
+      >Domain padding that allows users to specify either a percentage, a number
+      of pixels, an interval to round to (e.g. round to the next 10), or a
+      significant figure to round to (e.g. round to the next value with N
+      significant figures) to avoid having the highest value's mark coincide
+      with the chart edge</li
+    >
+    <li class="list-item"
+      >Smart bar chart value labels that will place the label inside the bar if
+      space is unavailable between the end of bar and chart edge, that also
+      automates selecting a label color with sufficient contrast with its
+      background</li
+    >
+    <li class="list-item"
+      >Support for drawing geographies (geojson or topojson) with and without
+      attribute data, and compositing multiple selections of geographies, each
+      with different properties, in a single map output</li
+    >
+    <li class="list-item"
+      >Five different binning strategies for choropleth maps—categorical bins,
+      custom bins, equal frequencies bins, equal value range bins, and a
+      continuous scale (no bins)</li
+    >
+    <li class="list-item"
+      >Choropleth legend that automatically reflects binning strategy and
+      values, with both horizontal and vertical orientation options</li
+    >
+  </ul>
+
+  <p class="main list-title features">Developer Experience and Tooling</p>
+  <ul class="main list features">
+    <li class="list-item"
+      >Image export service for exporting visualizations as PNG or JPG</li
+    >
+    <li class="list-item"
+      >Custom Markdown-driven documentation platform with live code examples
+      <span class="list-item-note"
+        >Angular does not have the equivalent of MDX, so I wrote custom parsing
+        to allow us to reference live Angular components with illustrative
+        examples of the library in use within a custom Docusaurus-inspired,
+        markdown-based documentation platform.</span
+      ></li
+    >
+    <li class="list-item"
+      >Low-code playground application targeted at designers that provides
+      automatic data loading, built-in chart export, and workspace management,
+      allowing users to focus on visualization configuration rather than Angular
+      development setup</li
+    >
+  </ul>
+  <div class="leader-line docs"></div>
+  <figure class="annotation flex-col annotation-container docs">
+    <p class="title docs"
+      >Custom documentation site with markdown-driven docs and live code
+      examples</p
+    >
+    <img
+      src="assets/data-viz-lib/docs-top.png"
+      alt="A horizontal bar chart showing meaningless example data with a vertical target line."
+      class="annotation-image docs docs-top"
+    />
+    <img
+      src="assets/data-viz-lib/docs-bottom.png"
+      alt="A horizontal bar chart showing meaningless example data with a vertical target line."
+      class="annotation-image docs docs-bottom"
+    />
+  </figure>
+</section>
+
+<ng-template #topDocsImage>
+  <div
+    class="docs-image-container-position"
+    [class.expanded]="docsScreenshotExpanded() === 'top'"
+  >
+    <div
+      class="docs-image-container-top"
+      [class.expanded]="docsScreenshotExpanded() === 'top'"
+    >
+      <img
+        src="assets/data-viz-lib/docs-top.png"
+        alt="A horizontal bar chart showing meaningless example data with a vertical target line."
+        class="annotation-image docs docs-top"
+        [class.expanded]="docsScreenshotExpanded() === 'top'"
+        (click)="toggleDocsImageExpansion('top')"
+      />
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #bottomDocsImage>
+  <div
+    class="docs-image-container-position"
+    [class.expanded]="docsScreenshotExpanded() === 'bottom'"
+    [class.expanded-modal]="
+      docsScreenshotExpanded() === 'bottom' && imageExpand.hasRightColumn()
+    "
+  >
+    <div
+      class="docs-image-container-bottom"
+      [class.expanded]="docsScreenshotExpanded() === 'bottom'"
+      [class.expanded-modal]="
+        docsScreenshotExpanded() === 'bottom' && imageExpand.hasRightColumn()
+      "
+    >
+      <img
+        src="assets/data-viz-lib/docs-bottom.png"
+        alt="A horizontal bar chart showing meaningless example data with a vertical target line."
+        class="annotation-image docs docs-bottom"
+        (click)="toggleDocsImageExpansion('bottom')"
+        [class.expanded]="docsScreenshotExpanded() === 'bottom'"
+        [class.expanded-modal]="
+          docsScreenshotExpanded() === 'bottom' && imageExpand.hasRightColumn()
+        "
+      /> </div
+  ></div>
+</ng-template>
+`

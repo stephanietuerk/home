@@ -41,7 +41,6 @@ type BarCategoryLabelSelection = Selection<
 type BarsElement = 'div' | 'g' | 'bar' | 'label' | 'background';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-change-bars',
   imports: [CommonModule, VicXyAxisModule],
   templateUrl: './change-bars.component.html',

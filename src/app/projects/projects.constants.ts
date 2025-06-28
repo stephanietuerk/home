@@ -1,6 +1,7 @@
 import {
   artHistoryJobsId,
   beyondId,
+  composableVizId,
   covidTestingId,
   federalDataPlatformId,
   flipId,
@@ -38,16 +39,25 @@ export const PROJECTS: Project[] = [
     professional: true,
     theme: Theme.professional,
   },
-  // {
-  //   id: composableVizId,
-  //   title: 'Composable Data Visualization Components Library',
-  //   type: ProjectType.caseStudy,
-  //   year: '2022—2025',
-  //   description: [],
-  //   images: [],
-  //   links: [],
-  //   theme: Theme.professional,
-  // },
+  {
+    id: composableVizId,
+    title: 'Composable Data Visualization Components Library',
+    type: ProjectType.caseStudy,
+    year: '2022—2025',
+    description: [
+      "To improve our team's ability to deliver highly custom data visualizations in an Angular-first workplace, I designed and built a library of Angular data visualization components that provide a type-safe and opinionated way for developers with variable skill levels to efficiently and reliably build data visualizations, either within web applications or as standalone static charts. The library, which internally builds on top of D3, replaced ad-hoc D3 implementations across our organization with a systematic and  highly composable approach serving multiple project teams.",
+      "The library's four key architectural principles—declarative composition, global reactive scaling, modular visual dimension configuration, and a type-safe builder API—solved critical challenges facing teams with mixed D3/Angular expertise. The case study details the technical architecture, implementation approach, and developer experience features that transformed how our organization builds data visualizations.",
+    ],
+    images: [],
+    links: [
+      {
+        name: 'Case study',
+        routerLink: `${projectsPath}/${composableVizId}`,
+      },
+    ],
+    professional: true,
+    theme: Theme.professional,
+  },
   {
     id: artHistoryJobsId,
     title: 'Art History Jobs, 2011—2023',
