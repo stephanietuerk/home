@@ -5,11 +5,11 @@ import {
   TableHeader,
   TableSort,
 } from 'src/app/shared/components/table/table.model';
-import { VicXyAxisModule } from '../../../viz-components-new/axes';
-import { VicChartModule } from '../../../viz-components-new/charts';
-import { VicStackedAreaModule } from '../../../viz-components-new/stacked-area';
-import { VicHtmlTooltipModule } from '../../../viz-components-new/tooltips';
-import { VicXyBackgroundModule } from '../../../viz-components-new/xy-background';
+import { VicXyAxisModule } from '../../../shared/components/viz/axes';
+import { VicChartModule } from '../../../shared/components/viz/charts/chart.module';
+import { VicStackedAreaModule } from '../../../shared/components/viz/stacked-area/stacked-area.module';
+import { VicHtmlTooltipModule } from '../../../shared/components/viz/tooltips/html-tooltip/html-tooltip.module';
+import { VicXyBackgroundModule } from '../../../shared/components/viz/xy-background/xy-background.module';
 import { JobTableDatum } from '../art-history-data.model';
 import { ArtHistorySummaryService } from './art-history-summary-sort.service';
 import { SummaryChartComponent } from './summary-chart/summary-chart.component';

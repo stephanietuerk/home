@@ -39,10 +39,10 @@
     }
 
     .label:not(.selected) {
-      @include font-mono-expressive-semibold;
+      @include font-mono-expressive-medium;
       border: 1px solid colors.$neutral-90;
       background-color: white;
-      color: colors.$neutral-60;
+      color: colors.$text;
     }
 
     .label:not(.selected):hover {
