@@ -57,7 +57,7 @@
     "@types/d3": "^7.4.2",
     "@types/geojson": "^7946.0.16",
     "@types/hammerjs": "^2.0.46",
-    "@types/jasmine": "^4.3.1",
+    "@types/jasmine": "^5.1.8",
     "@types/jasminewd2": "^2.0.9",
     "@types/lodash-es": "^4.17.10",
     "@types/mermaid": "^9.1.0",
