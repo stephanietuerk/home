@@ -272,13 +272,19 @@
     these situations.
   </p>
   <p class="main text"
-    >This requires the frontend to compute updated selection options that yield
-    valid data when the user makes a change. The frontend also validates the
-    user’s existing selections and, when needed, automatically generates a new
-    valid selection that best approximates the previous one. This was enabled by
-    the app’s fully reactive architecture, which allowed selection logic, state
-    synchronization, and view updates to remain consistent and maintainable
-    across the platform.</p
+    >These conditions require the frontend to compute updated selection options
+    that yield valid data when the user makes a change. The frontend also
+    validates the user’s existing selections and, when needed, automatically
+    generates a new valid selection that best approximates the previous one.
+    This was enabled by the app’s fully reactive architecture, which allowed
+    selection logic, state synchronization, and view updates to remain
+    consistent and maintainable across the platform.</p
+  >
+  <p class="main text"
+    >To ensure that users understand why their selections may have changed, the
+    interface displays the number of available options for selections with this
+    behavior. This allows users to connect their upstream selection change with
+    downstream adjustments to selection options.</p
   >
   <div
     class="main challenges before-after-container flex-row"
