@@ -2,25 +2,25 @@ import { enDash } from 'src/app/core/constants/text.constants';
 import { Field } from './art-history-fields.model';
 
 export const artHistoryJobsColors = {
-  brightBlue: '#0088FF', // bright blue
-  powderPink: '#eda4ba', //powder pink
-  brightMint: '#38f0ac', //bright mint
-  darkGreen: '#40655e', //dark green
-  brightRed: '#eb1138', //bright red
-  maroon: '#832522', // maroon
+  brightBlue: '#0088FF',
+  powderPink: '#eda4ba',
+  brightMint: '#38f0ac',
+  darkGreen: '#40655e',
+  brightRed: '#eb1138',
+  maroon: '#832522',
   gold: 'gold',
-  slateBlueGray: '#63a3b7', //slate blue gray
-  dustyPurple: '#91799c', //dusty purple
-  grassGreen: '#88dc40', // grass green
-  darkVioletBlue: '#60409b', // dark violet blue
-  paleChartreuse: '#d6da7d', //pale chartreuse
-  brightPurple: '#9620fc', //bright purple
-  pineGreen: '#178535', //pine green
-  brightMagenta: '#ed2bb1', // bright pink -magenta
-  lightOrange: '#ef972d', //light orange
-  brightSkyBlue: '#20d8fd', //bright sky blue
-  redOrange: '#ff5f23', //red orange
-  poopBrown: '#8d630a', //poop brown
+  slateBlueGray: '#63a3b7',
+  dustyPurple: '#91799c',
+  grassGreen: '#88dc40',
+  darkVioletBlue: '#60409b',
+  paleChartreuse: '#d6da7d',
+  brightPurple: '#9620fc',
+  pineGreen: '#178535',
+  brightMagenta: '#ed2bb1',
+  lightOrange: '#ef972d',
+  brightSkyBlue: '#20d8fd',
+  redOrange: '#ff5f23',
+  poopBrown: '#8d630a',
 };
 
 export const artHistoryFields: Field[] = [

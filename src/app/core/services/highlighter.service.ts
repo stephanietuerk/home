@@ -85,18 +85,10 @@ export enum ShikiTheme {
   providedIn: 'root',
 })
 export class ShikiHighlighter {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private highlighterPromise: Promise<
     HighlighterGeneric<BundledLanguage, BundledTheme>
   > | null = null;
 
-  /**
-   * Initialize the highlighter. This should only be called one in an application.
-   *
-   * @param themes an array of any Shiki themes you may want to use anywhere in the app. You can control which theme for your particular parsing by passing the theme name to the actual parsing function.
-   *
-   * @returns void
-   */
   async initialize(
     themes: ShikiTheme[],
     langs: string[] = defaultHighlighterLangs
