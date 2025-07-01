@@ -334,6 +334,11 @@ $annotation-image-max-width-narrow-screen: 420px;
   margin-bottom: grid(2);
 }
 
+.capabilities .list-item-note {
+  @include body-2xs;
+  display: block;
+}
+
 .state-focus-image-container {
   transform: translateY(-50%);
   background: var(--color-bg);

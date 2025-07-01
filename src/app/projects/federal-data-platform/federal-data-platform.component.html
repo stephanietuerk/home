@@ -205,25 +205,25 @@
   <p class="main text"
     >Drawing on the same motivations for designing a unified data exploration
     interface, I prioritized creating a single frontend data model that mirrored
-    the coherence of the user interface and could systematically handle a wide
-    range of data structures, rather than incorporating measure-specific logic
-    into the frontend code. (After three years of feature development, we still
-    have no measure-specific logic.)
+    the coherence of the user interface and that could systematically handle a
+    wide range of data structures, rather than incorporating measure-specific
+    logic into the frontend code. (After three years of feature development, we
+    still have no measure-specific logic.)
   </p>
   <p class="main text"
     >This served two purposes. First, it was essential for user
     comprehension—without systematic behavior, users would struggle to interpret
     and compare data across the different measures in the platform. Introducing
-    measure-specific logic would likely have made the interface inconsistent.
-    Second, it enabled us to begin development immediately and have
-    significantly fewer issues as new requirements, such as new measure types,
-    additional properties, and additional levels of data hierarchy continued to
-    be identified through August of our first development year. This approach
-    also made expansion in development cycles straightforward. A notable outcome
-    of this was our team's ability to develop and deploy a second product, using
-    a different dataset but the same frontend codebase, in under four
-    months—including external security and Section 508 reviews and stakeholder
-    QA.</p
+    measure-specific logic would likely have resulted in an inconsistent
+    interface as well. Second, it enabled us to begin development immediately
+    and have significantly fewer issues as new requirements, such as new measure
+    types, additional properties, and additional levels of data hierarchy
+    continued to be identified through August of our first development year.
+    This approach also made expansion in development cycles straightforward. A
+    notable outcome of this was our team's ability to develop and deploy a
+    second product, using a different dataset but the same frontend codebase, in
+    under four months—including external security and Section 508 reviews and
+    stakeholder QA.</p
   >
   <p class="main text"
     >To manage frontend state, I implemented a custom reactive state management
@@ -327,7 +327,11 @@
   <ul class="main list capabilities">
     <li class="main list-item"
       >Two-way URL x centralized app state synchronization enabling shareable,
-      bookmarkable data views</li
+      bookmarkable data views<span class="list-item-note"
+        >This deep linking functionality has allowed specific data views to have
+        been linked by the New York Times in their 2025 coverage of legislation
+        affecting Medicaid funding.</span
+      ></li
     >
     <li class="list-item"
       >Automatic state and URL validation with cascading dependency
