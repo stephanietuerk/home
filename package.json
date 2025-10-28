@@ -29,7 +29,7 @@
     "firebase": "^10.5.2",
     "hammerjs": "^2.0.8",
     "lodash-es": "^4.17.21",
-    "mermaid": "^11.7.0",
+    "mermaid": "^11.12.1",
     "nouislider": "^15.7.1",
     "papaparse": "^5.4.1",
     "polylabel": "^2.0.1",
