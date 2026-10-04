@@ -27,7 +27,7 @@
     though it came with significant limitations. The existing solution was
     undocumented, untyped, rigidly structured, and written in an imperative
     style that didn't align with modern frontend development practices or our
-    design requirements, and was unopinionated about integration our team's
+    design requirements, and was unopinionated about integration with our team's
     selected frontend framework, Angular.</p
   >
   <p class="main text"
@@ -141,7 +141,7 @@
     />
   </figure>
   <p class="main text"
-    >Part of this original intent was to allow developers create their own
+    >Part of this original intent was to allow developers to create their own
     components by extending underlying abstractions in the library to create
     custom implementations that they could add to the composed chart—for
     example, when some functionality felt too project-specific to ever appear in
@@ -207,7 +207,7 @@
     <p class="text"
       >The <code>PrimaryMarksComponent</code> and
       <code>AuxMarksComponent</code> base classes encapsulate all reactive
-      scaling logic. Implmentations of these classes (e.g.
+      scaling logic. Implementations of these classes (e.g.
       <code>BarsComponent</code>) thus only need to implement a
       <code>drawMarks()</code> method that specifies rendering logic.
     </p>
@@ -300,10 +300,10 @@
     library to be highly flexible, it created a liability from a developer
     experience perspective as users would need to both discover and understand
     all available options. The solution to this was to create builder
-    configuation classes for each Angular component that users provide via HTML.
+    configuration classes for each Angular component that users provide via HTML.
     These config classes provide autocomplete with a menu of methods as well as
     inline documentation within the code editor. The fluent chaining of the
-    methods is familar for D3 users and semantic method names make the
+    methods is familiar for D3 users and semantic method names make the
     configuration intent immediately clear.</p
   >
   <div class="leader-line autocomplete"></div>
@@ -367,7 +367,7 @@
     >
     <li class="list-item"
       >A tooltip system that exposes the event target's data (both raw and
-      formatted), allowing user to specify their own custom HTML and styling for
+      formatted), allowing users to specify their own custom HTML and styling for
       the tooltip, which is then properly positioned by the library</li
     >
   </ul>
@@ -385,7 +385,7 @@
     >
     <li class="list-item"
       >Configurable axis appearance and behavior when dimension has positive and
-      negative values / zero axis is not coindident with chart edge</li
+      negative values / zero axis is not coincident with chart edge</li
     >
     <li class="list-item"
       >Domain padding that allows users to specify either a percentage, a number

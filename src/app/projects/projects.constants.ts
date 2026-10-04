@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
     type: ProjectType.dataViz,
     year: '2020—2023',
     description: [
-      'This is a set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023. I created the dataset myself by scraping the Academic Jobs Wiki site, which has traditionally been the most centralized clearninghouse for job postings in the field. The dataset encompases 12 years of job postings and over 1300 jobs.',
+      'This is a set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023. I created the dataset myself by scraping the Academic Jobs Wiki site, which has traditionally been the most centralized clearinghouse for job postings in the field. The dataset encompasses 12 years of job postings and over 1300 jobs.',
       'I first worked with this data in 2020, and built the visualizations in an Observable notebook at that time. Wanting to provide more ways to look at the data and a better user experience, I revamped the project in 2023 and significantly expanded the interface, creating a standalone project hosted on this site, using a standard frontend stack.',
     ],
     images: [
@@ -97,7 +97,7 @@ export const PROJECTS: Project[] = [
     type: ProjectType.writing,
     year: 2021,
     description: [
-      "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and create a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
+      "Before I got into interactive data / design / coding, I did a Ph.D and a postdoc in architectural history. I learned a lot from that experience, and also from the process of moving on from it into a very different field. I've talked to a number of people about how I left academia and created a new, very satisfying-to-me career who all seemed to find it useful, and thought I'd write something up to further share my experiences / thoughts / opinions on this matter.",
     ],
     links: [
       {
@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
     year: 2021,
     description: [
       'How can we display data to help people choose among options, each with a unique set of benefits and trade-offs?',
-      "This is what three of us from Mathematica's web development group asked when people from our data science team asked us to build an interface for the results of their agent-based model that simulated the effects of various COVID testing strategies in K-12 schools. (Project undertaken in conjunction with the Rockefeller Foundation.) For each testing strategy, comprise of a combination of a test population (students only, adults only, students and adults), a test frequency, and a test type, the model predicted various metrics such as infections detected and transmissions reduced, but also days of school missed by students (whether due to infections or needing to quarantine from exposure or false positives) and number of tests administered (which has a cost implication).",
+      "This is what three of us from Mathematica's web development group asked when people from our data science team asked us to build an interface for the results of their agent-based model that simulated the effects of various COVID testing strategies in K-12 schools. (Project undertaken in conjunction with the Rockefeller Foundation.) For each testing strategy, comprised of a combination of a test population (students only, adults only, students and adults), a test frequency, and a test type, the model predicted various metrics such as infections detected and transmissions reduced, but also days of school missed by students (whether due to infections or needing to quarantine from exposure or false positives) and number of tests administered (which has a cost implication).",
       'We came up with a solution that allowed users to select a metric of highest priority to them, and then to see all other outcomes that corresponded to the best outcome for the prioritized metric, the second best, and so forth. This was a very quick project for us, taking about a month (with all of us on other projects at the same time) for both design and development.',
     ],
     images: [
@@ -143,7 +143,7 @@ export const PROJECTS: Project[] = [
     year: 2020,
     description: [
       'In June 2020, I started a campaign to encourage my high school to address issues of racism at the school and develop a strong anti-racism culture, following a highly criticized response to the George Floyd murder. The campaign took off but was dispersed across various media—letters from the school sent to personal email addresses, Medium posts, articles in newspapers, PDF memos, and more. This made it difficult for the larger community to keep abreast of the campaign and understand what was being said by whom.',
-      'To catalog our efforts as an group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. (No CMS or CSS framework was used because I love hand-crafting. :)) Additional content was added throughout the summer.',
+      'To catalog our efforts as a group and to centralize media relating to our work, I quickly created a website. All site functionality and styling was done over the course of a weekend. (No CMS or CSS framework was used because I love hand-crafting. :)) Additional content was added throughout the summer.',
       'Note: This site was originally deployed through the now-discontinued free tier of Heroku hosting, and is unavailable until a new hosting solution is found.',
     ],
     images: [
