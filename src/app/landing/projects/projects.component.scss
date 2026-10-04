@@ -12,6 +12,7 @@
 .section-header {
   @extend %section-header;
   text-align: center;
+  padding-bottom: grid(2);
 }
 
 .instruction-text {

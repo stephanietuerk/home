@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SECTIONS } from '../../core/constants/sections.constants';
-import { ExpandArrowComponent } from '../../shared/components/expand-arrow/expand-arrow.component';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, ExpandArrowComponent],
+  imports: [CommonModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   encapsulation: ViewEncapsulation.None,
