@@ -1,0 +1,133 @@
+@use 'sass:meta';
+
+$primary: (
+  0: #000000,
+  5: #001129,
+  10: #001b3c,
+  15: #00264e,
+  20: #003061,
+  25: #003b75,
+  30: #004689,
+  35: #00529e,
+  40: #005eb3,
+  50: #0076df,
+  60: #3491ff,
+  70: #76acff,
+  80: #a8c8ff,
+  90: #d5e3ff,
+  95: #ecf1ff,
+  98: #f9f9ff,
+  99: #fdfbff,
+  100: #ffffff,
+);
+
+$neutral: (
+  0: #000000,
+  5: #0e1212,
+  10: #191c1d,
+  15: #232627,
+  20: #2e3131,
+  25: #393c3c,
+  30: #444748,
+  35: #505353,
+  40: #5c5f5f,
+  50: #747878,
+  60: #8e9191,
+  70: #a9acac,
+  80: #c4c7c7,
+  90: #e1e3e3,
+  95: #eff1f1,
+  97: #f5f7f7,
+  98: #f8fafa,
+  99: #fbfdfd,
+  100: #ffffff,
+);
+
+$alt-neutral: (
+  55: #6d7c81,
+  65: #98a6a9,
+  75: #c3d0d2,
+  85: #d3ddde,
+  88: #e4eaeb,
+);
+
+$highlight: (
+  'default': #0088ff,
+  'light': #b2dbff,
+  'search': #eeff00,
+);
+
+$text: #2a3058;
+
+$site-colors: (
+  'primary': $primary,
+  'neutral': $neutral,
+  'alt-neutral': $alt-neutral,
+  'highlight': $highlight,
+  'text': $text,
+);
+
+$shadows: (
+  xs: (
+    0 1px 1.5px rgba($text, 0.1),
+    0 0.5px 0.75px rgba($text, 0.06),
+  ),
+  sm: (
+    0 1px 2px rgba($text, 0.12),
+    0 1.5px 4px rgba($text, 0.08),
+  ),
+  md: (
+    0 2px 4px rgba($text, 0.14),
+    0 3px 6px rgba($text, 0.1),
+  ),
+  lg: (
+    0 4px 6px -1px rgba($text, 0.1),
+    0 8px 16px -2px rgba($text, 0.08),
+  ),
+  xl: (
+    0 8px 12px -2px rgba($text, 0.12),
+    0 16px 24px -4px rgba($text, 0.1),
+  ),
+  sm-soft: (
+    0 1px 3px rgba($text, 0.12),
+    0 1px 2px rgba($text, 0.24),
+  ),
+  sm-ultra-soft: (
+    0 1px 3px rgba($text, 0.06),
+    0 1px 2px rgba($text, 0.212),
+  ),
+  sm-bottom-soft: (
+    0 1px 3px -1px rgba($text, 0.12),
+    0 1px 2px -1px rgba($text, 0.24),
+  ),
+  sm-bottom-ultra-soft: (
+    0 1px 3px -1px rgba($text, 0.06),
+    0 1px 2px -1px rgba($text, 0.12),
+  ),
+  md-spread: (
+    0 2px 6px rgba($text, 0.12),
+    0 2px 4px rgba($text, 0.24),
+  ),
+);
+
+$font: (
+  sans: 'Red Hat Text',
+  mono: 'Recursive',
+  variation-casl: 0.5,
+  variation-mono: 1,
+  variation-slnt: 0,
+  weight: 400,
+);
+
+// Emits nested maps as custom properties, e.g. $site-colors with prefix
+// 'color' becomes --color-primary-50, --color-text, ...
+@mixin map-to-vars($map, $prefix, $key: '') {
+  @each $name, $value in $map {
+    $next-key: #{$key}-#{$name};
+    @if meta.type-of($value) == 'map' {
+      @include map-to-vars($value, $prefix, $next-key);
+    } @else {
+      --#{$prefix}#{$next-key}: #{$value};
+    }
+  }
+}

@@ -1,0 +1,134 @@
+@use 'tokens';
+@use 'colors';
+@use 'typography' as *;
+@use 'vars' as *;
+
+@font-face {
+  font-family: 'Recursive';
+  src: url('/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf');
+  font-weight: 300 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('/fonts/RedHatText-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  @include tokens.map-to-vars(tokens.$site-colors, 'color');
+  @include tokens.map-to-vars(tokens.$shadows, 'shadow');
+  @include tokens.map-to-vars(tokens.$font, 'font');
+
+  scroll-behavior: smooth;
+  scroll-padding-top: $anchor-scroll-offset;
+}
+
+// ---- Reset ----
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background: white;
+  color: colors.$text;
+  @include body-small;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+button,
+a {
+  cursor: pointer;
+  color: colors.$text;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ---- Scrollbars ----
+
+::-webkit-scrollbar {
+  width: $vertical-scrollbar-thickness;
+  height: $horizontal-scrollbar-thickness;
+  border-radius: 70px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-scrollbar;
+  border-radius: 70px;
+}

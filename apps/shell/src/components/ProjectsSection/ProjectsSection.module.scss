@@ -1,0 +1,22 @@
+@use 'functions' as *;
+@use 'mixins';
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  @include mixins.section-header;
+  text-align: center;
+  padding-bottom: grid(2);
+}
+
+.instructions {
+  text-align: center;
+}
+
+.table {
+  padding-top: grid(8);
+}

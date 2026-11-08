@@ -1,0 +1,39 @@
+@use 'functions' as *;
+
+$transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+.icon {
+  display: block;
+  overflow: visible;
+  width: grid(5);
+}
+
+.shaft {
+  transition: transform $transition;
+  transform: scaleY(1);
+}
+
+.head {
+  transition: transform $transition 0.03s;
+  transform: translateY(0);
+}
+
+.collapsed .shaft {
+  transform-origin: top;
+}
+
+.expanded .shaft {
+  transform-origin: bottom;
+}
+
+.hovered .shaft {
+  transform: scaleY(1.3);
+}
+
+.hovered.collapsed .head {
+  transform: translateY(8px);
+}
+
+.hovered.expanded .head {
+  transform: translateY(-10px);
+}

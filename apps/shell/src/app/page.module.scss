@@ -1,0 +1,27 @@
+@use 'functions' as *;
+@use 'breakpoints' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  scrollbar-gutter: stable;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 752px;
+  padding-top: grid(16);
+  padding-bottom: grid(16);
+  gap: grid(28);
+
+  @include breakpoint(mobile-device) {
+    gap: grid(14);
+  }
+
+  > * {
+    margin: 0 grid(4);
+  }
+}

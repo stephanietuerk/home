@@ -1,0 +1,19 @@
+@use 'functions' as *;
+@use 'mixins';
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: grid(6);
+  padding: grid(32) grid(4);
+}
+
+.header {
+  @include mixins.section-header;
+  text-align: center;
+}
+
+.link {
+  @include mixins.nav-link;
+}

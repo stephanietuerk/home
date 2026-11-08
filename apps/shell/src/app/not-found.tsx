@@ -1,10 +1,13 @@
 import Link from 'next/link';
+import styles from './not-found.module.scss';
 
 export default function NotFound() {
   return (
-    <main className="not-found">
-      <h1>Page not found</h1>
-      <Link href="/">Return to main site</Link>
+    <main className={styles.notFound}>
+      <h1 className={styles.header}>page not found</h1>
+      <Link href="/" className={styles.link}>
+        Return to main site
+      </Link>
     </main>
   );
 }

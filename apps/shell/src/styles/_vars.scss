@@ -1,0 +1,10 @@
+@use 'functions' as *;
+@use 'colors';
+
+$app-navbar-height: 48px;
+// Navbar height plus breathing room, so in-page anchors land below it.
+$anchor-scroll-offset: 66px;
+
+$color-scrollbar: colors.$alt-neutral-65;
+$vertical-scrollbar-thickness: grid(3);
+$horizontal-scrollbar-thickness: grid(3);

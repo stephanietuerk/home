@@ -1,0 +1,151 @@
+@use 'functions' as *;
+@use 'breakpoints' as *;
+@use 'colors';
+@use 'typography' as *;
+
+.container {
+  max-width: 1020px;
+  padding-top: grid(4);
+
+  @include breakpoint(mobile-device) {
+    padding: 0;
+  }
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 900px;
+
+  @include breakpoint-max(1000px) {
+    max-width: 1000px;
+    width: initial;
+  }
+}
+
+.colTitle {
+  width: 48%;
+}
+
+.colType {
+  width: 35%;
+}
+
+.colYear {
+  width: 11%;
+}
+
+.colMore {
+  width: 4%;
+}
+
+.row {
+  border-bottom: 1px solid colors.$highlight-light;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.indexRow {
+  cursor: pointer;
+
+  &:hover {
+    color: colors.$highlight-default;
+  }
+
+  &:hover:not(.expanded) {
+    background: colors.$neutral-97;
+  }
+
+  &.expanded {
+    border-bottom-color: transparent;
+  }
+}
+
+.detailsRow:not(.expanded) {
+  border-bottom: none;
+}
+
+.headerCell {
+  @include label-xs-caps;
+  @include font-sans-medium;
+  font-variation-settings:
+    'wght' 700,
+    'MONO' 0,
+    'CASL' 0,
+    'slnt' 0;
+  letter-spacing: 0.06em;
+  text-align: left;
+  padding-bottom: grid(1);
+
+  &.year {
+    text-align: right;
+  }
+}
+
+.cell {
+  @include label-medium;
+  text-align: left;
+  padding: grid(6) grid(4) grid(6) 0;
+  line-height: 1.4;
+
+  @include breakpoint(mobile-device) {
+    font-size: 0.85rem;
+  }
+
+  &.year {
+    text-align: right;
+    padding-right: 0;
+  }
+
+  &.more {
+    padding-left: grid(3);
+    padding-right: 0;
+    text-align: right;
+  }
+}
+
+.asterisk {
+  position: relative;
+  top: -6px;
+  padding-left: grid(0.5);
+}
+
+.arrow {
+  position: relative;
+  top: grid(1);
+
+  &.expanded {
+    top: -#{grid(0.5)};
+  }
+}
+
+.detailsCell {
+  padding: 0;
+}
+
+.slide {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.2s ease-out,
+    opacity 0.2s ease-out;
+
+  &.expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+.slideInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.details {
+  padding: grid(8) grid(4) grid(10) 0;
+}
+
+.footnote {
+  @include body-small;
+  padding-top: grid(3);
+}

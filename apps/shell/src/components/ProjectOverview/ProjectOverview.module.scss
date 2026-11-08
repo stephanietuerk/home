@@ -1,0 +1,77 @@
+@use 'functions' as *;
+@use 'colors';
+@use 'typography' as *;
+
+.overview {
+  padding: grid(4) grid(6);
+  background-color: colors.$neutral-97;
+  border-radius: grid(1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.text {
+  @include body-small;
+  padding-bottom: grid(6);
+  line-height: 1.65;
+}
+
+.links {
+  display: inline-flex;
+  gap: grid(6);
+}
+
+.link {
+  @include font-mono-expressive-medium;
+  color: colors.$highlight-default;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-right: grid(8);
+  }
+
+  &:hover {
+    @include font-mono-expressive-bold;
+    text-decoration: underline;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    color: colors.$neutral-70;
+  }
+}
+
+.arrow {
+  padding-left: grid(1);
+}
+
+.disabledLabel {
+  font-size: 0.92rem;
+  color: colors.$neutral-70;
+  padding-left: grid(2);
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: grid(10);
+  gap: grid(6);
+
+  &.multi {
+    justify-content: space-between;
+  }
+}
+
+.imageContainer {
+  max-width: calc(900px / 2 - 2.75rem);
+}
+
+.image {
+  border-radius: 4px;
+  object-fit: cover;
+  max-width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
