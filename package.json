@@ -14,6 +14,7 @@
     "test:ci": "npm --prefix apps/projects run test:ci"
   },
   "devDependencies": {
-    "concurrently": "^10.0.5"
+    "concurrently": "^10.0.5",
+    "prettier": "~3.5.3"
   }
 }
