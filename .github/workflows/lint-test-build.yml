@@ -28,9 +28,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            apps/shell/package-lock.json
+            apps/projects/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm run install:all
 
       - name: Lint
         run: npm run lint
@@ -39,4 +43,4 @@ jobs:
         run: npm run test:ci
 
       - name: Build
-        run: npm run build --if-present
+        run: npm run build

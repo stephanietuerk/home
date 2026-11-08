@@ -1,0 +1,12 @@
+<nav class="nav-container">
+  <a
+    class="return-button"
+    href="/"
+    (pointerenter)="hovered = true"
+    (pointerleave)="hovered = false"
+  >
+    <app-project-arrow class="arrow" [hovered]="hovered"></app-project-arrow>
+    <span class="return-text">return to main site</span>
+  </a>
+  <h1 class="project-name">{{ title }}</h1>
+</nav>

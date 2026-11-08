@@ -17,7 +17,11 @@ jobs:
         with:
           node-version: 24.x
           cache: npm
-      - run: npm ci && npm run build:prod
+          cache-dependency-path: |
+            package-lock.json
+            apps/shell/package-lock.json
+            apps/projects/package-lock.json
+      - run: npm run install:all && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

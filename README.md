@@ -1,27 +1,64 @@
-# Stephanietuerk
+# stephanietuerk.net
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+Two independently built apps, deployed together to Firebase Hosting:
 
-## Development server
+| App | Location | Serves |
+| --- | --- | --- |
+| Next.js shell (App Router, static export) | `apps/shell` | `/` and any React project at `/projects/<id>` |
+| Angular projects | `apps/projects` | the legacy project pages at `/projects/<id>` (base href `/projects/`) |
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The Next app is built with `output: 'export'`, so every page is pre-rendered to HTML at build time
+and the whole site is static files. Server-only Next features (request-time rendering, route
+handlers that read the request, server actions, default image optimization) are not available.
 
-## Code scaffolding
+Moving between the two apps is a full page load. Inside each app, navigation is client-side.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup
 
-## Build
+Requires Node 22.22 or newer.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```sh
+npm run install:all
+```
 
-## Running unit tests
+## Development
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+npm run dev
+```
 
-## Running end-to-end tests
+Starts `next dev` (http://localhost:3000) and `ng serve` (port 4200). Use http://localhost:3000
+for everything: in dev, any `/projects/*` path without a Next page is proxied to `ng serve`,
+mirroring the Firebase rewrites. Set `ANGULAR_DEV_SERVER` to point the proxy somewhere other than
+`http://localhost:4200`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Build and deploy
 
-## Further help
+```sh
+npm run build
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Checks that the project routing agrees everywhere it is defined (see below), builds both apps, and
+assembles `dist/public` (the Next export at the root, Angular under `projects/`). The GitHub
+workflows run this and deploy `dist/public` to Firebase.
+
+To serve the built site locally with the real Firebase routing rules:
+
+```sh
+npx firebase-tools emulators:start --only hosting
+```
+
+## Which app renders a project
+
+A project's `page` field in `apps/shell/src/data/projects.ts` says which app renders
+`/projects/<id>`.
+
+- **Angular projects** must also be listed in the `/projects/` rewrite regex in `firebase.json`
+  and in `apps/projects/src/app/core/constants/routing.constants.ts`.
+- **React projects** need a page at `apps/shell/src/app/projects/<id>/page.tsx`.
+
+`npm run check:routes` (also run by `npm run build`) verifies all of this.
+
+To migrate an Angular project to React: add its page under `apps/shell/src/app/projects/<id>/`,
+switch its `page` to `'react'`, and remove its id from the `firebase.json` regex and the Angular
+routes. Its URL stays the same.

@@ -25,6 +25,7 @@
     "typescriptreact",
     "html"
   ],
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "eslint.workingDirectories": ["apps/projects"],
+  "typescript.tsdk": "apps/projects/node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "relative",
 }
