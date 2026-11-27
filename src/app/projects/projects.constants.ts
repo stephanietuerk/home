@@ -60,11 +60,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: artHistoryJobsId,
-    title: 'Art History Jobs, 2011—2023',
+    title: 'Art History Jobs, 2011—2025',
     type: ProjectType.dataViz,
     year: '2020—2023',
     description: [
-      'This is a set of interactive visualizations that helps people understand changes in the art history academic job market from 2012-2023. I created the dataset myself by scraping the Academic Jobs Wiki site, which has traditionally been the most centralized clearinghouse for job postings in the field. The dataset encompasses 12 years of job postings and over 1300 jobs.',
+      'This is a set of interactive visualizations that helps people understand changes in the art history academic job market from 2011-2025. I created the dataset myself by scraping the Academic Jobs Wiki site, which has traditionally been the most centralized clearinghouse for job postings in the field. The dataset encompasses 15 years of job postings and over 1,600 jobs.',
       'I first worked with this data in 2020, and built the visualizations in an Observable notebook at that time. Wanting to provide more ways to look at the data and a better user experience, I revamped the project in 2023 and significantly expanded the interface, creating a standalone project hosted on this site, using a standard frontend stack.',
     ],
     images: [
